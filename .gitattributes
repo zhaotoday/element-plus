@@ -1,4 +1,0 @@
-dist/ merge=keepMine
-dist/* merge=keepMine
-dist/** merge=keepMine
-dist/**/* merge=keepMine

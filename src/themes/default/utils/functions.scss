@@ -1,7 +1,0 @@
-@function px2rem($px) {
-  @return ($px / 75px) * 1rem;
-}
-
-@function color($index) {
-  @return nth($color, $index);
-}
