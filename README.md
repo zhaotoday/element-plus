@@ -1,5 +1,5 @@
 ## 介绍
-基于 vue-cli 的 Vue js 单页应用项目模板。
+基于 vue-cli 的 Vue js 单页应用项目模板，在 vue-cli 基础上做了一些合理的修改。
 
 ## 使用
 ```bash
