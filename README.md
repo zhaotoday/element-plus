@@ -37,14 +37,14 @@ $ npm run e2e
 $ npm test
 ```
 
-## 对 vue-cli 模板的一些小修改
-#### 将模板文件 index.html 从根目录移至 src 目录，将构建文件 index.html 移至根目录
+## 对 vue-cli 的一些修改
+#### 1. 将模板文件 index.html 从根目录移至 src 目录，将构建文件 index.html 移至根目录
 理由：原 vue-cli 构建后的 index.html 存放在 dist 目录下。但通常，我们需要把整个项目提交到 git/svn，然后部署，这时候访问的默认首页需要是构建后的 index.html。
 
-#### 提供 sass 支持
+#### 2. 提供 sass 支持
 ```bash
 $ npm install --save-dev node-sass
 $ npm install --save-dev sass-loader
 ```
 
-#### 配置 postcss autoprefixer
+#### 3. 配置 postcss autoprefixer
