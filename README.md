@@ -1,30 +1,35 @@
-# vue-cli-example
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
+## 使用
+```bash
+# 下载代码
+$ git clone https://github.com/zhaotoday/vue.js.git
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+```bash
+# 安装依赖
+npm install
+```
+
+```bash
+# 开发调试
+npm run dev
+```
+
+```bash
+# 构建
+npm run build
+```
+
+```bash
+# 单元测试
+npm run unit
+```
+
+```bash
+# e2e 测试
+npm run e2e
+```
+
+```bash
+# 执行所有测试
+npm test
+```
