@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Root from '@/app/Root'
 import Layout from '@/app/Layout'
+import home from './home'
+import articles from './articles'
+import login from './login'
 
 Vue.use(Router)
 
@@ -15,30 +18,11 @@ export default new Router({
           path: '/',
           component: Layout,
           children: [
-            {
-              path: '/',
-              component: resolve => require(['@/app/Home'], resolve)
-            },
-            {
-              path: 'articles',
-              component: resolve => require(['@/app/Articles'], resolve),
-              children: [
-                {
-                  path: '/',
-                  component: resolve => require(['@/app/Articles/List'], resolve)
-                },
-                {
-                  path: 'form',
-                  component: resolve => require(['@/app/Articles/Form'], resolve)
-                }
-              ]
-            }
+            home,
+            articles
           ]
         },
-        {
-          path: 'login',
-          component: resolve => require(['@/app/Login'], resolve)
-        }
+        login
       ]
     }
   ]
