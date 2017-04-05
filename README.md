@@ -5,6 +5,7 @@
 - [Vue.js 中文网](https://cn.vuejs.org/)
 - [vue-router 中文网](http://router.vuejs.org/zh-cn/)
 - [Vuex 中文网](https://vuex.vuejs.org/zh-cn/)
+- [Vuex 通俗版教程](https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/)
 
 ## 使用
 ```bash
