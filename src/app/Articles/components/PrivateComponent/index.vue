@@ -16,7 +16,7 @@
 </script>
 
 <style scoped>
-  .private-component{
+  .private-component {
     color: red;
   }
 </style>
