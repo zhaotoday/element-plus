@@ -1,6 +1,9 @@
 ## 介绍
 基于 vue-cli 的 Vue js 单页应用项目模板，在 vue-cli 基础上做了一些合理的修改。
 
+## 技术栈
+Vue、WebPack、ES6、vue-router、Vuex、SASS、PostCSS。
+
 ## 参考
 - [Vue.js 中文网](https://cn.vuejs.org/)
 - [vue-router 中文网](http://router.vuejs.org/zh-cn/)
