@@ -57,12 +57,12 @@ $ npm install --save-dev node-sass
 $ npm install --save-dev sass-loader
 ```
 
-#### 添加 polyfill
+#### 3. 添加 polyfill
 按需引入 polyfill，提高浏览器兼容性。
 ```bash
 $ npm install --save core-js
 ```
-eg: src/utils/polyfill.js
+src/utils/polyfill.js
 ```js
 import 'core-js/es6/promise'
 ```

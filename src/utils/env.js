@@ -1,8 +1,58 @@
 /**
  * 环境配置
  * @author 赵金添 <729234283@qq.com>
+ * @example
+ * import Env from '@/utils/env'
+ * const env = new Env({
+ *   current: Env.consts.PROD
+ * })
+ * console.log(env.getAPI('some-api-module'))
  */
-export default class Env {
+class Env {
+  /**
+   * 构造方法
+   * @param {string} current 新建对象时，设置当前环境（仅限用于本地调试）
+   */
+  constructor ({current}) {
+    /**
+     * 当前环境
+     * @type {string}
+     */
+    this.current = current || this._getCurrent()
+
+    /**
+     * CS
+     * @type {string}
+     */
+    this.cs = this._getCS()
+
+    /**
+     * CS CDN
+     * @type {string}
+     */
+    this.csCDN = this._getCSCDN()
+
+    /**
+     * UC
+     * @type {string}
+     */
+    this.uc = this._getUC()
+
+    /**
+     * 虚拟组织 UC
+     * @type {string}
+     */
+    this.vOrgUC = this._getVOrgUC()
+
+    /**
+     * 用户头像
+     * @type {string}
+     */
+    this.userFace = this._getUserFace()
+  }
+
+  static a = 22
+
   /**
    * 常量
    * @type {Object}
@@ -30,11 +80,13 @@ export default class Env {
     DYEJIA: 'DYEJIA'
   }
 
+  static current = Env.getCurrent()
+
   /**
    * 获取当前环境
-   * @type {string}
+   * @return {string}
    */
-  get current () {
+  static getCurrent () {
     const {HOSTNAME, DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = Env.consts
 
     switch (HOSTNAME) {
@@ -68,34 +120,8 @@ export default class Env {
   }
 
   /**
-   * UC
-   * @return {string}
-   */
-  get uc () {
-    const {DEV, DEBUG, PRESSURE, BETA, AWS, AWSCA, DYEJIA} = Env.consts
-
-    return (() => {
-      switch (this.current) {
-        case DEV:
-        case DEBUG:
-        case BETA:
-        case PRESSURE:
-          return 'https://ucbetapi.101.com'
-        case AWS:
-          return 'https://awsuc.101.com'
-        case AWSCA:
-          return 'https://uc-awsca.101.com'
-        case DYEJIA:
-          return 'https://aqapi.dyejia.cn'
-        default:
-          return 'https://aqapi.101.com'
-      }
-    })()
-  }
-
-  /**
    * CS
-   * @type {string}
+   * @return {string}
    */
   get cs () {
     const {DEV, DEBUG, PRESSURE, BETA, AWS, AWSCA} = Env.consts
@@ -118,10 +144,10 @@ export default class Env {
   }
 
   /**
-   * CS CDN
-   * @type {string}
+   * 获取 CS CDN
+   * @return {string}
    */
-  get csCDN () {
+  _getCSCDN () {
     const {DEV, DEBUG, PRESSURE, BETA, AWS, AWSCA} = Env.consts
 
     return (() => {
@@ -142,10 +168,36 @@ export default class Env {
   }
 
   /**
-   * 虚拟组织 UC
-   * @type {string}
+   * 获取 UC
+   * @return {string}
    */
-  get vOrgUC () {
+  _getUC () {
+    const {DEV, DEBUG, PRESSURE, BETA, AWS, AWSCA, DYEJIA} = Env.consts
+
+    return (() => {
+      switch (this.current) {
+        case DEV:
+        case DEBUG:
+        case BETA:
+        case PRESSURE:
+          return 'https://ucbetapi.101.com'
+        case AWS:
+          return 'https://awsuc.101.com'
+        case AWSCA:
+          return 'https://uc-awsca.101.com'
+        case DYEJIA:
+          return 'https://aqapi.dyejia.cn'
+        default:
+          return 'https://aqapi.101.com'
+      }
+    })()
+  }
+
+  /**
+   * 获取虚拟组织 UC
+   * @return {string}
+   */
+  _getVOrgUC () {
     const {DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = Env.consts
 
     return (() => {
@@ -173,10 +225,10 @@ export default class Env {
   }
 
   /**
-   * 用户头像
-   * @type {string}
+   * 获取用户头像
+   * @return {string}
    */
-  get userFace () {
+  _getUserFace () {
     return this.csCDN + '/v0.1/static/cscommon/avatar'
   }
 
@@ -199,4 +251,17 @@ export default class Env {
       ...overrides
     })[this.current]
   }
+
+  /**
+   * 将当前环境强制设置为某个环境（仅限用于本地调试）
+   * @param {string} value 环境
+   */
+  setCurrentTo (value) {
+    this.current = value
+  }
 }
+
+// Env.current = Env.getCurrent()
+console.log(Env.current, 3344)
+
+export default Env
