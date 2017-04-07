@@ -34,8 +34,8 @@ export default class Env {
    * 获取当前环境
    * @type {string}
    */
-  get current() {
-    const {HOSTNAME, DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = ENV.consts
+  get current () {
+    const {HOSTNAME, DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = Env.consts
 
     switch (HOSTNAME) {
       case '127.0.0.1':
@@ -60,7 +60,7 @@ export default class Env {
         if (/\.awsca\.101\.com/.test(HOSTNAME)) {
           return AWSCA
         }
-        if (/im-ent\.dyejia\.cn/.test(HOSTNAME)) {
+        if (/\.dyejia\.cn/.test(HOSTNAME)) {
           return DYEJIA
         }
         return PROD
@@ -68,27 +68,24 @@ export default class Env {
   }
 
   /**
-   * 获取 UC
+   * UC
    * @return {string}
    */
-  get uc() {
+  get uc () {
+    const {DEV, DEBUG, PRESSURE, BETA, AWS, AWSCA, DYEJIA} = Env.consts
 
     return (() => {
-      const {DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = ENV.consts
-
       switch (this.current) {
-        case ENV.dev:
-        case ENV.debug:
-        case ENV.beta:
-        case ENV.pressure:
+        case DEV:
+        case DEBUG:
+        case BETA:
+        case PRESSURE:
           return 'https://ucbetapi.101.com'
-        case ENV.oldBeta:
-          return 'http://101uccenter.beta.web.sdp.101.com'
-        case ENV.aws:
+        case AWS:
           return 'https://awsuc.101.com'
-        case ENV.awsca:
+        case AWSCA:
           return 'https://uc-awsca.101.com'
-        case ENV.dyejia:
+        case DYEJIA:
           return 'https://aqapi.dyejia.cn'
         default:
           return 'https://aqapi.101.com'
@@ -97,22 +94,22 @@ export default class Env {
   }
 
   /**
-   * 获取 CS
-   * @return {string}
+   * CS
+   * @type {string}
    */
-  get cs() {
+  get cs () {
+    const {DEV, DEBUG, PRESSURE, BETA, AWS, AWSCA} = Env.consts
+
     return (() => {
       switch (this.current) {
-        case ENV.dev:
-        case ENV.debug:
-        case ENV.beta:
-        case ENV.pressure:
+        case DEV:
+        case DEBUG:
+        case BETA:
+        case PRESSURE:
           return 'https://betacs.101.com'
-        case ENV.oldBeta:
-          return 'http://betacs.101.com'
-        case ENV.aws:
+        case AWS:
           return 'https://awscs.101.com'
-        case ENV.awsca:
+        case AWSCA:
           return 'https://cs-awsca.101.com'
         default:
           return 'https://cs.101.com'
@@ -121,22 +118,22 @@ export default class Env {
   }
 
   /**
-   * 获取 CS CDN
-   * @return {string}
+   * CS CDN
+   * @type {string}
    */
-  get csCDN() {
+  get csCDN () {
+    const {DEV, DEBUG, PRESSURE, BETA, AWS, AWSCA} = Env.consts
+
     return (() => {
       switch (this.current) {
-        case ENV.dev:
-        case ENV.debug:
-        case ENV.beta:
-        case ENV.pressure:
+        case DEV:
+        case DEBUG:
+        case BETA:
+        case PRESSURE:
           return 'https://betacs.101.com'
-        case ENV.oldBeta:
-          return 'http://betacs.101.com'
-        case ENV.aws:
+        case AWS:
           return 'https://awscs.101.com'
-        case ENV.awsca:
+        case AWSCA:
           return 'https://cs-awsca.101.com'
         default:
           return 'https://cdncs.101.com'
@@ -145,28 +142,29 @@ export default class Env {
   }
 
   /**
-   * 获取虚拟组织 UC
-   * @return {string}
+   * 虚拟组织 UC
+   * @type {string}
    */
-  get vOrgUC() {
+  get vOrgUC () {
+    const {DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = Env.consts
+
     return (() => {
       switch (this.current) {
-        case ENV.dev:
+        case DEV:
           return 'https://ucvorg-beta.101.com'
-        case ENV.debug:
+        case DEBUG:
           return 'http://virtual-organization.debug.web.nd'
-        case ENV.pressure:
+        case PRESSURE:
           return 'http://virtual-organization.qa.web.sdp.101.com'
-        case ENV.prod:
-          return 'https://ucvorg.101.com'
-        case ENV.aws:
-          return 'http://virtual-organization.aws.101.com'
-        case ENV.awsca:
-          return 'http://vorg-awsca.101.com'
-        case ENV.oldBeta:
-        case ENV.beta:
+        case BETA:
           return 'https://ucvorg-beta.101.com'
-        case ENV.dyejia:
+        case PROD:
+          return 'https://ucvorg.101.com'
+        case AWS:
+          return 'http://virtual-organization.aws.101.com'
+        case AWSCA:
+          return 'http://vorg-awsca.101.com'
+        case DYEJIA:
           return 'https://vorg.dyejia.cn'
         default:
           return 'https://ucvorg.101.com'
@@ -176,9 +174,9 @@ export default class Env {
 
   /**
    * 用户头像
-   * @return {string}
+   * @type {string}
    */
-  get userFace() {
+  get userFace () {
     return this.csCDN + '/v0.1/static/cscommon/avatar'
   }
 
@@ -186,17 +184,18 @@ export default class Env {
    * 获取接口地址
    * @return {string}
    */
-  getAPI(prefix, overrides) {
+  getAPI (prefix, overrides) {
+    const {DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = Env.consts
+
     return ({
-      [ENV.dev]: `http://${prefix}.dev.web.nd`,
-      [ENV.debug]: `http://${prefix}.debug.web.nd`,
-      [ENV.pressure]: `https://${prefix}.qa.101.com`,
-      [ENV.oldBeta]: `http://${prefix}.beta.web.sdp.101.com`,
-      [ENV.beta]: `https://${prefix}.beta.101.com`,
-      [ENV.prod]: `https://${prefix}.sdp.101.com`,
-      [ENV.aws]: `https://${prefix}.aws.101.com`,
-      [ENV.awsca]: `https://${prefix}.awsca.101.com`,
-      [ENV.dyejia]: `https://${prefix}.dyejia.cn`,
+      [DEV]: `http://${prefix}.dev.web.nd`,
+      [DEBUG]: `http://${prefix}.debug.web.nd`,
+      [PRESSURE]: `https://${prefix}.qa.101.com`,
+      [BETA]: `https://${prefix}.beta.101.com`,
+      [PROD]: `https://${prefix}.sdp.101.com`,
+      [AWS]: `https://${prefix}.aws.101.com`,
+      [AWSCA]: `https://${prefix}.awsca.101.com`,
+      [DYEJIA]: `https://${prefix}.dyejia.cn`,
       ...overrides
     })[this.current]
   }
