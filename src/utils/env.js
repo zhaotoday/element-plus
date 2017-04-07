@@ -1,7 +1,8 @@
 /**
- * @class 环境配置
+ * 环境配置
+ * @author 赵金添 <729234283@qq.com>
  */
-class ENV {
+export default class Env {
   /**
    * 常量
    * @type {Object}
@@ -31,41 +32,38 @@ class ENV {
 
   /**
    * 获取当前环境
-   * @return {string}
+   * @type {string}
    */
   get current() {
-    const hostname = ENV.hostname
+    const {HOSTNAME, DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = ENV.consts
 
-    switch (hostname) {
+    switch (HOSTNAME) {
       case '127.0.0.1':
       case 'localhost':
-        return ENV.dev
+        return DEV
       default:
-        if (/(^192\.168|\.dev\.web\.nd$)/.test(hostname)) {
-          return ENV.dev
+        if (/(^192\.168|\.dev\.web\.nd$)/.test(HOSTNAME)) {
+          return DEV
         }
-        if (/\.debug\.web\.nd$/.test(hostname)) {
-          return ENV.debug
+        if (/\.debug\.web\.nd$/.test(HOSTNAME)) {
+          return DEBUG
         }
-        if (/\.qa\.101\.com$/.test(hostname)) {
-          return ENV.pressure
+        if (/\.qa\.101\.com$/.test(HOSTNAME)) {
+          return PRESSURE
         }
-        if (/\.beta\.web\.sdp\.101\.com$/.test(hostname)) {
-          return ENV.oldBeta
+        if (/\.beta\.101\.com$/.test(HOSTNAME)) {
+          return BETA
         }
-        if (/\.beta\.101\.com$/.test(hostname)) {
-          return ENV.beta
+        if (/\.aws\.101\.com/.test(HOSTNAME)) {
+          return AWS
         }
-        if (/\.aws\.101\.com/.test(hostname)) {
-          return ENV.aws
+        if (/\.awsca\.101\.com/.test(HOSTNAME)) {
+          return AWSCA
         }
-        if (/\.awsca\.101\.com/.test(hostname)) {
-          return ENV.awsca
+        if (/im-ent\.dyejia\.cn/.test(HOSTNAME)) {
+          return DYEJIA
         }
-        if (/im-ent\.dyejia\.cn/.test(hostname)) {
-          return ENV.dyejia
-        }
-        return ENV.prod
+        return PROD
     }
   }
 
@@ -74,7 +72,10 @@ class ENV {
    * @return {string}
    */
   get uc() {
+
     return (() => {
+      const {DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = ENV.consts
+
       switch (this.current) {
         case ENV.dev:
         case ENV.debug:
@@ -200,5 +201,3 @@ class ENV {
     })[this.current]
   }
 }
-
-export default ENV
