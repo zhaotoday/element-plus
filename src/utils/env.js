@@ -39,10 +39,10 @@ class Env {
   /**
    * 常用 API
    * @type {Object}
-   * @property {string} values.cs CS
-   * @property {string} values.csCDN CS CDN
-   * @property {string} values.uc UC
-   * @property {string} values.vOrgUC 虚拟组织 UC
+   * @property {string} apis.cs CS
+   * @property {string} apis.csCDN CS CDN
+   * @property {string} apis.uc UC
+   * @property {string} apis.vOrgUC 虚拟组织 UC
    */
   static apis = {
     cs: _getCS(),
@@ -58,7 +58,7 @@ class Env {
   static current = _getCurrent()
 
   /**
-   * 获取接口地址
+   * 获取 API
    * @param {string} module 业务模块
    * @param {string} overrides 覆盖配置
    * @return {string}
