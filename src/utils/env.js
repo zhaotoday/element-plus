@@ -6,7 +6,7 @@
  * // 本地调试时，可强制设置当前环境
  * Env.current = Env.consts.PROD
  * console.log(Env.getAPI('some-api-module'))
- * console.log(Env.consts, Env.cs, Env.csCDN, Env.uc, Env.vOrgUC, Env.userFace)
+ * console.log(Env.consts, Env.apis, Env.apis.cs)
  */
 class Env {
   /**
@@ -37,57 +37,44 @@ class Env {
   }
 
   /**
+   * 常用 API
+   * @type {Object}
+   * @property {string} values.cs CS
+   * @property {string} values.csCDN CS CDN
+   * @property {string} values.uc UC
+   * @property {string} values.vOrgUC 虚拟组织 UC
+   */
+  static apis = {
+    cs: _getCS(),
+    csCDN: _getCSCDN(),
+    uc: _getUC(),
+    vOrgUC: _getVOrgUC()
+  }
+
+  /**
    * 当前环境
    * @type {string}
    */
   static current = _getCurrent()
 
   /**
-   * CS
-   * @type {string}
-   */
-  static cs = _getCS()
-
-  /**
-   * CS CDN
-   * @type {string}
-   */
-  static csCDN = _getCSCDN()
-
-  /**
-   * UC
-   * @type {string}
-   */
-  static uc = _getUC()
-
-  /**
-   * 虚拟组织 UC
-   * @type {string}
-   */
-  static vOrgUC = _getVOrgUC()
-
-  /**
-   * 用户头像
-   * @type {string}
-   */
-  static userFace = _getUserFace()
-
-  /**
    * 获取接口地址
+   * @param {string} module 业务模块
+   * @param {string} overrides 覆盖配置
    * @return {string}
    */
-  static getAPI (prefix, overrides) {
+  static getAPI (module, overrides) {
     const {DEV, DEBUG, PRESSURE, BETA, PROD, AWS, AWSCA, DYEJIA} = Env.consts
 
     return ({
-      [DEV]: `http://${prefix}.dev.web.nd`,
-      [DEBUG]: `http://${prefix}.debug.web.nd`,
-      [PRESSURE]: `https://${prefix}.qa.101.com`,
-      [BETA]: `https://${prefix}.beta.101.com`,
-      [PROD]: `https://${prefix}.sdp.101.com`,
-      [AWS]: `https://${prefix}.aws.101.com`,
-      [AWSCA]: `https://${prefix}.awsca.101.com`,
-      [DYEJIA]: `https://${prefix}.dyejia.cn`,
+      [DEV]: `http://${module}.dev.web.nd`,
+      [DEBUG]: `http://${module}.debug.web.nd`,
+      [PRESSURE]: `https://${module}.qa.101.com`,
+      [BETA]: `https://${module}.beta.101.com`,
+      [PROD]: `https://${module}.sdp.101.com`,
+      [AWS]: `https://${module}.aws.101.com`,
+      [AWSCA]: `https://${module}.awsca.101.com`,
+      [DYEJIA]: `https://${module}.dyejia.cn`,
       ...overrides
     })[Env.current]
   }
@@ -233,14 +220,6 @@ function _getVOrgUC () {
         return 'https://ucvorg.101.com'
     }
   })()
-}
-
-/**
- * 获取用户头像
- * @return {string}
- */
-function _getUserFace () {
-  return Env.csCDN + '/v0.1/static/cscommon/avatar'
 }
 
 export default Env
