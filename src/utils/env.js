@@ -3,59 +3,31 @@
  */
 class ENV {
   /**
-   * @static {string} 主机
+   * 常量
+   * @type {Object}
+   * @property {string} consts.HOST 主机
+   * @property {string} consts.HOSTNAME 主机名
+   * @property {string} consts.DEV 开发环境
+   * @property {string} consts.DEBUG 测试环境
+   * @property {string} consts.PRESSURE 压测环境
+   * @property {string} consts.BETA 预生产环境
+   * @property {string} consts.PROD 生产环境
+   * @property {string} consts.AWS AWS 环境
+   * @property {string} consts.AWSCA AWSCA 环境
+   * @property {string} consts.DYEJIA DYEJIA 环境
    */
-  static host = window.location.host
-
-  /**
-   * @static {string} 主机名
-   */
-  static hostname = window.location.hostname
-
-  /**
-   * @static {string} 开发环境
-   */
-  static dev = 'dev'
-
-  /**
-   * @static {string} 测试环境
-   */
-  static debug = 'debug'
-
-  /**
-   * @static {string} 压测环境
-   */
-  static pressure = 'pressure'
-
-  /**
-   * @static {string} 旧预生产环境
-   */
-  static oldBeta = 'oldBeta'
-
-  /**
-   * @static {string} 预生产环境
-   */
-  static beta = 'beta'
-
-  /**
-   * @static {string} 生产环境
-   */
-  static prod = 'prod'
-
-  /**
-   * @static {string} aws 环境
-   */
-  static aws = 'aws'
-
-  /**
-   * @static {string} awsca 环境
-   */
-  static awsca = 'awsca'
-
-  /**
-   * @static {string} 党员 e 家环境
-   */
-  static dyejia = 'dyejia'
+  static consts = {
+    HOST: window.location.host,
+    HOSTNAME: window.location.hostname,
+    DEV: 'DEV',
+    DEBUG: 'DEBUG',
+    PRESSURE: 'PRESSURE',
+    BETA: 'BETA',
+    PROD: 'PROD',
+    AWS: 'AWS',
+    AWSCA: 'AWSCA',
+    DYEJIA: 'DYEJIA'
+  }
 
   /**
    * 获取当前环境
