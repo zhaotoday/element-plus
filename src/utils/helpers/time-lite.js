@@ -7,42 +7,48 @@ const TIME_FORMATTER = 'HH:mm:ss'
 export default {
   /**
    * 格式化时间
-   * @param dateTime {string} 时间
-   * @param formatter {string} 格式
+   * @param {string} time 时间
+   * @param {string} formatter 格式
+   * @return {string}
    */
-  format(dateTime, formatter) {
-    if (!dateTime) return ''
-    return dateTime.date(formatter)
+  format (time, formatter) {
+    return time ? time.date(formatter) : ''
   },
 
   /**
-   * 获取：年-月-日 时:分:秒
-   * @param dateTime {string} 时间
+   * 年-月-日 时:分:秒
+   * @param {string} time 时间
+   * @return {string}
    */
-  getDateTime(dateTime) {
-    return this.format(dateTime, DATE_TIME_FORMATTER)
+  getDateTime (time) {
+    return this.format(time, DATE_TIME_FORMATTER)
   },
 
   /**
-   * 获取：年-月-日
-   * @param dateTime {string} 时间
+   * 年-月-日
+   * @param {string} time 时间
+   * @return {string}
    */
-  getDate(dateTime) {
-    return this.format(dateTime, DATE_FORMATTER)
+  getDate (time) {
+    return this.format(time, DATE_FORMATTER)
   },
 
   /**
-   * 获取：时:分:秒
-   * @param dateTime {string} 时间
+   * 时:分:秒
+   * @param {string} time 时间
+   * @return {string}
    */
-  getTime(dateTime) {
-    return this.format(dateTime, TIME_FORMATTER)
+  getTime (time) {
+    return this.format(time, TIME_FORMATTER)
   },
 
   /**
-   * 时间+天数
+   * 在 time 基础上加 unit 秒、分钟...
+   * @param {string} time 时间
+   * @param {string} num 数量
+   * @param {string} unit 单位（eg: seconds, minutes, hours, days, weeks, months, years）
    */
-  getAddDate(dateTime, date) {
-    return this.getDate(dateTime.add(date, 'days'))
+  add (time, num, unit) {
+    return this.format(time).add(num, unit)
   }
 }
