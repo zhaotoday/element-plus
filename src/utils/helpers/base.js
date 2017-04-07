@@ -4,7 +4,7 @@ export default {
    * @param {string} value 字符串
    * @return {boolean}
    */
-  isEmpty(value) {
+  isEmpty (value) {
     return value === null || value === undefined || value.trim() === ''
   }
 }
