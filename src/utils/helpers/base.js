@@ -6,5 +6,23 @@ export default {
    */
   isEmpty (value) {
     return value === null || value === undefined || value.trim() === ''
+  },
+
+  /**
+   * key mirror
+   * @param {Object} obj 对象
+   * @return {Object}
+   */
+  keyMirror (obj) {
+    let ret = {}
+    let key
+
+    for (key in obj) {
+      if (!obj.hasOwnProperty(key)) {
+        continue
+      }
+      ret[key] = key
+    }
+    return ret
   }
 }

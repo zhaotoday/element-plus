@@ -16,7 +16,8 @@
     "babel-runtime": "^6.23.0",
     "core-js": "^2.4.1",
     "vue": "^2.2.2",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.2.0",
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
