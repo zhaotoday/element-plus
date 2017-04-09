@@ -1,18 +1,12 @@
-import ENV from './env'
+import Env from './env'
 
-const env = new ENV()
+// UC
+const UC_API = Env.apis.uc
 
-/**
- * @constant {string} 群组接口
- */
-export const IM_GROUP_API = env.getAPI('im-group')
+// 群组
+const IM_GROUP_API = Env.getAPI('im-group')
 
-/**
- * @constant {string} 消息查询接口
- */
-export const IM_MESSAGE_SEARCH_API = env.getAPI('im-message-search')
-
-/**
- * @constant {string} UC 接口
- */
-export const UC_API = env.uc
+export default {
+  UC_API,
+  IM_GROUP_API
+}
