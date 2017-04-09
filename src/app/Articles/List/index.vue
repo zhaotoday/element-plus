@@ -2,13 +2,15 @@
   <div>
     {{ msg }}
     {{ language }}
-    <div @click="click">click</div>
-    <div @click="putLanguage({language: 'sss'})">switch language</div>
+    {{ JSON.stringify(articles) }}
+    <div @click="click">click me</div>
+    <div @click="patchLanguage">switch language</div>
+    <div @click="putArticle">add article</div>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import {mapState} from 'vuex'
 
   export default {
     data () {
@@ -17,15 +19,22 @@
       }
     },
     computed: mapState([
-      'language'
+      'language',
+      'articles'
     ]),
     methods: {
       click () {
-        alert(2)
+        alert('clicked')
       },
-      putLanguage () {
-        this.$store.dispatch('putLanguage', {
+      patchLanguage () {
+        this.$store.dispatch('patchLanguage', {
           language: 'en-US'
+        })
+      },
+      putArticle () {
+        this.$store.dispatch('putArticle', {
+          id: 3,
+          title: 'How to use jQuery'
         })
       }
     }
