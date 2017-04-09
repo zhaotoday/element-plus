@@ -1,5 +1,5 @@
 ## 介绍
-基于 vue-cli 的 Vue js 单页应用项目模板，在 vue-cli 基础上做了一些合理的修改。
+基于 vue-cli 的 Vue js 单页应用项目模板，在 vue-cli 基础上做了一些合理的修改和增强。
 
 ## 技术栈
 Vue、Webpack、ES6、vue-router、Vuex、SASS、PostCSS。
@@ -48,7 +48,7 @@ $ npm run e2e
 $ npm test
 ```
 
-## 对 vue-cli 的一些修改
+## 对 vue-cli 的一些修改和增强
 #### 1. 将模板文件 index.html 从根目录移至 src 目录，将构建文件 index.html 移至根目录
 理由：原 vue-cli 构建后的 index.html 存放在 dist 目录下。但通常，我们需要把整个项目提交到 git/svn，然后部署，这时候访问的默认首页需要是构建后的 index.html。
 
