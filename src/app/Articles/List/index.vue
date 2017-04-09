@@ -2,7 +2,7 @@
   <div>
     <div v-text="msg"></div>
     <div v-text="language"></div>
-    <div v-text="JSON.stringify(articles)"></div>
+    <div v-text="JSON.stringify(articles.articles)"></div>
     <div @click="patchLanguage">switch language</div>
     <div @click="putArticle">add article</div>
   </div>
@@ -20,14 +20,10 @@
     created () {
       this._get()
     },
-    computed: {
-      ...mapState([
-        'language'
-      ]),
-      ...mapState({
-        articles: state => state.articles.articles
-      })
-    },
+    computed: mapState([
+      'language',
+      'articles'
+    ]),
     methods: {
       _get () {
         this.$store.dispatch('getArticles', {
