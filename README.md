@@ -10,6 +10,7 @@ Vue、Webpack、ES6、vue-router、Vuex、SASS、PostCSS。
 - [Vuex 中文网](https://vuex.vuejs.org/zh-cn/)
 - [Vuex 通俗版教程](https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/)
 - [Vuex 购物车示例](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart)
+- [Vue2.0 实践阶段性分享](https://segmentfault.com/a/1190000007909108)
 
 ## 使用
 ```bash
