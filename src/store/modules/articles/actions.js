@@ -5,8 +5,8 @@ export default {
   /**
    * 获取列表
    */
-  getArticles ({commit}, payload) {
-    return new Model().GET().then((res) => {
+  getArticles ({commit}, {params}) {
+    return new Model().GET({params}).then((res) => {
       commit(types.GET_ARTICLES, {
         data: res.data
       })
@@ -16,11 +16,7 @@ export default {
   /**
    * 新增
    */
-  putArticle ({commit}, payload) {
-    return new Model().PUT(payload).then((res) => {
-      commit(types.GET_ARTICLES, {
-        data: res.data
-      })
-    })
+  putArticle ({commit}, {data}) {
+    return new Model().PUT({data})
   }
 }

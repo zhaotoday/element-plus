@@ -4,9 +4,9 @@ export default {
   /**
    * 切换语言
    */
-  patchLanguage ({commit}, payload) {
+  patchLanguage ({commit}, {data}) {
     commit(types.PATCH_LANGUAGE, {
-      language: payload.language
+      language: data.language
     })
   }
 }

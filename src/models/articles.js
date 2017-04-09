@@ -5,11 +5,7 @@ let res = {
     items: [
       {
         id: 1,
-        title: 'How to use vue'
-      },
-      {
-        id: 2,
-        title: 'How to use vuex'
+        title: 'Vue'
       }
     ]
   }
@@ -27,7 +23,7 @@ export default class {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(res)
-      }, 1000)
+      }, 2000)
     })
   }
 

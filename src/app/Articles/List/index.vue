@@ -18,22 +18,40 @@
       }
     },
     created () {
-      this.$store.dispatch('getArticles')
+      this._get()
     },
-    computed: mapState([
-      'language',
-      'articles'
-    ]),
+    computed: {
+      ...mapState([
+        'language'
+      ]),
+      ...mapState({
+        articles: state => state.articles.articles
+      })
+    },
     methods: {
+      _get () {
+        this.$store.dispatch('getArticles', {
+          params: {
+            $offset: 0,
+            $limit: 10
+          }
+        })
+      },
       patchLanguage () {
         this.$store.dispatch('patchLanguage', {
-          language: 'en-US'
+          data: {
+            language: 'en-US'
+          }
         })
       },
       putArticle () {
         this.$store.dispatch('putArticle', {
-          id: 3,
-          title: 'How to use jQuery'
+          data: {
+            id: 2,
+            title: 'jQuery'
+          }
+        }).then(() => {
+          this._get()
         })
       }
     }
