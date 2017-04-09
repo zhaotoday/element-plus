@@ -67,4 +67,11 @@ src/utils/polyfill.js
 ```js
 import 'core-js/es6/promise'
 ```
+
+#### 4. 用 Vuex 做状态管理
+```bash
+$ npm install --save vuex
+```
+Vuex 的使用规范请参考：...
+
 未完待续。。。
