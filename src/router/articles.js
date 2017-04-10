@@ -8,10 +8,7 @@ export default {
     },
     {
       path: 'form',
-      component: resolve => require(['@/app/Articles/Form'], resolve),
-      meta: {
-        requiresAuth: true
-      }
+      component: resolve => require(['@/app/Articles/Form'], resolve)
     }
   ]
 }

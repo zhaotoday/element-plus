@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import auth from '@/utils/auth'
 import Root from '@/app/Root'
 import Layout from '@/app/Layout'
+import notFound from './notFound'
 import home from './home'
 import articles from './articles'
 import login from './login'
@@ -20,8 +21,12 @@ const router = new Router({
           component: Layout,
           children: [
             home,
-            articles
-          ]
+            articles,
+            notFound
+          ],
+          meta: {
+            requiresAuth: true
+          }
         },
         login
       ]

@@ -18,7 +18,7 @@ export default {
    * @return {Object}
    */
   get (key) {
-    return JSON.parse(localStorage.getItem(key)) || {}
+    return JSON.parse(localStorage.getItem(key)) || null
   },
 
   /**
@@ -29,4 +29,3 @@ export default {
     localStorage.removeItem(key)
   }
 }
-
