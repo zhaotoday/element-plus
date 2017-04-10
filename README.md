@@ -58,17 +58,20 @@ $ npm install --save-dev node-sass
 $ npm install --save-dev sass-loader
 ```
 
-#### 3. 添加 polyfill
+#### 3. 用 axios 作为 ajax 方案
+官方已经不推荐 vue-resource 作为 ajax 方案，详情见[链接](https://github.com/vuefe/vuefe.github.io/issues/186)。
+
+#### 4. 添加 polyfill
 按需引入 polyfill，提高浏览器兼容性。
 ```bash
 $ npm install --save core-js
 ```
-src/utils/polyfill.js
+polyfill 在 src/utils/polyfill.js 中引入：
 ```js
 import 'core-js/es6/promise'
 ```
 
-#### 4. 用 Vuex 做状态管理
+#### 5. 用 Vuex 做状态管理
 ```bash
 $ npm install --save vuex
 ```
