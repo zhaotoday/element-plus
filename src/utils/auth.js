@@ -5,7 +5,7 @@ export default {
    * 登录
    */
   login () {
-
+    alert(33)
   },
 
   /**
