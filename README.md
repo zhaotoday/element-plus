@@ -64,6 +64,7 @@ $ npm install --save-dev sass-loader
 $ npm install --save axios
 ```
 我对 axios 按照 RESTful 规范做了简单封装，方便调用，详情见[链接](https://github.com/zhaotoday/rest)。
+
 #### 4. 添加 polyfill
 按需引入 polyfill，提高浏览器兼容性。
 ```bash
