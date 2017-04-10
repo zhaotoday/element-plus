@@ -60,7 +60,10 @@ $ npm install --save-dev sass-loader
 
 #### 3. 用 axios 作为 ajax 方案
 官方已经不推荐 vue-resource 作为 ajax 方案，详情见[链接](https://github.com/vuefe/vuefe.github.io/issues/186)。
-
+```bash
+$ npm install --save axios
+```
+我对 axios 按照 RESTful 规范做了简单封装，方便调用，详情见[链接](https://github.com/zhaotoday/rest)。
 #### 4. 添加 polyfill
 按需引入 polyfill，提高浏览器兼容性。
 ```bash
