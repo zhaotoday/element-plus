@@ -32,7 +32,7 @@ export default class {
    * @param {Object} newItem 新增项
    * @return {Promise}
    */
-  PUT (newItem) {
+  POST (newItem) {
     return new Promise((resolve) => {
       res.data.items.push(newItem)
       resolve(res)

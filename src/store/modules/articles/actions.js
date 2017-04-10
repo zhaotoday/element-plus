@@ -16,7 +16,7 @@ export default {
   /**
    * 新增
    */
-  putArticle ({commit}, {data}) {
-    return new Model().PUT({data})
+  postArticle ({commit}, {data}) {
+    return new Model().POST({data})
   }
 }

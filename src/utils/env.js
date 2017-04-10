@@ -6,7 +6,7 @@
  * // 本地调试时，可强制设置当前环境
  * Env.current = Env.consts.PROD
  * console.log(Env.getAPI('some-api-module'))
- * console.log(Env.consts, Env.apis, Env.apis.cs)
+ * console.log(Env.consts, Env.consts.DEV, Env.apis, Env.apis.cs)
  */
 class Env {
   /**

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
+  import {mapState} from 'vuex'
 
   export default {
     data () {
@@ -41,7 +41,7 @@
         })
       },
       putArticle () {
-        this.$store.dispatch('putArticle', {
+        this.$store.dispatch('postArticle', {
           data: {
             id: 2,
             title: 'jQuery'
