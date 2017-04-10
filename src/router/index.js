@@ -21,14 +21,14 @@ const router = new Router({
           component: Layout,
           children: [
             home,
-            articles,
-            notFound
+            articles
           ],
           meta: {
             requiresAuth: true
           }
         },
-        login
+        login,
+        notFound
       ]
     }
   ]
