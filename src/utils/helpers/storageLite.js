@@ -1,6 +1,8 @@
 const localStorage = window.localStorage
 
 export default {
+  name: 'storage',
+
   /**
    * 设置 localStorage
    * @param {string} key 键

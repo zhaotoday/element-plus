@@ -5,6 +5,8 @@ const DATE_FORMATTER = 'YYYY-MM-DD'
 const TIME_FORMATTER = 'HH:mm:ss'
 
 export default {
+  name: 'time',
+
   /**
    * 格式化时间
    * @param {string} time 时间

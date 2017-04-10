@@ -1,4 +1,6 @@
 export default {
+  name: 'helpers',
+
   /**
    * 判断是否为空
    * @param {string} value 字符串
