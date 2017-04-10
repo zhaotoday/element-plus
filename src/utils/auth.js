@@ -1,11 +1,23 @@
+import storage from './helpers/storageLite'
+
+const TOKEN = 'TOKEN'
+
 export default {
   name: 'auth',
 
   /**
    * 登录
+   * @param {string} token 登录 token
    */
-  login () {
-    alert(33)
+  login (token) {
+    storage.set(TOKEN, token)
+  },
+
+  /**
+   * 登出
+   */
+  logout () {
+    storage.remove(TOKEN)
   },
 
   /**
@@ -13,6 +25,6 @@ export default {
    * @return {boolean}
    */
   loggedIn () {
-    return false
+    return !!storage.get(TOKEN)
   }
 }

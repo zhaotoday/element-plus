@@ -16,8 +16,15 @@
     },
     methods: {
       login () {
-        this.$router.push(this.$route.query.redirect)
-        auth.login()
+        this.$store.dispatch('postActionsLogin', {
+          data: {
+            username: 'admin',
+            password: '123456'
+          }
+        }).then((res) => {
+          auth.login(res.token)
+          this.$router.push(this.$route.query.redirect)
+        })
       }
     }
   }

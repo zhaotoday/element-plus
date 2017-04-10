@@ -1,22 +1,10 @@
-import types from './types'
-import Model from '../../../models/articles'
+import Model from '../../../models/actions'
 
 export default {
   /**
-   * 获取列表
+   * 登录
    */
-  getArticles ({commit}, {params}) {
-    return new Model().GET({params}).then((res) => {
-      commit(types.GET_ARTICLES, {
-        data: res.data
-      })
-    })
-  },
-
-  /**
-   * 新增
-   */
-  postArticle ({commit}, {data}) {
+  postActionsLogin ({commit}, {data}) {
     return new Model().POST({data})
   }
 }
