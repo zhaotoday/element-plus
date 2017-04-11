@@ -96,12 +96,18 @@ Vuex 的使用规范请参考：...
 |   |-- components                   // 公共组件
 |   |-- models                       // 数据模型（主要在 store 中用到）
 |   |-- store                        // Vuex 状态管理
+|       |-- actions.js               // 根级别的 actions
+|       |-- getters.js               // 根级别的 getters
+|       |-- mutations.js             // 根级别的 mutations
+|       |-- types.js                 // 根级别的 mutation types
+|       |-- modules                  // 模块的局部状态
 |   |-- router                       // 路由配置
 |       |-- routes                   // 各业务模块路由配置
 |   |-- utils                        // 工具集合
 |       |-- helpers                  // 帮助函数集合
 |       |-- auth.js                  // 权限相关
 |       |-- env.js                   // 环境配置类
+|       |-- consts.js                // 常量配置
 |       |-- i18n.js                  // 国际化类
 |       |-- init.js                  // 初始化
 |       |-- polyfill.js              // polyfill
