@@ -45,23 +45,31 @@ export default class REST {
   /**
    * 请求
    * @param {string} method='GET' 请求方式
-   * @param {Object} options={} 选项
+   * @param {Object} [options={}] 选项
+   * @param {string} [options.uri=''] 资源唯一标示，一般是 ID
+   * @param {Object} [options.params=null] GET 参数
+   * @param {Object} [options.data=null] POST/PUT/PATCH 数据
    * @return {Object}
    */
   _request (method = 'GET', options = {}) {
+    const {uri = '', params = null, data = null} = options
     let url = this.version ? `/${this.version}/${this.path}` : `/${this.path}`
 
+    if (uri) {
+      url = `${url}/${uri}`
+    }
+
     // GET
-    if (options.params) {
-      url = url + this._objToUrl(options.params)
+    if (params) {
+      url = url + this._objToUrl(params)
     }
 
     return axios({
-      headers: this.headers,
-      method: method,
       baseURL: this.baseURL,
-      url: url,
-      data: options.data || {}
+      headers: this.headers,
+      method,
+      url,
+      data
     })
   }
 
