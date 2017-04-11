@@ -7,6 +7,7 @@
 
 <script>
   import auth from '@/utils/auth'
+  import Model from '@/models/actions'
 
   export default {
     data () {
@@ -16,14 +17,14 @@
     },
     methods: {
       login () {
-        this.$store.dispatch('postActionsLogin', {
+        return new Model().POST({
           data: {
             username: 'admin',
             password: '123456'
           }
         }).then((res) => {
           auth.login(res.token)
-          this.$router.push(this.$route.query.redirect)
+          this.$router.push(this.$route.query.redirect || '/')
         })
       }
     }

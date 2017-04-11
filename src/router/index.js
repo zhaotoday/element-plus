@@ -7,6 +7,7 @@ import notFound from './routes/notFound'
 import home from './routes/home'
 import articles from './routes/articles'
 import login from './routes/login'
+import logout from './routes/logout'
 
 Vue.use(Router)
 
@@ -28,6 +29,7 @@ const router = new Router({
           }
         },
         login,
+        logout,
         notFound
       ]
     }
