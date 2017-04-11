@@ -3,10 +3,10 @@ import Router from 'vue-router'
 import auth from '@/utils/auth'
 import Root from '@/app/Root'
 import Layout from '@/app/Layout'
-import notFound from './notFound'
-import home from './home'
-import articles from './articles'
-import login from './login'
+import notFound from './routes/notFound'
+import home from './routes/home'
+import articles from './routes/articles'
+import login from './routes/login'
 
 Vue.use(Router)
 
