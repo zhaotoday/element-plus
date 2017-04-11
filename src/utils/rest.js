@@ -1,15 +1,14 @@
-import * as bridge from './bridge'
+import axios from 'axios'
 
 /**
- * REST 接口请求
+ * 基于 axios 的 RESTful HTTP 简单封装
+ * @author 赵金添 <729234283@qq.com>
  */
 export default class REST {
   /**
    * 构造函数
    */
   constructor() {
-    // 是否需要鉴权
-    this.authed = true
     // 接口基础地址
     this.baseURL = ''
     // 接口版本
@@ -28,27 +27,19 @@ export default class REST {
    */
   _request(method = 'GET', options = {}) {
     let url = this.version ? `/${this.version}/${this.path}` : `/${this.path}`
+    const headers = Object.keys(this.headers) ? {headers: this.headers} : {}
 
     // GET
-    if (options.params) url = url + this._objToUrl(options.params)
+    if (options.params) {
+      url = url + this._objToUrl(options.params)
+    }
 
-    return new Promise((resolve, reject) => {
-      bridge.restDao[method.toLowerCase()]({
-        rest: {
-          authed: this.authed,
-          method: method,
-          baseURL: this.baseURL,
-          url: url,
-          data: options.data || {},
-          headers: this.headers
-        },
-        uri: this.baseURL + url,
-        data: options.data || {}
-      }).then((args) => {
-        resolve(args.data || {})
-      }).catch((args) => {
-        reject(args.data || {})
-      })
+    return axios({
+      ...headers,
+      method: method,
+      baseURL: this.baseURL,
+      url: url,
+      data: options.data || {}
     })
   }
 
@@ -105,7 +96,7 @@ export default class REST {
   /**
    * GET
    * @param {object} options - 选项
-   * @return {object}
+   * @returns {object}
    */
   GET(options = {}) {
     return this._request('GET', options)
@@ -114,7 +105,7 @@ export default class REST {
   /**
    * DELETE
    * @param {object} options - 选项
-   * @return {object}
+   * @returns {object}
    */
   DELETE(options = {}) {
     return this._request('DELETE', options)
@@ -123,7 +114,7 @@ export default class REST {
   /**
    * POST
    * @param {object} options - 选项
-   * @return {object}
+   * @returns {object}
    */
   POST(options = {}) {
     return this._request('POST', options)
@@ -132,7 +123,7 @@ export default class REST {
   /**
    * PATCH
    * @param {object} options - 选项
-   * @return {object}
+   * @returns {object}
    */
   PATCH(options = {}) {
     return this._request('PATCH', options)
