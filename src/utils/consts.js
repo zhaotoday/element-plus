@@ -1,12 +1,12 @@
 import Env from './env'
 
-// UC
+// UC API
 const UC_API = Env.apis.uc
 
-// 群组
-const IM_GROUP_API = Env.getAPI('im-group')
+// 文章 API
+const ARTICLE_API = Env.getAPI('articles')
 
 export default {
   UC_API,
-  IM_GROUP_API
+  ARTICLE_API
 }
