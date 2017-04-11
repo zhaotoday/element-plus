@@ -16,34 +16,22 @@ Vue、Webpack、ES6、vue-router、Vuex、SASS、PostCSS。
 ```bash
 # 下载代码
 $ git clone https://github.com/zhaotoday/vue.js.git
-```
 
-```bash
 # 安装依赖
 $ npm install
-```
 
-```bash
 # 开发调试
 $ npm run dev
-```
 
-```bash
 # 构建
 $ npm run build
-```
 
-```bash
 # 执行单元测试
 $ npm run unit
-```
 
-```bash
 # 执行 e2e 测试
 $ npm run e2e
-```
 
-```bash
 # 执行所有测试
 $ npm test
 ```
@@ -81,7 +69,7 @@ $ npm install --save vuex
 ```
 Vuex 的使用规范请参考：...
 
-## 项目目录结构
+## 项目结构
 ```
 |-- build                            // Webpack 项目构建
 |-- config                           // 项目开发环境配置
@@ -100,7 +88,7 @@ Vuex 的使用规范请参考：...
 |       |-- getters.js               // 根级别的 getters
 |       |-- mutations.js             // 根级别的 mutations
 |       |-- types.js                 // 根级别的 mutation types
-|       |-- modules                  // 模块的局部状态
+|       |-- modules                  // 各业务模块的局部状态
 |   |-- router                       // 路由配置
 |       |-- routes                   // 各业务模块路由配置
 |   |-- utils                        // 工具集合
