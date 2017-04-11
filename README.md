@@ -63,14 +63,14 @@ $ npm install --save-dev sass-loader
 ```bash
 $ npm install --save axios
 ```
-我对 axios 按照 RESTful 规范做了简单封装，方便调用，详情见[链接](https://github.com/zhaotoday/rest)。
+我按照 RESTful 规范，对 axios 做了简单封装，详情见[链接](https://github.com/zhaotoday/rest)。
 
 #### 4. 添加 polyfill
 按需引入 polyfill，提高浏览器兼容性。
 ```bash
 $ npm install --save core-js
 ```
-polyfill 在 src/utils/polyfill.js 中引入：
+polyfill 在 src/utils/polyfill.js 文件中引入：
 ```js
 import 'core-js/es6/promise'
 ```
@@ -81,4 +81,36 @@ $ npm install --save vuex
 ```
 Vuex 的使用规范请参考：...
 
+## 项目目录结构
+```
+|-- build                            // Webpack 项目构建
+|-- config                           // 项目开发环境配置
+|-- src                              // 源码目录
+|   |-- app                          // 业务代码
+|       |-- Root                     // 根页面（可以在这里添加全局样式等）
+|       |-- Layout                   // 页面布局结构（除登录页外）
+|       |-- Home                     // 首页
+|       |-- Login                    // 登录页
+|       |-- NotFound                 // 404 页
+|       |-- Unauthorized             // 未授权页面（在开发权限相关系统时有用）
+|   |-- components                   // 公共组件
+|   |-- models                       // 数据模型（主要在 store 中用到）
+|   |-- store                        // Vuex 状态管理
+|   |-- router                       // 路由配置
+|       |-- routes                   // 各业务模块路由配置
+|   |-- utils                        // 工具集合
+|       |-- helpers                  // 帮助函数集合
+|       |-- auth.js                  // 权限相关
+|       |-- env.js                   // 环境配置类
+|       |-- i18n.js                  // 国际化类
+|       |-- init.js                  // 初始化
+|       |-- polyfill.js              // polyfill
+|       |-- rest.js                  // RESTful 请求类
+|   |-- App.vue                      // 页面入口
+|   |-- main.js                      // 程序入口，加载各种公共组件
+|-- static                           // 静态文件，如：图片、JSON 数据等
+|-- .babelrc                         // babel-loader 配置
+|-- .editorconfig                    // 定义代码格式
+|-- package.json                     // 项目基本信息
+```
 未完待续。。。
