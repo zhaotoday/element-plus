@@ -1,22 +1,22 @@
 <template>
-  <div class="private-component">
-    {{ msg }}
+  <div class="private-comp">
+    <div v-model="msg"></div>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'private-component',
+    name: 'private-comp',
     data () {
       return {
-        msg: 'private component'
+        msg: 'private comp'
       }
     }
   }
 </script>
 
 <style scoped>
-  .private-component {
+  .private-comp {
     color: red;
   }
 </style>

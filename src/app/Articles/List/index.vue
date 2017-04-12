@@ -9,9 +9,11 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import { mapState } from 'vuex'
+  import PrivateComp from '../components/PrivateComp'
 
   export default {
+    components: {PrivateComp},
     data () {
       return {
         msg: 'article list'
