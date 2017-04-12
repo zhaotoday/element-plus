@@ -8,10 +8,10 @@ import i18next from 'i18next'
 export default class I18N {
   /**
    * 构造方法
-   * @param {string} lang 默认语言
+   * @param {string} lng 默认语言
    */
-  constructor (lang) {
-    this.lang = lang || this.getBrowserLang()
+  constructor (lng) {
+    this.lng = lng || this.getBrowserLang()
     this.ns = 'translation'
   }
 
@@ -22,7 +22,7 @@ export default class I18N {
   init () {
     i18next.init({
       debug: true,
-      lang: this.lang,
+      lng: this.lng,
       fallbackNS: 'translation',
       load: 'all'
     })
@@ -42,9 +42,9 @@ export default class I18N {
     req.keys().forEach((path) => {
       const resources = req(path)
       const paths = path.split('/')
-      const lang = paths[1]
+      const lng = paths[1]
 
-      i18next.addResourceBundle(lang, ns, resources, true, true)
+      i18next.addResourceBundle(lng, ns, resources, true, true)
     })
 
     return this
@@ -60,12 +60,12 @@ export default class I18N {
 
   /**
    * 切换到某种语言
-   * @param {string} lang 语言
+   * @param {string} lng 语言
    * @return {I18N}
    */
-  switchTo (lang) {
-    i18next.changeLanguage(lang)
-    this.lang = lang
+  switchTo (lng) {
+    i18next.changeLanguage(lng)
+    this.lng = lng
 
     return this
   }
@@ -75,6 +75,6 @@ export default class I18N {
    * @param {string} ns 业务模块
    */
   getT (ns) {
-    return i18next.getFixedT(this.lang, ns || this.ns)
+    return i18next.getFixedT(this.lng, ns || this.ns)
   }
 }
