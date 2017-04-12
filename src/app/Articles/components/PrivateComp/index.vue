@@ -1,6 +1,6 @@
 <template>
   <div class="private-comp">
-    <div v-model="msg"></div>
+    <div v-text="msg"></div>
   </div>
 </template>
 

@@ -6,6 +6,8 @@
 </template>
 
 <script>
+  import './i18n'
+
   export default {
     data () {
       return {

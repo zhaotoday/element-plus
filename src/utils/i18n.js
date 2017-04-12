@@ -75,6 +75,9 @@ export default class I18N {
    * @param {string} ns 业务模块
    */
   getT (ns) {
-    return i18next.getFixedT(this.lng, ns || this.ns)
+    const defaultResource = i18next.getResourceBundle(this.lng, this.ns)
+    const nsResource = i18next.getResourceBundle(this.lng, ns || this.ns)
+
+    return {...defaultResource, ...nsResource}
   }
 }
