@@ -1,5 +1,6 @@
 <template>
   <div>
+    <child-comp></child-comp>
     <p v-text="t['articleList']"></p>
     <p>
       当前语言：
@@ -18,7 +19,7 @@
 <script>
   import { mapState } from 'vuex'
   import i18n from '@/i18n'
-  import PrivateComp from '../components/PrivateComp'
+  import ChildComp from '../components/ChildComp'
 
   const t = i18n.getT('articles')
 
@@ -28,7 +29,7 @@
         t
       }
     },
-    components: {PrivateComp},
+    components: {ChildComp},
     created () {
       this._get()
     },
