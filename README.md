@@ -42,35 +42,39 @@ $ npm test
 
 #### 2. 提供 sass 支持
 ```bash
-$ npm install --save-dev node-sass
-$ npm install --save-dev sass-loader
+# 安装 node-sass、sass-loader
+$ npm install --save-dev node-sass sass-loader
 ```
 ```html
+<!-- 引入样式 -->
 <style lang="scss" scoped src="./theme/styles/index.scss">
 </style>
 ```
 #### 3. 用 axios 作为 ajax 方案
-官方已经不推荐 vue-resource 作为 ajax 方案，详情见[链接](https://github.com/vuefe/vuefe.github.io/issues/186)。
+官方已经不推荐 vue-resource 作为 ajax 方案，请用 axios 代替。
 ```bash
+# 安装 axios
 $ npm install --save axios
 ```
-我按照 RESTful 规范，对 axios 做了简单封装，详情见[链接](https://github.com/zhaotoday/rest)。
+[链接](https://github.com/vuefe/vuefe.github.io/issues/186)、[链接](https://github.com/zhaotoday/rest)
 
 #### 4. 添加 polyfill
 按需引入 polyfill，提高浏览器兼容性。
 ```bash
+# 安装 core-js
 $ npm install --save core-js
 ```
-polyfill 在 src/utils/polyfill.js 文件中引入：
+polyfill 在 /src/utils/polyfill.js 文件中引入：
 ```js
 import 'core-js/es6/promise'
 ```
 
 #### 5. 用 Vuex 做状态管理
 ```bash
+# 安装 vuex
 $ npm install --save vuex
 ```
-Vuex 的使用规范请参考：...
+[链接](https://vuex.vuejs.org/zh-cn/structure.html)
 
 ## 项目结构
 ```
