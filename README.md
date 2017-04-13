@@ -123,7 +123,7 @@ $ npm install --save vuex
 ```
 |-- src                              // 源码目录
 |   |-- components                   // 公用组件
-|       |-- MyComponent              // MyComponent
+|       |-- MyComponent              // MyComponent 组件
 |           |-- index.vue            // MyComponent 的入口
 |           |-- theme                // MyComponent 的皮肤
 |               |-- images           // MyComponent 的图片
@@ -132,7 +132,7 @@ $ npm install --save vuex
 |           |-- utils                // MyComponent 的工具集合
 |           |-- i18n                 // MyComponent 的国际化
 |           |-- components           // MyComponent 的子组件
-|               |-- ChildComponent     // MyComponent 的子组件，组件规范和 MyComponent 一致 
+|               |-- ChildComponent     // MyComponent 的子组件 ChildComponent，组件规范和 MyComponent 一致 
 ```
 
 ## 业务组件规范
