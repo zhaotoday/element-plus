@@ -1,5 +1,5 @@
 ## 介绍
-基于 vue-cli 的 Vue js 单页应用项目模板，在 vue-cli 基础上做了一些合理的修改和增强。
+基于 vue-cli 的 Vue js 单页应用项目模板，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
 
 ## 技术栈
 Vue、Webpack、ES6、vue-router、Vuex、SASS、PostCSS。
