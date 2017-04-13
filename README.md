@@ -45,7 +45,10 @@ $ npm test
 $ npm install --save-dev node-sass
 $ npm install --save-dev sass-loader
 ```
-
+```html
+<style lang="scss" scoped src="./theme/styles/index.scss">
+</style>
+```
 #### 3. 用 axios 作为 ajax 方案
 官方已经不推荐 vue-resource 作为 ajax 方案，详情见[链接](https://github.com/vuefe/vuefe.github.io/issues/186)。
 ```bash
@@ -75,22 +78,25 @@ Vuex 的使用规范请参考：...
 |-- config                           // 项目开发环境配置
 |-- src                              // 源码目录
 |   |-- app                          // 业务代码
-|       |-- Root                     // 根页面（可以在这里添加全局样式等）
-|       |-- Layout                   // 页面布局结构（除登录页外）
+|       |-- Articles                 // 文章业务模块
 |       |-- Home                     // 首页
+|       |-- Layout                   // 页面布局结构（除登录页外）
 |       |-- Login                    // 登录页
 |       |-- NotFound                 // 404 页
+|       |-- Root                     // 根页面（可以在这里添加全局样式等）
 |       |-- Unauthorized             // 未授权页面（在开发权限相关系统时有用）
 |   |-- components                   // 公共组件
+|   |-- i18n                         // 全局国际化
 |   |-- models                       // 数据模型（主要在 store 中用到）
+|   |-- router                       // 路由配置
+|       |-- routes                   // 各业务模块路由配置
 |   |-- store                        // Vuex 状态管理
 |       |-- actions.js               // 根级别的 actions
 |       |-- getters.js               // 根级别的 getters
 |       |-- mutations.js             // 根级别的 mutations
 |       |-- types.js                 // 根级别的 mutation types
-|       |-- modules                  // 各业务模块的局部状态
-|   |-- router                       // 路由配置
-|       |-- routes                   // 各业务模块路由配置
+|       |-- modules                  // 各业务模块的局部状态管理
+|           |-- articles             // 文章业务模块状态管理
 |   |-- utils                        // 工具集合
 |       |-- helpers                  // 帮助函数集合
 |       |-- auth.js                  // 权限相关
