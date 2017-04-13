@@ -132,7 +132,7 @@ $ npm install --save vuex
 |           |-- utils                // MyComponent 的工具集合
 |           |-- i18n                 // MyComponent 的国际化
 |           |-- components           // MyComponent 的子组件
-|               |-- ChildComponent     // MyComponent 的子组件 ChildComponent，组件规范和 MyComponent 一致 
+|               |-- ChildComponent   // MyComponent 的子组件 ChildComponent，组件规范和 MyComponent 一致 
 ```
 
 ## 业务组件规范
