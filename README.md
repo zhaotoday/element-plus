@@ -113,4 +113,23 @@ Vuex 的使用规范请参考：...
 |-- .editorconfig                    // 定义代码格式
 |-- package.json                     // 项目基本信息
 ```
-未完待续。。。
+
+## 公用组件规范
+公用组件放在 /src/components 下。
+```
+|-- src                              // 源码目录
+|   |-- components                   // 公用组件
+|       |-- MyComponent              // MyComponent
+|           |-- index.vue            // MyComponent 的入口
+|           |-- theme                // MyComponent 的皮肤
+|               |-- images           // MyComponent 的图片
+|               |-- styles           // MyComponent 的样式
+|                   |-- index.scss   // MyComponent 的样式入口
+|           |-- utils                // MyComponent 的工具集合
+|           |-- i18n                 // MyComponent 的国际化
+|           |-- components           // MyComponent 的子组件
+|               |-- SubComponent     // MyComponent 的子组件，组件规范和 MyComponent 一致 
+```
+
+## 业务组件规范
+业务组件放在 /src/app 下，也就是一个页面，对应一个路由。规范和公用组件一直。
