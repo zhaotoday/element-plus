@@ -22,6 +22,11 @@
   import ChildComp from '../components/ChildComp'
 
   export default {
+    data () {
+      return {
+        module: 'articles'
+      }
+    },
     components: {ChildComp},
     created () {
       this._get()
@@ -31,8 +36,8 @@
       'articles'
     ]),
     methods: {
-      t (key, replace) {
-        return i18n.getT('articles')(key, replace)
+      t (key, options) {
+        return i18n.getT(this.module)(key, options)
       },
       _get () {
         this.$store.dispatch('getArticles', {
