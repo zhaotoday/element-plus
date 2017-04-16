@@ -1,7 +1,7 @@
 <template>
   <div>
     <child-comp></child-comp>
-    <p v-text="t['articleList']"></p>
+    <p v-text="t('articleList', {whose: t('my')})"></p>
     <p>
       当前语言：
       <span v-text="language"></span>
@@ -21,14 +21,7 @@
   import i18n from '@/i18n'
   import ChildComp from '../components/ChildComp'
 
-  const t = i18n.getT('articles')
-
   export default {
-    data () {
-      return {
-        t
-      }
-    },
     components: {ChildComp},
     created () {
       this._get()
@@ -37,12 +30,10 @@
       'language',
       'articles'
     ]),
-    watch: {
-      language () {
-        this.$set(this, 't', i18n.getT('articles'))
-      }
-    },
     methods: {
+      t (key, replace) {
+        return i18n.getT('articles')(key, replace)
+      },
       _get () {
         this.$store.dispatch('getArticles', {
           params: {
