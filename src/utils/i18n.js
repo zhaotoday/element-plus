@@ -1,9 +1,18 @@
+import i18next from 'i18next'
+
 /**
  * 基于 i18next 的国际化简单封装
  * @author 赵金添 <729234283@qq.com>
+ * @example
+ * // 新建实例、初始化、添加全局语言资源
+ * const i18n = new I18N('zh-CN').init().addResources(null, require.context('./locales/', true, /\.json$/))
+ * // 添加业务模块语言资源
+ * i18n.addResources('articles', require.context('./locales/', true, /\.json$/))
+ * // 获取翻译函数
+ * const t = i18n.getT('articles')
+ * // 读取翻译
+ * t('articleList')
  */
-
-import i18next from 'i18next'
 
 export default class I18N {
   /**
@@ -11,7 +20,7 @@ export default class I18N {
    * @param {string} lng 默认语言
    */
   constructor (lng) {
-    this.lng = lng || this.getBrowserLang()
+    this.lng = lng || this.getBrowserLanguage()
     this.ns = 'translation'
   }
 
@@ -54,7 +63,7 @@ export default class I18N {
    * 获取浏览器语言环境
    * @return {string}
    */
-  getBrowserLang () {
+  getBrowserLanguage () {
     return navigator.language || navigator.browserLanguage
   }
 
