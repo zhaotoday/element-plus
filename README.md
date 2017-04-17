@@ -105,7 +105,8 @@ $ npm install --save vuex
 |       |-- helpers                  // 帮助函数集合
 |       |-- auth.js                  // 权限相关
 |       |-- env.js                   // 环境配置类
-|       |-- consts.js                // 常量配置
+|       |-- fastclick.js             // 全局处理移动端 onclick 事件的延迟 300 ms 问题（仅移动端需要引入）
+|       |-- consts.js                // 常量配置
 |       |-- i18n.js                  // 国际化类
 |       |-- init.js                  // 初始化
 |       |-- polyfill.js              // polyfill
