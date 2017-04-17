@@ -120,6 +120,7 @@ $ npm install --save vuex
 
 ## 组件的命名规范
 按照 vue-cli 的 Hello 示例，组件（也就是组件文件夹）命名应遵循帕斯卡（pascal）命名法，如：MyComponent。
+> 当然，也有很多人喜欢命名成 my-component 的形式。这个规范不是强制性的，你可以选一种适合自己的。
 
 ## 公用组件规范
 公用组件放在 /src/components 下。
