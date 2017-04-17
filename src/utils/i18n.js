@@ -13,7 +13,6 @@ import i18next from 'i18next'
  * // 读取翻译
  * t('articleList')
  */
-
 export default class I18N {
   /**
    * 构造方法
