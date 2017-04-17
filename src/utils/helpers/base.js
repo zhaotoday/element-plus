@@ -23,8 +23,21 @@ export default {
       if (!obj.hasOwnProperty(key)) {
         continue
       }
+
       ret[key] = key
     }
+
     return ret
+  },
+
+  /**
+   * 载入 JS 文件
+   * @param {string} JS URL
+   */
+  loadScript (url) {
+    const httpReq = new XMLHttpRequest()
+
+    httpReq.open('GET', url, true)
+    httpReq.send(null)
   }
 }
