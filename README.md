@@ -2,7 +2,7 @@
 基于 vue-cli 的 Vue js 单页应用项目模板，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
 
 ## 技术栈
-Vue、Webpack、ES6、vue-router、Vuex、SASS、PostCSS 等。
+Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 
 ## 参考
 - [Vue.js 中文网](https://cn.vuejs.org/)
@@ -117,6 +117,10 @@ $ npm install --save vuex
 |-- .editorconfig                    // 定义代码格式
 |-- package.json                     // 项目基本信息
 ```
+
+## 组件的命名规范
+按照 vue-cli 的 Hello 示例，组件（也就是组件文件夹）命名应遵循帕斯卡（pascal）命名法，如：MyComponent。
+> 当然，也有很多人喜欢命名成 my-component 的形式。这个规范不是强制性的，你可以选一种适合自己的。
 
 ## 公用组件规范
 公用组件放在 /src/components 下。
