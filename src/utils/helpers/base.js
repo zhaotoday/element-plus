@@ -32,7 +32,7 @@ export default {
 
   /**
    * 载入 JS 文件
-   * @param {string} JS URL
+   * @param {string} url JS URL
    */
   loadScript (url) {
     const httpReq = new XMLHttpRequest()
