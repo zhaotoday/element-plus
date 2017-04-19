@@ -108,6 +108,7 @@ $ npm install --save vuex
 |           |-- articles             // 文章业务模块状态管理
 |   |-- utils                        // 工具集合
 |       |-- helpers                  // 帮助函数集合
+|       |-- mixins                   // 混合
 |       |-- auth.js                  // 权限相关
 |       |-- env.js                   // 环境配置类
 |       |-- fastclick.js             // 全局处理移动端 onclick 事件的延迟 300 ms 问题（仅移动端需要引入）
