@@ -1,6 +1,7 @@
 <template>
   <div>
-    <child-comp></child-comp>
+    <child-component prop-a="abc" :prop-b="'def'" :prop-c="456" :prop-e="11"
+      @speak-to-child="speakToMyChild"></child-component>
     <p v-text="t('articleList', {whose: t('my')})"></p>
     <p>
       当前语言：
@@ -19,7 +20,7 @@
 <script>
   import { mapState } from 'vuex'
   import t from '@/utils/mixins/t'
-  import ChildComp from '../components/ChildComp'
+  import ChildComponent from '../components/ChildComponent'
 
   export default {
     name: 'article-list',
@@ -29,7 +30,7 @@
         module: 'articles'
       }
     },
-    components: {ChildComp},
+    components: {ChildComponent},
     created () {
       this._get()
     },
@@ -38,6 +39,9 @@
       'articles'
     ]),
     methods: {
+      speakToMyChild () {
+        alert('you are my child')
+      },
       _get () {
         this.$store.dispatch('getArticles', {
           params: {
