@@ -22,6 +22,7 @@
   import ChildComp from '../components/ChildComp'
 
   export default {
+    name: 'articleList',
     data () {
       return {
         module: 'articles'

@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <div v-text="msg"></div>
-    <div @click="login">click login</div>
-  </div>
+  <div @click="login">click login</div>
 </template>
 
 <script>
@@ -10,11 +7,7 @@
   import Model from '@/models/actions'
 
   export default {
-    data () {
-      return {
-        msg: 'login'
-      }
-    },
+    name: 'login',
     methods: {
       login () {
         return new Model().POST({

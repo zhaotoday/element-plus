@@ -1,13 +1,9 @@
 <template>
-  <div>{{ msg }}</div>
+  <div>not found</div>
 </template>
 
 <script>
   export default {
-    data () {
-      return {
-        msg: 'not found'
-      }
-    }
+    name: 'notFound'
   }
 </script>

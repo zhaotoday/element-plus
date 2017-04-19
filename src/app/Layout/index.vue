@@ -8,11 +8,6 @@
 
 <script>
   export default {
-    name: 'articles',
-    data () {
-      return {
-        msg: 'articles'
-      }
-    }
+    name: 'layout'
   }
 </script>

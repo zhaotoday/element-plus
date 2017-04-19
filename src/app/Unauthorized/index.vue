@@ -1,13 +1,9 @@
 <template>
-  <div>{{ msg }}</div>
+  <div>unauthorized</div>
 </template>
 
 <script>
   export default {
-    data () {
-      return {
-        msg: 'unauthorized'
-      }
-    }
+    name: 'unauthorized'
   }
 </script>

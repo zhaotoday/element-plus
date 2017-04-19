@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>{{ msg }}</div>
+    <div>articles</div>
     <router-view></router-view>
   </div>
 </template>
@@ -9,10 +9,6 @@
   import './i18n'
 
   export default {
-    data () {
-      return {
-        msg: 'articles'
-      }
-    }
+    name: 'articleEntry'
   }
 </script>
