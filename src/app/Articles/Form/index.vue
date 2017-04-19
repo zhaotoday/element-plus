@@ -1,16 +1,9 @@
 <template>
-  <div>
-    <div v-model="msg"></div>
-  </div>
+  <div>article form</div>
 </template>
 
 <script>
   export default {
-    name: 'article-form',
-    data () {
-      return {
-        msg: 'article form'
-      }
-    }
+    name: 'article-form'
   }
 </script>
