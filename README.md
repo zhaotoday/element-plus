@@ -14,6 +14,8 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 - [Vuex 通俗版教程](https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/)
 - [Vuex 购物车示例](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart)
 - [Vue2.0 实践阶段性分享](https://segmentfault.com/a/1190000007909108)
+- [单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)
+- [vue-devtools](https://github.com/vuejs/vue-devtools)
 
 ## 使用
 ```bash
@@ -140,7 +142,7 @@ $ npm install --save vuex
 |           |-- utils                // MyComponent 的工具集合
 |           |-- i18n                 // MyComponent 的国际化
 |           |-- components           // MyComponent 的子组件
-|               |-- ChildComponent   // MyComponent 的子组件 ChildComponent，组件规范和 MyComponent 一致 
+|               |-- ChildComponent   // MyComponent 的子组件 ChildComponent，组件规范和 MyComponent 一致
 ```
 
 ## 业务组件规范

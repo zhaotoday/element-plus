@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'articleForm',
+    name: 'article-form',
     data () {
       return {
         msg: 'article form'
