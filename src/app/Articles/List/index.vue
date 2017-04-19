@@ -18,11 +18,12 @@
 
 <script>
   import { mapState } from 'vuex'
-  import i18n from '@/i18n'
+  import t from '@/utils/mixins/t'
   import ChildComp from '../components/ChildComp'
 
   export default {
     name: 'article-list',
+    mixins: [t],
     data () {
       return {
         module: 'articles'
@@ -37,9 +38,6 @@
       'articles'
     ]),
     methods: {
-      t (key, options) {
-        return i18n.getT(this.module)(key, options)
-      },
       _get () {
         this.$store.dispatch('getArticles', {
           params: {
