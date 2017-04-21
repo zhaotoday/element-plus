@@ -17,6 +17,7 @@
     "babel-runtime": "^6.23.0",
     "core-js": "^2.4.1",
     "i18next": "^7.2.1",
+    "iview": "^2.0.0-rc.10",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1"
@@ -63,6 +64,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^2.0.2",
+    "less-loader": "^4.0.3",
     "lolex": "^1.5.2",
     "mocha": "^3.2.0",
     "nightwatch": "^0.9.12",
