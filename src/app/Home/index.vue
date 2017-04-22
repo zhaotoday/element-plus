@@ -3,17 +3,18 @@
     <WhiteSpace :dirs="['bottom']">
       <Breadcrumb>
         <Breadcrumb-item href="#">首页</Breadcrumb-item>
-        <Breadcrumb-item href="#">应用中心</Breadcrumb-item>
-        <Breadcrumb-item>某应用</Breadcrumb-item>
+        <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
+        <Breadcrumb-item>文章列表</Breadcrumb-item>
       </Breadcrumb>
     </WhiteSpace>
+    <Uploader></Uploader>
     <WhiteSpace :dirs="['bottom']">
       <WingBlank size="sm" :dirs="['right']">
         <Button type="primary">新增</Button>
       </WingBlank>
       <Poptip
         confirm
-        title="您确认删除这条内容吗？"
+        title="确认删除这条记录？"
         placement="right"
         @on-ok="ok"
         @on-cancel="cancel">
@@ -28,13 +29,15 @@
   import List from '@/components/List'
   import WingBlank from '@/components/WingBlank'
   import WhiteSpace from '@/components/WhiteSpace'
+  import Uploader from '@/components/Uploader'
 
   export default {
     name: 'home',
     components: {
       List,
       WingBlank,
-      WhiteSpace
+      WhiteSpace,
+      Uploader
     }
   }
 </script>

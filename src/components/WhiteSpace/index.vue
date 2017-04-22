@@ -1,7 +1,7 @@
 <!--
 上下留白
 @example
-<WhiteSpace :dirs="['top']">
+<WhiteSpace size="sm" :dirs="['top']">
   ...
 </WhiteSpace>
 -->

@@ -1,7 +1,7 @@
 <!--
 两翼留白
 @example
-<WingBlank :dirs="['left']">
+<WingBlank size="sm" :dirs="['left']">
   ...
 </WingBlank>
 -->
