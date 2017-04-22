@@ -1,11 +1,12 @@
 .main {
   background-color: white;
   position: absolute;
-  min-width: 1000px;
+  width: 1200px;
   top: 75px;
-  left: 15px;
-  right: 15px;
+  margin-left: 50%;
+  left: -600px;
   bottom: 0;
   overflow: hidden;
   border-radius: 4px;
+  border: 1px solid #dfe4e9;
 }

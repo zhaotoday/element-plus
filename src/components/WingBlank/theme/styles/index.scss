@@ -1,0 +1,20 @@
+$padding-sm: 5px;
+$padding-md: 15px;
+
+.left {
+  padding-left: $padding-md;
+}
+
+.right {
+  padding-right: $padding-md;
+}
+
+.sm {
+  &.left {
+    padding-left: $padding-sm;
+  }
+
+  &.right {
+    padding-right: $padding-sm;
+  }
+}

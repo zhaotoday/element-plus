@@ -30,7 +30,9 @@
         module: 'articles'
       }
     },
-    components: {ChildComponent},
+    components: {
+      ChildComponent
+    },
     created () {
       this._get()
     },

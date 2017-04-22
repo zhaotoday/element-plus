@@ -1,12 +1,16 @@
 .header {
-  height: 60px;
-  line-height: 60px;
-  padding-left: 15px;
-  padding-right: 15px;
   background-color: white;
+  border-bottom: 1px solid #dfe4e9;
 
-  .operations {
-    float: right;
-    text-align: right;
+  .header-center {
+    width: 1200px;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 auto;
+
+    .operations {
+      float: right;
+      text-align: right;
+    }
   }
 }

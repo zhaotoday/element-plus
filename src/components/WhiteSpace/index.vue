@@ -1,0 +1,33 @@
+<!--
+上下留白
+@example
+<WhiteSpace :dirs="['top']">
+  ...
+</WhiteSpace>
+-->
+<template>
+  <div :class="[size, ...dirs]">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'padding',
+    props: {
+      size: {
+        type: String,
+        default: 'md'
+      },
+      dirs: {
+        type: Array,
+        default () {
+          return ['top', 'bottom']
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped src="./theme/styles/index.scss">
+</style>
