@@ -8,7 +8,9 @@ import home from './routes/home'
 import articles from './routes/articles'
 import login from './routes/login'
 import logout from './routes/logout'
+import iView from 'iview'
 
+Vue.use(iView)
 Vue.use(Router)
 
 const router = new Router({
@@ -37,6 +39,8 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  iView.LoadingBar.start()
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!auth.loggedIn()) {
       next({
@@ -49,6 +53,10 @@ router.beforeEach((to, from, next) => {
   } else {
     next()
   }
+})
+
+router.afterEach((to, from, next) => {
+  iView.LoadingBar.finish()
 })
 
 export default router

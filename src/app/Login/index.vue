@@ -31,15 +31,13 @@
           username: [
             {
               required: true,
-              message: '用户不能为空',
-              trigger: 'blur'
+              message: '用户不能为空'
             }
           ],
           password: [
             {
               required: true,
-              message: '密码不能为空',
-              trigger: 'blur'
+              message: '密码不能为空'
             }
           ]
         }

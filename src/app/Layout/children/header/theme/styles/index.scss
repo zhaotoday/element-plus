@@ -1,0 +1,12 @@
+.header {
+  height: 60px;
+  line-height: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: white;
+
+  .operations {
+    float: right;
+    text-align: right;
+  }
+}
