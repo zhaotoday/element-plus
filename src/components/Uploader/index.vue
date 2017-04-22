@@ -50,15 +50,23 @@
         this.imgName = name
         this.visible = true
       },
-      handleRemove (file) {
-        // 从 upload 实例删除数据
+      _remove (file) {
         const fileList = this.$refs.upload.fileList
         this.$refs.upload.fileList.splice(fileList.indexOf(file), 1)
       },
+      handleRemove (file) {
+        this._remove(file)
+        this.$emit('change', null)
+      },
       handleSuccess (res, file) {
-        // 因为上传过程为实例，这里模拟添加 url
         file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar'
         file.name = '7eb99afb9d5f317c912f08b5212fd69a'
+
+        if (this.uploadList.length > 1) {
+          this._remove(this.uploadList[0])
+        }
+
+        this.$emit('change', file)
       },
       handleFormatError () {
         this.$Message.error('文件格式不正确')
@@ -67,7 +75,7 @@
         this.$Message.error('文件不能超过 2M')
       },
       handleBeforeUpload () {
-        const check = this.uploadList.length < 1
+        const check = this.uploadList.length < 2
         if (!check) {
           this.$Message.error('删除已有图片后再上传')
         }

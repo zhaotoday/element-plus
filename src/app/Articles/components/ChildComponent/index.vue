@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="child-component" @click="click">child component</p>
+    <p class="child-component" @click="childHandler">child component</p>
     <p>propA: {{ propA }}</p>
     <p>propB: {{ propB }}</p>
     <p>propC: {{ propC }}</p>
@@ -37,8 +37,8 @@
       }
     },
     methods: {
-      click () {
-        this.$emit('speak-to-child')
+      childHandler () {
+        this.$emit('tell-father')
       }
     }
   }

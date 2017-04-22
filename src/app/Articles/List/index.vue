@@ -1,7 +1,7 @@
 <template>
   <div>
     <child-component prop-a="abc" :prop-b="'def'" :prop-c="456" :prop-e="11"
-      @speak-to-child="speakToMyChild"></child-component>
+      @tell-father="fatherHandler"></child-component>
     <p v-text="t('articleList', {whose: t('my')})"></p>
     <p>
       当前语言：
@@ -41,8 +41,8 @@
       'articles'
     ]),
     methods: {
-      speakToMyChild () {
-        alert('you are my child')
+      fatherHandler () {
+        alert('father handler')
       },
       _get () {
         this.$store.dispatch('getArticles', {

@@ -7,7 +7,7 @@
         <Breadcrumb-item>文章列表</Breadcrumb-item>
       </Breadcrumb>
     </WhiteSpace>
-    <Uploader></Uploader>
+    <Uploader @change="handlerUploaderChange"></Uploader>
     <WhiteSpace :dirs="['bottom']">
       <WingBlank size="sm" :dirs="['right']">
         <Button type="primary">新增</Button>
@@ -38,6 +38,11 @@
       WingBlank,
       WhiteSpace,
       Uploader
+    },
+    methods: {
+      handlerUploaderChange (file) {
+        alert(JSON.stringify(file))
+      }
     }
   }
 </script>
