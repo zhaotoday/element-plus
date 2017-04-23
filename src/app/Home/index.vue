@@ -16,8 +16,7 @@
         confirm
         title="确认删除这条记录？"
         placement="right"
-        @on-ok="ok"
-        @on-cancel="cancel">
+        @on-ok="handlePoptipOk">
         <Button type="primary">删除</Button>
       </Poptip>
     </WhiteSpace>
@@ -42,7 +41,8 @@
     methods: {
       handlerUploaderChange (file) {
         alert(JSON.stringify(file))
-      }
+      },
+      handlePoptipOk () {}
     }
   }
 </script>

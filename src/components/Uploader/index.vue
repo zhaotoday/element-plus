@@ -14,13 +14,13 @@
       <Button type="ghost" icon="ios-cloud-upload-outline">上传文件</Button>
     </Upload>
     <Modal title="查看图片" v-model="visible">
-      <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+      <img :src="imgURL" v-if="visible" style="width: 100%">
     </Modal>
     <div class="demo-upload-list" v-for="item in uploadList">
       <template v-if="item.status === 'finished'">
         <img :src="item.url">
         <div class="demo-upload-list-cover">
-          <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+          <Icon type="ios-eye-outline" @click.native="handleView(item.url)"></Icon>
           <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
         </div>
       </template>
@@ -34,20 +34,21 @@
   export default {
     data () {
       return {
-        defaultList: [
-          {
-            'name': 'a42bdcc1178e62b4694c830f028db5c0',
-            'url': 'https://o5wwk8baw.qnssl.com/a42bdcc1178e62b4694c830f028db5c0/avatar'
-          }
-        ],
-        imgName: '',
+        defaultList: [],
+        imgURL: '',
         visible: false,
         uploadList: []
       }
     },
+    props: {
+      value: {
+        type: Number,
+        default: 0
+      }
+    },
     methods: {
-      handleView (name) {
-        this.imgName = name
+      handleView (url) {
+        this.imgURL = url
         this.visible = true
       },
       _remove (file) {
@@ -60,7 +61,7 @@
       },
       handleSuccess (res, file) {
         file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar'
-        file.name = '7eb99afb9d5f317c912f08b5212fd69a'
+        file.name = ''
 
         if (this.uploadList.length > 1) {
           this._remove(this.uploadList[0])
@@ -80,6 +81,15 @@
           this.$Message.error('删除已有图片后再上传')
         }
         return check
+      }
+    },
+    created () {
+      alert(this.value)
+      if (this.value) {
+        this.defaultList.push({
+          'name': '',
+          'url': 'https://o5wwk8baw.qnssl.com/a42bdcc1178e62b4694c830f028db5c0/avatar'
+        })
       }
     },
     mounted () {
