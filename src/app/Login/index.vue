@@ -59,12 +59,15 @@
        * 登陆
        */
       _login () {
-        return new Model().addPath('login').POST({
-          data: this.formValidate
-        }).then((res) => {
-          auth.login(res.data.data)
-          this.$router.push('/')
-        })
+        return new Model()
+          .addPath('login')
+          .POST({
+            data: this.formValidate
+          })
+          .then((res) => {
+            auth.login(res.data.data)
+            this.$router.push('/')
+          })
       }
     }
   }

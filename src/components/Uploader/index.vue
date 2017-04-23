@@ -84,7 +84,6 @@
       }
     },
     created () {
-      alert(this.value)
       if (this.value) {
         this.defaultList.push({
           'name': '',
