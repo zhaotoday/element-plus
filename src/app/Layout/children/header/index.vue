@@ -20,7 +20,7 @@
         this.$router.push('/')
       },
       handleLogout () {
-        this.$router.push('/logout')
+        this.$router.push('logout')
         this.$Message.success('退出成功')
       }
     }
