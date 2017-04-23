@@ -10,7 +10,6 @@ import login from './routes/login'
 import logout from './routes/logout'
 import iView from 'iview'
 
-Vue.use(iView)
 Vue.use(Router)
 
 const router = new Router({

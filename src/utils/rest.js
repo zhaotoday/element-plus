@@ -33,6 +33,12 @@ export default class REST {
      */
     this.headers = {}
 
+    /**
+     * 统一错误处理
+     * @type {Function}
+     */
+    this.errorHandler = () => {}
+
     // 支持的请求方式
     const methods = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE']
 
@@ -70,7 +76,7 @@ export default class REST {
       method,
       url,
       data
-    })
+    }).catch(this.errorHandler)
   }
 
   /**
