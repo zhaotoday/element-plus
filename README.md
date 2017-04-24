@@ -2,12 +2,15 @@
 https://github.com/zhaotoday/vue.js
 
 ## 介绍
-基于 vue-cli 的 Vue js 单页应用项目模板，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
+基于 vue-cli+iView 的 Vue js 后台管理系统，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
+
+## 贴士
+本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
 
 ## 技术栈
 Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 
-## 参考
+## 相关网址
 - [Vue.js 中文网](https://cn.vuejs.org/)
 - [vue-router 中文网](http://router.vuejs.org/zh-cn/)
 - [Vuex 中文网](https://vuex.vuejs.org/zh-cn/)
@@ -148,3 +151,25 @@ $ npm install --save vuex
 
 ## 业务组件规范
 业务组件放在 /src/app 下，也就是一个页面，对应一个路由。规范和公用组件一直。
+
+## 加入 iView 组件库
+#### 提供 less 支持
+```bash
+# 安装 less-loader、less
+$ npm install --save-dev less-loader less
+```
+
+#### 自定义 iView 的主题
+新建 /theme/global/index.less：
+```less
+@import '~iview/src/styles/index.less';
+/* 在这里覆盖 less 变量 */
+```
+[链接](https://www.iviewui.com/docs/guide/theme)
+
+#### 引入 iView
+编辑 /src/main.js：
+```js
+import iView from 'iview'
+import './theme/global/iview/index.less'
+```
