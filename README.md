@@ -6,6 +6,7 @@ https://github.com/zhaotoday/vue.js
 
 ## 贴士
 本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
+> 如何剥离 iView？请按“[加入 iView 组件库](https://github.com/zhaotoday/vue.js#加入-iview-组件库)”的相反操作即可。）
 
 ## 技术栈
 Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
