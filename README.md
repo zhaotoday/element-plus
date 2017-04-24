@@ -165,21 +165,21 @@ $ npm install --save vuex
 业务组件放在 /src/app 下，也就是一个页面，对应一个路由。规范和公用组件一直。
 
 ## 加入 iView 组件库
-#### 提供 less 支持
+#### 1. 提供 less 支持
 ```bash
 # 安装 less-loader、less
 $ npm install --save-dev less-loader less
 ```
 
-#### 自定义 iView 的主题
+#### 2. 自定义 iView 的主题
 新建 /theme/global/index.less：
 ```less
 @import '~iview/src/styles/index.less';
-/* 在这里覆盖 less 变量 */
+/* 接下来开始覆盖 less 变量 */
 ```
 [链接](https://www.iviewui.com/docs/guide/theme)
 
-#### 引入 iView
+#### 3. 引入 iView
 编辑 /src/main.js：
 ```js
 import iView from 'iview'
