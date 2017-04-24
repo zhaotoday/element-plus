@@ -9,9 +9,9 @@
 </template>
 
 <script>
-  import Sidebar from './children/sidebar'
-  import Header from './children/header'
-  import Body from './children/body'
+  import Sidebar from './components/Sidebar'
+  import Header from './components/Header'
+  import Body from './components/Body'
 
   export default {
     name: 'layout',

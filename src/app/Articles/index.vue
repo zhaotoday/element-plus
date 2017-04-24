@@ -6,6 +6,6 @@
   import './i18n'
 
   export default {
-    name: 'article-entry'
+    name: 'articles'
   }
 </script>

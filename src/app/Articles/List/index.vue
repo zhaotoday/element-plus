@@ -43,7 +43,7 @@
   import List, { ListHeader, ListOperations, ListSearch } from '@/components/List'
 
   export default {
-    name: 'article-list',
+    name: 'list',
     components: {
       List,
       ListHeader,

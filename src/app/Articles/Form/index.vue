@@ -5,6 +5,6 @@
 
 <script>
   export default {
-    name: 'article-form'
+    name: 'form'
   }
 </script>
