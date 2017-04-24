@@ -18,7 +18,7 @@
 
 <script>
   import auth from '@/utils/auth'
-  import Model from '@/models/actions'
+  import Model from '@/models/actions/login'
   import Editor from '@/components/Editor'
 
   export default {
@@ -65,7 +65,6 @@
        */
       _login () {
         return new Model()
-          .addPath('login')
           .POST({
             data: this.formValidate
           })
