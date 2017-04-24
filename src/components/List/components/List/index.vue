@@ -1,20 +1,15 @@
 <template>
   <div>
-    <WhiteSpace :dirs="['bottom']">
-      <Table border :columns="columns" :data="data" :selection="[1]" @on-selection-change="handleSectionChange"></Table>
-    </WhiteSpace>
-    <Page :total="100" show-elevator></Page>
+    <slot></slot>
+    <Table class="margin-bottom" border :columns="columns" :data="data" :selection="[1]"
+      @on-selection-change="handleSectionChange"></Table>
+    <Page :total="100" show-total show-elevator></Page>
   </div>
 </template>
 
 <script>
-  import WhiteSpace from '../WhiteSpace'
-
   export default {
     name: 'list',
-    components: {
-      WhiteSpace
-    },
     data () {
       return {
         selection: [],
