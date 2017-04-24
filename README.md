@@ -5,14 +5,14 @@ https://github.com/zhaotoday/vue.js
 https://admin.liruan.cn/
 ```
 用户：admin
-秘密：admin
+密码：admin
 ```
 
 ## 介绍
 基于 vue-cli+iView 的 Vue js 后台管理系统，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
 
 ## 贴士
-本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
+本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但是，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
 > 如何剥离 iView？去除 [加入 iView 组件库](https://github.com/zhaotoday/vue.js#加入-iview-组件库) 的相关操作即可。
 
 ## 技术栈
@@ -29,7 +29,8 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 - [vue-devtools](https://github.com/vuejs/vue-devtools)
 
 ## 相关
-- [ajax 简单封装及使用规范](https://github.com/zhaotoday/rest)
+- [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
+- [基于 i18next 实现 Vue js 项目的国际化](https://)
 
 ## 使用
 ```bash
