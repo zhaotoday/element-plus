@@ -2,7 +2,11 @@
 https://github.com/zhaotoday/vue.js
 
 ## 线上的例子
-请大家手下留情，不要攻击我的服务器哦！地址：https://admin.liruan.cn/ 。
+https://admin.liruan.cn/
+```
+用户：admin
+秘密：admin
+```
 
 ## 介绍
 基于 vue-cli+iView 的 Vue js 后台管理系统，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
