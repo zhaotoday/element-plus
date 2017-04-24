@@ -49,6 +49,22 @@
       ListHeader,
       ListOperations,
       ListSearch
+    },
+    created () {
+      this._get()
+    },
+    methods: {
+      /**
+       * 获取列表
+       */
+      _get () {
+        this.$store.dispatch('getArticles', {
+          params: {
+            $offset: 0,
+            $limit: 10
+          }
+        })
+      }
     }
   }
 </script>
