@@ -24,8 +24,8 @@
     data () {
       return {
         formValidate: {
-          username: '',
-          password: ''
+          username: 'admin',
+          password: 'adminabcdefg123456'
         },
         ruleValidate: {
           username: [

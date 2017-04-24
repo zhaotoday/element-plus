@@ -7,6 +7,6 @@ export default {
       auth.logout()
     }
 
-    next('login')
+    next('/login')
   }
 }
