@@ -69,6 +69,7 @@
             data: this.formValidate
           })
           .then((res) => {
+            this.$Message.success('登陆成功')
             auth.login(res.data.data)
             this.$router.push('/')
           })
