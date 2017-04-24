@@ -1,21 +1,39 @@
 <template>
-  <div></div>
+  <div>
+    <textarea ref="content">{{ value }}</textarea>
+  </div>
 </template>
 
 <script>
+  import 'kindeditor'
+  import 'kindeditor/themes/default/default.css'
+  import _consts from './utils/consts'
+
+  const KindEditor = window.KindEditor
+
   export default {
-    name: 'padding',
+    name: 'editor',
     props: {
-      size: {
+      value: {
         type: String,
-        default: 'md'
-      },
-      dirs: {
-        type: Array,
-        default () {
-          return ['top', 'bottom']
+        default: ''
+      }
+    },
+    mounted () {
+      const vm = this
+
+      const options = {
+        width: '100%',
+        height: 100,
+        items: _consts.ITEMS,
+        pluginsPath: 'KEPlugins/',
+        afterChange: function () {
+          vm.$emit('change', this.html())
         }
       }
+      this.$nextTick(() => {
+        this.editor = KindEditor.create(this.$refs.content, {...options})
+      })
     }
   }
 </script>
