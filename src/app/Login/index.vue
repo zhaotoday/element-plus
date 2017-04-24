@@ -75,7 +75,7 @@
           })
       },
       handleEditorChange (html) {
-        console.log(html)
+        this.$set(this.formValidate, 'username', html)
       }
     }
   }
