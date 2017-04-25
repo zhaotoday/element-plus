@@ -3,7 +3,8 @@
     <slot></slot>
     <Table class="margin-bottom" border :columns="columns" :data="data" :selection="[1]"
       @on-selection-change="handleSectionChange"></Table>
-      <Page :total="total" :page-size="consts.PAGE_SIZE" show-total show-elevator @on-change="handlePageChange"></Page>
+    <Page :total="total" :current="current" :page-size="consts.PAGE_SIZE" show-total show-elevator
+      @on-change="handlePageChange"></Page>
   </div>
 </template>
 
@@ -13,6 +14,10 @@
   export default {
     name: 'list',
     props: {
+      current: {
+        type: Number,
+        default: 1
+      },
       columns: {
         type: Array,
         default () {
@@ -41,8 +46,8 @@
         this.$set(this, 'selection', selection)
       },
 
-      handlePageChange (page) {
-        this.$emit('on-change', page)
+      handlePageChange (current) {
+        this.$emit('on-change', current)
       }
     }
   }

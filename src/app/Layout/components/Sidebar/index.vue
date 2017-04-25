@@ -6,8 +6,8 @@
           <Icon type="document-text"></Icon>
           文章管理
         </template>
-        <Menu-item name="/articles">文章分类</Menu-item>
-        <Menu-item name="/articles/form">文章列表</Menu-item>
+        <Menu-item name="/articles">文章列表</Menu-item>
+        <Menu-item name="/articles/form">分类列表</Menu-item>
       </Submenu>
       <Submenu name="2">
         <template slot="title">
