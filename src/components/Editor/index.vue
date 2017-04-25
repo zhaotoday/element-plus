@@ -24,7 +24,7 @@
 
       const options = {
         width: '100%',
-        height: 100,
+        height: 400,
         items: _consts.ITEMS,
         pluginsPath: 'KEPlugins/',
         afterChange: function () {

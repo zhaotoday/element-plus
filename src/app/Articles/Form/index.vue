@@ -6,16 +6,33 @@
       <Breadcrumb-item>文章新增</Breadcrumb-item>
     </Breadcrumb>
     <div>
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100" label-position="left">
-        ccs
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="90">
         <Form-item label="标题" prop="title">
-          <Input v-model="formValidate.title" placeholder="请输入用户" @on-enter="handleSubmit"></Input>
+          <Row>
+            <Col span="12">
+            <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
+            </Col>
+          </Row>
         </Form-item>
-        dfdsf
+        <Form-item label="内容" prop="content">
+          <Editor v-model="formValidate.content" @change="handleEditorChange"></Editor>
+          <Input v-model="formValidate.content" style="display: none;"></Input>
+        </Form-item>
+        <Form-item label="分类" prop="category_id">
+          <Row>
+            <Col span="12">
+            <Select placeholder="请选择分类" v-model="formValidate.category_id">
+              <Option value="beijing">北京市</Option>
+              <Option value="shanghai">上海市</Option>
+              <Option value="shenzhen">深圳市</Option>
+            </Select>
+            </Col>
+          </Row>
+        </Form-item>
         <Form-item>
-          <Button type="primary" @click="handleSubmit">登陆</Button>
+          <Button type="primary" @click="handleSubmit">确定</Button>
         </Form-item>
-      </Form>aaa
+      </Form>
     </div>
   </div>
 </template>
@@ -32,27 +49,41 @@
       return {
         formValidate: {
           title: '',
-          password: 'adminabcdefg123456'
+          content: '',
+          category_id: ''
         },
         ruleValidate: {
           title: [
             {
               required: true,
-              message: '用户不能为空'
+              message: '标题不能为空'
             }
           ],
-          password: [
+          content: [
             {
               required: true,
-              message: '密码不能为空'
+              message: '内容不能为空'
+            }
+          ],
+          category_id: [
+            {
+              required: true,
+              message: '分类不能为空'
             }
           ]
         }
       }
     },
     methods: {
+      handleSubmit () {
+        this.$refs.formValidate.validate((valid) => {
+          if (valid) {
+            alert('')
+          }
+        })
+      },
       handleEditorChange (html) {
-        this.$set(this.formValidate, 'username', html)
+        this.$set(this.formValidate, 'content', html)
       }
     }
   }

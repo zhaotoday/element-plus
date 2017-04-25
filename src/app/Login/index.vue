@@ -12,20 +12,15 @@
         <Button type="primary" @click="handleSubmit">登陆</Button>
       </Form-item>
     </Form>
-    <Editor v-model="formValidate.username" @change="handleEditorChange"></Editor>
   </Card>
 </template>
 
 <script>
   import auth from '@/utils/auth'
   import Model from '@/models/actions/login'
-  import Editor from '@/components/Editor'
 
   export default {
     name: 'login',
-    components: {
-      Editor
-    },
     data () {
       return {
         formValidate: {
@@ -73,9 +68,6 @@
             auth.login(res.data.data)
             this.$router.push('/')
           })
-      },
-      handleEditorChange (html) {
-        this.$set(this.formValidate, 'username', html)
       }
     }
   }
