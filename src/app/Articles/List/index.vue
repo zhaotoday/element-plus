@@ -5,15 +5,16 @@
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
       <Breadcrumb-item>文章列表</Breadcrumb-item>
     </Breadcrumb>
-    <List>
+    <List :columns="columns" :data="articles.articles.data.items" :total="articles.articles.data.total"
+        @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
           <Button class="margin-right-sm" type="primary">新增</Button>
           <Poptip
-            confirm
-            title="确认删除选中记录？"
-            placement="right"
-            @on-ok="handlePoptipOk">
+              confirm
+              title="确认删除选中记录？"
+              placement="right"
+              @on-ok="handlePoptipOk">
             <Button type="primary">删除</Button>
           </Poptip>
         </ListOperations>
@@ -40,6 +41,8 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+  import consts from '@/utils/consts'
   import List, { ListHeader, ListOperations, ListSearch } from '@/components/List'
 
   export default {
@@ -50,18 +53,71 @@
       ListOperations,
       ListSearch
     },
+    data () {
+      return {
+        columns: [
+          {
+            type: 'selection',
+            width: 60,
+            align: 'center'
+          },
+          {
+            title: 'ID',
+            key: 'id'
+          },
+          {
+            title: '标题',
+            key: 'title'
+          },
+          {
+            title: '分类',
+            key: 'category_id'
+          },
+          {
+            title: '操作',
+            key: 'action',
+            fixed: 'right',
+            width: 110,
+            render () {
+              return `<i-button type="text" size="small">编辑</i-button>
+                <i-button type="text" size="small">删除</i-button>`
+            }
+          }
+        ],
+        data: [
+          {
+            id: 1,
+            name: '王小明',
+            age: 18,
+            address: '北京市朝阳区芍药居'
+          },
+          {
+            id: 2,
+            name: '张小刚',
+            age: 25,
+            address: '北京市海淀区西二旗'
+          }
+        ]
+      }
+    },
+    computed: mapState([
+      'articles'
+    ]),
     created () {
       this._get()
     },
     methods: {
+      handlePageChange (page) {
+        this._get(page)
+      },
       /**
        * 获取列表
        */
-      _get () {
+      _get (page = 1) {
         this.$store.dispatch('getArticles', {
           params: {
-            $offset: 0,
-            $limit: 10
+            offset: (page - 1) * consts.PAGE_SIZE,
+            limit: consts.PAGE_SIZE
           }
         })
       }

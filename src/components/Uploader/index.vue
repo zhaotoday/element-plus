@@ -57,7 +57,7 @@
       },
       handleRemove (file) {
         this._remove(file)
-        this.$emit('change', null)
+        this.$emit('on-change', null)
       },
       handleSuccess (res, file) {
         file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar'
@@ -67,7 +67,7 @@
           this._remove(this.uploadList[0])
         }
 
-        this.$emit('change', file)
+        this.$emit('on-change', file)
       },
       handleFormatError () {
         this.$Message.error('文件格式不正确')
