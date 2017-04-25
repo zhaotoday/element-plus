@@ -6,7 +6,7 @@
       <Breadcrumb-item>文章新增</Breadcrumb-item>
     </Breadcrumb>
     <div>
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="90">
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
         <Form-item label="标题" prop="title">
           <Row>
             <Col span="12">
@@ -30,7 +30,9 @@
           </Row>
         </Form-item>
         <Form-item>
-          <Button type="primary" @click="handleSubmit">确定</Button>
+          <Button type="primary" @click="handleSubmit" class="margin-right-sm">保存</Button>
+          <Button type="primary" @click="handleSubmit" class="margin-right-sm">保存并返回</Button>
+          <Button type="ghost" @click="handleSubmit">返回</Button>
         </Form-item>
       </Form>
     </div>
@@ -78,7 +80,12 @@
       handleSubmit () {
         this.$refs.formValidate.validate((valid) => {
           if (valid) {
-            alert('')
+            this.$store.dispatch('postArticle', {
+              data: this.formValidate
+            }).then(() => {
+              this.$Message.success('新增成功！')
+              this.$refs.formValidate.resetFields()
+            })
           }
         })
       },

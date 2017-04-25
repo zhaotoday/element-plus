@@ -31,9 +31,18 @@
           vm.$emit('change', this.html())
         }
       }
+
       this.$nextTick(() => {
         this.editor = KindEditor.create(this.$refs.content, {...options})
       })
+    },
+    watch: {
+      value (newVal, oldVal) {
+        // FIX: 修复重置表单时，编辑器不重置的 bug
+        if (newVal === '') {
+          this.editor.html('')
+        }
+      }
     }
   }
 </script>
