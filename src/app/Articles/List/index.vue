@@ -10,13 +10,6 @@
       <ListHeader>
         <ListOperations>
           <Button class="margin-right-sm" type="primary">新增</Button>
-          <Poptip
-              confirm
-              title="确认删除选中记录？"
-              placement="right"
-              @on-ok="handlePoptipOk">
-            <Button type="primary">删除</Button>
-          </Poptip>
         </ListOperations>
         <ListSearch>
           <Form ref="formInline" inline>
@@ -56,11 +49,6 @@
     data () {
       return {
         columns: [
-          {
-            type: 'selection',
-            width: 60,
-            align: 'center'
-          },
           {
             title: 'ID',
             key: 'id'
