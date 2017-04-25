@@ -31,8 +31,8 @@
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSubmit" class="margin-right-sm">保存</Button>
-          <Button type="primary" @click="handleSubmit" class="margin-right-sm">保存并返回</Button>
-          <Button type="ghost" @click="handleSubmit">返回</Button>
+          <Button type="primary" @click="handleSubmitAndGoBack" class="margin-right-sm">保存并返回</Button>
+          <Button type="ghost" @click="$router.push('/articles')">返回</Button>
         </Form-item>
       </Form>
     </div>
@@ -77,16 +77,27 @@
       }
     },
     methods: {
+      _submit () {
+        return new Promise((resolve, reject) => {
+          this.$refs.formValidate.validate((valid) => {
+            if (valid) {
+              this.$store.dispatch('postArticle', {
+                data: this.formValidate
+              }).then(() => {
+                this.$Message.success('新增成功！')
+                this.$refs.formValidate.resetFields()
+                resolve()
+              })
+            }
+          })
+        })
+      },
       handleSubmit () {
-        this.$refs.formValidate.validate((valid) => {
-          if (valid) {
-            this.$store.dispatch('postArticle', {
-              data: this.formValidate
-            }).then(() => {
-              this.$Message.success('新增成功！')
-              this.$refs.formValidate.resetFields()
-            })
-          }
+        this._submit()
+      },
+      handleSubmitAndGoBack () {
+        this._submit().then(() => {
+          this.$router.push('/articles')
         })
       },
       handleEditorChange (html) {

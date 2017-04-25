@@ -9,7 +9,7 @@
         @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
-          <Button class="margin-right-sm" type="primary">新增</Button>
+          <Button class="margin-right-sm" type="primary" @click="$router.push('articles/form')">新增</Button>
         </ListOperations>
         <ListSearch>
           <Form ref="formInline" inline>
@@ -64,8 +64,7 @@
           {
             title: '操作',
             key: 'action',
-            fixed: 'right',
-            width: 110,
+            width: 120,
             render () {
               return `<i-button type="text" size="small">编辑</i-button>
                 <i-button type="text" size="small">删除</i-button>`

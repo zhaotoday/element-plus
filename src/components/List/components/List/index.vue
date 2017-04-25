@@ -2,8 +2,8 @@
   <div>
     <slot></slot>
     <Table class="margin-bottom" border :columns="columns" :data="data" :selection="[1]"
-        @on-selection-change="handleSectionChange"></Table>
-    <Page :total="total" :page-size="consts.PAGE_SIZE" show-total show-elevator @on-change="handlePageChange"></Page>
+      @on-selection-change="handleSectionChange"></Table>
+      <Page :total="total" :page-size="consts.PAGE_SIZE" show-total show-elevator @on-change="handlePageChange"></Page>
   </div>
 </template>
 
