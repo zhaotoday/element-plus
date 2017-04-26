@@ -1,13 +1,20 @@
 <template>
   <div>
+    <Modal
+      width="300"
+      v-model="deleteTarget.modal"
+      title="确认框"
+      @on-ok="handleDeleteOk">
+      <p>确认删除该记录？</p>
+    </Modal>
     <Breadcrumb>
       <Breadcrumb-item href="#">首页</Breadcrumb-item>
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
       <Breadcrumb-item>文章列表</Breadcrumb-item>
     </Breadcrumb>
     <List :current="current" :columns="columns" :data="articles.articles.data.items"
-        :total="articles.articles.data.total"
-        @on-change="handlePageChange">
+      :total="articles.articles.data.total"
+      @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
           <Button class="margin-right-sm" type="primary" @click="$router.push('articles/form')">新增</Button>
@@ -16,7 +23,7 @@
           <Form ref="formInline" inline>
             <Form-item prop="title">
               <Input type="text" placeholder="请输入标题" v-model="searchData.title" style="width: 230px;"
-                  @on-enter="handleSearch"></Input>
+                @on-enter="handleSearch"></Input>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="handleSearch">查询</Button>
@@ -44,6 +51,10 @@
     },
     data () {
       return {
+        deleteTarget: {
+          modal: false,
+          id: 0
+        },
         searchData: {
           title: ''
         },
@@ -72,7 +83,7 @@
             width: 120,
             render: (row, column, index) => {
               return `<i-button type="text" size="small" @click="handleEdit(${row.id})">编辑</i-button>
-                <i-button type="text" size="small">删除</i-button>`
+                <i-button type="text" size="small" @click="handleDelete(${row.id})">删除</i-button>`
             }
           }
         ]
@@ -96,6 +107,22 @@
 
       handleEdit (id) {
         this.$router.push(`/articles/form/${id}`)
+      },
+
+      handleDelete (id) {
+        this.$set(this.deleteTarget, 'modal', true)
+        this.$set(this.deleteTarget, 'id', id)
+      },
+
+      handleDeleteOk () {
+        this.$store.dispatch('deleteArticle', {
+          params: {
+            id: this.deleteTarget.id
+          }
+        }).then(() => {
+          this.$Message.success('删除成功！')
+          this._get()
+        })
       },
 
       /**

@@ -36,5 +36,12 @@ export default {
    */
   putArticle ({commit}, {uri, data}) {
     return new Model().PUT({uri, data})
+  },
+
+  /**
+   * 编辑
+   */
+  deleteArticle ({commit}, {params}) {
+    return new Model().DELETE({params})
   }
 }
