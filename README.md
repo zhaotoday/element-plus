@@ -29,7 +29,6 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 - [Vue2.0 实践阶段性分享](https://segmentfault.com/a/1190000007909108)
 - [单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)
 - [vue-devtools](https://github.com/vuejs/vue-devtools)
-- [iView 组件库](https://www.iviewui.com/)
 
 ## 相关
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
