@@ -7,9 +7,10 @@ https://admin.liruan.cn/
 用户：admin
 密码：admin
 ```
+> 大家可以点击左边菜单栏的：文章管理 > 文章列表，查看效果。
 
 ## 介绍
-基于 vue-cli+iView 的 Vue js 后台管理系统，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
+基于 vue-cli + iView 的 Vue js 后台管理系统，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
 
 ## 贴士
 本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但是，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
@@ -20,6 +21,7 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 
 ## 网址
 - [Vue.js 中文网](https://cn.vuejs.org/)
+- [iView - 一套基于 Vue.js 的高质量 UI 组件库](https://www.iviewui.com/)
 - [vue-router 中文网](http://router.vuejs.org/zh-cn/)
 - [Vuex 中文网](https://vuex.vuejs.org/zh-cn/)
 - [Vuex 通俗版教程](https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/)
@@ -31,7 +33,7 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 
 ## 相关
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
-- [基于 i18next 实现 Vue js 项目的国际化](https://)
+- [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
 
 ## 使用
 ```bash
