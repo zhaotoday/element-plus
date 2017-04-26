@@ -2,7 +2,7 @@
   <div>
     <Header></Header>
     <div class="main">
-      <Sidebar></Sidebar>
+      <Sidebar ref="sidebar"></Sidebar>
       <Body></Body>
     </div>
   </div>
@@ -19,6 +19,12 @@
       Sidebar,
       Header,
       Body
+    },
+    beforeRouteUpdate (to, from, next) {
+      this.$nextTick(() => {
+        this.$refs.sidebar.update(to)
+      })
+      next()
     }
   }
 </script>
