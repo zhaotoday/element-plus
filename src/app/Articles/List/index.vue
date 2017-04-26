@@ -47,7 +47,7 @@
         searchData: {
           title: ''
         },
-        current: 3,
+        current: 1,
         columns: [
           {
             title: 'ID',
