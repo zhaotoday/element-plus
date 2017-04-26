@@ -15,7 +15,7 @@
           </Row>
         </Form-item>
         <Form-item label="内容" prop="content">
-          <Editor v-model="formValidate.content" @change="handleEditorChange"></Editor>
+          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item>
@@ -29,12 +29,17 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   import Editor from '@/components/Editor'
 
   export default {
     name: 'form',
     components: {
       Editor
+    },
+    created () {
+      const id = this.$route.params.id
+      id && this._get(id)
     },
     data () {
       return {
@@ -59,6 +64,9 @@
       }
     },
     methods: {
+      _get (uri) {
+        this.$store.dispatch('getArticle', {uri})
+      },
       _submit () {
         return new Promise((resolve, reject) => {
           this.$refs.formValidate.validate((valid) => {
@@ -68,6 +76,7 @@
               }).then(() => {
                 this.$Message.success('新增成功！')
                 this.$refs.formValidate.resetFields()
+                this.$refs.editor.html('')
                 resolve()
               })
             }
@@ -84,6 +93,17 @@
       },
       handleEditorChange (html) {
         this.$set(this.formValidate, 'content', html)
+      }
+    },
+    computed: mapState([
+      'articles'
+    ]),
+    watch: {
+      'articles.article': {
+        handler (newVal) {
+          this.$set(this, 'formValidate', newVal.data)
+          this.$refs.editor.html(newVal.data.content)
+        }
       }
     }
   }

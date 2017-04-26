@@ -7,7 +7,7 @@ export default {
       component: resolve => require(['@/app/Articles/List'], resolve)
     },
     {
-      path: 'form',
+      path: 'form/:id?',
       component: resolve => require(['@/app/Articles/Form'], resolve)
     }
   ]

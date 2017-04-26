@@ -14,6 +14,17 @@ export default {
   },
 
   /**
+   * 获取详情
+   */
+  getArticle ({commit}, {uri}) {
+    return new Model().GET({uri}).then((res) => {
+      commit(types.GET_ARTICLE, {
+        data: res.data
+      })
+    })
+  },
+
+  /**
    * 新增
    */
   postArticle ({commit}, {data}) {

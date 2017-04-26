@@ -15,7 +15,8 @@
         <ListSearch>
           <Form ref="formInline" inline>
             <Form-item prop="title">
-              <Input type="text" placeholder="请输入标题" v-model="searchData.title"></Input>
+              <Input type="text" placeholder="请输入标题" v-model="searchData.title" style="width: 230px;"
+                  @on-enter="handleSearch"></Input>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="handleSearch">查询</Button>
@@ -69,8 +70,8 @@
             title: '操作',
             key: 'action',
             width: 120,
-            render () {
-              return `<i-button type="text" size="small">编辑</i-button>
+            render: (row, column, index) => {
+              return `<i-button type="text" size="small" @click="handleEdit(${row.id})">编辑</i-button>
                 <i-button type="text" size="small">删除</i-button>`
             }
           }
@@ -105,6 +106,10 @@
       handleSearch () {
         this._get()
         this.$set(this, 'current', 1)
+      },
+
+      handleEdit (id) {
+        this.$router.push(`/articles/form/${id}`)
       },
 
       /**
