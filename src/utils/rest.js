@@ -71,7 +71,7 @@ export default class REST {
     }
 
     return new Promise((resolve, reject) => {
-      return axios({
+      axios({
         baseURL: this.baseURL,
         headers: this.headers,
         method,
