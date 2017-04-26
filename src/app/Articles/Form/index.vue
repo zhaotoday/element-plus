@@ -56,8 +56,8 @@
               message: '标题不能为空'
             },
             {
-              max: 20,
-              message: '标题不能多于 20 个字'
+              max: 100,
+              message: '标题不能多于 100 个字'
             }
           ],
           content: [
