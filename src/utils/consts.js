@@ -17,7 +17,7 @@ const BASE_URL = ENV === DEV ? 'http://www.cms.com' : 'http://www.liruan.cn'
 const API_URL = BASE_URL + '/apis'
 
 // 分页大小
-const PAGE_SIZE = 3
+const PAGE_SIZE = 10
 
 // 网站标题
 const TITLE = '网站后台'

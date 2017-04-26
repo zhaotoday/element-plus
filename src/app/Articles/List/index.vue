@@ -6,21 +6,14 @@
       <Breadcrumb-item>文章列表</Breadcrumb-item>
     </Breadcrumb>
     <List :current="current" :columns="columns" :data="articles.articles.data.items"
-      :total="articles.articles.data.total"
-      @on-change="handlePageChange">
+        :total="articles.articles.data.total"
+        @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
           <Button class="margin-right-sm" type="primary" @click="$router.push('articles/form')">新增</Button>
         </ListOperations>
         <ListSearch>
           <Form ref="formInline" inline>
-            <Form-item prop="category">
-              <Select placeholder="请选择分类" style="width:180px" v-model="searchData.category_id">
-                <Option value="1">北京市</Option>
-                <Option value="shanghai">上海市</Option>
-                <Option value="shenzhen">深圳市</Option>
-              </Select>
-            </Form-item>
             <Form-item prop="title">
               <Input type="text" placeholder="请输入标题" v-model="searchData.title"></Input>
             </Form-item>
@@ -37,6 +30,7 @@
 <script>
   import { mapState } from 'vuex'
   import consts from '@/utils/consts'
+  import time from '@/utils/helpers/timeLite'
   import List, { ListHeader, ListOperations, ListSearch } from '@/components/List'
 
   export default {
@@ -50,22 +44,26 @@
     data () {
       return {
         searchData: {
-          title: '',
-          category_id: ''
+          title: ''
         },
         current: 3,
         columns: [
           {
             title: 'ID',
-            key: 'id'
+            key: 'id',
+            width: 60
           },
           {
             title: '标题',
             key: 'title'
           },
           {
-            title: '分类',
-            key: 'category_id'
+            title: '发布时间',
+            key: 'created_at',
+            width: 180,
+            render (row, column, index) {
+              return `<span>${time.getDateTime(row.created_at + '000')}</span>`
+            }
           },
           {
             title: '操作',

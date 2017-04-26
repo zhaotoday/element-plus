@@ -18,17 +18,6 @@
           <Editor v-model="formValidate.content" @change="handleEditorChange"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
-        <Form-item label="分类" prop="category_id">
-          <Row>
-            <Col span="12">
-            <Select placeholder="请选择分类" v-model="formValidate.category_id">
-              <Option value="beijing">北京市</Option>
-              <Option value="shanghai">上海市</Option>
-              <Option value="shenzhen">深圳市</Option>
-            </Select>
-            </Col>
-          </Row>
-        </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSubmit" class="margin-right-sm">保存</Button>
           <Button type="primary" @click="handleSubmitAndGoBack" class="margin-right-sm">保存并返回</Button>
@@ -51,8 +40,7 @@
       return {
         formValidate: {
           title: '',
-          content: '',
-          category_id: ''
+          content: ''
         },
         ruleValidate: {
           title: [
@@ -65,12 +53,6 @@
             {
               required: true,
               message: '内容不能为空'
-            }
-          ],
-          category_id: [
-            {
-              required: true,
-              message: '分类不能为空'
             }
           ]
         }
