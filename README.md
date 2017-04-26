@@ -2,7 +2,7 @@
 https://github.com/zhaotoday/vue.js
 
 ## 线上的例子
-http://admin.liruan.cn/
+http://admin.liruan.cn/#/login
 ```
 用户：admin
 密码：admin
