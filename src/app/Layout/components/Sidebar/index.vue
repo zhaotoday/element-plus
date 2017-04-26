@@ -10,10 +10,39 @@
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="ios-keypad"></Icon>
-          一级菜单
+          <Icon type="document"></Icon>
+          文件管理
         </template>
-        <Menu-item name="/x">二级菜单</Menu-item>
+      </Submenu>
+      <Submenu name="x">
+        <template slot="title">
+          <Icon type="person-stalker"></Icon>
+          会员管理
+        </template>
+      </Submenu>
+      <Submenu name="x">
+        <template slot="title">
+          <Icon type="ios-home-outline"></Icon>
+          店铺管理
+        </template>
+      </Submenu>
+      <Submenu name="x">
+        <template slot="title">
+          <Icon type="android-cart"></Icon>
+          商品管理
+        </template>
+      </Submenu>
+      <Submenu name="x">
+        <template slot="title">
+          <Icon type="android-cart"></Icon>
+          订单管理
+        </template>
+      </Submenu>
+      <Submenu name="x">
+        <template slot="title">
+          <Icon type="gear-b"></Icon>
+          网站设置
+        </template>
       </Submenu>
     </Menu>
   </div>

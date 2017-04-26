@@ -70,13 +70,17 @@ export default class REST {
       url = url + this._objToUrl(params)
     }
 
-    return axios({
-      baseURL: this.baseURL,
-      headers: this.headers,
-      method,
-      url,
-      data
-    }).catch(this.errorHandler)
+    return new Promise((resolve, reject) => {
+      return axios({
+        baseURL: this.baseURL,
+        headers: this.headers,
+        method,
+        url,
+        data
+      }).then((res) => {
+        res && resolve(res)
+      }).catch(this.errorHandler)
+    })
   }
 
   /**

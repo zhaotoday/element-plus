@@ -25,7 +25,7 @@
       return {
         formValidate: {
           username: 'admin',
-          password: 'adminabcdefg123456'
+          password: 'admin'
         },
         ruleValidate: {
           username: [
