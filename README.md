@@ -1,8 +1,8 @@
 ## 项目地址
-https://github.com/zhaotoday/vue.js
+https://github.com/zhaotoday/iview
 
 ## 线上的例子
-https://admin.liruan.cn/
+http://admin.liruan.cn/#/login
 ```
 用户：admin
 密码：admin
