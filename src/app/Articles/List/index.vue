@@ -75,20 +75,6 @@
                 <i-button type="text" size="small">删除</i-button>`
             }
           }
-        ],
-        data: [
-          {
-            id: 1,
-            name: '王小明',
-            age: 18,
-            address: '北京市朝阳区芍药居'
-          },
-          {
-            id: 2,
-            name: '张小刚',
-            age: 25,
-            address: '北京市海淀区西二旗'
-          }
         ]
       }
     },
