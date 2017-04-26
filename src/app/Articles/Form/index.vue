@@ -38,11 +38,12 @@
       Editor
     },
     created () {
-      const id = this.$route.params.id
-      id && this._get(id)
+      this.id = this.$route.params.id
+      this.id && this._get(this.id)
     },
     data () {
       return {
+        id: '',
         formValidate: {
           title: '',
           content: ''
@@ -71,10 +72,14 @@
         return new Promise((resolve, reject) => {
           this.$refs.formValidate.validate((valid) => {
             if (valid) {
-              this.$store.dispatch('postArticle', {
+              const action = this.id ? 'putArticle' : 'postArticle'
+              const uri = this.id
+
+              this.$store.dispatch(action, {
+                uri,
                 data: this.formValidate
               }).then(() => {
-                this.$Message.success('新增成功！')
+                this.$Message.success((this.id ? '编辑' : '新增') + '成功！')
                 this.$refs.formValidate.resetFields()
                 this.$refs.editor.html('')
                 resolve()

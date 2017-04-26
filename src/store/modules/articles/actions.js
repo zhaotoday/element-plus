@@ -29,5 +29,12 @@ export default {
    */
   postArticle ({commit}, {data}) {
     return new Model().POST({data})
+  },
+
+  /**
+   * 编辑
+   */
+  putArticle ({commit}, {uri, data}) {
+    return new Model().PUT({uri, data})
   }
 }
