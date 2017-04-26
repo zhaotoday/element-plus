@@ -1,9 +1,10 @@
 <template>
   <div>
     <Breadcrumb>
-      <Breadcrumb-item href="#">首页</Breadcrumb-item>
+      <Breadcrumb-item href="/">首页</Breadcrumb-item>
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
-      <Breadcrumb-item>文章新增</Breadcrumb-item>
+      <Breadcrumb-item href="/articles">文章列表</Breadcrumb-item>
+      <Breadcrumb-item>文章{{ id ? '编辑' : '新增' }}</Breadcrumb-item>
     </Breadcrumb>
     <div>
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
@@ -53,12 +54,20 @@
             {
               required: true,
               message: '标题不能为空'
+            },
+            {
+              max: 20,
+              message: '标题不能多于 20 个字'
             }
           ],
           content: [
             {
               required: true,
               message: '内容不能为空'
+            },
+            {
+              max: 2000,
+              message: '内容长度过长'
             }
           ]
         }

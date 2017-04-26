@@ -8,7 +8,7 @@
       <p>确认删除该记录？</p>
     </Modal>
     <Breadcrumb>
-      <Breadcrumb-item href="#">首页</Breadcrumb-item>
+      <Breadcrumb-item href="/">首页</Breadcrumb-item>
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
       <Breadcrumb-item>文章列表</Breadcrumb-item>
     </Breadcrumb>
