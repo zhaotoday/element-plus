@@ -82,8 +82,8 @@
             key: 'action',
             width: 125,
             render: (row, column, index) => {
-              return `<i-button type="text" size="small" @click="handleEdit(${row.id})">编辑</i-button>
-                <i-button type="text" size="small" @click="handleDelete(${row.id})">删除</i-button>`
+              return `<i-button type="ghost" size="small" @click="handleEdit(${row.id})">编辑</i-button>
+                <i-button type="ghost" size="small" @click="handleDelete(${row.id})">删除</i-button>`
             }
           }
         ]

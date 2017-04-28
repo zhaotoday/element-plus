@@ -1,6 +1,6 @@
 import 'date-format-lite'
 
-const DATE_TIME_FORMATTER = 'YYYY-MM-DD HH:mm:ss'
+const DATE_TIME_FORMATTER = 'YYYY-MM-DD hh:mm:ss'
 const DATE_FORMATTER = 'YYYY-MM-DD'
 const TIME_FORMATTER = 'HH:mm:ss'
 
