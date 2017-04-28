@@ -33,6 +33,7 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 ## 相关
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
 - [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
+- [基于 CodeIgniter 的轻量级 PHP MVC 框架](https://github.com/zhaotoday/php-rich-app)
 
 ## 使用
 ```bash
