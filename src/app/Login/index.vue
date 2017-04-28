@@ -9,7 +9,7 @@
         <Input type="password" v-model="formValidate.password" placeholder="请输入密码" @on-enter="handleSubmit"></Input>
       </Form-item>
       <Form-item>
-        <Button type="primary" @click="handleSubmit">登陆</Button>
+        <Button type="primary" @click="handleSubmit">登录</Button>
       </Form-item>
     </Form>
   </Card>
@@ -56,7 +56,7 @@
       },
 
       /**
-       * 登陆
+       * 登录
        */
       _login () {
         return new Model()
@@ -64,7 +64,7 @@
             data: this.formValidate
           })
           .then((res) => {
-            this.$Message.success('登陆成功')
+            this.$Message.success('登录成功')
             auth.login(res.data.data)
             this.$router.push('/')
           })
