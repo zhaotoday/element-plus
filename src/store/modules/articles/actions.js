@@ -39,7 +39,7 @@ export default {
   },
 
   /**
-   * 编辑
+   * 删除
    */
   deleteArticle ({commit}, {params}) {
     return new Model().DELETE({params})
