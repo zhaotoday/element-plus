@@ -44,7 +44,7 @@ export default class I18N {
    * @param {Function} req 语言资源
    * @return {I18N}
    */
-  addResources = (ns, req) => {
+  addResources (ns, req) {
     ns = ns || this.ns
 
     req.keys().forEach((path) => {
