@@ -16,12 +16,12 @@
           </Row>
         </Form-item>
         <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
+          <Editor ref="editor" v-model="formValidate.content" @change="onEditorChange"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item>
-          <Button type="primary" @click="handleSubmit" class="margin-right-sm">保存</Button>
-          <Button type="primary" @click="handleSubmitAndGoBack" class="margin-right-sm">保存并返回</Button>
+          <Button type="primary" @click="onSubmit" class="margin-right-sm">保存</Button>
+          <Button type="primary" @click="onSubmitThenReturn" class="margin-right-sm">保存并返回</Button>
           <Button type="ghost" @click="$router.push('/articles')">返回</Button>
         </Form-item>
       </Form>
@@ -97,15 +97,15 @@
           })
         })
       },
-      handleSubmit () {
+      onSubmit () {
         this._submit()
       },
-      handleSubmitAndGoBack () {
+      onSubmitThenReturn () {
         this._submit().then(() => {
           this.$router.push('/articles')
         })
       },
-      handleEditorChange (html) {
+      onEditorChange (html) {
         this.$set(this.formValidate, 'content', html)
       }
     },

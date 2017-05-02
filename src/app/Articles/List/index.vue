@@ -4,7 +4,7 @@
       width="300"
       v-model="deleteTarget.modal"
       title="确认框"
-      @on-ok="handleDeleteOk">
+      @on-ok="onDeleteOk">
       <p>确认删除该记录？</p>
     </Modal>
     <Breadcrumb>
@@ -14,7 +14,7 @@
     </Breadcrumb>
     <List :current="current" :columns="columns" :data="articles.articles.data.items"
       :total="articles.articles.data.total"
-      @on-change="handlePageChange">
+      @on-change="onPageChange">
       <ListHeader>
         <ListOperations>
           <Button class="margin-right-sm" type="primary" @click="$router.push('articles/form')">新增</Button>
@@ -23,10 +23,10 @@
           <Form ref="formInline" inline>
             <Form-item prop="title">
               <Input type="text" placeholder="请输入标题" v-model="searchData.title" style="width: 230px;"
-                @on-enter="handleSearch"></Input>
+                @on-enter="onSearch"></Input>
             </Form-item>
             <Form-item>
-              <Button type="primary" @click="handleSearch">查询</Button>
+              <Button type="primary" @click="onSearch">查询</Button>
             </Form-item>
           </Form>
         </ListSearch>
@@ -82,8 +82,8 @@
             key: 'action',
             width: 125,
             render: (row, column, index) => {
-              return `<i-button type="ghost" size="small" @click="handleEdit(${row.id})">编辑</i-button>
-                <i-button type="ghost" size="small" @click="handleDelete(${row.id})">删除</i-button>`
+              return `<i-button type="ghost" size="small" @click="onEdit(${row.id})">编辑</i-button>
+                <i-button type="ghost" size="small" @click="onDelete(${row.id})">删除</i-button>`
             }
           }
         ]
@@ -96,25 +96,21 @@
       this._get()
     },
     methods: {
-      handlePageChange (current) {
+      onPageChange (current) {
         this._get(current)
       },
-
-      handleSearch () {
+      onSearch () {
         this._get()
         this.$set(this, 'current', 1)
       },
-
-      handleEdit (id) {
+      onEdit (id) {
         this.$router.push(`/articles/form/${id}`)
       },
-
-      handleDelete (id) {
+      onDelete (id) {
         this.$set(this.deleteTarget, 'modal', true)
         this.$set(this.deleteTarget, 'id', id)
       },
-
-      handleDeleteOk () {
+      onDeleteOk () {
         this.$store.dispatch('deleteArticle', {
           params: {
             id: this.deleteTarget.id
@@ -124,10 +120,6 @@
           this._get()
         })
       },
-
-      /**
-       * 获取列表
-       */
       _get (current = 1) {
         this.$set(this, 'current', current)
 
