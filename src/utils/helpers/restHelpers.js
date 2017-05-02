@@ -21,7 +21,7 @@ export default {
     iView.Message.error(res.response.data.error.message)
   },
 
-  /***
+  /**
    * 获取 Headers
    * @return {Object}
    */
