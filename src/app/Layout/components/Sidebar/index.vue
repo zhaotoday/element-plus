@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <Menu ref="menu" :active-name="activeName" width="auto" :open-names="openNames" @on-select="select">
+    <Menu ref="menu" :active-name="activeName" width="auto" :open-names="openNames" @on-select="handleSelect">
       <Submenu name="articles">
         <template slot="title">
           <Icon type="document-text"></Icon>
@@ -61,7 +61,7 @@
       this.update()
     },
     methods: {
-      select (name) {
+      handleSelect (name) {
         this.$router.push(name)
       },
       update (route) {

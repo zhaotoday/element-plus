@@ -16,12 +16,11 @@
           </Row>
         </Form-item>
         <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="changeContent"></Editor>
+          <Editor ref="editor" v-model="formValidate.content" @change="handleEditChange"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item>
-          <Button type="primary" @click="submit()" class="margin-right-sm">保存</Button>
-          <Button type="primary" @click="submitThenReturn" class="margin-right-sm">保存并返回</Button>
+          <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>
           <Button type="ghost" @click="$router.push('/articles')">返回</Button>
         </Form-item>
       </Form>
@@ -74,37 +73,29 @@
       }
     },
     methods: {
-      submitThenReturn () {
-        this.submit().then(() => {
-          this.$router.push('/articles')
-        })
-      },
-      changeContent (html) {
-        this.$set(this.formValidate, 'content', html)
-      },
       get (uri) {
         this.$store.dispatch('getArticle', {uri})
       },
-      submit () {
-        return new Promise((resolve, reject) => {
-          this.$refs.formValidate.validate((valid) => {
-            if (valid) {
-              const action = this.id ? 'putArticle' : 'postArticle'
-              const uri = this.id
+      handleEditChange (html) {
+        this.$set(this.formValidate, 'content', html)
+      },
+      handleSave () {
+        this.$refs.formValidate.validate((valid) => {
+          if (valid) {
+            const action = this.id ? 'putArticle' : 'postArticle'
+            const uri = this.id
 
-              this.$store.dispatch(action, {
-                uri,
-                data: this.formValidate
-              }).then(() => {
-                this.$Message.success((this.id ? '编辑' : '新增') + '成功！')
-                !this.id && this.reset()
-                resolve()
-              })
-            }
-          })
+            this.$store.dispatch(action, {
+              uri,
+              data: this.formValidate
+            }).then(() => {
+              this.$Message.success((this.id ? '编辑' : '新增') + '成功！')
+              !this.id && this.resetFields()
+            })
+          }
         })
       },
-      reset () {
+      resetFields () {
         this.$refs.formValidate.resetFields()
         this.$refs.editor.html('')
       }

@@ -9,7 +9,7 @@
         <Input type="password" v-model="formValidate.password" placeholder="请输入密码" @on-enter="submit"></Input>
       </Form-item>
       <Form-item>
-        <Button type="primary" @click="submit">登录</Button>
+        <Button type="primary" @click="handleLogin">登录</Button>
       </Form-item>
     </Form>
   </Card>
@@ -44,21 +44,20 @@
       }
     },
     methods: {
-      submit () {
+      handleLogin () {
         this.$refs.formValidate.validate((valid) => {
-          valid && this.login()
+          if (valid) {
+            new Model()
+              .POST({
+                data: this.formValidate
+              })
+              .then((res) => {
+                this.$Message.success('登录成功')
+                auth.login(res.data.data)
+                this.$router.push('/')
+              })
+          }
         })
-      },
-      login () {
-        return new Model()
-          .POST({
-            data: this.formValidate
-          })
-          .then((res) => {
-            this.$Message.success('登录成功')
-            auth.login(res.data.data)
-            this.$router.push('/')
-          })
       }
     }
   }
