@@ -11,17 +11,17 @@
         <Form-item label="标题" prop="title">
           <Row>
             <Col span="12">
-            <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
+              <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
             </Col>
           </Row>
         </Form-item>
         <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="onEditorChange"></Editor>
+          <Editor ref="editor" v-model="formValidate.content" @change="changeContent"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item>
-          <Button type="primary" @click="onSubmit" class="margin-right-sm">保存</Button>
-          <Button type="primary" @click="onSubmitThenReturn" class="margin-right-sm">保存并返回</Button>
+          <Button type="primary" @click="submit()" class="margin-right-sm">保存</Button>
+          <Button type="primary" @click="submitThenReturn" class="margin-right-sm">保存并返回</Button>
           <Button type="ghost" @click="$router.push('/articles')">返回</Button>
         </Form-item>
       </Form>
@@ -40,7 +40,7 @@
     },
     created () {
       this.id = this.$route.params.id
-      this.id && this._get(this.id)
+      this.id && this.get(this.id)
     },
     data () {
       return {
@@ -74,10 +74,18 @@
       }
     },
     methods: {
-      _get (uri) {
+      submitThenReturn () {
+        this.submit().then(() => {
+          this.$router.push('/articles')
+        })
+      },
+      changeContent (html) {
+        this.$set(this.formValidate, 'content', html)
+      },
+      get (uri) {
         this.$store.dispatch('getArticle', {uri})
       },
-      _submit () {
+      submit () {
         return new Promise((resolve, reject) => {
           this.$refs.formValidate.validate((valid) => {
             if (valid) {
@@ -89,24 +97,16 @@
                 data: this.formValidate
               }).then(() => {
                 this.$Message.success((this.id ? '编辑' : '新增') + '成功！')
-                this.$refs.formValidate.resetFields()
-                this.$refs.editor.html('')
+                !this.id && this.reset()
                 resolve()
               })
             }
           })
         })
       },
-      onSubmit () {
-        this._submit()
-      },
-      onSubmitThenReturn () {
-        this._submit().then(() => {
-          this.$router.push('/articles')
-        })
-      },
-      onEditorChange (html) {
-        this.$set(this.formValidate, 'content', html)
+      reset () {
+        this.$refs.formValidate.resetFields()
+        this.$refs.editor.html('')
       }
     },
     computed: mapState([

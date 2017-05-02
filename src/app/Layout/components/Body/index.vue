@@ -4,7 +4,9 @@
   </div>
 </template>
 <script>
-  export default {}
+  export default {
+    name: 'body'
+  }
 </script>
 
 <style lang="scss" scoped src="./theme/styles/index.scss">
