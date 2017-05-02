@@ -16,7 +16,7 @@
           </Row>
         </Form-item>
         <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="handleEditChange"></Editor>
+          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item>
@@ -76,7 +76,7 @@
       get (uri) {
         this.$store.dispatch('getArticle', {uri})
       },
-      handleEditChange (html) {
+      handleEditorChange (html) {
         this.$set(this.formValidate, 'content', html)
       },
       handleSave () {
