@@ -34,6 +34,7 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
 - [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
 - [基于 CodeIgniter 的轻量级 PHP MVC 框架](https://github.com/zhaotoday/php-rich-app)
+- [老版本的浏览器上访问时提示升级](https://github.com/zhaotoday/update-your-browser)
 
 ## 使用
 ```bash
@@ -194,6 +195,10 @@ import './theme/global/iview/index.less'
 - [官网原话]Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有兼容 ECMAScript 5 的浏览器；
 - 为了更好的支持 CSS3（IE10 开始支持较好），放弃对 IE9 的兼容；
 - 用户在 IE9 及以下访问时给出升级浏览器提示，不至于让用户不知所措。
+```bash
+# 下载代码
+$ git clone https://github.com/zhaotoday/update-your-browser.git
+```
 ```html
 <!-- 放在页面开头位置 -->
 <script src="update-browser/scripts/bowser.js"></script>
