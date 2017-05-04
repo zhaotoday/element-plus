@@ -2,9 +2,9 @@
   <div>
     <Modal
       width="300"
-      v-model="deleteTarget.modal"
+      v-model="del.modal"
       title="确认框"
-      @on-ok="handleDeleteOk">
+      @on-ok="handleDelOk">
       <p>确认删除该记录？</p>
     </Modal>
     <Breadcrumb>
@@ -22,7 +22,7 @@
         <ListSearch>
           <Form ref="formInline" inline>
             <Form-item prop="title">
-              <Input type="text" placeholder="请输入标题" v-model="searchData.title" style="width: 230px;"
+              <Input type="text" placeholder="请输入标题" v-model="search.title" style="width: 230px;"
                 @on-enter="handleSearch"></Input>
             </Form-item>
             <Form-item>
@@ -51,11 +51,11 @@
     },
     data () {
       return {
-        deleteTarget: {
+        del: {
           modal: false,
           id: 0
         },
-        searchData: {
+        search: {
           title: ''
         },
         current: 1,
@@ -83,7 +83,7 @@
             width: 125,
             render: (row, column, index) => {
               return `<i-button type="ghost" size="small" @click="handleEdit(${row.id})">编辑</i-button>
-                <i-button type="ghost" size="small" @click="handleDelete(${row.id})">删除</i-button>`
+                <i-button type="ghost" size="small" @click="handleDel(${row.id})">删除</i-button>`
             }
           }
         ]
@@ -103,7 +103,7 @@
           params: {
             offset: (current - 1) * consts.PAGE_SIZE,
             limit: consts.PAGE_SIZE,
-            ...this.searchData
+            ...this.search
           }
         })
       },
@@ -117,14 +117,14 @@
       handleEdit (id) {
         this.$router.push(`/articles/form/${id}`)
       },
-      handleDelete (id) {
-        this.$set(this.deleteTarget, 'modal', true)
-        this.$set(this.deleteTarget, 'id', id)
+      handleDel (id) {
+        this.$set(this.del, 'modal', true)
+        this.$set(this.del, 'id', id)
       },
-      handleDeleteOk () {
+      handleDelOk () {
         this.$store.dispatch('deleteArticle', {
           params: {
-            id: this.deleteTarget.id
+            id: this.del.id
           }
         }).then(() => {
           this.$Message.success('删除成功！')
