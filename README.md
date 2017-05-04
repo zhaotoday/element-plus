@@ -201,9 +201,9 @@ $ git clone https://github.com/zhaotoday/update-your-browser.git
 ```
 ```html
 <!-- 放在页面开头位置 -->
-<script src="update-browser/scripts/bowser.js"></script>
+<script src="static/update-browser/scripts/bowser.js"></script>
 <script>
   if (!((bowser.msie && bowser.version >= 10) || bowser.msedge || bowser.webkit || bowser.firefox))
-    location.replace('update-browser/index.html')
+    location.replace('static/update-browser/index.html')
 </script>
 ```
