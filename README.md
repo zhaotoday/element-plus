@@ -191,6 +191,6 @@ import './theme/global/iview/index.less'
 
 #### 4. 低版本 IE（IE9 及以下）访问时提示升级浏览器
 原因：
-- [官网原话]Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有兼容 ECMAScript 5 的浏览器。
+- [官网原话]Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有兼容 ECMAScript 5 的浏览器；
 - 为了更好的支持 CSS3（IE10 开始支持较好），放弃对 IE9 的兼容；
 - 用户在 IE9 及以下访问时给出升级浏览器提示，不至于让用户不知所措。
