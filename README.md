@@ -194,3 +194,11 @@ import './theme/global/iview/index.less'
 - [官网原话]Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有兼容 ECMAScript 5 的浏览器；
 - 为了更好的支持 CSS3（IE10 开始支持较好），放弃对 IE9 的兼容；
 - 用户在 IE9 及以下访问时给出升级浏览器提示，不至于让用户不知所措。
+```html
+<!-- 放在页面开头位置 -->
+<script src="update-browser/scripts/bowser.js"></script>
+<script>
+  if (!((bowser.msie && bowser.version >= 10) || bowser.msedge || bowser.webkit || bowser.firefox))
+    location.replace('update-browser/index.html')
+</script>
+```
