@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>vue admin</title>
+    <script src="update-browser/scripts/bowser.js"></script>
+    <script>
+      if (!((bowser.msie && bowser.version >= 10) || bowser.msedge || bowser.webkit || bowser.firefox))
+        location.replace('update-browser/index.html')
+    </script>
   </head>
   <body>
     <div id="app"></div>

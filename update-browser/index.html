@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>升级浏览器</title>
+  <style>
+    html,
+    body {
+      font: 24px/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
+      background-color: #fff;
+    }
+
+    ul {
+      margin: 100px auto;
+      padding: 50px;
+      list-style: none;
+      width: 600px;
+      height: 123px;
+      background-color: #f7f7f7;
+      border: 1px solid #eee;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+    }
+
+    li {
+      width: 45%;
+      float: left;
+    }
+
+    .recommend {
+      text-align: center;
+      color: red;
+      font-size: 20px;
+    }
+
+    .or {
+      width: 10%;
+      text-align: center;
+      line-height: 123px;
+      color: #ccc;
+    }
+
+    a {
+      margin: 5px;
+      display: block;
+      background-color: #eee;
+      background-repeat: no-repeat;
+      background-position: 50% 20px;
+      padding-top: 60px;
+      padding-bottom: 15px;
+      text-align: center;
+      border: 1px solid #ccc;
+      text-decoration: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px;
+      color: #333;
+    }
+
+    a:hover {
+      background-color: #f7f7f7;
+      text-decoration: none;
+    }
+
+    .chrome {
+      background-image: url(images/chrome.png);
+    }
+
+    .ie {
+      background-image: url(images/ie.png);
+    }
+  </style>
+</head>
+<body>
+<div id="container">
+  <p class="recommend">您当前浏览器版本过低，请升级浏览器（IE10 及以上）或安装谷歌浏览器！</p>
+  <ul>
+    <li><a id="chrome" class="chrome" href="https://www.google.com/chrome/">谷歌浏览器</a></li>
+    <li id="or" class="or">或</li>
+    <li><a id="IE" class="ie" href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie">IE 浏览器</a></li>
+  </ul>
+</div>
+</body>
+</html>
