@@ -1,6 +1,5 @@
 import iView from 'iview'
 import auth from '../auth'
-import { Base64 } from 'js-base64'
 
 /**
  * REST 辅助函数集合
@@ -29,7 +28,7 @@ export default {
     const {manager, token} = auth.get()
 
     return {
-      auth: Base64.encode(`${manager.username}\n${token}`)
+      auth: window.btoa(`${manager.username}\n${token}`)
     }
   }
 }
