@@ -74,33 +74,8 @@ $ npm install --save-dev node-sass sass-loader
 <style lang="scss" scoped src="./theme/styles/index.scss">
 </style>
 ```
-#### 3. 用 axios 作为 ajax 方案
-官方已经不推荐 vue-resource 作为 ajax 方案，请用 axios 代替。
-```bash
-# 安装 axios
-$ npm install --save axios
-```
-[链接](https://github.com/vuefe/vuefe.github.io/issues/186)、[链接](https://github.com/zhaotoday/rest)
 
-#### 4. 添加 polyfill
-按需引入 polyfill，提高浏览器兼容性。
-```bash
-# 安装 core-js
-$ npm install --save core-js
-```
-polyfill 在 /src/utils/polyfill.js 文件中引入：
-```js
-import 'core-js/es6/promise'
-```
-
-#### 5. 用 Vuex 做状态管理
-```bash
-# 安装 vuex
-$ npm install --save vuex
-```
-[链接](https://vuex.vuejs.org/zh-cn/structure.html)
-
-#### 6. [可选] 引入全局样式和 SASS 工具集合
+#### 3. [可选] 引入全局样式和 SASS 工具集合
 /src/main.js：
 ```js
 // 引入全局样式
@@ -111,6 +86,32 @@ import './theme/global/index.scss'
 /* 引入 SASS 工具集合 */
 @import "../../../theme/utils/index";
 ```
+
+#### 4. 用 axios 作为 ajax 方案
+官方已经不推荐 vue-resource 作为 ajax 方案，请用 axios 代替。
+```bash
+# 安装 axios
+$ npm install --save axios
+```
+[链接](https://github.com/vuefe/vuefe.github.io/issues/186)、[链接](https://github.com/zhaotoday/rest)
+
+#### 5. 添加 polyfill
+按需引入 polyfill，提高浏览器兼容性。
+```bash
+# 安装 core-js
+$ npm install --save core-js
+```
+polyfill 在 /src/utils/polyfill.js 文件中引入：
+```js
+import 'core-js/es6/promise'
+```
+
+#### 6. 用 Vuex 做状态管理
+```bash
+# 安装 vuex
+$ npm install --save vuex
+```
+[链接](https://vuex.vuejs.org/zh-cn/structure.html)
 
 ## 项目结构
 ```
