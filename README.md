@@ -64,7 +64,7 @@ $ npm test
 #### 1. 将模板文件 index.html 从根目录移至 src 目录，将构建文件 index.html 移至根目录
 理由：原 vue-cli 构建后的 index.html 存放在 dist 目录下。但通常，我们需要把整个项目提交到 git/svn，然后部署，这时候访问的默认首页需要是构建后的 index.html。
 
-#### 2. 提供 sass 支持
+#### 2. 提供 Sass 支持
 ```bash
 # 安装 node-sass、sass-loader
 $ npm install --save-dev node-sass sass-loader
@@ -75,7 +75,7 @@ $ npm install --save-dev node-sass sass-loader
 </style>
 ```
 
-#### 3. [可选] 引入全局样式和 SASS 工具集合
+#### 3. [可选] 引入全局样式和 Sass 工具集合
 /src/main.js：
 ```js
 // 引入全局样式
@@ -83,7 +83,7 @@ import './theme/global/index.scss'
 ```
 /{path}/{to}/MyComponent/theme/styles/index.scss：
 ```sass
-/* 引入 SASS 工具集合 */
+/* 引入 Sass 工具集合 */
 @import "../../../theme/utils/index";
 ```
 
@@ -140,7 +140,7 @@ $ npm install --save vuex
 |           |-- articles             // 文章业务模块状态管理
 |   |-- theme                        // 皮肤
 |       |-- global                   // 全局样式
-|       |-- utils                    // SASS 工具集合（如：vars、mixin、function 等）
+|       |-- utils                    // Sass 工具集合（如：vars、mixin、function 等）
 |       |-- iview                    // 第三方 UI 库的样式（如：iView 等）
 |   |-- utils                        // 工具集合
 |       |-- helpers                  // 帮助函数集合
