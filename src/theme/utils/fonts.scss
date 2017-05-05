@@ -1,0 +1,21 @@
+@for $i from 1 through length($font) {
+  .f#{$i} {
+    @include font($i, 1);
+  }
+}
+
+[data-dpr="2"] {
+  @for $i from 1 through length($font) {
+    .f#{$i} {
+      @include font($i, 2);
+    }
+  }
+}
+
+[data-dpr="3"] {
+  @for $i from 1 through length($font) {
+    .f#{$i} {
+      @include font($i, 3);
+    }
+  }
+}
