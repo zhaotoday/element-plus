@@ -100,6 +100,18 @@ $ npm install --save vuex
 ```
 [链接](https://vuex.vuejs.org/zh-cn/structure.html)
 
+#### 6. [可选]引入全局样式和 SASS 工具集合
+/src/main.js：
+```js
+// 引入全局样式
+import './theme/global/index.scss'
+```
+/{path}/{to}/MyComponent/theme/styles/index.scss：
+```sass
+/* 引入 SASS 工具集合 */
+@import "../../../theme/utils/index";
+```
+
 ## 项目结构
 ```
 |-- build                            // Webpack 项目构建
@@ -125,6 +137,10 @@ $ npm install --save vuex
 |       |-- types.js                 // 根级别的 mutation types
 |       |-- modules                  // 各业务模块的局部状态管理
 |           |-- articles             // 文章业务模块状态管理
+|   |-- theme                        // 皮肤
+|       |-- global                   // 全局样式
+|       |-- utils                    // SASS 工具集合（如：vars、mixin、function 等）
+|       |-- iview                    // 第三方 UI 库的样式（如：iView 等）
 |   |-- utils                        // 工具集合
 |       |-- helpers                  // 帮助函数集合
 |       |-- mixins                   // 混合
@@ -187,7 +203,7 @@ $ npm install --save-dev less-loader less
 编辑 /src/main.js：
 ```js
 import iView from 'iview'
-import './theme/global/iview/index.less'
+import './theme/iview/index.less'
 ```
 
 #### 4. 低版本 IE（IE9 及以下）访问时提示升级浏览器
