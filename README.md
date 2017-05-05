@@ -100,7 +100,7 @@ $ npm install --save vuex
 ```
 [链接](https://vuex.vuejs.org/zh-cn/structure.html)
 
-#### 6. [可选]引入全局样式和 SASS 工具集合
+#### 6. [可选] 引入全局样式和 SASS 工具集合
 /src/main.js：
 ```js
 // 引入全局样式
@@ -123,7 +123,7 @@ import './theme/global/index.scss'
 |       |-- Layout                   // 页面布局结构（除登录页外）
 |       |-- Login                    // 登录页
 |       |-- NotFound                 // 404 页
-|       |-- Root                     // 根页面（可以在这里添加全局样式等）
+|       |-- Root                     // 根页面
 |       |-- Unauthorized             // 未授权页面（在开发权限相关系统时有用）
 |   |-- components                   // 公共组件
 |   |-- i18n                         // 全局国际化
