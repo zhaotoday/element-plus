@@ -3,7 +3,7 @@
     <p slot="title">后台管理系统</p>
     <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="60" label-position="left">
       <Form-item label="用户" prop="username">
-        <Input v-model="formValidate.username" placeholder="请输入用户" @on-enter="submit"></Input>
+        <Input v-model="formValidate.username" placeholder="请输入用户" @on-enter="submit" />
       </Form-item>
       <Form-item label="密码" prop="password">
         <Input type="password" v-model="formValidate.password" placeholder="请输入密码" @on-enter="submit"></Input>

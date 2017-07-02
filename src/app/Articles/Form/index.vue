@@ -11,12 +11,12 @@
         <Form-item label="标题" prop="title">
           <Row>
             <Col span="12">
-            <Input v-model="formValidate.title" placeholder="请输入标题" />
+              <Input v-model="formValidate.title" placeholder="请输入标题" />
             </Col>
           </Row>
         </Form-item>
         <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
+          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange" />
           <Input v-model="formValidate.content" style="display: none;" />
         </Form-item>
         <Form-item>

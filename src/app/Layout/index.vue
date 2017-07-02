@@ -2,8 +2,8 @@
   <div>
     <Header></Header>
     <div class="main">
-      <Sidebar ref="sidebar"></Sidebar>
-      <Body></Body>
+      <Sidebar ref="sidebar" />
+      <Body />
     </div>
   </div>
 </template>

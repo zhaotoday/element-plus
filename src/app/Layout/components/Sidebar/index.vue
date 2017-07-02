@@ -3,44 +3,44 @@
     <Menu ref="menu" :active-name="activeName" width="auto" :open-names="openNames" @on-select="handleSelect">
       <Submenu name="articles">
         <template slot="title">
-          <Icon type="document-text"></Icon>
+          <Icon type="document-text" />
           文章管理
         </template>
         <Menu-item name="/articles">文章列表</Menu-item>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="document"></Icon>
+          <Icon type="document" />
           文件管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="person-stalker"></Icon>
+          <Icon type="person-stalker" />
           会员管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="ios-home-outline"></Icon>
+          <Icon type="ios-home-outline" />
           店铺管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="android-cart"></Icon>
+          <Icon type="android-cart" />
           商品管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="android-cart"></Icon>
+          <Icon type="android-cart" />
           订单管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="gear-b"></Icon>
+          <Icon type="gear-b" />
           网站设置
         </template>
       </Submenu>

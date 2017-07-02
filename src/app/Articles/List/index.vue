@@ -13,8 +13,8 @@
       <Breadcrumb-item>文章列表</Breadcrumb-item>
     </Breadcrumb>
     <List :current="current" :columns="columns" :data="articles.articles.data.items"
-      :total="articles.articles.data.total"
-      @on-change="handlePageChange">
+          :total="articles.articles.data.total"
+          @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
           <Button class="margin-right-sm" type="primary" @click="$router.push('articles/form')">新增</Button>
@@ -23,7 +23,7 @@
           <Form ref="formInline" inline>
             <Form-item prop="title">
               <Input type="text" placeholder="请输入标题" v-model="search.title" style="width: 230px;"
-                @on-enter="handleSearch"></Input>
+                     @on-enter="handleSearch" />
             </Form-item>
             <Form-item>
               <Button type="primary" @click="handleSearch">查询</Button>
