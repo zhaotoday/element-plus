@@ -194,15 +194,6 @@
 }
 
 /**
- * 仅 IE8 可用
- * @param {string} $property 属性
- * @param {string} $value 值
- */
-@mixin only-ie8($property, $value) {
-  #{$property}: $value + \9;
-}
-
-/**
  * 相对定位
  * @param {string} $top 顶部位置
  * @param {string} $right 右边位置
@@ -281,14 +272,4 @@
   @if $left != null {
     left: $left;
   }
-}
-
-/**
- * 兼容 IE8 的 display: inline-block
- */
-@mixin inline--block() {
-  display: inline-block;
-
-  @include only-ie8(display, inline);
-  @include only-ie8(zoom, 1);
 }
