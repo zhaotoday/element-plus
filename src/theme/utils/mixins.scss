@@ -273,3 +273,13 @@
     left: $left;
   }
 }
+
+/**
+ * 设置宽高
+ * @param {string} $width 宽
+ * @param {string} $height 高
+ */
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}

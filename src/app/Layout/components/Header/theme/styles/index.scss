@@ -1,16 +1,52 @@
+@import "../../../../../../theme/utils/index";
+
 .header {
   background-color: white;
-  border-bottom: 1px solid #dfe4e9;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, .05);
 
   .header-center {
-    width: 1200px;
-    height: 60px;
-    line-height: 60px;
-    margin: 0 auto;
+    @include position--relative();
+    @include text--middle(55px);
 
-    .operations {
-      float: right;
-      text-align: right;
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    @include position--absolute(15px, null, null, 0);
+    @include text--middle(24px);
+
+    cursor: pointer;
+    width: 160px;
+
+    i {
+      display: block;
+      float: left;
+      margin-right: 10px;
+      font-size: 24px;
+      color: #9599af;
+    }
+
+    h2 {
+      font-weight: normal;
+      font-size: 16px;
+    }
+  }
+
+  .user {
+    @include position--absolute(null, 40px, null, null);
+    @include size(120px, 60px);
+  }
+
+  .logout {
+    @include position--absolute(15px, 0, null, null);
+    @include text--middle(24px);
+
+    cursor: pointer;
+    width: 24px;
+
+    i {
+      font-size: 24px;
     }
   }
 }

@@ -11,7 +11,7 @@ const PROD = 'PROD'
 const ENV = HOST === 'localhost:8080' ? DEV : PROD
 
 // 基础地址
-const BASE_URL = ENV === DEV ? 'http://www.cms.com' : 'http://api.liruan.cn'
+const BASE_URL = ENV === !DEV ? 'http://www.cms.com' : 'http://api.liruan.cn'
 
 // 接口地址
 const API_URL = BASE_URL + '/apis'

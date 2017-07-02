@@ -1,12 +1,11 @@
+@import "../../../../theme/utils/index";
+
 .main {
+  @include position--absolute(70px, null, 0, -600px);
+
   background-color: white;
-  position: absolute;
   width: 1200px;
-  top: 75px;
   margin-left: 50%;
-  left: -600px;
-  bottom: 0;
   overflow: hidden;
-  border-radius: 4px;
-  border: 1px solid #dfe4e9;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, .01);
 }

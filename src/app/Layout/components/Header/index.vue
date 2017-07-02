@@ -1,20 +1,26 @@
 <template>
   <div class="header">
     <div class="header-center">
-      <Button type="ghost" size="large" icon="social-windows" @click="$router.push('/')">后台管理系统</Button>
-      <div class="operations">
-        <Button-group size="small">
-          <Button type="ghost" icon="android-person">当前用户：admin</Button>
-          <Button type="ghost" icon="log-out" @click="handleLogout">退出</Button>
-        </Button-group>
+      <div class="logo" @click="$router.push('/')">
+        <I type="cloud" />
+        <h2>后台管理系统</h2>
+      </div>
+      <div class="user">当前用户：admin</div>
+      <div class="logout" title="退出" @click="handleLogout">
+        <I type="logout" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import I from '@/components/I'
+
   export default {
     name: 'header',
+    components: {
+      I
+    },
     methods: {
       handleLogout () {
         this.$router.push('/logout')
