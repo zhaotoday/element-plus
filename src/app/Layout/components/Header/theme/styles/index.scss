@@ -1,8 +1,9 @@
 @import "../../../../../../theme/utils/index";
 
 .header {
-  background-color: white;
+  background-color: #2d303b;
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, .05);
+  color: white;
 
   .header-center {
     @include position--relative();
@@ -24,7 +25,6 @@
       float: left;
       margin-right: 10px;
       font-size: 24px;
-      color: #9599af;
     }
 
     h2 {
@@ -47,7 +47,6 @@
 
     i {
       font-size: 24px;
-      color: #9599af;
     }
   }
 }
