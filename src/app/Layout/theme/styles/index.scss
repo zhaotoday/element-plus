@@ -1,7 +1,7 @@
 @import "../../../../theme/utils/index";
 
 .main {
-  @include position--absolute(70px, null, 0, -600px);
+  @include position--absolute(75px, null, 0, -600px);
 
   background-color: white;
   width: 1200px;
