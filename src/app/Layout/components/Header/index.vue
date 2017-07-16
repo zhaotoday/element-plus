@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-center">
       <div class="logo" @click="$router.push('/')">
-        <I type="cloud" />
+        <I type="manage" />
         <h2>后台管理系统</h2>
       </div>
       <div class="user">当前用户：admin</div>
