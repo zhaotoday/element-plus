@@ -30,6 +30,7 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 - [vue-devtools](https://github.com/vuejs/vue-devtools)
 
 ## 相关
+- [一个极简的轻量级 Sass 工具库](https://github.com/zhaotoday/sass-utils)
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
 - [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
 - [基于 CodeIgniter 的轻量级 PHP MVC 框架](https://github.com/zhaotoday/php-rich-app)
@@ -137,7 +138,7 @@ $ npm install --save vuex
 |       |-- types.js                 // 根级别的 mutation types
 |       |-- modules                  // 各业务模块的局部状态管理
 |           |-- articles             // 文章业务模块状态管理
-|   |-- theme                        // 皮肤
+|   |-- styles                       // 样式
 |       |-- global                   // 全局样式
 |       |-- utils                    // Sass 工具集合（如：vars、mixin、function 等）
 |       |-- iview                    // 第三方 UI 库的样式（如：iView 等）
@@ -171,10 +172,10 @@ $ npm install --save vuex
 |   |-- components                   // 公用组件
 |       |-- MyComponent              // MyComponent 组件
 |           |-- index.vue            // MyComponent 的入口
-|           |-- theme                // MyComponent 的皮肤
+|           |-- styles               // MyComponent 的样式
+|               |-- index.scss       // MyComponent 的样式入口
 |               |-- images           // MyComponent 的图片
-|               |-- styles           // MyComponent 的样式
-|                   |-- index.scss   // MyComponent 的样式入口
+|               |-- fonts            // MyComponent 的字体
 |           |-- utils                // MyComponent 的工具集合
 |           |-- i18n                 // MyComponent 的国际化
 |           |-- components           // MyComponent 的子组件
