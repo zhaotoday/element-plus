@@ -1,0 +1,7 @@
+/**
+ * 字体
+ * @param {number} $index 字体列表索引
+ */
+@mixin font($index) {
+  font-size: nth($fonts, $index);
+}

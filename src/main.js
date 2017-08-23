@@ -6,8 +6,8 @@ import router from './router'
 import '@/utils/init'
 import store from '@/store'
 import iView from 'iview'
-import './theme/global/index.scss'
-import './theme/iview/index.less'
+import '@/styles/global/index.scss'
+import '@/styles/iview/index.less'
 
 Vue.config.productionTip = false
 
