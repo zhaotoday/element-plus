@@ -1,4 +1,4 @@
-@import "../../../../theme/utils/index";
+@import "../../../styles/utils/index";
 
 .login {
   @include position--absolute(250px, null, null, 50%);
