@@ -44,5 +44,5 @@
   }
 </script>
 
-<style lang="scss" scoped src="./theme/styles/index.scss">
+<style lang="scss" scoped src="./styles/index.scss">
 </style>

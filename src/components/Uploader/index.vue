@@ -97,5 +97,5 @@
   }
 </script>
 
-<style src="./theme/styles/index.scss">
+<style src="./styles/index.scss">
 </style>
