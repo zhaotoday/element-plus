@@ -23,7 +23,7 @@
           <Form ref="formInline" inline>
             <Form-item prop="title">
               <Input type="text" placeholder="请输入标题" v-model="search.title" style="width: 230px;"
-                     @on-enter="handleSearch" />
+                     @on-enter="handleSearch"/>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="handleSearch">查询</Button>
@@ -73,17 +73,39 @@
             title: '发布时间',
             key: 'created_at',
             width: 180,
-            render (row, column, index) {
-              return `<span>${time.getDateTime(row.created_at + '000')}</span>`
+            render (h, params) {
+              return h('span', null, time.getDateTime(params.row.created_at + '000'))
             }
           },
           {
             title: '操作',
             key: 'action',
-            width: 125,
-            render: (row, column, index) => {
-              return `<i-button type="ghost" size="small" @click="handleEdit(${row.id})">编辑</i-button>
-                <i-button type="ghost" size="small" @click="handleDel(${row.id})">删除</i-button>`
+            width: 118,
+            render: (h, params) => {
+              return h('div', [
+                h('Button', {
+                  props: {
+                    type: 'text',
+                    size: 'small'
+                  },
+                  on: {
+                    click: () => {
+                      this.handleEdit(params.row.id)
+                    }
+                  }
+                }, '编辑'),
+                h('Button', {
+                  props: {
+                    type: 'text',
+                    size: 'small'
+                  },
+                  on: {
+                    click: () => {
+                      this.handleDel(params.row.id)
+                    }
+                  }
+                }, '删除')
+              ])
             }
           }
         ]
