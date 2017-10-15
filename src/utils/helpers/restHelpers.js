@@ -10,7 +10,9 @@ export default {
    * 成功处理
    * @param {Object} res 返回数据
    */
-  successHandler (res) {},
+  successHandler (res) {
+    return res.data
+  },
 
   /**
    * 失败处理

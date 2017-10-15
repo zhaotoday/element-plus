@@ -34,10 +34,16 @@ export default class REST {
     this.headers = {}
 
     /**
+     * 统一成功处理
+     * @type {Function}
+     */
+    this.successHandler = null
+
+    /**
      * 统一错误处理
      * @type {Function}
      */
-    this.errorHandler = () => {}
+    this.errorHandler = null
 
     // 支持的请求方式
     const methods = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE']
@@ -52,22 +58,22 @@ export default class REST {
    * 请求
    * @param {string} method='GET' 请求方式
    * @param {Object} [options={}] 选项
-   * @param {string} [options.uri=''] 资源唯一标示，一般是 ID
-   * @param {Object} [options.params=null] GET 参数
-   * @param {Object} [options.data=null] POST/PUT/PATCH 数据
+   * @param {string} [options.id=''] 资源唯一标示，一般是 ID
+   * @param {Object} [options.query=null] GET 参数
+   * @param {Object} [options.body=null] POST/PUT/PATCH 数据
    * @return {Object}
    */
   _request (method = 'GET', options = {}) {
-    const {uri = '', params = null, data = null} = options
+    const {id = '', query = null, body = null} = options
     let url = this.version ? `/${this.version}/${this.path}` : `/${this.path}`
 
-    if (uri) {
-      url = `${url}/${uri}`
+    if (id) {
+      url = `${url}/${id}`
     }
 
     // GET
-    if (params) {
-      url = url + this._objToUrl(params)
+    if (query) {
+      url = url + this._objToUrl(query)
     }
 
     return new Promise((resolve, reject) => {
@@ -76,10 +82,10 @@ export default class REST {
         headers: this.headers,
         method,
         url,
-        data
-      }).then((res) => {
-        res && resolve(res)
-      }).catch(this.errorHandler)
+        body
+      })
+        .then(this.successHandler).catch(this.errorHandler)
+        .then(resolve).catch(reject)
     })
   }
 

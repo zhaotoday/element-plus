@@ -12,8 +12,8 @@
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
       <Breadcrumb-item>文章列表</Breadcrumb-item>
     </Breadcrumb>
-    <List :current="current" :columns="columns" :data="articles.articles.data.items"
-          :total="articles.articles.data.total"
+    <List :current="current" :columns="columns" :data="articles.articles.items"
+          :total="articles.articles.total"
           @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
