@@ -122,7 +122,7 @@
         this.$set(this, 'current', current)
 
         this.$store.dispatch('getArticles', {
-          params: {
+          query: {
             offset: (current - 1) * consts.PAGE_SIZE,
             limit: consts.PAGE_SIZE,
             ...this.search
@@ -145,7 +145,7 @@
       },
       handleDelOk () {
         this.$store.dispatch('deleteArticle', {
-          params: {
+          query: {
             id: this.del.id
           }
         }).then(() => {

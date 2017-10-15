@@ -73,8 +73,8 @@
       }
     },
     methods: {
-      get (uri) {
-        this.$store.dispatch('getArticle', {uri})
+      get (id) {
+        this.$store.dispatch('getArticle', {id})
       },
       handleEditorChange (html) {
         this.$set(this.formValidate, 'content', html)
@@ -83,11 +83,11 @@
         this.$refs.formValidate.validate((valid) => {
           if (valid) {
             const action = this.id ? 'putArticle' : 'postArticle'
-            const uri = this.id
+            const id = this.id
 
             this.$store.dispatch(action, {
-              uri,
-              data: this.formValidate
+              id,
+              body: this.formValidate
             }).then(() => {
               this.$Message.success((this.id ? '编辑' : '新增') + '成功！')
               !this.id && this.resetFields()
@@ -106,8 +106,8 @@
     watch: {
       'articles.article': {
         handler (newVal) {
-          this.$set(this, 'formValidate', newVal.data)
-          this.$refs.editor.html(newVal.data.content)
+          this.$set(this, 'formValidate', newVal)
+          this.$refs.editor.html(newVal.content)
         }
       }
     }

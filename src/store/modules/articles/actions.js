@@ -5,8 +5,8 @@ export default {
   /**
    * 获取列表
    */
-  getArticles ({commit}, {params}) {
-    return new Model().GET({params}).then((res) => {
+  getArticles ({commit}, {query}) {
+    return new Model().GET({query}).then((res) => {
       commit(types.GET_ARTICLES, {
         data: res.data
       })
@@ -16,8 +16,8 @@ export default {
   /**
    * 获取详情
    */
-  getArticle ({commit}, {uri}) {
-    return new Model().GET({uri}).then((res) => {
+  getArticle ({commit}, {id}) {
+    return new Model().GET({id}).then((res) => {
       commit(types.GET_ARTICLE, {
         data: res.data
       })
@@ -27,21 +27,21 @@ export default {
   /**
    * 新增
    */
-  postArticle ({commit}, {data}) {
-    return new Model().POST({data})
+  postArticle ({commit}, {body}) {
+    return new Model().POST({body})
   },
 
   /**
    * 编辑
    */
-  putArticle ({commit}, {uri, data}) {
-    return new Model().PUT({uri, data})
+  putArticle ({commit}, {id, body}) {
+    return new Model().PUT({id, body})
   },
 
   /**
    * 删除
    */
-  deleteArticle ({commit}, {params}) {
-    return new Model().DELETE({params})
+  deleteArticle ({commit}, {query}) {
+    return new Model().DELETE({query})
   }
 }

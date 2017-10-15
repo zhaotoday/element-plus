@@ -49,11 +49,11 @@
           if (valid) {
             new Model()
               .POST({
-                data: this.formValidate
+                body: this.formValidate
               })
               .then((res) => {
                 this.$Message.success('登录成功')
-                auth.login(res.data.data)
+                auth.login(res.data)
                 this.$router.push('/')
               })
           }

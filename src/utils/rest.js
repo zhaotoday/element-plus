@@ -82,10 +82,10 @@ export default class REST {
         headers: this.headers,
         method,
         url,
-        body
+        data: body
       })
-        .then(this.successHandler).catch(this.errorHandler)
-        .then(resolve).catch(reject)
+        .then(this.successHandler).then(resolve)
+        .catch(this.errorHandler).catch(reject)
     })
   }
 
