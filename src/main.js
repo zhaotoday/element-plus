@@ -12,7 +12,6 @@ import '@/styles/iview/index.less'
 Vue.config.productionTip = false
 
 Vue.use(iView)
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
