@@ -207,10 +207,37 @@ import iView from 'iview'
 import './theme/iview/index.less'
 ```
 
-#### 4. 低版本 IE（IE9 及以下）访问时提示升级浏览器
+#### 4. 引入 iView Loader
+[官网原话]统一 iView 标签书写规范，所有标签都可以使用首字母大写的形式，包括 Vue 限制的两个标签 Switch 和 Circle。
+```bash
+$ npm install --save-dev iview-loader
+```
+```js
+module: {
+  rules: [
+    {
+      test: /\.vue$/,
+      use: [
+        {
+          loader: 'vue-loader',
+          options: {}
+        },
+        {
+          loader: 'iview-loader',
+          options: {
+            prefix: false
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+#### 5. 低版本 IE（IE9 及以下）访问时提示升级浏览器
 原因：
 - [官网原话]Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有兼容 ECMAScript 5 的浏览器；
-- 为了更好的支持 CSS3（IE10 开始支持较好），放弃对 IE9 的兼容；
+- 为了更好的支持 CSS3（IE10 开始支持较好）和跨域，放弃对 IE9 的兼容；
 - 用户在 IE9 及以下访问时给出升级浏览器提示，不至于让用户不知所措。
 ```bash
 # 下载代码

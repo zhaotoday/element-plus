@@ -47,7 +47,7 @@ module.exports = {
           {
             loader: 'iview-loader',
             options: {
-              prefix: true
+              prefix: false
             }
           }
         ]
