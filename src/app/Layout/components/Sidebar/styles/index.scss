@@ -7,9 +7,9 @@
   background-color: #495060;
 
   .logo {
-    @include size(100%, 90px);
+    @include size(100%, 75px);
 
-    line-height: 90px;
+    line-height: 75px;
     padding-left: 60px;
     cursor: pointer;
     color: white;
