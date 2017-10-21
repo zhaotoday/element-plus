@@ -20,10 +20,9 @@
           <Button class="margin-right-sm" type="primary" @click="$router.push('articles/form')">新增</Button>
         </ListOperations>
         <ListSearch>
-          <Form ref="formInline" inline>
+          <Form ref="formInline" inline @submit.native.prevent="handleSearch">
             <Form-item prop="title">
-              <Input type="text" placeholder="请输入标题" v-model="search.title" style="width: 230px;"
-                     @on-enter="handleSearch"></Input>
+              <Input type="text" placeholder="请输入标题" v-model="search.title" style="width: 230px;"></Input>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="handleSearch">查询</Button>
@@ -63,7 +62,7 @@
           {
             title: 'ID',
             key: 'id',
-            width: 60
+            width: 80
           },
           {
             title: '标题',
