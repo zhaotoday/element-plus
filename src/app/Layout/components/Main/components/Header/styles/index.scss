@@ -1,10 +1,10 @@
 @import "../../../../../../../styles/utils/index";
 
 .header {
-  @include size(100%, 60px);
+  @include size(100%, 55px);
 
-  line-height: 60px;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, .04);
+  line-height: 55px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .04);
   background-color: white;
   transform-style: preserve-3d;
 
@@ -23,14 +23,14 @@
   }
 
   .logout {
-    right: 15px;
+    right: 20px;
   }
 
   .user {
     @include position--absolute(0, 50px);
-    @include size(90px, 60px);
+    @include size(90px, 55px);
 
-    line-height: 60px;
+    line-height: 55px;
     font-size: 14px;
   }
 }

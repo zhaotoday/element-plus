@@ -7,9 +7,9 @@
 }
 
 .body {
-  @include position--absolute(75px, 15px, 15px, 15px);
+  @include position--absolute(75px, 20px, 20px, 20px);
 
-  padding: 15px;
+  padding: 20px;
   background-color: white;
   box-shadow: 0 0 2px rgba(0, 0, 0, .04);
   overflow-x: hidden;
