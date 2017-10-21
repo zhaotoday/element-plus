@@ -5,6 +5,8 @@
 
   width: 240px;
   background-color: #495060;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   .logo {
     @include size(100%, 75px);
@@ -23,5 +25,9 @@
       line-height: 0;
       transform: translateY(-50%);
     }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
   }
 }
