@@ -79,13 +79,12 @@
           {
             title: '操作',
             key: 'action',
-            width: 118,
+            width: 150,
             render: (h, params) => {
-              return h('div', [
+              return h('ButtonGroup', [
                 h('Button', {
                   props: {
-                    type: 'text',
-                    size: 'small'
+                    type: 'ghost'
                   },
                   on: {
                     click: () => {
@@ -95,8 +94,7 @@
                 }, '编辑'),
                 h('Button', {
                   props: {
-                    type: 'text',
-                    size: 'small'
+                    type: 'ghost'
                   },
                   on: {
                     click: () => {
