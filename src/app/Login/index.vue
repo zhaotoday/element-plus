@@ -54,7 +54,7 @@
               .then((res) => {
                 this.$Message.success('登录成功')
                 auth.login(res.data)
-                this.$router.push('/')
+                this.$router.push(this.$route.query.redirect || '/')
               })
           }
         })
