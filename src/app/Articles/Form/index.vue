@@ -6,18 +6,18 @@
       <Breadcrumb-item href="/articles">文章列表</Breadcrumb-item>
       <Breadcrumb-item>文章{{ id ? '编辑' : '新增' }}</Breadcrumb-item>
     </Breadcrumb>
-    <div>
+    <div class="limit-width">
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
         <Form-item label="标题" prop="title">
           <Row>
             <Col span="12">
-              <Input v-model="formValidate.title" placeholder="请输入标题" />
+              <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
             </Col>
           </Row>
         </Form-item>
         <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange" />
-          <Input v-model="formValidate.content" style="display: none;" />
+          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
+          <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>
