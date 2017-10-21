@@ -1,17 +1,15 @@
 @import "../../../../../styles/utils/index";
 
 .sidebar {
+  @include position--absolute(0, null, 0, 0);
+
   width: 240px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
   background-color: #495060;
 
   .logo {
-    @include size(100%, 70px);
+    @include size(100%, 90px);
 
-    line-height: 70px;
+    line-height: 90px;
     padding-left: 60px;
     cursor: pointer;
     color: white;
