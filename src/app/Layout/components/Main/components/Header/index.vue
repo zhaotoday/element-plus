@@ -1,14 +1,12 @@
 <template>
   <div class="header">
-    <div class="header-center">
-      <div class="logo" @click="$router.push('/')">
-        <I type="manage" />
-        <h2>后台管理系统</h2>
-      </div>
-      <div class="user">当前用户：admin</div>
-      <div class="logout" title="退出" @click="handleLogout">
-        <I type="logout" />
-      </div>
+    <div class="logo" @click="$router.push('/')">
+      <I type="manage"></I>
+      <h2>后台管理系统</h2>
+    </div>
+    <div class="user">当前用户：admin</div>
+    <div class="logout" title="退出" @click="handleLogout">
+      <I type="logout"></I>
     </div>
   </div>
 </template>

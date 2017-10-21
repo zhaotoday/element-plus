@@ -1,16 +1,8 @@
-@import "../../../../../styles/utils/index";
+@import "../../../../../../../styles/utils/index";
 
 .header {
   background-color: white;
   border-bottom: 1px solid #eeeeee;
-
-  .header-center {
-    @include position--relative();
-    @include text--middle(55px);
-
-    width: 1200px;
-    margin: 0 auto;
-  }
 
   .logo {
     @include position--absolute(15px, null, null, 0);
