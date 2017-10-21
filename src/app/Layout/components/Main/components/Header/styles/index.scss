@@ -1,44 +1,36 @@
 @import "../../../../../../../styles/utils/index";
 
 .header {
+  @include size(100%, 60px);
+
+  line-height: 60px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .04);
   background-color: white;
-  border-bottom: 1px solid #eeeeee;
+  transform-style: preserve-3d;
 
-  .logo {
-    @include position--absolute(15px, null, null, 0);
-    @include text--middle(24px);
+  .avatar,
+  .logout {
+    @include size(32px, 32px);
+    @include position--absolute(50%);
 
+    transform: translateY(-50%);
     cursor: pointer;
-    width: 160px;
-
-    i {
-      display: block;
-      float: left;
-      margin-right: 10px;
-      font-size: 26px;
-      color: #9599af;
-    }
-
-    h2 {
-      font-weight: normal;
-      font-size: 16px;
-    }
+    line-height: 0;
   }
 
-  .user {
-    @include position--absolute(null, 40px, null, null);
-    @include size(120px, 60px);
+  .avatar {
+    right: 150px;
   }
 
   .logout {
-    @include position--absolute(15px, 0, null, null);
-    @include text--middle(24px);
+    right: 15px;
+  }
 
-    cursor: pointer;
-    width: 24px;
+  .user {
+    @include position--absolute(0, 50px);
+    @include size(90px, 60px);
 
-    i {
-      font-size: 22px;
-    }
+    line-height: 60px;
+    font-size: 14px;
   }
 }

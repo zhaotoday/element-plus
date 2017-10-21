@@ -1,12 +1,13 @@
 <template>
   <div class="header">
-    <div class="logo" @click="$router.push('/')">
-      <I type="manage"></I>
-      <h2>后台管理系统</h2>
+    <div class="avatar">
+      <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg"></Avatar>
     </div>
-    <div class="user">当前用户：admin</div>
+    <div class="user">
+      admin
+    </div>
     <div class="logout" title="退出" @click="handleLogout">
-      <I type="logout"></I>
+      <Avatar icon="log-out"></Avatar>
     </div>
   </div>
 </template>

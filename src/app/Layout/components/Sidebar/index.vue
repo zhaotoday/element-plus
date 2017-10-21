@@ -1,46 +1,54 @@
 <template>
   <div class="sidebar">
-    <Menu ref="menu" :active-name="activeName" width="auto" :open-names="openNames" @on-select="handleSelect">
+    <div class="logo" @click="$router.push('/')">
+      <div class="logo-icon">
+        <Avatar style="background-color: #2d8cf0;">A</Avatar>
+      </div>
+      后台管理系统
+    </div>
+    <Menu ref="menu" theme="dark" :active-name="activeName" width="auto" :open-names="openNames"
+          @on-select="handleSelect">
       <Submenu name="articles">
         <template slot="title">
-          <Icon type="document-text" />
+          <Icon type="document-text"></Icon>
           文章管理
         </template>
         <Menu-item name="/articles">文章列表</Menu-item>
+        <Menu-item name="/categories/articles">文章分类</Menu-item>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="document" />
+          <Icon type="document"></Icon>
           文件管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="person-stalker" />
+          <Icon type="person-stalker"></Icon>
           会员管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="ios-home-outline" />
+          <Icon type="ios-home-outline"></Icon>
           店铺管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="android-cart" />
+          <Icon type="android-cart"></Icon>
           商品管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="android-cart" />
+          <Icon type="android-cart"></Icon>
           订单管理
         </template>
       </Submenu>
       <Submenu name="x">
         <template slot="title">
-          <Icon type="gear-b" />
+          <Icon type="gear-b"></Icon>
           网站设置
         </template>
       </Submenu>
@@ -49,8 +57,13 @@
 </template>
 
 <script>
+  import I from '@/components/I'
+
   export default {
     name: 'sidebar',
+    components: {
+      I
+    },
     data () {
       return {
         activeName: '',

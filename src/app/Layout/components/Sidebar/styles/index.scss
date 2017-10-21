@@ -1,4 +1,29 @@
+@import "../../../../../styles/utils/index";
+
 .sidebar {
-  float: left;
   width: 240px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #495060;
+
+  .logo {
+    @include size(100%, 70px);
+
+    line-height: 70px;
+    padding-left: 60px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    transform-style: preserve-3d;
+
+    .logo-icon {
+      @include position--absolute(50%, null, null, 20px);
+      @include size(32px, 32px);
+
+      line-height: 0;
+      transform: translateY(-50%);
+    }
+  }
 }
