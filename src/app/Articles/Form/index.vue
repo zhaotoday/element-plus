@@ -4,7 +4,7 @@
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
       <Breadcrumb-item href="/articles">文章列表</Breadcrumb-item>
-      <Breadcrumb-item>文章{{ id ? '编辑' : '新增' }}</Breadcrumb-item>
+      <Breadcrumb-item>{{ id ? '编辑' : '新增' }}</Breadcrumb-item>
     </Breadcrumb>
     <div class="limit-width">
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
