@@ -8,55 +8,21 @@
     </div>
     <Menu ref="menu" theme="dark" :active-name="activeName" width="auto" :open-names="openNames"
           @on-select="handleSelect">
-      <Submenu name="articles">
+      <Submenu v-for="(menu, index) in consts.MENUS" :key="index" :name="menu.name">
         <template slot="title">
-          <Icon type="ios-folder-outline"></Icon>
-          文章管理
+          <Icon :type="menu.icon"></Icon>
+          {{ menu.title }}
         </template>
-        <Menu-item name="/articles">文章列表</Menu-item>
-        <Menu-item name="/categories/articles">文章分类</Menu-item>
-      </Submenu>
-      <Submenu name="x">
-        <template slot="title">
-          <Icon type="ios-folder-outline"></Icon>
-          文件管理
-        </template>
-      </Submenu>
-      <Submenu name="x">
-        <template slot="title">
-          <Icon type="ios-folder-outline"></Icon>
-          会员管理
-        </template>
-      </Submenu>
-      <Submenu name="x">
-        <template slot="title">
-          <Icon type="ios-folder-outline"></Icon>
-          店铺管理
-        </template>
-      </Submenu>
-      <Submenu name="x">
-        <template slot="title">
-          <Icon type="ios-folder-outline"></Icon>
-          商品管理
-        </template>
-      </Submenu>
-      <Submenu name="x">
-        <template slot="title">
-          <Icon type="ios-folder-outline"></Icon>
-          订单管理
-        </template>
-      </Submenu>
-      <Submenu name="x">
-        <template slot="title">
-          <Icon type="ios-folder-outline"></Icon>
-          网站设置
-        </template>
+        <Menu-item v-for="(menuChild, childIndex) in menu.children" :key="childIndex" :name="menuChild.route">
+          {{ menuChild.title }}
+        </Menu-item>
       </Submenu>
     </Menu>
   </div>
 </template>
 
 <script>
+  import consts from '@/utils/consts'
   import I from '@/components/I'
 
   export default {
@@ -66,6 +32,7 @@
     },
     data () {
       return {
+        consts,
         activeName: '',
         openNames: []
       }

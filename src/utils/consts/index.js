@@ -1,3 +1,7 @@
+import MENUS from './menus'
+import ROLES from './roles'
+import apis from './apis'
+
 // 当前 host
 const HOST = window.location.host
 
@@ -23,6 +27,9 @@ const PAGE_SIZE = 10
 const TITLE = '网站后台'
 
 export default {
+  MENUS,
+  ROLES,
+  apis,
   BASE_URL,
   API_URL,
   PAGE_SIZE,
