@@ -1,4 +1,4 @@
-import storage from './helpers/storageLite'
+import storage from 'apples/libs/storage'
 
 const MANAGER = 'manager'
 const TOKEN = 'token'

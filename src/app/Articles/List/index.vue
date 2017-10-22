@@ -36,9 +36,9 @@
 
 <script>
   import { mapState } from 'vuex'
-  import helpers from '@/utils/helpers/base'
+  import helpers from 'apples/libs/helpers'
   import consts from '@/utils/consts'
-  import time from '@/utils/helpers/timeLite'
+  import time from 'apples/libs/time'
   import List, { ListHeader, ListOperations, ListSearch } from '@/components/List'
 
   export default {
