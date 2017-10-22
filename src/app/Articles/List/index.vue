@@ -36,6 +36,7 @@
 
 <script>
   import { mapState } from 'vuex'
+  import helpers from '@/utils/helpers/base'
   import consts from '@/utils/consts'
   import time from '@/utils/helpers/timeLite'
   import List, { ListHeader, ListOperations, ListSearch } from '@/components/List'
@@ -130,8 +131,8 @@
         this.get(current)
       },
       handleSearch () {
-        this.get()
         this.$set(this, 'current', 1)
+        this.get()
       },
       handleEdit (id) {
         this.$router.push(`/articles/form/${id}`)
@@ -140,15 +141,16 @@
         this.$set(this.del, 'modal', true)
         this.$set(this.del, 'id', id)
       },
-      handleDelOk () {
-        this.$store.dispatch('deleteArticle', {
+      async handleDelOk () {
+        await this.$store.dispatch('deleteArticle', {
           query: {
             id: this.del.id
           }
-        }).then(() => {
-          this.$Message.success('删除成功！')
-          this.get()
         })
+        this.$Message.success('删除成功！')
+        // iView.Spin 的坑，调用 iView.Spin.hide()，500ms 后实例才被销毁
+        await helpers.sleep(500)
+        this.get()
       }
     }
   }

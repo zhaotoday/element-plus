@@ -45,17 +45,15 @@
     },
     methods: {
       handleLogin () {
-        this.$refs.formValidate.validate((valid) => {
+        this.$refs.formValidate.validate(async valid => {
           if (valid) {
-            new Model()
-              .POST({
-                body: this.formValidate
-              })
-              .then((res) => {
-                this.$Message.success('登录成功')
-                auth.login(res.data)
-                this.$router.push(this.$route.query.redirect || '/')
-              })
+            const res = await new Model().POST({
+              body: this.formValidate
+            })
+
+            auth.login(res.data)
+            this.$Message.success('登录成功')
+            this.$router.push(this.$route.query.redirect || '/')
           }
         })
       }

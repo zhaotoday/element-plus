@@ -12,9 +12,9 @@ export default class extends REST {
     return new Promise((resolve, reject) => {
       super.request(method, options)
         .then(res => {
+          iView.Spin.hide()
           // 在这里可对 res 进行包装
           resolve(res.data)
-          iView.Spin.hide()
         })
         .catch(res => {
           // 全局错误提示

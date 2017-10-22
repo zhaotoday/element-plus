@@ -80,18 +80,18 @@
         this.$set(this.formValidate, 'content', html)
       },
       handleSave () {
-        this.$refs.formValidate.validate((valid) => {
+        this.$refs.formValidate.validate(async valid => {
           if (valid) {
-            const action = this.id ? 'putArticle' : 'postArticle'
-            const id = this.id
+            const {id, formValidate} = this
+            const action = id ? 'putArticle' : 'postArticle'
 
-            this.$store.dispatch(action, {
+            await this.$store.dispatch(action, {
               id,
-              body: this.formValidate
-            }).then(() => {
-              this.$Message.success((this.id ? '编辑' : '新增') + '成功！')
-              !this.id && this.resetFields()
+              body: formValidate
             })
+
+            this.$Message.success((this.id ? '编辑' : '新增') + '成功！')
+            !id && this.resetFields()
           }
         })
       },
