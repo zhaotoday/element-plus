@@ -33,24 +33,12 @@ export default class REST {
      */
     this.headers = {}
 
-    /**
-     * 统一成功处理
-     * @type {Function}
-     */
-    this.successHandler = null
-
-    /**
-     * 统一错误处理
-     * @type {Function}
-     */
-    this.errorHandler = null
-
     // 支持的请求方式
     const methods = ['GET', 'POST', 'PATCH', 'PUT', 'DELETE']
 
     // 注册方法到 this
     methods.forEach((method) => {
-      this[method] = options => this._request(method, options)
+      this[method] = options => this.request(method, options)
     })
   }
 
@@ -63,7 +51,7 @@ export default class REST {
    * @param {Object} [options.body=null] POST/PUT/PATCH 数据
    * @return {Object}
    */
-  _request (method = 'GET', options = {}) {
+  request (method = 'GET', options = {}) {
     const {id = '', query = null, body = null} = options
     let url = this.version ? `/${this.version}/${this.path}` : `/${this.path}`
 
@@ -73,7 +61,7 @@ export default class REST {
 
     // GET
     if (query) {
-      url = url + this._objToUrl(query)
+      url = `${url}${this.toURL(query)}`
     }
 
     return new Promise((resolve, reject) => {
@@ -83,9 +71,7 @@ export default class REST {
         method,
         url,
         data: body
-      })
-        .then(this.successHandler).then(resolve)
-        .catch(this.errorHandler).catch(reject)
+      }).then(resolve).catch(reject)
     })
   }
 
@@ -94,14 +80,12 @@ export default class REST {
    * @param {Object} obj 待转化对象
    * @return {string}
    */
-  _objToUrl (obj) {
+  toURL (obj) {
     if (!obj || !Object.keys(obj).length) {
       return ''
     }
 
-    return '?' + Object.keys(obj).map((key) => {
-      return `${key}=${encodeURIComponent(obj[key])}`
-    }).join('&')
+    return '?' + Object.keys(obj).map(key => `${key}=${encodeURIComponent(obj[key])}`).join('&')
   }
 
   /**
@@ -109,7 +93,7 @@ export default class REST {
    * @param {string} [path=''] 路劲
    */
   addPath (path = '') {
-    this.path = this.path + '/' + path
+    this.path = `${this.path}/${path}`
 
     return this
   }
@@ -119,10 +103,7 @@ export default class REST {
    * @param {Object} headers Headers
    */
   addHeaders (headers) {
-    this.headers = {
-      ...this.headers,
-      ...headers
-    }
+    Object.assign(this.headers, headers)
 
     return this
   }
@@ -132,8 +113,8 @@ export default class REST {
    * @param {Object} options={} 路劲参数列表
    */
   replace (options = {}) {
-    Object.keys(options).forEach((key) => {
-      this.path = this.path.replace(new RegExp('{' + key + '}', 'img'), options[key])
+    Object.keys(options).forEach(value => {
+      this.path = this.path.replace(new RegExp(`{${value}}`, 'img'), options[value])
     })
 
     return this
