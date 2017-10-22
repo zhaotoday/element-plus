@@ -7,8 +7,6 @@ export default class extends REST {
     super()
 
     this.baseURL = consts.API_URL
-    this.successHandler = restHelpers.successHandler
-    this.errorHandler = restHelpers.errorHandler
     this.headers = restHelpers.getHeaders()
     this.path = 'articles'
   }
