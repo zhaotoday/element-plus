@@ -2,7 +2,7 @@
 https://github.com/zhaotoday/iview
 
 ## 线上的例子
-http://admin.liruan.cn/#/login
+http://admin.liruan.cn/#/articles
 ```
 用户：admin
 密码：admin
