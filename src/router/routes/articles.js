@@ -1,14 +1,14 @@
 export default {
   path: 'articles',
-  component: resolve => require(['@/app/Articles'], resolve),
+  component: resolve => require(['@/modules/Articles'], resolve),
   children: [
     {
       path: '/',
-      component: resolve => require(['@/app/Articles/List'], resolve)
+      component: resolve => require(['@/modules/Articles/List'], resolve)
     },
     {
       path: 'form/:id?',
-      component: resolve => require(['@/app/Articles/Form'], resolve)
+      component: resolve => require(['@/modules/Articles/Form'], resolve)
     }
   ]
 }
