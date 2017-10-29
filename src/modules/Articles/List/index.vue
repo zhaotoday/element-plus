@@ -22,7 +22,7 @@
         <ListSearch>
           <Form ref="formInline" inline @submit.native.prevent="handleSearch">
             <Form-item prop="title">
-              <Input type="text" placeholder="请输入标题" v-model="search.title" style="width: 230px;"></Input>
+              <Input type="text" placeholder="请输入标题" v-model="where.title.$like" style="width: 230px;"></Input>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="handleSearch">查询</Button>
@@ -55,8 +55,10 @@
           modal: false,
           id: 0
         },
-        search: {
-          title: ''
+        where: {
+          title: {
+            $like: ''
+          }
         },
         current: 1,
         columns: [
@@ -123,7 +125,7 @@
           query: {
             offset: (current - 1) * consts.PAGE_SIZE,
             limit: consts.PAGE_SIZE,
-            ...this.search
+            where: this.where
           }
         })
       },
@@ -143,9 +145,7 @@
       },
       async handleDelOk () {
         await this.$store.dispatch('deleteArticle', {
-          query: {
-            id: this.del.id
-          }
+          id: this.del.id
         })
         this.$Message.success('删除成功！')
         // iView.Spin 的坑，调用 iView.Spin.hide()，500ms 后实例才被销毁

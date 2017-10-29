@@ -41,7 +41,7 @@ export default {
   /**
    * 删除
    */
-  deleteArticle ({commit}, {query}) {
-    return new Model().DELETE({query})
+  deleteArticle ({commit}, {id}) {
+    return new Model().DELETE({id})
   }
 }

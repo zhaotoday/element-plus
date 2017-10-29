@@ -1,5 +1,6 @@
 import REST from 'apples/libs/REST'
 import iView from 'iview'
+import restHelpers from './helpers/restHelpers'
 
 export default class extends REST {
   /**
@@ -7,9 +8,14 @@ export default class extends REST {
    * @override
    */
   request (method = 'GET', options = {}) {
+    // 转 options.query.where 对象为字符串
+    if (options.query && options.query.where) {
+      options.query.where = restHelpers.whereToStr(options.query.where)
+    }
+
     iView.Spin.show()
 
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       super.request(method, options)
         .then(res => {
           iView.Spin.hide()

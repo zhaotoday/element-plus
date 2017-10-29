@@ -10,10 +10,28 @@ export default {
    * @return {Object}
    */
   getHeaders () {
-    const {manager, token} = auth.get()
-
     return {
-      auth: window.btoa(`${manager.username}\n${token}`)
+      Authorization: auth.get()['token']
     }
+  },
+
+  /**
+   * 转字符串
+   * @returns {string}
+   */
+  whereToStr (obj) {
+    let ret = {}
+
+    Object.keys(obj).forEach(v => {
+      ret[v] = {}
+
+      if (typeof obj[v].$like !== 'undefined') {
+        ret[v].$like = `%${obj[v].$like}%`
+      } else {
+        ret[v] = obj[v]
+      }
+    })
+
+    return JSON.stringify(ret)
   }
 }

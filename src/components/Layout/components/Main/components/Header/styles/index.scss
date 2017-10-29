@@ -1,10 +1,10 @@
 @import "../../../../../../../styles/utils/index";
 
 .header {
-  @include size(100%, 55px);
+  @include size(100%, 50px);
 
-  line-height: 55px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, .04);
+  line-height: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .04);
   background-color: white;
   transform-style: preserve-3d;
 
