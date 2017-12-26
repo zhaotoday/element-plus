@@ -118,7 +118,7 @@ $ npm install --save vuex
 |-- build                            // Webpack 项目构建
 |-- config                           // 项目开发环境配置
 |-- src                              // 源码目录
-|   |-- app                          // 业务代码
+|   |-- modules                      // 业务代码
 |       |-- Articles                 // 文章业务模块
 |       |-- Home                     // 首页
 |       |-- Layout                   // 页面布局结构（除登录页外）
