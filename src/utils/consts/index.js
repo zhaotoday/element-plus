@@ -14,10 +14,10 @@ const PROD = 'PROD'
 const ENV = HOST === 'localhost:8080' ? DEV : PROD
 
 // 基础地址
-const BASE_URL = ENV === DEV ? 'http://localhost:7001' : 'http://api.liruan.cn'
+const BASE_URL = ENV === DEV ? 'http://localhost:3002' : 'http://api.liruan.cn'
 
 // 接口地址
-const API_URL = BASE_URL + '/apis'
+const API_URL = BASE_URL + '/apis/v1'
 
 // 分页大小
 const PAGE_SIZE = 10

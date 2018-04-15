@@ -1,36 +1,35 @@
 @import "../../../../../../../styles/utils/index";
 
 .header {
-  @include size(100%, 50px);
+  @include text--middle($header-height);
 
-  line-height: 50px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .04);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
   background-color: white;
   transform-style: preserve-3d;
 
   .avatar,
-  .logout {
-    @include size(32px, 32px);
-    @include position--absolute(50%);
+  .logout,
+  .user {
+    @include size(60px, $header-height);
 
-    transform: translateY(-50%);
+    float: right;
+    line-height: $header-height;
+    text-align: center;
     cursor: pointer;
-    line-height: 0;
-  }
 
-  .avatar {
-    right: 150px;
+    &:hover {
+      background-color: #e6f7ff;
+    }
   }
 
   .logout {
-    right: 20px;
+    i {
+      font-size: 18px;
+    }
   }
 
   .user {
-    @include position--absolute(0, 50px);
-    @include size(90px, 55px);
-
-    line-height: 55px;
+    line-height: $header-height;
     font-size: 14px;
   }
 }

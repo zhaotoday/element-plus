@@ -1,13 +1,11 @@
 <template>
   <div class="header">
+    <div class="logout" title="退出" @click="handleLogout">
+      <I type="logout"></I>
+    </div>
+    <div class="user">admin</div>
     <div class="avatar">
       <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg"></Avatar>
-    </div>
-    <div class="user">
-      admin
-    </div>
-    <div class="logout" title="退出" @click="handleLogout">
-      <Avatar icon="log-out"></Avatar>
     </div>
   </div>
 </template>

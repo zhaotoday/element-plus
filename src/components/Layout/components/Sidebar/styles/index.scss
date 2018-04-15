@@ -3,15 +3,18 @@
 .sidebar {
   @include position--absolute(0, null, 0, 0);
 
-  width: 240px;
-  background-color: #495060;
+  z-index: 1;
+  width: 260px;
+  background-color: #001529;
   overflow-x: hidden;
   overflow-y: auto;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
 
   .logo {
-    @include size(100%, 75px);
+    @include size(100%, 64px);
 
-    line-height: 75px;
+    background-color: #002140;
+    line-height: 64px;
     padding-left: 60px;
     cursor: pointer;
     color: white;
@@ -20,10 +23,13 @@
 
     .logo-icon {
       @include position--absolute(50%, null, null, 20px);
-      @include size(32px, 32px);
 
-      line-height: 0;
       transform: translateY(-50%);
+
+      i {
+        font-size: 24px;
+        color: #1890ff;
+      }
     }
   }
 

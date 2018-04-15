@@ -24,7 +24,7 @@ export default {
    */
   login ({manager, token}) {
     storage.set(MANAGER, manager)
-    storage.set(TOKEN, token)
+    storage.set(TOKEN, `Bearer ${token}`)
   },
 
   /**

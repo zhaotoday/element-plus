@@ -1,13 +1,13 @@
 @import "../../../../../styles/utils/index";
 
 .main {
-  @include position--absolute(0, 0, 0, 240px);
+  @include position--absolute(0, 0, 0, $sidebar-width);
 
   overflow: hidden;
 }
 
 .body {
-  @include position--absolute(65px, 15px, 15px, 15px);
+  @include position--absolute($header-height + 23px, 23px, 23px, 23px);
 
   padding: 20px;
   background-color: white;

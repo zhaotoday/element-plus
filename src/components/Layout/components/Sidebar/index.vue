@@ -2,7 +2,7 @@
   <div class="sidebar">
     <div class="logo" @click="$router.push('/')">
       <div class="logo-icon">
-        <Avatar style="background-color: #2d8cf0;">A</Avatar>
+        <I type="cube"></I>
       </div>
       后台管理系统
     </div>
