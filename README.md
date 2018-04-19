@@ -10,14 +10,14 @@
 
 Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 
-## 1.3. 特别说明
+## 1.3. 说明
 
 本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但是，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
 > 如何剥离 iView？去除 [加入 iView 组件库](https://github.com/zhaotoday/vue.js#加入-iview-组件库) 的相关操作即可。
 
-## 2. 线上的例子
+## 2. 例子
 
-### 2.1. 访问地址
+### 2.1. 线上的例子
 
 [http://admin.liruan.cn/#/articles](http://admin.liruan.cn/#/articles)
 ```
@@ -29,30 +29,19 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 ### 2.2. 服务端代码
 
 服务端代码也提交到 GitHub，可以自己在本地跑起来：
-[https://github.com/zhaotoday/koa-mvc-framework](https://github.com/zhaotoday/koa-mvc-framework)
+[https://github.com/zhaotoday/koa-mvc-framework](https://github.com/zhaotoday/koa-mvc-framework)。
 
-## 网址
-- [Vue.js 中文网](https://cn.vuejs.org/)
-- [iView - 一套基于 Vue.js 的高质量 UI 组件库](https://www.iviewui.com/)
-- [vue-router 中文网](http://router.vuejs.org/zh-cn/)
-- [Vuex 中文网](https://vuex.vuejs.org/zh-cn/)
-- [Vuex 通俗版教程](https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/)
-- [Vuex 购物车示例](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart)
-- [Vue2.0 实践阶段性分享](https://segmentfault.com/a/1190000007909108)
-- [单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)
-- [vue-devtools](https://github.com/vuejs/vue-devtools)
+## 3. 运行
 
-## 相关
-- [一个极简的轻量级 Sass 工具库](https://github.com/zhaotoday/sass-utils)
-- [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
-- [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
-- [基于 CodeIgniter 的轻量级 PHP MVC 框架](https://github.com/zhaotoday/php-rich-app)
-- [老版本的浏览器上访问时提示升级](https://github.com/zhaotoday/update-your-browser)
+### 3.1. Node 版本
 
-## 使用
+本项目使用了 async/await 等新语法，请保证 Node 版本在 7.6 及以上。
+
+### 3.2. 命令
+
 ```bash
 # 下载代码
-$ git clone https://github.com/zhaotoday/vue.js.git
+$ git clone https://github.com/zhaotoday/iview.git
 
 # 安装依赖
 $ npm install
@@ -73,43 +62,56 @@ $ npm run e2e
 $ npm test
 ```
 
-## 对 vue-cli 的一些修改和增强
-#### 1. 将模板文件 index.html 从根目录移至 src 目录，将构建文件 index.html 移至根目录
+## 4. 对 vue-cli 的一些修改和增强
+
+### 4.1. 将模板文件 index.html 从根目录移至 src 目录，将构建文件 index.html 移至根目录
+
 理由：原 vue-cli 构建后的 index.html 存放在 dist 目录下。但通常，我们需要把整个项目提交到 git/svn，然后部署，这时候访问的默认首页需要是构建后的 index.html。
 
-#### 2. 提供 Sass 支持
+### 4.2. 提供 Sass 支持
+
 ```bash
 # 安装 node-sass、sass-loader
 $ npm install --save-dev node-sass sass-loader
 ```
+
 ```html
 <!-- 引入样式 -->
 <style lang="scss" scoped src="./theme/styles/index.scss">
 </style>
 ```
 
-#### 3. [可选] 引入全局样式和 Sass 工具集合
+### 4.3. [可选] 引入全局样式和 Sass 工具集合
+
 /src/main.js：
+
 ```js
 // 引入全局样式
 import './theme/global/index.scss'
 ```
+
 /{path}/{to}/MyComponent/theme/styles/index.scss：
+
 ```sass
 /* 引入 Sass 工具集合 */
 @import "../../../theme/utils/index";
 ```
 
-#### 4. 用 axios 作为 ajax 方案
+### 4.4. 用 axios 作为 ajax 方案
+
 官方已经不推荐 vue-resource 作为 ajax 方案，请用 axios 代替。
+
 ```bash
 # 安装 axios
 $ npm install --save axios
 ```
+
 [链接](https://github.com/vuefe/vuefe.github.io/issues/186)、[链接](https://github.com/zhaotoday/rest)
 
-#### 5. 添加 polyfill
+### 4.5. 添加 polyfill
+
 按需引入 polyfill，提高浏览器兼容性。
+
 ```bash
 # 安装 core-js
 $ npm install --save core-js
@@ -264,3 +266,21 @@ $ git clone https://github.com/zhaotoday/update-your-browser.git
     location.replace('static/update-browser/index.html')
 </script>
 ```
+
+## 网址
+- [Vue.js 中文网](https://cn.vuejs.org/)
+- [iView - 一套基于 Vue.js 的高质量 UI 组件库](https://www.iviewui.com/)
+- [vue-router 中文网](http://router.vuejs.org/zh-cn/)
+- [Vuex 中文网](https://vuex.vuejs.org/zh-cn/)
+- [Vuex 通俗版教程](https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/)
+- [Vuex 购物车示例](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart)
+- [Vue2.0 实践阶段性分享](https://segmentfault.com/a/1190000007909108)
+- [单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)
+- [vue-devtools](https://github.com/vuejs/vue-devtools)
+
+## 相关
+- [一个极简的轻量级 Sass 工具库](https://github.com/zhaotoday/sass-utils)
+- [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
+- [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
+- [基于 CodeIgniter 的轻量级 PHP MVC 框架](https://github.com/zhaotoday/php-rich-app)
+- [老版本的浏览器上访问时提示升级](https://github.com/zhaotoday/update-your-browser)
