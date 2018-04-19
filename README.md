@@ -1,4 +1,4 @@
-项目名：基于 vue-cli + iView 的后台管理系统，仓库地址：https://github.com/zhaotoday/iview。负责人：[赵金添@zhaotoday](https://github.com/zhaotoday)。
+项目名：基于 vue-cli + iView 的后台管理系统，仓库地址：[https://github.com/zhaotoday/iview](https://github.com/zhaotoday/iview)。负责人：[赵金添@zhaotoday](https://github.com/zhaotoday)。
 
 ## 1. 关于
 
@@ -121,14 +121,18 @@ polyfill 在 /src/utils/polyfill.js 文件中引入：
 import 'core-js/es6/promise'
 ```
 
-#### 6. 用 Vuex 做状态管理
+### 4.6. 用 Vuex 做状态管理
+
 ```bash
 # 安装 vuex
 $ npm install --save vuex
 ```
 [链接](https://vuex.vuejs.org/zh-cn/structure.html)
 
-## 项目结构
+## 5. 规范
+
+### 5.1. 项目结构
+
 ```
 |-- build                            // Webpack 项目构建
 |-- config                           // 项目开发环境配置
@@ -176,12 +180,15 @@ $ npm install --save vuex
 |-- package.json                     // 项目基本信息
 ```
 
-## 组件的命名规范
+### 5.2. 组件的命名规范
+
 按照 vue-cli 的 Hello 示例，组件（这里说的是组件文件夹）命名应遵循帕斯卡（pascal）命名法，如：MyComponent。
 > 当然，也有很多人喜欢命名成 my-component 的形式。这个规范不是强制性的，你可以选一种适合自己的。
 
-## 公用组件规范
+### 5.3. 公用组件规范
+
 公用组件放在 /src/components 下。
+
 ```
 |-- src                              // 源码目录
 |   |-- components                   // 公用组件
@@ -197,36 +204,46 @@ $ npm install --save vuex
 |               |-- ChildComponent   // MyComponent 的子组件 ChildComponent，组件规范和 MyComponent 一致
 ```
 
-## 业务组件规范
+### 5.4. 业务组件规范
+
 业务组件放在 /src/app 下，也就是一个页面，对应一个路由。规范和公用组件一直。
 
-## 加入 iView 组件库
-#### 1. 提供 less 支持
+## 6. 加入 iView 组件库
+
+### 6.1. 提供 less 支持
+
 ```bash
 # 安装 less-loader、less
 $ npm install --save-dev less-loader less
 ```
 
-#### 2. 自定义 iView 的主题
+### 6.2. 自定义 iView 的主题
+
 新建 /theme/global/index.less：
+
 ```less
 @import '~iview/src/styles/index.less';
 /* 接下来开始覆盖 less 变量 */
 ```
 [链接](https://www.iviewui.com/docs/guide/theme)
 
-#### 3. 引入 iView
+### 6.3. 引入 iView
+
 编辑 /src/main.js：
+
 ```js
 import iView from 'iview'
 import './theme/iview/index.less'
 ```
 
-#### 4. 引入 iView Loader
+### 6.4. 引入 iView Loader
+
 [官网原话]统一 iView 标签书写规范，所有标签都可以使用首字母大写的形式，包括 Vue 限制的两个标签 Switch 和 Circle。
+
 ```bash
 $ npm install --save-dev iview-loader
 ```
+
 ```js
 module: {
   rules: [
@@ -249,15 +266,19 @@ module: {
 }
 ```
 
-#### 5. 低版本 IE（IE9 及以下）访问时提示升级浏览器
+#### 6.5. 低版本 IE（IE9 及以下）访问时提示升级浏览器
+
 原因：
-- [官网原话]Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有兼容 ECMAScript 5 的浏览器；
+
+- [官网原话] Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有兼容 ECMAScript 5 的浏览器；
 - 为了更好的支持 CSS3（IE10 开始支持较好）和跨域，放弃对 IE9 的兼容；
 - 用户在 IE9 及以下访问时给出升级浏览器提示，不至于让用户不知所措。
+
 ```bash
 # 下载代码
 $ git clone https://github.com/zhaotoday/update-your-browser.git
 ```
+
 ```html
 <!-- 放在页面开头位置 -->
 <script src="static/update-browser/scripts/bowser.js"></script>
@@ -267,7 +288,10 @@ $ git clone https://github.com/zhaotoday/update-your-browser.git
 </script>
 ```
 
-## 网址
+## 7. 参考
+
+### 7.1. 网址
+
 - [Vue.js 中文网](https://cn.vuejs.org/)
 - [iView - 一套基于 Vue.js 的高质量 UI 组件库](https://www.iviewui.com/)
 - [vue-router 中文网](http://router.vuejs.org/zh-cn/)
@@ -278,7 +302,7 @@ $ git clone https://github.com/zhaotoday/update-your-browser.git
 - [单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)
 - [vue-devtools](https://github.com/vuejs/vue-devtools)
 
-## 相关
+## 7.2. 相关链接
 - [一个极简的轻量级 Sass 工具库](https://github.com/zhaotoday/sass-utils)
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
 - [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
