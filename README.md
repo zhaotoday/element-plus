@@ -6,11 +6,11 @@
 
 基于 vue-cli + iView 的后台管理系统，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
 
-## 1.2. 技术栈
+### 1.2. 技术栈
 
 Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 
-## 1.3. 说明
+### 1.3. 说明
 
 本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但是，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
 > 如何剥离 iView？去除 [加入 iView 组件库](https://github.com/zhaotoday/vue.js#加入-iview-组件库) 的相关操作即可。
@@ -28,7 +28,7 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 
 ### 2.2. 服务端代码
 
-服务端代码也提交到 GitHub，可以自己在本地跑起来：
+服务端代码也提交到 GitHub 了，可以自己在本地跑起来：
 [https://github.com/zhaotoday/koa-mvc-framework](https://github.com/zhaotoday/koa-mvc-framework)。
 
 ## 3. 运行
@@ -266,7 +266,7 @@ module: {
 }
 ```
 
-#### 6.5. 低版本 IE（IE9 及以下）访问时提示升级浏览器
+### 6.5. 低版本 IE（IE9 及以下）访问时提示升级浏览器
 
 原因：
 
@@ -302,7 +302,7 @@ $ git clone https://github.com/zhaotoday/update-your-browser.git
 - [单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)
 - [vue-devtools](https://github.com/vuejs/vue-devtools)
 
-## 7.2. 相关链接
+### 7.2. 相关链接
 - [一个极简的轻量级 Sass 工具库](https://github.com/zhaotoday/sass-utils)
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
 - [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
