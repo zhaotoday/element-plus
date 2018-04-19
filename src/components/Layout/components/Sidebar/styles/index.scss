@@ -4,7 +4,7 @@
   @include position--absolute(0, null, 0, 0);
 
   z-index: 1;
-  width: 260px;
+  width: $sidebar-width;
   background-color: #001529;
   overflow-x: hidden;
   overflow-y: auto;
