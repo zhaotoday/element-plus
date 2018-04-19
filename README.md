@@ -1,22 +1,35 @@
-## 项目地址
-https://github.com/zhaotoday/iview
+项目名：基于 vue-cli + iView 的后台管理系统，仓库地址：https://github.com/zhaotoday/iview。负责人：[赵金添@zhaotoday](https://github.com/zhaotoday)。
 
-## 线上的例子
-http://admin.liruan.cn/#/articles
+## 1. 关于
+
+### 1.1. 介绍
+
+基于 vue-cli + iView 的后台管理系统，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
+
+## 1.2. 技术栈
+
+Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
+
+## 1.3. 特别说明
+
+本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但是，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
+> 如何剥离 iView？去除 [加入 iView 组件库](https://github.com/zhaotoday/vue.js#加入-iview-组件库) 的相关操作即可。
+
+## 2. 线上的例子
+
+### 2.1. 访问地址
+
+[http://admin.liruan.cn/#/articles](http://admin.liruan.cn/#/articles)
 ```
 用户：admin
 密码：admin
 ```
+> 注：目前暂时不能访问，5 月 1 日会重新部署上去。
 
-## 介绍
-基于 vue-cli + iView 的 Vue js 后台管理系统，在 vue-cli 基础上做了一些合理的修改和增强。功能包括：调试、构建、代码规范校验、单元测试、国际化等。
+### 2.2. 服务端代码
 
-## 贴士
-本项目的初衷是整理一套通用的 Vue js 单页应用模板，由于近期项目需要，才加入 iView。但是，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue js 单页应用模板，或者加入其它 Vue js 的 UI 组件库。
-> 如何剥离 iView？去除 [加入 iView 组件库](https://github.com/zhaotoday/vue.js#加入-iview-组件库) 的相关操作即可。
-
-## 技术栈
-Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
+服务端代码也提交到 GitHub，可以自己在本地跑起来：
+[https://github.com/zhaotoday/koa-mvc-framework](https://github.com/zhaotoday/koa-mvc-framework)
 
 ## 网址
 - [Vue.js 中文网](https://cn.vuejs.org/)
