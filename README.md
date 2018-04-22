@@ -22,9 +22,8 @@ Vue、Webpack、ES6、vue-router、Vuex、Sass、PostCSS 等。
 [http://admin.liruan.cn/#/articles](http://admin.liruan.cn/#/articles)
 ```
 用户：admin
-密码：admin
+密码：123456
 ```
-> 注：目前暂时不能访问，5 月 1 日会重新部署上去。
 
 #### 2.2. 服务端代码
 
