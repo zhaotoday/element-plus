@@ -10,7 +10,8 @@
       :on-format-error="handleFormatError"
       :on-exceeded-size="handleMaxSize"
       :before-upload="handleBeforeUpload"
-      action="//jsonplaceholder.typicode.com/posts/">
+      :headers="headers"
+      action="//localhost:3002/apis/v1/files">
       <Button type="ghost" icon="ios-cloud-upload-outline">上传文件</Button>
     </Upload>
     <Modal title="查看图片" v-model="visible">
@@ -31,6 +32,8 @@
   </div>
 </template>
 <script>
+  import restHelpers from '@/utils/helpers/restHelpers'
+
   export default {
     data () {
       return {
@@ -38,6 +41,11 @@
         imgURL: '',
         visible: false,
         uploadList: []
+      }
+    },
+    computed: {
+      headers () {
+        return restHelpers.getHeaders()
       }
     },
     props: {

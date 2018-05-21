@@ -2,8 +2,8 @@
  * 重写插入图片插件
  * @param editHandler {Function} edit 事件
  */
-export const overrideImagePlugin = (editHandler) => {
-  KindEditor.plugin('image', function (K) {
+export const overrideImagePlugin = editHandler => {
+  window.KindEditor.plugin('image', function (K) {
     this.plugin.image = {
       edit: editHandler,
       delete: () => {

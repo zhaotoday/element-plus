@@ -8,9 +8,17 @@ export default class extends REST {
    * @override
    */
   request (method = 'GET', options = {}) {
-    // 转 options.query.where 对象为字符串
-    if (options.query && options.query.where) {
-      options.query.where = restHelpers.whereToStr(options.query.where)
+    if (method === 'GET') {
+      if (!options.query) {
+        options.query = {}
+      }
+
+      // 转 options.query.where 对象为字符串
+      if (options.query.where) {
+        options.query.where = restHelpers.whereToStr(options.query.where)
+      }
+
+      options.query._ = new Date().getTime()
     }
 
     iView.Spin.show()

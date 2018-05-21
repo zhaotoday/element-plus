@@ -19,6 +19,9 @@
           <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
+        <Form-item label="文件" prop="content">
+          <Uploader></Uploader>
+        </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>
           <Button type="ghost" @click="$router.push('/articles')">返回</Button>
@@ -31,11 +34,13 @@
 <script>
   import { mapState } from 'vuex'
   import Editor from '@/components/Editor'
+  import Uploader from '@/components/Uploader'
 
   export default {
     name: 'form',
     components: {
-      Editor
+      Editor,
+      Uploader
     },
     created () {
       this.id = this.$route.params.id
