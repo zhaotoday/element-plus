@@ -11,7 +11,7 @@
       :on-exceeded-size="handleMaxSize"
       :before-upload="handleBeforeUpload"
       :headers="headers"
-      action="//localhost:3002/apis/v1/files">
+      :action="`${consts.API_URL}/files`">
       <Button type="ghost" icon="ios-cloud-upload-outline">上传文件</Button>
     </Upload>
     <Modal title="查看图片" v-model="visible">
@@ -32,11 +32,14 @@
   </div>
 </template>
 <script>
+  import consts from '@/utils/consts'
+  import helpers from '@/utils/helpers/base'
   import restHelpers from '@/utils/helpers/restHelpers'
 
   export default {
     data () {
       return {
+        consts,
         defaultList: [],
         imgURL: '',
         visible: false,
@@ -68,8 +71,8 @@
         this.$emit('on-change', null)
       },
       handleSuccess (res, file) {
-        file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar'
-        file.name = ''
+        file.url = helpers.getImageURL(res.data)
+        file.name = res.data.title
 
         if (this.uploadList.length > 1) {
           this._remove(this.uploadList[0])
