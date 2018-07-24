@@ -45,12 +45,13 @@
         this.$router.push(name)
       },
       update (route) {
+        console.log(3333, route)
         const path = route ? route.path : this.$route.path
         const paths = path.split('/')
 
         this.openNames = [paths[1]]
         this.activeName = `/${paths[1]}/${paths[2]}`
-
+        console.log(this.activeName)
         this.$nextTick(() => {
           this.$refs.menu.updateActiveName()
           this.$refs.menu.$children.forEach((item) => {

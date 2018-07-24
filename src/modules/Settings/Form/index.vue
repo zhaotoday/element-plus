@@ -94,8 +94,8 @@
     name: 'form',
     components: { Uploader },
     created () {
-      this.id = this.$route.params.id
-      this.id && this.getDetails(this.id)
+      this.id = 1
+      this.getDetails(this.id)
     },
     data () {
       return {

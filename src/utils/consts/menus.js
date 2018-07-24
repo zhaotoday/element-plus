@@ -20,7 +20,7 @@ export default [
     children: [
       {
         title: '网站设置',
-        route: '/settings/index/form/1'
+        route: '/settings/index'
       }
     ]
   }
