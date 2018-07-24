@@ -49,8 +49,8 @@
         const openName = path.split('/')[1]
         const activeName = '/' + openName
 
-        this.$set(this, 'activeName', activeName)
-        this.$set(this, 'openNames', [openName])
+        this.activeName = activeName
+        this.openNames = [openName]
 
         this.$nextTick(() => {
           this.$refs.menu.updateActiveName()

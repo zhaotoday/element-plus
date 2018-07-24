@@ -2,9 +2,9 @@
   <div>
     <slot></slot>
     <Table :context="$parent" class="margin-bottom" border :columns="columns" :data="data" :selection="[1]"
-      @on-selection-change="handleSectionChange"></Table>
+           @on-selection-change="handleSectionChange"></Table>
     <Page :total="total" :current="current" :page-size="consts.PAGE_SIZE" show-total show-elevator
-      @on-change="handlePageChange"></Page>
+          @on-change="handlePageChange"></Page>
   </div>
 </template>
 
@@ -43,7 +43,7 @@
     },
     methods: {
       handleSectionChange (selection) {
-        this.$set(this, 'selection', selection)
+        this.selection = selection
       },
 
       handlePageChange (current) {

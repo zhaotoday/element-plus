@@ -119,8 +119,7 @@
     },
     methods: {
       get (current = 1) {
-        this.$set(this, 'current', current)
-
+        this.current = current
         this.$store.dispatch('getArticles', {
           query: {
             offset: (current - 1) * consts.PAGE_SIZE,
@@ -133,15 +132,15 @@
         this.get(current)
       },
       handleSearch () {
-        this.$set(this, 'current', 1)
+        this.current = 1
         this.get()
       },
       handleEdit (id) {
         this.$router.push(`/articles/form/${id}`)
       },
       handleDel (id) {
-        this.$set(this.del, 'modal', true)
-        this.$set(this.del, 'id', id)
+        this.del.modal = true
+        this.del.id = id
       },
       async handleDelOk () {
         await this.$store.dispatch('deleteArticle', {

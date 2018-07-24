@@ -2,9 +2,10 @@
   <div>
     <Upload
       ref="upload"
+      :default-file-list="defaultList"
       :show-upload-list="false"
       :on-success="handleSuccess"
-      :format="['jpg','jpeg','png']"
+      :format="['jpg', 'jpeg', 'png']"
       :max-size="2048"
       :on-format-error="handleFormatError"
       :on-exceeded-size="handleMaxSize"
@@ -36,6 +37,12 @@
   import restHelpers from '@/utils/helpers/restHelpers'
 
   export default {
+    props: {
+      value: {
+        type: Number,
+        default: 0
+      }
+    },
     data () {
       return {
         consts,
@@ -47,22 +54,30 @@
     computed: {
       headers () {
         return restHelpers.getHeaders()
+      },
+      defaultList () {
+        return this.value ? [{
+          'name': '',
+          'url': helpers.getImageURL({ id: this.value })
+        }] : []
       }
     },
     methods: {
-      initUploadList (list) {
-        this.uploadList = list
-      },
       handleView (url) {
         this.imageURL = url
         this.visible = true
       },
-      _remove (file) {
+      remove (file) {
         const fileList = this.$refs.upload.fileList
-        this.$refs.upload.fileList.splice(fileList.indexOf(file), 1)
+
+        if (file) {
+          this.$refs.upload.fileList.splice(fileList.indexOf(file), 1)
+        } else {
+          this.$refs.upload.fileList.splice(0, fileList.length)
+        }
       },
       handleRemove (file) {
-        this._remove(file)
+        this.remove(file)
         this.$emit('change', null)
       },
       handleSuccess (res, file) {
@@ -70,7 +85,7 @@
         file.name = res.data.title
 
         if (this.uploadList.length > 1) {
-          this._remove(this.uploadList[0])
+          this.remove(this.uploadList[0])
         }
 
         this.$emit('change', res.data)

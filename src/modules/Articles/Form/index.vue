@@ -19,8 +19,11 @@
           <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
-        <Form-item label="图片" prop="picture">
-          <Uploader ref="uploader" @change="handleUploaderChange"></Uploader>
+        <Form-item label="封面" prop="picture">
+          <Uploader key="0" v-if="id && !formValidate.picture" ref="uploader" @change="handleUploaderChange"></Uploader>
+          <Uploader key="1" v-if="id && formValidate.picture" ref="uploader" v-model="formValidate.picture"
+                    @change="handleUploaderChange"></Uploader>
+          <Uploader key="2" v-if="!id" ref="uploader" @change="handleUploaderChange"></Uploader>
           <Input v-model="formValidate.picture" style="display: none;"></Input>
         </Form-item>
         <Form-item>
@@ -80,7 +83,7 @@
           picture: [
             {
               required: true,
-              message: '请上传图片'
+              message: '请上传封面'
             }
           ]
         }
@@ -91,10 +94,10 @@
         this.$store.dispatch('getArticle', { id })
       },
       handleEditorChange (html) {
-        this.$set(this.formValidate, 'content', html)
+        this.formValidate.content = html
       },
       handleUploaderChange (file) {
-        this.$set(this.formValidate, 'picture', file ? file.id : '')
+        this.formValidate.picture = file ? file.id : ''
       },
       handleSave () {
         this.$refs.formValidate.validate(async valid => {
@@ -115,6 +118,7 @@
       resetFields () {
         this.$refs.formValidate.resetFields()
         this.$refs.editor.html('')
+        this.$refs.uploader.remove()
       }
     },
     computed: mapState([
@@ -123,13 +127,10 @@
     watch: {
       'articles.article': {
         handler (newVal) {
-          this.$set(this, 'formValidate', newVal)
+          const { title, content, picture } = newVal
+
+          this.formValidate = { title, content, picture }
           this.$refs.editor.html(newVal.content)
-          this.$refs.uploader.initUploadList([{
-            status: 'finished',
-            name: '',
-            url: helpers.getImageURL({ id: newVal.picture })
-          }])
         }
       }
     }
