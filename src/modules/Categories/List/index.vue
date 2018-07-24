@@ -7,17 +7,42 @@
       @on-ok="handleDelOk">
       <p>确认删除该记录？</p>
     </Modal>
+    <Modal
+      width="500"
+      v-model="formModal"
+      title="新增">
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+        <Form-item label="标题" prop="title">
+          <Row>
+            <Col span="20">
+              <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="描述" prop="description">
+          <Row>
+            <Col span="20">
+              <Input v-model="formValidate.description" type="textarea" :rows="5" placeholder="请输入描述"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+      </Form>
+      <div slot="footer">
+        <Button type="text" size="large" @click="handleFormCancel">取消</Button>
+        <Button type="primary" size="large" @click="handleFormOk">确定</Button>
+      </div>
+    </Modal>
     <Breadcrumb>
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
-      <Breadcrumb-item>文章列表</Breadcrumb-item>
+      <Breadcrumb-item>栏目列表</Breadcrumb-item>
     </Breadcrumb>
     <List :current="current" :columns="columns" :data="categories.categories.items"
           :total="categories.categories.total"
           @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
-          <Button class="margin-right-sm" type="primary" @click="$router.push('categories/form')">新增</Button>
+          <Button class="margin-right-sm" type="primary" @click="handlePost">新增</Button>
         </ListOperations>
         <ListSearch>
           <Form ref="formInline" inline @submit.native.prevent="handleSearch">
@@ -36,7 +61,6 @@
 
 <script>
   import { mapState } from 'vuex'
-  import helpers from 'apples/libs/helpers'
   import consts from '@/utils/consts'
   import time from 'apples/libs/time'
   import List, { ListHeader, ListOperations, ListSearch } from '@/components/List'
@@ -51,8 +75,28 @@
     },
     data () {
       return {
+        formModal: false,
+        formValidate: {
+          title: '',
+          description: ''
+        },
+        ruleValidate: {
+          title: [
+            {
+              required: true,
+              message: '标题不能为空'
+            },
+            {
+              max: 100,
+              message: '标题不能多于 100 个字'
+            }
+          ]
+        },
         del: {
           modal: false,
+          id: 0
+        },
+        put: {
           id: 0
         },
         where: {
@@ -91,7 +135,7 @@
                   },
                   on: {
                     click: () => {
-                      this.handleEdit(params.row.id)
+                      this.handlePut(params.row.id)
                     }
                   }
                 }, '编辑'),
@@ -115,12 +159,12 @@
       'categories'
     ]),
     created () {
-      this.get()
+      this.getItems()
     },
     methods: {
-      get (current = 1) {
+      getItems (current = 1) {
         this.current = current
-        this.$store.dispatch('getArticles', {
+        this.$store.dispatch('getCategories', {
           query: {
             offset: (current - 1) * consts.PAGE_SIZE,
             limit: consts.PAGE_SIZE,
@@ -128,28 +172,68 @@
           }
         })
       },
+      getDetails (id) {
+        this.$store.dispatch('getCategory', { id: this.put.id })
+      },
       handlePageChange (current) {
-        this.get(current)
+        this.getItems(current)
       },
       handleSearch () {
         this.current = 1
-        this.get()
+        this.getItems()
       },
-      handleEdit (id) {
-        this.$router.push(`/categories/form/${id}`)
+      handlePost () {
+        this.formModal = true
+        this.put.id = 0
+        this.$refs.formValidate.resetFields()
+      },
+      handlePut (id) {
+        this.put.id = id
+        this.formModal = true
+        this.getDetails()
       },
       handleDel (id) {
         this.del.modal = true
         this.del.id = id
       },
       async handleDelOk () {
-        await this.$store.dispatch('deleteArticle', {
+        await this.$store.dispatch('deleteCategory', {
           id: this.del.id
         })
         this.$Message.success('删除成功！')
         // iView.Spin 的坑，调用 iView.Spin.hide()，500ms 后实例才被销毁
-        await helpers.sleep(500)
-        this.get()
+        // await helpers.sleep(500)
+        this.getItems()
+      },
+      handleFormCancel () {
+        this.formModal = false
+      },
+      handleFormOk () {
+        this.$refs.formValidate.validate(async valid => {
+          if (valid) {
+            const action = this.put.id ? 'putCategory' : 'postCategory'
+
+            await this.$store.dispatch(action, {
+              id: this.put.id,
+              body: this.formValidate
+            })
+
+            this.formModal = false
+
+            this.$Message.success((this.put.id ? '编辑' : '新增') + '成功！')
+            !this.put.id && this.$refs.formValidate.resetFields()
+            this.getItems()
+          }
+        })
+      }
+    },
+    watch: {
+      'categories.category': {
+        handler (newVal) {
+          const { title, description } = newVal
+
+          this.formValidate = { title, description }
+        }
       }
     }
   }

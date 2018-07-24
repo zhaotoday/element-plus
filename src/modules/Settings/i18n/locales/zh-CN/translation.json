@@ -1,0 +1,9 @@
+{
+  "article": {
+    "_": "文章",
+    "details": "详情",
+    "list": "列表"
+  },
+  "articleList": "{{whose}}$t(article._)$t(article.list)",
+  "my": "我的"
+}

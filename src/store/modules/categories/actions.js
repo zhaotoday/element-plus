@@ -1,5 +1,5 @@
 import types from './types'
-import Model from '../../../models/articles'
+import Model from '../../../models/categories'
 
 export default {
   /**

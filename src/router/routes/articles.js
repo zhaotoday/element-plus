@@ -3,16 +3,16 @@ export default {
   component: resolve => require(['@/modules/Articles'], resolve),
   children: [
     {
-      path: '/',
+      path: 'index',
       component: resolve => require(['@/modules/Articles/List'], resolve)
     },
     {
-      path: 'form/:id?',
+      path: 'index/form/:id?',
       component: resolve => require(['@/modules/Articles/Form'], resolve)
     },
     {
       path: 'categories',
-      component: resolve => require(['@/modules/Categories'], resolve)
+      component: resolve => require(['@/modules/Categories/List'], resolve)
     }
   ]
 }

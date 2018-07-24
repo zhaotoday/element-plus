@@ -46,11 +46,10 @@
       },
       update (route) {
         const path = route ? route.path : this.$route.path
-        const openName = path.split('/')[1]
-        const activeName = '/' + openName
+        const paths = path.split('/')
 
-        this.activeName = activeName
-        this.openNames = [openName]
+        this.openNames = [paths[1]]
+        this.activeName = `/${paths[1]}/${paths[2]}`
 
         this.$nextTick(() => {
           this.$refs.menu.updateActiveName()

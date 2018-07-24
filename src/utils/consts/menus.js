@@ -6,10 +6,21 @@ export default [
     children: [
       {
         title: '文章列表',
-        route: '/articles'
+        route: '/articles/index'
       }, {
-        title: '文章栏目',
+        title: '栏目列表',
         route: '/articles/categories'
+      }
+    ]
+  },
+  {
+    name: 'settings',
+    title: '设置',
+    icon: 'compose',
+    children: [
+      {
+        title: '网站设置',
+        route: '/settings/index'
       }
     ]
   }

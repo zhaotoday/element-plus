@@ -6,6 +6,7 @@ import Root from '@/modules/Root'
 import notFound from './routes/notFound'
 import home from './routes/home'
 import articles from './routes/articles'
+import settings from './routes/settings'
 import login from './routes/login'
 import logout from './routes/logout'
 import iView from 'iview'
@@ -23,7 +24,8 @@ const router = new Router({
           component: Layout,
           children: [
             home,
-            articles
+            articles,
+            settings
           ],
           meta: {
             requiresAuth: true
@@ -44,7 +46,7 @@ router.beforeEach((to, from, next) => {
     if (!auth.loggedIn()) {
       next({
         path: 'login',
-        query: {redirect: to.fullPath}
+        query: { redirect: to.fullPath }
       })
     } else {
       next()

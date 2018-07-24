@@ -17,7 +17,7 @@
           @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
-          <Button class="margin-right-sm" type="primary" @click="$router.push('articles/form')">新增</Button>
+          <Button class="margin-right-sm" type="primary" @click="$router.push('/articles/index/form')">新增</Button>
         </ListOperations>
         <ListSearch>
           <Form ref="formInline" inline @submit.native.prevent="handleSearch">
@@ -91,7 +91,7 @@
                   },
                   on: {
                     click: () => {
-                      this.handleEdit(params.row.id)
+                      this.handlePut(params.row.id)
                     }
                   }
                 }, '编辑'),
@@ -115,10 +115,10 @@
       'articles'
     ]),
     created () {
-      this.get()
+      this.getItems()
     },
     methods: {
-      get (current = 1) {
+      getItems (current = 1) {
         this.current = current
         this.$store.dispatch('getArticles', {
           query: {
@@ -129,14 +129,14 @@
         })
       },
       handlePageChange (current) {
-        this.get(current)
+        this.getItems(current)
       },
       handleSearch () {
         this.current = 1
-        this.get()
+        this.getItems()
       },
-      handleEdit (id) {
-        this.$router.push(`/articles/form/${id}`)
+      handlePut (id) {
+        this.$router.push(`/articles/index/form/${id}`)
       },
       handleDel (id) {
         this.del.modal = true
@@ -149,7 +149,7 @@
         this.$Message.success('删除成功！')
         // iView.Spin 的坑，调用 iView.Spin.hide()，500ms 后实例才被销毁
         await helpers.sleep(500)
-        this.get()
+        this.getItems()
       }
     }
   }
