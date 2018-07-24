@@ -39,7 +39,6 @@
   import { mapState } from 'vuex'
   import Editor from '@/components/Editor'
   import Uploader from '@/components/Uploader'
-  import helpers from '@/utils/helpers/base'
 
   export default {
     name: 'form',

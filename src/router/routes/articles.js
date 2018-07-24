@@ -9,6 +9,10 @@ export default {
     {
       path: 'form/:id?',
       component: resolve => require(['@/modules/Articles/Form'], resolve)
+    },
+    {
+      path: 'categories',
+      component: resolve => require(['@/modules/Categories'], resolve)
     }
   ]
 }

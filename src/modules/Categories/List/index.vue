@@ -12,12 +12,12 @@
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
       <Breadcrumb-item>文章列表</Breadcrumb-item>
     </Breadcrumb>
-    <List :current="current" :columns="columns" :data="articles.articles.items"
-          :total="articles.articles.total"
+    <List :current="current" :columns="columns" :data="categories.categories.items"
+          :total="categories.categories.total"
           @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
-          <Button class="margin-right-sm" type="primary" @click="$router.push('articles/form')">新增</Button>
+          <Button class="margin-right-sm" type="primary" @click="$router.push('categories/form')">新增</Button>
         </ListOperations>
         <ListSearch>
           <Form ref="formInline" inline @submit.native.prevent="handleSearch">
@@ -112,7 +112,7 @@
       }
     },
     computed: mapState([
-      'articles'
+      'categories'
     ]),
     created () {
       this.get()
@@ -136,7 +136,7 @@
         this.get()
       },
       handleEdit (id) {
-        this.$router.push(`/articles/form/${id}`)
+        this.$router.push(`/categories/form/${id}`)
       },
       handleDel (id) {
         this.del.modal = true
