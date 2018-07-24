@@ -6,6 +6,6 @@
   import './i18n'
 
   export default {
-    name: 'articles'
+    name: 'settings'
   }
 </script>

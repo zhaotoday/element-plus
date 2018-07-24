@@ -15,12 +15,12 @@ export default [
   },
   {
     name: 'settings',
-    title: '设置',
+    title: '系统设置',
     icon: 'compose',
     children: [
       {
         title: '网站设置',
-        route: '/settings/index'
+        route: '/settings/index/form/1'
       }
     ]
   }

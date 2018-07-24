@@ -2,12 +2,11 @@
   <div>
     <Breadcrumb>
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
-      <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
-      <Breadcrumb-item href="/articles/index">文章列表</Breadcrumb-item>
-      <Breadcrumb-item>{{ id ? '编辑' : '新增' }}</Breadcrumb-item>
+      <Breadcrumb-item href="#">设置</Breadcrumb-item>
+      <Breadcrumb-item href="#">网站设置</Breadcrumb-item>
     </Breadcrumb>
     <div class="limit-width">
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
         <Form-item label="标题" prop="title">
           <Row>
             <Col span="12">
@@ -15,20 +14,72 @@
             </Col>
           </Row>
         </Form-item>
-        <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
-          <Input v-model="formValidate.content" style="display: none;"></Input>
+        <Form-item label="关键词" prop="keywords">
+          <Row>
+            <Col span="12">
+              <Input type="textarea" :rows="4" v-model="formValidate.keywords" placeholder="请输入关键词"></Input>
+            </Col>
+          </Row>
         </Form-item>
-        <Form-item label="封面" prop="picture">
-          <Uploader key="0" v-if="id && !formValidate.picture" ref="uploader" @change="handleUploaderChange"></Uploader>
-          <Uploader key="1" v-if="id && formValidate.picture" ref="uploader" v-model="formValidate.picture"
-                    @change="handleUploaderChange"></Uploader>
-          <Uploader key="2" v-if="!id" ref="uploader" @change="handleUploaderChange"></Uploader>
-          <Input v-model="formValidate.picture" style="display: none;"></Input>
+        <Form-item label="描述" prop="description">
+          <Row>
+            <Col span="12">
+              <Input type="textarea" :rows="4" v-model="formValidate.description" placeholder="请输入描述"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="固定电话" prop="cellphone">
+          <Row>
+            <Col span="12">
+              <Input v-model="formValidate.cellphone" placeholder="请输入固定电话"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="手机号" prop="telephone">
+          <Row>
+            <Col span="12">
+              <Input v-model="formValidate.telephone" placeholder="请输入手机号"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="地址" prop="address">
+          <Row>
+            <Col span="12">
+              <Input v-model="formValidate.address" placeholder="请输入地址"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="版权信息" prop="copyright">
+          <Row>
+            <Col span="12">
+              <Input v-model="formValidate.copyright" placeholder="请输入版权信息"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="备案号" prop="icp">
+          <Row>
+            <Col span="12">
+              <Input v-model="formValidate.icp" placeholder="请输入备案号"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="公众号二维码" prop="oa_qrcode">
+          <Uploader key="0" v-if="id && !formValidate.oa_qrcode" @change="handleOAUploaderChange"></Uploader>
+          <Uploader key="1" v-if="id && formValidate.oa_qrcode" v-model="formValidate.oa_qrcode"
+                    @change="handleOAUploaderChange"></Uploader>
+          <Uploader key="2" v-if="!id" @change="handleOAUploaderChange"></Uploader>
+          <Input v-model="formValidate.oa_qrcode" style="display: none;"></Input>
+        </Form-item>
+        <Form-item label="App 二维码" prop="app_qrcode">
+          <Uploader key="3" v-if="id && !formValidate.app_qrcode"
+                    @change="handleAppUploaderChange"></Uploader>
+          <Uploader key="4" v-if="id && formValidate.app_qrcode" v-model="formValidate.app_qrcode"
+                    @change="handleAppUploaderChange"></Uploader>
+          <Uploader key="5" v-if="!id" @change="handleAppUploaderChange"></Uploader>
+          <Input v-model="formValidate.app_qrcode" style="display: none;"></Input>
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>
-          <Button type="ghost" @click="$router.push('/articles/index')">返回</Button>
         </Form-item>
       </Form>
     </div>
@@ -37,26 +88,29 @@
 
 <script>
   import { mapState } from 'vuex'
-  import Editor from '@/components/Editor'
   import Uploader from '@/components/Uploader'
 
   export default {
     name: 'form',
-    components: {
-      Editor,
-      Uploader
-    },
+    components: { Uploader },
     created () {
       this.id = this.$route.params.id
-      this.id && this.get(this.id)
+      this.id && this.getDetails(this.id)
     },
     data () {
       return {
         id: '',
         formValidate: {
           title: '',
-          content: '',
-          picture: ''
+          keywords: '',
+          description: '',
+          cellphone: '',
+          telephone: '',
+          address: '',
+          copyright: '',
+          icp: '',
+          oa_qrcode: '',
+          app_qrcode: ''
         },
         ruleValidate: {
           title: [
@@ -68,68 +122,55 @@
               max: 100,
               message: '标题不能多于 100 个字'
             }
-          ],
-          content: [
-            {
-              required: true,
-              message: '内容不能为空'
-            },
-            {
-              max: 2000,
-              message: '内容长度过长'
-            }
-          ],
-          picture: [
-            {
-              required: true,
-              message: '请上传封面'
-            }
           ]
         }
       }
     },
     methods: {
-      get (id) {
-        this.$store.dispatch('getArticle', { id })
+      getDetails (id) {
+        this.$store.dispatch('getSetting', { id })
       },
-      handleEditorChange (html) {
-        this.formValidate.content = html
+      handleOAUploaderChange (file) {
+        this.formValidate.oa_qrcode = file ? file.id : ''
       },
-      handleUploaderChange (file) {
-        this.formValidate.picture = file ? file.id : ''
+      handleAppUploaderChange (file) {
+        this.formValidate.app_qrcode = file ? file.id : ''
       },
       handleSave () {
         this.$refs.formValidate.validate(async valid => {
           if (valid) {
             const { id, formValidate } = this
-            const action = id ? 'putArticle' : 'postArticle'
 
-            await this.$store.dispatch(action, {
+            await this.$store.dispatch('putSetting', {
               id,
               body: formValidate
             })
 
-            this.$Message.success((this.id ? '编辑' : '新增') + '成功！')
-            !id && this.resetFields()
+            this.$Message.success('保存成功！')
           }
         })
-      },
-      resetFields () {
-        this.$refs.formValidate.resetFields()
-        this.$refs.editor.html('')
-        this.$refs.uploader.remove()
       }
     },
     computed: mapState([
-      'articles'
+      'settings'
     ]),
     watch: {
-      'articles.article': {
+      'settings.setting': {
         handler (newVal) {
-          const { title, content, picture } = newVal
+          const { title, keywords, description, cellphone, telephone, address, copyright, icp, oa_qrcode, app_qrcode } = newVal
 
-          this.formValidate = { title, content, picture }
-          this.$refs.editor.html(newVal.content)
+          this.formValidate = {
+            title,
+            keywords,
+            description,
+            cellphone,
+            telephone,
+            address,
+            copyright,
+            icp,
+            oa_qrcode,
+            app_qrcode
+          }
         }
       }
     }

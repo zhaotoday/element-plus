@@ -3,7 +3,7 @@ export default {
   component: resolve => require(['@/modules/Settings'], resolve),
   children: [
     {
-      path: 'index',
+      path: 'index/form/:id?',
       component: resolve => require(['@/modules/Settings/Form'], resolve)
     }
   ]

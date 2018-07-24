@@ -7,7 +7,7 @@
       <Breadcrumb-item>{{ id ? '编辑' : '新增' }}</Breadcrumb-item>
     </Breadcrumb>
     <div class="limit-width">
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
         <Form-item label="标题" prop="title">
           <Row>
             <Col span="12">
@@ -48,7 +48,7 @@
     },
     created () {
       this.id = this.$route.params.id
-      this.id && this.get(this.id)
+      this.id && this.getDetails(this.id)
     },
     data () {
       return {
@@ -89,7 +89,7 @@
       }
     },
     methods: {
-      get (id) {
+      getDetails (id) {
         this.$store.dispatch('getArticle', { id })
       },
       handleEditorChange (html) {
