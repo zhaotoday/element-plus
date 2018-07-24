@@ -4,7 +4,7 @@ export default {
   /**
    * 获取图片地址
    */
-  getImageURL (data) {
-    return `${consts.BASE_URL}/files/${data.dir}/${data.uuid}.${data.ext}`
+  getImageURL ({ id }) {
+    return `${consts.BASE_URL}/apis/v1/files/${id}`
   }
 }

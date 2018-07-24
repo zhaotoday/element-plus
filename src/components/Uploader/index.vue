@@ -3,7 +3,6 @@
     <Upload
       ref="upload"
       :show-upload-list="false"
-      :default-file-list="defaultList"
       :on-success="handleSuccess"
       :format="['jpg','jpeg','png']"
       :max-size="2048"
@@ -15,7 +14,7 @@
       <Button type="ghost" icon="ios-cloud-upload-outline">上传文件</Button>
     </Upload>
     <Modal title="查看图片" v-model="visible">
-      <img :src="imgURL" v-if="visible" style="width: 100%">
+      <img :src="imageURL" v-if="visible" style="width: 100%">
     </Modal>
     <div class="demo-upload-list" v-for="item in uploadList">
       <template v-if="item.status === 'finished'">
@@ -40,8 +39,7 @@
     data () {
       return {
         consts,
-        defaultList: [],
-        imgURL: '',
+        imageURL: '',
         visible: false,
         uploadList: []
       }
@@ -51,15 +49,12 @@
         return restHelpers.getHeaders()
       }
     },
-    props: {
-      value: {
-        type: Number,
-        default: 0
-      }
-    },
     methods: {
+      initUploadList (list) {
+        this.uploadList = list
+      },
       handleView (url) {
-        this.imgURL = url
+        this.imageURL = url
         this.visible = true
       },
       _remove (file) {
@@ -68,17 +63,17 @@
       },
       handleRemove (file) {
         this._remove(file)
-        this.$emit('on-change', null)
+        this.$emit('change', null)
       },
       handleSuccess (res, file) {
-        file.url = helpers.getImageURL(res.data)
+        file.url = helpers.getImageURL({ id: res.data.id })
         file.name = res.data.title
 
         if (this.uploadList.length > 1) {
           this._remove(this.uploadList[0])
         }
 
-        this.$emit('on-change', file)
+        this.$emit('change', res.data)
       },
       handleFormatError () {
         this.$Message.error('文件格式不正确')
@@ -92,14 +87,6 @@
           this.$Message.error('删除已有图片后再上传')
         }
         return check
-      }
-    },
-    created () {
-      if (this.value) {
-        this.defaultList.push({
-          'name': '',
-          'url': 'https://o5wwk8baw.qnssl.com/a42bdcc1178e62b4694c830f028db5c0/avatar'
-        })
       }
     },
     mounted () {

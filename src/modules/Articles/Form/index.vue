@@ -19,8 +19,9 @@
           <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
           <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
-        <Form-item label="文件" prop="content">
-          <Uploader></Uploader>
+        <Form-item label="图片" prop="picture">
+          <Uploader ref="uploader" @change="handleUploaderChange"></Uploader>
+          <Input v-model="formValidate.picture" style="display: none;"></Input>
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>
@@ -35,6 +36,7 @@
   import { mapState } from 'vuex'
   import Editor from '@/components/Editor'
   import Uploader from '@/components/Uploader'
+  import helpers from '@/utils/helpers/base'
 
   export default {
     name: 'form',
@@ -51,7 +53,8 @@
         id: '',
         formValidate: {
           title: '',
-          content: ''
+          content: '',
+          picture: ''
         },
         ruleValidate: {
           title: [
@@ -73,21 +76,30 @@
               max: 2000,
               message: '内容长度过长'
             }
+          ],
+          picture: [
+            {
+              required: true,
+              message: '请上传图片'
+            }
           ]
         }
       }
     },
     methods: {
       get (id) {
-        this.$store.dispatch('getArticle', {id})
+        this.$store.dispatch('getArticle', { id })
       },
       handleEditorChange (html) {
         this.$set(this.formValidate, 'content', html)
       },
+      handleUploaderChange (file) {
+        this.$set(this.formValidate, 'picture', file ? file.id : '')
+      },
       handleSave () {
         this.$refs.formValidate.validate(async valid => {
           if (valid) {
-            const {id, formValidate} = this
+            const { id, formValidate } = this
             const action = id ? 'putArticle' : 'postArticle'
 
             await this.$store.dispatch(action, {
@@ -113,6 +125,11 @@
         handler (newVal) {
           this.$set(this, 'formValidate', newVal)
           this.$refs.editor.html(newVal.content)
+          this.$refs.uploader.initUploadList([{
+            status: 'finished',
+            name: '',
+            url: helpers.getImageURL({ id: newVal.picture })
+          }])
         }
       }
     }
