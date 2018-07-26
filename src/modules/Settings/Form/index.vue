@@ -128,7 +128,7 @@
     },
     methods: {
       getDetails (id) {
-        this.$store.dispatch('getSetting', { id })
+        return this.$store.dispatch('getSetting', { id })
       },
       handleOAUploaderChange (file) {
         this.formValidate.oa_qrcode = file ? file.id : ''

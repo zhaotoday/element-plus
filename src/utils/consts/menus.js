@@ -8,7 +8,7 @@ export default [
         title: '文章列表',
         route: '/articles/index'
       }, {
-        title: '栏目列表',
+        title: '分类列表',
         route: '/articles/categories'
       }
     ]

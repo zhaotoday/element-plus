@@ -21,15 +21,21 @@ export default {
    */
   whereToStr (obj) {
     let ret = {}
+    let types = []
 
     Object.keys(obj).forEach(v => {
       ret[v] = {}
+      types = Object.keys(obj[v])
 
-      if (typeof obj[v].$like !== 'undefined') {
-        ret[v].$like = `%${obj[v].$like}%`
-      } else {
-        ret[v] = obj[v]
-      }
+      types.forEach(type => {
+        if (!obj[v][type]) {
+          delete ret[v]
+        } else if (type === '$like') {
+          ret[v][type] = `%${obj[v][type]}%`
+        } else {
+          ret[v] = obj[v]
+        }
+      })
     })
 
     return JSON.stringify(ret)

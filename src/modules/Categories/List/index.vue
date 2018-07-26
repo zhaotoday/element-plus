@@ -1,11 +1,11 @@
 <template>
   <div>
     <Modal
-      width="300"
+      width="280"
       v-model="del.modal"
       title="请确认"
       @on-ok="handleDelOk">
-      <p>确认删除该记录？</p>
+      <p>确认删除？</p>
     </Modal>
     <Modal
       width="500"
@@ -35,7 +35,7 @@
     <Breadcrumb>
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
-      <Breadcrumb-item>栏目列表</Breadcrumb-item>
+      <Breadcrumb-item>分类列表</Breadcrumb-item>
     </Breadcrumb>
     <List :current="current" :columns="columns" :data="categories.categories.items"
           :total="categories.categories.total"
@@ -164,7 +164,8 @@
     methods: {
       getItems (current = 1) {
         this.current = current
-        this.$store.dispatch('getCategories', {
+
+        return this.$store.dispatch('getCategories', {
           query: {
             offset: (current - 1) * consts.PAGE_SIZE,
             limit: consts.PAGE_SIZE,
@@ -173,7 +174,7 @@
         })
       },
       getDetails (id) {
-        this.$store.dispatch('getCategory', { id: this.put.id })
+        return this.$store.dispatch('getCategory', { id: this.put.id })
       },
       handlePageChange (current) {
         this.getItems(current)

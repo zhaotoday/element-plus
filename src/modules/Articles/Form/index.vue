@@ -15,9 +15,12 @@
             </Col>
           </Row>
         </Form-item>
-        <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
-          <Input v-model="formValidate.content" style="display: none;"></Input>
+        <Form-item label="分类" prop="category_id">
+          <Select v-model="formValidate.category_id" placeholder="请选择分类" clearable style="width: 200px;">
+            <Option v-for="item in categories.categories.items" :value="item.id" :key="item.id">
+              {{ item.title }}
+            </Option>
+          </Select>
         </Form-item>
         <Form-item label="封面" prop="picture">
           <Uploader key="0" v-if="id && !formValidate.picture" ref="uploader" @change="handleUploaderChange"></Uploader>
@@ -25,6 +28,10 @@
                     @change="handleUploaderChange"></Uploader>
           <Uploader key="2" v-if="!id" ref="uploader" @change="handleUploaderChange"></Uploader>
           <Input v-model="formValidate.picture" style="display: none;"></Input>
+        </Form-item>
+        <Form-item label="内容" prop="content">
+          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
+          <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>
@@ -46,8 +53,9 @@
       Editor,
       Uploader
     },
-    created () {
+    async created () {
       this.id = this.$route.params.id
+      await this.getCategoryItems()
       this.id && this.getDetails(this.id)
     },
     data () {
@@ -56,6 +64,7 @@
         formValidate: {
           title: '',
           content: '',
+          category_id: '',
           picture: ''
         },
         ruleValidate: {
@@ -69,6 +78,18 @@
               message: '标题不能多于 100 个字'
             }
           ],
+          category_id: [
+            {
+              required: true,
+              message: '请选择分类'
+            }
+          ],
+          picture: [
+            {
+              required: true,
+              message: '请上传封面'
+            }
+          ],
           content: [
             {
               required: true,
@@ -78,19 +99,18 @@
               max: 2000,
               message: '内容长度过长'
             }
-          ],
-          picture: [
-            {
-              required: true,
-              message: '请上传封面'
-            }
           ]
         }
       }
     },
     methods: {
       getDetails (id) {
-        this.$store.dispatch('getArticle', { id })
+        return this.$store.dispatch('getArticle', { id })
+      },
+      getCategoryItems () {
+        return this.$store.dispatch('getCategories', {
+          query: {}
+        })
       },
       handleEditorChange (html) {
         this.formValidate.content = html
@@ -121,14 +141,15 @@
       }
     },
     computed: mapState([
-      'articles'
+      'articles',
+      'categories'
     ]),
     watch: {
       'articles.article': {
         handler (newVal) {
-          const { title, content, picture } = newVal
+          const { title, category_id, picture, content } = newVal
 
-          this.formValidate = { title, content, picture }
+          this.formValidate = { title, category_id, picture, content }
           this.$refs.editor.html(newVal.content)
         }
       }

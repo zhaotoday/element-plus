@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <textarea ref="content">{{ value }}</textarea>
-  </div>
+  <textarea ref="content">{{ value }}</textarea>
 </template>
 
 <script>
@@ -33,7 +31,7 @@
       }
 
       this.$nextTick(() => {
-        this.editor = KindEditor.create(this.$refs.content, {...options})
+        this.editor = KindEditor.create(this.$refs.content, { ...options })
       })
     },
     methods: {
