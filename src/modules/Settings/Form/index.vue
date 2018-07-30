@@ -2,8 +2,8 @@
   <div>
     <Breadcrumb>
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
-      <Breadcrumb-item href="#">设置</Breadcrumb-item>
-      <Breadcrumb-item href="#">网站设置</Breadcrumb-item>
+      <Breadcrumb-item href="#">系统设置</Breadcrumb-item>
+      <Breadcrumb-item>网站设置</Breadcrumb-item>
     </Breadcrumb>
     <div class="limit-width">
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
@@ -11,10 +11,10 @@
           <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
         </Form-item>
         <Form-item label="关键词" prop="keywords">
-          <Input type="textarea" :rows="4" v-model="formValidate.keywords" placeholder="请输入关键词"></Input>
+          <Input type="textarea" :rows="3" v-model="formValidate.keywords" placeholder="请输入关键词"></Input>
         </Form-item>
         <Form-item label="描述" prop="description">
-          <Input type="textarea" :rows="4" v-model="formValidate.description" placeholder="请输入描述"></Input>
+          <Input type="textarea" :rows="3" v-model="formValidate.description" placeholder="请输入描述"></Input>
         </Form-item>
         <Form-item label="固定电话" prop="cellphone">
           <Input v-model="formValidate.cellphone" placeholder="请输入固定电话"></Input>
@@ -82,10 +82,6 @@
             {
               required: true,
               message: '标题不能为空'
-            },
-            {
-              max: 100,
-              message: '标题不能多于 100 个字'
             }
           ]
         }
@@ -122,20 +118,7 @@
     watch: {
       'settings.setting': {
         handler (newVal) {
-          const { title, keywords, description, cellphone, telephone, address, copyright, icp, oa_qrcode, app_qrcode } = newVal
-
-          this.formValidate = {
-            title,
-            keywords,
-            description,
-            cellphone,
-            telephone,
-            address,
-            copyright,
-            icp,
-            oa_qrcode,
-            app_qrcode
-          }
+          this.formValidate = newVal
         }
       }
     }

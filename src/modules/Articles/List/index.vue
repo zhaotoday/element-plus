@@ -1,33 +1,18 @@
 <template>
   <div>
-    <Modal
-      width="280"
-      v-model="del.modal"
-      title="请确认"
-      @on-ok="handleDelOk">
-      <p>确认删除？</p>
-    </Modal>
-    <Modal
-      width="280"
-      v-model="attr.setting.modal"
-      title="请确认"
-      @on-ok="handleSetAttr">
-      <p>{{attrSettingTip}}</p>
-    </Modal>
     <Breadcrumb>
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
       <Breadcrumb-item>文章列表</Breadcrumb-item>
     </Breadcrumb>
-    <List :current="current" :columns="columns" :data="articles.articles.items"
-          :total="articles.articles.total"
+    <List :current="current" :columns="columns" :data="articles.articles.items" :total="articles.articles.total"
           @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
           <Button class="margin-right-sm" type="primary" @click="$router.push('/articles/index/form')">新增</Button>
         </ListOperations>
         <ListSearch>
-          <Form ref="formInline" inline @submit.native.prevent="handleSearch">
+          <Form inline @submit.native.prevent="handleSearch">
             <Form-item prop="attr">
               <Select v-model="attr.search.which" placeholder="请选择属性" clearable style="width: 220px;">
                 <Option v-for="item in attr.options" :value="item.id" :key="item.id">
@@ -52,13 +37,19 @@
         </ListSearch>
       </ListHeader>
     </List>
+    <Modal width="280" v-model="del.modal" title="请确认" @on-ok="handleDelOk">
+      <p>确认删除？</p>
+    </Modal>
+    <Modal width="280" v-model="attr.setting.modal" title="请确认" @on-ok="handleSetAttr">
+      <p>{{setAttrTip}}</p>
+    </Modal>
   </div>
 </template>
 
 <script>
   import { mapState } from 'vuex'
-  import helpers from 'apples/libs/helpers'
   import consts from '@/utils/consts'
+  import helpers from 'apples/libs/helpers'
   import time from 'apples/libs/time'
   import ArticleModal from '../../../models/articles'
   import List, { ListHeader, ListOperations, ListSearch } from '@/components/List'
@@ -156,7 +147,7 @@
                   },
                   on: {
                     click: () => {
-                      this.handlePut(params.row.id)
+                      this.$router.push(`/articles/index/form/${params.row.id}`)
                     }
                   }
                 }, '编辑'),
@@ -207,7 +198,7 @@
         'articles',
         'categories'
       ]),
-      attrSettingTip () {
+      setAttrTip () {
         const { which, value } = this.attr.setting
 
         if (which === 'is_home_ad') {
@@ -274,9 +265,6 @@
       handleSearch () {
         this.current = 1
         this.getItems()
-      },
-      handlePut (id) {
-        this.$router.push(`/articles/index/form/${id}`)
       },
       handleDel (id) {
         this.del.modal = true

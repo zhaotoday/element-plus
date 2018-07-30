@@ -1,51 +1,11 @@
 <template>
   <div>
-    <Modal
-      width="280"
-      v-model="del.modal"
-      title="请确认"
-      @on-ok="handleDelOk">
-      <p>确认删除？</p>
-    </Modal>
-    <Modal
-      width="500"
-      v-model="formModal"
-      title="新增">
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-        <Form-item label="标题" prop="title">
-          <Row>
-            <Col span="20">
-              <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item label="描述" prop="description">
-          <Row>
-            <Col span="20">
-              <Input v-model="formValidate.description" type="textarea" :rows="5" placeholder="请输入描述"></Input>
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item label="排序" prop="order">
-          <Row>
-            <Col span="20">
-              <InputNumber :max="10" :min="1" v-model="formValidate.order"></InputNumber>
-            </Col>
-          </Row>
-        </Form-item>
-      </Form>
-      <div slot="footer">
-        <Button type="text" size="large" @click="handleFormCancel">取消</Button>
-        <Button type="primary" size="large" @click="handleFormOk">确定</Button>
-      </div>
-    </Modal>
     <Breadcrumb>
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
       <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
       <Breadcrumb-item>分类列表</Breadcrumb-item>
     </Breadcrumb>
-    <List :current="current" :columns="columns" :data="categories.categories.items"
-          :total="categories.categories.total"
+    <List :current="current" :columns="columns" :data="categories.categories.items" :total="categories.categories.total"
           @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
@@ -63,6 +23,38 @@
         </ListSearch>
       </ListHeader>
     </List>
+    <Modal width="280" v-model="del.modal" title="请确认" @on-ok="handleDelOk">
+      <p>确认删除？</p>
+    </Modal>
+    <Modal width="500" v-model="formModal" title="新增">
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
+        <Form-item label="标题" prop="title">
+          <Row>
+            <Col span="20">
+              <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="描述" prop="description">
+          <Row>
+            <Col span="20">
+              <Input v-model="formValidate.description" type="textarea" :rows="3" placeholder="请输入描述"></Input>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item label="排序" prop="order">
+          <Row>
+            <Col span="20">
+              <InputNumber :min="1" :max="100" v-model="formValidate.order"></InputNumber>
+            </Col>
+          </Row>
+        </Form-item>
+      </Form>
+      <div slot="footer">
+        <Button type="text" size="large" @click="formModal = false">取消</Button>
+        <Button type="primary" size="large" @click="handleFormOk">确定</Button>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -85,8 +77,8 @@
         formModal: false,
         formValidate: {
           title: '',
-          order: 1,
-          description: ''
+          description: '',
+          order: 1
         },
         ruleValidate: {
           title: [
@@ -222,9 +214,6 @@
         // await helpers.sleep(500)
         this.getItems()
       },
-      handleFormCancel () {
-        this.formModal = false
-      },
       handleFormOk () {
         this.$refs.formValidate.validate(async valid => {
           if (valid) {
@@ -247,9 +236,7 @@
     watch: {
       'categories.category': {
         handler (newVal) {
-          const { title, order, description } = newVal
-
-          this.formValidate = { title, order, description }
+          this.formValidate = newVal
         }
       }
     }

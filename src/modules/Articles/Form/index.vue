@@ -92,7 +92,7 @@
               message: '内容不能为空'
             },
             {
-              max: 2000,
+              max: 10000,
               message: '内容长度过长'
             }
           ]
@@ -143,9 +143,7 @@
     watch: {
       'articles.article': {
         handler (newVal) {
-          const { title, category_id, picture, content } = newVal
-
-          this.formValidate = { title, category_id, picture, content }
+          this.formValidate = newVal
           this.$refs.editor.html(newVal.content)
         }
       }
