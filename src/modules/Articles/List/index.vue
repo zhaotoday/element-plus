@@ -29,14 +29,14 @@
         <ListSearch>
           <Form ref="formInline" inline @submit.native.prevent="handleSearch">
             <Form-item prop="attr">
-              <Select v-model="attr.search.which" placeholder="请选择属性" clearable style="width: 200px;">
+              <Select v-model="attr.search.which" placeholder="请选择属性" clearable style="width: 220px;">
                 <Option v-for="item in attr.options" :value="item.id" :key="item.id">
                   {{ item.title }}
                 </Option>
               </Select>
             </Form-item>
-            <Form-item prop="title">
-              <Select v-model="where.category_id.$eq" placeholder="请选择分类" clearable style="width: 200px;">
+            <Form-item prop="category_id">
+              <Select v-model="where.category_id.$eq" placeholder="请选择分类" clearable style="width: 220px;">
                 <Option v-for="item in categories.categories.items" :value="item.id" :key="item.id">
                   {{ item.title }}
                 </Option>
@@ -118,6 +118,22 @@
             key: 'title'
           },
           {
+            title: '分类',
+            key: 'category_id',
+            width: 180,
+            render: (h, params) => {
+              const { categories } = this.categories
+
+              if (categories) {
+                const category = categories.items.find(item => item.id === params.row.category_id)
+
+                return h('span', null, category.title)
+              } else {
+                return h('span', null, '')
+              }
+            }
+          },
+          {
             title: '发布时间',
             key: 'created_at',
             width: 180,
@@ -134,6 +150,26 @@
               const isCategoryTop = params.row.is_category_top === 1
 
               return h('ButtonGroup', [
+                h('Button', {
+                  props: {
+                    type: 'ghost'
+                  },
+                  on: {
+                    click: () => {
+                      this.handlePut(params.row.id)
+                    }
+                  }
+                }, '编辑'),
+                h('Button', {
+                  props: {
+                    type: 'ghost'
+                  },
+                  on: {
+                    click: () => {
+                      this.handleDel(params.row.id)
+                    }
+                  }
+                }, '删除'),
                 h('Button', {
                   props: {
                     type: 'ghost'
@@ -159,27 +195,7 @@
                       this.attr.setting.value = isCategoryTop ? 0 : 1
                     }
                   }
-                }, isCategoryTop ? '取消设为分类头条' : '设为分类头条'),
-                h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
-                  on: {
-                    click: () => {
-                      this.handlePut(params.row.id)
-                    }
-                  }
-                }, '编辑'),
-                h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
-                  on: {
-                    click: () => {
-                      this.handleDel(params.row.id)
-                    }
-                  }
-                }, '删除')
+                }, isCategoryTop ? '取消设为分类头条' : '设为分类头条')
               ])
             }
           }
@@ -201,8 +217,8 @@
         }
       }
     },
-    created () {
-      this.getCategoryItems()
+    async created () {
+      await this.getCategoryItems()
       this.getItems()
     },
     methods: {
@@ -216,7 +232,7 @@
             ? 'SET_HOME_AD'
             : 'CANCEL_HOME_AD'
 
-        new ArticleModal().addPath('actions').POST({
+        await new ArticleModal().addPath('actions').POST({
           body: {
             type: actionType,
             id: this.attr.setting.id

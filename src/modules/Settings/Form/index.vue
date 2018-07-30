@@ -8,60 +8,25 @@
     <div class="limit-width">
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
         <Form-item label="标题" prop="title">
-          <Row>
-            <Col span="12">
-              <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
-            </Col>
-          </Row>
+          <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
         </Form-item>
         <Form-item label="关键词" prop="keywords">
-          <Row>
-            <Col span="12">
-              <Input type="textarea" :rows="4" v-model="formValidate.keywords" placeholder="请输入关键词"></Input>
-            </Col>
-          </Row>
+          <Input type="textarea" :rows="4" v-model="formValidate.keywords" placeholder="请输入关键词"></Input>
         </Form-item>
         <Form-item label="描述" prop="description">
-          <Row>
-            <Col span="12">
-              <Input type="textarea" :rows="4" v-model="formValidate.description" placeholder="请输入描述"></Input>
-            </Col>
-          </Row>
+          <Input type="textarea" :rows="4" v-model="formValidate.description" placeholder="请输入描述"></Input>
         </Form-item>
         <Form-item label="固定电话" prop="cellphone">
-          <Row>
-            <Col span="12">
-              <Input v-model="formValidate.cellphone" placeholder="请输入固定电话"></Input>
-            </Col>
-          </Row>
+          <Input v-model="formValidate.cellphone" placeholder="请输入固定电话"></Input>
         </Form-item>
         <Form-item label="手机号" prop="telephone">
-          <Row>
-            <Col span="12">
-              <Input v-model="formValidate.telephone" placeholder="请输入手机号"></Input>
-            </Col>
-          </Row>
+          <Input v-model="formValidate.telephone" placeholder="请输入手机号"></Input>
         </Form-item>
         <Form-item label="地址" prop="address">
-          <Row>
-            <Col span="12">
-              <Input v-model="formValidate.address" placeholder="请输入地址"></Input>
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item label="版权信息" prop="copyright">
-          <Row>
-            <Col span="12">
-              <Input v-model="formValidate.copyright" placeholder="请输入版权信息"></Input>
-            </Col>
-          </Row>
+          <Input v-model="formValidate.address" placeholder="请输入地址"></Input>
         </Form-item>
         <Form-item label="备案号" prop="icp">
-          <Row>
-            <Col span="12">
-              <Input v-model="formValidate.icp" placeholder="请输入备案号"></Input>
-            </Col>
-          </Row>
+          <Input v-model="formValidate.icp" placeholder="请输入备案号"></Input>
         </Form-item>
         <Form-item label="公众号二维码" prop="oa_qrcode">
           <Uploader key="0" v-if="id && !formValidate.oa_qrcode" @change="handleOAUploaderChange"></Uploader>

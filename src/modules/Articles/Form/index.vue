@@ -9,14 +9,14 @@
     <div class="limit-width">
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
         <Form-item label="标题" prop="title">
-          <Row>
-            <Col span="12">
-              <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
-            </Col>
-          </Row>
+          <Input v-model="formValidate.title" placeholder="请输入标题"></Input>
+        </Form-item>
+        <Form-item label="内容" prop="content">
+          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
+          <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item label="分类" prop="category_id">
-          <Select v-model="formValidate.category_id" placeholder="请选择分类" clearable style="width: 200px;">
+          <Select v-model="formValidate.category_id" placeholder="请选择分类" clearable style="width: 220px;">
             <Option v-for="item in categories.categories.items" :value="item.id" :key="item.id">
               {{ item.title }}
             </Option>
@@ -28,10 +28,6 @@
                     @change="handleUploaderChange"></Uploader>
           <Uploader key="2" v-if="!id" ref="uploader" @change="handleUploaderChange"></Uploader>
           <Input v-model="formValidate.picture" style="display: none;"></Input>
-        </Form-item>
-        <Form-item label="内容" prop="content">
-          <Editor ref="editor" v-model="formValidate.content" @change="handleEditorChange"></Editor>
-          <Input v-model="formValidate.content" style="display: none;"></Input>
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>

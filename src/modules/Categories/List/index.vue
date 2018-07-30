@@ -26,6 +26,13 @@
             </Col>
           </Row>
         </Form-item>
+        <Form-item label="排序" prop="order">
+          <Row>
+            <Col span="20">
+              <InputNumber :max="10" :min="1" v-model="formValidate.order"></InputNumber>
+            </Col>
+          </Row>
+        </Form-item>
       </Form>
       <div slot="footer">
         <Button type="text" size="large" @click="handleFormCancel">取消</Button>
@@ -47,7 +54,7 @@
         <ListSearch>
           <Form ref="formInline" inline @submit.native.prevent="handleSearch">
             <Form-item prop="title">
-              <Input type="text" placeholder="请输入标题" v-model="where.title.$like" style="width: 230px;"></Input>
+              <Input type="text" placeholder="请输入标题" v-model="where.title.$like" style="width: 220px;"></Input>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="handleSearch">查询</Button>
@@ -78,6 +85,7 @@
         formModal: false,
         formValidate: {
           title: '',
+          order: 1,
           description: ''
         },
         ruleValidate: {
@@ -114,6 +122,14 @@
           {
             title: '标题',
             key: 'title'
+          },
+          {
+            title: '排序',
+            key: 'created_at',
+            width: 180,
+            render (h, params) {
+              return h('span', null, params.row.order)
+            }
           },
           {
             title: '发布时间',
@@ -231,9 +247,9 @@
     watch: {
       'categories.category': {
         handler (newVal) {
-          const { title, description } = newVal
+          const { title, order, description } = newVal
 
-          this.formValidate = { title, description }
+          this.formValidate = { title, order, description }
         }
       }
     }
