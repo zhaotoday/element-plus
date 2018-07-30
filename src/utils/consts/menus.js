@@ -1,15 +1,29 @@
 export default [
   {
-    name: 'articles',
-    title: '文章管理',
+    name: 'news',
+    title: '企业信息',
     icon: 'compose',
     children: [
       {
         title: '文章列表',
-        route: '/articles/index'
+        route: '/news/articles/index'
       }, {
         title: '分类列表',
-        route: '/articles/categories'
+        route: '/news/articles/categories'
+      }
+    ]
+  },
+  {
+    name: 'contact',
+    title: '联系我们',
+    icon: 'compose',
+    children: [
+      {
+        title: '文章列表',
+        route: '/contact/articles/index'
+      }, {
+        title: '分类列表',
+        route: '/contact/articles/categories'
       }
     ]
   },

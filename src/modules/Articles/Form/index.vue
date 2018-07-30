@@ -31,7 +31,7 @@
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>
-          <Button type="ghost" @click="$router.push('/articles/index')">返回</Button>
+          <Button type="ghost" @click="$router.push(`/${alias}/articles/index`)">返回</Button>
         </Form-item>
       </Form>
     </div>
@@ -45,17 +45,19 @@
 
   export default {
     name: 'form',
-    components: {
-      Editor,
-      Uploader
-    },
     async created () {
+      this.alias = this.$route.params.alias
       this.id = this.$route.params.id
       await this.getCategoryItems()
       this.id && this.getDetails(this.id)
     },
+    components: {
+      Editor,
+      Uploader
+    },
     data () {
       return {
+        alias: '',
         id: '',
         formValidate: {
           title: '',
@@ -117,12 +119,12 @@
       handleSave () {
         this.$refs.formValidate.validate(async valid => {
           if (valid) {
-            const { id, formValidate } = this
+            const { id, formValidate, alias } = this
             const action = id ? 'putArticle' : 'postArticle'
 
             await this.$store.dispatch(action, {
               id,
-              body: formValidate
+              body: { ...formValidate, alias }
             })
 
             this.$Message.success((this.id ? '编辑' : '新增') + '成功！')

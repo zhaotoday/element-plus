@@ -12,7 +12,7 @@
       :before-upload="handleBeforeUpload"
       :headers="headers"
       :action="`${consts.API_URL}/files`">
-      <Button type="ghost" icon="ios-cloud-upload-outline" style="width: 200px;">上传文件</Button>
+      <Button type="ghost" icon="ios-cloud-upload-outline" style="width: 220px;">上传文件</Button>
     </Upload>
     <Modal title="查看图片" v-model="visible">
       <img :src="imageURL" v-if="visible" style="width: 100%">

@@ -9,7 +9,8 @@
           @on-change="handlePageChange">
       <ListHeader>
         <ListOperations>
-          <Button class="margin-right-sm" type="primary" @click="$router.push('/articles/index/form')">新增</Button>
+          <Button class="margin-right-sm" type="primary" @click="$router.push(`/${alias}/articles/index/form`)">新增
+          </Button>
         </ListOperations>
         <ListSearch>
           <Form inline @submit.native.prevent="handleSearch">
@@ -56,6 +57,17 @@
 
   export default {
     name: 'list',
+    async beforeRouteUpdate (to, from, next) {
+      this.alias = to.params.alias
+      await this.getCategoryItems()
+      this.getItems()
+      next()
+    },
+    async created () {
+      this.alias = this.$route.params.alias
+      await this.getCategoryItems()
+      this.getItems()
+    },
     components: {
       List,
       ListHeader,
@@ -64,6 +76,7 @@
     },
     data () {
       return {
+        alias: '',
         attr: {
           search: {
             which: ''
@@ -147,7 +160,7 @@
                   },
                   on: {
                     click: () => {
-                      this.$router.push(`/articles/index/form/${params.row.id}`)
+                      this.$router.push(`/${this.alias}/articles/index/form/${params.row.id}`)
                     }
                   }
                 }, '编辑'),
@@ -208,10 +221,6 @@
         }
       }
     },
-    async created () {
-      await this.getCategoryItems()
-      this.getItems()
-    },
     methods: {
       async handleSetAttr () {
         const { which, value } = this.attr.setting
@@ -245,7 +254,9 @@
           query: {
             offset: (current - 1) * consts.PAGE_SIZE,
             limit: consts.PAGE_SIZE,
-            where: Object.assign({}, this.where, attrWhere)
+            where: Object.assign({
+              alias: this.alias
+            }, this.where, attrWhere)
           }
         })
       },

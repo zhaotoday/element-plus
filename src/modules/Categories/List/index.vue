@@ -66,6 +66,15 @@
 
   export default {
     name: 'list',
+    async beforeRouteUpdate (to, from, next) {
+      this.alias = to.params.alias
+      this.getItems()
+      next()
+    },
+    created () {
+      this.alias = this.$route.params.alias
+      this.getItems()
+    },
     components: {
       List,
       ListHeader,
@@ -74,6 +83,7 @@
     },
     data () {
       return {
+        alias: '',
         formModal: false,
         formValidate: {
           title: '',
@@ -166,9 +176,6 @@
     computed: mapState([
       'categories'
     ]),
-    created () {
-      this.getItems()
-    },
     methods: {
       getItems (current = 1) {
         this.current = current
@@ -177,7 +184,7 @@
           query: {
             offset: (current - 1) * consts.PAGE_SIZE,
             limit: consts.PAGE_SIZE,
-            where: this.where
+            where: { ...this.where, alias: this.alias }
           }
         })
       },
@@ -221,7 +228,7 @@
 
             await this.$store.dispatch(action, {
               id: this.put.id,
-              body: this.formValidate
+              body: { ...this.formValidate, alias: this.alias }
             })
 
             this.formModal = false
