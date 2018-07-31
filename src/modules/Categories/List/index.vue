@@ -12,7 +12,7 @@
           <Button class="margin-right-sm" type="primary" @click="handlePost">新增</Button>
         </ListOperations>
         <ListSearch>
-          <Form ref="formInline" inline @submit.native.prevent="handleSearch">
+          <Form inline @submit.native.prevent="handleSearch">
             <Form-item prop="title">
               <Input type="text" placeholder="请输入标题" v-model="where.title.$like" style="width: 220px;"></Input>
             </Form-item>
