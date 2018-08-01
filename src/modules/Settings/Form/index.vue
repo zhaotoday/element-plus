@@ -34,6 +34,7 @@
                     @change="handleOAUploaderChange"></Uploader>
           <Uploader key="2" v-if="!id" @change="handleOAUploaderChange"></Uploader>
           <Input v-model="formValidate.oa_qrcode" style="display: none;"></Input>
+          （尺寸：184x184）
         </Form-item>
         <Form-item label="App 二维码" prop="app_qrcode">
           <Uploader key="3" v-if="id && !formValidate.app_qrcode"
@@ -42,6 +43,7 @@
                     @change="handleAppUploaderChange"></Uploader>
           <Uploader key="5" v-if="!id" @change="handleAppUploaderChange"></Uploader>
           <Input v-model="formValidate.app_qrcode" style="display: none;"></Input>
+          （尺寸：184x184）
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>

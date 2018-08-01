@@ -21,7 +21,8 @@ const ITEMS = [
   'formatblock',
   'fontsize',
   'forecolor', 'hilitecolor', 'bold',
-  'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat'
+  'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat',
+  'image'
 ]
 
 export default {

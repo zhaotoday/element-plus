@@ -2,7 +2,7 @@
   <div>
     <Breadcrumb>
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
-      <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
+      <Breadcrumb-item href="#">{{ consts.ALIASES[alias] }}</Breadcrumb-item>
       <Breadcrumb-item>分类列表</Breadcrumb-item>
     </Breadcrumb>
     <List :current="current" :columns="columns" :data="categories.categories.items" :total="categories.categories.total"
@@ -67,11 +67,13 @@
   export default {
     name: 'list',
     async beforeRouteUpdate (to, from, next) {
+      this.categories.categories = {}
       this.alias = to.params.alias
       this.getItems()
       next()
     },
     created () {
+      this.categories.categories = {}
       this.alias = this.$route.params.alias
       this.getItems()
     },
@@ -83,6 +85,7 @@
     },
     data () {
       return {
+        consts,
         alias: '',
         formModal: false,
         formValidate: {

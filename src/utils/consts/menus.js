@@ -5,11 +5,12 @@ export default [
     icon: 'compose',
     children: [
       {
-        title: '文章列表',
-        route: '/news/articles/index'
-      }, {
         title: '分类列表',
         route: '/news/articles/categories'
+      },
+      {
+        title: '文章列表',
+        route: '/news/articles/index'
       }
     ]
   },
@@ -19,11 +20,12 @@ export default [
     icon: 'compose',
     children: [
       {
-        title: '文章列表',
-        route: '/contact/articles/index'
-      }, {
         title: '分类列表',
         route: '/contact/articles/categories'
+      },
+      {
+        title: '文章列表',
+        route: '/contact/articles/index'
       }
     ]
   },

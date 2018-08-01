@@ -2,7 +2,7 @@
   <div>
     <Breadcrumb>
       <Breadcrumb-item href="/">首页</Breadcrumb-item>
-      <Breadcrumb-item href="#">文章管理</Breadcrumb-item>
+      <Breadcrumb-item href="#">{{ consts.ALIASES[alias] }}</Breadcrumb-item>
       <Breadcrumb-item href="/articles/index">文章列表</Breadcrumb-item>
       <Breadcrumb-item>{{ id ? '编辑' : '新增' }}</Breadcrumb-item>
     </Breadcrumb>
@@ -28,6 +28,7 @@
                     @change="handleUploaderChange"></Uploader>
           <Uploader key="2" v-if="!id" ref="uploader" @change="handleUploaderChange"></Uploader>
           <Input v-model="formValidate.picture" style="display: none;"></Input>
+          （尺寸：1150x647）
         </Form-item>
         <Form-item>
           <Button type="primary" @click="handleSave" class="margin-right-sm">保存</Button>
@@ -40,6 +41,7 @@
 
 <script>
   import { mapState } from 'vuex'
+  import consts from '@/utils/consts'
   import Editor from '@/components/Editor'
   import Uploader from '@/components/Uploader'
 
@@ -57,6 +59,7 @@
     },
     data () {
       return {
+        consts,
         alias: '',
         id: '',
         formValidate: {
@@ -107,7 +110,9 @@
       },
       getCategoryItems () {
         return this.$store.dispatch('getCategories', {
-          query: {}
+          query: {
+            where: { alias: this.alias }
+          }
         })
       },
       handleEditorChange (html) {
