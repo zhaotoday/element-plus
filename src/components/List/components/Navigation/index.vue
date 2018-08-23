@@ -1,12 +1,12 @@
 <template>
-  <div class="search">
+  <div class="navigation">
     <slot />
   </div>
 </template>
 
 <script>
   export default {
-    name: 'CListSearch'
+    name: 'CListNavigation'
   }
 </script>
 

@@ -1,42 +1,56 @@
 export default [
   {
-    name: 'news',
-    title: '企业信息',
-    icon: 'compose',
+    icon: 'android-desktop',
+    name: 'website',
+    title: '测试类目管理',
     children: [
       {
-        title: '分类列表',
-        route: '/news/articles/categories'
-      },
-      {
-        title: '文章列表',
-        route: '/news/articles/index'
+        title: '测试类目列表',
+        route: '/website/news/news/articles/categories'
       }
     ]
   },
   {
-    name: 'contact',
-    title: '联系我们',
-    icon: 'compose',
+    icon: 'android-desktop',
+    name: 'website',
+    title: '测试题管理',
     children: [
       {
-        title: '分类列表',
-        route: '/contact/articles/categories'
-      },
-      {
-        title: '文章列表',
-        route: '/contact/articles/index'
+        title: '测试题列表',
+        route: '/website/news/news/articles/categories'
       }
     ]
   },
   {
-    name: 'settings',
-    title: '系统设置',
-    icon: 'compose',
+    icon: 'android-desktop',
+    name: 'website',
+    title: '用户管理',
     children: [
       {
-        title: '网站设置',
-        route: '/settings/index'
+        title: '用户详情',
+        route: '/website/news/news/articles/categories'
+      }
+    ]
+  },
+  {
+    icon: 'android-desktop',
+    name: 'website',
+    title: '订单管理',
+    children: [
+      {
+        title: '订单列表',
+        route: '/website/news/news/articles/categories'
+      }
+    ]
+  },
+  {
+    icon: 'android-desktop',
+    name: 'website',
+    title: '财务管理',
+    children: [
+      {
+        title: '财务管理',
+        route: '/website/news/news/articles/categories'
       }
     ]
   }

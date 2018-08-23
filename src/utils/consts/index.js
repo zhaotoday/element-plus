@@ -1,21 +1,8 @@
+import env from 'jt-env'
 import MENUS from './menus'
-import ROLES from './roles'
-import ALIASES from './aliases'
-
-// 当前 host
-const HOST = window.location.host
-
-// 开发
-const DEV = 'DEV'
-
-// 生产
-const PROD = 'PROD'
-
-// 当前环境
-const ENV = HOST === 'localhost:8080' ? DEV : PROD
 
 // 基础地址
-const BASE_URL = ENV === DEV ? 'http://localhost:3002' : 'https://www.rjwb.cn'
+const BASE_URL = env.isDev() ? 'http://localhost:3002' : 'https://www.rjwb.cn'
 
 // 接口地址
 const API_URL = BASE_URL + '/apis/v1'
@@ -28,8 +15,6 @@ const TITLE = '网站后台'
 
 export default {
   MENUS,
-  ROLES,
-  ALIASES,
   BASE_URL,
   API_URL,
   PAGE_SIZE,

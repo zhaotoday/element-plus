@@ -1,4 +1,4 @@
 export default {
   path: '/',
-  component: resolve => require(['@/modules/Home'], resolve)
+  component: resolve => require(['@/pages/Home'], resolve)
 }

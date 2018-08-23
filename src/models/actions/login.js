@@ -6,6 +6,6 @@ export default class extends REST {
     super()
 
     this.baseURL = consts.API_URL
-    this.path = 'actions/login'
+    this.path = 'staffs/actions'
   }
 }

@@ -28,7 +28,7 @@ export default {
       types = Object.keys(obj[v])
 
       types.forEach(type => {
-        if (!obj[v][type]) {
+        if (!obj[v][type] && obj[v][type] !== 0) {
           delete ret[v]
         } else if (type === '$like') {
           ret[v][type] = `%${obj[v][type]}%`

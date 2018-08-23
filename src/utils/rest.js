@@ -1,4 +1,4 @@
-import REST from 'apples/libs/REST'
+import REST from 'jt-rest'
 import iView from 'iview'
 import restHelpers from './helpers/restHelpers'
 

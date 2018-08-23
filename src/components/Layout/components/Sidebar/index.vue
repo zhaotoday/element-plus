@@ -1,21 +1,34 @@
 <template>
   <div class="sidebar">
-    <div class="logo" @click="$router.push('/')">
+    <div
+      class="logo"
+      @click="$router.push('/')">
       <div class="logo-icon">
-        <I type="cube"></I>
+        <CIcon type="cube" />
       </div>
       后台管理系统
     </div>
-    <Menu ref="menu" theme="dark" :active-name="activeName" width="auto" :open-names="openNames"
-          @on-select="handleSelect">
-      <Submenu v-for="(menu, index) in consts.MENUS" :key="index" :name="menu.name">
+    <Menu
+      ref="menu"
+      theme="dark"
+      :active-name="activeName"
+      width="auto"
+      :open-names="openNames"
+      @on-select="handleSelect">
+      <Submenu
+        v-for="(menu1, index1) in consts.MENUS"
+        :key="index1"
+        :name="menu1.name">
         <template slot="title">
-          <Icon :type="menu.icon"></Icon>
-          {{ menu.title }}
+          <Icon :type="menu1.icon" />
+          {{ menu1.title }}
         </template>
-        <Menu-item v-for="(menuChild, childIndex) in menu.children" :key="childIndex" :name="menuChild.route">
-          {{ menuChild.title }}
-        </Menu-item>
+        <MenuItem
+          v-for="(menu2, index2) in menu1.children"
+          :key="index2"
+          :name="menu2.route">
+          {{ menu2.title }}
+        </MenuItem>
       </Submenu>
     </Menu>
   </div>
@@ -23,12 +36,12 @@
 
 <script>
   import consts from '@/utils/consts'
-  import I from '@/components/I'
+  import CIcon from '@/components/Icon'
 
   export default {
-    name: 'sidebar',
+    name: 'TheSidebar',
     components: {
-      I
+      CIcon
     },
     data () {
       return {
@@ -48,8 +61,8 @@
         const path = route ? route.path : this.$route.path
         const paths = path.split('/')
 
-        this.openNames = [paths[1]]
-        this.activeName = paths.length >= 4 ? `/${paths[1]}/${paths[2]}/${paths[3]}` : `/${paths[1]}/${paths[2]}`
+        this.openNames = [paths[1], `${paths[1]}/${paths[2]}`]
+        this.activeName = `/${paths[1]}/${paths[2]}/${paths[3]}/${paths[4]}/${paths[5]}`
 
         this.$nextTick(() => {
           this.$refs.menu.updateActiveName()

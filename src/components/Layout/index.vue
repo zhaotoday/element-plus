@@ -1,19 +1,19 @@
 <template>
   <div>
-    <Sidebar ref="sidebar"></Sidebar>
-    <Main></Main>
+    <TheSidebar ref="sidebar" />
+    <TheMain />
   </div>
 </template>
 
 <script>
-  import Sidebar from './components/Sidebar'
-  import Main from './components/Main'
+  import TheSidebar from './components/Sidebar'
+  import TheMain from './components/Main'
 
   export default {
-    name: 'layout',
+    name: 'TheLayout',
     components: {
-      Sidebar,
-      Main
+      TheSidebar,
+      TheMain
     },
     beforeRouteUpdate (to, from, next) {
       this.$nextTick(() => {

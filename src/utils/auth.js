@@ -1,6 +1,6 @@
-import storage from 'apples/libs/storage'
+import storage from 'jt-storage'
 
-const MANAGER = 'manager'
+const USER = 'user'
 const TOKEN = 'token'
 
 export default {
@@ -12,18 +12,18 @@ export default {
    */
   get () {
     return {
-      [MANAGER]: storage.get(MANAGER),
+      [USER]: storage.get(USER),
       [TOKEN]: storage.get(TOKEN)
     }
   },
 
   /**
    * 登录
-   * @param {string} manager 登录管理员
+   * @param {string} user 登录管理员
    * @param {string} token 登录 token
    */
-  login ({manager, token}) {
-    storage.set(MANAGER, manager)
+  login ({ user, token }) {
+    storage.set(USER, user)
     storage.set(TOKEN, `Bearer ${token}`)
   },
 
@@ -31,7 +31,7 @@ export default {
    * 登出
    */
   logout () {
-    storage.remove(MANAGER)
+    storage.remove(USER)
     storage.remove(TOKEN)
   },
 
@@ -40,6 +40,6 @@ export default {
    * @return {boolean}
    */
   loggedIn () {
-    return !!storage.get(MANAGER) && !!storage.get(TOKEN)
+    return !!storage.get(USER) && !!storage.get(TOKEN)
   }
 }

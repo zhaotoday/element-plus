@@ -1,7 +1,8 @@
-import List from './components/List'
-import ListHeader from './components/Header'
-import ListOperations from './components/Operations'
-import ListSearch from './components/Search'
+import CList from './components/List'
+import CListHeader from './components/Header'
+import CListOperations from './components/Operations'
+import CListSearch from './components/Search'
+import CListNavigation from './components/Navigation'
 
-export { ListHeader, ListOperations, ListSearch }
-export default List
+export { CListHeader, CListOperations, CListSearch, CListNavigation }
+export default CList

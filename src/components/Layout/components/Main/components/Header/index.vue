@@ -1,22 +1,25 @@
 <template>
   <div class="header">
-    <div class="logout" title="退出" @click="handleLogout">
-      <I type="logout"></I>
+    <div
+      class="logout"
+      title="退出"
+      @click="handleLogout">
+      <CIcon type="logout" />
     </div>
     <div class="user">admin</div>
     <div class="avatar">
-      <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg"></Avatar>
+      <Avatar style="background-color: #1890ff;" icon="ios-person" />
     </div>
   </div>
 </template>
 
 <script>
-  import I from '@/components/I'
+  import CIcon from '@/components/Icon'
 
   export default {
-    name: 'header',
+    name: 'TheHeader',
     components: {
-      I
+      CIcon
     },
     methods: {
       handleLogout () {

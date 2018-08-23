@@ -6,12 +6,15 @@ import router from './router'
 import '@/utils/init'
 import store from '@/store'
 import iView from 'iview'
+import globalPlugin from './utils/plugins/global'
+
 import '@/styles/global/index.scss'
 import '@/styles/iview/index.less'
 
 Vue.config.productionTip = false
 
 Vue.use(iView)
+Vue.use(globalPlugin)
 
 /* eslint-disable no-new */
 new Vue({
@@ -19,5 +22,5 @@ new Vue({
   store,
   router,
   template: '<App/>',
-  components: {App}
+  components: { App }
 })
