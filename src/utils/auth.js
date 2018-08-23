@@ -4,8 +4,6 @@ const USER = 'user'
 const TOKEN = 'token'
 
 export default {
-  name: 'auth',
-
   /**
    * 获取 auth，返回：管理员信息和 token
    * @return {Object}

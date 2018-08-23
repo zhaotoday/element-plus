@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot />
+    <slot></slot>
     <Table
       :context="$parent"
       class="margin-bottom"

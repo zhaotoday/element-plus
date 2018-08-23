@@ -62,9 +62,7 @@
     data () {
       return {
         id: 0,
-        formValidate: {
-          picture: ''
-        },
+        formValidate: {},
         ruleValidate: {},
         picture: {
           modal: false
