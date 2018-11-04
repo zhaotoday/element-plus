@@ -23,7 +23,7 @@
     "jt-i18n": "0.0.1",
     "jt-rest": "0.0.1",
     "jt-storage": "0.0.2",
-    "jt-time": "0.0.1",
+    "jt-time": "0.0.2",
     "kindeditor": "^4.1.10",
     "sass-utils": "^1.0.10",
     "vue": "^2.5.2",
