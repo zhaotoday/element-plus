@@ -42,11 +42,6 @@
         default: 1
       }
     },
-    data () {
-      return {
-        selection: []
-      }
-    },
     methods: {
       handlePageChange (current) {
         this.$emit('on-page-change', current)
