@@ -1,7 +1,7 @@
 <template>
-  <div class="main">
+  <div class="c-main">
     <TheHeader />
-    <div class="body">
+    <div class="c-main__body">
       <router-view></router-view>
     </div>
   </div>
@@ -19,6 +19,5 @@
 
 <style
   lang="scss"
-  scoped
   src="./styles/index.scss">
 </style>

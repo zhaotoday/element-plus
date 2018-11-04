@@ -1,6 +1,6 @@
 @import "../../../../../styles/utils/index";
 
-.sidebar {
+@include c(sidebar) {
   @include position--absolute(0, null, 0, 0);
 
   z-index: 1;
@@ -10,7 +10,7 @@
   overflow-y: auto;
   box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
 
-  .logo {
+  @include e(logo) {
     @include size(100%, 64px);
 
     background-color: #002140;
@@ -20,16 +20,17 @@
     color: white;
     font-size: 20px;
     transform-style: preserve-3d;
+  }
 
-    .logo-icon {
-      @include position--absolute(50%, null, null, 20px);
+  @include e(logo-icon) {
+    @include position--absolute(50%, null, null, 20px);
 
-      transform: translateY(-50%);
+    transform: translateY(-50%);
 
-      i {
-        font-size: 24px;
-        color: #1890ff;
-      }
+    i {
+      font-size: 24px;
+      color: #1890ff;
+      vertical-align: middle;
     }
   }
 

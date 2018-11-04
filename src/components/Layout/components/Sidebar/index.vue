@@ -1,9 +1,9 @@
 <template>
-  <div class="sidebar">
+  <div class="c-sidebar">
     <div
-      class="logo"
+      class="c-sidebar__logo"
       @click="$router.push('/')">
-      <div class="logo-icon">
+      <div class="c-sidebar__logo-icon">
         <CIcon type="cube" />
       </div>
       后台管理系统
@@ -75,5 +75,7 @@
   }
 </script>
 
-<style lang="scss" scoped src="./styles/index.scss">
+<style
+  lang="scss"
+  src="./styles/index.scss">
 </style>

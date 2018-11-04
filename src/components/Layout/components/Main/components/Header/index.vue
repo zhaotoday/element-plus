@@ -1,13 +1,13 @@
 <template>
-  <div class="header">
+  <div class="c-header">
     <div
-      class="logout"
+      class="c-header__logout"
       title="退出"
       @click="handleLogout">
       <CIcon type="logout" />
     </div>
-    <div class="user">admin</div>
-    <div class="avatar">
+    <div class="c-header__user">admin</div>
+    <div class="c-header__avatar">
       <Avatar
         style="background-color: #1890ff;"
         icon="ios-person" />

@@ -1,15 +1,13 @@
 @import "../../../../../../../styles/utils/index";
 
-.header {
+@include c(header) {
   @include text--middle($header-height);
 
   box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
   background-color: white;
   transform-style: preserve-3d;
 
-  .avatar,
-  .logout,
-  .user {
+  @include e(avatar, logout, user) {
     @include size(60px, $header-height);
 
     float: right;
@@ -22,13 +20,13 @@
     }
   }
 
-  .logout {
+  @include e(logout) {
     i {
       font-size: 18px;
     }
   }
 
-  .user {
+  @include e(user) {
     line-height: $header-height;
     font-size: 14px;
   }
