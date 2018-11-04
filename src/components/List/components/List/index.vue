@@ -9,8 +9,8 @@
       :data="data" />
     <Page
       :total="total"
-      :current="current"
-      :page-size="consts.PAGE_SIZE"
+      :current="pageCurrent"
+      :page-size="$consts.PAGE_SIZE"
       show-total
       show-elevator
       @on-change="handlePageChange" />
@@ -21,10 +21,6 @@
   export default {
     name: 'CList',
     props: {
-      current: {
-        type: Number,
-        default: 1
-      },
       columns: {
         type: Array,
         default () {
@@ -40,11 +36,28 @@
       total: {
         type: Number,
         default: 1
+      },
+      pageCurrent: {
+        type: Number,
+        default: 1
+      },
+      searchWhere: {
+        type: Object,
+        default () {
+          return {}
+        }
       }
     },
     methods: {
       handlePageChange (current) {
-        this.$emit('on-page-change', current)
+        this.$router.push({
+          query: Object.assign(
+            { listPageCurrent: current },
+            this.searchWhere
+              ? { listSearchWhere: JSON.stringify(this.searchWhere) }
+              : null
+          )
+        })
       }
     }
   }
