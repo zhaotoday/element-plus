@@ -1,4 +1,8 @@
-.navigation {
-  padding-bottom: 10px;
-  font-size: 14px;
+@import "../../../../../styles/utils/index";
+
+@include c(list) {
+  @include e(navigation) {
+    padding-bottom: 10px;
+    font-size: 14px;
+  }
 }

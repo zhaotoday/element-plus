@@ -6,14 +6,13 @@
       class="margin-bottom"
       border
       :columns="columns"
-      :data="data"
-      :selection="[1]"
-      @on-selection-change="handleSectionChange" />
+      :data="data" />
     <Page
       :total="total"
       :current="current"
       :page-size="consts.PAGE_SIZE"
-      show-total show-elevator
+      show-total
+      show-elevator
       @on-change="handlePageChange" />
   </div>
 </template>
@@ -49,10 +48,6 @@
       }
     },
     methods: {
-      handleSectionChange (selection) {
-        this.selection = selection
-      },
-
       handlePageChange (current) {
         this.$emit('on-page-change', current)
       }

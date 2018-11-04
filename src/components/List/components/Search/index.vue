@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="c-list__search">
     <slot></slot>
   </div>
 </template>
@@ -10,5 +10,7 @@
   }
 </script>
 
-<style lang="scss" scoped src="./styles/index.scss">
+<style
+  lang="scss"
+  src="./styles/index.scss">
 </style>

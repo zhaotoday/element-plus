@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation">
+  <div class="c-list__navigation">
     <slot></slot>
   </div>
 </template>
@@ -10,5 +10,7 @@
   }
 </script>
 
-<style lang="scss" scoped src="./styles/index.scss">
+<style
+  lang="scss"
+  src="./styles/index.scss">
 </style>
