@@ -3,7 +3,5 @@
 </template>
 
 <script>
-  export default {
-    name: 'Root'
-  }
+  export default {}
 </script>
