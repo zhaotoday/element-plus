@@ -1,16 +1,3 @@
-@import "../../utils/index";
-@import "~minireset.css/minireset";
-@import "~video.js/src/css/video-js";
-
 body {
-  color: map-get($colors, c4);
-  background-color: map-get($colors, c1);
-}
-
-*:focus {
-  outline: none;
-}
-
-html, body {
-  user-select: none;
+  min-width: $min-width;
 }
