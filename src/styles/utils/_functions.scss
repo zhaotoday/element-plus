@@ -1,8 +1,0 @@
-/**
- * 获取颜色
- * @param {number} $index 颜色列表索引
- * @return {string}
- */
-@function color($index) {
-  @return _color($colors, $index);
-}
