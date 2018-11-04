@@ -1,0 +1,7 @@
+@import "../../utils/index";
+
+@each $key, $value in $colors {
+  .#{$key} {
+    color: $value;
+  }
+}
