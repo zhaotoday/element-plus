@@ -7,9 +7,7 @@ import '@/utils/init'
 import store from '@/store'
 import iView from 'iview'
 import globalPlugin from './utils/plugins/global'
-
-import '@/styles/global/index.scss'
-import '@/styles/iview/index.less'
+import '@/utils/styles'
 
 Vue.config.productionTip = false
 
