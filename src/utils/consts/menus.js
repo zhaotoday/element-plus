@@ -7,6 +7,14 @@ export default [
       {
         title: '二级菜单',
         route: '/some/route'
+      },
+      {
+        title: '二级菜单',
+        route: '/some/route'
+      },
+      {
+        title: '二级菜单',
+        route: '/some/route'
       }
     ]
   }
