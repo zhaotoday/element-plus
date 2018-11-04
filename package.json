@@ -24,7 +24,7 @@
     "jt-storage": "0.0.2",
     "jt-time": "0.0.2",
     "kindeditor": "^4.1.10",
-    "sass-utils": "^1.0.10",
+    "sass-utils": "^1.0.20",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
