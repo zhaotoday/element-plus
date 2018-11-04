@@ -40,7 +40,7 @@
       },
       total: {
         type: Number,
-        default: 0
+        default: 1
       }
     },
     data () {
@@ -54,7 +54,7 @@
       },
 
       handlePageChange (current) {
-        this.$emit('on-change', current)
+        this.$emit('on-page-change', current)
       }
     }
   }

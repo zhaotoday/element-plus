@@ -78,7 +78,7 @@
       defaultFileList () {
         return this.value ? [{
           'name': '',
-          'url': helpers.getImageURLById(this.value)
+          'url': helpers.getFileURLById(this.value)
         }] : []
       }
     },
@@ -97,7 +97,7 @@
         this.$emit('change', null)
       },
       handleSuccess (res, file) {
-        file.url = helpers.getImageURLById(res.data.id)
+        file.url = helpers.getFileURLById(res.data.id)
         file.name = res.data.title
 
         if (this.uploadList.length > 1) {
