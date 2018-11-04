@@ -6,7 +6,7 @@ import router from './router'
 import '@/utils/init'
 import store from '@/store'
 import iView from 'iview'
-import globalPlugin from './utils/plugins/global'
+import globalPlugin from '@/plugins/global'
 import '@/utils/styles'
 
 Vue.config.productionTip = false
