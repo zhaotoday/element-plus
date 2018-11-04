@@ -8,7 +8,9 @@
     </div>
     <div class="user">admin</div>
     <div class="avatar">
-      <Avatar style="background-color: #1890ff;" icon="ios-person" />
+      <Avatar
+        style="background-color: #1890ff;"
+        icon="ios-person" />
     </div>
   </div>
 </template>
@@ -30,5 +32,8 @@
   }
 </script>
 
-<style lang="scss" scoped src="./styles/index.scss">
+<style
+  lang="scss"
+  scoped
+  src="./styles/index.scss">
 </style>

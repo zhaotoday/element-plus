@@ -105,6 +105,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped src="./styles/index.scss">
-</style>

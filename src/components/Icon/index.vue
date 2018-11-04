@@ -1,5 +1,7 @@
 <template>
-  <i class="iconfont" :class="'icon-' + type" />
+  <i
+    class="iconfont"
+    :class="'icon-' + type" />
 </template>
 
 <script>
@@ -14,5 +16,7 @@
   }
 </script>
 
-<style lang="scss" scoped src="./styles/index.scss">
+<style
+  lang="scss"
+  src="./styles/index.scss">
 </style>
