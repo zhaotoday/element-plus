@@ -1,5 +1,5 @@
 <template>
-  <div class="operations">
+  <div class="c-list__operations">
     <slot></slot>
   </div>
 </template>
@@ -10,5 +10,7 @@
   }
 </script>
 
-<style lang="scss" scoped src="./styles/index.scss">
+<style
+  lang="scss"
+  src="./styles/index.scss">
 </style>
