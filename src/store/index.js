@@ -7,12 +7,9 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    language: 'zh-CN'
-  },
+  state: {},
   getters,
   actions,
   mutations,
-  modules: {
-  }
+  modules: {}
 })
