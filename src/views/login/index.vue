@@ -1,6 +1,6 @@
 <template>
   <Card
-    class="login"
+    class="p-login"
     dis-hover>
     <p slot="title">后台管理系统</p>
     <Form
