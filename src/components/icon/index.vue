@@ -5,15 +5,15 @@
 </template>
 
 <script>
-  export default {
-    name: 'CIcon',
-    props: {
-      type: {
-        type: String,
-        default: ''
-      }
+export default {
+  name: 'CIcon',
+  props: {
+    type: {
+      type: String,
+      default: ''
     }
   }
+}
 </script>
 
 <style

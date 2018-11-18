@@ -2,19 +2,19 @@
   <div class="c-main">
     <TheHeader />
     <div class="c-main__body">
-      <router-view></router-view>
+      <router-view />
     </div>
   </div>
 </template>
 <script>
-  import TheHeader from './components/header'
+import TheHeader from './components/header'
 
-  export default {
-    name: 'TheMain',
-    components: {
-      TheHeader
-    }
+export default {
+  name: 'TheMain',
+  components: {
+    TheHeader
   }
+}
 </script>
 
 <style

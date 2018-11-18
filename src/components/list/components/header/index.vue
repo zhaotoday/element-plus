@@ -1,13 +1,13 @@
 <template>
   <div class="c-list__header">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'CListHeader'
-  }
+export default {
+  name: 'CListHeader'
+}
 </script>
 
 <style

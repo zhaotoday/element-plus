@@ -35,44 +35,44 @@
 </template>
 
 <script>
-  import consts from '@/utils/consts'
-  import CIcon from '@/components/icon'
+import consts from '@/utils/consts'
+import CIcon from '@/components/icon'
 
-  export default {
-    name: 'TheSidebar',
-    components: {
-      CIcon
+export default {
+  name: 'TheSidebar',
+  components: {
+    CIcon
+  },
+  data () {
+    return {
+      consts,
+      activeName: '',
+      openNames: []
+    }
+  },
+  created () {
+    this.update()
+  },
+  methods: {
+    handleSelect (name) {
+      this.$router.push(name)
     },
-    data () {
-      return {
-        consts,
-        activeName: '',
-        openNames: []
-      }
-    },
-    created () {
-      this.update()
-    },
-    methods: {
-      handleSelect (name) {
-        this.$router.push(name)
-      },
-      update (route) {
-        const path = route ? route.path : this.$route.path
-        const paths = path.split('/')
-        this.openNames = [paths[1]]
-        this.activeName = `/${paths[1]}/${paths[2]}`
+    update (route) {
+      const path = route ? route.path : this.$route.path
+      const paths = path.split('/')
+      this.openNames = [paths[1]]
+      this.activeName = `/${paths[1]}/${paths[2]}`
 
-        this.$nextTick(() => {
-          this.$refs.menu.updateActiveName()
-          this.$refs.menu.$children.forEach((item) => {
-            item.opened = false
-          })
-          this.$refs.menu.updateOpened()
+      this.$nextTick(() => {
+        this.$refs.menu.updateActiveName()
+        this.$refs.menu.$children.forEach((item) => {
+          item.opened = false
         })
-      }
+        this.$refs.menu.updateOpened()
+      })
     }
   }
+}
 </script>
 
 <style

@@ -38,69 +38,69 @@
 </template>
 
 <script>
-  import 'kindeditor'
-  import 'kindeditor/themes/default/default.css'
-  import _consts from './utils/consts'
-  import _helpers from './utils/helpers'
-  import helpers from '@/utils/helpers/base'
-  import CUploader from '@/components/uploader'
+import 'kindeditor'
+import 'kindeditor/themes/default/default.css'
+import _consts from './utils/consts'
+import _helpers from './utils/helpers'
+import helpers from '@/utils/helpers/base'
+import CUploader from '@/components/uploader'
 
-  const KindEditor = window.KindEditor
+const KindEditor = window.KindEditor
 
-  export default {
-    name: 'CEditor',
-    props: {
-      value: {
-        type: String,
-        default: ''
-      }
-    },
-    components: {
-      CUploader
-    },
-    data () {
-      return {
-        id: 0,
-        formValidate: {},
-        ruleValidate: {},
-        picture: {
-          modal: false
-        }
-      }
-    },
-    mounted () {
-      const vm = this
-
-      const options = {
-        width: '100%',
-        height: 500,
-        items: _consts.ITEMS,
-        pluginsPath: 'KEPlugins/',
-        afterChange: function () {
-          vm.$emit('change', this.html())
-        }
-      }
-
-      this.$nextTick(() => {
-        this.editor = KindEditor.create(this.$refs.content, { ...options })
-      })
-
-      _helpers.overrideImagePlugin(() => {
-        this.picture.modal = true
-      })
-    },
-    methods: {
-      html (html) {
-        this.editor.html(html)
-      },
-      handleImageFormOk () {
-        this.editor.insertHtml(`<img src="${helpers.getFileURLById(this.formValidate.picture)}" />`)
-        this.$refs.uploader.remove()
-        this.picture.modal = false
-      },
-      handleUploaderChange (file) {
-        this.formValidate.picture = file ? file.id : ''
+export default {
+  name: 'CEditor',
+  props: {
+    value: {
+      type: String,
+      default: ''
+    }
+  },
+  components: {
+    CUploader
+  },
+  data () {
+    return {
+      id: 0,
+      formValidate: {},
+      ruleValidate: {},
+      picture: {
+        modal: false
       }
     }
+  },
+  mounted () {
+    const vm = this
+
+    const options = {
+      width: '100%',
+      height: 500,
+      items: _consts.ITEMS,
+      pluginsPath: 'KEPlugins/',
+      afterChange: function () {
+        vm.$emit('change', this.html())
+      }
+    }
+
+    this.$nextTick(() => {
+      this.editor = KindEditor.create(this.$refs.content, { ...options })
+    })
+
+    _helpers.overrideImagePlugin(() => {
+      this.picture.modal = true
+    })
+  },
+  methods: {
+    html (html) {
+      this.editor.html(html)
+    },
+    handleImageFormOk () {
+      this.editor.insertHtml(`<img src="${helpers.getFileURLById(this.formValidate.picture)}" />`)
+      this.$refs.uploader.remove()
+      this.picture.modal = false
+    },
+    handleUploaderChange (file) {
+      this.formValidate.picture = file ? file.id : ''
+    }
   }
+}
 </script>

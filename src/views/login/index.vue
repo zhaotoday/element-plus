@@ -41,46 +41,49 @@
 </template>
 
 <script>
-  import auth from '@/utils/auth'
-  import Model from '@/models/actions/login'
+import auth from '@/utils/auth'
+import Model from '@/models/actions/login'
 
-  export default {
-    data () {
-      return {
-        formValidate: {},
-        ruleValidate: {
-          telephone: [
-            {
-              required: true,
-              message: '手机号不能为空'
-            }
-          ],
-          password: [
-            {
-              required: true,
-              message: '密码不能为空'
-            }
-          ]
-        }
-      }
-    },
-    methods: {
-      handleLogin () {
-        this.$refs.formValidate.validate(async valid => {
-          if (valid) {
-            const res = await new Model().POST({
-              body: { ...this.formValidate, type: 'LOGIN' }
-            })
-
-            auth.login(res.data)
-            this.$Message.success('登录成功')
-            this.$router.push(this.$route.query.redirect || '/')
+export default {
+  data () {
+    return {
+      formValidate: {},
+      ruleValidate: {
+        telephone: [
+          {
+            required: true,
+            message: '手机号不能为空'
           }
-        })
+        ],
+        password: [
+          {
+            required: true,
+            message: '密码不能为空'
+          }
+        ]
       }
     }
+  },
+  methods: {
+    handleLogin () {
+      this.$refs.formValidate.validate(async valid => {
+        if (valid) {
+          const res = await new Model().POST({
+            body: { ...this.formValidate, type: 'LOGIN' }
+          })
+
+          auth.login(res.data)
+          this.$Message.success('登录成功')
+          this.$router.push(this.$route.query.redirect || '/')
+        }
+      })
+    }
   }
+}
 </script>
 
-<style lang="scss" scoped src="./styles/index.scss">
+<style
+  lang="scss"
+  scoped
+  src="./styles/index.scss">
 </style>

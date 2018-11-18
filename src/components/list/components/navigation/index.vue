@@ -1,13 +1,13 @@
 <template>
   <div class="c-list__navigation">
-    <slot></slot>
+    <slot />
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'CListNavigation'
-  }
+export default {
+  name: 'CListNavigation'
+}
 </script>
 
 <style

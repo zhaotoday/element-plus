@@ -29,40 +29,40 @@
 </template>
 
 <script>
-  import CChildUploader from './components/uploader'
+import CChildUploader from './components/uploader'
 
-  export default {
-    name: 'CUploader',
-    components: {
-      CChildUploader
+export default {
+  name: 'CUploader',
+  components: {
+    CChildUploader
+  },
+  props: {
+    hasDefaultFile: {
+      type: Boolean,
+      default: false
     },
-    props: {
-      hasDefaultFile: {
-        type: Boolean,
-        default: false
-      },
-      value: {
-        type: [String, Number],
-        default: 0
-      },
-      format: {
-        type: Array,
-        default () {
-          return ['jpg', 'jpeg', 'png']
-        }
-      },
-      maxSize: {
-        type: Number,
-        default: 2048
+    value: {
+      type: [String, Number],
+      default: 0
+    },
+    format: {
+      type: Array,
+      default () {
+        return ['jpg', 'jpeg', 'png']
       }
     },
-    methods: {
-      handleUploaderChange (file) {
-        this.$emit('change', file)
-      },
-      remove () {
-        this.$refs.uploader.remove()
-      }
+    maxSize: {
+      type: Number,
+      default: 2048
+    }
+  },
+  methods: {
+    handleUploaderChange (file) {
+      this.$emit('change', file)
+    },
+    remove () {
+      this.$refs.uploader.remove()
     }
   }
+}
 </script>

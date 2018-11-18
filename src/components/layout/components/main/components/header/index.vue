@@ -16,20 +16,20 @@
 </template>
 
 <script>
-  import CIcon from '@/components/icon'
+import CIcon from '@/components/icon'
 
-  export default {
-    name: 'TheHeader',
-    components: {
-      CIcon
-    },
-    methods: {
-      handleLogout () {
-        this.$router.push('/logout')
-        this.$Message.success('退出成功')
-      }
+export default {
+  name: 'TheHeader',
+  components: {
+    CIcon
+  },
+  methods: {
+    handleLogout () {
+      this.$router.push('/logout')
+      this.$Message.success('退出成功')
     }
   }
+}
 </script>
 
 <style

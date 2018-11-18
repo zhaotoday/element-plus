@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot></slot>
+    <slot />
     <Table
       :context="$parent"
       class="margin-bottom"
@@ -18,47 +18,47 @@
 </template>
 
 <script>
-  export default {
-    name: 'CList',
-    props: {
-      columns: {
-        type: Array,
-        default () {
-          return []
-        }
-      },
-      data: {
-        type: Array,
-        default () {
-          return []
-        }
-      },
-      total: {
-        type: Number,
-        default: 1
-      },
-      pageCurrent: {
-        type: Number,
-        default: 1
-      },
-      searchWhere: {
-        type: Object,
-        default () {
-          return {}
-        }
+export default {
+  name: 'CList',
+  props: {
+    columns: {
+      type: Array,
+      default () {
+        return []
       }
     },
-    methods: {
-      handlePageChange (current) {
-        this.$router.push({
-          query: Object.assign(
-            { listPageCurrent: current },
-            this.searchWhere
-              ? { listSearchWhere: JSON.stringify(this.searchWhere) }
-              : null
-          )
-        })
+    data: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    total: {
+      type: Number,
+      default: 1
+    },
+    pageCurrent: {
+      type: Number,
+      default: 1
+    },
+    searchWhere: {
+      type: Object,
+      default () {
+        return {}
       }
     }
+  },
+  methods: {
+    handlePageChange (current) {
+      this.$router.push({
+        query: Object.assign(
+          { listPageCurrent: current },
+          this.searchWhere
+            ? { listSearchWhere: JSON.stringify(this.searchWhere) }
+            : null
+        )
+      })
+    }
   }
+}
 </script>
