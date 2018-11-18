@@ -1,6 +1,6 @@
 import REST from 'jt-rest'
 import iView from 'iview'
-import restHelpers from './helpers/restHelpers'
+import restHelpers from './helpers/rest-helpers'
 
 export default class extends REST {
   /**
