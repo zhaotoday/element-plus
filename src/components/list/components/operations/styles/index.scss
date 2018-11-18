@@ -1,0 +1,9 @@
+@import "../../../../../styles/utils/index";
+
+@include c(list) {
+  @include e(operations) {
+    @include position--absolute(0, null, null, 0);
+
+    min-width: 300px;
+  }
+}

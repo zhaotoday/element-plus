@@ -1,0 +1,40 @@
+@import "../../../../../styles/utils/index";
+
+@include c(sidebar) {
+  @include position--absolute(0, null, 0, 0);
+
+  z-index: 1;
+  width: $sidebar-width;
+  background-color: #001529;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+
+  @include e(logo) {
+    @include size(100%, 64px);
+
+    background-color: #002140;
+    line-height: 64px;
+    padding-left: 60px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    transform-style: preserve-3d;
+  }
+
+  @include e(logo-icon) {
+    @include position--absolute(50%, null, null, 20px);
+
+    transform: translateY(-50%);
+
+    i {
+      font-size: 24px;
+      color: #1890ff;
+      vertical-align: middle;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
