@@ -1,33 +1,29 @@
-## 1. 关于
+## 关于
 
-#### 1.1. 介绍
+#### 介绍
 
 基于 Vue CLI 3 + iView 的后台管理系统，支持：开发调试、构建、代码规范校验等。
 
-#### 1.2. 技术栈
+#### 技术栈
 
 Vue、Webpack、ES6、Vue Router、Vuex、Sass、PostCSS 等。
 
-#### 1.3. 说明
+## 例子
 
-本项目的初衷是整理一套通用的 Vue.js 单页应用模板，由于近期项目需要，才加入 iView。但是，你可以很轻松地从本项目中剥离 iView，获取一套通用的 Vue.js 单页应用模板，或者加入其它 UI 组件库。
-> 如何剥离 iView？去除 [6. 加入 iView 组件库](https://github.com/zhaotoday/iview#6-加入-iview-组件库) 的相关操作即可。
-
-## 2. 例子
-
-#### 2.1. 线上的例子
+#### 线上的例子
 
 [http://admin.liruan.cn/#/articles](http://admin.liruan.cn/#/articles)
+
 ```
 用户：admin
 密码：123456
 ```
 
-#### 2.2. 服务端框架
+#### 服务端框架
 
 [https://github.com/zhaotoday/less.js](https://github.com/zhaotoday/less.js)
 
-## 3. 命令
+## 命令
 
 ```bash
 # 下载代码
@@ -43,9 +39,9 @@ $ npm run serve
 $ npm run build
 ```
 
-## 5. 规范
+## 规范
 
-#### 5.1. 项目结构
+#### 项目结构
 
 ```
 |-- public                           // 网站公共目录
@@ -78,7 +74,7 @@ $ npm run build
 |   |-- main.js                      // 程序入口
 ```
 
-#### 5.3. 公共组件规范
+#### 公共组件规范
 
 公共组件放在 /src/components 下。
 
@@ -93,20 +89,20 @@ $ npm run build
 |       |-- child-component   // my component 的子组件 child component
 ```
 
-#### 5.4. 视图规范
+#### 视图规范
 
 视图放在 /src/views 下，也就是一个页面，对应一个路由。规范和公共组件一致。
 
-## 6. 加入 iView 组件库
+## 加入 iView 组件库
 
-#### 6.1. 提供 less 支持
+#### 提供 less 支持
 
 ```bash
 # 安装 less-loader、less
 $ npm install --save-dev less-loader less
 ```
 
-#### 6.2. 自定义 iView 的主题
+#### 自定义 iView 的主题
 
 /src/styles/iview/index.less：
 
@@ -118,7 +114,7 @@ $ npm install --save-dev less-loader less
 
 [链接](https://www.iviewui.com/docs/guide/theme)
 
-#### 6.3. 引入 iView
+#### 引入 iView
 
 /src/main.js：
 
@@ -128,7 +124,7 @@ import iView from 'iview'
 Vue.use(iView)
 ```
 
-#### 6.4. 引入 iView Loader
+#### 引入 iView Loader
 
 [官网原话]统一 iView 标签书写规范，所有标签都可以使用首字母大写的形式，包括 Vue 限制的两个标签 Switch 和 Circle。
 
@@ -158,9 +154,9 @@ module: {
 }
 ```
 
-## 7. 参考
+## 参考
 
-#### 7.1. 网址
+#### 网址
 
 - [Vue.js 中文网](https://cn.vuejs.org/)
 - [iView - 一套基于 Vue.js 的高质量 UI 组件库](https://www.iviewui.com/)
@@ -173,7 +169,7 @@ module: {
 - [单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)
 - [vue-devtools](https://github.com/vuejs/vue-devtools)
 
-#### 7.2. 相关链接
+#### 相关链接
 - [一个极简的轻量级 Sass 工具库](https://github.com/zhaotoday/sass-utils)
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
 - [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
