@@ -6,8 +6,8 @@
 </template>
 
 <script>
-  import TheSidebar from './components/Sidebar'
-  import TheMain from './components/Main'
+  import TheSidebar from './components/sidebar'
+  import TheMain from './components/main'
 
   export default {
     name: 'TheLayout',

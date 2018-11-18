@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import CIcon from '@/components/Icon'
+  import CIcon from '@/components/icon'
 
   export default {
     name: 'TheHeader',

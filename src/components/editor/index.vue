@@ -43,7 +43,7 @@
   import _consts from './utils/consts'
   import _helpers from './utils/helpers'
   import helpers from '@/utils/helpers/base'
-  import CUploader from '@/components/Uploader'
+  import CUploader from '@/components/uploader'
 
   const KindEditor = window.KindEditor
 

@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-  import TheHeader from './components/Header'
+  import TheHeader from './components/header'
 
   export default {
     name: 'TheMain',

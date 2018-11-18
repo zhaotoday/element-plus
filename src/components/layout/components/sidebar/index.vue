@@ -36,7 +36,7 @@
 
 <script>
   import consts from '@/utils/consts'
-  import CIcon from '@/components/Icon'
+  import CIcon from '@/components/icon'
 
   export default {
     name: 'TheSidebar',

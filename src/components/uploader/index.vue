@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import CChildUploader from './components/Uploader'
+  import CChildUploader from './components/uploader'
 
   export default {
     name: 'CUploader',

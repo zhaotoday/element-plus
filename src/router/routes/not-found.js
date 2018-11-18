@@ -1,4 +1,4 @@
 export default {
   path: '*',
-  component: resolve => require(['@/pages/not-found'], resolve)
+  component: resolve => require(['@/views/not-found'], resolve)
 }
