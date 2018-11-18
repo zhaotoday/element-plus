@@ -35,6 +35,9 @@ $ npm install
 # 开发调试
 $ npm run serve
 
+# 代码校验
+$ npm run lint
+
 # 构建
 $ npm run build
 ```
@@ -172,5 +175,3 @@ module: {
 #### 相关链接
 - [一个极简的轻量级 Sass 工具库](https://github.com/zhaotoday/sass-utils)
 - [AJAX 简单封装及使用规范](https://github.com/zhaotoday/rest)
-- [基于 i18next 实现 Vue js 项目的国际化（整理中）](https://github.com/zhaotoday/i18n)
-- [老版本的浏览器上访问时提示升级](https://github.com/zhaotoday/update-your-browser)
