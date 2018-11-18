@@ -34,6 +34,5 @@ export default {
 
 <style
   lang="scss"
-  scoped
   src="./styles/index.scss">
 </style>

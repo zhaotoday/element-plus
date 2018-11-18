@@ -4,6 +4,7 @@
     dis-hover>
     <p slot="title">后台管理系统</p>
     <Form
+      class="pb-form"
       ref="formValidate"
       :model="formValidate"
       :rules="ruleValidate"
@@ -84,6 +85,5 @@ export default {
 
 <style
   lang="scss"
-  scoped
   src="./styles/index.scss">
 </style>
