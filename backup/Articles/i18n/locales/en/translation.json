@@ -1,9 +1,0 @@
-{
-  "article": {
-    "_": "article",
-    "details": "details",
-    "list": "list"
-  },
-  "articleList": "{{whose}} $t(article._) $t(article.list)",
-  "my": "my"
-}
