@@ -1,12 +1,11 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+import App from './app.vue'
 import router from './router'
-import '@/utils/init'
-import store from '@/store'
+import store from './store'
+
 import iView from 'iview'
 import globalPlugin from '@/plugins/global'
+import '@/utils/init'
 import '@/utils/styles'
 
 Vue.config.productionTip = false
@@ -14,11 +13,8 @@ Vue.config.productionTip = false
 Vue.use(iView)
 Vue.use(globalPlugin)
 
-/* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  store,
   router,
-  template: '<App/>',
-  components: { App }
-})
+  store,
+  render: h => h(App)
+}).$mount('#app')
