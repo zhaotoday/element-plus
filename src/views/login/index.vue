@@ -6,28 +6,34 @@
     <Form
       class="pb-form"
       ref="formValidate"
-      :model="formValidate"
-      :rules="ruleValidate"
-      :label-width="60"
+      :model="cForm.formValidate"
+      :rules="cForm.ruleValidate"
+      :label-width="90"
       label-position="left">
       <Form-item
-        label="账号"
+        label="手机号"
         prop="telephone">
         <Input
           size="large"
-          v-model="formValidate.telephone"
+          v-model="cForm.formValidate.telephone"
           placeholder="请输入手机号"
           @on-enter="handleLogin" />
       </Form-item>
       <Form-item
-        label="密码"
-        prop="password">
+        class="pb-get-checkcode__wrap"
+        label="短信验证码"
+        prop="check_code">
         <Input
           size="large"
-          type="password"
-          v-model="formValidate.password"
-          placeholder="请输入密码"
+          v-model="cForm.formValidate.check_code"
+          placeholder="请输入短信验证码"
           @on-enter="handleLogin" />
+        <div
+          class="pb-get-checkcode"
+          :class="cCheckCode.disabled ? 'is-disabled' : ''"
+          @click="handleGetCheckCode">
+          {{ cCheckCode.message }}
+        </div>
       </Form-item>
       <Form-item>
         <Button
@@ -48,29 +54,79 @@ import Model from '@/models/actions/login'
 export default {
   data () {
     return {
-      formValidate: {},
-      ruleValidate: {
-        telephone: [
-          {
-            required: true,
-            message: '手机号不能为空'
-          }
-        ],
-        password: [
-          {
-            required: true,
-            message: '密码不能为空'
-          }
-        ]
+      cForm: {
+        formValidate: {},
+        ruleValidate: {
+          telephone: [
+            {
+              required: true,
+              message: '手机号不能为空'
+            }
+          ],
+          check_code: [
+            {
+              required: true,
+              message: '短信验证码不能为空'
+            }
+          ]
+        }
+      },
+      cCheckCode: {
+        disabled: false,
+        message: '获取短信验证码'
       }
     }
   },
   methods: {
+    async getCheckCode (telephone) {
+      const staffsPostActionRes = await this.$store.dispatch('staffs/postAction', {
+        body: {
+          type: 'GET_CHECK_CODE',
+          telephone
+        }
+      })
+
+      return staffsPostActionRes.data.check_code
+    },
+    async handleGetCheckCode () {
+      if (this.cCheckCode.disabled) {
+        return
+      }
+
+      const { telephone } = this.cForm.formValidate
+
+      if (!telephone) {
+        this.$Message.error('手机号不能为空')
+        return
+      }
+
+      await this.getCheckCode(telephone)
+
+      const TOTAL_SECONDS = 60
+      let i = 0
+
+      this.cCheckCode.disabled = true
+      this.cCheckCode.message = `${TOTAL_SECONDS} 秒后重新获取`
+
+      this.checkCodeTimer = setInterval(() => {
+        this.cCheckCode.message = `${TOTAL_SECONDS - ++i} 秒后重新获取`
+
+        if (TOTAL_SECONDS === i) {
+          clearInterval(this.checkCodeTimer)
+
+          this.cCheckCode.disabled = false
+          this.cCheckCode.message = '获取短信验证码'
+        }
+      }, 1000)
+    },
     handleLogin () {
       this.$refs.formValidate.validate(async valid => {
         if (valid) {
           const res = await new Model().POST({
-            body: { ...this.formValidate, type: 'LOGIN' }
+            body: {
+              type: 'LOGIN',
+              ...this.cForm.formValidate
+            }
           })
 
           auth.login(res.data)

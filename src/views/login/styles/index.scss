@@ -1,13 +1,33 @@
 @import "../../../styles/utils/index";
 
 @include p(login) {
-  @include position--absolute(250px, null, null, 50%);
-
+  position: absolute !important;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -80%);
   background-color: white;
-  margin-left: -180px;
   width: 360px;
 
   @include pb(form) {
     @include margin(10px, null, 10px, null);
+  }
+
+  @include pb(get-checkcode) {
+    @include text--middle(36px);
+    @include padding(null, 10px, null, 10px);
+    @include position--absolute(50%, 0);
+
+    display: inline-block;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding-left: 10px;
+
+    &.is-disabled {
+      color: #bebec0;
+    }
+
+    @include e(wrap) {
+      position: relative;
+    }
   }
 }
