@@ -6,28 +6,9 @@
   top: 50%;
   transform: translate(-50%, -80%);
   background-color: white;
-  width: 360px;
+  width: 320px;
 
   @include pb(form) {
     @include margin(10px, null, 10px, null);
-  }
-
-  @include pb(get-checkcode) {
-    @include text--middle(36px);
-    @include padding(null, 10px, null, 10px);
-    @include position--absolute(50%, 0);
-
-    display: inline-block;
-    transform: translateY(-50%);
-    cursor: pointer;
-    padding-left: 10px;
-
-    &.is-disabled {
-      color: #bebec0;
-    }
-
-    @include e(wrap) {
-      position: relative;
-    }
   }
 }

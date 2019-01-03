@@ -3,8 +3,6 @@ import Vuex from 'vuex'
 import getters from './getters'
 import actions from './actions'
 import mutations from './mutations'
-import articles from './modules/articles'
-import categories from './modules/categories'
 
 Vue.use(Vuex)
 
@@ -14,7 +12,8 @@ export default new Vuex.Store({
   actions,
   mutations,
   modules: {
-    articles,
-    categories
+    'public/managers': require('./modules/public/managers').default,
+    articles: require('./modules/admin/articles').default,
+    categories: require('./modules/admin/categories').default
   }
 })
