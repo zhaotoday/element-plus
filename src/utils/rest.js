@@ -32,8 +32,13 @@ export default class extends REST {
         })
         .catch(res => {
           iView.Spin.hide()
-          // 全局错误提示
-          iView.Message.error(res.response.data.error.message)
+
+          if (res.response.data.error.code === 'AUTHORIZATION/UNAUTHORIZED') {
+            iView.Message.error('登入过期，请重新登入')
+            window.location.href = 'index.html#/logout'
+          } else {
+            iView.Message.error(res.response.data.error.message)
+          }
         })
     })
   }
