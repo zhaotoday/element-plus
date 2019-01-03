@@ -41,9 +41,6 @@
 </template>
 
 <script>
-import auth from '@/utils/auth'
-import Model from '@/models/actions/login'
-
 export default {
   data () {
     return {
@@ -81,7 +78,7 @@ export default {
             }
           })
 
-          auth.login(res.data)
+          this.$auth.login(res.data)
           this.$Message.success('登录成功')
           this.$router.push(this.$route.query.redirect || '/')
         }

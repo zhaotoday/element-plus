@@ -1,4 +1,4 @@
-import Model from '@/models/public/manangers'
+import Model from '@/models/public/managers'
 
 export default {
   postAction ({ commit }, { query, body }) {
