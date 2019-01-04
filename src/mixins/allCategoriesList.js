@@ -1,4 +1,4 @@
-import Model from '@/models/categories'
+import Model from '@/models/admin/categories'
 
 export default {
   data () {

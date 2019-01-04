@@ -17,7 +17,8 @@ const router = new Router({
           path: '/',
           component: TheLayout,
           children: [
-            require('./routes/home').default
+            require('./routes/home').default,
+            require('./routes/articles').default
           ],
           meta: {
             requiresAuth: true
@@ -25,8 +26,7 @@ const router = new Router({
         },
         require('./routes/login').default,
         require('./routes/logout').default,
-        require('./routes/not-found').default,
-        require('./routes/articles').default
+        require('./routes/not-found').default
       ]
     }
   ]

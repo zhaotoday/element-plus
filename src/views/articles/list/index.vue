@@ -19,10 +19,10 @@
           <Form
             inline
             @submit.native.prevent="search">
-            <Form-item prop="category_id">
+            <Form-item prop="categoryId">
               <Categories
                 :alias="alias"
-                v-model="cList.cSearch.where.category_id.$eq"
+                v-model="cList.cSearch.where.categoryId.$eq"
                 @on-change="handleCategoryChange" />
             </Form-item>
             <Form-item prop="title">
@@ -55,7 +55,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import Categories from '@/components/Categories'
+import Categories from '@/components/categories'
 import allCategoriesListMixin from '@/mixins/allCategoriesList'
 import routeParamsMixin from '@/mixins/routeParams'
 import listMixin from '@/mixins/list'
@@ -67,7 +67,7 @@ const initWhere = {
   attr: {
     $eq: ''
   },
-  category_id: {
+  categoryId: {
     $eq: ''
   },
   title: {
@@ -99,15 +99,15 @@ export default {
           },
           {
             title: '分类',
-            key: 'category_id',
+            key: 'categoryId',
             width: 180,
-            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.category_id))
+            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId))
           },
           {
             title: '发布时间',
-            key: 'created_at',
+            key: 'createdAt',
             width: 180,
-            render: (h, params) => h('span', null, this.$time.getTime(params.row.created_at))
+            render: (h, params) => h('span', null, this.$time.getTime(params.row.createdAt))
           },
           {
             title: '操作',
@@ -121,7 +121,7 @@ export default {
                   },
                   on: {
                     click: () => {
-                      this.$router.push(`${this.routePrefix}/articles/index/form/${params.row.id}`)
+                      this.$router.push(`${this.alias}/articles/index/form/${params.row.id}`)
                     }
                   }
                 }, '编辑'),
@@ -213,7 +213,7 @@ export default {
       !getListRes.items.length && this.goPrevPage()
     },
     handleCategoryChange (value) {
-      this.cList.cSearch.where.category_id.$eq = value
+      this.cList.cSearch.where.categoryId.$eq = value
     }
   }
 }
