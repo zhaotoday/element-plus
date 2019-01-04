@@ -129,7 +129,7 @@ import CList, { CListHeader, CListOperations, CListSearch, CListNavigation } fro
 
 const module = 'categories'
 const initWhere = {
-  parent_ids: [0],
+  parentIds: [0],
   title: {
     $like: ''
   }
@@ -160,13 +160,10 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 360,
+            width: 350,
             render: (h, params) => {
               return h('ButtonGroup', [
                 h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
                   on: {
                     click: () => {
                       this.handleShowPut(params.row)
@@ -174,9 +171,6 @@ export default {
                   }
                 }, '编辑'),
                 h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
                   on: {
                     click: () => {
                       this.handleShowDel(params.row.id)
@@ -184,13 +178,10 @@ export default {
                   }
                 }, '删除'),
                 h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
                   on: {
                     click: async () => {
                       await this.$store.dispatch(`${module}/postAction`, {
-                        query: { parent_id: this.isParent ? this.parentDetail.id : 0 },
+                        query: { parentId: this.isParent ? this.parentDetail.id : 0 },
                         body: {
                           type: 'TO_PREV',
                           id: params.row.id,
@@ -203,13 +194,10 @@ export default {
                   }
                 }, '上移'),
                 h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
                   on: {
                     click: async () => {
                       await this.$store.dispatch(`${module}/postAction`, {
-                        query: { parent_id: this.isParent ? this.parentDetail.id : 0 },
+                        query: { parentId: this.isParent ? this.parentDetail.id : 0 },
                         body: {
                           type: 'TO_NEXT',
                           id: params.row.id,
@@ -222,22 +210,19 @@ export default {
                   }
                 }, '下移'),
                 h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
                   on: {
                     click: () => {
                       const { id } = params.row
 
-                      const parentIds = this.listSearchWhere && this.listSearchWhere.parent_ids
-                        ? this.$helpers.deepCopy(this.listSearchWhere.parent_ids)
+                      const parentIds = this.listSearchWhere && this.listSearchWhere.parentIds
+                        ? this.$helpers.deepCopy(this.listSearchWhere.parentIds)
                         : [0]
 
                       if (parentIds[parentIds.length - 1] !== id) {
                         parentIds.push(id)
                         this.$router.push({
                           query: {
-                            listSearchWhere: JSON.stringify({ ...initWhere, parent_ids: parentIds })
+                            listSearchWhere: JSON.stringify({ ...initWhere, parentIds: parentIds })
                           }
                         })
                       }
@@ -265,10 +250,6 @@ export default {
             {
               required: true,
               message: '标题不能为空'
-            },
-            {
-              max: 100,
-              message: '标题不能多于 100 个字'
             }
           ]
         }
@@ -284,8 +265,8 @@ export default {
       const listSearchWhere = this.listSearchWhere
 
       return listSearchWhere &&
-        listSearchWhere.parent_ids &&
-        listSearchWhere.parent_ids[listSearchWhere.parent_ids.length - 1] !== 0
+        listSearchWhere.parentIds &&
+        listSearchWhere.parentIds[listSearchWhere.parentIds.length - 1] !== 0
     }
   },
   watch: {
@@ -308,13 +289,13 @@ export default {
   },
   methods: {
     getParentDetail () {
-      if (this.listSearchWhere && this.listSearchWhere.parent_ids) {
-        const id = this.listSearchWhere.parent_ids[this.listSearchWhere.parent_ids.length - 1]
+      if (this.listSearchWhere && this.listSearchWhere.parentIds) {
+        const id = this.listSearchWhere.parentIds[this.listSearchWhere.parentIds.length - 1]
         id && this.$store.dispatch(`${module}/getDetail`, { id })
       }
     },
     getList () {
-      const { title, parent_ids = [0] } = this.listSearchWhere || initWhere
+      const { title, parentIds = [0] } = this.listSearchWhere || initWhere
 
       return this.$store.dispatch(`${module}/getList`, {
         query: {
@@ -322,8 +303,8 @@ export default {
           limit: this.$consts.PAGE_SIZE,
           where: {
             title,
-            parent_id: {
-              $eq: parent_ids[parent_ids.length - 1]
+            parentId: {
+              $eq: parentIds[parentIds.length - 1]
             },
             alias: this.alias
           }
@@ -331,13 +312,13 @@ export default {
       })
     },
     handleGoParent () {
-      const parentIds = this.$helpers.deepCopy(this.listSearchWhere.parent_ids)
+      const parentIds = this.$helpers.deepCopy(this.listSearchWhere.parentIds)
 
       parentIds.pop()
 
       this.$router.push({
         query: {
-          listSearchWhere: JSON.stringify({ ...initWhere, parent_ids: parentIds })
+          listSearchWhere: JSON.stringify({ ...initWhere, parentIds: parentIds })
         }
       })
     },
@@ -369,7 +350,7 @@ export default {
             body: {
               ...this.cForm.formValidate,
               alias: this.alias,
-              parent_id: this.isParent ? this.parentDetail.id : 0
+              parentId: this.isParent ? this.parentDetail.id : 0
             }
           })
 
@@ -377,7 +358,7 @@ export default {
           this.$Message.success((this.cForm.id ? '编辑' : '新增') + '成功！')
           !this.cForm.id && this.resetSearch({
             ...initWhere,
-            parent_ids: this.isParent ? this.listSearchWhere.parent_ids : [0]
+            parentIds: this.isParent ? this.listSearchWhere.parentIds : [0]
           })
           this.getList()
         }

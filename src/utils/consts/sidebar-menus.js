@@ -5,12 +5,12 @@ export default [
     title: '公司新闻',
     children: [
       {
-        title: '分类列表',
+        title: '文章列表',
         route: '/news/articles/index'
       },
       {
-        title: '文章列表',
-        route: '/news/categories'
+        title: '分类列表',
+        route: '/news/articles/categories'
       }
     ]
   }
