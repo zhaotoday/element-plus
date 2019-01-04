@@ -11,7 +11,7 @@
           <Button
             class="margin-right-sm"
             type="primary"
-            @click="$router.push(`${alias}/articles/index/form`)">
+            @click="$router.push(`/${alias}/articles/index/form`)">
             新增
           </Button>
         </CListOperations>
@@ -23,7 +23,7 @@
               <Categories
                 :alias="alias"
                 v-model="cList.cSearch.where.categoryId.$eq"
-                @on-change="handleCategoryChange" />
+                @on-change="value => { cList.cSearch.where.categoryId.$eq = value }" />
             </Form-item>
             <Form-item prop="title">
               <Input
@@ -211,9 +211,6 @@ export default {
 
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
-    },
-    handleCategoryChange (value) {
-      this.cList.cSearch.where.categoryId.$eq = value
     }
   }
 }

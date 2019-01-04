@@ -14,7 +14,7 @@ export default {
       const res = await new Model().GET({
         query: {
           offset: 0,
-          limit: 2000,
+          limit: -1,
           where: {
             alias: this.alias || ''
           }
@@ -28,7 +28,7 @@ export default {
 
       return item && item.title
         ? hasParent
-          ? `${this.getCategoryTitleById(item.parent_id)} - ${item.title}`
+          ? `${this.getCategoryTitleById(item.parentId)} - ${item.title}`
           : item.title
         : ''
     }

@@ -6,11 +6,11 @@ export default [
     children: [
       {
         title: '分类列表',
-        route: '/news/articles/list'
+        route: '/news/articles/index'
       },
       {
         title: '文章列表',
-        route: '/some/route'
+        route: '/news/categories'
       }
     ]
   }
