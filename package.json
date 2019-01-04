@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "array-to-tree": "^3.3.0",
     "core-js": "^2.6.1",
     "iview": "^3.2.1",
     "jt-env": "0.0.1",
