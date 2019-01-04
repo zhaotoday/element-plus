@@ -25,11 +25,11 @@
       </Form-item>
       <Form-item
         label="分类"
-        prop="category_id">
+        prop="categoryId">
         <CCategories
           :alias="alias"
-          v-model="cForm.formValidate.category_id"
-          @on-change="value => { cForm.formValidate.category_id = value }" />
+          v-model="cForm.formValidate.categoryId"
+          @on-change="value => { cForm.formValidate.categoryId = value }" />
       </Form-item>
       <Form-item
         label="封面"
@@ -82,7 +82,7 @@ export default {
               message: '标题不能多于 100 个字'
             }
           ],
-          category_id: [
+          categoryId: [
             {
               required: true,
               message: '请选择分类'

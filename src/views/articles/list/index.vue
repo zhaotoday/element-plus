@@ -103,61 +103,47 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 520,
-            render: (h, params) => {
-              return h('ButtonGroup', [
-                h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
-                  on: {
-                    click: () => {
-                      this.$router.push(`${this.alias}/articles/index/form/${params.row.id}`)
-                    }
+            width: 260,
+            render: (h, params) => h('ButtonGroup', [
+              h('Button', {
+                on: {
+                  click: () => {
+                    this.$router.push(`/${this.alias}/articles/index/form/${params.row.id}`)
                   }
-                }, '编辑'),
-                h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
-                  on: {
-                    click: () => {
-                      this.handleShowDel(params.row.id)
-                    }
+                }
+              }, '编辑'),
+              h('Button', {
+                on: {
+                  click: () => {
+                    this.handleShowDel(params.row.id)
                   }
-                }, '删除'),
-                h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
-                  on: {
-                    click: async () => {
-                      await this.$store.dispatch(`${module}/postAction`, {
-                        query: { where: { ...this.listSearchWhere, alias: this.alias } },
-                        body: { type: 'TO_PREV', id: params.row.id }
-                      })
+                }
+              }, '删除'),
+              h('Button', {
+                on: {
+                  click: async () => {
+                    await this.$store.dispatch(`${module}/postAction`, {
+                      query: { where: { ...this.listSearchWhere, alias: this.alias } },
+                      body: { type: 'TO_PREV', id: params.row.id }
+                    })
 
-                      this.getList()
-                    }
+                    this.getList()
                   }
-                }, '上移'),
-                h('Button', {
-                  props: {
-                    type: 'ghost'
-                  },
-                  on: {
-                    click: async () => {
-                      await this.$store.dispatch(`${module}/postAction`, {
-                        query: { where: { ...this.listSearchWhere, alias: this.alias } },
-                        body: { type: 'TO_NEXT', id: params.row.id }
-                      })
+                }
+              }, '上移'),
+              h('Button', {
+                on: {
+                  click: async () => {
+                    await this.$store.dispatch(`${module}/postAction`, {
+                      query: { where: { ...this.listSearchWhere, alias: this.alias } },
+                      body: { type: 'TO_NEXT', id: params.row.id }
+                    })
 
-                      this.getList()
-                    }
+                    this.getList()
                   }
-                }, '下移')
-              ])
-            }
+                }
+              }, '下移')
+            ])
           }
         ],
         cSearch: {
