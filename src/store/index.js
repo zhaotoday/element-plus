@@ -14,6 +14,7 @@ export default new Vuex.Store({
   modules: {
     'public/managers': require('./modules/public/managers').default,
     articles: require('./modules/admin/articles').default,
-    categories: require('./modules/admin/categories').default
+    categories: require('./modules/admin/categories').default,
+    settings: require('./modules/admin/settings').default
   }
 })

@@ -114,7 +114,7 @@ export default {
               alias: this.alias
             }
           })
-          this.$Message.success('保存成功！')
+          this.$Message.success('保存成功')
         }
       })
     }
