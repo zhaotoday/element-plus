@@ -178,8 +178,16 @@ export default {
               h('Button', {
                 on: {
                   click: async () => {
+                    const { title } = this.listSearchWhere || initWhere
+
                     await this.$store.dispatch(`${module}/postAction`, {
-                      query: { where: { parentId: this.isParent ? this.parentDetail.id : 0 } },
+                      query: {
+                        where: {
+                          parentId: this.isParent ? this.parentDetail.id : 0,
+                          title,
+                          alias: this.alias
+                        }
+                      },
                       body: {
                         type: 'TO_PREV',
                         id: params.row.id
@@ -193,8 +201,16 @@ export default {
               h('Button', {
                 on: {
                   click: async () => {
+                    const { title } = this.listSearchWhere || initWhere
+
                     await this.$store.dispatch(`${module}/postAction`, {
-                      query: { where: { parentId: this.isParent ? this.parentDetail.id : 0 } },
+                      query: {
+                        where: {
+                          parentId: this.isParent ? this.parentDetail.id : 0,
+                          title,
+                          alias: this.alias
+                        }
+                      },
                       body: {
                         type: 'TO_NEXT',
                         id: params.row.id
@@ -297,10 +313,8 @@ export default {
           offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
           limit: this.$consts.PAGE_SIZE,
           where: {
+            parentId: parentIds[parentIds.length - 1],
             title,
-            parentId: {
-              $eq: parentIds[parentIds.length - 1]
-            },
             alias: this.alias
           }
         }

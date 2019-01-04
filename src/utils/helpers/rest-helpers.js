@@ -24,10 +24,11 @@ export default {
     let types = []
 
     Object.keys(obj).forEach(v => {
-      ret[v] = null
       types = Object.keys(obj[v])
 
       if (types.length) {
+        ret[v] = {}
+
         types.forEach(type => {
           if (obj[v][type] === undefined || obj[v][type] === '') {
             delete ret[v]

@@ -57,7 +57,10 @@ export default {
         where: { alias: this.alias }
       }
     })
-    this.items = arrayToTree(getRes.data.items)
+
+    this.items = arrayToTree(getRes.data.items, {
+      parentProperty: 'parentId'
+    })
   },
   methods: {
     change (val) {
