@@ -3,10 +3,6 @@ import Router from 'vue-router'
 import auth from '@/utils/auth'
 import TheLayout from '@/components/layout'
 import Root from '@/views/root'
-import notFound from './routes/not-found'
-import home from './routes/home'
-import login from './routes/login'
-import logout from './routes/logout'
 import iView from 'iview'
 
 Vue.use(Router)
@@ -21,15 +17,15 @@ const router = new Router({
           path: '/',
           component: TheLayout,
           children: [
-            home
+            require('./routes/home').default
           ],
           meta: {
             requiresAuth: true
           }
         },
-        login,
-        logout,
-        notFound
+        require('./routes/login').default,
+        require('./routes/logout').default,
+        require('./routes/not-found').default
       ]
     }
   ]

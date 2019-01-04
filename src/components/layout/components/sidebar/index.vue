@@ -16,7 +16,7 @@
       :open-names="openNames"
       @on-select="handleSelect">
       <Submenu
-        v-for="(menu1, index1) in consts.MENUS"
+        v-for="(menu1, index1) in consts.SIDEBAR_MENUS"
         :key="index1"
         :name="menu1.name">
         <template slot="title">

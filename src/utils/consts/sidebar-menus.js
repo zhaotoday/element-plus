@@ -2,18 +2,14 @@ export default [
   {
     icon: 'android-desktop',
     name: 'website',
-    title: '一级菜单',
+    title: '公司新闻',
     children: [
       {
-        title: '二级菜单',
+        title: '分类列表',
         route: '/some/route'
       },
       {
-        title: '二级菜单',
-        route: '/some/route'
-      },
-      {
-        title: '二级菜单',
+        title: '文章列表',
         route: '/some/route'
       }
     ]
