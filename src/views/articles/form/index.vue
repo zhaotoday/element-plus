@@ -76,10 +76,6 @@ export default {
             {
               required: true,
               message: '标题不能为空'
-            },
-            {
-              max: 100,
-              message: '标题不能多于 100 个字'
             }
           ],
           categoryId: [
