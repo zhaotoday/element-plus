@@ -6,7 +6,7 @@ export default [
     children: [
       {
         title: '分类列表',
-        route: '/some/route'
+        route: '/news/articles/list'
       },
       {
         title: '文章列表',

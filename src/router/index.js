@@ -25,7 +25,8 @@ const router = new Router({
         },
         require('./routes/login').default,
         require('./routes/logout').default,
-        require('./routes/not-found').default
+        require('./routes/not-found').default,
+        require('./routes/articles').default
       ]
     }
   ]

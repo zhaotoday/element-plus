@@ -1,18 +1,18 @@
 export default {
   path: ':alias/articles',
-  component: resolve => require(['@/pages/articles'], resolve),
+  component: resolve => require(['@/views/articles'], resolve),
   children: [
     {
       path: 'index',
-      component: resolve => require(['@/pages/articles/list'], resolve)
+      component: resolve => require(['@/views/articles/list'], resolve)
     },
     {
       path: 'index/form/:id?',
-      component: resolve => require(['@/pages/articles/form'], resolve)
+      component: resolve => require(['@/views/articles/form'], resolve)
     },
     {
       path: 'categories',
-      component: resolve => require(['@/pages/categories/list'], resolve)
+      component: resolve => require(['@/views/categories/list'], resolve)
     }
   ]
 }
