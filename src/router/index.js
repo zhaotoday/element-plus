@@ -18,7 +18,8 @@ const router = new Router({
           component: TheLayout,
           children: [
             require('./routes/home').default,
-            require('./routes/articles').default
+            require('./routes/articles').default,
+            require('./routes/settings').default
           ],
           meta: {
             requiresAuth: true
