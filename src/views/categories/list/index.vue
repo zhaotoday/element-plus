@@ -16,7 +16,6 @@
           </Button>
           <Button
             class="margin-right-sm"
-            type="ghost"
             @click="handleGoParent"
             v-if="isParent">
             返回上一级
@@ -161,76 +160,72 @@ export default {
             title: '操作',
             key: 'action',
             width: 350,
-            render: (h, params) => {
-              return h('ButtonGroup', [
-                h('Button', {
-                  on: {
-                    click: () => {
-                      this.handleShowPut(params.row)
-                    }
+            render: (h, params) => h('ButtonGroup', [
+              h('Button', {
+                on: {
+                  click: () => {
+                    this.handleShowPut(params.row)
                   }
-                }, '编辑'),
-                h('Button', {
-                  on: {
-                    click: () => {
-                      this.handleShowDel(params.row.id)
-                    }
+                }
+              }, '编辑'),
+              h('Button', {
+                on: {
+                  click: () => {
+                    this.handleShowDel(params.row.id)
                   }
-                }, '删除'),
-                h('Button', {
-                  on: {
-                    click: async () => {
-                      await this.$store.dispatch(`${module}/postAction`, {
-                        query: { parentId: this.isParent ? this.parentDetail.id : 0 },
-                        body: {
-                          type: 'TO_PREV',
-                          id: params.row.id,
-                          where: this.where
-                        }
-                      })
-
-                      this.getList()
-                    }
-                  }
-                }, '上移'),
-                h('Button', {
-                  on: {
-                    click: async () => {
-                      await this.$store.dispatch(`${module}/postAction`, {
-                        query: { parentId: this.isParent ? this.parentDetail.id : 0 },
-                        body: {
-                          type: 'TO_NEXT',
-                          id: params.row.id,
-                          where: this.where
-                        }
-                      })
-
-                      this.getList()
-                    }
-                  }
-                }, '下移'),
-                h('Button', {
-                  on: {
-                    click: () => {
-                      const { id } = params.row
-
-                      const parentIds = this.listSearchWhere && this.listSearchWhere.parentIds
-                        ? this.$helpers.deepCopy(this.listSearchWhere.parentIds)
-                        : [0]
-
-                      if (parentIds[parentIds.length - 1] !== id) {
-                        parentIds.push(id)
-                        this.$router.push({
-                          query: {
-                            listSearchWhere: JSON.stringify({ ...initWhere, parentIds: parentIds })
-                          }
-                        })
+                }
+              }, '删除'),
+              h('Button', {
+                on: {
+                  click: async () => {
+                    await this.$store.dispatch(`${module}/postAction`, {
+                      query: { where: { parentId: this.isParent ? this.parentDetail.id : 0 } },
+                      body: {
+                        type: 'TO_PREV',
+                        id: params.row.id
                       }
+                    })
+
+                    this.getList()
+                  }
+                }
+              }, '上移'),
+              h('Button', {
+                on: {
+                  click: async () => {
+                    await this.$store.dispatch(`${module}/postAction`, {
+                      query: { where: { parentId: this.isParent ? this.parentDetail.id : 0 } },
+                      body: {
+                        type: 'TO_NEXT',
+                        id: params.row.id
+                      }
+                    })
+
+                    this.getList()
+                  }
+                }
+              }, '下移'),
+              h('Button', {
+                on: {
+                  click: () => {
+                    const { id } = params.row
+
+                    const parentIds = this.listSearchWhere && this.listSearchWhere.parentIds
+                      ? this.$helpers.deepCopy(this.listSearchWhere.parentIds)
+                      : [0]
+
+                    if (parentIds[parentIds.length - 1] !== id) {
+                      parentIds.push(id)
+                      this.$router.push({
+                        query: {
+                          listSearchWhere: JSON.stringify({ ...initWhere, parentIds: parentIds })
+                        }
+                      })
                     }
                   }
-                }, '管理子分类')
-              ])
-            }
+                }
+              }, '管理子分类')
+            ])
           }
         ],
         cSearch: {
@@ -318,7 +313,7 @@ export default {
 
       this.$router.push({
         query: {
-          listSearchWhere: JSON.stringify({ ...initWhere, parentIds: parentIds })
+          listSearchWhere: JSON.stringify({ ...initWhere, parentIds })
         }
       })
     },

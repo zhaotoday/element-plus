@@ -34,7 +34,7 @@ export default {
     return new Model().DELETE({ id })
   },
 
-  postAction ({ commit }, { body }) {
-    return new Model().addPath('actions').POST({ body })
+  postAction ({ commit }, { query, body }) {
+    return new Model().addPath('actions').POST({ query, body })
   }
 }

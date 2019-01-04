@@ -24,18 +24,22 @@ export default {
     let types = []
 
     Object.keys(obj).forEach(v => {
-      ret[v] = {}
+      ret[v] = null
       types = Object.keys(obj[v])
 
-      types.forEach(type => {
-        if (obj[v][type] === undefined || obj[v][type] === '') {
-          delete ret[v]
-        } else if (type === '$like') {
-          ret[v][type] = `%${obj[v][type]}%`
-        } else {
-          ret[v] = obj[v]
-        }
-      })
+      if (types.length) {
+        types.forEach(type => {
+          if (obj[v][type] === undefined || obj[v][type] === '') {
+            delete ret[v]
+          } else if (type === '$like') {
+            ret[v][type] = `%${obj[v][type]}%`
+          } else {
+            ret[v] = obj[v]
+          }
+        })
+      } else {
+        ret[v] = obj[v]
+      }
     })
 
     return JSON.stringify(ret)
