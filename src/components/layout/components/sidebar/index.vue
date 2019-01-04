@@ -16,7 +16,7 @@
       :open-names="openNames"
       @on-select="handleSelect">
       <Submenu
-        v-for="(menu1, index1) in consts.SIDEBAR_MENUS"
+        v-for="(menu1, index1) in $consts.SIDEBAR_MENUS"
         :key="index1"
         :name="menu1.name">
         <template slot="title">
@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import consts from '@/utils/consts'
 import CIcon from '@/components/icon'
 
 export default {
@@ -45,7 +44,6 @@ export default {
   },
   data () {
     return {
-      consts,
       activeName: '',
       openNames: []
     }
@@ -61,7 +59,7 @@ export default {
       const path = route ? route.path : this.$route.path
       const paths = path.split('/')
       this.openNames = [paths[1]]
-      this.activeName = `/${paths[1]}/${paths[2]}`
+      this.activeName = `/${paths[1]}/${paths[2]}/${paths[3]}`
 
       this.$nextTick(() => {
         this.$refs.menu.updateActiveName()

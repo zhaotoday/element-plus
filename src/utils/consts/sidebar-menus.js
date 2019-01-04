@@ -1,7 +1,7 @@
 export default [
   {
     icon: 'android-desktop',
-    name: 'website',
+    name: 'news',
     title: '公司新闻',
     children: [
       {
