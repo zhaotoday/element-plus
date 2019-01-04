@@ -71,14 +71,14 @@ export default {
     handleLogin () {
       this.$refs.formValidate.validate(async valid => {
         if (valid) {
-          const res = await this.$store.dispatch('public/managers/postAction', {
+          const { data } = await this.$store.dispatch('public/managers/postAction', {
             body: {
               type: 'LOGIN',
               ...this.cForm.formValidate
             }
           })
 
-          this.$auth.login(res.data)
+          this.$auth.login({ user: data.manager, token: data.token })
           this.$Message.success('登录成功')
           this.$router.push(this.$route.query.redirect || '/')
         }

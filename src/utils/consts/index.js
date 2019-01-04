@@ -1,5 +1,5 @@
 import env from 'jt-env'
-import MENUS from './menus'
+import SIDEBAR_MENUS from './sidebar-menus'
 
 // 基础地址
 const BASE_URL = env.isDev() ? 'http://localhost:3002' : 'https://api.cmsx.cn'
@@ -17,7 +17,7 @@ const PAGE_SIZE = 10
 const TITLE = '网站后台'
 
 export default {
-  MENUS,
+  SIDEBAR_MENUS,
   BASE_URL,
   API_URL,
   PUBLIC_API_URL,
