@@ -15,7 +15,7 @@
       <Form-item
         label="内容"
         prop="content">
-        <Editor
+        <CEditor
           ref="editor"
           v-model="cForm.formValidate.content"
           @change="value => { handleEditorChange('content', value) }" />
@@ -26,7 +26,7 @@
       <Form-item
         label="分类"
         prop="category_id">
-        <Categories
+        <CCategories
           :alias="alias"
           v-model="cForm.formValidate.category_id"
           @on-change="value => { cForm.formValidate.category_id = value }" />
@@ -34,7 +34,7 @@
       <Form-item
         label="封面"
         prop="picture">
-        <Uploader
+        <CUploader
           ref="uploader"
           :has-default-file="!!cForm.formValidate.picture"
           v-model="cForm.formValidate.picture"
@@ -47,9 +47,7 @@
           class="margin-right-sm">
           保存
         </Button>
-        <Button
-          type="ghost"
-          @click="id ? $helpers.goBack() : $router.push(`${routePrefix}/articles/index`)">
+        <Button @click="id ? $helpers.goBack() : $router.push(`/${alias}/articles/index`)">
           返回
         </Button>
       </Form-item>
@@ -59,20 +57,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import Editor from '@/components/editor'
-import Uploader from '@/components/uploader'
-import Categories from '@/components/categories'
 import routeParamsMixin from '@/mixins/routeParams'
 import formMixin from '@/mixins/form'
 
 const module = 'articles'
 
 export default {
-  components: {
-    Editor,
-    Uploader,
-    Categories
-  },
   mixins: [
     routeParamsMixin,
     formMixin

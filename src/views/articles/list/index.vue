@@ -20,7 +20,7 @@
             inline
             @submit.native.prevent="search">
             <Form-item prop="categoryId">
-              <Categories
+              <CCategories
                 :alias="alias"
                 v-model="cList.cSearch.where.categoryId.$eq"
                 @on-change="value => { cList.cSearch.where.categoryId.$eq = value }" />
@@ -55,12 +55,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import Categories from '@/components/categories'
 import allCategoriesListMixin from '@/mixins/allCategoriesList'
 import routeParamsMixin from '@/mixins/routeParams'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
-import CList, { CListHeader, CListOperations, CListSearch } from '@/components/list'
 
 const module = 'articles'
 const initWhere = {
@@ -76,13 +74,6 @@ const initWhere = {
 }
 
 export default {
-  components: {
-    CList,
-    CListHeader,
-    CListOperations,
-    CListSearch,
-    Categories
-  },
   mixins: [
     allCategoriesListMixin,
     routeParamsMixin,

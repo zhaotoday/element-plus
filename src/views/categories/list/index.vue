@@ -124,7 +124,6 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/routeParams'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
-import CList, { CListHeader, CListOperations, CListSearch, CListNavigation } from '@/components/list'
 
 const module = 'categories'
 const initWhere = {
@@ -135,13 +134,6 @@ const initWhere = {
 }
 
 export default {
-  components: {
-    CList,
-    CListHeader,
-    CListOperations,
-    CListSearch,
-    CListNavigation
-  },
   mixins: [
     routeParamsMixin,
     listMixin,

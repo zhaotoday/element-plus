@@ -12,7 +12,6 @@
       :headers="headers"
       :action="`${consts.API_URL}/files`">
       <Button
-        type="ghost"
         icon="ios-cloud-upload-outline"
         style="width: 220px;"
       >
