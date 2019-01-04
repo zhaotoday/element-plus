@@ -11,7 +11,7 @@ const API_URL = BASE_URL + '/api/v1/admin'
 const PUBLIC_API_URL = BASE_URL + '/api/v1/public'
 
 // 分页大小
-const PAGE_SIZE = 2
+const PAGE_SIZE = 10
 
 // 网站标题
 const TITLE = '网站后台'
