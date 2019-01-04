@@ -119,5 +119,7 @@ export default {
 }
 </script>
 
-<style src="./styles/index.scss">
+<style
+  lang="scss"
+  src="./styles/index.scss">
 </style>

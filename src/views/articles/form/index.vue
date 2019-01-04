@@ -58,100 +58,100 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-  import Editor from '@/components/Editor'
-  import Uploader from '@/components/Uploader'
-  import Categories from '@/components/Categories'
-  import routeParamsMixin from '@/mixins/routeParams'
-  import formMixin from '@/mixins/form'
+import { mapState } from 'vuex'
+import Editor from '@/components/editor'
+import Uploader from '@/components/uploader'
+import Categories from '@/components/categories'
+import routeParamsMixin from '@/mixins/routeParams'
+import formMixin from '@/mixins/form'
 
-  const module = 'articles'
+const module = 'articles'
 
-  export default {
-    components: {
-      Editor,
-      Uploader,
-      Categories
-    },
-    mixins: [
-      routeParamsMixin,
-      formMixin
-    ],
-    data () {
-      return {
-        cForm: {
-          formValidate: {},
-          ruleValidate: {
-            title: [
-              {
-                required: true,
-                message: '标题不能为空'
-              },
-              {
-                max: 100,
-                message: '标题不能多于 100 个字'
-              }
-            ],
-            category_id: [
-              {
-                required: true,
-                message: '请选择分类'
-              }
-            ],
-            picture: [
-              {
-                required: true,
-                message: '请上传封面'
-              }
-            ],
-            content: [
-              {
-                required: true,
-                message: '内容不能为空'
-              },
-              {
-                max: 50000,
-                message: '内容长度过长'
-              }
-            ]
-          }
-        }
-      }
-    },
-    computed: mapState({
-      detail: state => state[module].detail
-    }),
-    watch: {
-      detail: {
-        handler (newVal) {
-          this.$set(this.cForm, 'formValidate', newVal)
-          this.$refs.editor.html(newVal.content)
-        }
-      }
-    },
-    async created () {
-      this.id && this.getDetail(module, this.id)
-    },
-    methods: {
-      handleSave () {
-        this.$refs.formValidate.validate(async valid => {
-          if (valid) {
-            const id = this.id
-            await this.$store.dispatch(`${module}/${id ? 'put' : 'post'}`, {
-              id,
-              body: {
-                ...this.cForm.formValidate,
-                alias: this.alias
-              }
-            })
-            this.$Message.success((id ? '编辑' : '新增') + '成功！')
-            if (!id) {
-              this.resetFields()
-              this.$refs.editor.html('')
+export default {
+  components: {
+    Editor,
+    Uploader,
+    Categories
+  },
+  mixins: [
+    routeParamsMixin,
+    formMixin
+  ],
+  data () {
+    return {
+      cForm: {
+        formValidate: {},
+        ruleValidate: {
+          title: [
+            {
+              required: true,
+              message: '标题不能为空'
+            },
+            {
+              max: 100,
+              message: '标题不能多于 100 个字'
             }
-          }
-        })
+          ],
+          category_id: [
+            {
+              required: true,
+              message: '请选择分类'
+            }
+          ],
+          picture: [
+            {
+              required: true,
+              message: '请上传封面'
+            }
+          ],
+          content: [
+            {
+              required: true,
+              message: '内容不能为空'
+            },
+            {
+              max: 50000,
+              message: '内容长度过长'
+            }
+          ]
+        }
       }
     }
+  },
+  computed: mapState({
+    detail: state => state[module].detail
+  }),
+  watch: {
+    detail: {
+      handler (newVal) {
+        this.$set(this.cForm, 'formValidate', newVal)
+        this.$refs.editor.html(newVal.content)
+      }
+    }
+  },
+  async created () {
+    this.id && this.getDetail(module, this.id)
+  },
+  methods: {
+    handleSave () {
+      this.$refs.formValidate.validate(async valid => {
+        if (valid) {
+          const id = this.id
+          await this.$store.dispatch(`${module}/${id ? 'put' : 'post'}`, {
+            id,
+            body: {
+              ...this.cForm.formValidate,
+              alias: this.alias
+            }
+          })
+          this.$Message.success((id ? '编辑' : '新增') + '成功！')
+          if (!id) {
+            this.resetFields()
+            this.$refs.editor.html('')
+          }
+        }
+      })
+    }
   }
+}
 </script>
