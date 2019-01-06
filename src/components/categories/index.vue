@@ -1,31 +1,29 @@
 <template>
-  <div>
-    <Select
-      style="width: 220px"
-      placeholder="请选择分类"
-      clearable
-      :value.sync="value"
-      @on-change="change">
-      <template v-for="item1 in items">
-        <OptionGroup
-          v-if="!!item1.children"
-          :label="item1.title">
-          <Option
-            v-for="item2 in item1.children"
-            :value="item2.id"
-            :key="item2.id">
-            {{ item2.title }}
-          </Option>
-        </OptionGroup>
+  <Select
+    style="width: 220px"
+    placeholder="请选择分类"
+    clearable
+    :value.sync="value"
+    @on-change="change">
+    <template v-for="item1 in items">
+      <OptionGroup
+        v-if="!!item1.children"
+        :label="item1.title">
         <Option
-          v-else
-          :value="item1.id"
-          :key="item1.id">
-          {{ item1.title }}
+          v-for="item2 in item1.children"
+          :value="item2.id"
+          :key="item2.id">
+          {{ item2.title }}
         </Option>
-      </template>
-    </Select>
-  </div>
+      </OptionGroup>
+      <Option
+        v-else
+        :value="item1.id"
+        :key="item1.id">
+        {{ item1.title }}
+      </Option>
+    </template>
+  </Select>
 </template>
 
 <script>
