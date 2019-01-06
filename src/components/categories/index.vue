@@ -8,7 +8,8 @@
     <template v-for="item1 in items">
       <OptionGroup
         v-if="!!item1.children"
-        :label="item1.title">
+        :label="item1.title"
+        :key="item1.id">
         <Option
           v-for="item2 in item1.children"
           :value="item2.id"
