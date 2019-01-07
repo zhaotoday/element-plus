@@ -57,7 +57,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import routeParamsMixin from '@/mixins/routeParams'
+import routeParamsMixin from '@/mixins/route-params'
 import formMixin from '@/mixins/form'
 
 const module = 'articles'

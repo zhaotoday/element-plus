@@ -121,7 +121,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import routeParamsMixin from '@/mixins/routeParams'
+import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
 

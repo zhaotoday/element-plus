@@ -55,8 +55,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import allCategoriesListMixin from '@/mixins/allCategoriesList'
-import routeParamsMixin from '@/mixins/routeParams'
+import allCategoriesListMixin from '@/mixins/all-categories-list'
+import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
 
