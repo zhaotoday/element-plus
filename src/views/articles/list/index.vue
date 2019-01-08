@@ -55,8 +55,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import allCategoriesListMixin from '@/mixins/all-categories-list'
 import routeParamsMixin from '@/mixins/route-params'
+import allCategoriesListMixin from '@/mixins/all-categories-list'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
 
@@ -75,8 +75,8 @@ const initWhere = {
 
 export default {
   mixins: [
-    allCategoriesListMixin,
     routeParamsMixin,
+    allCategoriesListMixin,
     listMixin,
     formMixin
   ],
@@ -92,7 +92,7 @@ export default {
             title: '分类',
             key: 'categoryId',
             width: 180,
-            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId))
+            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId, true))
           },
           {
             title: '发布时间',

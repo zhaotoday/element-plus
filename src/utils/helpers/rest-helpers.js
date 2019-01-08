@@ -39,7 +39,9 @@ export default {
           }
         })
       } else {
-        ret[v] = obj[v]
+        if (obj[v] !== undefined && obj[v] !== '') {
+          ret[v] = obj[v]
+        }
       }
     })
 
