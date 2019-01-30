@@ -16,7 +16,7 @@ export default [
   },
   {
     icon: 'ios-albums',
-    name: 'news',
+    name: 'wxUsers',
     title: '微信用户管理',
     children: [
       {
