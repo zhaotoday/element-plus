@@ -125,7 +125,6 @@ export default {
   },
   methods: {
     getList () {
-      console.log(this.listSearchWhere, 33)
       return this.$store.dispatch(`${module}/getList`, {
         query: {
           offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
