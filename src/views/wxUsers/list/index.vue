@@ -76,16 +76,6 @@ export default {
             render: (h, params) => h('span', null, this.$consts.GENDERS[params.row.gender])
           },
           {
-            title: 'Open Id',
-            key: 'openId',
-            width: 250
-          },
-          {
-            title: 'Union Id',
-            key: 'unionId',
-            width: 250
-          },
-          {
             title: '国家',
             key: 'country',
             width: 100
@@ -99,6 +89,16 @@ export default {
             title: '城市',
             key: 'city',
             width: 100
+          },
+          {
+            title: 'Open Id',
+            key: 'openId',
+            width: 250
+          },
+          {
+            title: 'Union Id',
+            key: 'unionId',
+            width: 250
           }
         ],
         cSearch: {
