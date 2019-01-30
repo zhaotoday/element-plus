@@ -15,6 +15,17 @@ export default [
     ]
   },
   {
+    icon: 'ios-albums',
+    name: 'news',
+    title: '微信用户管理',
+    children: [
+      {
+        title: '微信用户列表',
+        route: '/wxUsers/wxUsers/index'
+      }
+    ]
+  },
+  {
     icon: 'md-settings',
     name: 'settings',
     title: '系统设置',

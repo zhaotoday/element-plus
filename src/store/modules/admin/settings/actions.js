@@ -3,13 +3,9 @@ import Model from '@/models/admin/settings'
 
 export default {
   async getDetail ({ commit }, { id }) {
-    const res = await new Model().GET({ id })
-
-    commit(types.GET_DETAIL, {
-      data: res.data
-    })
-
-    return res.data
+    const { data } = await new Model().GET({ id })
+    commit(types.GET_DETAIL, { data })
+    return data
   },
 
   async put ({ commit }, { id, body }) {
