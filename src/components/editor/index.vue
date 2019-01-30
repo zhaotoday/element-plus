@@ -1,6 +1,8 @@
 <template>
   <div>
-    <textarea ref="content">{{ value }}</textarea>
+    <textarea
+      ref="content"
+      v-model="value" />
     <Modal
       width="400"
       v-model="picture.modal"
