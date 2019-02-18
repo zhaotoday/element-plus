@@ -9,32 +9,55 @@
   },
   "dependencies": {
     "array-to-tree": "^3.3.0",
-    "core-js": "^2.6.1",
-    "iview": "^3.2.1",
-    "jt-env": "0.0.1",
-    "jt-helpers": "0.0.1",
-    "jt-rest": "0.0.1",
+    "core-js": "^2.6.5",
+    "iview": "^3.2.2",
+    "jt-env": "0.0.2",
+    "jt-helpers": "0.0.6",
+    "jt-rest": "0.0.8",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.7",
     "kindeditor": "^4.1.10",
     "sass-utils": "^1.0.20",
-    "vue": "^2.5.21",
+    "vue": "^2.6.6",
     "vue-router": "^3.0.2",
-    "vuex": "^3.0.1"
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.2.2",
-    "@vue/cli-plugin-eslint": "^3.2.2",
-    "@vue/cli-service": "^3.2.3",
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.11.1",
-    "eslint-plugin-vue": "^5.1.0",
+    "eslint": "^5.14.0",
+    "eslint-plugin-vue": "^5.2.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "node-sass": "^4.11.0",
-    "postcss-import": "^12.0.1",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.21"
-  }
+    "vue-template-compiler": "^2.6.6"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/standard"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
