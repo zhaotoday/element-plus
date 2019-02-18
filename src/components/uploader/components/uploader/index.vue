@@ -13,30 +13,27 @@
       :action="`${consts.API_URL}/files`">
       <Button
         icon="ios-cloud-upload-outline"
-        style="width: 220px;"
-      >
+        style="width: 220px;">
         上传文件
       </Button>
     </Upload>
     <div
       class="demo-upload-list"
       v-for="item in uploadList"
-    >
+      :key="item.uid">
       <template v-if="item.status === 'finished'">
         <img :src="item.url">
         <div class="demo-upload-list-cover">
           <Icon
             type="ios-trash-outline"
-            @click.native="handleRemove(item)"
-          />
+            @click.native="handleRemove(item)" />
         </div>
       </template>
       <template v-else>
         <Progress
           v-if="item.showProgress"
           :percent="item.percentage"
-          hide-info
-        />
+          hide-info />
       </template>
     </div>
   </div>
