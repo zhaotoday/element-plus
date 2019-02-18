@@ -40,7 +40,7 @@ export default [
       },
       {
         title: '资源管理',
-        route: '/rbac/rbacRoles/index'
+        route: '/rbac/rbac/resources'
       }
     ]
   },
