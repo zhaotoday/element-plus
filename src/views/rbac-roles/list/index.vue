@@ -70,7 +70,7 @@
               </template>
               <template v-else>
                 暂无权限数据，请先
-                <Button @click="$router.push('/company-app/roles/permissions/permissions/index')">添加</Button>
+                <Button @click="$router.push('/rbac/rbac/resources')">添加</Button>
               </template>
             </Col>
           </Row>
