@@ -27,6 +27,25 @@ export default [
   },
   {
     icon: 'md-settings',
+    name: 'rbac',
+    title: '角色权限',
+    children: [
+      {
+        title: '设置用户角色',
+        route: '/rbac/rbacRoles/index'
+      },
+      {
+        title: '角色管理',
+        route: '/rbac/rbacRoles/index'
+      },
+      {
+        title: '资源管理',
+        route: '/rbac/rbacRoles/index'
+      }
+    ]
+  },
+  {
+    icon: 'md-settings',
     name: 'settings',
     title: '系统设置',
     children: [
