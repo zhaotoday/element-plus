@@ -36,7 +36,7 @@ export default [
       },
       {
         title: '角色管理',
-        route: '/rbac/rbacRoles/index'
+        route: '/rbac/rbac/roles'
       },
       {
         title: '资源管理',

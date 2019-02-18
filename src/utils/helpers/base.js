@@ -19,5 +19,10 @@ export default {
     return items && items.length
       ? (items.find(item => +item.id === +id) || {})
       : {}
+  },
+  getItem (items, key, val) {
+    return items && items.length
+      ? (items.find(item => item[key] === val) || {})
+      : {}
   }
 }
