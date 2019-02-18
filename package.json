@@ -45,7 +45,14 @@
       "plugin:vue/essential",
       "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      "vue/no-parsing-error": [
+        2,
+        {
+          "x-invalid-end-tag": false
+        }
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
