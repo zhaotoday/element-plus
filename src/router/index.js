@@ -19,7 +19,7 @@ const router = new Router({
           children: [
             require('./routes/home').default,
             require('./routes/articles').default,
-            require('./routes/wxUsers').default,
+            require('./routes/wx-users').default,
             require('./routes/settings').default
           ],
           meta: {
