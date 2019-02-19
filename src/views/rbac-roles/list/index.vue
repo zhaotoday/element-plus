@@ -60,13 +60,18 @@
           <Row>
             <Col span="20">
               <template v-if="rbacResourcesList.items && rbacResourcesList.items.length">
-                <Checkbox
-                  v-for="item in rbacResourcesList.items"
-                  :key="item.id"
-                  :value="cForm.formValidate.permissions && cForm.formValidate.permissions.indexOf(item.code) !== -1"
-                  @on-change="checked => { handleRbacResourcesChange(item.code)(checked) }">
-                  {{ item.name }}
-                </Checkbox>
+                <div
+                  v-for="resource in rbacResourcesList.items"
+                  :key="resource.id">
+                  {{ resource.name }}：
+                  <Checkbox
+                    v-for="action in Object.keys($consts.RBAC_ACTIONS)"
+                    :key="action"
+                    :value="cForm.formValidate.permissions[resource.code] && cForm.formValidate.permissions[resource.code].indexOf(action) !== -1"
+                    @on-change="checked => { handleRbacActionsChange(resource.code, action)(checked) }">
+                    {{ $consts.RBAC_ACTIONS[action] }}
+                  </Checkbox>
+                </div>
               </template>
               <template v-else>
                 暂无权限数据，请先
@@ -114,6 +119,9 @@ import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
 
 const module = 'rbacRoles'
+const initForm = {
+  permissions: {}
+}
 
 export default {
   mixins: [
@@ -140,12 +148,20 @@ export default {
             width: 300,
             render: (h, params) => {
               const { items } = this.rbacResourcesList
-              const permissions = params.row.permissions.map(code => {
-                const item = this.$helpers.getItem(items, 'code', code)
-                return item.name || ''
-              }).filter(item => item !== '').join('、')
+              const { permissions } = params.row
+              const { RBAC_ACTIONS } = this.$consts
 
-              return h('span', null, permissions)
+              return h(
+                'span',
+                null,
+                Object.keys(permissions || {}).map(resourceCode => {
+                  const resource = this.$helpers.getItem(items, 'code', resourceCode)
+                  return h(
+                    'div',
+                    null,
+                    resource.name + '：' + permissions[resourceCode].map(action => RBAC_ACTIONS[action]).join('、'))
+                })
+              )
             }
           },
           {
@@ -182,7 +198,7 @@ export default {
       cForm: {
         id: 0,
         modal: false,
-        formValidate: {},
+        formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
           name: [
             {
@@ -207,7 +223,7 @@ export default {
   watch: {
     'cForm.modal': {
       handler (newVal) {
-        !newVal && this.resetFields()
+        !newVal && this.resetFields(initForm)
       }
     }
   },
@@ -273,24 +289,19 @@ export default {
         }
       })
     },
-    handleRbacResourcesChange (item) {
+    handleRbacActionsChange (resourceCode, action) {
       return checked => {
         const { permissions } = this.cForm.formValidate
-        let items = permissions || []
 
-        const index = items.indexOf(item)
-
-        if (checked) {
-          if (index === -1) {
-            items.push(item)
-          }
-        } else {
-          if (index !== -1) {
-            items.splice(index, 1)
-          }
+        if (!permissions[resourceCode]) {
+          permissions[resourceCode] = []
         }
 
-        this.cForm.formValidate.permissions = items
+        if (checked) {
+          permissions[resourceCode].push(action)
+        } else {
+          permissions[resourceCode].splice(permissions[resourceCode].indexOf(action), 1)
+        }
       }
     }
   }
