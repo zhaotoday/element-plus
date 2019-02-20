@@ -17,7 +17,7 @@ export default [
   {
     icon: 'ios-albums',
     name: 'wxUsers',
-    title: '微信用户管理',
+    title: '微信用户',
     children: [
       {
         title: '微信用户列表',
@@ -31,15 +31,15 @@ export default [
     title: '角色权限',
     children: [
       {
-        title: '设置用户角色',
+        title: '用户列表',
         route: '/rbac/rbacRoles/index'
       },
       {
-        title: '角色管理',
+        title: '角色列表',
         route: '/rbac/rbac/roles'
       },
       {
-        title: '资源管理',
+        title: '资源列表',
         route: '/rbac/rbac/resources'
       }
     ]

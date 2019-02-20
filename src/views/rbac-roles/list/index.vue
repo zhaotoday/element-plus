@@ -44,17 +44,6 @@
           </Row>
         </Form-item>
         <Form-item
-          label="代码"
-          prop="code">
-          <Row>
-            <Col span="20">
-              <Input
-                v-model="cForm.formValidate.code"
-                placeholder="请输入代码" />
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item
           label="权限"
           prop="permissions">
           <Row>
@@ -75,7 +64,7 @@
               </template>
               <template v-else>
                 暂无权限数据，请先
-                <Button @click="$router.push('/rbac/rbac/resources')">添加</Button>
+                <Button @click="$router.push('/rbac/rbac/resources')">添加资源</Button>
               </template>
             </Col>
           </Row>
@@ -139,11 +128,6 @@ export default {
             width: 200
           },
           {
-            title: '代码',
-            key: 'code',
-            width: 200
-          },
-          {
             title: '权限',
             width: 300,
             render: (h, params) => {
@@ -204,12 +188,6 @@ export default {
             {
               required: true,
               message: '名称不能为空'
-            }
-          ],
-          code: [
-            {
-              required: true,
-              message: '代码不能为空'
             }
           ]
         }
