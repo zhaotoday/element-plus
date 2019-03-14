@@ -20,6 +20,7 @@ const router = new Router({
             require('./routes/home').default,
             require('./routes/articles').default,
             require('./routes/products').default,
+            require('./routes/orders').default,
             require('./routes/wx-users').default,
             require('./routes/rbac').default,
             require('./routes/settings').default

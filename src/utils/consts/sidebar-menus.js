@@ -30,6 +30,17 @@ export default [
     ]
   },
   {
+    icon: 'ios-cart',
+    name: 'products',
+    title: '订单',
+    children: [
+      {
+        title: '订单列表',
+        route: '/orders/orders/index'
+      }
+    ]
+  },
+  {
     icon: 'ios-albums',
     name: 'wxUsers',
     title: '微信用户',
