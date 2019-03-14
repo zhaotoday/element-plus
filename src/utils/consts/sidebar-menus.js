@@ -9,8 +9,23 @@ export default [
         route: '/news/articles/index'
       },
       {
-        title: '分类列表',
+        title: '文章分类列表',
         route: '/news/articles/categories'
+      }
+    ]
+  },
+  {
+    icon: 'ios-cart',
+    name: 'products',
+    title: '商品',
+    children: [
+      {
+        title: '商品列表',
+        route: '/products/products/index'
+      },
+      {
+        title: '商品分类列表',
+        route: '/products/products/categories'
       }
     ]
   },

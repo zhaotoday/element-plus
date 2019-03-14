@@ -19,6 +19,7 @@ const router = new Router({
           children: [
             require('./routes/home').default,
             require('./routes/articles').default,
+            require('./routes/products').default,
             require('./routes/wx-users').default,
             require('./routes/rbac').default,
             require('./routes/settings').default
