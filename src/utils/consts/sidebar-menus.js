@@ -31,7 +31,7 @@ export default [
   },
   {
     icon: 'ios-cart',
-    name: 'products',
+    name: 'orders',
     title: '订单',
     children: [
       {

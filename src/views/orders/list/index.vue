@@ -7,29 +7,15 @@
       :pageCurrent="listPageCurrent"
       :searchWhere="listSearchWhere">
       <CListHeader>
-        <CListOperations>
-          <Button
-            class="margin-right-sm"
-            type="primary"
-            @click="$router.push(`/${alias}/products/index/form`)">
-            新增
-          </Button>
-        </CListOperations>
         <CListSearch>
           <Form
             inline
             @submit.native.prevent="search">
-            <Form-item prop="categoryId">
-              <CCategories
-                :alias="alias"
-                v-model="cList.cSearch.where.categoryId.$eq"
-                @on-change="value => { cList.cSearch.where.categoryId.$eq = value }" />
-            </Form-item>
-            <Form-item prop="name">
+            <Form-item prop="id">
               <Input
                 type="text"
-                placeholder="请输入名称"
-                v-model="cList.cSearch.where.name.$like"
+                placeholder="请输入订单号"
+                v-model="cList.cSearch.where.id.$like"
                 style="width: 220px;" />
             </Form-item>
             <Form-item>
@@ -56,16 +42,11 @@
 <script>
 import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
-import allCategoriesListMixin from '@/mixins/all-categories-list'
 import listMixin from '@/mixins/list'
-import formMixin from '@/mixins/form'
 
-const module = 'products'
+const module = 'orders'
 const initWhere = {
-  categoryId: {
-    $eq: ''
-  },
-  name: {
+  id: {
     $like: ''
   }
 }
@@ -73,44 +54,36 @@ const initWhere = {
 export default {
   mixins: [
     routeParamsMixin,
-    allCategoriesListMixin,
-    listMixin,
-    formMixin
+    listMixin
   ],
   data () {
     return {
       cList: {
         columns: [
           {
-            title: '名称',
-            key: 'name'
+            title: '订单号',
+            key: 'id'
           },
           {
-            title: '分类',
-            key: 'categoryId',
-            width: 180,
-            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId, true))
+            title: '下单会员',
+            key: 'wxUserId',
+            width: 180
           },
           {
-            title: '价格',
+            title: '支付金额',
+            key: 'payMoney',
             width: 100,
-            render: (h, params) => h('span', null, params.row.price + ' 元')
+            render: (h, params) => h('span', null, params.row.payMoney + ' 元')
           },
           {
-            title: '市场价',
-            width: 100,
-            render: (h, params) => h('span', null, params.row.marketPrice + ' 元')
+            title: '支付时间',
+            key: 'paidAt',
+            width: 120
           },
           {
-            title: '库存',
-            width: 100,
-            render: (h, params) => h('span', null, params.row.stock + ' 件')
-          },
-          {
-            title: '发布时间',
-            key: 'createdAt',
-            width: 180,
-            render: (h, params) => h('span', null, this.$time.getTime(params.row.createdAt))
+            title: '状态',
+            key: 'status',
+            width: 100
           },
           {
             title: '操作',
@@ -120,7 +93,7 @@ export default {
               h('Button', {
                 on: {
                   click: () => {
-                    this.$router.push(`/${this.alias}/products/index/form/${params.row.id}`)
+                    this.$router.push(`/${this.alias}/orders/index/form/${params.row.id}`)
                   }
                 }
               }, '编辑'),
@@ -130,31 +103,7 @@ export default {
                     this.handleShowDel(params.row.id)
                   }
                 }
-              }, '删除'),
-              h('Button', {
-                on: {
-                  click: async () => {
-                    await this.$store.dispatch(`${module}/postAction`, {
-                      query: { where: { ...this.listSearchWhere, alias: this.alias } },
-                      body: { type: 'TO_PREV', id: params.row.id }
-                    })
-
-                    this.getList()
-                  }
-                }
-              }, '上移'),
-              h('Button', {
-                on: {
-                  click: async () => {
-                    await this.$store.dispatch(`${module}/postAction`, {
-                      query: { where: { ...this.listSearchWhere, alias: this.alias } },
-                      body: { type: 'TO_NEXT', id: params.row.id }
-                    })
-
-                    this.getList()
-                  }
-                }
-              }, '下移')
+              }, '删除')
             ])
           }
         ],

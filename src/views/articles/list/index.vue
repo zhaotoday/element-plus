@@ -58,7 +58,6 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import allCategoriesListMixin from '@/mixins/all-categories-list'
 import listMixin from '@/mixins/list'
-import formMixin from '@/mixins/form'
 
 const module = 'articles'
 const initWhere = {
@@ -74,8 +73,7 @@ export default {
   mixins: [
     routeParamsMixin,
     allCategoriesListMixin,
-    listMixin,
-    formMixin
+    listMixin
   ],
   data () {
     return {
