@@ -7,10 +7,45 @@
       :label-width="100">
       <Form-item
         label="名称"
-        prop="title">
+        prop="name">
         <Input
-          v-model="cForm.formValidate.title"
+          v-model="cForm.formValidate.name"
           placeholder="请输入名称" />
+      </Form-item>
+      <Form-item
+        label="分类"
+        prop="categoryId">
+        <CCategories
+          :alias="alias"
+          v-model="cForm.formValidate.categoryId"
+          @on-change="value => { cForm.formValidate.categoryId = value }" />
+      </Form-item>
+      <Form-item
+        label="价格"
+        prop="price">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.formValidate.price" />
+        元
+      </Form-item>
+      <Form-item
+        label="市场价"
+        prop="price">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.formValidate.marketPrice" />
+        元
+      </Form-item>
+      <Form-item
+        label="库存"
+        prop="stock">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.formValidate.stock" />
+        件
       </Form-item>
       <Form-item
         label="详情"
@@ -24,15 +59,7 @@
           style="display: none;" />
       </Form-item>
       <Form-item
-        label="分类"
-        prop="categoryId">
-        <CCategories
-          :alias="alias"
-          v-model="cForm.formValidate.categoryId"
-          @on-change="value => { cForm.formValidate.categoryId = value }" />
-      </Form-item>
-      <Form-item
-        label="封面"
+        label="图片"
         prop="picture">
         <CUploader
           ref="uploader"
@@ -47,7 +74,7 @@
           class="margin-right-sm">
           保存
         </Button>
-        <Button @click="id ? $helpers.goBack() : $router.push(`/${alias}/articles/index`)">
+        <Button @click="id ? $helpers.goBack() : $router.push(`/${alias}/products/index`)">
           返回
         </Button>
       </Form-item>
@@ -60,7 +87,7 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import formMixin from '@/mixins/form'
 
-const module = 'articles'
+const module = 'products'
 
 export default {
   mixins: [
@@ -70,9 +97,13 @@ export default {
   data () {
     return {
       cForm: {
-        formValidate: {},
+        formValidate: {
+          price: 0,
+          marketPrice: 0,
+          stock: 0
+        },
         ruleValidate: {
-          title: [
+          name: [
             {
               required: true,
               message: '名称不能为空'
@@ -87,7 +118,7 @@ export default {
           picture: [
             {
               required: true,
-              message: '请上传封面'
+              message: '请上传图片'
             }
           ],
           content: [

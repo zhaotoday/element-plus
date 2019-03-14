@@ -62,9 +62,6 @@ import formMixin from '@/mixins/form'
 
 const module = 'articles'
 const initWhere = {
-  attr: {
-    $eq: ''
-  },
   categoryId: {
     $eq: ''
   },

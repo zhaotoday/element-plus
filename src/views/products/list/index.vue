@@ -25,11 +25,11 @@
                 v-model="cList.cSearch.where.categoryId.$eq"
                 @on-change="value => { cList.cSearch.where.categoryId.$eq = value }" />
             </Form-item>
-            <Form-item prop="title">
+            <Form-item prop="name">
               <Input
                 type="text"
                 placeholder="请输入名称"
-                v-model="cList.cSearch.where.title.$like"
+                v-model="cList.cSearch.where.name.$like"
                 style="width: 220px;" />
             </Form-item>
             <Form-item>
@@ -62,13 +62,10 @@ import formMixin from '@/mixins/form'
 
 const module = 'products'
 const initWhere = {
-  attr: {
-    $eq: ''
-  },
   categoryId: {
     $eq: ''
   },
-  title: {
+  name: {
     $like: ''
   }
 }
@@ -86,13 +83,28 @@ export default {
         columns: [
           {
             title: '名称',
-            key: 'title'
+            key: 'name'
           },
           {
             title: '分类',
             key: 'categoryId',
             width: 180,
             render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId, true))
+          },
+          {
+            title: '价格',
+            width: 100,
+            render: (h, params) => h('span', null, params.row.price + ' 元')
+          },
+          {
+            title: '市场价',
+            width: 100,
+            render: (h, params) => h('span', null, params.row.marketPrice + ' 元')
+          },
+          {
+            title: '库存',
+            width: 100,
+            render: (h, params) => h('span', null, params.row.stock + ' 件')
           },
           {
             title: '发布时间',
