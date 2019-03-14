@@ -11,7 +11,7 @@
           <Button
             class="margin-right-sm"
             type="primary"
-            @click="$router.push(`/${alias}/articles/index/form`)">
+            @click="$router.push(`/${alias}/products/index/form`)">
             新增
           </Button>
         </CListOperations>
@@ -28,7 +28,7 @@
             <Form-item prop="title">
               <Input
                 type="text"
-                placeholder="请输入标题"
+                placeholder="请输入名称"
                 v-model="cList.cSearch.where.title.$like"
                 style="width: 220px;" />
             </Form-item>
@@ -60,7 +60,7 @@ import allCategoriesListMixin from '@/mixins/all-categories-list'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
 
-const module = 'articles'
+const module = 'products'
 const initWhere = {
   attr: {
     $eq: ''
@@ -85,7 +85,7 @@ export default {
       cList: {
         columns: [
           {
-            title: '标题',
+            title: '名称',
             key: 'title'
           },
           {
@@ -108,7 +108,7 @@ export default {
               h('Button', {
                 on: {
                   click: () => {
-                    this.$router.push(`/${this.alias}/articles/index/form/${params.row.id}`)
+                    this.$router.push(`/${this.alias}/products/index/form/${params.row.id}`)
                   }
                 }
               }, '编辑'),

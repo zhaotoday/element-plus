@@ -6,14 +6,14 @@
       :rules="cForm.ruleValidate"
       :label-width="100">
       <Form-item
-        label="标题"
+        label="名称"
         prop="title">
         <Input
           v-model="cForm.formValidate.title"
-          placeholder="请输入标题" />
+          placeholder="请输入名称" />
       </Form-item>
       <Form-item
-        label="内容"
+        label="详情"
         prop="content">
         <CEditor
           ref="editor"
@@ -75,7 +75,7 @@ export default {
           title: [
             {
               required: true,
-              message: '标题不能为空'
+              message: '名称不能为空'
             }
           ],
           categoryId: [
