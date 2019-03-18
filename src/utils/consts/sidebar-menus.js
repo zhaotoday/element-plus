@@ -56,7 +56,7 @@ export default [
     ]
   },
   {
-    icon: 'ios-albums',
+    icon: 'md-person',
     name: 'wxUsers',
     title: '微信用户',
     children: [
