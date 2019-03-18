@@ -48,6 +48,10 @@ export default [
       {
         title: '帮助列表',
         route: '/helpers/helpers/index'
+      },
+      {
+        title: '帮助分类列表',
+        route: '/helpers/helpers/categories'
       }
     ]
   },

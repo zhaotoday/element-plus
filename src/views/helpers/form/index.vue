@@ -6,11 +6,11 @@
       :rules="cForm.ruleValidate"
       :label-width="100">
       <Form-item
-        label="名称"
-        prop="name">
+        label="标题"
+        prop="title">
         <Input
-          v-model="cForm.formValidate.name"
-          placeholder="请输入名称" />
+          v-model="cForm.formValidate.title"
+          placeholder="请输入标题" />
       </Form-item>
       <Form-item
         label="分类"
@@ -21,34 +21,7 @@
           @on-change="value => { cForm.formValidate.categoryId = value }" />
       </Form-item>
       <Form-item
-        label="价格"
-        prop="price">
-        <InputNumber
-          :min="0"
-          :max="100000"
-          v-model="cForm.formValidate.price" />
-        元
-      </Form-item>
-      <Form-item
-        label="市场价"
-        prop="price">
-        <InputNumber
-          :min="0"
-          :max="100000"
-          v-model="cForm.formValidate.marketPrice" />
-        元
-      </Form-item>
-      <Form-item
-        label="库存"
-        prop="stock">
-        <InputNumber
-          :min="0"
-          :max="100000"
-          v-model="cForm.formValidate.stock" />
-        件
-      </Form-item>
-      <Form-item
-        label="详情"
+        label="内容"
         prop="content">
         <CEditor
           ref="editor"
@@ -58,15 +31,6 @@
           v-model="cForm.formValidate.content"
           style="display: none;" />
       </Form-item>
-      <Form-item
-        label="图片"
-        prop="picture">
-        <CUploader
-          ref="uploader"
-          :has-default-file="!!cForm.formValidate.picture"
-          v-model="cForm.formValidate.picture"
-          @change="value => { handleUploaderChange('picture', value) }" />
-      </Form-item>
       <Form-item class="save">
         <Button
           type="primary"
@@ -74,7 +38,7 @@
           class="margin-right-sm">
           保存
         </Button>
-        <Button @click="id ? $helpers.goBack() : $router.push(`/${alias}/products/index`)">
+        <Button @click="id ? $helpers.goBack() : $router.push(`/${alias}/helpers/index`)">
           返回
         </Button>
       </Form-item>
@@ -87,7 +51,7 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import formMixin from '@/mixins/form'
 
-const module = 'products'
+const module = 'helpers'
 
 export default {
   mixins: [
@@ -103,10 +67,10 @@ export default {
           stock: 0
         },
         ruleValidate: {
-          name: [
+          title: [
             {
               required: true,
-              message: '名称不能为空'
+              message: '标题不能为空'
             }
           ],
           categoryId: [

@@ -13,6 +13,14 @@
           placeholder="请输入标题" />
       </Form-item>
       <Form-item
+        label="分类"
+        prop="categoryId">
+        <CCategories
+          :alias="alias"
+          v-model="cForm.formValidate.categoryId"
+          @on-change="value => { cForm.formValidate.categoryId = value }" />
+      </Form-item>
+      <Form-item
         label="内容"
         prop="content">
         <CEditor
@@ -22,14 +30,6 @@
         <Input
           v-model="cForm.formValidate.content"
           style="display: none;" />
-      </Form-item>
-      <Form-item
-        label="分类"
-        prop="categoryId">
-        <CCategories
-          :alias="alias"
-          v-model="cForm.formValidate.categoryId"
-          @on-change="value => { cForm.formValidate.categoryId = value }" />
       </Form-item>
       <Form-item
         label="封面"

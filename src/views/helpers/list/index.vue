@@ -11,7 +11,7 @@
           <Button
             class="margin-right-sm"
             type="primary"
-            @click="$router.push(`/${alias}/products/index/form`)">
+            @click="$router.push(`/${alias}/helpers/index/form`)">
             新增
           </Button>
         </CListOperations>
@@ -25,11 +25,11 @@
                 v-model="cList.cSearch.where.categoryId.$eq"
                 @on-change="value => { cList.cSearch.where.categoryId.$eq = value }" />
             </Form-item>
-            <Form-item prop="name">
+            <Form-item prop="title">
               <Input
                 type="text"
-                placeholder="请输入名称"
-                v-model="cList.cSearch.where.name.$like"
+                placeholder="请输入标题"
+                v-model="cList.cSearch.where.title.$like"
                 style="width: 220px;" />
             </Form-item>
             <Form-item>
@@ -59,12 +59,12 @@ import routeParamsMixin from '@/mixins/route-params'
 import allCategoriesListMixin from '@/mixins/all-categories-list'
 import listMixin from '@/mixins/list'
 
-const module = 'products'
+const module = 'helpers'
 const initWhere = {
   categoryId: {
     $eq: ''
   },
-  name: {
+  title: {
     $like: ''
   }
 }
@@ -80,8 +80,8 @@ export default {
       cList: {
         columns: [
           {
-            title: '名称',
-            key: 'name'
+            title: '标题',
+            key: 'title'
           },
           {
             title: '分类',
@@ -90,19 +90,9 @@ export default {
             render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId, true))
           },
           {
-            title: '价格',
-            width: 100,
-            render: (h, params) => h('span', null, params.row.price + ' 元')
-          },
-          {
-            title: '市场价',
-            width: 100,
-            render: (h, params) => h('span', null, params.row.marketPrice + ' 元')
-          },
-          {
-            title: '库存',
-            width: 100,
-            render: (h, params) => h('span', null, params.row.stock + ' 件')
+            title: '内容',
+            key: 'content',
+            width: 350
           },
           {
             title: '发布时间',
@@ -118,7 +108,7 @@ export default {
               h('Button', {
                 on: {
                   click: () => {
-                    this.$router.push(`/${this.alias}/products/index/form/${params.row.id}`)
+                    this.$router.push(`/${this.alias}/helpers/index/form/${params.row.id}`)
                   }
                 }
               }, '编辑'),
