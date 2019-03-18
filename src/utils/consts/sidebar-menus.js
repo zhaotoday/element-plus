@@ -30,13 +30,24 @@ export default [
     ]
   },
   {
-    icon: 'ios-cart',
+    icon: 'md-pricetag',
     name: 'orders',
     title: '订单',
     children: [
       {
         title: '订单列表',
         route: '/orders/orders/index'
+      }
+    ]
+  },
+  {
+    icon: 'md-help',
+    name: 'helpers',
+    title: '帮助',
+    children: [
+      {
+        title: '帮助列表',
+        route: '/helpers/helpers/index'
       }
     ]
   },
@@ -52,7 +63,7 @@ export default [
     ]
   },
   {
-    icon: 'md-settings',
+    icon: 'md-key',
     name: 'rbac',
     title: '角色权限',
     children: [
