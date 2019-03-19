@@ -63,6 +63,24 @@
             v-model="cForm.formValidate.picture"
             @change="value => { handleUploaderChange('picture', value) }" />
         </Form-item>
+        <Form-item
+          label="状态"
+          prop="status">
+          <Row>
+            <Col span="20">
+              <Select
+                v-model="cForm.formValidate.status"
+                style="width: 220px;">
+                <Option
+                  v-for="item in $consts.AD_STATUSES"
+                  :key="item.value"
+                  :value="item.value">
+                  {{ item.label }}
+                </Option>
+              </Select>
+            </Col>
+          </Row>
+        </Form-item>
       </Form>
       <div slot="footer">
         <Button
@@ -176,7 +194,9 @@ export default {
       cForm: {
         id: 0,
         modal: false,
-        formValidate: {},
+        formValidate: {
+          status: 1
+        },
         ruleValidate: {
           title: [
             {
@@ -184,10 +204,16 @@ export default {
               message: '标题不能为空'
             }
           ],
-          code: [
+          link: [
             {
               required: true,
-              message: '代码不能为空'
+              message: '链接不能为空'
+            }
+          ],
+          picture: [
+            {
+              required: true,
+              message: '图片不能为空'
             }
           ]
         }
