@@ -107,6 +107,9 @@ import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
 
 const module = 'ads'
+const initForm = {
+  status: 1
+}
 
 export default {
   mixins: [
@@ -194,9 +197,7 @@ export default {
       cForm: {
         id: 0,
         modal: false,
-        formValidate: {
-          status: 1
-        },
+        formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
           title: [
             {
@@ -226,7 +227,7 @@ export default {
   watch: {
     'cForm.modal': {
       handler (newVal) {
-        !newVal && this.resetFields()
+        !newVal && this.resetFields(initForm)
       }
     }
   },

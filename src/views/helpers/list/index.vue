@@ -87,7 +87,7 @@ export default {
             title: '分类',
             key: 'categoryId',
             width: 180,
-            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId, true))
+            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId))
           },
           {
             title: '内容',
