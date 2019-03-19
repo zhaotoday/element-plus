@@ -3,7 +3,7 @@
     <slot />
     <Table
       :context="$parent"
-      class="margin-bottom"
+      class="u-mb15"
       border
       :columns="columns"
       :data="data" />
