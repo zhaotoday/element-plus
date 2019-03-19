@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-ads">
     <CList
       :columns="cList.columns"
       :data="list.items"
@@ -42,6 +42,26 @@
                 placeholder="请输入标题" />
             </Col>
           </Row>
+        </Form-item>
+        <Form-item
+          label="链接"
+          prop="link">
+          <Row>
+            <Col span="20">
+              <Input
+                v-model="cForm.formValidate.link"
+                placeholder="请输入链接" />
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item
+          label="图片"
+          prop="picture">
+          <CUploader
+            ref="uploader"
+            :has-default-file="!!cForm.formValidate.picture"
+            v-model="cForm.formValidate.picture"
+            @change="value => { handleUploaderChange('picture', value) }" />
         </Form-item>
       </Form>
       <div slot="footer">
@@ -91,8 +111,8 @@ export default {
             render: (h, params) => {
               return h('img', {
                 attrs: {
-                  src: 'https://file.iviewui.com/asd/asd-coding3.png',
-                  className: 'abc'
+                  src: this.$helpers.getFileURLById(params.row.picture),
+                  class: 'pb-picture'
                 }
               })
             }
@@ -105,7 +125,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 150,
+            width: 260,
             render: (h, params) => h('ButtonGroup', [
               h('Button', {
                 on: {
@@ -120,7 +140,31 @@ export default {
                     this.handleShowDel(params.row.id)
                   }
                 }
-              }, '删除')
+              }, '删除'),
+              h('Button', {
+                on: {
+                  click: async () => {
+                    await this.$store.dispatch(`${module}/postAction`, {
+                      query: { where: { ...this.listSearchWhere, alias: this.alias } },
+                      body: { type: 'TO_PREV', id: params.row.id }
+                    })
+
+                    this.getList()
+                  }
+                }
+              }, '上移'),
+              h('Button', {
+                on: {
+                  click: async () => {
+                    await this.$store.dispatch(`${module}/postAction`, {
+                      query: { where: { ...this.listSearchWhere, alias: this.alias } },
+                      body: { type: 'TO_NEXT', id: params.row.id }
+                    })
+
+                    this.getList()
+                  }
+                }
+              }, '下移')
             ])
           }
         ]
@@ -218,3 +262,8 @@ export default {
   }
 }
 </script>
+
+<style
+  lang="scss"
+  src="./styles/index.scss">
+</style>
