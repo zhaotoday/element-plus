@@ -41,6 +41,17 @@ export default [
     ]
   },
   {
+    icon: 'ios-map',
+    name: 'ads',
+    title: '广告',
+    children: [
+      {
+        title: '广告列表',
+        route: '/ads/ads/index'
+      }
+    ]
+  },
+  {
     icon: 'md-help',
     name: 'helpers',
     title: '帮助',

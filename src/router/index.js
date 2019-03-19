@@ -21,6 +21,7 @@ const router = new Router({
             require('./routes/articles').default,
             require('./routes/products').default,
             require('./routes/orders').default,
+            require('./routes/ads').default,
             require('./routes/helpers').default,
             require('./routes/wx-users').default,
             require('./routes/rbac').default,
