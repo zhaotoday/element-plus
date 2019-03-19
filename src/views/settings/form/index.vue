@@ -62,7 +62,7 @@
         <Button
           type="primary"
           @click="handleSave"
-          class="margin-right-sm">
+          class="u-mr5">
           保存
         </Button>
       </Form-item>

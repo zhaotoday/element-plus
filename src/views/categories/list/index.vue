@@ -9,13 +9,13 @@
       <CListHeader>
         <CListOperations>
           <Button
-            class="margin-right-sm"
+            class="u-mr5"
             type="primary"
             @click="handleShowPost">
             新增
           </Button>
           <Button
-            class="margin-right-sm"
+            class="u-mr5"
             @click="handleGoParent"
             v-if="isParent">
             返回上一级

@@ -9,7 +9,7 @@
       <CListHeader>
         <CListOperations>
           <Button
-            class="margin-right-sm"
+            class="u-mr5"
             type="primary"
             @click="$router.push(`/${alias}/products/index/form`)">
             新增

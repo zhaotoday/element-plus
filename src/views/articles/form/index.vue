@@ -44,7 +44,7 @@
         <Button
           type="primary"
           @click="handleSave"
-          class="margin-right-sm">
+          class="u-mr5">
           保存
         </Button>
         <Button @click="id ? $helpers.goBack() : $router.push(`/${alias}/articles/index`)">

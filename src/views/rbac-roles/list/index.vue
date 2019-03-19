@@ -8,7 +8,7 @@
       <CListHeader>
         <CListOperations>
           <Button
-            class="margin-right-sm"
+            class="u-mr5"
             type="primary"
             @click="handleShowPost">
             新增
