@@ -5,11 +5,11 @@ export default [
     title: '公司新闻',
     children: [
       {
-        title: '文章列表',
+        title: '文章',
         route: '/news/articles/index'
       },
       {
-        title: '文章分类列表',
+        title: '文章分类',
         route: '/news/articles/categories'
       }
     ]
@@ -20,16 +20,16 @@ export default [
     title: '商品',
     children: [
       {
-        title: '商品列表',
+        title: '商品',
         route: '/products/products/index'
       },
       {
-        title: '商品分类列表',
+        title: '商品分类',
         route: '/products/products/categories'
       },
       {
-        title: '商品评价列表',
-        route: '/comments/comments/index'
+        title: '商品评价',
+        route: '/products/comments/index'
       }
     ]
   },
@@ -39,7 +39,7 @@ export default [
     title: '订单',
     children: [
       {
-        title: '订单列表',
+        title: '订单',
         route: '/orders/orders/index'
       }
     ]
@@ -50,7 +50,7 @@ export default [
     title: '广告',
     children: [
       {
-        title: '广告列表',
+        title: '广告',
         route: '/ads/ads/index'
       }
     ]
@@ -61,11 +61,11 @@ export default [
     title: '帮助',
     children: [
       {
-        title: '帮助列表',
+        title: '帮助',
         route: '/helpers/helpers/index'
       },
       {
-        title: '帮助分类列表',
+        title: '帮助分类',
         route: '/helpers/helpers/categories'
       }
     ]
@@ -76,7 +76,7 @@ export default [
     title: '微信用户',
     children: [
       {
-        title: '微信用户列表',
+        title: '微信用户',
         route: '/wxUsers/wxUsers/index'
       }
     ]
@@ -87,15 +87,15 @@ export default [
     title: '角色权限',
     children: [
       {
-        title: '用户列表',
+        title: '用户',
         route: '/rbac/rbacRoles/index'
       },
       {
-        title: '角色列表',
+        title: '角色',
         route: '/rbac/rbac/roles'
       },
       {
-        title: '资源列表',
+        title: '资源',
         route: '/rbac/rbac/resources'
       }
     ]
