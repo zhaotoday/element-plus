@@ -26,14 +26,7 @@ export default [
       {
         title: '商品分类列表',
         route: '/products/products/categories'
-      }
-    ]
-  },
-  {
-    icon: 'md-pricetag',
-    name: 'comments',
-    title: '商品评价',
-    children: [
+      },
       {
         title: '商品评价列表',
         route: '/comments/comments/index'
