@@ -7,6 +7,7 @@ import CList, { CListHeader, CListOperations, CListSearch, CListNavigation } fro
 import CCategories from '@/components/categories'
 import CEditor from '@/components/editor'
 import CUploader from '@/components/uploader'
+import CDropdown from '@/components/dropdown'
 
 export default {
   install (Vue) {
@@ -28,5 +29,6 @@ export default {
     Vue.component('CCategories', CCategories)
     Vue.component('CEditor', CEditor)
     Vue.component('CUploader', CUploader)
+    Vue.component('CDropdown', CDropdown)
   }
 }

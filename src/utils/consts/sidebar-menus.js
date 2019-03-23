@@ -31,6 +31,17 @@ export default [
   },
   {
     icon: 'md-pricetag',
+    name: 'comments',
+    title: '商品评价',
+    children: [
+      {
+        title: '商品评价列表',
+        route: '/comments/comments/index'
+      }
+    ]
+  },
+  {
+    icon: 'md-pricetag',
     name: 'orders',
     title: '订单',
     children: [

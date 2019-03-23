@@ -3,6 +3,7 @@ import SIDEBAR_MENUS from './sidebar-menus'
 import GENDERS from './genders'
 import RBAC_ACTIONS from './rbac-actions'
 import AD_STATUSES from './ad-statuses'
+import COMMENT_STATUSES from './comment-statuses'
 
 // 基础地址
 const BASE_URL = env.isDev() ? 'http://localhost:3002' : 'https://api.cmsx.cn'
@@ -24,6 +25,7 @@ export default {
   GENDERS,
   RBAC_ACTIONS,
   AD_STATUSES,
+  COMMENT_STATUSES,
   BASE_URL,
   API_URL,
   PUBLIC_API_URL,
