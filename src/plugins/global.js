@@ -8,6 +8,7 @@ import CCategories from '@/components/categories'
 import CEditor from '@/components/editor'
 import CUploader from '@/components/uploader'
 import CDropdown from '@/components/dropdown'
+import CDel from '@/components/del'
 
 export default {
   install (Vue) {
@@ -30,5 +31,6 @@ export default {
     Vue.component('CEditor', CEditor)
     Vue.component('CUploader', CUploader)
     Vue.component('CDropdown', CDropdown)
+    Vue.component('CDel', CDel)
   }
 }

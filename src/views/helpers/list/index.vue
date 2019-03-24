@@ -43,13 +43,6 @@
         </CListSearch>
       </CListHeader>
     </CList>
-    <Modal
-      width="280"
-      v-model="cDel.modal"
-      title="请确认"
-      @on-ok="handleDelOk">
-      <p>确认删除？</p>
-    </Modal>
   </div>
 </template>
 
@@ -103,8 +96,8 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 260,
-            render: (h, params) => h('ButtonGroup', [
+            width: 290,
+            render: (h, params) => h('div', [
               h('Button', {
                 on: {
                   click: () => {
@@ -112,10 +105,10 @@ export default {
                   }
                 }
               }, '编辑'),
-              h('Button', {
+              h('CDel', {
                 on: {
-                  click: () => {
-                    this.handleShowDel(params.row.id)
+                  ok: () => {
+                    this.handleDelOk(params.row.id)
                   }
                 }
               }, '删除'),
@@ -149,10 +142,6 @@ export default {
         cSearch: {
           where: this.$helpers.deepCopy(initWhere)
         }
-      },
-      cDel: {
-        id: 0,
-        modal: false
       }
     }
   },
@@ -178,12 +167,8 @@ export default {
         }
       })
     },
-    handleShowDel (id) {
-      this.cDel.id = id
-      this.cDel.modal = true
-    },
-    async handleDelOk () {
-      await this.$store.dispatch(`${module}/del`, { id: this.cDel.id })
+    async handleDelOk (id) {
+      await this.$store.dispatch(`${module}/del`, { id })
       this.$Message.success('删除成功！')
 
       const getListRes = await this.getList()
