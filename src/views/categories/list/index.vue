@@ -144,7 +144,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 390,
+            width: 340,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -160,52 +160,6 @@ export default {
                   }
                 }
               }, '删除'),
-              h('Button', {
-                on: {
-                  click: async () => {
-                    const { title } = this.listSearchWhere || initWhere
-
-                    await this.$store.dispatch(`${module}/postAction`, {
-                      query: {
-                        where: {
-                          parentId: this.isParent ? this.parentDetail.id : 0,
-                          title,
-                          alias: this.alias
-                        }
-                      },
-                      body: {
-                        type: 'TO_PREV',
-                        id: params.row.id
-                      }
-                    })
-
-                    this.getList()
-                  }
-                }
-              }, '上移'),
-              h('Button', {
-                on: {
-                  click: async () => {
-                    const { title } = this.listSearchWhere || initWhere
-
-                    await this.$store.dispatch(`${module}/postAction`, {
-                      query: {
-                        where: {
-                          parentId: this.isParent ? this.parentDetail.id : 0,
-                          title,
-                          alias: this.alias
-                        }
-                      },
-                      body: {
-                        type: 'TO_NEXT',
-                        id: params.row.id
-                      }
-                    })
-
-                    this.getList()
-                  }
-                }
-              }, '下移'),
               h('Button', {
                 on: {
                   click: () => {
@@ -225,7 +179,31 @@ export default {
                     }
                   }
                 }
-              }, '管理子分类')
+              }, '管理子分类'),
+              h('CDropdown', {
+                attrs: {
+                  title: '排序',
+                  options: this.$consts.ORDER_ACTIONS
+                },
+                on: {
+                  click: async value => {
+                    const { title } = this.listSearchWhere || initWhere
+
+                    await this.$store.dispatch(`${module}/postAction`, {
+                      query: {
+                        where: {
+                          parentId: this.isParent ? this.parentDetail.id : 0,
+                          title,
+                          alias: this.alias
+                        }
+                      },
+                      body: { type: value, id: params.row.id }
+                    })
+
+                    this.getList()
+                  }
+                }
+              })
             ])
           }
         ],

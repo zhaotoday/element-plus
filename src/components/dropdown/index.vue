@@ -1,7 +1,7 @@
 <template>
   <Dropdown @on-click="handleClickItem">
-    <Button style="width: 100px;">
-      审核不通过
+    <Button style="width: 70px;">
+      {{ title }}
       <Icon type="ios-arrow-down"></Icon>
     </Button>
     <DropdownMenu slot="list">
@@ -19,6 +19,10 @@
 export default {
   name: 'CDropdown',
   props: {
+    title: {
+      type: String,
+      default: ''
+    },
     selected: {
       type: Object,
       default: () => {}

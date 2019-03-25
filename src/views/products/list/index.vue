@@ -122,30 +122,22 @@ export default {
                   }
                 }
               }, '删除'),
-              h('Button', {
+              h('CDropdown', {
+                attrs: {
+                  title: '排序',
+                  options: this.$consts.ORDER_ACTIONS
+                },
                 on: {
-                  click: async () => {
+                  click: async value => {
                     await this.$store.dispatch(`${module}/postAction`, {
                       query: { where: { ...this.listSearchWhere, alias: this.alias } },
-                      body: { type: 'TO_PREV', id: params.row.id }
+                      body: { type: value, id: params.row.id }
                     })
 
                     this.getList()
                   }
                 }
-              }, '上移'),
-              h('Button', {
-                on: {
-                  click: async () => {
-                    await this.$store.dispatch(`${module}/postAction`, {
-                      query: { where: { ...this.listSearchWhere, alias: this.alias } },
-                      body: { type: 'TO_NEXT', id: params.row.id }
-                    })
-
-                    this.getList()
-                  }
-                }
-              }, '下移')
+              })
             ])
           }
         ],
