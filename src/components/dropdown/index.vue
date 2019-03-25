@@ -1,15 +1,14 @@
 <template>
-  <Dropdown
-    style="margin-left: 10px"
-    @on-click="handleClickItem">
+  <Dropdown @on-click="handleClickItem">
     <Button style="width: 100px;">
-      {{ selected.label }}
+      审核不通过
       <Icon type="ios-arrow-down"></Icon>
     </Button>
     <DropdownMenu slot="list">
       <DropdownItem
         v-for="item in options"
-        name="0">
+        :key="item.value"
+        :name="item.value">
         {{ item.label }}
       </DropdownItem>
     </DropdownMenu>
