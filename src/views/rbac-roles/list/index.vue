@@ -10,7 +10,7 @@
           <Button
             class="u-mr5"
             type="primary"
-            @click="handleShowPost">
+            @click="handleShowForm">
             新增
           </Button>
         </CListOperations>
@@ -153,7 +153,7 @@ export default {
               h('Button', {
                 on: {
                   click: () => {
-                    this.handleShowPut(params.row)
+                    this.handleShowForm(params.row)
                   }
                 }
               }, '编辑'),
@@ -218,14 +218,15 @@ export default {
         query: { offset: 0, limit: -1 }
       })
     },
-    handleShowPost () {
-      this.cForm.id = 0
+    handleShowForm (detail) {
       this.cForm.modal = true
-    },
-    handleShowPut (detail) {
-      this.cForm.id = detail.id
-      this.cForm.modal = true
-      this.initFields(detail)
+
+      if (detail) {
+        this.cForm.id = detail.id
+        this.initFields(detail)
+      } else {
+        this.cForm.id = 0
+      }
     },
     async handleDelOk (id) {
       await this.$store.dispatch(`${module}/del`, { id })
