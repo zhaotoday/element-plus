@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-products">
     <CList
       :data="list.items"
       :columns="cList.columns"
@@ -77,6 +77,19 @@ export default {
             key: 'name'
           },
           {
+            title: '图片',
+            key: 'picture',
+            width: 200,
+            render: (h, params) => {
+              return h('img', {
+                attrs: {
+                  src: this.$helpers.getFileURLById(params.row.pictures),
+                  class: 'pb-picture'
+                }
+              })
+            }
+          },
+          {
             title: '分类',
             key: 'categoryId',
             width: 180,
@@ -84,29 +97,37 @@ export default {
           },
           {
             title: '价格',
-            width: 100,
+            width: 80,
             render: (h, params) => h('span', null, params.row.price + ' 元')
           },
           {
-            title: '市场价',
-            width: 100,
-            render: (h, params) => h('span', null, params.row.marketPrice + ' 元')
+            title: '进货价',
+            width: 80,
+            render: (h, params) => h('span', null, params.row.dealerPrice + ' 元')
           },
           {
             title: '库存',
-            width: 100,
+            width: 80,
             render: (h, params) => h('span', null, params.row.stock + ' 件')
+          },
+          {
+            title: '状态',
+            width: 80,
+            render: (h, params) => {
+              const option = this.$consts.PRODUCT_STATUSES.find(item => item.value === params.row.status)
+              return h('span', null, option.label)
+            }
           },
           {
             title: '发布时间',
             key: 'createdAt',
-            width: 180,
+            width: 150,
             render: (h, params) => h('span', null, this.$time.getTime(params.row.createdAt))
           },
           {
             title: '操作',
             key: 'action',
-            width: 290,
+            width: 245,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -179,3 +200,8 @@ export default {
   }
 }
 </script>
+
+<style
+  lang="scss"
+  src="./styles/index.scss">
+</style>

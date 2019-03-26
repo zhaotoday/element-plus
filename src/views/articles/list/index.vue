@@ -85,13 +85,13 @@ export default {
           {
             title: '发布时间',
             key: 'createdAt',
-            width: 180,
+            width: 150,
             render: (h, params) => h('span', null, this.$time.getTime(params.row.createdAt))
           },
           {
             title: '操作',
             key: 'action',
-            width: 290,
+            width: 245,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {

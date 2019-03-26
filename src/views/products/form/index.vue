@@ -30,6 +30,15 @@
         元
       </Form-item>
       <Form-item
+        label="进货价"
+        prop="dealerPrice">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.formValidate.dealerPrice" />
+        元
+      </Form-item>
+      <Form-item
         label="市场价"
         prop="price">
         <InputNumber
@@ -63,9 +72,23 @@
         prop="picture">
         <CUploader
           ref="uploader"
-          :has-default-file="!!cForm.formValidate.picture"
-          v-model="cForm.formValidate.picture"
-          @change="value => { handleUploaderChange('picture', value) }" />
+          :has-default-file="!!cForm.formValidate.pictures"
+          v-model="cForm.formValidate.pictures"
+          @change="value => { handleUploaderChange('pictures', value) }" />
+      </Form-item>
+      <Form-item
+        label="状态"
+        prop="stock">
+        <Select
+          v-model="cForm.formValidate.status"
+          style="width:200px">
+          <Option
+            v-for="item in $consts.PRODUCT_STATUSES"
+            :value="item.value"
+            :key="item.value">
+            {{ item.label }}
+          </Option>
+        </Select>
       </Form-item>
       <Form-item class="save">
         <Button
@@ -99,8 +122,10 @@ export default {
       cForm: {
         formValidate: {
           price: 0,
+          dealerPrice: 0,
           marketPrice: 0,
-          stock: 0
+          stock: 0,
+          status: 1
         },
         ruleValidate: {
           name: [
@@ -115,7 +140,7 @@ export default {
               message: '请选择分类'
             }
           ],
-          picture: [
+          pictures: [
             {
               required: true,
               message: '请上传图片'
