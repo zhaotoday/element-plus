@@ -185,7 +185,7 @@ export default {
     handleShowForm (detail) {
       this.cForm.modal = true
 
-      if (detail) {
+      if (detail.id) {
         this.cForm.id = detail.id
         this.initFields(detail)
       } else {

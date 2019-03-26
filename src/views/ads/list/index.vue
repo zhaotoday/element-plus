@@ -139,7 +139,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 290,
+            width: 245,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -232,7 +232,7 @@ export default {
     handleShowForm (detail) {
       this.cForm.modal = true
 
-      if (detail) {
+      if (detail.id) {
         this.cForm.id = detail.id
         this.initFields(detail)
       } else {
