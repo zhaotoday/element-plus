@@ -25,11 +25,11 @@
           <Form
             inline
             @submit.native.prevent="search">
-            <Form-item prop="title">
+            <Form-item prop="name">
               <Input
                 type="text"
-                placeholder="请输入标题"
-                v-model="cList.cSearch.where.title.$like"
+                placeholder="请输入名称"
+                v-model="cList.cSearch.where.name.$like"
                 style="width: 220px;" />
             </Form-item>
             <Form-item>
@@ -44,7 +44,7 @@
       </CListHeader>
       <CListNavigation>
         <Alert v-if="isParent">
-          <b>{{ parentDetail.title }}</b> 的子分类：
+          <b>{{ parentDetail.name }}</b> 的子分类：
         </Alert>
         <Alert v-else>
           <b>顶级分类</b> 的子分类
@@ -63,21 +63,21 @@
         <Form-item
           v-if="levels !== 1"
           label="父类"
-          prop="title">
+          prop="name">
           <Row>
             <Col span="20">
-              {{ isParent ? parentDetail.title : '顶级分类'}}
+              {{ isParent ? parentDetail.name : '顶级分类'}}
             </Col>
           </Row>
         </Form-item>
         <Form-item
-          label="标题"
-          prop="title">
+          label="名称"
+          prop="name">
           <Row>
             <Col span="20">
               <Input
-                v-model="cForm.formValidate.title"
-                placeholder="请输入标题" />
+                v-model="cForm.formValidate.name"
+                placeholder="请输入名称" />
             </Col>
           </Row>
         </Form-item>
@@ -122,7 +122,7 @@ import formMixin from '@/mixins/form'
 const module = 'categories'
 const initWhere = {
   parentIds: [0],
-  title: {
+  name: {
     $like: ''
   }
 }
@@ -143,8 +143,8 @@ export default {
       cList: {
         columns: [
           {
-            title: '标题',
-            key: 'title'
+            title: '名称',
+            key: 'name'
           },
           {
             title: '操作',
@@ -192,13 +192,13 @@ export default {
                 },
                 on: {
                   click: async value => {
-                    const { title } = this.listSearchWhere || initWhere
+                    const { name } = this.listSearchWhere || initWhere
 
                     await this.$store.dispatch(`${module}/postAction`, {
                       query: {
                         where: {
                           parentId: this.isParent ? this.parentDetail.id : 0,
-                          title,
+                          name,
                           alias: this.alias
                         }
                       },
@@ -221,10 +221,10 @@ export default {
         modal: false,
         formValidate: {},
         ruleValidate: {
-          title: [
+          name: [
             {
               required: true,
-              message: '标题不能为空'
+              message: '名称不能为空'
             }
           ]
         }
@@ -273,7 +273,7 @@ export default {
       }
     },
     getList () {
-      const { title, parentIds = [0] } = this.listSearchWhere || initWhere
+      const { name, parentIds = [0] } = this.listSearchWhere || initWhere
 
       return this.$store.dispatch(`${module}/getList`, {
         query: {
@@ -281,7 +281,7 @@ export default {
           limit: this.$consts.PAGE_SIZE,
           where: {
             parentId: parentIds[parentIds.length - 1],
-            title,
+            name,
             alias: this.alias
           }
         }
