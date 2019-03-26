@@ -61,6 +61,7 @@
         :rules="cForm.ruleValidate"
         :label-width="80">
         <Form-item
+          v-if="levels !== 1"
           label="父类"
           prop="title">
           <Row>
@@ -133,6 +134,10 @@ export default {
     formMixin
   ],
   data () {
+    const getLevels = () => {
+      return this.$consts.CATEGORY_LEVELS[this.$route.params.alias]
+    }
+
     return {
       parents: [],
       cList: {
@@ -144,7 +149,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 340,
+            width: getLevels() === 1 ? 245 : 340,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -160,7 +165,7 @@ export default {
                   }
                 }
               }, '删除'),
-              h('Button', {
+              this.levels === 2 ? h('Button', {
                 on: {
                   click: () => {
                     const { id } = params.row
@@ -179,7 +184,7 @@ export default {
                     }
                   }
                 }
-              }, '管理子分类'),
+              }, '管理子分类') : null,
               h('CDropdown', {
                 attrs: {
                   title: '排序',
@@ -231,6 +236,9 @@ export default {
       list: state => state[module].list,
       parentDetail: state => state[module].detail
     }),
+    levels () {
+      return this.$consts.CATEGORY_LEVELS[this.$route.params.alias]
+    },
     isParent () {
       const listSearchWhere = this.listSearchWhere
 

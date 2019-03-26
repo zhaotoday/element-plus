@@ -7,6 +7,7 @@ import COMMENT_STATUSES from './comment-statuses'
 import ORDER_ACTIONS from './order-actions'
 import MODELS from './models'
 import PRODUCT_STATUSES from './product-statuses'
+import CATEGORY_LEVELS from './category-levels'
 
 // 基础地址
 const BASE_URL = env.isDev() ? 'http://localhost:3002' : 'https://api.cmsx.cn'
@@ -32,6 +33,7 @@ export default {
   ORDER_ACTIONS,
   MODELS,
   PRODUCT_STATUSES,
+  CATEGORY_LEVELS,
   BASE_URL,
   API_URL,
   PUBLIC_API_URL,
