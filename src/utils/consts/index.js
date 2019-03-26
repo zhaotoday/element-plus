@@ -1,10 +1,11 @@
 import env from 'jt-env'
 import SIDEBAR_MENUS from './sidebar-menus'
 import GENDERS from './genders'
-import RBAC_ACTIONS from './rbac-actions'
+import REQUEST_METHODS from './request-methods'
 import AD_STATUSES from './ad-statuses'
 import COMMENT_STATUSES from './comment-statuses'
 import ORDER_ACTIONS from './order-actions'
+import MODELS from './models'
 
 // 基础地址
 const BASE_URL = env.isDev() ? 'http://localhost:3002' : 'https://api.cmsx.cn'
@@ -24,10 +25,11 @@ const TITLE = '网站后台'
 export default {
   SIDEBAR_MENUS,
   GENDERS,
-  RBAC_ACTIONS,
+  REQUEST_METHODS,
   AD_STATUSES,
   COMMENT_STATUSES,
   ORDER_ACTIONS,
+  MODELS,
   BASE_URL,
   API_URL,
   PUBLIC_API_URL,

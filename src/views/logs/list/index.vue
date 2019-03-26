@@ -12,11 +12,14 @@
             inline
             @submit.native.prevent="search">
             <Form-item prop="id">
-              <Input
-                type="text"
-                placeholder="请输入订单号"
-                v-model="cList.cSearch.where.id.$like"
-                style="width: 220px;" />
+              <DatePicker
+                :value="cList.cSearch.where.createdAt.$between"
+                type="daterange"
+                placement="bottom-end"
+                split-panels
+                placeholder="请选择起始和结束时间"
+                style="width: 220px"
+                @on-change="handleDatePickerChange" />
             </Form-item>
             <Form-item>
               <Button
@@ -39,8 +42,8 @@ import listMixin from '@/mixins/list'
 
 const module = 'logs'
 const initWhere = {
-  id: {
-    $like: ''
+  createdAt: {
+    $between: null
   }
 }
 
@@ -50,23 +53,30 @@ export default {
     listMixin
   ],
   data () {
+    const { MODELS, REQUEST_METHODS } = this.$consts
+
     return {
       cList: {
         columns: [
           {
             title: '用户',
-            key: 'wxUserId'
+            key: 'managerId'
           },
           {
-            title: '内容',
-            key: 'content',
-            width: 180
+            title: '模型',
+            key: 'model',
+            render: (h, params) => h('span', null, MODELS[params.row.model])
           },
           {
-            title: '状态',
-            key: 'status',
-            width: 100,
-            render: (h, params) => h('span', null, this.$consts.COMMENT_STATUSES[params.row.status])
+            title: '操作类型',
+            type: 'method',
+            render: (h, params) => h('span', null, REQUEST_METHODS[params.row.method])
+          },
+          {
+            title: '数据',
+            key: 'body',
+            width: 250,
+            render: (h, params) => h('span', null, JSON.stringify(params.row.body))
           },
           {
             title: '操作',
@@ -79,16 +89,7 @@ export default {
                     this.handleDelOk(params.row.id)
                   }
                 }
-              }, '删除'),
-              h('CDropdown', {
-                attrs: {
-                  selected: {
-                    value: params.row.id,
-                    label: params.row.id + '-'
-                  },
-                  options: this.$consts.COMMENT_STATUSES
-                }
-              })
+              }, '删除')
             ])
           }
         ],
@@ -111,6 +112,9 @@ export default {
     this.getList()
   },
   methods: {
+    handleDatePickerChange (v) {
+      this.cList.cSearch.where.createdAt.$between = v
+    },
     getList () {
       return this.$store.dispatch(`${module}/getList`, {
         query: {

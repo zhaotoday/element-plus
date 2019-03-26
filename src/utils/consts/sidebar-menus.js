@@ -112,7 +112,7 @@ export default [
     ]
   },
   {
-    icon: 'md-pricetag',
+    icon: 'ios-print',
     name: 'logs',
     title: '日志',
     children: [

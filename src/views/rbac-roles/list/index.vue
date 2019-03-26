@@ -47,11 +47,11 @@
                   :key="resource.id">
                   {{ resource.name }}：
                   <Checkbox
-                    v-for="action in Object.keys($consts.RBAC_ACTIONS)"
+                    v-for="action in Object.keys($consts.REQUEST_METHODS)"
                     :key="action"
                     :value="cForm.formValidate.permissions[resource.code] && cForm.formValidate.permissions[resource.code].indexOf(action) !== -1"
                     @on-change="checked => { handleRbacActionsChange(resource.code, action)(checked) }">
-                    {{ $consts.RBAC_ACTIONS[action] }}
+                    {{ $consts.REQUEST_METHODS[action] }}
                   </Checkbox>
                 </div>
               </template>
@@ -126,7 +126,7 @@ export default {
             render: (h, params) => {
               const { items } = this.rbacResourcesList
               const { permissions } = params.row
-              const { RBAC_ACTIONS } = this.$consts
+              const { REQUEST_METHODS } = this.$consts
 
               return h(
                 'span',
@@ -136,7 +136,7 @@ export default {
                   return h(
                     'div',
                     null,
-                    resource.name + '：' + permissions[resourceCode].map(action => RBAC_ACTIONS[action]).join('、'))
+                    resource.name + '：' + permissions[resourceCode].map(action => REQUEST_METHODS[action]).join('、'))
                 })
               )
             }
