@@ -110,5 +110,16 @@ export default [
         route: '/settings/settings/index'
       }
     ]
+  },
+  {
+    icon: 'md-pricetag',
+    name: 'logs',
+    title: '日志',
+    children: [
+      {
+        title: '日志',
+        route: '/logs/logs/index'
+      }
+    ]
   }
 ]

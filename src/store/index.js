@@ -23,6 +23,7 @@ export default new Vuex.Store({
     comments: require('./modules/admin/comments').default,
     rbacRoles: require('./modules/admin/rbac-roles').default,
     rbacResources: require('./modules/admin/rbac-resources').default,
-    settings: require('./modules/admin/settings').default
+    settings: require('./modules/admin/settings').default,
+    logs: require('./modules/admin/logs').default
   }
 })

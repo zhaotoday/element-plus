@@ -26,7 +26,8 @@ const router = new Router({
             require('./routes/wx-users').default,
             require('./routes/comments').default,
             require('./routes/rbac').default,
-            require('./routes/settings').default
+            require('./routes/settings').default,
+            require('./routes/logs').default
           ],
           meta: {
             requiresAuth: true
