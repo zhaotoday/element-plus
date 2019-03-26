@@ -89,12 +89,12 @@ export default {
                 },
                 on: {
                   click: async value => {
-                    await this.$store.dispatch('comments/put', {
+                    await this.$store.dispatch(`${module}/put`, {
                       id: params.row.id,
                       body: { status: value }
                     })
 
-                    this.$Message.success('审核完成')
+                    this.$Message.success('审核成功')
                     this.getList()
                   }
                 }

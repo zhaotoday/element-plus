@@ -1,6 +1,6 @@
 <template>
   <Dropdown @on-click="handleClickItem">
-    <Button style="width: 70px;">
+    <Button :style="{ width: `${width}px` }">
       {{ title }}
       <Icon type="ios-arrow-down"></Icon>
     </Button>
@@ -19,6 +19,10 @@
 export default {
   name: 'CDropdown',
   props: {
+    width: {
+      type: Number,
+      default: 70
+    },
     title: {
       type: String,
       default: ''

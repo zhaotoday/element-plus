@@ -69,6 +69,8 @@ export default {
     listMixin
   ],
   data () {
+    const { ORDER_ACTIONS, PRODUCT_STATUSES } = this.$consts
+
     return {
       cList: {
         columns: [
@@ -113,10 +115,7 @@ export default {
           {
             title: '状态',
             width: 80,
-            render: (h, params) => {
-              const option = this.$consts.PRODUCT_STATUSES.find(item => item.value === params.row.status)
-              return h('span', null, option.label)
-            }
+            render: (h, params) => h('span', null, this.$helpers.getOption(PRODUCT_STATUSES, params.row.status)['label'])
           },
           {
             title: '发布时间',
@@ -127,7 +126,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 245,
+            width: 340,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -145,8 +144,26 @@ export default {
               }, '删除'),
               h('CDropdown', {
                 attrs: {
+                  width: 90,
+                  title: '修改状态',
+                  options: PRODUCT_STATUSES
+                },
+                on: {
+                  click: async value => {
+                    await this.$store.dispatch(`${module}/put`, {
+                      id: params.row.id,
+                      body: { status: value }
+                    })
+
+                    this.$Message.success('修改状态成功')
+                    this.getList()
+                  }
+                }
+              }),
+              h('CDropdown', {
+                attrs: {
                   title: '排序',
-                  options: this.$consts.ORDER_ACTIONS
+                  options: ORDER_ACTIONS
                 },
                 on: {
                   click: async value => {
