@@ -4,6 +4,7 @@ import GENDERS from './genders'
 import REQUEST_METHODS from './request-methods'
 import AD_STATUSES from './ad-statuses'
 import COMMENT_STATUSES from './comment-statuses'
+import COMMENT_STATUS_ACTIONS from './comment-status-actions'
 import ORDER_ACTIONS from './order-actions'
 import MODELS from './models'
 import PRODUCT_STATUSES from './product-statuses'
@@ -30,6 +31,7 @@ export default {
   REQUEST_METHODS,
   AD_STATUSES,
   COMMENT_STATUSES,
+  COMMENT_STATUS_ACTIONS,
   ORDER_ACTIONS,
   MODELS,
   PRODUCT_STATUSES,

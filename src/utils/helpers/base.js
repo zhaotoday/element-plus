@@ -6,9 +6,6 @@ export default {
   goBack () {
     window.history.go(-1)
   },
-  open (url) {
-    window.open(url)
-  },
   deepCopy (obj) {
     return JSON.parse(JSON.stringify(obj))
   },
@@ -24,5 +21,8 @@ export default {
     return items && items.length
       ? (items.find(item => item[key] === val) || {})
       : {}
+  },
+  getOption (options, value) {
+    return options.find(item => item.value === value) || {}
   }
 }

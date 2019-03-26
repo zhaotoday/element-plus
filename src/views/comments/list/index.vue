@@ -50,28 +50,30 @@ export default {
     listMixin
   ],
   data () {
+    const { COMMENT_STATUSES, COMMENT_STATUS_ACTIONS } = this.$consts
+
     return {
       cList: {
         columns: [
           {
             title: '用户',
-            key: 'wxUserId'
+            key: 'wxUserId',
+            width: 150
           },
           {
             title: '内容',
-            key: 'content',
-            width: 180
+            key: 'content'
           },
           {
             title: '状态',
             key: 'status',
             width: 100,
-            render: (h, params) => h('span', null, this.$consts.COMMENT_STATUSES[params.row.status])
+            render: (h, params) => h('span', null, this.$helpers.getOption(COMMENT_STATUSES, params.row.status)['label'])
           },
           {
             title: '操作',
             key: 'action',
-            width: 260,
+            width: 180,
             render: (h, params) => h('div', [
               h('CDel', {
                 on: {
@@ -82,11 +84,19 @@ export default {
               }, '删除'),
               h('CDropdown', {
                 attrs: {
-                  selected: {
-                    value: params.row.id,
-                    label: params.row.id + '-'
-                  },
-                  options: this.$consts.COMMENT_STATUSES
+                  title: '审核',
+                  options: COMMENT_STATUS_ACTIONS
+                },
+                on: {
+                  click: async value => {
+                    await this.$store.dispatch('comments/put', {
+                      id: params.row.id,
+                      body: { status: value }
+                    })
+
+                    this.$Message.success('审核完成')
+                    this.getList()
+                  }
                 }
               })
             ])
