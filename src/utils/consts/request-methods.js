@@ -1,6 +1,6 @@
 export default {
-  post: '增',
-  del: '删',
-  put: '改',
-  get: '查'
+  post: '新增',
+  del: '删除',
+  put: '修改',
+  get: '查询'
 }

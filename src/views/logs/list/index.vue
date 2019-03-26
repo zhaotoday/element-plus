@@ -60,28 +60,30 @@ export default {
         columns: [
           {
             title: '用户',
-            key: 'managerId'
+            key: 'managerId',
+            width: 150
           },
           {
             title: '模型',
             key: 'model',
+            width: 150,
             render: (h, params) => h('span', null, MODELS[params.row.model])
           },
           {
             title: '操作类型',
             type: 'method',
+            width: 150,
             render: (h, params) => h('span', null, REQUEST_METHODS[params.row.method])
           },
           {
             title: '数据',
             key: 'body',
-            width: 250,
             render: (h, params) => h('span', null, JSON.stringify(params.row.body))
           },
           {
             title: '操作',
             key: 'action',
-            width: 260,
+            width: 105,
             render: (h, params) => h('div', [
               h('CDel', {
                 on: {
