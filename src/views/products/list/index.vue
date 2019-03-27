@@ -167,12 +167,7 @@ export default {
                 },
                 on: {
                   click: async value => {
-                    await this.$store.dispatch(`${module}/postAction`, {
-                      query: { where: { ...this.listSearchWhere, alias: this.alias } },
-                      body: { type: value, id: params.row.id }
-                    })
-
-                    this.getList()
+                    this.handleSort(params.row.id, value)
                   }
                 }
               })
@@ -213,6 +208,14 @@ export default {
 
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
+    },
+    async handleSort (id, value) {
+      await this.$store.dispatch(`${module}/postAction`, {
+        query: { where: { ...this.listSearchWhere, alias: this.alias } },
+        body: { type: value, id }
+      })
+
+      this.getList()
     }
   }
 }

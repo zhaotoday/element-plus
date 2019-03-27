@@ -26,10 +26,10 @@ export default {
     getCategoryTitleById (id, hasParent = false) {
       const item = this.$helpers.getItemById(this.allCategoriesList.items, id)
 
-      return item && item.title
+      return item && item.name
         ? hasParent
-          ? `${this.getCategoryTitleById(item.parentId)} - ${item.title}`
-          : item.title
+          ? `${this.getCategoryTitleById(item.parentId)} - ${item.name}`
+          : item.name
         : ''
     }
   }

@@ -168,20 +168,7 @@ export default {
               this.levels === 2 ? h('Button', {
                 on: {
                   click: () => {
-                    const { id } = params.row
-
-                    const parentIds = this.listSearchWhere && this.listSearchWhere.parentIds
-                      ? this.$helpers.deepCopy(this.listSearchWhere.parentIds)
-                      : [0]
-
-                    if (parentIds[parentIds.length - 1] !== id) {
-                      parentIds.push(id)
-                      this.$router.push({
-                        query: {
-                          listSearchWhere: JSON.stringify({ ...initWhere, parentIds: parentIds })
-                        }
-                      })
-                    }
+                    this.handleManageChild(params.row.id)
                   }
                 }
               }, '管理子分类') : null,
@@ -192,20 +179,7 @@ export default {
                 },
                 on: {
                   click: async value => {
-                    const { name } = this.listSearchWhere || initWhere
-
-                    await this.$store.dispatch(`${module}/postAction`, {
-                      query: {
-                        where: {
-                          parentId: this.isParent ? this.parentDetail.id : 0,
-                          name,
-                          alias: this.alias
-                        }
-                      },
-                      body: { type: value, id: params.row.id }
-                    })
-
-                    this.getList()
+                    this.handleSort(params.row.id, value)
                   }
                 }
               })
@@ -287,6 +261,20 @@ export default {
         }
       })
     },
+    async handleManageChild (id) {
+      const parentIds = this.listSearchWhere && this.listSearchWhere.parentIds
+        ? this.$helpers.deepCopy(this.listSearchWhere.parentIds)
+        : [0]
+
+      if (parentIds[parentIds.length - 1] !== id) {
+        parentIds.push(id)
+        this.$router.push({
+          query: {
+            listSearchWhere: JSON.stringify({ ...initWhere, parentIds: parentIds })
+          }
+        })
+      }
+    },
     handleGoParent () {
       const parentIds = this.$helpers.deepCopy(this.listSearchWhere.parentIds)
 
@@ -314,6 +302,22 @@ export default {
 
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
+    },
+    async handleSort (id, value) {
+      const { name } = this.listSearchWhere || initWhere
+
+      await this.$store.dispatch(`${module}/postAction`, {
+        query: {
+          where: {
+            parentId: this.isParent ? this.parentDetail.id : 0,
+            name,
+            alias: this.alias
+          }
+        },
+        body: { type: value, id }
+      })
+
+      this.getList()
     },
     handleFormOk () {
       this.$refs.formValidate.validate(async valid => {

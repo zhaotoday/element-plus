@@ -8,20 +8,20 @@
     <template v-for="item1 in items">
       <OptionGroup
         v-if="!!item1.children"
-        :label="item1.title"
+        :label="item1.name"
         :key="item1.id">
         <Option
           v-for="item2 in item1.children"
           :value="item2.id"
           :key="item2.id">
-          {{ item2.title }}
+          {{ item2.name }}
         </Option>
       </OptionGroup>
       <Option
         v-else
         :value="item1.id"
         :key="item1.id">
-        {{ item1.title }}
+        {{ item1.name }}
       </Option>
     </template>
   </Select>
