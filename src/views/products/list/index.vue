@@ -150,13 +150,7 @@ export default {
                 },
                 on: {
                   click: async value => {
-                    await this.$store.dispatch(`${module}/put`, {
-                      id: params.row.id,
-                      body: { status: value }
-                    })
-
-                    this.$Message.success('修改状态成功')
-                    this.getList()
+                    this.handleChangeStatus(params.row.id, value)
                   }
                 }
               }),
@@ -208,6 +202,15 @@ export default {
 
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
+    },
+    async handleChangeStatus (id, value) {
+      await this.$store.dispatch(`${module}/put`, {
+        id,
+        body: { status: value }
+      })
+
+      this.$Message.success('修改状态成功')
+      this.getList()
     },
     async handleSort (id, value) {
       await this.$store.dispatch(`${module}/postAction`, {
