@@ -134,8 +134,10 @@ export default {
     formMixin
   ],
   data () {
+    const { LIST_COLUMN_WIDTHS, ORDER_ACTIONS, CATEGORY_LEVELS } = this.$consts
+
     const getLevels = () => {
-      return this.$consts.CATEGORY_LEVELS[this.$route.params.alias]
+      return CATEGORY_LEVELS[this.$route.params.alias]
     }
 
     return {
@@ -144,7 +146,8 @@ export default {
         columns: [
           {
             title: '名称',
-            key: 'name'
+            key: 'name',
+            minWidth: LIST_COLUMN_WIDTHS.TITLE
           },
           {
             title: '操作',
@@ -175,7 +178,7 @@ export default {
               h('CDropdown', {
                 attrs: {
                   title: '排序',
-                  options: this.$consts.ORDER_ACTIONS
+                  options: ORDER_ACTIONS
                 },
                 on: {
                   click: async value => {

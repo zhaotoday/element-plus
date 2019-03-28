@@ -50,7 +50,7 @@ export default {
     listMixin
   ],
   data () {
-    const { COMMENT_STATUSES, COMMENT_STATUS_ACTIONS } = this.$consts
+    const { LIST_COLUMN_WIDTHS, COMMENT_STATUSES, COMMENT_STATUS_ACTIONS } = this.$consts
 
     return {
       cList: {
@@ -58,7 +58,7 @@ export default {
           {
             title: '用户',
             key: 'wxUserId',
-            width: 150
+            width: LIST_COLUMN_WIDTHS.USER
           },
           {
             title: '内容',

@@ -112,13 +112,15 @@ export default {
     formMixin
   ],
   data () {
+    const { LIST_COLUMN_WIDTHS } = this.$consts
+
     return {
       cList: {
         columns: [
           {
             title: '名称',
             key: 'name',
-            width: 200
+            width: LIST_COLUMN_WIDTHS.TITLE
           },
           {
             title: '权限',

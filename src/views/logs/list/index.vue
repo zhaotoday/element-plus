@@ -53,7 +53,7 @@ export default {
     listMixin
   ],
   data () {
-    const { MODELS, REQUEST_METHODS } = this.$consts
+    const { LIST_COLUMN_WIDTHS, MODELS, REQUEST_METHODS } = this.$consts
 
     return {
       cList: {
@@ -61,7 +61,7 @@ export default {
           {
             title: '用户',
             key: 'managerId',
-            width: 150
+            width: LIST_COLUMN_WIDTHS.USER
           },
           {
             title: '模型',

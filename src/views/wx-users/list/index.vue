@@ -50,14 +50,15 @@ export default {
     listMixin
   ],
   data () {
-    const { WX_USER_STATUSES, GENDERS } = this.$consts
+    const { LIST_COLUMN_WIDTHS, WX_USER_STATUSES, GENDERS } = this.$consts
 
     return {
       cList: {
         columns: [
           {
             title: '昵称',
-            key: 'nickName'
+            key: 'nickName',
+            minWidth: LIST_COLUMN_WIDTHS.TITLE
           },
           {
             title: '头像',

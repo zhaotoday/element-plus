@@ -69,15 +69,11 @@ export default {
     listMixin
   ],
   data () {
-    const { ORDER_ACTIONS, PRODUCT_STATUSES } = this.$consts
+    const { LIST_COLUMN_WIDTHS, ORDER_ACTIONS, PRODUCT_STATUSES } = this.$consts
 
     return {
       cList: {
         columns: [
-          {
-            title: '名称',
-            key: 'name'
-          },
           {
             title: '图片',
             key: 'picture',
@@ -92,9 +88,14 @@ export default {
             }
           },
           {
+            title: '名称',
+            key: 'name',
+            minWidth: LIST_COLUMN_WIDTHS.TITLE
+          },
+          {
             title: '分类',
             key: 'categoryId',
-            width: 180,
+            width: LIST_COLUMN_WIDTHS.CATEGORY,
             render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId, true))
           },
           {
@@ -133,12 +134,6 @@ export default {
             title: '状态',
             width: 80,
             render: (h, params) => h('span', null, this.$helpers.getOption(PRODUCT_STATUSES, params.row.status)['label'])
-          },
-          {
-            title: '发布时间',
-            key: 'createdAt',
-            width: 150,
-            render: (h, params) => h('span', null, this.$time.getTime(params.row.createdAt))
           },
           {
             title: '操作',

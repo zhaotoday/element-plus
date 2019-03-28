@@ -111,12 +111,15 @@ export default {
     formMixin
   ],
   data () {
+    const { LIST_COLUMN_WIDTHS, ORDER_ACTIONS } = this.$consts
+
     return {
       cList: {
         columns: [
           {
             title: '标题',
-            key: 'title'
+            key: 'title',
+            minWidth: LIST_COLUMN_WIDTHS.TITLE
           },
           {
             title: '图片',
@@ -158,7 +161,7 @@ export default {
               h('CDropdown', {
                 attrs: {
                   title: '排序',
-                  options: this.$consts.ORDER_ACTIONS
+                  options: ORDER_ACTIONS
                 },
                 on: {
                   click: async value => {
