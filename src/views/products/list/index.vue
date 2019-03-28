@@ -19,6 +19,20 @@
           <Form
             inline
             @submit.native.prevent="search">
+            <Form-item prop="status">
+              <Select
+                placeholder="请选择状态"
+                clearable
+                style="width:200px"
+                v-model="cList.cSearch.where.status.$eq">
+                <Option
+                  v-for="item in $consts.PRODUCT_STATUSES"
+                  :value="item.value"
+                  :key="item.value">
+                  {{ item.label }}
+                </Option>
+              </Select>
+            </Form-item>
             <Form-item prop="categoryId">
               <CCategories
                 :alias="alias"
@@ -54,6 +68,9 @@ import listMixin from '@/mixins/list'
 
 const module = 'products'
 const initWhere = {
+  status: {
+    $eq: ''
+  },
   categoryId: {
     $eq: ''
   },

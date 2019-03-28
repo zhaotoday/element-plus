@@ -14,6 +14,7 @@
             <Form-item prop="status">
               <Select
                 placeholder="请选择状态"
+                clearable
                 style="width:200px"
                 v-model="cList.cSearch.where.status.$eq">
                 <Option
