@@ -60,7 +60,7 @@ export default [
     ]
   },
   {
-    icon: 'md-help',
+    icon: 'ios-map',
     name: 'marketing',
     title: '营销',
     children: [
