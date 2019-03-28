@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-wx-user">
     <CList
       :data="list.items"
       :columns="cList.columns"
@@ -56,21 +56,22 @@ export default {
       cList: {
         columns: [
           {
+            title: '图片',
+            key: 'picture',
+            width: 140,
+            render: (h, params) => {
+              return h('img', {
+                attrs: {
+                  src: params.row.avatarUrl,
+                  class: 'pb-picture'
+                }
+              })
+            }
+          },
+          {
             title: '昵称',
             key: 'nickName',
             minWidth: LIST_COLUMN_WIDTHS.USER
-          },
-          {
-            title: '头像',
-            key: 'avatarUrl',
-            width: 76,
-            render: (h, params) => h('Avatar', {
-              props: {
-                src: params.row.avatarUrl,
-                shape: 'square',
-                size: 'large'
-              }
-            })
           },
           {
             title: '性别',
@@ -163,3 +164,8 @@ export default {
   }
 }
 </script>
+
+<style
+  lang="scss"
+  src="./styles/index.scss">
+</style>
