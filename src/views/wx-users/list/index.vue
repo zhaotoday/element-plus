@@ -11,12 +11,32 @@
           <Form
             inline
             @submit.native.prevent="search">
+            <Form-item prop="status">
+              <Select
+                placeholder="请选择状态"
+                style="width:200px"
+                v-model="cList.cSearch.where.status.$eq">
+                <Option
+                  v-for="item in $consts.WX_USER_STATUSES"
+                  :value="item.value"
+                  :key="item.value">
+                  {{ item.label }}
+                </Option>
+              </Select>
+            </Form-item>
             <Form-item prop="nickName">
               <Input
                 type="text"
                 placeholder="请输入昵称"
                 v-model="cList.cSearch.where.nickName.$like"
-                style="width: 220px;" />
+                style="width: 200px;" />
+            </Form-item>
+            <Form-item prop="telephone">
+              <Input
+                type="text"
+                placeholder="请输入手机号"
+                v-model="cList.cSearch.where.telephone.$like"
+                style="width: 200px;" />
             </Form-item>
             <Form-item>
               <Button
@@ -39,7 +59,13 @@ import listMixin from '@/mixins/list'
 
 const module = 'wxUsers'
 const initWhere = {
+  status: {
+    $eq: ''
+  },
   nickName: {
+    $like: ''
+  },
+  telephone: {
     $like: ''
   }
 }
@@ -72,6 +98,11 @@ export default {
             title: '昵称',
             key: 'nickName',
             minWidth: LIST_COLUMN_WIDTHS.USER
+          },
+          {
+            title: '手机号',
+            key: 'telephone',
+            width: 150
           },
           {
             title: '性别',
