@@ -77,7 +77,7 @@ export default {
           {
             title: '图片',
             key: 'picture',
-            width: 140,
+            width: 120,
             render: (h, params) => {
               return h('img', {
                 attrs: {
