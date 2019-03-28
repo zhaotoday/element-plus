@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-categories">
     <CList
       :data="list.items"
       :columns="cList.columns"
@@ -82,6 +82,22 @@
           </Row>
         </Form-item>
         <Form-item
+          label="图标"
+          prop="icon">
+          <CUploader
+            :has-default-file="!!cForm.formValidate.icon"
+            v-model="cForm.formValidate.icon"
+            @change="value => { handleUploaderChange('icon', value) }" />
+        </Form-item>
+        <Form-item
+          label="Banner"
+          prop="banner">
+          <CUploader
+            :has-default-file="!!cForm.formValidate.banner"
+            v-model="cForm.formValidate.banner"
+            @change="value => { handleUploaderChange('banner', value) }" />
+        </Form-item>
+        <Form-item
           label="描述"
           prop="description">
           <Row>
@@ -144,6 +160,21 @@ export default {
       parents: [],
       cList: {
         columns: [
+          {
+            title: '图标',
+            key: 'icon',
+            width: 120,
+            render: (h, params) => {
+              return params.row.icon
+                ? h('img', {
+                  attrs: {
+                    src: this.$helpers.getFileURLById(params.row.icon),
+                    class: 'pb-picture'
+                  }
+                })
+                : h('span', null, '')
+            }
+          },
           {
             title: '名称',
             key: 'name',
@@ -347,3 +378,8 @@ export default {
   }
 }
 </script>
+
+<style
+  lang="scss"
+  src="./styles/index.scss">
+</style>

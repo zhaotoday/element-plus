@@ -117,11 +117,6 @@ export default {
       cList: {
         columns: [
           {
-            title: '标题',
-            key: 'title',
-            minWidth: LIST_COLUMN_WIDTHS.TITLE
-          },
-          {
             title: '图片',
             key: 'picture',
             width: 200,
@@ -133,6 +128,11 @@ export default {
                 }
               })
             }
+          },
+          {
+            title: '标题',
+            key: 'title',
+            minWidth: LIST_COLUMN_WIDTHS.TITLE
           },
           {
             title: '链接',

@@ -11,15 +11,21 @@
           <Form
             inline
             @submit.native.prevent="search">
-            <Form-item prop="id">
+            <Form-item prop="startTime">
               <DatePicker
-                :value="cList.cSearch.where.createdAt.$between"
-                type="daterange"
-                placement="bottom-end"
-                split-panels
-                placeholder="请选择起始和结束时间"
+                :value="cList.cSearch.where.startTime.$eq"
+                type="date"
+                placeholder="请选择起始时间"
                 style="width: 220px"
-                @on-change="handleDatePickerChange" />
+                @on-change="v => { handleDatePickerChange('startTime', v) }" />
+            </Form-item>
+            <Form-item prop="endTime">
+              <DatePicker
+                :value="cList.cSearch.where.endTime.$eq"
+                type="date"
+                placeholder="请选择结束时间"
+                style="width: 220px"
+                @on-change="v => { handleDatePickerChange('endTime', v) }" />
             </Form-item>
             <Form-item>
               <Button
@@ -42,8 +48,11 @@ import listMixin from '@/mixins/list'
 
 const module = 'logs'
 const initWhere = {
-  createdAt: {
-    $between: null
+  startTime: {
+    $eq: ''
+  },
+  endTime: {
+    $eq: ''
   }
 }
 
@@ -114,8 +123,8 @@ export default {
     this.getList()
   },
   methods: {
-    handleDatePickerChange (v) {
-      this.cList.cSearch.where.createdAt.$between = v
+    handleDatePickerChange (k, v) {
+      this.cList.cSearch.where[k].$eq = v
     },
     getList () {
       return this.$store.dispatch(`${module}/getList`, {
