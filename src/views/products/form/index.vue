@@ -77,6 +77,22 @@
           @change="value => { handleUploaderChange('pictures', value) }" />
       </Form-item>
       <Form-item
+        label="标签"
+        prop="stock">
+        <Checkbox
+          :true-value="1"
+          :false-value="0"
+          v-model="cForm.formValidate.new">
+          新品
+        </Checkbox>
+        <Checkbox
+          :true-value="1"
+          :false-value="0"
+          v-model="cForm.formValidate.recommended">
+          推荐
+        </Checkbox>
+      </Form-item>
+      <Form-item
         label="状态"
         prop="stock">
         <Select
@@ -125,6 +141,8 @@ export default {
           dealerPrice: 0,
           marketPrice: 0,
           stock: 0,
+          new: 0,
+          recommended: 0,
           status: 1
         },
         ruleValidate: {

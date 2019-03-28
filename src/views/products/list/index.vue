@@ -81,7 +81,7 @@ export default {
           {
             title: '图片',
             key: 'picture',
-            width: 200,
+            width: 140,
             render: (h, params) => {
               return h('img', {
                 attrs: {
@@ -111,6 +111,23 @@ export default {
             title: '库存',
             width: 80,
             render: (h, params) => h('span', null, params.row.stock + ' 件')
+          },
+          {
+            title: '标签',
+            width: 100,
+            render: (h, params) => {
+              let tags = []
+
+              if (params.row.new) {
+                tags.push('新品')
+              }
+
+              if (params.row.recommended) {
+                tags.push('推荐')
+              }
+
+              return h('span', null, tags.join('; '))
+            }
           },
           {
             title: '状态',
