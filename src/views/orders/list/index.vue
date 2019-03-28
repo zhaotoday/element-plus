@@ -50,6 +50,8 @@ export default {
     listMixin
   ],
   data () {
+    const { LIST_COLUMN_WIDTHS } = this.$consts
+
     return {
       cList: {
         columns: [
@@ -60,7 +62,7 @@ export default {
           {
             title: '下单会员',
             key: 'wxUserId',
-            width: 180
+            width: LIST_COLUMN_WIDTHS.USER
           },
           {
             title: '支付金额',

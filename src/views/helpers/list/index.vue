@@ -69,23 +69,26 @@ export default {
     listMixin
   ],
   data () {
+    const { LIST_COLUMN_WIDTHS, ORDER_ACTIONS } = this.$consts
+
     return {
       cList: {
         columns: [
           {
             title: '标题',
-            key: 'title'
+            key: 'title',
+            width: LIST_COLUMN_WIDTHS.TITLE
           },
           {
             title: '分类',
             key: 'categoryId',
-            width: 180,
+            width: LIST_COLUMN_WIDTHS.CATEGORY,
             render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId))
           },
           {
             title: '内容',
             key: 'content',
-            width: 350
+            minWidth: 350
           },
           {
             title: '发布时间',
@@ -115,7 +118,7 @@ export default {
               h('CDropdown', {
                 attrs: {
                   title: '排序',
-                  options: this.$consts.ORDER_ACTIONS
+                  options: ORDER_ACTIONS
                 },
                 on: {
                   click: async value => {

@@ -58,7 +58,7 @@ export default {
           {
             title: '昵称',
             key: 'nickName',
-            minWidth: LIST_COLUMN_WIDTHS.TITLE
+            minWidth: LIST_COLUMN_WIDTHS.USER
           },
           {
             title: '头像',
