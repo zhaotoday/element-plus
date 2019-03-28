@@ -14,7 +14,7 @@
             <Form-item prop="nickName">
               <Input
                 type="text"
-                placeholder="请输入标题"
+                placeholder="请输入昵称"
                 v-model="cList.cSearch.where.nickName.$like"
                 style="width: 220px;" />
             </Form-item>
@@ -50,6 +50,8 @@ export default {
     listMixin
   ],
   data () {
+    const { WX_USER_STATUSES, GENDERS } = this.$consts
+
     return {
       cList: {
         columns: [
@@ -73,7 +75,7 @@ export default {
             title: '性别',
             key: 'gender',
             width: 65,
-            render: (h, params) => h('span', null, this.$consts.GENDERS[params.row.gender])
+            render: (h, params) => h('span', null, GENDERS[params.row.gender])
           },
           {
             title: '国家',
@@ -91,14 +93,29 @@ export default {
             width: 100
           },
           {
-            title: 'Open Id',
-            key: 'openId',
-            width: 250
+            title: '状态',
+            key: 'status',
+            width: 100,
+            render: (h, params) => h('span', null, this.$helpers.getOption(WX_USER_STATUSES, params.row.status)['label'])
           },
           {
-            title: 'Union Id',
-            key: 'unionId',
-            width: 250
+            title: '操作',
+            key: 'action',
+            width: 140,
+            render: (h, params) => h('div', [
+              h('CDropdown', {
+                attrs: {
+                  width: 90,
+                  title: '修改状态',
+                  options: WX_USER_STATUSES
+                },
+                on: {
+                  click: async value => {
+                    this.handleChangeStatus(params.row.id, value)
+                  }
+                }
+              })
+            ])
           }
         ],
         cSearch: {
@@ -132,6 +149,15 @@ export default {
           where: this.listSearchWhere
         }
       })
+    },
+    async handleChangeStatus (id, value) {
+      await this.$store.dispatch(`${module}/put`, {
+        id,
+        body: { status: value }
+      })
+
+      this.$Message.success('修改状态成功')
+      this.getList()
     }
   }
 }
