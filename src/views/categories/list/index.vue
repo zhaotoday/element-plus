@@ -15,9 +15,9 @@
             新增
           </Button>
           <Button
+            v-if="isParent"
             class="u-mr5"
-            @click="handleGoParent"
-            v-if="isParent">
+            @click="handleGoParent">
             返回上一级
           </Button>
         </CListOperations>
@@ -42,7 +42,7 @@
           </Form>
         </CListSearch>
       </CListHeader>
-      <CListNavigation>
+      <CListNavigation v-if="levels !== 1">
         <Alert v-if="isParent">
           <b>{{ parentDetail.name }}</b> 的子分类：
         </Alert>
