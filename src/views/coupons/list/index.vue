@@ -37,24 +37,37 @@
           </Row>
         </Form-item>
         <Form-item
-          label="链接"
-          prop="link">
+          label="价值"
+          prop="value">
           <Row>
             <Col span="20">
-              <Input
-                v-model="cForm.formValidate.link"
-                placeholder="请输入链接" />
+              <InputNumber
+                :min="0"
+                :max="100000"
+                v-model="cForm.formValidate.value" />
+              元
             </Col>
           </Row>
         </Form-item>
         <Form-item
-          label="图片"
-          prop="picture">
-          <CUploader
-            ref="uploader"
-            :has-default-file="!!cForm.formValidate.picture"
-            v-model="cForm.formValidate.picture"
-            @change="value => { handleUploaderChange('picture', value) }" />
+          label="起始时间"
+          prop="startsAt">
+          <DatePicker
+            :value="cForm.formValidate.startsAt"
+            type="date"
+            placeholder="请选择起始时间"
+            style="width: 200px"
+            @on-change="v => { handleDatePickerChange('startsAt', v) }" />
+        </Form-item>
+        <Form-item
+          label="结束时间"
+          prop="endsAt">
+          <DatePicker
+            :value="cForm.formValidate.endsAt"
+            type="date"
+            placeholder="请选择结束时间"
+            style="width: 200px"
+            @on-change="v => { handleDatePickerChange('endsAt', v) }" />
         </Form-item>
         <Form-item
           label="状态"
@@ -101,7 +114,8 @@ import formMixin from '@/mixins/form'
 
 const module = 'coupons'
 const initForm = {
-  status: 1
+  status: 1,
+  value: 0
 }
 
 export default {
@@ -111,6 +125,8 @@ export default {
     formMixin
   ],
   data () {
+    const { COUPON_STATUSES } = this.$consts
+
     return {
       cList: {
         columns: [
@@ -119,27 +135,39 @@ export default {
             key: 'title'
           },
           {
-            title: '图片',
-            key: 'picture',
+            title: '价值',
+            key: 'value',
+            width: 100,
+            render: (h, params) => h('span', null, `${params.row.value} 元`)
+          },
+          {
+            title: '有效期',
             width: 200,
             render: (h, params) => {
-              return h('img', {
-                attrs: {
-                  src: this.$helpers.getFileURLById(params.row.picture),
-                  class: 'pb-picture'
-                }
-              })
+              let ret = ''
+
+              const { startsAt, endsAt } = params.row
+
+              if (startsAt && endsAt) {
+                ret += `${startsAt} 至 ${endsAt}`
+              } else if (startsAt) {
+                ret += `${startsAt} 开始`
+              } else if (endsAt) {
+                ret += `${endsAt} 结束`
+              }
+
+              return h('span', null, ret)
             }
           },
           {
-            title: '链接',
-            key: 'link',
-            width: 300
+            title: '状态',
+            width: 80,
+            render: (h, params) => h('span', null, this.$helpers.getOption(COUPON_STATUSES, params.row.status)['label'])
           },
           {
             title: '操作',
             key: 'action',
-            width: 245,
+            width: 340,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -155,6 +183,18 @@ export default {
                   }
                 }
               }, '删除'),
+              h('CDropdown', {
+                attrs: {
+                  width: 90,
+                  title: '修改状态',
+                  options: COUPON_STATUSES
+                },
+                on: {
+                  click: async value => {
+                    this.handleChangeStatus(params.row.id, value)
+                  }
+                }
+              }),
               h('CDropdown', {
                 attrs: {
                   title: '排序',
@@ -240,6 +280,15 @@ export default {
 
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
+    },
+    async handleChangeStatus (id, value) {
+      await this.$store.dispatch(`${module}/put`, {
+        id,
+        body: { status: value }
+      })
+
+      this.$Message.success('修改状态成功')
+      this.getList()
     },
     async handleSort (id, value) {
       await this.$store.dispatch(`${module}/postAction`, {

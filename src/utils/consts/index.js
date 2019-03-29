@@ -11,6 +11,7 @@ import PRODUCT_STATUSES from './product-statuses'
 import CATEGORY_LEVELS from './category-levels'
 import WX_USER_STATUSES from './wx-user-statuses'
 import LIST_COLUMN_WIDTHS from './list-column-widths'
+import COUPON_STATUSES from './coupon-statuses'
 
 // 基础地址
 const BASE_URL = env.isDev() ? 'http://localhost:3002' : 'https://api.cmsx.cn'
@@ -40,6 +41,7 @@ export default {
   CATEGORY_LEVELS,
   WX_USER_STATUSES,
   LIST_COLUMN_WIDTHS,
+  COUPON_STATUSES,
   BASE_URL,
   API_URL,
   PUBLIC_API_URL,

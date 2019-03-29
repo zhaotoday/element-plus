@@ -172,7 +172,7 @@ export default {
                     class: 'pb-picture'
                   }
                 })
-                : h('span', null, '')
+                : h('span', null, '无')
             }
           },
           {

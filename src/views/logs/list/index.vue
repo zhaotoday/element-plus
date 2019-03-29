@@ -16,7 +16,7 @@
                 :value="cList.cSearch.where.startTime.$eq"
                 type="date"
                 placeholder="请选择起始时间"
-                style="width: 220px"
+                style="width: 200px"
                 @on-change="v => { handleDatePickerChange('startTime', v) }" />
             </Form-item>
             <Form-item prop="endTime">
@@ -24,7 +24,7 @@
                 :value="cList.cSearch.where.endTime.$eq"
                 type="date"
                 placeholder="请选择结束时间"
-                style="width: 220px"
+                style="width: 200px"
                 @on-change="v => { handleDatePickerChange('endTime', v) }" />
             </Form-item>
             <Form-item>
