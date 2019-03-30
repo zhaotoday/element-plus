@@ -13,7 +13,7 @@
       :action="`${consts.API_URL}/files`">
       <Button
         icon="ios-cloud-upload-outline"
-        style="width: 220px;">
+        style="width: 190px;">
         上传文件
       </Button>
     </Upload>

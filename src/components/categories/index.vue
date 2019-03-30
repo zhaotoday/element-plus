@@ -1,6 +1,6 @@
 <template>
   <Select
-    style="width: 220px"
+    style="width: 190px"
     placeholder="请选择分类"
     clearable
     :value.sync="value"

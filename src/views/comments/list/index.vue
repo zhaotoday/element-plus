@@ -16,7 +16,7 @@
                 type="text"
                 placeholder="请输入订单号"
                 v-model="cList.cSearch.where.id.$like"
-                style="width: 200px;" />
+                style="width: 190px;" />
             </Form-item>
             <Form-item>
               <Button

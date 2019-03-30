@@ -56,7 +56,7 @@
             :value="cForm.formValidate.startsAt"
             type="date"
             placeholder="请选择起始时间"
-            style="width: 200px"
+            style="width: 190px"
             @on-change="v => { handleDatePickerChange('startsAt', v) }" />
         </Form-item>
         <Form-item
@@ -66,7 +66,7 @@
             :value="cForm.formValidate.endsAt"
             type="date"
             placeholder="请选择结束时间"
-            style="width: 200px"
+            style="width: 190px"
             @on-change="v => { handleDatePickerChange('endsAt', v) }" />
         </Form-item>
         <Form-item
@@ -76,7 +76,7 @@
             <Col span="20">
               <Select
                 v-model="cForm.formValidate.status"
-                style="width: 200px;">
+                style="width: 190px;">
                 <Option
                   v-for="item in $consts.AD_STATUSES"
                   :key="item.value"

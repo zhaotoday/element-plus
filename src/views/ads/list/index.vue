@@ -63,7 +63,7 @@
             <Col span="20">
               <Select
                 v-model="cForm.formValidate.status"
-                style="width: 200px;">
+                style="width: 190px;">
                 <Option
                   v-for="item in $consts.AD_STATUSES"
                   :key="item.value"

@@ -97,7 +97,7 @@
         prop="stock">
         <Select
           v-model="cForm.formValidate.status"
-          style="width:200px">
+          style="width: 190px">
           <Option
             v-for="item in $consts.PRODUCT_STATUSES"
             :value="item.value"

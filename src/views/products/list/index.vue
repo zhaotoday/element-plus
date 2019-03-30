@@ -23,7 +23,7 @@
               <Select
                 placeholder="请选择状态"
                 clearable
-                style="width:200px"
+                style="width: 190px"
                 v-model="cList.cSearch.where.status.$eq">
                 <Option
                   v-for="item in $consts.PRODUCT_STATUSES"
@@ -44,7 +44,7 @@
                 type="text"
                 placeholder="请输入名称"
                 v-model="cList.cSearch.where.name.$like"
-                style="width: 200px;" />
+                style="width: 190px;" />
             </Form-item>
             <Form-item>
               <Button

@@ -30,7 +30,7 @@
                 type="text"
                 placeholder="请输入标题"
                 v-model="cList.cSearch.where.title.$like"
-                style="width: 200px;" />
+                style="width: 190px;" />
             </Form-item>
             <Form-item>
               <Button
