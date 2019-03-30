@@ -6,11 +6,12 @@ export default {
     ...mapActions({
       resetState: 'resetState'
     }),
-    addLog ({ method, model, body } = {}) {
+    addLog ({ id, method, model, body } = {}) {
       this.$store.dispatch('logs/post', {
         body: {
           managerId: auth.get()['user'].id,
           alias: 'logs',
+          id,
           method,
           model,
           body
