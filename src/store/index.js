@@ -25,6 +25,7 @@ export default new Vuex.Store({
     rbacRoles: require('./modules/admin/rbac-roles').default,
     rbacResources: require('./modules/admin/rbac-resources').default,
     settings: require('./modules/admin/settings').default,
-    logs: require('./modules/admin/logs').default
+    logs: require('./modules/admin/logs').default,
+    resources: require('./modules/admin/resources').default
   }
 })
