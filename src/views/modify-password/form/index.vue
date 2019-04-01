@@ -1,69 +1,37 @@
 <template>
-  <div class="limit-width">
+  <div class="limit-width" style="width: 400px;">
     <Form
       ref="formValidate"
       :model="cForm.formValidate"
       :rules="cForm.ruleValidate"
       :label-width="100">
       <Form-item
-        label="标题"
-        prop="title">
+        label="旧密码"
+        prop="oldPassword">
         <Input
-          v-model="cForm.formValidate.title"
-          placeholder="请输入标题" />
+          v-model="cForm.formValidate.oldPassword"
+          placeholder="" />
       </Form-item>
       <Form-item
-        label="关键词"
-        prop="keywords">
+        label="新密码"
+        prop="password">
         <Input
-          type="textarea"
-          :rows="3"
-          v-model="cForm.formValidate.keywords"
-          placeholder="请输入关键词" />
+          v-model="cForm.formValidate.password"
+          placeholder="输入新密码，密码由6-16个字符组成，区分大小写" />
       </Form-item>
       <Form-item
-        label="描述"
-        prop="description">
+        label="确认新密码"
+        prop="confirmPassword">
         <Input
-          type="textarea"
-          :rows="3"
-          v-model="cForm.formValidate.description"
-          placeholder="请输入描述" />
-      </Form-item>
-      <Form-item
-        label="固定电话"
-        prop="cellphone">
-        <Input
-          v-model="cForm.formValidate.cellphone"
-          placeholder="请输入固定电话" />
-      </Form-item>
-      <Form-item
-        label="手机号"
-        prop="telephone">
-        <Input
-          v-model="cForm.formValidate.telephone"
-          placeholder="请输入手机号" />
-      </Form-item>
-      <Form-item
-        label="地址"
-        prop="address">
-        <Input
-          v-model="cForm.formValidate.address"
-          placeholder="请输入地址" />
-      </Form-item>
-      <Form-item
-        label="备案号"
-        prop="icp">
-        <Input
-          v-model="cForm.formValidate.icp"
-          placeholder="请输入备案号" />
+          v-model="cForm.formValidate.confirmPassword"
+          placeholder="" />
       </Form-item>
       <Form-item class="save">
         <Button
           type="primary"
           @click="handleSave"
           class="u-mr5">
-          保存
+          确认
         </Button>
       </Form-item>
     </Form>
