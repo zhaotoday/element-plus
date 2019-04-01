@@ -6,7 +6,8 @@
       class="u-mb15"
       border
       :columns="columns"
-      :data="data" />
+      :data="data"
+      @on-selection-change="handleSelectionChange" />
     <Page
       :total="total"
       :current="pageCurrent"
@@ -49,6 +50,9 @@ export default {
     }
   },
   methods: {
+    handleSelectionChange (selection) {
+      this.$emit('selection-change', selection)
+    },
     handlePageChange (current) {
       this.$router.push({
         query: Object.assign(
