@@ -4,7 +4,8 @@
       :columns="cList.columns"
       :data="list.items"
       :total="list.total"
-      :pageCurrent="listPageCurrent">
+      :pageCurrent="listPageCurrent"
+      @selection-change="handleListSelectionChange">
       <CListHeader>
         <CListOperations>
           <Button
@@ -130,6 +131,11 @@ export default {
     return {
       cList: {
         columns: [
+          {
+            type: 'selection',
+            width: 60,
+            align: 'center'
+          },
           {
             title: '标题',
             key: 'title'
@@ -263,6 +269,9 @@ export default {
           where: { alias: this.alias }
         }
       })
+    },
+    handleListSelectionChange (selection) {
+      console.log(selection, 2)
     },
     handleShowForm (detail) {
       this.cForm.modal = true
