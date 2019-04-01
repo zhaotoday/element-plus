@@ -112,6 +112,10 @@ export default [
       {
         title: '网站设置',
         route: '/settings/settings/index'
+      },
+      {
+        title: '修改密码',
+        route: '/modify-password/modify-password/index'
       }
     ]
   },

@@ -28,7 +28,8 @@ const router = new Router({
             require('./routes/coupons').default,
             require('./routes/rbac').default,
             require('./routes/settings').default,
-            require('./routes/logs').default
+            require('./routes/logs').default,
+            require('./routes/modify-password').default
           ],
           meta: {
             requiresAuth: true
