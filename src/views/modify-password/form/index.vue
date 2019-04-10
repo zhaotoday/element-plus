@@ -1,5 +1,7 @@
 <template>
-  <div class="limit-width" style="width: 400px;">
+  <div
+    class="limit-width"
+    style="width: 400px;">
     <Form
       ref="formValidate"
       :model="cForm.formValidate"
@@ -42,7 +44,7 @@
 import { mapState } from 'vuex'
 import formMixin from '@/mixins/form'
 
-const module = 'settings'
+const module = 'managers'
 
 export default {
   mixins: [
@@ -53,36 +55,47 @@ export default {
       cForm: {
         formValidate: {},
         ruleValidate: {
-          title: [
+          oldPassword: [
             {
               required: true,
-              message: '标题不能为空'
+              message: '旧密码不能为空'
+            }
+          ],
+          password: [
+            {
+              required: true,
+              message: '新密码不能为空'
+            }
+          ],
+          confirmPassword: [
+            {
+              required: true,
+              message: '确认新密码不能为空'
             }
           ]
         }
       }
     }
   },
-  computed: mapState({
-    detail: state => state[module].detail
-  }),
-  created () {
-    this.id = 1
-    this.getDetail(module, this.id)
-  },
   methods: {
     handleSave () {
+      const { oldPassword, password, confirmPassword } = this.cForm.formValidate
+
+      if (password !== confirmPassword) {
+        this.$Message.error('两次密码输入不一致')
+        return
+      }
+
       this.$refs.formValidate.validate(async valid => {
         if (valid) {
-          const id = this.id
-          await this.$store.dispatch(`${module}/put`, {
-            id,
+          await this.$store.dispatch(`${module}/postAction`, {
             body: {
-              ...this.cForm.formValidate,
-              alias: this.alias
+              type: 'MODIFY_PASSWORD',
+              oldPassword,
+              password
             }
           })
-          this.$Message.success('保存成功')
+          this.$Message.success('修改成功')
         }
       })
     }
