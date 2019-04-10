@@ -76,10 +76,6 @@ export default [
     title: '角色权限',
     children: [
       {
-        title: '用户',
-        route: '/rbac/rbacRoles/index'
-      },
-      {
         title: '角色',
         route: '/rbac/rbac/roles'
       },
