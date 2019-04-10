@@ -14,6 +14,9 @@
             @click="handleShowForm">
             新增
           </Button>
+          <CBatchDel
+            :selected-items="listSelectedItems"
+            @ok="handleDelOk" />
         </CListOperations>
       </CListHeader>
     </CList>
@@ -269,9 +272,6 @@ export default {
           where: { alias: this.alias }
         }
       })
-    },
-    handleListSelectionChange (selection) {
-      console.log(selection, 2)
     },
     handleShowForm (detail) {
       this.cForm.modal = true

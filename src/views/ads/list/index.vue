@@ -4,7 +4,8 @@
       :columns="cList.columns"
       :data="list.items"
       :total="list.total"
-      :pageCurrent="listPageCurrent">
+      :pageCurrent="listPageCurrent"
+      @selection-change="handleListSelectionChange">
       <CListHeader>
         <CListOperations>
           <Button
@@ -13,6 +14,9 @@
             @click="handleShowForm">
             新增
           </Button>
+          <CBatchDel
+            :selected-items="listSelectedItems"
+            @ok="handleDelOk" />
         </CListOperations>
       </CListHeader>
     </CList>
@@ -116,6 +120,11 @@ export default {
     return {
       cList: {
         columns: [
+          {
+            type: 'selection',
+            width: 60,
+            align: 'center'
+          },
           {
             title: '图片',
             key: 'picture',

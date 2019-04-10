@@ -1,6 +1,7 @@
 export default {
   data () {
     return {
+      listSelectedItems: [],
       listPageCurrent: 1,
       listSearchWhere: {}
     }
@@ -24,6 +25,9 @@ export default {
       : null
   },
   methods: {
+    handleListSelectionChange (selection) {
+      this.listSelectedItems = selection
+    },
     initSearchWhere (initWhere) {
       this.cList.cSearch.where = this.listSearchWhere
         ? this.$helpers.deepCopy(this.listSearchWhere)

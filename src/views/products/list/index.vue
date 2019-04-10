@@ -5,7 +5,8 @@
       :columns="cList.columns"
       :total="list.total"
       :pageCurrent="listPageCurrent"
-      :searchWhere="listSearchWhere">
+      :searchWhere="listSearchWhere"
+      @selection-change="handleListSelectionChange">
       <CListHeader>
         <CListOperations>
           <Button
@@ -14,6 +15,9 @@
             @click="$router.push(`/${alias}/products/index/form`)">
             新增
           </Button>
+          <CBatchDel
+            :selected-items="listSelectedItems"
+            @ok="handleDelOk" />
         </CListOperations>
         <CListSearch>
           <Form
@@ -91,6 +95,11 @@ export default {
     return {
       cList: {
         columns: [
+          {
+            type: 'selection',
+            width: 60,
+            align: 'center'
+          },
           {
             title: '图片',
             key: 'picture',

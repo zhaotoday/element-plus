@@ -5,8 +5,14 @@
       :columns="cList.columns"
       :total="list.total"
       :pageCurrent="listPageCurrent"
-      :searchWhere="listSearchWhere">
+      :searchWhere="listSearchWhere"
+      @selection-change="handleListSelectionChange">
       <CListHeader>
+        <CListOperations>
+          <CBatchDel
+            :selected-items="listSelectedItems"
+            @ok="handleDelOk" />
+        </CListOperations>
         <CListSearch>
           <Form
             inline
@@ -111,6 +117,11 @@ export default {
     return {
       cList: {
         columns: [
+          {
+            type: 'selection',
+            width: 60,
+            align: 'center'
+          },
           {
             title: '资源 ID',
             key: 'resourceId',

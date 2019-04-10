@@ -115,7 +115,7 @@ export default [
       },
       {
         title: '修改密码',
-        route: '/modify-password/modify-password/index'
+        route: '/settings/modify-password/index'
       }
     ]
   },

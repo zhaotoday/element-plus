@@ -5,7 +5,8 @@
       :columns="cList.columns"
       :total="list.total"
       :pageCurrent="listPageCurrent"
-      :searchWhere="listSearchWhere">
+      :searchWhere="listSearchWhere"
+      @selection-change="handleListSelectionChange">
       <CListHeader>
         <CListOperations>
           <Button
@@ -14,6 +15,9 @@
             @click="handleShowForm">
             新增
           </Button>
+          <CBatchDel
+            :selected-items="listSelectedItems"
+            @ok="handleDelOk" />
           <Button
             v-if="isParent"
             class="u-mr5"
@@ -160,6 +164,11 @@ export default {
       parents: [],
       cList: {
         columns: [
+          {
+            type: 'selection',
+            width: 60,
+            align: 'center'
+          },
           {
             title: '图标',
             key: 'icon',
