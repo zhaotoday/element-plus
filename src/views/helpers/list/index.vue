@@ -10,7 +10,6 @@
       <CListHeader>
         <CListOperations>
           <Button
-            class="u-mr5"
             type="primary"
             @click="$router.push(`/${alias}/helpers/index/form`)">
             新增

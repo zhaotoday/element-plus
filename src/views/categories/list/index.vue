@@ -10,7 +10,6 @@
       <CListHeader>
         <CListOperations>
           <Button
-            class="u-mr5"
             type="primary"
             @click="handleShowForm">
             新增
@@ -20,7 +19,6 @@
             @ok="handleDelOk" />
           <Button
             v-if="isParent"
-            class="u-mr5"
             @click="handleGoParent">
             返回上一级
           </Button>

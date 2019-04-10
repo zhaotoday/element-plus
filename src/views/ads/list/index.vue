@@ -9,7 +9,6 @@
       <CListHeader>
         <CListOperations>
           <Button
-            class="u-mr5"
             type="primary"
             @click="handleShowForm">
             新增
