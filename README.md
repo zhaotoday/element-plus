@@ -12,7 +12,7 @@ Vue、Webpack、ES6、Vue Router、Vuex、Sass、PostCSS 等。
 
 #### 线上的例子
 
-[https://admin.cmsx.cn/](https://admin.cmsx.cn/)
+[https://admin.wxxd.cn/](https://admin.wxxd.cn/)
 
 ```
 用户：admin

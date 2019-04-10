@@ -14,7 +14,7 @@ import LIST_COLUMN_WIDTHS from './list-column-widths'
 import COUPON_STATUSES from './coupon-statuses'
 
 // 基础地址
-const BASE_URL = env.isDev() ? 'http://localhost:3002' : 'https://api.cmsx.cn'
+const BASE_URL = env.isDev() ? 'http://localhost:3002' : 'https://api.wxxd.cn'
 
 // 接口地址
 const API_URL = BASE_URL + '/api/v1/admin'
