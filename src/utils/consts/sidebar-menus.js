@@ -1,20 +1,5 @@
 export default [
   {
-    icon: 'ios-albums',
-    name: 'news',
-    title: '公司新闻',
-    children: [
-      {
-        title: '文章',
-        route: '/news/articles/index'
-      },
-      {
-        title: '文章分类',
-        route: '/news/articles/categories'
-      }
-    ]
-  },
-  {
     icon: 'ios-cart',
     name: 'products',
     title: '商品',
@@ -101,21 +86,6 @@ export default [
       {
         title: '资源',
         route: '/rbac/rbac/resources'
-      }
-    ]
-  },
-  {
-    icon: 'md-settings',
-    name: 'settings',
-    title: '系统设置',
-    children: [
-      {
-        title: '网站设置',
-        route: '/settings/settings/index'
-      },
-      {
-        title: '修改密码',
-        route: '/settings/modify-password/index'
       }
     ]
   },
