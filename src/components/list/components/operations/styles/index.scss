@@ -5,5 +5,9 @@
     @include position--absolute(0, null, null, 0);
 
     min-width: 300px;
+
+    .ivu-btn{
+      margin-right: 10px;
+    }
   }
 }
