@@ -278,6 +278,7 @@ export default {
     next()
   },
   created () {
+    this.resetState()
     this.initSearchWhere(initWhere)
     this.getList()
     this.getParentDetail()
