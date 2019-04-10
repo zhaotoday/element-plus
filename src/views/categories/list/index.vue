@@ -278,7 +278,7 @@ export default {
     next()
   },
   created () {
-    this.resetState()
+    this.$store.dispatch(`${module}/resetList`)
     this.initSearchWhere(initWhere)
     this.getList()
     this.getParentDetail()
