@@ -64,8 +64,7 @@
         :label-width="80">
         <Form-item
           v-if="levels !== 1"
-          label="父类"
-          prop="name">
+          label="父类">
           <Row>
             <Col span="20">
               {{ isParent ? parentDetail.name : '顶级分类'}}
