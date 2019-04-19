@@ -130,6 +130,15 @@ import routeParamsMixin from '@/mixins/route-params'
 import formMixin from '@/mixins/form'
 
 const module = 'products'
+const initForm = {
+  price: 0,
+  dealerPrice: 0,
+  marketPrice: 0,
+  stock: 0,
+  new: 0,
+  recommended: 0,
+  status: 1
+}
 
 export default {
   mixins: [
@@ -139,15 +148,7 @@ export default {
   data () {
     return {
       cForm: {
-        formValidate: {
-          price: 0,
-          dealerPrice: 0,
-          marketPrice: 0,
-          stock: 0,
-          new: 0,
-          recommended: 0,
-          status: 1
-        },
+        formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
           name: [
             {
@@ -209,7 +210,7 @@ export default {
           })
           this.$Message.success((id ? '编辑' : '新增') + '成功！')
           if (!id) {
-            this.resetFields()
+            this.resetFields(initForm)
             this.$refs.editor.html('')
           }
         }
