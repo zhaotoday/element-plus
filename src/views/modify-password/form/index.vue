@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import formMixin from '@/mixins/form'
 
 const module = 'managers'

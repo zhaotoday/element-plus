@@ -1,7 +1,8 @@
 <template>
-  <div class="limit-width">
+  <div>
     <Form
       ref="formValidate"
+      class="c-form"
       :model="cForm.formValidate"
       :rules="cForm.ruleValidate"
       :label-width="100">
@@ -10,7 +11,8 @@
         prop="name">
         <Input
           v-model="cForm.formValidate.name"
-          placeholder="请输入名称" />
+          placeholder="请输入名称"
+          style="width: 320px;" />
       </Form-item>
       <Form-item
         label="分类"
@@ -18,7 +20,8 @@
         <CCategories
           :alias="alias"
           v-model="cForm.formValidate.categoryId"
-          @on-change="value => { cForm.formValidate.categoryId = value }" />
+          @on-change="value => { cForm.formValidate.categoryId = value }"
+          style="width: 320px;" />
       </Form-item>
       <Form-item
         label="价格"
@@ -77,6 +80,20 @@
           @change="value => { handleUploaderChange('pictures', value) }" />
       </Form-item>
       <Form-item
+        label="状态"
+        prop="stock">
+        <Select
+          v-model="cForm.formValidate.status"
+          style="width: 320px">
+          <Option
+            v-for="item in $consts.PRODUCT_STATUSES"
+            :value="item.value"
+            :key="item.value">
+            {{ item.label }}
+          </Option>
+        </Select>
+      </Form-item>
+      <Form-item
         label="标签"
         prop="stock">
         <Checkbox
@@ -91,20 +108,6 @@
           v-model="cForm.formValidate.recommended">
           推荐
         </Checkbox>
-      </Form-item>
-      <Form-item
-        label="状态"
-        prop="stock">
-        <Select
-          v-model="cForm.formValidate.status"
-          style="width: 190px">
-          <Option
-            v-for="item in $consts.PRODUCT_STATUSES"
-            :value="item.value"
-            :key="item.value">
-            {{ item.label }}
-          </Option>
-        </Select>
       </Form-item>
       <Form-item class="save">
         <Button

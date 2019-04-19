@@ -11,7 +11,7 @@
     "array-to-tree": "^3.3.0",
     "core-js": "^2.6.5",
     "echarts": "^4.2.1",
-    "iview": "^3.2.2",
+    "iview": "^3.4.0",
     "jt-env": "0.0.2",
     "jt-helpers": "0.0.6",
     "jt-rest": "0.0.8",

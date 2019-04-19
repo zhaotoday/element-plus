@@ -54,7 +54,7 @@
       </CListNavigation>
     </CList>
     <Modal
-      width="500"
+      width="496"
       v-model="cForm.modal"
       :title="cForm.id ? '编辑' : '新增'">
       <Form

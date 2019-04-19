@@ -20,7 +20,7 @@
       </CListHeader>
     </CList>
     <Modal
-      width="500"
+      width="496"
       v-model="cForm.modal"
       :title="cForm.id ? '编辑' : '新增'">
       <Form
@@ -59,7 +59,7 @@
             :value="cForm.formValidate.startsAt"
             type="date"
             placeholder="请选择起始时间"
-            style="width: 190px"
+            style="width: 320px"
             @on-change="v => { handleDatePickerChange('startsAt', v) }" />
         </Form-item>
         <Form-item
@@ -69,7 +69,7 @@
             :value="cForm.formValidate.endsAt"
             type="date"
             placeholder="请选择结束时间"
-            style="width: 190px"
+            style="width: 320px"
             @on-change="v => { handleDatePickerChange('endsAt', v) }" />
         </Form-item>
         <Form-item
@@ -79,7 +79,7 @@
             <Col span="20">
               <Select
                 v-model="cForm.formValidate.status"
-                style="width: 190px;">
+                style="width: 320px;">
                 <Option
                   v-for="item in $consts.AD_STATUSES"
                   :key="item.value"

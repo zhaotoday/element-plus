@@ -1,7 +1,8 @@
 <template>
-  <div class="limit-width">
+  <div>
     <Form
       ref="formValidate"
+      class="c-form"
       :model="cForm.formValidate"
       :rules="cForm.ruleValidate"
       :label-width="100">
@@ -10,7 +11,8 @@
         prop="title">
         <Input
           v-model="cForm.formValidate.title"
-          placeholder="请输入标题" />
+          placeholder="请输入标题"
+          style="width: 320px;" />
       </Form-item>
       <Form-item
         label="分类"
@@ -18,7 +20,8 @@
         <CCategories
           :alias="alias"
           v-model="cForm.formValidate.categoryId"
-          @on-change="value => { cForm.formValidate.categoryId = value }" />
+          @on-change="value => { cForm.formValidate.categoryId = value }"
+          style="width: 320px;" />
       </Form-item>
       <Form-item
         label="内容"
