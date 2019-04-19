@@ -1,7 +1,5 @@
 @import "../../utils/index";
 
 @include c(form) {
-  @include block--center;
-
   width: 1000px;
 }
