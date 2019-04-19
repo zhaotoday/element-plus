@@ -1,9 +1,8 @@
 <template>
-  <div
-    class="limit-width"
-    style="width: 400px;">
+  <div>
     <Form
       ref="formValidate"
+      class="c-form"
       :model="cForm.formValidate"
       :rules="cForm.ruleValidate"
       :label-width="100">
@@ -11,22 +10,28 @@
         label="旧密码"
         prop="oldPassword">
         <Input
+          type="password"
           v-model="cForm.formValidate.oldPassword"
-          placeholder="" />
+          placeholder="请输入旧密码"
+          style="width: 320px;" />
       </Form-item>
       <Form-item
         label="新密码"
         prop="password">
         <Input
+          type="password"
           v-model="cForm.formValidate.password"
-          placeholder="输入新密码，密码由6-16个字符组成，区分大小写" />
+          placeholder="请输入新密码"
+          style="width: 320px;" />
       </Form-item>
       <Form-item
         label="确认新密码"
         prop="confirmPassword">
         <Input
+          type="password"
           v-model="cForm.formValidate.confirmPassword"
-          placeholder="" />
+          placeholder="请确认新密码"
+          style="width: 320px;" />
       </Form-item>
       <Form-item class="save">
         <Button
