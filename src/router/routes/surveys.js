@@ -7,6 +7,10 @@ export default {
       component: resolve => require(['@/views/survey-subjects/list'], resolve)
     },
     {
+      path: 'subjects/questions/:id',
+      component: resolve => require(['@/views/survey-questions/list'], resolve)
+    },
+    {
       path: 'results',
       component: resolve => require(['@/views/survey-results/list'], resolve)
     }

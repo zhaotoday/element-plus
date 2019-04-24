@@ -16,6 +16,7 @@
           <CBatchDel
             :selected-items="listSelectedItems"
             @ok="handleDelOk" />
+          <Button @click="$router.push(`/${alias}/surveys/subjects`)">返回</Button>
         </CListOperations>
       </CListHeader>
     </CList>
@@ -23,36 +24,72 @@
       width="496"
       v-model="cForm.modal"
       :title="cForm.id ? '编辑' : '新增'">
-      <Form
-        ref="formValidate"
-        :model="cForm.formValidate"
-        :rules="cForm.ruleValidate"
-        :label-width="80">
-        <Form-item
-          label="标题"
-          prop="title">
-          <Row>
-            <Col span="20">
-              <Input
-                v-model="cForm.formValidate.title"
-                placeholder="请输入标题" />
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item
-          label="描述"
-          prop="description">
-          <Row>
-            <Col span="20">
-              <Input
-                v-model="cForm.formValidate.description"
-                type="textarea"
-                :rows="3"
-                placeholder="请输入描述" />
-            </Col>
-          </Row>
-        </Form-item>
-      </Form>
+      <div style="width: 480px; min-height: 190px; max-height: 400px; overflow-x: hidden; overflow-y: auto;">
+        <div style="width: 465px; min-height: 190px; overflow: hidden;">
+          <Form
+            ref="formValidate"
+            :model="cForm.formValidate"
+            :rules="cForm.ruleValidate"
+            :label-width="80">
+            <Form-item
+              label="题目"
+              prop="title">
+              <Row>
+                <Col span="20">
+                  <Input
+                    v-model="cForm.formValidate.title"
+                    placeholder="请输入题目" />
+                </Col>
+              </Row>
+            </Form-item>
+            <Form-item
+              label="类型"
+              prop="type">
+              <Row>
+                <Col span="20">
+                  <Select
+                    v-model="cForm.formValidate.type"
+                    placeholder="请选择类型"
+                    style="width: 320px;">
+                    <Option
+                      v-for="item in $consts.SURVEY_QUESTION_TYPES"
+                      :key="item.value"
+                      :value="item.value">
+                      {{ item.label }}
+                    </Option>
+                  </Select>
+                </Col>
+              </Row>
+            </Form-item>
+            <Form-item
+              v-show="cForm.formValidate.type === 'CHECKBOX'"
+              label="选项"
+              prop="value">
+              <Row>
+                <Col span="20">
+                  <div
+                    v-for="(item, index) in cForm.formValidate.value"
+                    :key="index"
+                    style="padding-bottom: 10px;">
+                    <Input
+                      v-model="item.label"
+                      placeholder="请输入题目">
+                    <Button
+                      slot="append"
+                      icon="md-close"
+                      @click="handleDelOption(index)" />
+                    </Input>
+                  </div>
+                  <Button
+                    icon="md-add"
+                    @click="handleAddOption">
+                  </Button>
+                </Col>
+              </Row>
+            </Form-item>
+          </Form>
+        </div>
+      </div>
       <div slot="footer">
         <Button
           type="text"
@@ -77,7 +114,11 @@ import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
 
-const module = 'surveySubjects'
+const module = 'surveyQuestions'
+const initForm = {
+  title: '',
+  value: []
+}
 
 export default {
   mixins: [
@@ -86,8 +127,6 @@ export default {
     formMixin
   ],
   data () {
-    const { LIST_COLUMN_WIDTHS } = this.$consts
-
     return {
       cList: {
         columns: [
@@ -97,18 +136,13 @@ export default {
             align: 'center'
           },
           {
-            title: '标题',
-            key: 'title',
-            width: LIST_COLUMN_WIDTHS.TITLE
-          },
-          {
-            title: '描述',
-            render: (h, params) => h('span', null, params.row.description)
+            title: '题目',
+            key: 'title'
           },
           {
             title: '操作',
             key: 'action',
-            width: 252,
+            width: 170,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -123,14 +157,7 @@ export default {
                     this.handleDelOk(params.row.id)
                   }
                 }
-              }, '删除'),
-              h('Button', {
-                on: {
-                  click: () => {
-                    this.$router.push(`/${this.alias}/surveys/subjects/questions/${params.row.id}`)
-                  }
-                }
-              }, '管理题目')
+              }, '删除')
             ])
           }
         ]
@@ -138,12 +165,18 @@ export default {
       cForm: {
         id: 0,
         modal: false,
-        formValidate: {},
+        formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
           title: [
             {
               required: true,
-              message: '标题不能为空'
+              message: '题目不能为空'
+            }
+          ],
+          type: [
+            {
+              required: true,
+              message: '类型不能为空'
             }
           ]
         }
@@ -156,7 +189,7 @@ export default {
   watch: {
     'cForm.modal': {
       handler (newVal) {
-        !newVal && this.resetFields()
+        !newVal && this.resetFields(initForm)
       }
     }
   },
@@ -173,7 +206,10 @@ export default {
         query: {
           offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
           limit: this.$consts.PAGE_SIZE,
-          where: { alias: this.alias }
+          where: {
+            subjectId: this.$route.params.id,
+            alias: this.alias
+          }
         }
       })
     },
@@ -201,6 +237,7 @@ export default {
             id: this.cForm.id,
             body: {
               ...this.cForm.formValidate,
+              subjectId: this.$route.params.id,
               alias: this.alias
             }
           })
@@ -210,6 +247,15 @@ export default {
           !this.cForm.id && this.resetSearch()
           this.getList()
         }
+      })
+    },
+    handleDelOption (index) {
+      this.cForm.formValidate.value.splice(index, 1)
+    },
+    handleAddOption () {
+      this.cForm.formValidate.value.push({
+        value: '',
+        label: ''
       })
     }
   }
