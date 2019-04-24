@@ -62,10 +62,10 @@ export default [
   {
     icon: 'md-person',
     name: 'wxUsers',
-    title: '微信用户',
+    title: '用户',
     children: [
       {
-        title: '微信用户',
+        title: '用户',
         route: '/wxUsers/wxUsers/index'
       }
     ]
@@ -82,6 +82,21 @@ export default [
       {
         title: '资源',
         route: '/rbac/rbac/resources'
+      }
+    ]
+  },
+  {
+    icon: 'logo-buffer',
+    name: 'surveys',
+    title: '问卷调查',
+    children: [
+      {
+        title: '主题',
+        route: '/surveys/surveys/subjects'
+      },
+      {
+        title: '结果',
+        route: '/surveys/surveys/results'
       }
     ]
   },

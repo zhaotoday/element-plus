@@ -1,6 +1,6 @@
 export default {
   path: ':alias/rbac',
-  component: resolve => require(['@/views/articles'], resolve),
+  component: resolve => require(['@/views/root'], resolve),
   children: [
     {
       path: 'roles',
