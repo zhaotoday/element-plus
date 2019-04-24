@@ -127,6 +127,8 @@ export default {
     formMixin
   ],
   data () {
+    const { ORDER_ACTIONS } = this.$consts
+
     return {
       cList: {
         columns: [
@@ -142,7 +144,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 170,
+            width: 245,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -157,7 +159,18 @@ export default {
                     this.handleDelOk(params.row.id)
                   }
                 }
-              }, '删除')
+              }, '删除'),
+              h('CDropdown', {
+                attrs: {
+                  title: '排序',
+                  options: ORDER_ACTIONS
+                },
+                on: {
+                  click: async value => {
+                    this.handleSort(params.row.id, value)
+                  }
+                }
+              })
             ])
           }
         ]
@@ -229,6 +242,14 @@ export default {
 
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
+    },
+    async handleSort (id, value) {
+      await this.$store.dispatch(`${module}/postAction`, {
+        query: { where: { ...this.listSearchWhere, alias: this.alias } },
+        body: { type: value, id }
+      })
+
+      this.getList()
     },
     handleFormOk () {
       this.$refs.formValidate.validate(async valid => {
