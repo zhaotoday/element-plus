@@ -28,5 +28,9 @@ export default {
 
   postAction ({ commit }, { query, body }) {
     return new Model().addPath('actions').POST({ query, body })
+  },
+
+  resetList ({ commit }, payload) {
+    commit(types.RESET_LIST, payload)
   }
 }

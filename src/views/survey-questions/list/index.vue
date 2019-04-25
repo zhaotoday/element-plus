@@ -211,6 +211,7 @@ export default {
     next()
   },
   async created () {
+    this.$store.dispatch(`${module}/resetList`)
     this.getList()
   },
   methods: {

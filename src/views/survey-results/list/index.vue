@@ -6,29 +6,19 @@
       :total="list.total"
       :pageCurrent="listPageCurrent"
       :searchWhere="listSearchWhere">
-      <CListHeader>
-        <CListSearch>
-          <Form
-            inline
-            @submit.native.prevent="search">
-            <Form-item prop="id">
-              <Input
-                type="text"
-                placeholder="请输入订单号"
-                v-model="cList.cSearch.where.id.$like"
-                style="width: 190px;" />
-            </Form-item>
-            <Form-item>
-              <Button
-                type="primary"
-                @click="search">
-                查询
-              </Button>
-            </Form-item>
-          </Form>
-        </CListSearch>
-      </CListHeader>
     </CList>
+    <Modal
+      v-model="cDetail.modal"
+      title="详情">
+      <Card v-if="cDetail.value.length" style="margin-bottom: 15px;">
+        <p slot="title">{{ cDetail.value | find | title }}</p>
+        <p>{{ cDetail.value | find | value | filter | join }}</p>
+      </Card>
+      <Card v-if="cDetail.value.length">
+        <p slot="title">{{ cDetail.value | last | title }}</p>
+        <p>{{ cDetail.value | last | value | string }}</p>
+      </Card>
+    </Modal>
   </div>
 </template>
 
@@ -37,7 +27,7 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 
-const module = 'orders'
+const module = 'surveyResults'
 const initWhere = {
   id: {
     $like: ''
@@ -53,52 +43,48 @@ export default {
     const { LIST_COLUMN_WIDTHS } = this.$consts
 
     return {
+      cDetail: {
+        modal: false,
+        value: []
+      },
       cList: {
         columns: [
           {
-            title: '订单号',
-            key: 'id'
-          },
-          {
-            title: '下单会员',
+            title: '用户',
             key: 'wxUserId',
-            width: LIST_COLUMN_WIDTHS.USER
+            width: 200
           },
           {
-            title: '支付金额',
-            key: 'payMoney',
-            width: 100,
-            render: (h, params) => h('span', null, params.row.payMoney + ' 元')
+            title: '主题',
+            key: 'subjectId',
+            render: (h, params) => {
+              const title = ({
+                1: '问卷调查 1',
+                2: '问卷调查 2'
+              })[params.row.subjectId]
+
+              return h('span', null, title)
+            }
           },
           {
-            title: '支付时间',
-            key: 'paidAt',
-            width: 120
-          },
-          {
-            title: '状态',
-            key: 'status',
-            width: 100
+            title: '提交时间',
+            key: 'createdAt',
+            width: LIST_COLUMN_WIDTHS.CREATED_AT,
+            render: (h, params) => h('span', null, this.$time.getTime(params.row.createdAt))
           },
           {
             title: '操作',
             key: 'action',
-            width: 290,
+            width: 105,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
                   click: () => {
-                    this.$router.push(`/${this.alias}/orders/index/form/${params.row.id}`)
+                    this.cDetail.modal = true
+                    this.cDetail.value = params.row.value
                   }
                 }
-              }, '编辑'),
-              h('CDel', {
-                on: {
-                  ok: () => {
-                    this.handleDelOk(params.row.id)
-                  }
-                }
-              }, '删除')
+              }, '详情')
             ])
           }
         ],
@@ -111,6 +97,29 @@ export default {
   computed: mapState({
     list: state => state[module].list
   }),
+  filters: {
+    find (items) {
+      return items.find(item => item.selected)
+    },
+    filter (items) {
+      return items.filter(item => item.selected)
+    },
+    title (item) {
+      return item.title
+    },
+    value (item) {
+      return item.value
+    },
+    join (items) {
+      return items.map(item => item.label).join('、')
+    },
+    last (items) {
+      return items[items.length - 1]
+    },
+    string (item) {
+      return item[0]
+    }
+  },
   async beforeRouteUpdate (to, from, next) {
     this.initSearchWhere(initWhere)
     this.getList()
