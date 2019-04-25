@@ -1,5 +1,4 @@
 import { mapActions } from 'vuex'
-import auth from '../utils/auth'
 
 export default {
   methods: {
@@ -9,7 +8,7 @@ export default {
     addLog ({ id, method, model, body } = {}) {
       this.$store.dispatch('logs/post', {
         body: {
-          managerId: auth.get()['user'].id,
+          managerId: this.$auth.get()['user'].id,
           alias: 'logs',
           id,
           method,

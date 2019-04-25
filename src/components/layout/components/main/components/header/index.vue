@@ -6,7 +6,7 @@
       @click="handleLogout">
       <CIcon type="logout" />
     </div>
-    <div class="c-header__user">admin</div>
+    <div class="c-header__user">{{ user.username }}</div>
     <div class="c-header__avatar">
       <Avatar
         style="background-color: #1890ff;"
@@ -22,6 +22,11 @@ export default {
   name: 'TheHeader',
   components: {
     CIcon
+  },
+  computed: {
+    user () {
+      return this.$auth.get()['user']
+    }
   },
   methods: {
     handleLogout () {
