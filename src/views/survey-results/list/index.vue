@@ -10,7 +10,9 @@
     <Modal
       v-model="cDetail.modal"
       title="详情">
-      <Card v-if="cDetail.value.length" style="margin-bottom: 15px;">
+      <Card
+        v-if="cDetail.value.length"
+        style="margin-bottom: 15px;">
         <p slot="title">{{ cDetail.value | find | title }}</p>
         <p>{{ cDetail.value | find | value | filter | join }}</p>
       </Card>
@@ -52,7 +54,14 @@ export default {
           {
             title: '用户',
             key: 'wxUserId',
-            width: 200
+            width: 150,
+            render: (h, params) => {
+              return h('CWXUserName', {
+                attrs: {
+                  id: params.row.wxUserId
+                }
+              })
+            }
           },
           {
             title: '主题',

@@ -10,6 +10,7 @@ import CUploader from '@/components/uploader'
 import CDropdown from '@/components/dropdown'
 import CDel from '@/components/del'
 import CBatchDel from '@/components/batch-del'
+import CWXUserName from '@/components/wx-user-name'
 
 export default {
   install (Vue) {
@@ -34,5 +35,6 @@ export default {
     Vue.component('CDropdown', CDropdown)
     Vue.component('CDel', CDel)
     Vue.component('CBatchDel', CBatchDel)
+    Vue.component('CWXUserName', CWXUserName)
   }
 }
