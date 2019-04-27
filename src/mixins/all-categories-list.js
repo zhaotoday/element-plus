@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     async getAllCategoriesList () {
-      const res = await new Model().GET({
+      const { data } = await new Model().GET({
         query: {
           offset: 0,
           limit: -1,
@@ -21,7 +21,7 @@ export default {
         }
       })
 
-      return res.data
+      return data
     },
     getCategoryTitleById (id, hasParent = false) {
       const item = this.$helpers.getItemById(this.allCategoriesList.items, id)

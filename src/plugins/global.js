@@ -21,6 +21,7 @@ export default {
 
     Vue.filter('time', val => time.getTime(val))
     Vue.filter('date', val => time.getDate(val))
+    Vue.filter('itemById', (items, id) => helpers.getItemById(items, id))
 
     Vue.mixin(globalMixin)
 
