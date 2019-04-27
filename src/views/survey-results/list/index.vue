@@ -11,7 +11,6 @@
           <Form
             inline
             @submit.native.prevent="search">
-
             <Form-item prop="subjectId">
               <Select
                 v-model="cList.cSearch.where.subjectId.$eq"
@@ -24,7 +23,6 @@
                   :key="item.id">{{ item.title }}</Option>
               </Select>
             </Form-item>
-
             <Form-item prop="startTime">
               <DatePicker
                 :value="cList.cSearch.where.startTime.$eq"
@@ -107,7 +105,7 @@ export default {
           {
             title: '用户',
             key: 'wxUserId',
-            width: 150,
+            width: 200,
             render: (h, params) => {
               return h('CWXUserName', {
                 attrs: {

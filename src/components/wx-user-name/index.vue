@@ -1,5 +1,7 @@
 <template>
-  <span class="c-wx-user-name">{{ detail.nickName || '' }}</span>
+  <span class="c-wx-user-name">
+    {{ (detail.nickName ? detail.nickName: '' ) + (detail.phoneNumber ? `（${detail.phoneNumber}）` : '') }}
+  </span>
 </template>
 
 <script>
