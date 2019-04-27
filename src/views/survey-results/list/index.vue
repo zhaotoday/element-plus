@@ -6,6 +6,50 @@
       :total="list.total"
       :pageCurrent="listPageCurrent"
       :searchWhere="listSearchWhere">
+      <CListHeader>
+        <CListSearch>
+          <Form
+            inline
+            @submit.native.prevent="search">
+
+            <Form-item prop="subjectId">
+              <Select
+                v-model="cList.cSearch.where.subjectId.$eq"
+                clearable
+                filterable>
+                <Option
+                  v-for="item in allSurveySubjectsList.items"
+                  :value="item.id"
+                  :key="item.id">{{ item.title }}</Option>
+              </Select>
+            </Form-item>
+
+            <Form-item prop="startTime">
+              <DatePicker
+                :value="cList.cSearch.where.startTime.$eq"
+                type="date"
+                placeholder="请选择起始时间"
+                style="width: 190px"
+                @on-change="v => { handleDatePickerChange('startTime', v) }" />
+            </Form-item>
+            <Form-item prop="endTime">
+              <DatePicker
+                :value="cList.cSearch.where.endTime.$eq"
+                type="date"
+                placeholder="请选择结束时间"
+                style="width: 190px"
+                @on-change="v => { handleDatePickerChange('endTime', v) }" />
+            </Form-item>
+            <Form-item>
+              <Button
+                type="primary"
+                @click="search">
+                查询
+              </Button>
+            </Form-item>
+          </Form>
+        </CListSearch>
+      </CListHeader>
     </CList>
     <Modal
       v-model="cDetail.modal"
@@ -28,11 +72,18 @@
 import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
+import Model from '@/models/admin/survey-subjects'
 
 const module = 'surveyResults'
 const initWhere = {
-  id: {
-    $like: ''
+  subjectId: {
+    $eq: ''
+  },
+  startTime: {
+    $eq: ''
+  },
+  endTime: {
+    $eq: ''
   }
 }
 
@@ -45,6 +96,7 @@ export default {
     const { LIST_COLUMN_WIDTHS } = this.$consts
 
     return {
+      allSurveySubjectsList: {},
       cDetail: {
         modal: false,
         value: []
@@ -67,12 +119,10 @@ export default {
             title: '主题',
             key: 'subjectId',
             render: (h, params) => {
-              const title = ({
-                1: '问卷调查 1',
-                2: '问卷调查 2'
-              })[params.row.subjectId]
+              const { items } = this.allSurveySubjectsList
+              const { subjectId } = params.row
 
-              return h('span', null, title)
+              return h('span', null, this.$helpers.getItemById(items, subjectId)['title'])
             }
           },
           {
@@ -131,14 +181,41 @@ export default {
   },
   async beforeRouteUpdate (to, from, next) {
     this.initSearchWhere(initWhere)
+    this.allSurveySubjectsList = await this.getAllSurveySubjectsList()
     this.getList()
     next()
   },
   async created () {
     this.initSearchWhere(initWhere)
+    this.allSurveySubjectsList = await this.getAllSurveySubjectsList()
     this.getList()
   },
   methods: {
+    async getAllSurveySubjectsList () {
+      const { data } = await new Model().GET({
+        query: {
+          offset: 0,
+          limit: -1,
+          where: {
+            alias: this.alias || ''
+          }
+        }
+      })
+
+      return data
+    },
+    getCategoryTitleById (id, hasParent = false) {
+      const item = this.$helpers.getItemById(this.allCategoriesList.items, id)
+
+      return item && item.name
+        ? hasParent
+          ? `${this.getCategoryTitleById(item.parentId)} - ${item.name}`
+          : item.name
+        : ''
+    },
+    handleDatePickerChange (k, v) {
+      this.cList.cSearch.where[k].$eq = v
+    },
     getList () {
       return this.$store.dispatch(`${module}/getList`, {
         query: {
