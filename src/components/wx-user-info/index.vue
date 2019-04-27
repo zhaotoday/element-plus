@@ -1,5 +1,5 @@
 <template>
-  <span class="c-wx-user-name">
+  <span class="c-wx-user-info">
     {{ (detail.nickName ? detail.nickName: '' ) + (detail.phoneNumber ? `（${detail.phoneNumber}）` : '') }}
   </span>
 </template>
@@ -8,7 +8,7 @@
 import WxUsersModel from '@/models/admin/wx-users'
 
 export default {
-  name: 'CWXUserName',
+  name: 'CWXUserInfo',
   props: {
     id: {
       type: Number,

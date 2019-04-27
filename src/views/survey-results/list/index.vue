@@ -107,7 +107,7 @@ export default {
             key: 'wxUserId',
             width: 200,
             render: (h, params) => {
-              return h('CWXUserName', {
+              return h('CWXUserInfo', {
                 attrs: {
                   id: params.row.wxUserId
                 }
