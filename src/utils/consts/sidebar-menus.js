@@ -13,16 +13,5 @@ export default [
         route: '/surveys/surveys/results'
       }
     ]
-  },
-  {
-    icon: 'md-person',
-    name: 'wxUsers',
-    title: '用户',
-    children: [
-      {
-        title: '用户',
-        route: '/wxUsers/wxUsers/index'
-      }
-    ]
   }
 ]

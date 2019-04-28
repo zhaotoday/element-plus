@@ -1,6 +1,6 @@
 <template>
   <span class="c-wx-user-info">
-    {{ (detail.nickName ? detail.nickName: '' ) + (detail.phoneNumber ? `（${detail.phoneNumber}）` : '') }}
+    {{ (detail.name ? detail.name: '' ) + (detail.phoneNumber ? `（${detail.phoneNumber}）` : '') }}
   </span>
 </template>
 
