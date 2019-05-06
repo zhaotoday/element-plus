@@ -105,6 +105,15 @@
         </Button>
       </div>
     </Modal>
+    <Modal
+      width="550"
+      v-model="cList.cChart.modal"
+      title="统计">
+      <ve-bar
+        ref="chart"
+        :data="cList.cChart.data">
+      </ve-bar>
+    </Modal>
   </div>
 </template>
 
@@ -113,6 +122,7 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
+import { VeBar } from 'v-charts'
 
 const module = 'surveyQuestions'
 const initForm = {
@@ -121,6 +131,7 @@ const initForm = {
 }
 
 export default {
+  components: { VeBar },
   mixins: [
     routeParamsMixin,
     listMixin,
@@ -144,7 +155,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 245,
+            width: 305,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -170,10 +181,24 @@ export default {
                     this.handleSort(params.row.id, value)
                   }
                 }
-              })
+              }),
+              params.row.type === 'CHECKBOX' ? h('Button', {
+                on: {
+                  click: async () => {
+                    this.handleGetStatistics(params.row)
+                  }
+                }
+              }, '统计') : null
             ])
           }
-        ]
+        ],
+        cChart: {
+          modal: false,
+          data: {
+            columns: ['label', '选中次数'],
+            rows: []
+          }
+        }
       },
       cForm: {
         id: 0,
@@ -279,6 +304,27 @@ export default {
         value: '',
         label: ''
       })
+    },
+    async handleGetStatistics (row) {
+      const { subjectId, id } = row
+      const { data } = await this.$store.dispatch(`surveyResults/postAction`, {
+        body: {
+          type: 'GET_STATISTICS',
+          subjectId,
+          questionId: id
+        }
+      })
+
+      this.cList.cChart.data.rows = data.reverse().map(item => ({
+        label: item.label,
+        '选中次数': item.count
+      }))
+
+      this.cList.cChart.modal = true
+
+      setTimeout(() => {
+        this.$refs.chart.resize()
+      }, 100)
     }
   }
 }

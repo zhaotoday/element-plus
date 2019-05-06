@@ -20,7 +20,9 @@
                 <Option
                   v-for="item in allSurveySubjectsList.items"
                   :value="item.id"
-                  :key="item.id">{{ item.title }}</Option>
+                  :key="item.id">
+                  {{ item.title }}
+                </Option>
               </Select>
             </Form-item>
             <Form-item prop="startTime">
@@ -109,6 +111,7 @@ export default {
             render: (h, params) => {
               return h('CWXUserInfo', {
                 attrs: {
+                  key: params.row.wxUserId,
                   id: params.row.wxUserId
                 }
               })
