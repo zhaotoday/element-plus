@@ -11,7 +11,7 @@
     "array-to-tree": "^3.3.0",
     "core-js": "^2.6.5",
     "echarts": "^4.2.1",
-    "iview": "^3.4.0",
+    "iview": "^3.4.1",
     "jt-env": "0.0.2",
     "jt-helpers": "0.0.6",
     "jt-rest": "0.0.8",
@@ -20,23 +20,23 @@
     "kindeditor": "^4.1.10",
     "sass-utils": "^1.0.20",
     "v-charts": "^1.19.0",
-    "vue": "^2.6.6",
-    "vue-router": "^3.0.2",
-    "vuex": "^3.1.0"
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-eslint": "^3.4.0",
-    "@vue/cli-service": "^3.4.0",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.14.0",
-    "eslint-plugin-vue": "^5.2.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
     "less": "^3.9.0",
-    "less-loader": "^4.1.0",
-    "node-sass": "^4.11.0",
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.6"
+    "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
     "root": true,
