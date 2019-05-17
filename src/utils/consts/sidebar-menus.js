@@ -86,21 +86,6 @@ export default [
     ]
   },
   {
-    icon: 'logo-buffer',
-    name: 'surveys',
-    title: '问卷调查',
-    children: [
-      {
-        title: '主题',
-        route: '/surveys/surveys/subjects'
-      },
-      {
-        title: '结果',
-        route: '/surveys/surveys/results'
-      }
-    ]
-  },
-  {
     icon: 'ios-print',
     name: 'logs',
     title: '日志',
