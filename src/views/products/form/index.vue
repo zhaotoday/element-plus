@@ -23,15 +23,7 @@
           @on-change="value => { cForm.formValidate.categoryId = value }"
           style="width: 320px;" />
       </Form-item>
-      <Form-item
-        label="价格"
-        prop="price">
-        <InputNumber
-          :min="0"
-          :max="100000"
-          v-model="cForm.formValidate.price" />
-        元
-      </Form-item>
+      <!--
       <Form-item
         label="进货价"
         prop="dealerPrice">
@@ -50,6 +42,7 @@
           v-model="cForm.formValidate.marketPrice" />
         元
       </Form-item>
+      -->
       <Form-item
         label="库存"
         prop="stock">
@@ -57,7 +50,44 @@
           :min="0"
           :max="100000"
           v-model="cForm.formValidate.stock" />
-        件
+      </Form-item>
+      <Form-item
+        label="单位"
+        prop="unit">
+        <Select
+          v-model="cForm.formValidate.unit"
+          style="width: 320px">
+          <Option
+            v-for="item in $consts.PRODUCT_UNITS"
+            :value="item.value"
+            :key="item.value">
+            {{ item.label }}
+          </Option>
+        </Select>
+      </Form-item>
+      <Form-item
+        label="价格"
+        prop="price">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.formValidate.price" />
+        元
+      </Form-item>
+      <Form-item
+        label="规格"
+        prop="specifications">
+        <div
+          v-for="(item, index) in $consts.PRODUCT_SPECIFICATIONS[0].specifications"
+          :key="item.value"
+          style="padding-bottom: 5px;">
+          <InputNumber
+            :min="0"
+            :max="100000"
+            :value="cForm.formValidate.specifications[index].price"
+            @on-change="value => { handleSpecificationPriceChange(index, value) }" />
+          元 / {{ item.label }}
+        </div>
       </Form-item>
       <Form-item
         label="详情"
@@ -121,6 +151,7 @@
         </Button>
       </Form-item>
     </Form>
+    {{ this.cForm.formValidate }}
   </div>
 </template>
 
@@ -128,10 +159,17 @@
 import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import formMixin from '@/mixins/form'
+import consts from '@/utils/consts'
+
+const getFormSpecifications = () => {
+  const { specifications } = consts.PRODUCT_SPECIFICATIONS[0]
+  return specifications.map(item => ({ ...item, price: 0 }))
+}
 
 const module = 'products'
 const initForm = {
   price: 0,
+  specifications: getFormSpecifications(),
   dealerPrice: 0,
   marketPrice: 0,
   stock: 0,
@@ -189,6 +227,9 @@ export default {
     detail: {
       handler (newVal) {
         this.$set(this.cForm, 'formValidate', newVal)
+        if (!newVal.specifications) {
+          this.cForm.formValidate.specifications = getFormSpecifications()
+        }
         this.$refs.editor.html(newVal.content)
       }
     }
@@ -197,6 +238,21 @@ export default {
     this.id && this.getDetail(module, this.id)
   },
   methods: {
+    handleSpecificationPriceChange (index, value) {
+      const { specifications } = this.cForm.formValidate
+
+      this.$set(
+        this.cForm,
+        'formValidate',
+        {
+          ...this.cForm.formValidate,
+          specifications: specifications.map((item, i) => ({
+            ...item,
+            price: index === i ? value : item.price
+          }))
+        }
+      )
+    },
     handleSave () {
       this.$refs.formValidate.validate(async valid => {
         if (valid) {
