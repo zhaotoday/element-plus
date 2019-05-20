@@ -151,7 +151,6 @@
         </Button>
       </Form-item>
     </Form>
-    {{ this.cForm.formValidate }}
   </div>
 </template>
 
