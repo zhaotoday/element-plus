@@ -77,16 +77,34 @@
       <Form-item
         label="规格"
         prop="specifications">
+        <Select
+          style="width: 320px; margin-bottom: 5px;"
+          @on-change="handleSelectSpecification">
+          <Option
+            v-for="item in cSpecifications"
+            :key="item.value"
+            :value="item.value"
+            :disabled="item.selected">
+            {{ item.label }}
+          </Option>
+        </Select>
         <div
-          v-for="(item, index) in $consts.PRODUCT_SPECIFICATIONS[0].specifications"
+          v-for="(item, index) in cSpecifications.filter(i => i.selected)"
           :key="item.value"
-          style="padding-bottom: 5px;">
+          style="position: relative; width: 327px; padding-bottom: 5px;">
           <InputNumber
+            :key="item.value"
             :min="0"
             :max="100000"
-            :value="cForm.formValidate.specifications[index].price"
-            @on-change="value => { handleSpecificationPriceChange(index, value) }" />
+            :value="item.price"
+            @on-change="price => { handleSpecificationPriceChange(item.value, price) }" />
           元 / {{ item.label }}
+          <Button
+            type="text"
+            icon="md-close"
+            style="position: absolute; top: 0; right: 0;"
+            @click="handleDelSpecification(item.value)">
+          </Button>
         </div>
       </Form-item>
       <Form-item
@@ -160,15 +178,19 @@ import routeParamsMixin from '@/mixins/route-params'
 import formMixin from '@/mixins/form'
 import consts from '@/utils/consts'
 
-const getFormSpecifications = () => {
+const getSpecifications = () => {
   const { specifications } = consts.PRODUCT_SPECIFICATIONS[0]
-  return specifications.map(item => ({ ...item, price: 0 }))
+  return specifications.map(item => ({
+    ...item,
+    price: 0,
+    selected: false
+  }))
 }
 
 const module = 'products'
 const initForm = {
   price: 0,
-  specifications: getFormSpecifications(),
+  specifications: getSpecifications(),
   dealerPrice: 0,
   marketPrice: 0,
   stock: 0,
@@ -184,6 +206,7 @@ export default {
   ],
   data () {
     return {
+      cSpecifications: getSpecifications(),
       cForm: {
         formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
@@ -226,10 +249,22 @@ export default {
     detail: {
       handler (newVal) {
         this.$set(this.cForm, 'formValidate', newVal)
-        if (!newVal.specifications) {
-          this.cForm.formValidate.specifications = getFormSpecifications()
-        }
         this.$refs.editor.html(newVal.content)
+
+        if (!newVal.specifications) {
+          this.cSpecifications = getSpecifications()
+        } else {
+          this.cSpecifications = getSpecifications().map(item => {
+            const found = newVal.specifications.find(i => i.value === item.value)
+            return found
+              ? {
+                ...item,
+                price: found.price,
+                selected: true
+              }
+              : item
+          })
+        }
       }
     }
   },
@@ -237,20 +272,8 @@ export default {
     this.id && this.getDetail(module, this.id)
   },
   methods: {
-    handleSpecificationPriceChange (index, value) {
-      const { specifications } = this.cForm.formValidate
-
-      this.$set(
-        this.cForm,
-        'formValidate',
-        {
-          ...this.cForm.formValidate,
-          specifications: specifications.map((item, i) => ({
-            ...item,
-            price: index === i ? value : item.price
-          }))
-        }
-      )
+    handleSpecificationPriceChange (value, price) {
+      this.cSpecifications.find(item => item.value === value)['price'] = price
     },
     handleSave () {
       this.$refs.formValidate.validate(async valid => {
@@ -260,6 +283,11 @@ export default {
             id,
             body: {
               ...this.cForm.formValidate,
+              specifications: this.cSpecifications.filter(item => item.price).map(item => ({
+                value: item.value,
+                label: item.label,
+                price: item.price
+              })),
               alias: this.alias
             }
           })
@@ -270,6 +298,15 @@ export default {
           }
         }
       })
+    },
+    handleSelectSpecification (value) {
+      this.cSpecifications.find(item => item.value === value)['selected'] = true
+    },
+    handleDelSpecification (value) {
+      const found = this.cSpecifications.find(item => item.value === value)
+
+      found.price = 0
+      found.selected = false
     }
   }
 }
