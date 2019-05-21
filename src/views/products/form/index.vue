@@ -89,7 +89,7 @@
           </Option>
         </Select>
         <div
-          v-for="(item, index) in cSpecifications.filter(i => i.selected)"
+          v-for="item in cSpecifications.filter(i => i.selected)"
           :key="item.value"
           style="position: relative; width: 327px; padding-bottom: 5px;">
           <InputNumber
