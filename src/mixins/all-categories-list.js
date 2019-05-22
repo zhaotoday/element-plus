@@ -14,7 +14,7 @@ export default {
       const { data } = await new Model().GET({
         query: {
           offset: 0,
-          limit: -1,
+          limit: 1000,
           where: {
             alias: this.alias || ''
           }
