@@ -126,7 +126,7 @@ export default {
           {
             title: '价格',
             width: 80,
-            render: (h, params) => h('span', null, params.row.price + ' 元')
+            render: (h, params) => h('span', null, params.row.price ? `${params.row.price} 元` : '')
           },
           {
             title: '进货价',
@@ -136,7 +136,7 @@ export default {
           {
             title: '库存',
             width: 80,
-            render: (h, params) => h('span', null, params.row.stock + ' 件')
+            render: (h, params) => h('span', null, `${params.row.stock || ''} ${params.row.unit ? this.$consts.PRODUCT_UNITS[params.row.unit].label : ''}`)
           },
           {
             title: '标签',

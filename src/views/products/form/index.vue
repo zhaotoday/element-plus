@@ -44,28 +44,6 @@
       </Form-item>
       -->
       <Form-item
-        label="库存"
-        prop="stock">
-        <InputNumber
-          :min="0"
-          :max="100000"
-          v-model="cForm.formValidate.stock" />
-      </Form-item>
-      <Form-item
-        label="单位"
-        prop="unit">
-        <Select
-          v-model="cForm.formValidate.unit"
-          style="width: 320px">
-          <Option
-            v-for="item in $consts.PRODUCT_UNITS"
-            :value="item.value"
-            :key="item.value">
-            {{ item.label }}
-          </Option>
-        </Select>
-      </Form-item>
-      <Form-item
         label="价格"
         prop="price">
         <InputNumber
@@ -75,10 +53,35 @@
         元
       </Form-item>
       <Form-item
+        label="库存"
+        prop="stock">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.formValidate.stock" />
+      </Form-item>
+      <Form-item
+        label="库存单位"
+        prop="unit">
+        <Select
+          v-model="cForm.formValidate.unit"
+          style="width: 320px"
+          placeholder="请选择库存单位">
+          <Option
+            v-for="item in $consts.PRODUCT_UNITS"
+            :value="item.value"
+            :key="item.value">
+            {{ item.label }}
+          </Option>
+        </Select>
+      </Form-item>
+      <Form-item
         label="规格"
         prop="specifications">
         <Select
           style="width: 320px; margin-bottom: 5px;"
+          placeholder="请选择规格"
+          v-model="specification"
           @on-change="handleSelectSpecification">
           <Option
             v-for="item in cSpecifications"
@@ -178,8 +181,8 @@ import routeParamsMixin from '@/mixins/route-params'
 import formMixin from '@/mixins/form'
 import consts from '@/utils/consts'
 
-const getSpecifications = () => {
-  const { specifications } = consts.PRODUCT_SPECIFICATIONS[0]
+const getSpecifications = (index = 0) => {
+  const { specifications } = consts.PRODUCT_SPECIFICATIONS[index]
   return specifications.map(item => ({
     ...item,
     price: 0,
@@ -206,6 +209,7 @@ export default {
   ],
   data () {
     return {
+      specification: '',
       cSpecifications: getSpecifications(),
       cForm: {
         formValidate: this.$helpers.deepCopy(initForm),
@@ -252,9 +256,10 @@ export default {
         this.$refs.editor.html(newVal.content)
 
         if (!newVal.specifications) {
-          this.cSpecifications = getSpecifications()
+          alert(3)
+          this.cSpecifications = getSpecifications(newVal.unit)
         } else {
-          this.cSpecifications = getSpecifications().map(item => {
+          this.cSpecifications = getSpecifications(newVal.unit).map(item => {
             const found = newVal.specifications.find(i => i.value === item.value)
             return found
               ? {
@@ -264,6 +269,13 @@ export default {
               }
               : item
           })
+        }
+      }
+    },
+    'cForm.formValidate.unit': {
+      handler (newVal, oldVal) {
+        if (!(this.id && !oldVal)) {
+          this.cSpecifications = getSpecifications(newVal)
         }
       }
     }
@@ -300,7 +312,12 @@ export default {
       })
     },
     handleSelectSpecification (value) {
-      this.cSpecifications.find(item => item.value === value)['selected'] = true
+      if (value) {
+        this.cSpecifications.find(item => item.value === value)['selected'] = true
+        setTimeout(() => {
+          this.specification = ''
+        }, 10)
+      }
     },
     handleDelSpecification (value) {
       const found = this.cSpecifications.find(item => item.value === value)
