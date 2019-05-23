@@ -138,7 +138,7 @@ export default {
             width: 80,
             render: (h, params) => {
               const unitLabel = params.row.unit
-                ? this.$helpers.getItem(this.$consts.PRODUCT_UNITS, 'value', [params.row.unit])['label']
+                ? this.$helpers.getItem(this.$consts.PRODUCT_UNITS, 'value', params.row.unit)['label']
                 : ''
               return h('span', null, `${params.row.stock || ''} ${unitLabel}`)
             }
