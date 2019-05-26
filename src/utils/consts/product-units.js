@@ -14,5 +14,9 @@ export default [
   {
     value: '4',
     label: '袋'
+  },
+  {
+    value: '5',
+    label: '瓶'
   }
 ]
