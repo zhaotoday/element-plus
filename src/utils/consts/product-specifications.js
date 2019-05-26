@@ -78,5 +78,22 @@ export default [
 
       return ret
     })()
+  },
+  {
+    value: '5',
+    label: '瓶',
+    specifications: (() => {
+      let ret = []
+
+      for (let i = 1; i <= 100; i++) {
+        ret.push({
+          id: i,
+          value: `4:${i}`,
+          label: `${i} 瓶`
+        })
+      }
+
+      return ret
+    })()
   }
 ]
