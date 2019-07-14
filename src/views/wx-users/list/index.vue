@@ -32,11 +32,11 @@
                 v-model="cList.cSearch.where.nickName.$like"
                 style="width: 190px;" />
             </Form-item>
-            <Form-item prop="telephone">
+            <Form-item prop="phoneNumber">
               <Input
                 type="text"
                 placeholder="请输入手机号"
-                v-model="cList.cSearch.where.telephone.$like"
+                v-model="cList.cSearch.where.phoneNumber.$like"
                 style="width: 190px;" />
             </Form-item>
             <Form-item>
@@ -66,7 +66,7 @@ const initWhere = {
   nickName: {
     $like: ''
   },
-  telephone: {
+  phoneNumber: {
     $like: ''
   }
 }
@@ -102,7 +102,7 @@ export default {
           },
           {
             title: '手机号',
-            key: 'telephone',
+            key: 'phoneNumber',
             width: 150
           },
           {
