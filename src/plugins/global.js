@@ -11,6 +11,7 @@ import CDropdown from '@/components/dropdown'
 import CDel from '@/components/del'
 import CBatchDel from '@/components/batch-del'
 import CWXUserInfo from '@/components/wx-user-info'
+import CWxUserSelect from '@/components/wx-user-select'
 
 export default {
   install (Vue) {
@@ -37,5 +38,6 @@ export default {
     Vue.component('CDel', CDel)
     Vue.component('CBatchDel', CBatchDel)
     Vue.component('CWXUserInfo', CWXUserInfo)
+    Vue.component('CWxUserSelect', CWxUserSelect)
   }
 }

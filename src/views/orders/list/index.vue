@@ -5,8 +5,25 @@
       :columns="cList.columns"
       :total="list.total"
       :pageCurrent="listPageCurrent"
-      :searchWhere="listSearchWhere">
+      :searchWhere="listSearchWhere"
+      @selection-change="handleListSelectionChange">
       <CListHeader>
+        <CListOperations>
+          <Button
+            type="primary"
+            @click="$router.push(`/${alias}/articles/index/form`)">
+            新增
+          </Button>
+          <Button
+            type="primary"
+            @click="handleDispatch">
+            派送
+          </Button>
+          <CBatchDel
+            :selected-items="listSelectedItems"
+            @ok="handleDelOk"
+          />
+        </CListOperations>
         <CListSearch>
           <Form
             inline
@@ -29,6 +46,44 @@
         </CListSearch>
       </CListHeader>
     </CList>
+
+    <Modal
+      width="400"
+      v-model="cDispatcherForm.modal"
+      title="设置派送员">
+      <Form
+        ref="formValidate"
+        :model="cDispatcherForm.formValidate"
+        :rules="cDispatcherForm.ruleValidate"
+        :label-width="80">
+        <Form-item
+          label="派送员"
+          prop="dispatcherId">
+          <Row>
+            <Col span="20">
+              <CWxUserSelect
+                v-if="cDispatcherForm.modal"
+                @change="value => { cDispatcherForm.formValidate.dispatcherId = value }"
+              />
+            </Col>
+          </Row>
+        </Form-item>
+      </Form>
+      <div slot="footer">
+        <Button
+          type="text"
+          size="large"
+          @click="cDispatcherForm.modal = false">
+          取消
+        </Button>
+        <Button
+          type="primary"
+          size="large"
+          @click="setDispatcher">
+          确定
+        </Button>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -43,6 +98,9 @@ const initWhere = {
     $like: ''
   }
 }
+const initForm = {
+  dispatcherId: ''
+}
 
 export default {
   mixins: [
@@ -55,6 +113,11 @@ export default {
     return {
       cList: {
         columns: [
+          {
+            type: 'selection',
+            width: 60,
+            align: 'center'
+          },
           {
             title: '订单号',
             key: 'no'
@@ -82,7 +145,7 @@ export default {
           {
             title: '支付金额',
             key: 'paidMoney',
-            width: 100,
+            width: 90,
             render: (h, params) => h('span', null, params.row.paidMoney + ' 元')
           },
           {
@@ -92,23 +155,22 @@ export default {
             render: (h, params) => h('span', null, params.row.paidAt ? this.$time.getTime(params.row.paidAt) : '')
           },
           {
+            title: '派送员',
+            key: 'dispatcherId',
+            width: LIST_COLUMN_WIDTHS.USER,
+            render: (h, params) => h('span', null, params.row.dispatcher ? params.row.dispatcher.nickName : '')
+          },
+          {
             title: '状态',
             key: 'status',
-            width: 100,
+            width: 80,
             render: (h, params) => h('span', null, this.$helpers.getItem(this.$consts.ORDER_STATUSES, 'code', params.row.status)['label'])
           },
           {
             title: '操作',
             key: 'action',
-            width: 170,
+            width: 105,
             render: (h, params) => h('div', [
-              h('Button', {
-                on: {
-                  click: () => {
-                    this.$router.push(`/${this.alias}/orders/index/form/${params.row.id}`)
-                  }
-                }
-              }, '编辑'),
               h('CDel', {
                 on: {
                   ok: () => {
@@ -121,6 +183,18 @@ export default {
         ],
         cSearch: {
           where: this.$helpers.deepCopy(initWhere)
+        }
+      },
+      cDispatcherForm: {
+        modal: false,
+        formValidate: this.$helpers.deepCopy(initForm),
+        ruleValidate: {
+          dispatcherId: [
+            {
+              required: true,
+              message: '请选择用户'
+            }
+          ]
         }
       }
     }
@@ -153,6 +227,33 @@ export default {
 
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
+    },
+    handleDispatch () {
+      if (!this.listSelectedItems.length) {
+        this.$Message.error('没有选中记录')
+      } else {
+        this.cDispatcherForm.modal = true
+      }
+    },
+    setDispatcher () {
+      this.$refs.formValidate.validate(async valid => {
+        if (valid) {
+          const { dispatcherId } = this.cDispatcherForm.formValidate
+
+          await this.$store.dispatch(`${module}/postAction`, {
+            body: {
+              type: 'DISPATCH',
+              dispatcherId,
+              orderIds: this.listSelectedItems.map(item => item.id)
+            }
+          })
+
+          this.$Message.success('设置成功')
+          this.getList()
+
+          this.cDispatcherForm.modal = false
+        }
+      })
     }
   }
 }

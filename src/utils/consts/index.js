@@ -6,6 +6,7 @@ import AD_STATUSES from './ad-statuses'
 import COMMENT_STATUSES from './comment-statuses'
 import COMMENT_STATUS_ACTIONS from './comment-status-actions'
 import ORDER_ACTIONS from './order-actions'
+import ORDER_STATUSES from './order-statuses'
 import MODELS from './models'
 import PRODUCT_STATUSES from './product-statuses'
 import PRODUCT_UNITS from './product-units'
@@ -17,7 +18,7 @@ import COUPON_STATUSES from './coupon-statuses'
 import SURVEY_QUESTION_TYPES from './survey-question-types'
 
 // 基础地址
-const BASE_URL = env.isDev() ? 'http://localhost:3006' : 'https://api.fzsc.cn'
+const BASE_URL = env.isDev() ? 'http://localhost:3004' : 'https://api.fjnm.cn'
 
 // 接口地址
 const API_URL = BASE_URL + '/api/v1/admin'
@@ -48,6 +49,7 @@ export default {
   LIST_COLUMN_WIDTHS,
   COUPON_STATUSES,
   SURVEY_QUESTION_TYPES,
+  ORDER_STATUSES,
   BASE_URL,
   API_URL,
   PUBLIC_API_URL,
