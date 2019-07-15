@@ -17,7 +17,7 @@
           <Button
             type="primary"
             @click="handleDispatch">
-            派送
+            派送订单
           </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
@@ -46,7 +46,6 @@
         </CListSearch>
       </CListHeader>
     </CList>
-
     <Modal
       width="400"
       v-model="cDispatcherForm.modal"

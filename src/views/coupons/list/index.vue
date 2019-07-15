@@ -13,6 +13,11 @@
             @click="handleShowForm">
             新增
           </Button>
+          <Button
+            type="primary"
+            @click="cSendForm.modal = true">
+            发放优惠券
+          </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
             @ok="handleDelOk" />
@@ -53,6 +58,19 @@
           </Row>
         </Form-item>
         <Form-item
+          label="最低消费"
+          prop="value">
+          <Row>
+            <Col span="20">
+              <InputNumber
+                :min="0"
+                :max="100000"
+                v-model="cForm.formValidate.minPrice" />
+              元
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item
           label="起始时间"
           prop="startsAt">
           <DatePicker
@@ -72,24 +90,6 @@
             style="width: 320px"
             @on-change="v => { handleDatePickerChange('endsAt', v) }" />
         </Form-item>
-        <Form-item
-          label="状态"
-          prop="status">
-          <Row>
-            <Col span="20">
-              <Select
-                v-model="cForm.formValidate.status"
-                style="width: 320px;">
-                <Option
-                  v-for="item in $consts.AD_STATUSES"
-                  :key="item.value"
-                  :value="item.value">
-                  {{ item.label }}
-                </Option>
-              </Select>
-            </Col>
-          </Row>
-        </Form-item>
       </Form>
       <div slot="footer">
         <Button
@@ -102,6 +102,44 @@
           type="primary"
           size="large"
           @click="handleFormOk">
+          确定
+        </Button>
+      </div>
+    </Modal>
+    <Modal
+      width="500"
+      v-model="cSendForm.modal"
+      title="发放优惠券">
+      <Form
+        ref="sendFormValidate"
+        :model="cSendForm.formValidate"
+        :rules="cSendForm.ruleValidate"
+        :label-width="80">
+        <Form-item
+          label="发放对象"
+          prop="wxUserIds">
+          <Row>
+            <Col span="20">
+              <CWxUserSelect
+                v-if="cSendForm.modal"
+                multiple
+                @change="value => { cSendForm.formValidate.wxUserIds = value }"
+              />
+            </Col>
+          </Row>
+        </Form-item>
+      </Form>
+      <div slot="footer">
+        <Button
+          type="text"
+          size="large"
+          @click="cSendForm.modal = false">
+          取消
+        </Button>
+        <Button
+          type="primary"
+          size="large"
+          @click="send">
           确定
         </Button>
       </div>
@@ -120,6 +158,9 @@ const initForm = {
   status: 1,
   value: 0
 }
+const initSendForm = {
+  wxUserIds: []
+}
 
 export default {
   mixins: [
@@ -128,8 +169,6 @@ export default {
     formMixin
   ],
   data () {
-    const { COUPON_STATUSES } = this.$consts
-
     return {
       cList: {
         columns: [
@@ -147,6 +186,12 @@ export default {
             key: 'value',
             width: 100,
             render: (h, params) => h('span', null, `${params.row.value} 元`)
+          },
+          {
+            title: '最低消费',
+            key: 'minPrice',
+            width: 100,
+            render: (h, params) => h('span', null, `${params.row.minPrice} 元`)
           },
           {
             title: '有效期',
@@ -168,14 +213,9 @@ export default {
             }
           },
           {
-            title: '状态',
-            width: 80,
-            render: (h, params) => h('span', null, this.$helpers.getOption(COUPON_STATUSES, params.row.status)['label'])
-          },
-          {
             title: '操作',
             key: 'action',
-            width: 340,
+            width: 240,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -191,18 +231,6 @@ export default {
                   }
                 }
               }, '删除'),
-              h('CDropdown', {
-                attrs: {
-                  width: 90,
-                  title: '修改状态',
-                  options: COUPON_STATUSES
-                },
-                on: {
-                  click: async value => {
-                    this.handleChangeStatus(params.row.id, value)
-                  }
-                }
-              }),
               h('CDropdown', {
                 attrs: {
                   title: '排序',
@@ -239,6 +267,18 @@ export default {
             {
               required: true,
               message: '图片不能为空'
+            }
+          ]
+        }
+      },
+      cSendForm: {
+        modal: false,
+        formValidate: this.$helpers.deepCopy(initSendForm),
+        ruleValidate: {
+          wxUserIds: [
+            {
+              required: true,
+              message: '请选择用户'
             }
           ]
         }
@@ -321,6 +361,26 @@ export default {
           this.$Message.success((this.cForm.id ? '编辑' : '新增') + '成功！')
           !this.cForm.id && this.resetSearch()
           this.getList()
+        }
+      })
+    },
+    send () {
+      this.$refs.sendFormValidate.validate(async valid => {
+        if (valid) {
+          const { wxUserIds } = this.cSendForm.formValidate
+
+          await this.$store.dispatch(`${module}/postAction`, {
+            body: {
+              type: 'SEND',
+              wxUserIds,
+              couponIds: this.listSelectedItems.map(item => item.id)
+            }
+          })
+
+          this.$Message.success('发放成功')
+          this.getList()
+
+          this.cSendForm.modal = false
         }
       })
     }
