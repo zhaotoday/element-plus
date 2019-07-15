@@ -17,7 +17,7 @@
           <Button
             type="primary"
             @click="handleDispatch">
-            派送订单
+            配送订单
           </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
@@ -49,14 +49,14 @@
     <Modal
       width="400"
       v-model="cDispatcherForm.modal"
-      title="设置派送员">
+      title="设置配送员">
       <Form
         ref="formValidate"
         :model="cDispatcherForm.formValidate"
         :rules="cDispatcherForm.ruleValidate"
         :label-width="80">
         <Form-item
-          label="派送员"
+          label="配送员"
           prop="dispatcherId">
           <Row>
             <Col span="20">
@@ -154,7 +154,7 @@ export default {
             render: (h, params) => h('span', null, params.row.paidAt ? this.$time.getTime(params.row.paidAt) : '')
           },
           {
-            title: '派送员',
+            title: '配送员',
             key: 'dispatcherId',
             width: LIST_COLUMN_WIDTHS.USER,
             render: (h, params) => h('span', null, params.row.dispatcher ? params.row.dispatcher.nickName : '')
