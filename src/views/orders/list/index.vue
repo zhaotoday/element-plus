@@ -57,33 +57,50 @@ export default {
         columns: [
           {
             title: '订单号',
-            key: 'id'
+            key: 'no'
           },
           {
             title: '下单会员',
             key: 'wxUserId',
-            width: LIST_COLUMN_WIDTHS.USER
+            width: LIST_COLUMN_WIDTHS.USER,
+            render: (h, params) => h('span', null, params.row.wxUser.nickName)
+          },
+          {
+            title: '商品',
+            key: 'products',
+            width: 260,
+            render: (h, params) => h('span', params.row.products.map(product => {
+              if (product.price) {
+                return h('div', null, `${product.name} x${product.number}`)
+              } else {
+                return product.specifications.map(specification => {
+                  return h('div', null, `${product.name}（${specification.price} 元 / ${specification.label}） x${specification.number}`)
+                })
+              }
+            }))
           },
           {
             title: '支付金额',
-            key: 'payMoney',
+            key: 'paidMoney',
             width: 100,
-            render: (h, params) => h('span', null, params.row.payMoney + ' 元')
+            render: (h, params) => h('span', null, params.row.paidMoney + ' 元')
           },
           {
             title: '支付时间',
             key: 'paidAt',
-            width: 120
+            width: 140,
+            render: (h, params) => h('span', null, params.row.paidAt ? this.$time.getTime(params.row.paidAt) : '')
           },
           {
             title: '状态',
             key: 'status',
-            width: 100
+            width: 100,
+            render: (h, params) => h('span', null, this.$helpers.getItem(this.$consts.ORDER_STATUSES, 'code', params.row.status)['label'])
           },
           {
             title: '操作',
             key: 'action',
-            width: 290,
+            width: 170,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -126,7 +143,7 @@ export default {
         query: {
           offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
           limit: this.$consts.PAGE_SIZE,
-          where: this.listSearchWhere
+          where: this.listSearchWhere || {}
         }
       })
     },
