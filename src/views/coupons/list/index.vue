@@ -16,7 +16,7 @@
           <Button
             type="primary"
             @click="cSendForm.modal = true">
-            发放优惠券
+            发放
           </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
@@ -90,6 +90,19 @@
             style="width: 320px"
             @on-change="v => { handleDatePickerChange('endsAt', v) }" />
         </Form-item>
+        <Form-item
+          label="指定商品"
+          prop="productId">
+          <Row>
+            <Col span="20">
+              <CProductSelect
+                v-if="cForm.modal"
+                :value="cForm.formValidate.productId"
+                @change="value => { cForm.formValidate.productId = value }"
+              />
+            </Col>
+          </Row>
+        </Form-item>
       </Form>
       <div slot="footer">
         <Button
@@ -156,7 +169,8 @@ import formMixin from '@/mixins/form'
 const module = 'coupons'
 const initForm = {
   status: 1,
-  value: 0
+  value: 0,
+  minPrice: 0
 }
 const initSendForm = {
   wxUserIds: []
