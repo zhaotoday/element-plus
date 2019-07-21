@@ -34,6 +34,24 @@
         :rules="cForm.ruleValidate"
         :label-width="80">
         <Form-item
+          label="类型"
+          prop="type">
+          <Row>
+            <Col span="20">
+              <Select
+                v-model="cForm.formValidate.type"
+                style="width: 320px;">
+                <Option
+                  v-for="item in $consts.COUPON_TYPES"
+                  :key="item.value"
+                  :value="item.value">
+                  {{ item.label }}
+                </Option>
+              </Select>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item
           label="标题"
           prop="title">
           <Row>
@@ -265,6 +283,12 @@ export default {
         modal: false,
         formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
+          type: [
+            {
+              required: true,
+              message: '类型不能为空'
+            }
+          ],
           title: [
             {
               required: true,
