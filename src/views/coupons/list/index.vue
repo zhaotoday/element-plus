@@ -34,6 +34,17 @@
         :rules="cForm.ruleValidate"
         :label-width="80">
         <Form-item
+          label="标题"
+          prop="title">
+          <Row>
+            <Col span="20">
+              <Input
+                v-model="cForm.formValidate.title"
+                placeholder="请输入标题" />
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item
           label="类型"
           prop="type">
           <Row>
@@ -48,17 +59,6 @@
                   {{ item.label }}
                 </Option>
               </Select>
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item
-          label="标题"
-          prop="title">
-          <Row>
-            <Col span="20">
-              <Input
-                v-model="cForm.formValidate.title"
-                placeholder="请输入标题" />
             </Col>
           </Row>
         </Form-item>
@@ -216,6 +216,12 @@ export default {
             key: 'title'
           },
           {
+            type: 'type',
+            title: '类型',
+            width: 90,
+            render: (h, params) => h('span', null, this.$helpers.getItem(this.$consts.COUPON_TYPES, 'value', params.row.type)['label'])
+          },
+          {
             title: '价值',
             key: 'value',
             width: 100,
@@ -285,16 +291,16 @@ export default {
         modal: false,
         formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
-          type: [
-            {
-              required: true,
-              message: '类型不能为空'
-            }
-          ],
           title: [
             {
               required: true,
               message: '标题不能为空'
+            }
+          ],
+          type: [
+            {
+              required: true,
+              message: '类型不能为空'
             }
           ],
           link: [
