@@ -109,6 +109,7 @@
             @on-change="v => { handleDatePickerChange('endsAt', v) }" />
         </Form-item>
         <Form-item
+          v-show="cForm.formValidate.type === 'DESIGNATED_PRODUCT'"
           label="指定商品"
           prop="productId">
           <Row>
@@ -187,6 +188,7 @@ import formMixin from '@/mixins/form'
 const module = 'coupons'
 const initForm = {
   status: 1,
+  type: 'SUBTRACTION',
   value: 0,
   minPrice: 0
 }
