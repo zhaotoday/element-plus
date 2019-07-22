@@ -11,10 +11,6 @@ export default [
       {
         title: '商品分类',
         route: '/products/products/categories'
-      },
-      {
-        title: '商品评价',
-        route: '/products/comments/index'
       }
     ]
   },
