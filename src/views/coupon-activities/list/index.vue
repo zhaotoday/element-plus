@@ -58,6 +58,25 @@
           </Row>
         </Form-item>
         <Form-item
+          v-if="cForm.formValidate.type === 'NEW_USER'"
+          label="发放时机"
+          prop="sendTime">
+          <Row>
+            <Col span="20">
+              <Select
+                v-model="cForm.formValidate.sendTime"
+                style="width: 320px;">
+                <Option
+                  v-for="item in $consts.COUPON_SEND_TIMES"
+                  :key="item.value"
+                  :value="item.value">
+                  {{ item.label }}
+                </Option>
+              </Select>
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item
           label="优惠券"
           prop="coupons">
           <Row>

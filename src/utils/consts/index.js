@@ -17,6 +17,7 @@ import LIST_COLUMN_WIDTHS from './list-column-widths'
 import COUPON_STATUSES from './coupon-statuses'
 import COUPON_TYPES from './coupon-types'
 import COUPON_ACTIVITY_TYPES from './coupon-activity-types'
+import COUPON_SEND_TIMES from './couponn-send-times'
 import SURVEY_QUESTION_TYPES from './survey-question-types'
 
 // 基础地址
@@ -52,6 +53,7 @@ export default {
   COUPON_STATUSES,
   COUPON_TYPES,
   COUPON_ACTIVITY_TYPES,
+  COUPON_SEND_TIMES,
   SURVEY_QUESTION_TYPES,
   ORDER_STATUSES,
   BASE_URL,

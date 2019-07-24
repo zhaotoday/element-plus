@@ -11,11 +11,6 @@
         <CListOperations>
           <Button
             type="primary"
-            @click="$router.push(`/${alias}/articles/index/form`)">
-            新增
-          </Button>
-          <Button
-            type="primary"
             @click="handleDispatch">
             配送订单
           </Button>
