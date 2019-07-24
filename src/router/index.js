@@ -26,6 +26,7 @@ const router = new Router({
             require('./routes/wx-users').default,
             require('./routes/comments').default,
             require('./routes/coupons').default,
+            require('./routes/coupon-activities').default,
             require('./routes/rbac').default,
             require('./routes/settings').default,
             require('./routes/logs').default,

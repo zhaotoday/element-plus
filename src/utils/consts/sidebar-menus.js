@@ -52,6 +52,10 @@ export default [
       {
         title: '优惠券',
         route: '/marketing/coupons/index'
+      },
+      {
+        title: '优惠券活动',
+        route: '/marketing/couponActivities/index'
       }
     ]
   },
