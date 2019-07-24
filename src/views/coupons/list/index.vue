@@ -34,13 +34,13 @@
         :rules="cForm.ruleValidate"
         :label-width="80">
         <Form-item
-          label="标题"
-          prop="title">
+          label="名称"
+          prop="name">
           <Row>
             <Col span="20">
               <Input
-                v-model="cForm.formValidate.title"
-                placeholder="请输入标题" />
+                v-model="cForm.formValidate.name"
+                placeholder="请输入名称" />
             </Col>
           </Row>
         </Form-item>
@@ -63,7 +63,32 @@
           </Row>
         </Form-item>
         <Form-item
-          label="价值"
+          v-show="cForm.formValidate.type === 'DESIGNATED_PRODUCT'"
+          label="指定商品"
+          prop="productId">
+          <Row>
+            <Col span="20">
+              <CProductSelect
+                v-if="cForm.modal"
+                :value="cForm.formValidate.productId"
+                @change="value => { cForm.formValidate.productId = value }"
+              />
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item
+          v-show="cForm.formValidate.type === 'DESIGNATED_CATEGORY'"
+          label="指定商品"
+          prop="productId">
+          <CCategories
+            alias="products"
+            v-model="cForm.formValidate.categoryId"
+            @on-change="value => { cForm.formValidate.categoryId = value }"
+            style="width: 320px;"
+          />
+        </Form-item>
+        <Form-item
+          label="抵扣金额"
           prop="value">
           <Row>
             <Col span="20">
@@ -76,6 +101,7 @@
           </Row>
         </Form-item>
         <Form-item
+          v-show="cForm.formValidate.type !== 'REDUCTION'"
           label="最低消费"
           prop="value">
           <Row>
@@ -89,38 +115,13 @@
           </Row>
         </Form-item>
         <Form-item
-          label="起始时间"
-          prop="startsAt">
-          <DatePicker
-            :value="cForm.formValidate.startsAt"
-            type="date"
-            placeholder="请选择起始时间"
-            style="width: 320px"
-            @on-change="v => { handleDatePickerChange('startsAt', v) }" />
-        </Form-item>
-        <Form-item
-          label="结束时间"
-          prop="endsAt">
-          <DatePicker
-            :value="cForm.formValidate.endsAt"
-            type="date"
-            placeholder="请选择结束时间"
-            style="width: 320px"
-            @on-change="v => { handleDatePickerChange('endsAt', v) }" />
-        </Form-item>
-        <Form-item
-          v-show="cForm.formValidate.type === 'DESIGNATED_PRODUCT'"
-          label="指定商品"
-          prop="productId">
-          <Row>
-            <Col span="20">
-              <CProductSelect
-                v-if="cForm.modal"
-                :value="cForm.formValidate.productId"
-                @change="value => { cForm.formValidate.productId = value }"
-              />
-            </Col>
-          </Row>
+          label="有效期"
+          prop="period">
+          <InputNumber
+            :min="0"
+            :max="100000"
+            v-model="cForm.formValidate.period" />
+          天
         </Form-item>
       </Form>
       <div slot="footer">
@@ -188,9 +189,10 @@ import formMixin from '@/mixins/form'
 const module = 'coupons'
 const initForm = {
   status: 1,
-  type: 'SUBTRACTION',
+  type: 'FULL_REDUCTION',
   value: 0,
-  minPrice: 0
+  minPrice: 0,
+  period: 30
 }
 const initSendForm = {
   wxUserIds: []
@@ -212,8 +214,8 @@ export default {
             align: 'center'
           },
           {
-            title: '标题',
-            key: 'title'
+            title: '名称',
+            key: 'name'
           },
           {
             type: 'type',
@@ -235,22 +237,8 @@ export default {
           },
           {
             title: '有效期',
-            width: 200,
-            render: (h, params) => {
-              let ret = ''
-
-              const { startsAt, endsAt } = params.row
-
-              if (startsAt && endsAt) {
-                ret += `${startsAt} 至 ${endsAt}`
-              } else if (startsAt) {
-                ret += `${startsAt} 开始`
-              } else if (endsAt) {
-                ret += `${endsAt} 结束`
-              }
-
-              return h('span', null, ret)
-            }
+            width: 100,
+            render: (h, params) => h('span', null, `${params.row.period} 天`)
           },
           {
             title: '操作',
@@ -291,10 +279,10 @@ export default {
         modal: false,
         formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
-          title: [
+          name: [
             {
               required: true,
-              message: '标题不能为空'
+              message: '名称不能为空'
             }
           ],
           type: [
