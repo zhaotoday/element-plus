@@ -188,7 +188,6 @@ import formMixin from '@/mixins/form'
 
 const module = 'coupons'
 const initForm = {
-  status: 1,
   type: 'FULL_REDUCTION',
   value: 0,
   minPrice: 0,

@@ -16,6 +16,7 @@ import WX_USER_STATUSES from './wx-user-statuses'
 import LIST_COLUMN_WIDTHS from './list-column-widths'
 import COUPON_STATUSES from './coupon-statuses'
 import COUPON_TYPES from './coupon-types'
+import COUPON_ACTIVITY_TYPES from './coupon-activity-types'
 import SURVEY_QUESTION_TYPES from './survey-question-types'
 
 // 基础地址
@@ -50,6 +51,7 @@ export default {
   LIST_COLUMN_WIDTHS,
   COUPON_STATUSES,
   COUPON_TYPES,
+  COUPON_ACTIVITY_TYPES,
   SURVEY_QUESTION_TYPES,
   ORDER_STATUSES,
   BASE_URL,

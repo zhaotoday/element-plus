@@ -13,11 +13,6 @@
             @click="handleShowForm">
             新增
           </Button>
-          <Button
-            type="primary"
-            @click="cSendForm.modal = true">
-            发放
-          </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
             @ok="handleDelOk" />
@@ -53,7 +48,7 @@
                 v-model="cForm.formValidate.type"
                 style="width: 320px;">
                 <Option
-                  v-for="item in $consts.COUPON_TYPES"
+                  v-for="item in $consts.COUPON_ACTIVITY_TYPES"
                   :key="item.value"
                   :value="item.value">
                   {{ item.label }}
@@ -63,65 +58,38 @@
           </Row>
         </Form-item>
         <Form-item
-          v-show="cForm.formValidate.type === 'DESIGNATED_PRODUCT'"
-          label="指定商品"
-          prop="productId">
+          label="优惠券"
+          prop="coupons">
           <Row>
             <Col span="20">
-              <CProductSelect
-                v-if="cForm.modal"
-                :value="cForm.formValidate.productId"
-                @change="value => { cForm.formValidate.productId = value }"
+              <CCouponSelect
+                :selected-item="cForm.coupon"
+                :selected-items="cForm.formValidate.coupons"
+                @change="handleCouponChange"
               />
+              <div
+                v-for="item in cForm.formValidate.coupons"
+                :key="item.id"
+                style="position: relative; width: 327px; padding-top: 5px;">
+                <span style="display: inline-block; width: 160px;">
+                  {{item.name}}
+                </span>
+                数量：
+                <InputNumber
+                  :key="item.id"
+                  :min="0"
+                  :max="100"
+                  :value="item.number"
+                  @on-change="number => { handleCouponNumberChange(item.id, number) }" />
+                <Button
+                  type="text"
+                  icon="md-close"
+                  style="position: absolute; top: 5px; right: 0;"
+                  @click="delCoupon(item.id)">
+                </Button>
+              </div>
             </Col>
           </Row>
-        </Form-item>
-        <Form-item
-          v-show="cForm.formValidate.type === 'DESIGNATED_CATEGORY'"
-          label="指定商品"
-          prop="productId">
-          <CCategories
-            alias="products"
-            v-model="cForm.formValidate.categoryId"
-            @on-change="value => { cForm.formValidate.categoryId = value }"
-            style="width: 320px;"
-          />
-        </Form-item>
-        <Form-item
-          label="抵扣金额"
-          prop="value">
-          <Row>
-            <Col span="20">
-              <InputNumber
-                :min="0"
-                :max="100000"
-                v-model="cForm.formValidate.value" />
-              元
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item
-          v-show="cForm.formValidate.type !== 'REDUCTION'"
-          label="最低消费"
-          prop="value">
-          <Row>
-            <Col span="20">
-              <InputNumber
-                :min="0"
-                :max="100000"
-                v-model="cForm.formValidate.minPrice" />
-              元
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item
-          label="有效期"
-          prop="period">
-          <InputNumber
-            :min="0"
-            :max="100000"
-            v-model="cForm.formValidate.period" />
-          天
         </Form-item>
       </Form>
       <div slot="footer">
@@ -139,44 +107,6 @@
         </Button>
       </div>
     </Modal>
-    <Modal
-      width="500"
-      v-model="cSendForm.modal"
-      title="发放优惠券">
-      <Form
-        ref="sendFormValidate"
-        :model="cSendForm.formValidate"
-        :rules="cSendForm.ruleValidate"
-        :label-width="80">
-        <Form-item
-          label="发放对象"
-          prop="wxUserIds">
-          <Row>
-            <Col span="20">
-              <CWxUserSelect
-                v-if="cSendForm.modal"
-                multiple
-                @change="value => { cSendForm.formValidate.wxUserIds = value }"
-              />
-            </Col>
-          </Row>
-        </Form-item>
-      </Form>
-      <div slot="footer">
-        <Button
-          type="text"
-          size="large"
-          @click="cSendForm.modal = false">
-          取消
-        </Button>
-        <Button
-          type="primary"
-          size="large"
-          @click="send">
-          确定
-        </Button>
-      </div>
-    </Modal>
   </div>
 </template>
 
@@ -186,16 +116,11 @@ import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
 
-const module = 'coupons'
+const module = 'couponActivities'
 const initForm = {
   status: 1,
-  type: 'FULL_REDUCTION',
-  value: 0,
-  minPrice: 0,
-  period: 30
-}
-const initSendForm = {
-  wxUserIds: []
+  type: '',
+  coupons: []
 }
 
 export default {
@@ -221,24 +146,15 @@ export default {
             type: 'type',
             title: '类型',
             width: 90,
-            render: (h, params) => h('span', null, this.$helpers.getItem(this.$consts.COUPON_TYPES, 'value', params.row.type)['label'])
+            render: (h, params) => h('span', null, this.$helpers.getItem(this.$consts.COUPON_ACTIVITY_TYPES, 'value', params.row.type)['label'])
           },
           {
-            title: '价值',
-            key: 'value',
-            width: 100,
-            render: (h, params) => h('span', null, `${params.row.value} 元`)
-          },
-          {
-            title: '最低消费',
-            key: 'minPrice',
-            width: 100,
-            render: (h, params) => h('span', null, `${params.row.minPrice} 元`)
-          },
-          {
-            title: '有效期',
-            width: 100,
-            render: (h, params) => h('span', null, `${params.row.period} 天`)
+            title: '优惠券',
+            key: 'coupons',
+            render: (h, params) => {
+              const coupons = params.row.coupons.map(item => h('p', null, `${item.name} x ${item.number}`))
+              return h('span', null, coupons)
+            }
           },
           {
             title: '操作',
@@ -278,6 +194,9 @@ export default {
         id: 0,
         modal: false,
         formValidate: this.$helpers.deepCopy(initForm),
+        coupon: {
+          id: 0
+        },
         ruleValidate: {
           name: [
             {
@@ -301,18 +220,6 @@ export default {
             {
               required: true,
               message: '图片不能为空'
-            }
-          ]
-        }
-      },
-      cSendForm: {
-        modal: false,
-        formValidate: this.$helpers.deepCopy(initSendForm),
-        ruleValidate: {
-          wxUserIds: [
-            {
-              required: true,
-              message: '请选择用户'
             }
           ]
         }
@@ -380,6 +287,26 @@ export default {
 
       this.getList()
     },
+    handleCouponChange (item) {
+      setTimeout(() => {
+        this.cForm.coupon = { id: 0 }
+      }, 100)
+
+      if (item.id) {
+        this.cForm.formValidate.coupons.push(item)
+      }
+    },
+    handleCouponNumberChange (id, number) {
+      if (!number) {
+        this.delCoupon(id)
+      } else {
+        this.cForm.formValidate.coupons.find(item => item.id === id)['number'] = number
+      }
+    },
+    delCoupon (id) {
+      const index = this.cForm.formValidate.coupons.findIndex(item => item.id === id)
+      this.cForm.formValidate.coupons.splice(index, 1)
+    },
     handleFormOk () {
       this.$refs.formValidate.validate(async valid => {
         if (valid) {
@@ -395,26 +322,6 @@ export default {
           this.$Message.success((this.cForm.id ? '编辑' : '新增') + '成功！')
           !this.cForm.id && this.resetSearch()
           this.getList()
-        }
-      })
-    },
-    send () {
-      this.$refs.sendFormValidate.validate(async valid => {
-        if (valid) {
-          const { wxUserIds } = this.cSendForm.formValidate
-
-          await this.$store.dispatch(`${module}/postAction`, {
-            body: {
-              type: 'SEND',
-              wxUserIds,
-              couponIds: this.listSelectedItems.map(item => item.id)
-            }
-          })
-
-          this.$Message.success('发放成功')
-          this.getList()
-
-          this.cSendForm.modal = false
         }
       })
     }
