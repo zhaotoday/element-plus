@@ -78,7 +78,7 @@
         </Form-item>
         <Form-item
           v-show="cForm.formValidate.type === 'DESIGNATED_CATEGORY'"
-          label="指定商品"
+          label="指定分类"
           prop="productId">
           <CCategories
             alias="products"
