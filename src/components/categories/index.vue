@@ -3,25 +3,21 @@
     style="width: 190px"
     placeholder="请选择分类"
     clearable
+    :multiple="multiple"
     :value.sync="value"
     @on-change="change">
     <template v-for="item1 in items">
-      <OptionGroup
-        v-if="!!item1.children"
-        :label="item1.name"
-        :key="item1.id">
-        <Option
-          v-for="item2 in item1.children"
-          :value="item2.id"
-          :key="item2.id">
-          {{ item2.name }}
-        </Option>
-      </OptionGroup>
       <Option
-        v-else
+        :key="item1.id"
         :value="item1.id"
-        :key="item1.id">
-        {{ item1.name }}
+        :disabled="!selectParent">
+        <span style="font-size: 14px;">{{ item1.name }}</span>
+      </Option>
+      <Option
+        v-for="item2 in item1.children"
+        :value="item2.id"
+        :key="item2.id">
+        &nbsp;&nbsp;&nbsp;&nbsp;{{ item2.name }}
       </Option>
     </template>
   </Select>
@@ -37,6 +33,14 @@ export default {
     alias: {
       type: String,
       default: ''
+    },
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    selectParent: {
+      type: Boolean,
+      default: false
     },
     value: {
       type: [String, Number],

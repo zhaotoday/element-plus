@@ -82,8 +82,10 @@
           prop="productId">
           <CCategories
             alias="products"
-            v-model="cForm.formValidate.categoryId"
-            @on-change="value => { cForm.formValidate.categoryId = value }"
+            multiple
+            select-parent
+            v-model="cForm.formValidate.categoryIds"
+            @on-change="value => { cForm.formValidate.categoryIds = value }"
             style="width: 320px;"
           />
         </Form-item>
