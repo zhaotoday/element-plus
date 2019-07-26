@@ -10,13 +10,15 @@
       <Option
         :key="item1.id"
         :value="item1.id"
+        :label="item1.name"
         :disabled="!selectParent">
-        <span style="font-size: 14px;">{{ item1.name }}</span>
+        {{ item1.name }}
       </Option>
       <Option
         v-for="item2 in item1.children"
+        :key="item2.id"
         :value="item2.id"
-        :key="item2.id">
+        :label="item2.name">
         &nbsp;&nbsp;&nbsp;&nbsp;{{ item2.name }}
       </Option>
     </template>

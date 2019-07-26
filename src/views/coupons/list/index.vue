@@ -65,13 +65,14 @@
         <Form-item
           v-show="cForm.formValidate.type === 'DESIGNATED_PRODUCT'"
           label="指定商品"
-          prop="productId">
+          prop="productIds">
           <Row>
             <Col span="20">
               <CProductSelect
                 v-if="cForm.modal"
-                :value="cForm.formValidate.productId"
-                @change="value => { cForm.formValidate.productId = value }"
+                :value="cForm.formValidate.productIds"
+                multiple
+                @change="value => { cForm.formValidate.productIds = value }"
               />
             </Col>
           </Row>
@@ -79,7 +80,7 @@
         <Form-item
           v-show="cForm.formValidate.type === 'DESIGNATED_CATEGORY'"
           label="指定分类"
-          prop="productId">
+          prop="categoryIds">
           <CCategories
             alias="products"
             multiple
