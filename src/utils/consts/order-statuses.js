@@ -6,22 +6,27 @@ export default [
   },
   {
     value: 'to-pay',
-    code: '1',
+    code: 'TO_PAY',
     label: '待付款'
   },
   {
     value: 'to-deliver',
-    code: '2',
+    code: 'TO_DELIVER',
     label: '待发货'
   },
   {
     value: 'in-deliver',
-    code: '3',
+    code: 'IN_DELIVER',
     label: '待收货'
   },
   {
     value: 'finish',
-    code: '4',
+    code: 'FINISH',
     label: '已完成'
+  },
+  {
+    value: 'cancelled',
+    code: 'CANCELLED',
+    label: '已取消'
   }
 ]
