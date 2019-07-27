@@ -52,12 +52,12 @@
         :label-width="80">
         <Form-item
           label="配送员"
-          prop="dispatcherId">
+          prop="delivererId">
           <Row>
             <Col span="20">
               <CWxUserSelect
                 v-if="cDispatcherForm.modal"
-                @change="value => { cDispatcherForm.formValidate.dispatcherId = value }"
+                @change="value => { cDispatcherForm.formValidate.delivererId = value }"
               />
             </Col>
           </Row>
@@ -93,7 +93,7 @@ const initWhere = {
   }
 }
 const initForm = {
-  dispatcherId: ''
+  delivererId: ''
 }
 
 export default {
@@ -150,7 +150,7 @@ export default {
           },
           {
             title: '配送员',
-            key: 'dispatcherId',
+            key: 'delivererId',
             width: LIST_COLUMN_WIDTHS.USER,
             render: (h, params) => h('span', null, params.row.dispatcher ? params.row.dispatcher.nickName : '')
           },
@@ -183,7 +183,7 @@ export default {
         modal: false,
         formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
-          dispatcherId: [
+          delivererId: [
             {
               required: true,
               message: '请选择用户'
@@ -232,12 +232,12 @@ export default {
     setDispatcher () {
       this.$refs.formValidate.validate(async valid => {
         if (valid) {
-          const { dispatcherId } = this.cDispatcherForm.formValidate
+          const { delivererId } = this.cDispatcherForm.formValidate
 
           await this.$store.dispatch(`${module}/postAction`, {
             body: {
-              type: 'DISPATCH',
-              dispatcherId,
+              type: 'DELIVER',
+              delivererId,
               orderIds: this.listSelectedItems.map(item => item.id)
             }
           })
