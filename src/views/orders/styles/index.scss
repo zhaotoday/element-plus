@@ -1,12 +1,20 @@
 @import "../../../styles/utils/index";
 
+@include c(orders-wrap) {
+  max-height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 10px;
+}
+
 @include c(orders) {
   list-style: none;
   font-size: 12px;
 
   @include e(item) {
+    @include padding(20px, null, 20px);
+
     position: relative;
-    padding-top: 10px;
   }
 
   @include e(title) {
@@ -59,14 +67,40 @@
   }
 
   @include cc(products) {
-    @include position--absolute(100px, null, null, 100px);
+    @include position--absolute(140px, null, null, 10px);
 
     @include e(item) {
-      display: flex;
+      .grid {
+        display: flex;
+      }
 
-      div {
-        flex: 1;
+      .is-name {
+        flex: 0 1 auto;
+        width: 260px;
+      }
+
+      .is-price {
+        flex: 0 1 auto;
+        width: 70px;
+      }
+
+      .is-number {
+        flex: 0 1 auto;
+        width: 70px;
+      }
+
+      .is-total {
+        flex: 0 1 auto;
+        width: 70px;
       }
     }
   }
+
+  @include e(remark) {
+    @include position--absolute(140px, null, null, 478px);
+  }
+}
+
+.c-orders__item {
+  page-break-after: always;
 }
