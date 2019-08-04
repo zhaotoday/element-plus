@@ -425,7 +425,7 @@ export default {
         item: {}
       },
       cPrintPreviewer: {
-        modal: true
+        modal: false
       },
       cSearch: {
         where: this.$helpers.deepCopy(initWhere)
