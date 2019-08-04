@@ -5,6 +5,7 @@
   font-size: 12px;
 
   @include e(item) {
+    position: relative;
     padding-top: 10px;
   }
 
@@ -54,6 +55,18 @@
 
     th {
       font-weight: bold;
+    }
+  }
+
+  @include cc(products) {
+    @include position--absolute(100px, null, null, 100px);
+
+    @include e(item) {
+      display: flex;
+
+      div {
+        flex: 1;
+      }
     }
   }
 }

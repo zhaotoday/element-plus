@@ -14,11 +14,6 @@
             @click="handleDispatch">
             配送订单
           </Button>
-          <Button
-            type="primary"
-            @click="cPrint.modal = true">
-            打印订单
-          </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
             @ok="handleDelOk"
@@ -28,11 +23,27 @@
           <Form
             inline
             @submit.native.prevent="search">
+            <Form-item prop="startTime">
+              <DatePicker
+                :value="cList.cSearch.where.startTime.$eq"
+                type="datetime"
+                placeholder="请选择起始时间"
+                style="width: 190px"
+                @on-change="v => { handleDatePickerChange('startTime', v) }" />
+            </Form-item>
+            <Form-item prop="endTime">
+              <DatePicker
+                :value="cList.cSearch.where.endTime.$eq"
+                type="datetime"
+                placeholder="请选择结束时间"
+                style="width: 190px"
+                @on-change="v => { handleDatePickerChange('endTime', v) }" />
+            </Form-item>
             <Form-item prop="id">
               <Input
                 type="text"
                 placeholder="请输入订单号"
-                v-model="cList.cSearch.where.id.$like"
+                v-model="cList.cSearch.where.no.$like"
                 style="width: 190px;" />
             </Form-item>
             <Form-item>
@@ -42,6 +53,13 @@
                 查询
               </Button>
             </Form-item>
+            <FormItem>
+              <Button
+                type="primary"
+                @click="cPrint.modal = true">
+                打印订单
+              </Button>
+            </FormItem>
           </Form>
         </CListSearch>
       </CListHeader>
@@ -239,7 +257,7 @@
                 合计（大写）：壹佰圆整
               </td>
               <td colspan="2">
-                销售单位：福州福菜发展有限公司
+                销售单位：福州福菜农业发展有限公司
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 电话：0591-00000000
               </td>
@@ -281,8 +299,14 @@ import Print from 'print-js'
 
 const module = 'orders'
 const initWhere = {
-  id: {
+  no: {
     $like: ''
+  },
+  startTime: {
+    $eq: ''
+  },
+  endTime: {
+    $eq: ''
   }
 }
 const initForm = {
@@ -299,6 +323,9 @@ export default {
 
     return {
       cList: {
+        cSearch: {
+          where: this.$helpers.deepCopy(initWhere)
+        },
         columns: [
           {
             type: 'selection',
@@ -380,10 +407,7 @@ export default {
               }, '删除')
             ])
           }
-        ],
-        cSearch: {
-          where: this.$helpers.deepCopy(initWhere)
-        }
+        ]
       },
       cDispatcherForm: {
         modal: false,
@@ -409,6 +433,9 @@ export default {
       },
       cPrintPreviewer: {
         modal: true
+      },
+      cSearch: {
+        where: this.$helpers.deepCopy(initWhere)
       }
     }
   },
@@ -433,6 +460,9 @@ export default {
           where: this.listSearchWhere || {}
         }
       })
+    },
+    handleDatePickerChange (k, v) {
+      this.cList.cSearch.where[k].$eq = v
     },
     async handleDelOk (id) {
       await this.$store.dispatch(`${module}/del`, { id })
