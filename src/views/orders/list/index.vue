@@ -14,6 +14,11 @@
             @click="handleDispatch">
             配送订单
           </Button>
+          <Button
+            type="primary"
+            @click="cPrint.modal = true">
+            打印订单
+          </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
             @ok="handleDelOk"
@@ -83,7 +88,6 @@
       v-model="cDetail.modal"
       title="详情">
       <Form
-        id="printJS-form"
         class="order-detail"
         :label-width="100">
         <Form-item label="订单号">
@@ -127,22 +131,142 @@
           : ''
           }}
         </Form-item>
-        <Form-item label="">
-          <Button @click="print">打印订单</Button>
+        <template v-if="cDetail.item.deliverer">
+          <Form-item label="配送员">
+            {{ cDetail.item.deliverer.nickName }}
+          </Form-item>
+          <Form-item label="配送员手机号">
+            {{ cDetail.item.deliverer.phoneNumber }}
+          </Form-item>
+        </template>
+      </Form>
+      <div slot="footer">
+        <Button
+          type="text"
+          size="large"
+          @click="cDetail.modal = false">
+          取消
+        </Button>
+        <Button
+          type="primary"
+          size="large"
+          @click="cDetail.modal = false">
+          确定
+        </Button>
+      </div>
+    </Modal>
+    <Modal
+      width="420"
+      v-model="cPrint.modal"
+      title="打印订单">
+      <Form
+        class="order-detail"
+        :label-width="80">
+        <Form-item label="订单时间">
+          <Row>
+            <Col span="20">
+              <DatePicker
+                :value="cPrint.form.timeRange"
+                type="datetimerange"
+                format="yyyy-MM-dd HH:mm"
+                placeholder="请选择时间区间"
+                @on-change="v => { cPrint.form.timeRange = v }"
+                style="width: 100%;"
+              />
+            </Col>
+          </Row>
         </Form-item>
       </Form>
       <div slot="footer">
         <Button
           type="text"
           size="large"
-          @click="cDispatcherForm.modal = false">
+          @click="cPrint.modal = false">
           取消
         </Button>
         <Button
           type="primary"
           size="large"
-          @click="setDispatcher">
+          @click="cPrint.modal = false">
           确定
+        </Button>
+      </div>
+    </Modal>
+    <Modal
+      width="800"
+      v-model="cPrintPreviewer.modal"
+      title="打印预览">
+      <ul
+        id="printJS-form"
+        class="c-orders">
+        <li class="c-orders__item">
+          <h2 class="c-orders__title">福菜生鲜商城购物凭证</h2>
+          <ul class="c-orders__user">
+            <li class="is-user">客户：赵金添</li>
+            <li class="is-tel">
+              联系电话：13950442340
+            </li>
+            <li class="is-address">地址：鼓楼区蒙古营天成公寓 888</li>
+            <li style="text-align: right;">订单号：12345678900000000</li>
+          </ul>
+          <table class="c-orders__table">
+            <tr>
+              <th style="width: 260px;">商品</th>
+              <th style="width: 70px;">单价</th>
+              <th style="width: 70px;">数量</th>
+              <th style="width: 70px;">金额</th>
+              <th>备注</th>
+            </tr>
+            <tr style="height: 200px;">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td
+                colspan="2"
+                style="text-align: right;">
+                合计
+              </td>
+              <td>d</td>
+              <td>e</td>
+              <td>e</td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                合计（大写）：壹佰圆整
+              </td>
+              <td colspan="2">
+                销售单位：福州福菜发展有限公司
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                电话：0591-00000000
+              </td>
+            </tr>
+          </table>
+          <ul class="c-orders__user">
+            <li class="is-user">配送员：赵金添</li>
+            <li class="is-tel">
+              联系电话：13950442340
+            </li>
+            <li class="is-address"></li>
+            <li style="text-align: right;"></li>
+          </ul>
+        </li>
+      </ul>
+      <div slot="footer">
+        <Button
+          type="text"
+          size="large"
+          @click="cPrintPreviewer.modal = false">
+          取消
+        </Button>
+        <Button
+          type="primary"
+          size="large"
+          @click="print">
+          打印
         </Button>
       </div>
     </Modal>
@@ -153,7 +277,7 @@
 import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
-import print from 'print-js'
+import Print from 'print-js'
 
 const module = 'orders'
 const initWhere = {
@@ -276,6 +400,15 @@ export default {
       cDetail: {
         modal: false,
         item: {}
+      },
+      cPrint: {
+        modal: false,
+        form: {
+          timeRange: ''
+        }
+      },
+      cPrintPreviewer: {
+        modal: true
       }
     }
   },
@@ -340,8 +473,17 @@ export default {
       this.cDetail.modal = true
     },
     print () {
-      print('printJS-form', 'html')
+      Print({
+        printable: 'printJS-form',
+        type: 'html',
+        targetStyles: ['*']
+      })
     }
   }
 }
 </script>
+
+<style
+  lang="scss"
+  src="../styles/index.scss">
+</style>

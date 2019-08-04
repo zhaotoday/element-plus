@@ -1,0 +1,59 @@
+@import "../../../styles/utils/index";
+
+@include c(orders) {
+  list-style: none;
+  font-size: 12px;
+
+  @include e(item) {
+    padding-top: 10px;
+  }
+
+  @include e(title) {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 18px;
+    line-height: 100%;
+  }
+
+  @include e(user) {
+    padding: 10px 0;
+    display: flex;
+    flex: 1;
+    list-style: none;
+
+    li {
+      flex: 1;
+    }
+
+    .is-user {
+      flex: 0 1 auto;
+      width: 120px;
+    }
+
+    .is-address {
+      flex: 0 1 auto;
+      width: 260px;
+    }
+
+    .is-tel {
+      flex: 0 1 auto;
+      width: 170px;
+    }
+  }
+
+  @include e(table) {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 10px;
+    }
+
+    th {
+      font-weight: bold;
+    }
+  }
+}
