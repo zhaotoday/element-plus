@@ -78,6 +78,74 @@
         </Button>
       </div>
     </Modal>
+    <Modal
+      width="400"
+      v-model="cDetail.modal"
+      title="详情">
+      <Form
+        id="printJS-form"
+        class="order-detail"
+        :label-width="100">
+        <Form-item label="订单号">
+          {{ cDetail.item.no }}
+        </Form-item>
+        <Form-item label="商品">
+          <div
+            v-for="product in cDetail.item.products"
+            :key="product.id">
+            <template v-if="product.price">
+              {{ `${product.name} x${product.price}` }}
+            </template>
+            <template v-else>
+              <div
+                v-for="specification in product.specifications"
+                :key="specification.value">
+                {{ `${product.name}（${specification.price} 元 / ${specification.label}） x${specification.number}` }}
+              </div>
+            </template>
+          </div>
+        </Form-item>
+        <Form-item label="支付方式">
+          {{ $helpers.getItem(this.$consts.PAY_WAYS, 'value', cDetail.item.payWay)['label'] }}
+        </Form-item>
+        <Form-item label="支付金额">
+          {{ cDetail.item.paidMoney + '元' }}
+        </Form-item>
+        <Form-item label="下单时间">
+          {{ $time.getTime(cDetail.item.createdAt) }}
+        </Form-item>
+        <Form-item label="收货人">
+          {{ cDetail.item.address ? cDetail.item.address.name : '' }}
+        </Form-item>
+        <Form-item label="手机号">
+          {{ cDetail.item.address ? cDetail.item.address.phoneNumber : '' }}
+        </Form-item>
+        <Form-item label="地址">
+          {{
+          cDetail.item.address && cDetail.item.address.location
+          ? cDetail.item.address.location.name + cDetail.item.address.room
+          : ''
+          }}
+        </Form-item>
+        <Form-item label="">
+          <Button @click="print">打印订单</Button>
+        </Form-item>
+      </Form>
+      <div slot="footer">
+        <Button
+          type="text"
+          size="large"
+          @click="cDispatcherForm.modal = false">
+          取消
+        </Button>
+        <Button
+          type="primary"
+          size="large"
+          @click="setDispatcher">
+          确定
+        </Button>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -85,6 +153,7 @@
 import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
+import print from 'print-js'
 
 const module = 'orders'
 const initWhere = {
@@ -137,22 +206,28 @@ export default {
             }))
           },
           {
+            title: '支付方式',
+            key: 'payWay',
+            width: 90,
+            render: (h, params) => h('span', null, this.$helpers.getItem(this.$consts.PAY_WAYS, 'value', params.row.payWay)['label'])
+          },
+          {
             title: '支付金额',
             key: 'paidMoney',
             width: 90,
             render: (h, params) => h('span', null, params.row.paidMoney + ' 元')
           },
           {
-            title: '支付时间',
-            key: 'paidAt',
+            title: '下单时间',
+            key: 'createdAt',
             width: 140,
-            render: (h, params) => h('span', null, params.row.paidAt ? this.$time.getTime(params.row.paidAt) : '')
+            render: (h, params) => h('span', null, this.$time.getTime(params.row.createdAt))
           },
           {
             title: '配送员',
             key: 'delivererId',
             width: LIST_COLUMN_WIDTHS.USER,
-            render: (h, params) => h('span', null, params.row.dispatcher ? params.row.dispatcher.nickName : '')
+            render: (h, params) => h('span', null, params.row.deliverer ? params.row.deliverer.nickName : '')
           },
           {
             title: '状态',
@@ -163,8 +238,15 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 105,
+            width: 170,
             render: (h, params) => h('div', [
+              h('Button', {
+                on: {
+                  click: () => {
+                    this.showDetail(params.row)
+                  }
+                }
+              }, '详情'),
               h('CDel', {
                 on: {
                   ok: () => {
@@ -190,6 +272,10 @@ export default {
             }
           ]
         }
+      },
+      cDetail: {
+        modal: false,
+        item: {}
       }
     }
   },
@@ -248,6 +334,13 @@ export default {
           this.cDispatcherForm.modal = false
         }
       })
+    },
+    showDetail (item) {
+      this.cDetail.item = item
+      this.cDetail.modal = true
+    },
+    print () {
+      print('printJS-form', 'html')
     }
   }
 }

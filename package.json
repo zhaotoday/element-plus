@@ -18,6 +18,7 @@
     "jt-storage": "0.0.2",
     "jt-time": "0.0.7",
     "kindeditor": "^4.1.10",
+    "print-js": "^1.0.61",
     "sass-utils": "^1.0.20",
     "v-charts": "^1.19.0",
     "vue": "^2.6.10",

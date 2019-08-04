@@ -19,9 +19,10 @@ import COUPON_TYPES from './coupon-types'
 import COUPON_ACTIVITY_TYPES from './coupon-activity-types'
 import COUPON_SEND_TIMES from './couponn-send-times'
 import SURVEY_QUESTION_TYPES from './survey-question-types'
+import PAY_WAYS from './pay-ways'
 
 // 基础地址
-const BASE_URL = env.isDev() ? 'http://localhost:3004' : 'https://api.fjnm.cn'
+const BASE_URL = !env.isDev() ? 'http://localhost:3004' : 'https://api.fjnm.cn'
 
 // 接口地址
 const API_URL = BASE_URL + '/api/v1/admin'
@@ -56,6 +57,7 @@ export default {
   COUPON_SEND_TIMES,
   SURVEY_QUESTION_TYPES,
   ORDER_STATUSES,
+  PAY_WAYS,
   BASE_URL,
   API_URL,
   PUBLIC_API_URL,
