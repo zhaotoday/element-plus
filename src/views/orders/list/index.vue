@@ -23,6 +23,34 @@
           <Form
             inline
             @submit.native.prevent="search">
+            <Form-item prop="payWay">
+              <Select
+                placeholder="请选择支付方式"
+                clearable
+                style="width: 190px"
+                v-model="cList.cSearch.where.payWay.$eq">
+                <Option
+                  v-for="item in $consts.PAY_WAYS"
+                  :value="item.value"
+                  :key="item.value">
+                  {{ item.label }}
+                </Option>
+              </Select>
+            </Form-item>
+            <Form-item prop="status">
+              <Select
+                placeholder="请选择状态"
+                clearable
+                style="width: 190px"
+                v-model="cList.cSearch.where.status.$eq">
+                <Option
+                  v-for="item in $consts.ORDER_STATUSES"
+                  :value="item.code"
+                  :key="item.code">
+                  {{ item.label }}
+                </Option>
+              </Select>
+            </Form-item>
             <Form-item prop="startTime">
               <DatePicker
                 :value="cList.cSearch.where.startTime.$eq"
@@ -301,6 +329,12 @@ const module = 'orders'
 const initWhere = {
   no: {
     $like: ''
+  },
+  payWay: {
+    $eq: ''
+  },
+  status: {
+    $eq: ''
   },
   startTime: {
     $eq: ''
