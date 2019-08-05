@@ -179,6 +179,7 @@
       title="打印订单">
       <div class="c-orders-wrap">
         <ul
+          v-if="cPrintPreviewer.modal"
           id="printJS-form"
           class="c-orders">
           <li
