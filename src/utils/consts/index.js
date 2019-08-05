@@ -22,7 +22,7 @@ import SURVEY_QUESTION_TYPES from './survey-question-types'
 import PAY_WAYS from './pay-ways'
 
 // 基础地址
-const BASE_URL = env.isDev() ? 'http://localhost:3004' : 'https://api.fjnm.cn'
+const BASE_URL = !env.isDev() ? 'http://localhost:3004' : 'https://api.fjnm.cn'
 
 // 接口地址
 const API_URL = BASE_URL + '/api/v1/admin'

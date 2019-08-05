@@ -182,7 +182,7 @@
           id="printJS-form"
           class="c-orders">
           <li
-            v-for="item in list.items"
+            v-for="item in cPrintPreviewer.items.length ? cPrintPreviewer.items : list.items"
             :key="item.id"
             class="c-orders__item">
             <h2 class="c-orders__title">福菜生鲜商城购物凭证</h2>
@@ -221,7 +221,7 @@
               </tr>
               <tr>
                 <td colspan="3">
-                  合计：{{ item.paidMoney }} 元
+                  合计：{{ item.paidMoney }} 元（{{ $helpers.getItem($consts.PAY_WAYS, 'value', item.payWay)['label'] }}）
                 </td>
                 <td colspan="2">
                   销售单位：福州福菜农业发展有限公司
@@ -388,7 +388,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 170,
+            width: 255,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -397,6 +397,14 @@ export default {
                   }
                 }
               }, '详情'),
+              h('Button', {
+                on: {
+                  click: () => {
+                    this.cPrintPreviewer.modal = true
+                    this.cPrintPreviewer.items = [params.row]
+                  }
+                }
+              }, '打印订单'),
               h('CDel', {
                 on: {
                   ok: () => {
@@ -425,7 +433,8 @@ export default {
         item: {}
       },
       cPrintPreviewer: {
-        modal: false
+        modal: false,
+        items: []
       },
       cSearch: {
         where: this.$helpers.deepCopy(initWhere)
@@ -435,6 +444,15 @@ export default {
   computed: mapState({
     list: state => state[module].list
   }),
+  watch: {
+    'cPrintPreviewer.modal': {
+      handler (newVal) {
+        if (!newVal) {
+          this.cPrintPreviewer.items = []
+        }
+      }
+    }
+  },
   async beforeRouteUpdate (to, from, next) {
     this.initSearchWhere(initWhere)
     this.getList()

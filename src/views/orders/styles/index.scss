@@ -69,6 +69,8 @@
   @include cc(products) {
     @include position--absolute(140px, null, null, 10px);
 
+    list-style: none;
+
     @include e(item) {
       .grid {
         display: flex;
@@ -101,6 +103,8 @@
   }
 }
 
+/*
 .c-orders__item {
   page-break-after: always;
 }
+*/
