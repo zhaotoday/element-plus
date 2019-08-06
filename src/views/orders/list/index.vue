@@ -84,7 +84,7 @@
             <FormItem>
               <Button
                 type="primary"
-                @click="cPrintPreviewer.modal = true">
+                @click="showPrintPreviewer">
                 打印订单
               </Button>
             </FormItem>
@@ -211,7 +211,7 @@
           id="printJS-form"
           class="c-orders">
           <li
-            v-for="item in cPrintPreviewer.items.length ? cPrintPreviewer.items : list.items"
+            v-for="item in cPrintPreviewer.items"
             :key="item.id"
             class="c-orders__item">
             <h2 class="c-orders__title">福菜生鲜商城购物凭证</h2>
@@ -324,6 +324,7 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 import Print from 'print-js'
+import OrdersModel from '@/models/admin/orders'
 
 const module = 'orders'
 const initWhere = {
@@ -435,8 +436,12 @@ export default {
               h('Button', {
                 on: {
                   click: () => {
-                    this.cPrintPreviewer.modal = true
-                    this.cPrintPreviewer.items = [params.row]
+                    if (params.row.status === 'TO_PAY') {
+                      this.$Message.error('待付款订单不可打印')
+                    } else {
+                      this.cPrintPreviewer.modal = true
+                      this.cPrintPreviewer.items = [params.row]
+                    }
                   }
                 }
               }, '打印订单'),
@@ -554,6 +559,36 @@ export default {
         type: 'html',
         targetStyles: ['*']
       })
+    },
+    async getPrintOrdersListItems () {
+      this.search()
+
+      const { status, ...rest } = this.listSearchWhere
+      const { data: { items } } = await new OrdersModel().GET({
+        query: {
+          where: this.listSearchWhere ? {
+            ...rest,
+            $or: [
+              { status: 'TO_DELIVER' },
+              { status: 'IN_DELIVER' }
+            ]
+          } : {},
+          offset: 0,
+          limit: 1000
+        }
+      })
+
+      return status.$eq === 'TO_PAY' ? [] : items
+    },
+    async showPrintPreviewer () {
+      const items = await this.getPrintOrdersListItems()
+
+      if (items.length) {
+        this.cPrintPreviewer.items = items
+        this.cPrintPreviewer.modal = true
+      } else {
+        this.$Message.error('没有找到可打印订单')
+      }
     }
   }
 }
