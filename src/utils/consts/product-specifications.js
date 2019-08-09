@@ -88,8 +88,76 @@ export default [
       for (let i = 1; i <= 100; i++) {
         ret.push({
           id: i,
-          value: `4:${i}`,
+          value: `5:${i}`,
           label: `${i} 瓶`
+        })
+      }
+
+      return ret
+    })()
+  },
+  {
+    value: '6',
+    label: '个',
+    specifications: (() => {
+      let ret = []
+
+      for (let i = 1; i <= 100; i++) {
+        ret.push({
+          id: i,
+          value: `6:${i}`,
+          label: `${i} 个`
+        })
+      }
+
+      return ret
+    })()
+  },
+  {
+    value: '7',
+    label: '箱',
+    specifications: (() => {
+      let ret = []
+
+      for (let i = 1; i <= 100; i++) {
+        ret.push({
+          id: i,
+          value: `7:${i}`,
+          label: `${i} 箱`
+        })
+      }
+
+      return ret
+    })()
+  },
+  {
+    value: '8',
+    label: '公斤',
+    specifications: (() => {
+      let ret = []
+
+      for (let i = 1; i <= 100; i++) {
+        ret.push({
+          id: i,
+          value: `8:${i}`,
+          label: `${i} 公斤`
+        })
+      }
+
+      return ret
+    })()
+  },
+  {
+    value: '9',
+    label: '包',
+    specifications: (() => {
+      let ret = []
+
+      for (let i = 1; i <= 100; i++) {
+        ret.push({
+          id: i,
+          value: `9:${i}`,
+          label: `${i} 包`
         })
       }
 
