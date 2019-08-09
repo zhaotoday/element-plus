@@ -18,5 +18,21 @@ export default [
   {
     value: '5',
     label: '瓶'
+  },
+  {
+    value: '6',
+    label: '个'
+  },
+  {
+    value: '7',
+    label: '箱'
+  },
+  {
+    value: '8',
+    label: '公斤'
+  },
+  {
+    value: '9',
+    label: '包'
   }
 ]
