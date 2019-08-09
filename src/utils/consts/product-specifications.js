@@ -88,7 +88,7 @@ export default [
       for (let i = 1; i <= 100; i++) {
         ret.push({
           id: i,
-          value: `5:${i}`,
+          value: `4:${i}`,
           label: `${i} 瓶`
         })
       }
