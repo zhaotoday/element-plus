@@ -10,6 +10,7 @@
       <CListHeader>
         <CListOperations>
           <Button
+            v-if="listSearchWhere.status.$eq === 'TO_DELIVER'"
             type="primary"
             @click="handleDispatch">
             配送订单
@@ -33,20 +34,6 @@
                   v-for="item in $consts.PAY_WAYS"
                   :value="item.value"
                   :key="item.value">
-                  {{ item.label }}
-                </Option>
-              </Select>
-            </Form-item>
-            <Form-item prop="status">
-              <Select
-                placeholder="请选择状态"
-                clearable
-                style="width: 190px"
-                v-model="cList.cSearch.where.status.$eq">
-                <Option
-                  v-for="item in $consts.ORDER_STATUSES"
-                  :value="item.code"
-                  :key="item.code">
                   {{ item.label }}
                 </Option>
               </Select>
@@ -81,7 +68,7 @@
                 查询
               </Button>
             </Form-item>
-            <FormItem>
+            <FormItem v-if="listSearchWhere.status.$eq === 'TO_DELIVER'">
               <Button
                 type="primary"
                 @click="showPrintPreviewer">
@@ -434,14 +421,13 @@ export default {
                 }
               }, '详情'),
               h('Button', {
+                attrs: {
+                  disabled: params.row.status !== 'TO_DELIVER'
+                },
                 on: {
                   click: () => {
-                    if (params.row.status === 'TO_PAY') {
-                      this.$Message.error('待付款订单不可打印')
-                    } else {
-                      this.cPrintPreviewer.modal = true
-                      this.cPrintPreviewer.items = [params.row]
-                    }
+                    this.cPrintPreviewer.modal = true
+                    this.cPrintPreviewer.items = [params.row]
                   }
                 }
               }, '打印订单'),
@@ -568,10 +554,7 @@ export default {
         query: {
           where: this.listSearchWhere ? {
             ...rest,
-            $or: [
-              { status: 'TO_DELIVER' },
-              { status: 'IN_DELIVER' }
-            ]
+            status: { $eq: 'TO_DELIVER' }
           } : {},
           offset: 0,
           limit: 1000
@@ -581,7 +564,9 @@ export default {
       return status.$eq === 'TO_PAY' ? [] : items
     },
     async showPrintPreviewer () {
-      const items = await this.getPrintOrdersListItems()
+      const items = this.listSelectedItems.length
+        ? this.listSelectedItems
+        : await this.getPrintOrdersListItems()
 
       if (items.length) {
         this.cPrintPreviewer.items = items

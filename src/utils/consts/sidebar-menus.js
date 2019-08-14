@@ -1,3 +1,13 @@
+const getOrderURL = status => {
+  return encodeURIComponent(JSON.stringify({
+    no: { $like: '' },
+    payWay: { $eq: '' },
+    status: { $eq: status },
+    startTime: { $eq: '' },
+    endTime: { $eq: '' }
+  }))
+}
+
 export default [
   {
     icon: 'ios-cart',
@@ -20,8 +30,24 @@ export default [
     title: '订单',
     children: [
       {
-        title: '订单',
-        route: '/orders/orders/index'
+        title: '待付款',
+        route: `/orders/orders/index?listSearchWhere=${getOrderURL('TO_PAY')}`
+      },
+      {
+        title: '待发货',
+        route: `/orders/orders/index?listSearchWhere=${getOrderURL('TO_DELIVER')}`
+      },
+      {
+        title: '待收货',
+        route: `/orders/orders/index?listSearchWhere=${getOrderURL('IN_DELIVER')}`
+      },
+      {
+        title: '已完成',
+        route: `/orders/orders/index?listSearchWhere=${getOrderURL('FINISH')}`
+      },
+      {
+        title: '已取消',
+        route: `/orders/orders/index?listSearchWhere=${getOrderURL('CANCELLED')}`
       }
     ]
   },
