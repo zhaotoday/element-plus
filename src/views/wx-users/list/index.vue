@@ -46,6 +46,13 @@
                 查询
               </Button>
             </Form-item>
+            <FormItem>
+              <Button
+                type="primary"
+                @click="exportXLSX">
+                导出
+              </Button>
+            </FormItem>
           </Form>
         </CListSearch>
       </CListHeader>
@@ -57,6 +64,8 @@
 import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
+import xlsx from '@/utils/xlsx'
+import WxUsersModel from '@/models/admin/wx-users'
 
 const module = 'wxUsers'
 const initWhere = {
@@ -127,28 +136,17 @@ export default {
             width: 100
           },
           {
-            title: '状态',
-            key: 'status',
-            width: 100,
-            render: (h, params) => h('span', null, this.$helpers.getOption(WX_USER_STATUSES, params.row.status)['label'])
-          },
-          {
             title: '操作',
             key: 'action',
-            width: 140,
+            width: 130,
             render: (h, params) => h('div', [
-              h('CDropdown', {
-                attrs: {
-                  width: 90,
-                  title: '修改状态',
-                  options: WX_USER_STATUSES
-                },
+              h('Button', {
                 on: {
-                  click: async value => {
-                    this.handleChangeStatus(params.row.id, value)
+                  click: () => {
+                    console.log('333')
                   }
                 }
-              })
+              }, '查看订单')
             ])
           }
         ],
@@ -192,6 +190,51 @@ export default {
 
       this.$Message.success('修改状态成功')
       this.getList()
+    },
+    async getExportWxUsersListItems () {
+      this.search()
+
+      const { data: { items } } = await new WxUsersModel().GET({
+        query: {
+          where: this.listSearchWhere,
+          offset: 0,
+          limit: 10000
+        }
+      })
+
+      return items
+    },
+    async exportXLSX () {
+      const items = await this.getExportWxUsersListItems()
+
+      xlsx.download({
+        fileName: `微信用户（${this.$time.getDate()}）`,
+        data: (() => {
+          const columns = this.cList.columns
+          const columnKeys = this.cList.columns.map(item => item.key)
+
+          return items.map(item => {
+            let ret = {}
+
+            Object.keys(item).forEach(key => {
+              const index = columnKeys.findIndex(columnKey => columnKey === key)
+
+              if (index !== -1) {
+                switch (key) {
+                  case 'gender':
+                    ret[columns[index].title] = this.$consts.GENDERS[item[key]] || '未知'
+                    break
+                  default:
+                    ret[columns[index].title] = item[key]
+                    break
+                }
+              }
+            })
+
+            return ret
+          })
+        })()
+      })
     }
   }
 }

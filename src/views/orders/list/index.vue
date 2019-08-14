@@ -549,19 +549,15 @@ export default {
     async getPrintOrdersListItems () {
       this.search()
 
-      const { status, ...rest } = this.listSearchWhere
       const { data: { items } } = await new OrdersModel().GET({
         query: {
-          where: this.listSearchWhere ? {
-            ...rest,
-            status: { $eq: 'TO_DELIVER' }
-          } : {},
+          where: this.listSearchWhere,
           offset: 0,
           limit: 1000
         }
       })
 
-      return status.$eq === 'TO_PAY' ? [] : items
+      return items
     },
     async showPrintPreviewer () {
       const items = this.listSelectedItems.length
