@@ -218,7 +218,7 @@
                 <th style="width: 70px;">金额</th>
                 <th>备注</th>
               </tr>
-              <tr style="height: 200px;">
+              <tr style="height: 180px;">
                 <td></td>
                 <td></td>
                 <td></td>
