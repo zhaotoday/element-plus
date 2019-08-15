@@ -86,7 +86,7 @@ export default {
     listMixin
   ],
   data () {
-    const { LIST_COLUMN_WIDTHS, WX_USER_STATUSES, GENDERS } = this.$consts
+    const { LIST_COLUMN_WIDTHS, GENDERS } = this.$consts
 
     return {
       cList: {
@@ -143,7 +143,12 @@ export default {
               h('Button', {
                 on: {
                   click: () => {
-                    console.log('333')
+                    this.$router.push(
+                      this.$helpers.getOrderRoute({
+                        alias: 'wxUsers',
+                        wxUserId: params.row.id
+                      })
+                    )
                   }
                 }
               }, '查看订单')

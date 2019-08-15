@@ -100,21 +100,6 @@ export default [
     ]
   },
   {
-    icon: 'md-key',
-    name: 'rbac',
-    title: '角色权限',
-    children: [
-      {
-        title: '角色',
-        route: '/rbac/rbac/roles'
-      },
-      {
-        title: '资源',
-        route: '/rbac/rbac/resources'
-      }
-    ]
-  },
-  {
     icon: 'ios-print',
     name: 'logs',
     title: '日志',
