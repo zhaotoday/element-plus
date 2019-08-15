@@ -24,5 +24,17 @@ export default {
   },
   getOption (options, value) {
     return options.find(item => item.value === value) || {}
+  },
+  getOrderRoute ({ status, wxUserId }) {
+    const listSearchWhere = encodeURIComponent(JSON.stringify({
+      no: { $like: '' },
+      payWay: { $eq: '' },
+      status: status ? { $eq: status } : '',
+      wxUserId: wxUserId ? { $eq: wxUserId } : '',
+      startTime: { $eq: '' },
+      endTime: { $eq: '' }
+    }))
+
+    return `/orders/orders/index?listSearchWhere=${listSearchWhere}`
   }
 }

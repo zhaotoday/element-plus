@@ -1,11 +1,14 @@
-const getOrderURL = status => {
-  return encodeURIComponent(JSON.stringify({
+const getOrderRoute = ({ status, wxUserId }) => {
+  const listSearchWhere = encodeURIComponent(JSON.stringify({
     no: { $like: '' },
     payWay: { $eq: '' },
-    status: { $eq: status },
+    status: status ? { $eq: status } : '',
+    wxUserId: wxUserId ? { $eq: wxUserId } : '',
     startTime: { $eq: '' },
     endTime: { $eq: '' }
   }))
+
+  return `/orders/orders/index?listSearchWhere=${listSearchWhere}`
 }
 
 export default [
@@ -31,23 +34,23 @@ export default [
     children: [
       {
         title: '待付款',
-        route: `/orders/orders/index?listSearchWhere=${getOrderURL('TO_PAY')}`
+        route: getOrderRoute({ status: 'TO_PAY' })
       },
       {
         title: '待发货',
-        route: `/orders/orders/index?listSearchWhere=${getOrderURL('TO_DELIVER')}`
+        route: getOrderRoute({ status: 'TO_DELIVER' })
       },
       {
         title: '待收货',
-        route: `/orders/orders/index?listSearchWhere=${getOrderURL('IN_DELIVER')}`
+        route: getOrderRoute({ status: 'IN_DELIVER' })
       },
       {
         title: '已完成',
-        route: `/orders/orders/index?listSearchWhere=${getOrderURL('FINISH')}`
+        route: getOrderRoute({ status: 'FINISH' })
       },
       {
         title: '已取消',
-        route: `/orders/orders/index?listSearchWhere=${getOrderURL('CANCELLED')}`
+        route: getOrderRoute({ status: 'CANCELLED' })
       }
     ]
   },
