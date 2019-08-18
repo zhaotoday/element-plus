@@ -16,7 +16,7 @@ export default {
           offset: 0,
           limit: 1000,
           where: {
-            alias: this.alias || ''
+            // alias: this.alias || ''
           }
         }
       })

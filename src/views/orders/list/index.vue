@@ -75,6 +75,13 @@
                 打印订单
               </Button>
             </FormItem>
+            <FormItem v-if="listSearchWhere.status.$eq === 'TO_DELIVER'">
+              <Button
+                type="primary"
+                @click="showOrderProducts">
+                订单商品统计
+              </Button>
+            </FormItem>
           </Form>
         </CListSearch>
       </CListHeader>
@@ -303,12 +310,27 @@
         </Button>
       </div>
     </Modal>
+    <Modal
+      width="840"
+      v-model="cOrderProducts.modal"
+      title="订单商品统计">
+      <Table
+        size="small"
+        border
+        stripe
+        highlight-row
+        height="400"
+        :columns="cOrderProducts.columns"
+        :data="cOrderProducts.data">
+      </Table>
+    </Modal>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
+import allCategoriesListMixin from '@/mixins/all-categories-list'
 import listMixin from '@/mixins/list'
 import Print from 'print-js'
 import OrdersModel from '@/models/admin/orders'
@@ -338,6 +360,7 @@ const initForm = {
 export default {
   mixins: [
     routeParamsMixin,
+    allCategoriesListMixin,
     listMixin
   ],
   data () {
@@ -464,6 +487,39 @@ export default {
       },
       cSearch: {
         where: this.$helpers.deepCopy(initWhere)
+      },
+      cOrderProducts: {
+        modal: false,
+        columns: [
+          {
+            title: '名称',
+            key: 'name'
+          },
+          {
+            title: '分类',
+            width: 180,
+            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId, true))
+          },
+          {
+            title: '价格',
+            width: 80,
+            render: (h, params) => h('span', null, params.row.price ? `${params.row.price} 元` : '')
+          },
+          {
+            title: '数量',
+            key: 'number',
+            align: 'right',
+            width: 180,
+            render: (h, params) => h(
+              'span',
+              null,
+              params.row.number
+                ? `x${params.row.number}`
+                : params.row.specifications.map(item => h('div', null, `（${item.price} 元 / ${item.label}） x${item.number}`))
+            )
+          }
+        ],
+        data: []
       }
     }
   },
@@ -546,7 +602,7 @@ export default {
         targetStyles: ['*']
       })
     },
-    async getPrintOrdersListItems () {
+    async getSearchedOrderListItems () {
       this.search()
 
       const { data: { items } } = await new OrdersModel().GET({
@@ -562,13 +618,53 @@ export default {
     async showPrintPreviewer () {
       const items = this.listSelectedItems.length
         ? this.listSelectedItems
-        : await this.getPrintOrdersListItems()
+        : await this.getSearchedOrderListItems()
 
       if (items.length) {
         this.cPrintPreviewer.items = items
         this.cPrintPreviewer.modal = true
       } else {
         this.$Message.error('没有找到可打印订单')
+      }
+    },
+    async showOrderProducts () {
+      const items = this.listSelectedItems.length
+        ? this.listSelectedItems
+        : await this.getSearchedOrderListItems()
+
+      let allProducts = []
+      let mergedProducts = []
+
+      items.forEach(item => {
+        allProducts = [...allProducts, ...item.products]
+      })
+
+      allProducts.forEach(item => {
+        const index = mergedProducts.findIndex(product => product.id === item.id)
+
+        if (index === -1) {
+          mergedProducts.push(item)
+        } else {
+          if (item.price) {
+            mergedProducts[index].number += item.number
+          } else {
+            item.specifications.forEach(item => {
+              const specificationIndex = mergedProducts[index].specifications.findIndex(specification => specification.value === item.value)
+              if (specificationIndex === -1) {
+                mergedProducts[index].specifications.push(item)
+              } else {
+                mergedProducts[index].specifications[specificationIndex].number += item.number
+              }
+            })
+          }
+        }
+      })
+
+      if (items.length) {
+        this.cOrderProducts.data = mergedProducts
+        this.cOrderProducts.modal = true
+      } else {
+        this.$Message.error('没有订单')
       }
     }
   }
