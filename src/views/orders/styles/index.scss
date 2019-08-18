@@ -9,6 +9,7 @@
 }
 
 @include c(orders) {
+  padding: 0 20px;
   list-style: none;
   font-size: 12px;
 

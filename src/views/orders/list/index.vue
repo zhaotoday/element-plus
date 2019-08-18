@@ -219,7 +219,7 @@
             </ul>
             <table class="c-orders__table">
               <tr>
-                <th style="width: 260px;">商品</th>
+                <th style="width: 250px;">商品</th>
                 <th style="width: 70px;">单价</th>
                 <th style="width: 70px;">数量</th>
                 <th style="width: 70px;">金额</th>
@@ -247,7 +247,7 @@
                   合计：{{ item.paidMoney }} 元（{{ $helpers.getItem($consts.PAY_WAYS, 'value', item.payWay)['label'] }}）
                 </td>
                 <td colspan="2">
-                  销售单位：福州福菜农业发展有限公司
+                  单位：福州福菜农业发展有限公司
                   &nbsp;&nbsp;&nbsp;&nbsp;
                   电话：0591-00000000
                 </td>
