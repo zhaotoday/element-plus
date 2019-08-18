@@ -34,5 +34,13 @@ export default [
   {
     value: '9',
     label: '包'
+  },
+  {
+    value: '10',
+    label: '盒'
+  },
+  {
+    value: '11',
+    label: '框'
   }
 ]
