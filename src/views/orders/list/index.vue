@@ -225,7 +225,7 @@
                 <th style="width: 70px;">金额</th>
                 <th>备注</th>
               </tr>
-              <tr style="height: 180px;">
+              <tr style="height: 120px;">
                 <td></td>
                 <td></td>
                 <td></td>
@@ -249,7 +249,7 @@
                 <td colspan="2">
                   单位：福州福菜农业发展有限公司
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                  电话：0591-00000000
+                  电话：13799985235
                 </td>
               </tr>
             </table>

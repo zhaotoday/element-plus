@@ -42,6 +42,8 @@
     }
 
     .is-address {
+      @include text--overflow(1);
+      
       flex: 0 1 auto;
       width: 260px;
     }
