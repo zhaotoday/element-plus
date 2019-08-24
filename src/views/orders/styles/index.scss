@@ -11,7 +11,7 @@
 @include c(orders) {
   padding: 0 20px;
   list-style: none;
-  font-size: 12px;
+  font-size: 12pt * 0.75;
 
   @include e(item) {
     @include padding(20px, null, 20px);
@@ -22,7 +22,7 @@
   @include e(title) {
     text-align: center;
     padding-top: 10px;
-    font-size: 18px;
+    font-size: 18pt * 0.75;
     line-height: 100%;
   }
 
@@ -87,7 +87,7 @@
 
       .is-name {
         flex: 0 1 auto;
-        width: 260px;
+        width: 250px;
       }
 
       .is-price {
