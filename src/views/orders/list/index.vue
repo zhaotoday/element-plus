@@ -522,6 +522,27 @@ export default {
                 ? `x${params.row.number}`
                 : params.row.specifications.map(item => h('div', null, `（${item.price} 元 / ${item.label}） x${item.number}`))
             )
+          },
+          {
+            title: '总量',
+            align: 'right',
+            render: (h, params) => h(
+              'span',
+              null,
+              (({ number, unit, specifications }) => {
+                let total = 0
+
+                if (number) {
+                  total = number
+                } else {
+                  specifications.forEach(specification => {
+                    total += specification.value.split(':')[1] * specification.number
+                  })
+                }
+
+                return `${total} ${this.$helpers.getItem(this.$consts.PRODUCT_UNITS, 'value', unit)['label']}`
+              })(params.row)
+            )
           }
         ],
         data: []
