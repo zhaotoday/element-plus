@@ -558,7 +558,7 @@ export default {
               null,
               (({ price, number, specifications }) => {
                 if (number) {
-                  return `${price * number} 元`
+                  return `${(price * number).toFixed(2)} 元`
                 } else {
                   let total = 0
 
@@ -566,7 +566,7 @@ export default {
                     total += specification.price * specification.number
                   })
 
-                  return `${total} 元`
+                  return `${total.toFixed(2)} 元`
                 }
               })(params.row)
             )
