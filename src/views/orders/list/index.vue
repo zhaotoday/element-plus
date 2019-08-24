@@ -226,7 +226,40 @@
                 <th>备注</th>
               </tr>
               <tr style="height: 120px;">
-                <td></td>
+                <td>
+
+                  <div class="cc-products__wrap">
+                    <ul class="cc-products">
+                      <li
+                        v-for="product in item.products"
+                        :key="product.id"
+                        class="cc-products__item">
+                        <template v-if="product.price">
+                          <div class="grid">
+                            <div class="is-name">{{ product.name }}</div>
+                            <div class="is-price">{{ product.price }}</div>
+                            <div class="is-number">{{ product.number }}</div>
+                            <div class="is-total">{{ product.price * product.number }}</div>
+                          </div>
+                        </template>
+                        <template v-else>
+                          <div
+                            v-for="specification in product.specifications"
+                            :key="specification.value"
+                            class="grid">
+                            <div class="is-name">
+                              {{ `${product.name}（${specification.price} 元 / ${specification.label}）` }}
+                            </div>
+                            <div class="is-price">{{ specification.price }}</div>
+                            <div class="is-number">{{ specification.number }}</div>
+                            <div class="is-total">{{ (specification.price * specification.number).toFixed(2) }}</div>
+                          </div>
+                        </template>
+                      </li>
+                    </ul>
+                  </div>
+
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -263,35 +296,7 @@
               <li class="is-address"></li>
               <li style="text-align: right;"></li>
             </ul>
-            <ul class="cc-products">
-              <li
-                v-for="product in item.products"
-                :key="product.id"
-                class="cc-products__item">
-                <template v-if="product.price">
-                  <div class="grid">
-                    <div class="is-name">{{ product.name }}</div>
-                    <div class="is-price">{{ product.price }}</div>
-                    <div class="is-number">{{ product.number }}</div>
-                    <div class="is-total">{{ product.price * product.number }}</div>
-                  </div>
-                </template>
-                <template v-else>
-                  <div
-                    v-for="specification in product.specifications"
-                    :key="specification.value"
-                    class="grid">
-                    <div class="is-name">
-                      {{ `${product.name}（${specification.price} 元 / ${specification.label}）` }}
-                    </div>
-                    <div class="is-price">{{ specification.price }}</div>
-                    <div class="is-number">{{ specification.number }}</div>
-                    <div class="is-total">{{ (specification.price * specification.number).toFixed(2) }}</div>
-                  </div>
-                </template>
-              </li>
-            </ul>
-            <div class="c-orders__remark">{{ item.remark }}</div>
+            <div class="c-orders__remark">1{{ item.remark }}</div>
           </li>
         </ul>
       </div>

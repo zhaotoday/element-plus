@@ -43,7 +43,7 @@
 
     .is-address {
       @include text--overflow(1);
-      
+
       flex: 0 1 auto;
       width: 260px;
     }
@@ -71,7 +71,11 @@
   }
 
   @include cc(products) {
-    @include position--absolute(140px, null, null, 10px);
+    width: 600px;
+
+    @include e(wrap) {
+      width: 100px;
+    }
 
     list-style: none;
 
@@ -103,7 +107,7 @@
   }
 
   @include e(remark) {
-    @include position--absolute(140px, null, null, 478px);
+    @include position--absolute(132px, null, null, 470px);
   }
 }
 
