@@ -75,7 +75,7 @@
                 打印订单
               </Button>
             </FormItem>
-            <FormItem v-if="listSearchWhere.status.$eq === 'TO_DELIVER'">
+            <FormItem>
               <Button
                 type="primary"
                 @click="showOrderProducts">
