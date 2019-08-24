@@ -319,6 +319,12 @@
       width="840"
       v-model="cOrderProducts.modal"
       title="订单商品统计">
+      <Row>
+        <Col span="12"></Col>
+        <Col
+          span="12"
+          style="text-align: right;"></Col>
+      </Row>
       <Table
         size="small"
         border
@@ -541,6 +547,27 @@ export default {
                 }
 
                 return `${total} ${this.$helpers.getItem(this.$consts.PRODUCT_UNITS, 'value', unit)['label']}`
+              })(params.row)
+            )
+          },
+          {
+            title: '金额',
+            align: 'right',
+            render: (h, params) => h(
+              'span',
+              null,
+              (({ price, number, specifications }) => {
+                if (number) {
+                  return `${price * number} 元`
+                } else {
+                  let total = 0
+
+                  specifications.forEach(specification => {
+                    total += specification.price * specification.number
+                  })
+
+                  return `${total} 元`
+                }
               })(params.row)
             )
           }
