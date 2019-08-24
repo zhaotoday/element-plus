@@ -296,7 +296,7 @@
               <li class="is-address"></li>
               <li style="text-align: right;"></li>
             </ul>
-            <div class="c-orders__remark">1{{ item.remark }}</div>
+            <div class="c-orders__remark">{{ item.remark }}</div>
           </li>
         </ul>
       </div>
