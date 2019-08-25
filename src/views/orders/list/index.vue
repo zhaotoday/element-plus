@@ -319,13 +319,20 @@
       width="840"
       v-model="cOrderProducts.modal"
       title="订单商品统计">
-      <Row>
-        <Col span="12"></Col>
+      <Row style="padding-bottom: 10px;">
+        <Col span="12">总金额：{{ cOrderProducts.totalPrice }} 元</Col>
         <Col
           span="12"
-          style="text-align: right;"></Col>
+          style="text-align: right;">
+          <Button
+            type="primary"
+            @click="exportOrderProducts">
+            导出
+          </Button>
+        </Col>
       </Row>
       <Table
+        ref="orderProducts"
         size="small"
         border
         stripe
@@ -345,6 +352,7 @@ import allCategoriesListMixin from '@/mixins/all-categories-list'
 import listMixin from '@/mixins/list'
 import Print from 'print-js'
 import OrdersModel from '@/models/admin/orders'
+import xlsx from '@/utils/xlsx'
 
 const module = 'orders'
 const initWhere = {
@@ -508,71 +516,36 @@ export default {
           },
           {
             title: '分类',
-            width: 180,
-            render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId, true))
+            key: 'categoryName',
+            width: 160
           },
           {
             title: '价格',
-            width: 80,
-            render: (h, params) => h('span', null, params.row.price ? `${params.row.price} 元` : '')
+            key: 'price',
+            width: 80
           },
           {
             title: '数量',
-            key: 'number',
+            key: 'count',
             align: 'right',
-            width: 180,
-            render: (h, params) => h(
-              'span',
-              null,
-              params.row.number
-                ? `x${params.row.number}`
-                : params.row.specifications.map(item => h('div', null, `（${item.price} 元 / ${item.label}） x${item.number}`))
-            )
+            width: 160,
+            render: (h, params) => h('span', null, params.row.count.map(item => h('div', null, item)))
           },
           {
             title: '总量',
+            key: 'totalCount',
             align: 'right',
-            render: (h, params) => h(
-              'span',
-              null,
-              (({ number, unit, specifications }) => {
-                let total = 0
-
-                if (number) {
-                  total = number
-                } else {
-                  specifications.forEach(specification => {
-                    total += specification.value.split(':')[1] * specification.number
-                  })
-                }
-
-                return `${total} ${this.$helpers.getItem(this.$consts.PRODUCT_UNITS, 'value', unit)['label']}`
-              })(params.row)
-            )
+            width: 80
           },
           {
             title: '金额',
+            key: 'totalPrice',
             align: 'right',
-            render: (h, params) => h(
-              'span',
-              null,
-              (({ price, number, specifications }) => {
-                if (number) {
-                  return `${(price * number).toFixed(2)} 元`
-                } else {
-                  let total = 0
-
-                  specifications.forEach(specification => {
-                    total += specification.price * specification.number
-                  })
-
-                  return `${total.toFixed(2)} 元`
-                }
-              })(params.row)
-            )
+            width: 100
           }
         ],
-        data: []
+        data: [],
+        totalPrice: 0
       }
     }
   },
@@ -586,6 +559,24 @@ export default {
           this.cPrintPreviewer.items = []
         }
       }
+    },
+    'cOrderProducts.data': {
+      handler (newVal) {
+        let totalPrice = 0
+
+        newVal.forEach(({ product: { number, price, specifications } }) => {
+          if (number) {
+            totalPrice += price * number
+          } else {
+            specifications.forEach(specification => {
+              totalPrice += specification.price * specification.number
+            })
+          }
+        })
+
+        this.cOrderProducts.totalPrice = totalPrice.toFixed(2)
+      },
+      deep: true
     }
   },
   async beforeRouteUpdate (to, from, next) {
@@ -680,6 +671,50 @@ export default {
         this.$Message.error('没有找到可打印订单')
       }
     },
+    filterOrderProducts (orderProducts) {
+      return orderProducts.map(product => {
+        // 总量
+        const totalCount = (({ number, unit, specifications }) => {
+          let total = 0
+
+          if (number) {
+            total = number
+          } else {
+            specifications.forEach(specification => {
+              total += specification.value.split(':')[1] * specification.number
+            })
+          }
+
+          return `${total} ${this.$helpers.getItem(this.$consts.PRODUCT_UNITS, 'value', unit)['label']}`
+        })(product)
+        // 金额
+        const totalPrice = (({ price, number, specifications }) => {
+          if (number) {
+            return (price * number).toFixed(2) + ' 元'
+          } else {
+            let total = 0
+
+            specifications.forEach(specification => {
+              total += specification.price * specification.number
+            })
+
+            return total.toFixed(2) + ' 元'
+          }
+        })(product)
+
+        return {
+          product,
+          name: product.name,
+          categoryName: this.getCategoryTitleById(product.categoryId, true),
+          price: product.price ? `${product.price} 元` : '',
+          count: product.number
+            ? [`x${product.number}`]
+            : product.specifications.map(item => `（${item.price} 元 / ${item.label}） x${item.number}`),
+          totalCount,
+          totalPrice
+        }
+      })
+    },
     async showOrderProducts () {
       const items = this.listSelectedItems.length
         ? this.listSelectedItems
@@ -714,11 +749,43 @@ export default {
       })
 
       if (items.length) {
-        this.cOrderProducts.data = mergedProducts
+        this.cOrderProducts.data = this.filterOrderProducts(mergedProducts)
         this.cOrderProducts.modal = true
       } else {
         this.$Message.error('没有订单')
       }
+    },
+    exportOrderProducts () {
+      xlsx.download({
+        fileName: `订单商品统计（${this.$time.getDate()}）`,
+        data: (() => {
+          const columns = this.cOrderProducts.columns
+          const columnKeys = this.cOrderProducts.columns.map(item => item.key)
+
+          return this.cOrderProducts.data
+            .map(item => {
+              let ret = {}
+
+              Object.keys(item).forEach(key => {
+                const index = columnKeys.findIndex(columnKey => columnKey === key)
+
+                if (index !== -1) {
+                  switch (key) {
+                    case 'count':
+                      ret[columns[index].title] = item[key].join('\n')
+                      console.log(item[key].join('\n'), 33)
+                      break
+                    default:
+                      ret[columns[index].title] = item[key]
+                      break
+                  }
+                }
+              })
+
+              return ret
+            })
+        })()
+      })
     }
   }
 }
