@@ -163,5 +163,39 @@ export default [
 
       return ret
     })()
+  },
+  {
+    value: '10',
+    label: '盒',
+    specifications: (() => {
+      let ret = []
+
+      for (let i = 1; i <= 100; i++) {
+        ret.push({
+          id: i,
+          value: `10:${i}`,
+          label: `${i} 盒`
+        })
+      }
+
+      return ret
+    })()
+  },
+  {
+    value: '11',
+    label: '框',
+    specifications: (() => {
+      let ret = []
+
+      for (let i = 1; i <= 100; i++) {
+        ret.push({
+          id: i,
+          value: `11:${i}`,
+          label: `${i} 框`
+        })
+      }
+
+      return ret
+    })()
   }
 ]
