@@ -16,7 +16,7 @@
           </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
-            @ok="handleDelOk" />
+            @ok="handleDelOk"/>
         </CListOperations>
         <CListSearch>
           <Form
@@ -40,14 +40,14 @@
               <CCategories
                 :alias="alias"
                 v-model="cList.cSearch.where.categoryId.$eq"
-                @on-change="value => { cList.cSearch.where.categoryId.$eq = value }" />
+                @on-change="value => { cList.cSearch.where.categoryId.$eq = value }"/>
             </Form-item>
             <Form-item prop="name">
               <Input
                 type="text"
                 placeholder="请输入名称"
                 v-model="cList.cSearch.where.name.$like"
-                style="width: 190px;" />
+                style="width: 190px;"/>
             </Form-item>
             <Form-item>
               <Button
@@ -125,8 +125,15 @@ export default {
           },
           {
             title: '价格',
-            width: 80,
-            render: (h, params) => h('span', null, params.row.price ? `${params.row.price} 元` : '')
+            width: 120,
+            render: (h, params) => h(
+              'span',
+              null,
+              params.row.price
+                ? `${params.row.price} 元`
+                : params.row.specifications
+                  .map(specification => h('p', null, `${specification.price} 元 / ${specification.label}`))
+            )
           },
           {
             title: '进货价',
