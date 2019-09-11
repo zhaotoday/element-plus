@@ -12,7 +12,7 @@
         <Input
           v-model="cForm.formValidate.name"
           placeholder="请输入名称"
-          style="width: 320px;"/>
+          style="width: 320px;" />
       </Form-item>
       <Form-item
         label="分类"
@@ -21,7 +21,7 @@
           :alias="alias"
           v-model="cForm.formValidate.categoryId"
           @on-change="value => { cForm.formValidate.categoryId = value }"
-          style="width: 320px;"/>
+          style="width: 320px;" />
       </Form-item>
       <Form-item
         label="原价"
@@ -29,7 +29,7 @@
         <InputNumber
           :min="0"
           :max="100000"
-          v-model="cForm.formValidate.originalPrice"/>
+          v-model="cForm.formValidate.originalPrice" />
         元
       </Form-item>
       <Form-item
@@ -38,7 +38,7 @@
         <InputNumber
           :min="0"
           :max="100000"
-          v-model="cForm.formValidate.price"/>
+          v-model="cForm.formValidate.price" />
         元
       </Form-item>
       <Form-item
@@ -47,7 +47,7 @@
         <InputNumber
           :min="0"
           :max="100000"
-          v-model="cForm.formValidate.stock"/>
+          v-model="cForm.formValidate.stock" />
       </Form-item>
       <Form-item
         label="库存单位"
@@ -84,19 +84,25 @@
           v-for="item in cSpecifications.filter(i => i.selected)"
           :key="item.value"
           style="position: relative; width: 327px; padding-bottom: 5px;">
-          原价<InputNumber
+          原价
+          <InputNumber
             :key="item.value"
             :min="0"
             :max="100000"
             :value="item.originalPrice"
-            @on-change="price => { handleSpecificationPriceChange('originalPrice', item.value, price) }"/>
+            @on-change="price => { handleSpecificationPriceChange('originalPrice', item.value, price) }"
+            style="width: 60px;"
+          />
           &nbsp;&nbsp;
-          活动价<InputNumber
+          活动价
+          <InputNumber
             :key="item.value"
             :min="0"
             :max="100000"
             :value="item.price"
-            @on-change="price => { handleSpecificationPriceChange('price', item.value, price) }"/>
+            @on-change="price => { handleSpecificationPriceChange('price', item.value, price) }"
+            style="width: 60px;"
+          />
           元 / {{ item.label }}
           <Button
             type="text"
@@ -112,10 +118,10 @@
         <CEditor
           ref="editor"
           v-model="cForm.formValidate.content"
-          @change="value => { handleEditorChange('content', value) }"/>
+          @change="value => { handleEditorChange('content', value) }" />
         <Input
           v-model="cForm.formValidate.content"
-          style="display: none;"/>
+          style="display: none;" />
       </Form-item>
       <Form-item
         label="图片"
@@ -124,7 +130,7 @@
           ref="uploader"
           :has-default-file="!!cForm.formValidate.pictures"
           v-model="cForm.formValidate.pictures"
-          @change="value => { handleUploaderChange('pictures', value) }"/>
+          @change="value => { handleUploaderChange('pictures', value) }" />
       </Form-item>
       <Form-item
         label="状态"
@@ -253,7 +259,6 @@ export default {
         this.$refs.editor.html(newVal.content)
 
         if (!newVal.specifications) {
-          alert(3)
           this.cSpecifications = getSpecifications(newVal.unit)
         } else {
           this.cSpecifications = getSpecifications(newVal.unit).map(item => {
