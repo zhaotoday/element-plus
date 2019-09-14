@@ -68,7 +68,7 @@
                 查询
               </Button>
             </Form-item>
-            <FormItem v-if="listSearchWhere.status.$eq === 'IN_DELIVER'">
+            <FormItem v-if="listSearchWhere.status.$eq === 'IN_DELIVER' || listSearchWhere.status.$eq === 'FINISH'">
               <Button
                 type="primary"
                 @click="showPrintPreviewer">
@@ -464,7 +464,7 @@ export default {
               }, '详情'),
               h('Button', {
                 attrs: {
-                  disabled: params.row.status !== 'IN_DELIVER'
+                  disabled: params.row.status !== 'IN_DELIVER' && params.row.status !== 'FINISH'
                 },
                 on: {
                   click: () => {
