@@ -42,5 +42,9 @@ export default [
   {
     value: '11',
     label: '框'
+  },
+  {
+    value: '12',
+    label: '只'
   }
 ]

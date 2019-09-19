@@ -197,5 +197,22 @@ export default [
 
       return ret
     })()
+  },
+  {
+    value: '12',
+    label: '只',
+    specifications: (() => {
+      let ret = []
+
+      for (let i = 1; i <= 100; i++) {
+        ret.push({
+          id: i,
+          value: `12:${i}`,
+          label: `${i} 只`
+        })
+      }
+
+      return ret
+    })()
   }
 ]
