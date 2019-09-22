@@ -150,10 +150,16 @@
           </div>
         </Form-item>
         <Form-item label="支付方式">
-          {{ $helpers.getItem(this.$consts.PAY_WAYS, 'value', cDetail.item.payWay)['label'] }}
+          {{ $helpers.getItem(this.$consts.PAY_WAYS, 'value', cDetail.item.payWay)['label'] }} 元
+        </Form-item>
+        <Form-item label="商品总价">
+          {{ cDetail.item.paidMoney + (cDetail.item.wxUserCouponId ? cDetail.item.wxUserCoupon.coupon.value : 0) }}
+        </Form-item>
+        <Form-item label="优惠券抵扣金额">
+          {{ cDetail.item.wxUserCouponId ? cDetail.item.wxUserCoupon.coupon.value : 0 }} 元
         </Form-item>
         <Form-item label="支付金额">
-          {{ cDetail.item.paidMoney + '元' }}
+          {{ cDetail.item.paidMoney }} 元
         </Form-item>
         <Form-item label="下单时间">
           {{ $time.getTime(cDetail.item.createdAt) }}
