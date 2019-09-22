@@ -30,7 +30,7 @@ export default {
       no: { $like: '' },
       payWay: { $eq: '' },
       status: status ? { $eq: status } : '',
-      wxUserId: wxUserId ? { $eq: wxUserId } : '',
+      wxUserId: { $eq: wxUserId || '' },
       startTime: { $eq: '' },
       endTime: { $eq: '' }
     }))

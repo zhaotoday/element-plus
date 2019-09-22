@@ -138,7 +138,7 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 200,
+            width: 130,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -151,19 +151,7 @@ export default {
                     )
                   }
                 }
-              }, '订单'),
-              h('Button', {
-                on: {
-                  click: () => {
-                    this.$router.push(
-                      this.$helpers.getOrderRoute({
-                        alias: 'wxUsers',
-                        wxUserId: params.row.id
-                      })
-                    )
-                  }
-                }
-              }, '下单商品')
+              }, '查看订单')
             ])
           }
         ],

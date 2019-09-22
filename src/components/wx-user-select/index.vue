@@ -9,7 +9,8 @@
     <Option
       v-for="item in items"
       :key="item.id"
-      :value="item.id">
+      :value="item.id"
+      :label="item.nickName">
       {{ item.nickName }}
     </Option>
   </Select>

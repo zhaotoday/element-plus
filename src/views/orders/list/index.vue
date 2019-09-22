@@ -61,6 +61,12 @@
                 v-model="cList.cSearch.where.no.$like"
                 style="width: 190px;" />
             </Form-item>
+            <Form-item prop="wxUserId">
+              <CWxUserSelect
+                :value="cList.cSearch.where.wxUserId.$eq"
+                @change="handleWxUserSelectChange">
+              </CWxUserSelect>
+            </Form-item>
             <Form-item>
               <Button
                 type="primary"
@@ -176,6 +182,9 @@
           ? cDetail.item.address.location.name + cDetail.item.address.room
           : ''
           }}
+        </Form-item>
+        <Form-item label="备注">
+          {{ cDetail.item.remark }}
         </Form-item>
         <template v-if="cDetail.item.deliverer">
           <Form-item label="配送员">
@@ -375,6 +384,9 @@ const initWhere = {
     $eq: ''
   },
   endTime: {
+    $eq: ''
+  },
+  wxUserId: {
     $eq: ''
   }
 }
@@ -606,6 +618,9 @@ export default {
     },
     handleDatePickerChange (k, v) {
       this.cList.cSearch.where[k].$eq = v
+    },
+    handleWxUserSelectChange (value) {
+      this.cList.cSearch.where.wxUserId.$eq = value
     },
     async handleDelOk (id) {
       await this.$store.dispatch(`${module}/del`, { id })
