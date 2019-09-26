@@ -31,7 +31,8 @@ const router = new Router({
             require('./routes/settings').default,
             require('./routes/logs').default,
             require('./routes/modify-password').default,
-            require('./routes/surveys').default
+            require('./routes/surveys').default,
+            require('./routes/activities').default
           ],
           meta: {
             requiresAuth: true
