@@ -15,7 +15,7 @@
           </Button>
           <Button
             type="primary"
-            @click="cSendForm.modal = true">
+            @click="showSendForm">
             发放
           </Button>
           <CBatchDel
@@ -143,7 +143,7 @@
       </div>
     </Modal>
     <Modal
-      width="500"
+      width="600"
       v-model="cSendForm.modal"
       title="发放优惠券">
       <Form
@@ -155,12 +155,15 @@
           label="发放对象"
           prop="wxUserIds">
           <Row>
-            <Col span="20">
-              <CWxUserSelect
-                v-if="cSendForm.modal"
-                multiple
-                @change="value => { cSendForm.formValidate.wxUserIds = value }"
-              />
+            <Col span="22">
+              <Transfer
+                :data="wxUsersList.items | toTransfer"
+                :target-keys="cSendForm.cTransfer.targetKeys"
+                :render-format="item => item.label"
+                :list-style="{ height: '350px' }"
+                filterable
+                @on-change="newTargetKeys => { cSendForm.cTransfer.targetKeys = newTargetKeys }">
+              </Transfer>
             </Col>
           </Row>
         </Form-item>
@@ -292,31 +295,16 @@ export default {
               required: true,
               message: '类型不能为空'
             }
-          ],
-          link: [
-            {
-              required: true,
-              message: '链接不能为空'
-            }
-          ],
-          picture: [
-            {
-              required: true,
-              message: '图片不能为空'
-            }
           ]
         }
       },
+      wxUsersList: {},
       cSendForm: {
         modal: false,
         formValidate: this.$helpers.deepCopy(initSendForm),
-        ruleValidate: {
-          wxUserIds: [
-            {
-              required: true,
-              message: '请选择用户'
-            }
-          ]
+        ruleValidate: {},
+        cTransfer: {
+          targetKeys: []
         }
       }
     }
@@ -324,19 +312,34 @@ export default {
   computed: mapState({
     list: state => state[module].list
   }),
+  filters: {
+    toTransfer (items = []) {
+      return items.map(item => ({
+        key: item.id,
+        label: item.nickName
+      }))
+    }
+  },
   watch: {
     'cForm.modal': {
       handler (newVal) {
         !newVal && this.resetFields(initForm)
       }
+    },
+    'cSendForm.modal': {
+      handler () {
+        this.cSendForm.cTransfer.targetKeys = []
+      }
     }
   },
   async beforeRouteUpdate (to, from, next) {
-    this.getList()
+    await this.getList()
+    this.wxUsersList = await this.getWxUsersList()
     next()
   },
   async created () {
-    this.getList()
+    await this.getList()
+    this.wxUsersList = await this.getWxUsersList()
   },
   methods: {
     getList () {
@@ -345,6 +348,14 @@ export default {
           offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
           limit: this.$consts.PAGE_SIZE,
           where: { alias: this.alias }
+        }
+      })
+    },
+    getWxUsersList () {
+      return this.$store.dispatch('wxUsers/getList', {
+        query: {
+          offset: 0,
+          limit: 10000
         }
       })
     },
@@ -400,25 +411,34 @@ export default {
         }
       })
     },
-    send () {
-      this.$refs.sendFormValidate.validate(async valid => {
-        if (valid) {
-          const { wxUserIds } = this.cSendForm.formValidate
+    showSendForm () {
+      if (!this.listSelectedItems.length) {
+        this.$Message.error('请选择优惠券')
+        return
+      }
 
-          await this.$store.dispatch(`${module}/postAction`, {
-            body: {
-              type: 'SEND',
-              wxUserIds,
-              couponIds: this.listSelectedItems.map(item => item.id)
-            }
-          })
+      this.cSendForm.modal = true
+    },
+    async send () {
+      const { targetKeys } = this.cSendForm.cTransfer
 
-          this.$Message.success('发放成功')
-          this.getList()
+      if (!targetKeys.length) {
+        this.$Message.error('请选择发放对象')
+        return
+      }
 
-          this.cSendForm.modal = false
+      await this.$store.dispatch(`${module}/postAction`, {
+        body: {
+          type: 'SEND',
+          wxUserIds: targetKeys,
+          couponIds: this.listSelectedItems.map(item => item.id)
         }
       })
+
+      this.$Message.success('发放成功')
+      this.getList()
+
+      this.cSendForm.modal = false
     }
   }
 }

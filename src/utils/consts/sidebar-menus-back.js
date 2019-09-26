@@ -55,6 +55,21 @@ export default [
     ]
   },
   {
+    icon: 'ios-color-palette',
+    name: 'activities',
+    title: '活动',
+    children: [
+      {
+        title: '活动',
+        route: '/activities/activities/index'
+      },
+      {
+        title: '活动分类',
+        route: '/activities/activities/categories'
+      }
+    ]
+  },
+  {
     icon: 'md-help',
     name: 'helpers',
     title: '帮助',
@@ -95,6 +110,10 @@ export default [
     children: [
       {
         title: '用户',
+        route: '/wxUsers/wxUsers/index'
+      },
+      {
+        title: '队长',
         route: '/wxUsers/wxUsers/index'
       }
     ]
