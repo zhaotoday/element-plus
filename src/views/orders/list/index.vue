@@ -457,6 +457,11 @@ export default {
             render: (h, params) => h('span', null, this.$time.getTime(params.row.createdAt))
           },
           {
+            title: '完成时间',
+            width: 140,
+            render: (h, params) => h('span', null, params.row.status === 'FINISH' ? this.$time.getTime(params.row.updatedAt) : '')
+          },
+          {
             title: '配送员',
             key: 'delivererId',
             width: LIST_COLUMN_WIDTHS.USER,
