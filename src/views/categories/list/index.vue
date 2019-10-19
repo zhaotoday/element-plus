@@ -368,7 +368,7 @@ export default {
             body: {
               ...this.cForm.formValidate,
               alias: this.alias,
-              parentId: this.isParent ? this.parentDetail.id : 0
+              parentId: this.isParent ? this.parentDetail.id : undefined
             }
           })
 

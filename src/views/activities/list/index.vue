@@ -11,7 +11,7 @@
         <CListOperations>
           <Button
             type="primary"
-            @click="$router.push(`/${alias}/helpers/index/form`)">
+            @click="$router.push(`/${alias}/activities/index/form`)">
             新增
           </Button>
           <CBatchDel
