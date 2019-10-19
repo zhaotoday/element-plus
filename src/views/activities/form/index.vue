@@ -39,7 +39,8 @@
         <InputNumber
           :min="0"
           :max="100000"
-          v-model="cForm.formValidate.price" />
+          v-model="cForm.formValidate.price"
+        />
         元
       </Form-item>
       <Form-item

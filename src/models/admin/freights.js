@@ -8,6 +8,6 @@ export default class extends REST {
 
     this.baseURL = consts.API_URL
     this.headers = restHelpers.getHeaders()
-    this.path = 'ads'
+    this.path = 'freights'
   }
 }

@@ -8,10 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "area-data": "^5.0.6",
     "array-to-tree": "^3.3.0",
     "core-js": "^2.6.5",
     "echarts": "^4.2.1",
     "iview": "^3.4.1",
+    "iview-area": "^1.6.0",
     "jt-env": "0.0.2",
     "jt-helpers": "0.0.6",
     "jt-rest": "0.0.8",

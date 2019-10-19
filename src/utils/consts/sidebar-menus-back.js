@@ -76,7 +76,7 @@ export default [
     children: [
       {
         title: '运费模板',
-        route: '/activities/activities/index'
+        route: '/freights/freights/index'
       }
     ]
   },

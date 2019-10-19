@@ -15,7 +15,8 @@
           </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
-            @ok="handleDelOk" />
+            @ok="handleDelOk"
+          />
         </CListOperations>
       </CListHeader>
     </CList>
@@ -29,56 +30,42 @@
         :rules="cForm.ruleValidate"
         :label-width="80">
         <Form-item
-          label="姓名"
-          prop="name">
+          label="发货地"
+          prop="fromAddress">
           <Row>
             <Col span="20">
-              <Input
-                v-model="cForm.formValidate.name"
-                placeholder="请输入姓名" />
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item
-          label="手机号"
-          prop="phoneNumber">
-          <Row>
-            <Col span="20">
-              <Input
-                v-model="cForm.formValidate.phoneNumber"
-                placeholder="请输入手机号" />
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item
-          label="性别"
-          prop="gender">
-          <Row>
-            <Col span="20">
-              <Select v-model="cForm.formValidate.gender">
-                <Option
-                  v-for="item in $consts.GENDERS.filter(item => item.value !== '0')"
-                  :key="item.value"
-                  :value="item.value"
-                  :label="item.label">
-                  {{ item.label }}
-                </Option>
-              </Select>
-            </Col>
-          </Row>
-        </Form-item>
-        <Form-item
-          label="生日"
-          prop="birthday">
-          <Row>
-            <Col span="20">
-              <DatePicker
-                :value="cForm.formValidate.birthday"
-                type="date"
-                placeholder="请选择生日"
-                style="width: 100%"
-                @on-change="v => { handleDatePickerChange('birthday', v) }"
+              <al-selector
+                v-model="cForm.formValidate.fromAddress"
+                data-type="code"
+                :level="1"
               />
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item
+          label="收货地"
+          prop="toAddress">
+          <Row>
+            <Col span="20">
+              <al-selector
+                v-model="cForm.formValidate.toAddress"
+                data-type="code"
+                :level="1"
+              />
+            </Col>
+          </Row>
+        </Form-item>
+        <Form-item
+          label="运费"
+          prop="price">
+          <Row>
+            <Col span="20">
+              <InputNumber
+                :min="0"
+                :max="100000"
+                v-model="cForm.formValidate.price"
+              />
+              元
             </Col>
           </Row>
         </Form-item>
@@ -106,9 +93,14 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 import formMixin from '@/mixins/form'
+import { pca, pcaa } from 'area-data'
 
-const module = 'students'
-const initForm = {}
+const module = 'freights'
+const initForm = {
+  fromAddress: [],
+  toAddress: [],
+  price: 0
+}
 
 export default {
   mixins: [
@@ -126,28 +118,23 @@ export default {
             align: 'center'
           },
           {
-            title: '姓名',
-            key: 'name'
+            title: '发货地',
+            width: 200,
+            render: (h, { row }) => h('span', null, `${pca['86'][row.fromAddress[0]]}/${pcaa[row.fromAddress[0]][row.fromAddress[1]]}`)
           },
           {
-            title: '手机号',
-            key: 'phoneNumber',
-            width: 130
+            title: '收货地',
+            width: 200,
+            render: (h, { row }) => h('span', null, `${pca['86'][row.toAddress[0]]}/${pcaa[row.toAddress[0]][row.toAddress[1]]}`)
           },
           {
-            title: '性别',
-            width: 130,
-            render: (h, { row }) => h('span', null, this.$helpers.getItem(this.$consts.GENDERS, 'value', row.gender)['label'] || '未知')
-          },
-          {
-            title: '生日',
-            key: 'birthday',
-            width: 130
+            title: '运费',
+            render: (h, { row }) => h('span', null, `${row.price} 元`)
           },
           {
             title: '操作',
             key: 'action',
-            width: 230,
+            width: 170,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
@@ -156,13 +143,6 @@ export default {
                   }
                 }
               }, '编辑'),
-              h('Button', {
-                on: {
-                  click: () => {
-                    this.$router.push(`/students/${this.alias}/students/index/${params.row.id}/parents`)
-                  }
-                }
-              }, '家长'),
               h('CDel', {
                 on: {
                   ok: () => {
@@ -178,24 +158,7 @@ export default {
         id: 0,
         modal: false,
         formValidate: this.$helpers.deepCopy(initForm),
-        ruleValidate: {
-          name: [
-            {
-              required: true,
-              message: '姓名不能为空'
-            }
-          ],
-          phoneNumber: [
-            {
-              required: true,
-              message: '手机号不能为空'
-            },
-            {
-              pattern: /^1[3-9]\d{9}$/,
-              message: '手机号格式错误'
-            }
-          ]
-        }
+        ruleValidate: {}
       }
     }
   },
@@ -243,16 +206,6 @@ export default {
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
     },
-    async handleSort (id, value) {
-      await this.$store.dispatch(`${module}/postAction`, {
-        query: {
-          where: this.listSearchWhere
-        },
-        body: { type: value, id }
-      })
-
-      this.getList()
-    },
     handleFormOk () {
       this.$refs.formValidate.validate(async valid => {
         if (valid) {
@@ -261,7 +214,6 @@ export default {
             body: {
               ...this.cForm.formValidate,
               alias: this.alias
-              // natatoriumId: +this.$route.params.natatoriumId
             }
           })
 
