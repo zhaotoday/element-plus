@@ -55,7 +55,7 @@ import routeParamsMixin from '@/mixins/route-params'
 import allCategoriesListMixin from '@/mixins/all-categories-list'
 import listMixin from '@/mixins/list'
 
-const module = 'helpers'
+const module = 'activities'
 const initWhere = {
   categoryId: {
     $eq: ''

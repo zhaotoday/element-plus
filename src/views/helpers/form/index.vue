@@ -20,6 +20,7 @@
         <CCategories
           :alias="alias"
           v-model="cForm.formValidate.categoryId"
+          select-parent
           @on-change="value => { cForm.formValidate.categoryId = value }"
           style="width: 320px;" />
       </Form-item>

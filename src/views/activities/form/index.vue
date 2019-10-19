@@ -7,11 +7,11 @@
       :rules="cForm.ruleValidate"
       :label-width="100">
       <Form-item
-        label="标题"
+        label="名称"
         prop="title">
         <Input
           v-model="cForm.formValidate.title"
-          placeholder="请输入标题"
+          placeholder="请输入名称"
           style="width: 320px;" />
       </Form-item>
       <Form-item
@@ -20,8 +20,27 @@
         <CCategories
           :alias="alias"
           v-model="cForm.formValidate.categoryId"
+          select-parent
           @on-change="value => { cForm.formValidate.categoryId = value }"
           style="width: 320px;" />
+      </Form-item>
+      <Form-item
+        label="地址"
+        prop="address">
+        <Input
+          v-model="cForm.formValidate.address"
+          placeholder="请输入地址"
+          style="width: 320px;"
+        />
+      </Form-item>
+      <Form-item
+        label="报名费"
+        prop="price">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.formValidate.price" />
+        元
       </Form-item>
       <Form-item
         label="内容"
@@ -41,7 +60,7 @@
           class="u-mr5">
           保存
         </Button>
-        <Button @click="id ? $helpers.goBack() : $router.push(`/${alias}/helpers/index`)">
+        <Button @click="id ? $helpers.goBack() : $router.push(`/${alias}/activities/index`)">
           返回
         </Button>
       </Form-item>
@@ -54,7 +73,10 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import formMixin from '@/mixins/form'
 
-const module = 'helpers'
+const module = 'activities'
+const initForm = {
+  price: 0
+}
 
 export default {
   mixins: [
@@ -64,16 +86,12 @@ export default {
   data () {
     return {
       cForm: {
-        formValidate: {
-          price: 0,
-          marketPrice: 0,
-          stock: 0
-        },
+        formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
           title: [
             {
               required: true,
-              message: '标题不能为空'
+              message: '名称不能为空'
             }
           ],
           categoryId: [
@@ -110,6 +128,11 @@ export default {
       handler (newVal) {
         this.$set(this.cForm, 'formValidate', newVal)
         this.$refs.editor.html(newVal.content)
+      }
+    },
+    'cForm.modal': {
+      handler (newVal) {
+        !newVal && this.resetFields(initForm)
       }
     }
   },
