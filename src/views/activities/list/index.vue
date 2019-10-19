@@ -27,6 +27,7 @@
               <CCategories
                 :alias="alias"
                 v-model="cList.cSearch.where.categoryId.$eq"
+                select-parent
                 @on-change="value => { cList.cSearch.where.categoryId.$eq = value }"
               />
             </Form-item>
