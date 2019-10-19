@@ -16,7 +16,8 @@
           </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
-            @ok="handleDelOk" />
+            @ok="handleDelOk"
+          />
         </CListOperations>
         <CListSearch>
           <Form
@@ -26,14 +27,16 @@
               <CCategories
                 :alias="alias"
                 v-model="cList.cSearch.where.categoryId.$eq"
-                @on-change="value => { cList.cSearch.where.categoryId.$eq = value }" />
+                @on-change="value => { cList.cSearch.where.categoryId.$eq = value }"
+              />
             </Form-item>
-            <Form-item prop="title">
+            <Form-item prop="name">
               <Input
                 type="text"
-                placeholder="请输入标题"
-                v-model="cList.cSearch.where.title.$like"
-                style="width: 190px;" />
+                placeholder="请输入名称"
+                v-model="cList.cSearch.where.name.$like"
+                style="width: 190px;"
+              />
             </Form-item>
             <Form-item>
               <Button
@@ -60,7 +63,7 @@ const initWhere = {
   categoryId: {
     $eq: ''
   },
-  title: {
+  name: {
     $like: ''
   }
 }
@@ -72,7 +75,7 @@ export default {
     listMixin
   ],
   data () {
-    const { LIST_COLUMN_WIDTHS, ORDER_ACTIONS } = this.$consts
+    const { LIST_COLUMN_WIDTHS } = this.$consts
 
     return {
       cList: {
@@ -83,9 +86,8 @@ export default {
             align: 'center'
           },
           {
-            title: '标题',
-            key: 'title',
-            width: LIST_COLUMN_WIDTHS.TITLE
+            title: '名称',
+            key: 'name'
           },
           {
             title: '分类',
@@ -94,9 +96,14 @@ export default {
             render: (h, params) => h('span', null, this.getCategoryTitleById(params.row.categoryId))
           },
           {
-            title: '内容',
-            key: 'content',
-            minWidth: 350
+            title: '地点',
+            key: 'address',
+            width: 350
+          },
+          {
+            title: '报名费',
+            width: 100,
+            render: (h, { row }) => h('span', null, `${row.price} 元`)
           },
           {
             title: '发布时间',
@@ -107,12 +114,12 @@ export default {
           {
             title: '操作',
             key: 'action',
-            width: 245,
+            width: 170,
             render: (h, params) => h('div', [
               h('Button', {
                 on: {
                   click: () => {
-                    this.$router.push(`/${this.alias}/helpers/index/form/${params.row.id}`)
+                    this.$router.push(`/${this.alias}/activities/index/form/${params.row.id}`)
                   }
                 }
               }, '编辑'),
@@ -122,18 +129,7 @@ export default {
                     this.handleDelOk(params.row.id)
                   }
                 }
-              }, '删除'),
-              h('CDropdown', {
-                attrs: {
-                  title: '排序',
-                  options: ORDER_ACTIONS
-                },
-                on: {
-                  click: async value => {
-                    this.handleSort(params.row.id, value)
-                  }
-                }
-              })
+              }, '删除')
             ])
           }
         ],

@@ -8,9 +8,9 @@
       :label-width="100">
       <Form-item
         label="名称"
-        prop="title">
+        prop="name">
         <Input
-          v-model="cForm.formValidate.title"
+          v-model="cForm.formValidate.name"
           placeholder="请输入名称"
           style="width: 320px;" />
       </Form-item>
@@ -88,7 +88,7 @@ export default {
       cForm: {
         formValidate: this.$helpers.deepCopy(initForm),
         ruleValidate: {
-          title: [
+          name: [
             {
               required: true,
               message: '名称不能为空'
@@ -153,7 +153,7 @@ export default {
           })
           this.$Message.success((id ? '编辑' : '新增') + '成功！')
           if (!id) {
-            this.resetFields()
+            this.resetFields(initForm)
             this.$refs.editor.html('')
           }
         }
