@@ -55,7 +55,7 @@ export default [
     ]
   },
   {
-    icon: 'ios-color-palette',
+    icon: 'ios-aperture',
     name: 'activities',
     title: '活动',
     children: [
@@ -70,7 +70,7 @@ export default [
     ]
   },
   {
-    icon: 'ios-color-palette',
+    icon: 'md-albums',
     name: 'freights',
     title: '运费模板',
     children: [
@@ -81,7 +81,7 @@ export default [
     ]
   },
   {
-    icon: 'ios-color-palette',
+    icon: 'md-basket',
     name: 'suppliers',
     title: '供应商',
     children: [
