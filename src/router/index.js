@@ -33,7 +33,8 @@ const router = new Router({
             require('./routes/modify-password').default,
             require('./routes/surveys').default,
             require('./routes/activities').default,
-            require('./routes/freights').default
+            require('./routes/freights').default,
+            require('./routes/suppliers').default
           ],
           meta: {
             requiresAuth: true

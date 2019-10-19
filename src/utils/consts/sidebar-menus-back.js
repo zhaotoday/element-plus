@@ -81,6 +81,17 @@ export default [
     ]
   },
   {
+    icon: 'ios-color-palette',
+    name: 'suppliers',
+    title: '供应商',
+    children: [
+      {
+        title: '供应商',
+        route: '/suppliers/suppliers/index'
+      }
+    ]
+  },
+  {
     icon: 'md-help',
     name: 'helpers',
     title: '帮助',
