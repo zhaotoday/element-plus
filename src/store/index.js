@@ -31,6 +31,7 @@ export default new Vuex.Store({
     managers: require('./modules/admin/managers').default,
     surveySubjects: require('./modules/admin/survey-subjects').default,
     surveyQuestions: require('./modules/admin/survey-questions').default,
-    surveyResults: require('./modules/admin/survey-results').default
+    surveyResults: require('./modules/admin/survey-results').default,
+    activities: require('./modules/admin/actitivies').default
   }
 })
