@@ -70,6 +70,17 @@ export default [
     ]
   },
   {
+    icon: 'ios-color-palette',
+    name: 'freights',
+    title: '运费模板',
+    children: [
+      {
+        title: '运费模板',
+        route: '/activities/activities/index'
+      }
+    ]
+  },
+  {
     icon: 'md-help',
     name: 'helpers',
     title: '帮助',
