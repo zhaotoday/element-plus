@@ -9,11 +9,6 @@
       @selection-change="handleListSelectionChange">
       <CListHeader>
         <CListOperations>
-          <Button
-            type="primary"
-            @click="$router.push(`/teaching/${alias}/schools/index/form`)">
-            新增
-          </Button>
           <CBatchDel
             :selected-items="listSelectedItems"
             @ok="handleDelOk" />
@@ -62,7 +57,7 @@ import { mapState } from 'vuex'
 import routeParamsMixin from '@/mixins/route-params'
 import listMixin from '@/mixins/list'
 
-const module = 'schools'
+const module = 'merchants'
 const initWhere = {
   name: {
     $like: ''
@@ -90,16 +85,12 @@ export default {
           },
           {
             title: '名称',
-            key: 'name'
+            key: 'name',
+            width: 200
           },
           {
-            title: '地址',
-            key: 'address',
-            width: 300
-          },
-          {
-            title: '负责人',
-            key: 'leader',
+            title: '联系人',
+            key: 'contactName',
             width: 100
           },
           {
@@ -108,24 +99,23 @@ export default {
             width: 130
           },
           {
+            title: '备注',
+            key: 'remark'
+          },
+          {
             title: '状态',
             width: 130,
             render: (h, { row }) => h('span', null, this.$helpers.getItem(this.$consts.SCHOOL_STATUSES, 'value', row.status)['label'])
           },
           {
-            title: '过期时间',
-            key: 'expireTime',
-            width: 150
-          },
-          {
             title: '操作',
             key: 'action',
-            width: 320,
+            width: 220,
             render: (h, { row }) => h('div', [
               h('Button', {
                 on: {
                   click: () => {
-                    this.$router.push(`/teaching/${this.alias}/schools/index/form/${row.id}`)
+                    this.$router.push(`/teaching/${this.alias}/merchants/index/form/${row.id}`)
                   }
                 }
               }, '编辑'),
@@ -137,30 +127,6 @@ export default {
                 on: {
                   click: async value => {
                     this.handleCheck(row.id, value)
-                  }
-                }
-              }),
-              h('CDropdown', {
-                attrs: {
-                  title: '链接',
-                  options: [
-                    {
-                      value: 'TEACHER',
-                      label: '教师端'
-                    },
-                    {
-                      value: 'PARENT',
-                      label: '家长端'
-                    },
-                    {
-                      value: 'MANAGER',
-                      label: '后台'
-                    }
-                  ]
-                },
-                on: {
-                  click: async value => {
-                    this.handleClickLink(row, value)
                   }
                 }
               }),
@@ -222,27 +188,6 @@ export default {
       }
 
       this.getList()
-    },
-    handleClickLink (row, value) {
-      switch (value) {
-        case 'TEACHER':
-          window.open(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4cdb90b85ca4429c&redirect_uri=${encodeURIComponent('http://sign-in.tongnianjihua.com/get-weixin-code.html?appid=wx4cdb90b85ca4429c&redirect_uri=https://sign-in-teacher.tongnianjihua.com/?schoolId=' + row.id + '&response_type=code&scope=snsapi_userinfo&state=ABCDEFG#wechat_redirect')}&response_type=code&scope=snsapi_userinfo&state=ABCDEFG#wechat_redirect`)
-          break
-        case 'PARENT':
-          window.open(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4cdb90b85ca4429c&redirect_uri=${encodeURIComponent('http://sign-in.tongnianjihua.com/get-weixin-code.html?appid=wx4cdb90b85ca4429c&redirect_uri=https://sign-in-parent.tongnianjihua.com/?schoolId=' + row.id + '&response_type=code&scope=snsapi_userinfo&state=ABCDEFG#wechat_redirect')}&response_type=code&scope=snsapi_userinfo&state=ABCDEFG#wechat_redirect`)
-          break
-        case 'MANAGER':
-          const user = JSON.stringify({
-            'id': row.id,
-            'username': row.name,
-            'phoneNumber': row.phoneNumber,
-            'role': 'SCHOOL_MANAGER'
-          })
-          window.open(`https://sign-in-school-admin.tongnianjihua.com/?user=${user}&token=${this.$auth.get()['token']}`)
-          break
-        default:
-          break
-      }
     }
   }
 }

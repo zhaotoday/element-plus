@@ -131,12 +131,12 @@ export default [
     title: '用户',
     children: [
       {
-        title: '用户',
+        title: '微信用户',
         route: '/wxUsers/wxUsers/index'
       },
       {
-        title: '队长',
-        route: '/wxUsers/wxUsers/index'
+        title: '商家',
+        route: '/wxUsers/merchants/index'
       }
     ]
   },
