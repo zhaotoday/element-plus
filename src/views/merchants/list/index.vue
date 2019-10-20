@@ -24,20 +24,6 @@
                 v-model="cList.cSearch.where.name.$like"
                 style="width: 190px;" />
             </Form-item>
-            <Form-item prop="status">
-              <Select
-                placeholder="请选择状态"
-                clearable
-                style="width: 190px"
-                v-model="cList.cSearch.where.status.$eq">
-                <Option
-                  v-for="item in $consts.SCHOOL_STATUSES"
-                  :value="item.value"
-                  :key="item.value">
-                  {{ item.label }}
-                </Option>
-              </Select>
-            </Form-item>
             <Form-item>
               <Button
                 type="primary"
@@ -73,7 +59,7 @@ export default {
     listMixin
   ],
   data () {
-    const { SCHOOL_STATUSES } = this.$consts
+    const { STATUSES } = this.$consts
 
     return {
       cList: {
@@ -105,24 +91,17 @@ export default {
           {
             title: '状态',
             width: 130,
-            render: (h, { row }) => h('span', null, this.$helpers.getItem(this.$consts.SCHOOL_STATUSES, 'value', row.status)['label'])
+            render: (h, { row }) => h('span', null, this.$helpers.getItem(this.$consts.STATUSES, 'value', row.wxUser.merchantStatus)['label'])
           },
           {
             title: '操作',
             key: 'action',
-            width: 220,
+            width: 180,
             render: (h, { row }) => h('div', [
-              h('Button', {
-                on: {
-                  click: () => {
-                    this.$router.push(`/teaching/${this.alias}/merchants/index/form/${row.id}`)
-                  }
-                }
-              }, '编辑'),
               h('CDropdown', {
                 attrs: {
                   title: '审核',
-                  options: SCHOOL_STATUSES.filter(item => item.value !== 'CHECKING')
+                  options: STATUSES.filter(item => item.value !== 'CHECKING')
                 },
                 on: {
                   click: async value => {
