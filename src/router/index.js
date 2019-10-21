@@ -35,7 +35,8 @@ const router = new Router({
             require('./routes/activities').default,
             require('./routes/freights').default,
             require('./routes/suppliers').default,
-            require('./routes/merchants').default
+            require('./routes/merchants').default,
+            require('./routes/referrers').default
           ],
           meta: {
             requiresAuth: true

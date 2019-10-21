@@ -35,6 +35,7 @@ export default new Vuex.Store({
     activities: require('./modules/admin/actitivies').default,
     freights: require('./modules/admin/freights').default,
     suppliers: require('./modules/admin/suppliers').default,
-    merchants: require('./modules/admin/merchants').default
+    merchants: require('./modules/admin/merchants').default,
+    referrers: require('./modules/admin/referrers').default
   }
 })

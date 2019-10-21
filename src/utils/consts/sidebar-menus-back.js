@@ -137,6 +137,10 @@ export default [
       {
         title: '商家',
         route: '/wxUsers/merchants/index'
+      },
+      {
+        title: '队长',
+        route: '/wxUsers/referrers/index'
       }
     ]
   },
