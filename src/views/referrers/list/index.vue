@@ -72,19 +72,19 @@ export default {
             align: 'center'
           },
           {
-            title: '名称',
+            title: '姓名',
             key: 'name',
             width: 200
-          },
-          {
-            title: '联系人',
-            key: 'contactName',
-            width: 100
           },
           {
             title: '手机号',
             key: 'phoneNumber',
             width: 130
+          },
+          {
+            title: '物业',
+            key: 'property',
+            width: 300
           },
           {
             title: '备注',
