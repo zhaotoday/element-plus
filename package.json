@@ -11,6 +11,7 @@
     "area-data": "^5.0.6",
     "array-to-tree": "^3.3.0",
     "core-js": "^2.6.5",
+    "dayjs": "^1.8.16",
     "echarts": "^4.2.1",
     "iview": "^3.4.1",
     "iview-area": "^1.6.0",

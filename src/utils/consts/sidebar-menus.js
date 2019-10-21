@@ -1,11 +1,13 @@
+import dayjs from 'dayjs'
+
 const getOrderRoute = ({ status, wxUserId }) => {
   const listSearchWhere = encodeURIComponent(JSON.stringify({
     no: { $like: '' },
     payWay: { $eq: '' },
     status: status ? { $eq: status } : '',
     wxUserId: { $eq: wxUserId || '' },
-    startTime: { $eq: '' },
-    endTime: { $eq: '' }
+    startTime: { $eq: dayjs().startOf('day').format('YYYY-MM-DD HH:mm:ss') },
+    endTime: { $eq: dayjs().endOf('day').format('YYYY-MM-DD HH:mm:ss') }
   }))
 
   return `/orders/orders/index?listSearchWhere=${listSearchWhere}`
@@ -96,6 +98,10 @@ export default [
       {
         title: '用户',
         route: '/wxUsers/wxUsers/index'
+      },
+      {
+        title: '商家',
+        route: '/wxUsers/merchants/index'
       }
     ]
   },
