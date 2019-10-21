@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-merchants">
     <CList
       :data="list.items"
       :columns="cList.columns"
@@ -72,9 +72,21 @@ export default {
             align: 'center'
           },
           {
-            title: '名称',
-            key: 'name',
-            width: 200
+            title: '店铺照片',
+            key: 'picture',
+            width: 120,
+            render: (h, params) => {
+              return h('img', {
+                attrs: {
+                  src: this.$helpers.getFileURLById(params.row.picture),
+                  class: 'pb-picture'
+                }
+              })
+            }
+          },
+          {
+            title: '商家名称',
+            key: 'name'
           },
           {
             title: '联系人',
@@ -87,8 +99,19 @@ export default {
             width: 130
           },
           {
-            title: '备注',
-            key: 'remark'
+            title: '收货地址',
+            key: 'address',
+            width: 300
+          },
+          {
+            title: '送货时间',
+            key: 'deliveryTime',
+            width: 150
+          },
+          {
+            title: '员工代码',
+            key: 'staffNo',
+            width: 100
           },
           {
             title: '状态',
@@ -175,3 +198,8 @@ export default {
   }
 }
 </script>
+
+<style
+  lang="scss"
+  src="./styles/index.scss">
+</style>
