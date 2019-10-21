@@ -6,7 +6,7 @@ const getOrderRoute = ({ status, wxUserId }) => {
     payWay: { $eq: '' },
     status: status ? { $eq: status } : '',
     wxUserId: { $eq: wxUserId || '' },
-    startTime: { $eq: dayjs().startOf('day').format('YYYY-MM-DD HH:mm:ss') },
+    startTime: { $eq: dayjs().add(-1, 'day').startOf('day').format('YYYY-MM-DD HH:mm:ss') },
     endTime: { $eq: dayjs().endOf('day').format('YYYY-MM-DD HH:mm:ss') }
   }))
 
