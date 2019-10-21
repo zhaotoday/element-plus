@@ -11,7 +11,8 @@
         <CListOperations>
           <CBatchDel
             :selected-items="listSelectedItems"
-            @ok="handleDelOk" />
+            @ok="handleDelOk"
+          />
         </CListOperations>
         <CListSearch>
           <Form
@@ -22,7 +23,8 @@
                 type="text"
                 placeholder="请输入名称"
                 v-model="cList.cSearch.where.name.$like"
-                style="width: 190px;" />
+                style="width: 190px;"
+              />
             </Form-item>
             <Form-item>
               <Button
@@ -105,7 +107,7 @@ export default {
                 },
                 on: {
                   click: async value => {
-                    this.handleCheck(row.id, value)
+                    this.handleCheck(row, value)
                   }
                 }
               }),
@@ -154,10 +156,12 @@ export default {
       const getListRes = await this.getList()
       !getListRes.items.length && this.goPrevPage()
     },
-    async handleCheck (id, value) {
+    async handleCheck (row, value) {
       await this.$store.dispatch(`${module}/put`, {
-        id,
-        body: { status: value }
+        body: {
+          wxUserId: row.wxUserId,
+          merchantStatus: value
+        }
       })
 
       if (value === 'PASSED') {
