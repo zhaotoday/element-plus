@@ -106,7 +106,7 @@ export default {
             render: (h, params) => {
               return h('img', {
                 attrs: {
-                  src: this.$helpers.getFileURLById(params.row.pictures),
+                  src: this.$helpers.getFileURLById(params.row.picture1),
                   class: 'pb-picture'
                 }
               })

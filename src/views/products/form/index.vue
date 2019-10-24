@@ -157,6 +157,9 @@
         <CUploader
           ref="uploader"
           :has-default-file="!!cForm.formValidate.video1"
+          :preview-icon="`${$consts.BASE_URL}/images/video.png`"
+          :max-size="1024 * 10"
+          :format="['mp4']"
           v-model="cForm.formValidate.video1"
           @change="value => { handleUploaderChange('video1', value) }" />
       </Form-item>
@@ -166,6 +169,9 @@
         <CUploader
           ref="uploader"
           :has-default-file="!!cForm.formValidate.video2"
+          :preview-icon="`${$consts.BASE_URL}/images/video.png`"
+          :max-size="1024 * 10"
+          :format="['mp4']"
           v-model="cForm.formValidate.video2"
           @change="value => { handleUploaderChange('video2', value) }" />
       </Form-item>

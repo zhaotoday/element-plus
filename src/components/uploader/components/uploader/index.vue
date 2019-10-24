@@ -56,6 +56,10 @@ export default {
         return ['jpg', 'jpeg', 'png']
       }
     },
+    previewIcon: {
+      type: String,
+      default: ''
+    },
     maxSize: {
       type: Number,
       default: 2048
@@ -74,7 +78,7 @@ export default {
     defaultFileList () {
       return this.value ? [{
         'name': '',
-        'url': helpers.getFileURLById(this.value)
+        'url': this.previewIcon || helpers.getFileURLById(this.value)
       }] : []
     }
   },

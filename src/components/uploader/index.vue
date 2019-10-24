@@ -5,6 +5,7 @@
       v-if="hasDefaultFile && !value"
       ref="uploader"
       :max-size="maxSize"
+      :preview-icon="previewIcon"
       :format="format"
       @change="handleUploaderChange" />
     <CChildUploader
@@ -13,6 +14,7 @@
       ref="uploader"
       :value="value"
       :max-size="maxSize"
+      :preview-icon="previewIcon"
       :format="format"
       @change="handleUploaderChange" />
     <CChildUploader
@@ -20,6 +22,7 @@
       v-if="!hasDefaultFile"
       ref="uploader"
       :max-size="maxSize"
+      :preview-icon="previewIcon"
       :format="format"
       @change="handleUploaderChange" />
     <Input
@@ -50,6 +53,10 @@ export default {
       default () {
         return ['jpg', 'jpeg', 'png']
       }
+    },
+    previewIcon: {
+      type: String,
+      default: ''
     },
     maxSize: {
       type: Number,
