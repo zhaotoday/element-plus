@@ -124,6 +124,7 @@
           style="display: none;" />
       </Form-item>
       <Form-item
+        v-if="false"
         label="图片"
         prop="picture">
         <CUploader
@@ -131,6 +132,42 @@
           :has-default-file="!!cForm.formValidate.pictures"
           v-model="cForm.formValidate.pictures"
           @change="value => { handleUploaderChange('pictures', value) }" />
+      </Form-item>
+      <Form-item
+        label="图片 1"
+        prop="picture1">
+        <CUploader
+          ref="uploader"
+          :has-default-file="!!cForm.formValidate.picture1"
+          v-model="cForm.formValidate.picture1"
+          @change="value => { handleUploaderChange('picture1', value) }" />
+      </Form-item>
+      <Form-item
+        label="图片 2"
+        prop="picture2">
+        <CUploader
+          ref="uploader"
+          :has-default-file="!!cForm.formValidate.picture2"
+          v-model="cForm.formValidate.picture2"
+          @change="value => { handleUploaderChange('picture2', value) }" />
+      </Form-item>
+      <Form-item
+        label="视频 1"
+        prop="video1">
+        <CUploader
+          ref="uploader"
+          :has-default-file="!!cForm.formValidate.video1"
+          v-model="cForm.formValidate.video1"
+          @change="value => { handleUploaderChange('video1', value) }" />
+      </Form-item>
+      <Form-item
+        label="视频 2"
+        prop="video2">
+        <CUploader
+          ref="uploader"
+          :has-default-file="!!cForm.formValidate.video2"
+          v-model="cForm.formValidate.video2"
+          @change="value => { handleUploaderChange('video2', value) }" />
       </Form-item>
       <Form-item
         label="状态"
