@@ -232,6 +232,7 @@ const getSpecifications = (index = 0) => {
 
 const module = 'products'
 const initForm = {
+  originalPrice: 0,
   price: 0,
   specifications: getSpecifications(),
   dealerPrice: 0,
