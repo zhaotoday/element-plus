@@ -1,5 +1,5 @@
 import env from 'jt-env'
-import SIDEBAR_MENUS from './sidebar-menus'
+import SIDEBAR_MENUS from './sidebar-menus-back'
 import GENDERS from './genders'
 import REQUEST_METHODS from './request-methods'
 import AD_STATUSES from './ad-statuses'
@@ -23,7 +23,7 @@ import PAY_WAYS from './pay-ways'
 import STATUSES from './statuses'
 
 // 基础地址
-const BASE_URL = env.isDev() ? 'http://localhost:3005' : 'https://api.fjnm.cn'
+const BASE_URL = env.isDev() ? 'http://localhost:3005' : 'https://hhx-api.liruan.cn'
 
 // 接口地址
 const API_URL = BASE_URL + '/api/v1/admin'
