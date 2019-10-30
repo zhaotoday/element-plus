@@ -10,9 +10,9 @@
   "dependencies": {
     "area-data": "^5.0.6",
     "array-to-tree": "^3.3.0",
-    "core-js": "^2.6.5",
+    "core-js": "^2.6.10",
     "dayjs": "^1.8.16",
-    "echarts": "^4.2.1",
+    "echarts": "^4.4.0",
     "iview-area": "^1.6.0",
     "jt-env": "0.0.2",
     "jt-helpers": "0.0.6",
@@ -21,13 +21,13 @@
     "jt-time": "0.0.7",
     "kindeditor": "^4.1.10",
     "print-js": "^1.0.61",
-    "sass-utils": "^1.0.20",
+    "sass-utils": "^1.0.22",
     "v-charts": "^1.19.0",
     "view-design": "^4.0.2",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3",
-    "vuex": "^3.0.1",
-    "xlsx": "^0.15.0"
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.1",
+    "xlsx": "^0.15.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.7.0",
