@@ -10,7 +10,7 @@
   "dependencies": {
     "area-data": "^5.0.6",
     "array-to-tree": "^3.3.0",
-    "core-js": "^2.6.10",
+    "core-js": "^3.0.0",
     "dayjs": "^1.8.16",
     "echarts": "^4.4.0",
     "iview-area": "^1.6.0",
