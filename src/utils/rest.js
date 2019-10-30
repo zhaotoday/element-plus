@@ -1,5 +1,5 @@
 import REST from 'jt-rest'
-import iView from 'iview'
+import ViewUI from 'view-design'
 import restHelpers from './helpers/rest-helpers'
 
 export default class extends REST {
@@ -21,23 +21,23 @@ export default class extends REST {
       options.query._ = new Date().getTime()
     }
 
-    iView.Spin.show()
+    ViewUI.Spin.show()
 
     return new Promise(resolve => {
       super.request(method, options)
         .then(res => {
-          iView.Spin.hide()
+          ViewUI.Spin.hide()
           // 在这里可对 res 进行包装
           resolve(res.data)
         })
         .catch(res => {
-          iView.Spin.hide()
+          ViewUI.Spin.hide()
 
           if (res.response.data.error.code === 'AUTHORIZATION/UNAUTHORIZED') {
-            iView.Message.error('登入过期，请重新登入')
+            ViewUI.Message.error('登入过期，请重新登入')
             window.location.href = 'index.html#/logout'
           } else {
-            iView.Message.error(res.response.data.error.message)
+            ViewUI.Message.error(res.response.data.error.message)
           }
         })
     })

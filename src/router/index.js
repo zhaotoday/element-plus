@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import auth from '@/utils/auth'
 import TheLayout from '@/components/layout'
 import Root from '@/views/root'
-import iView from 'iview'
+import ViewUI from 'view-design'
 
 Vue.use(Router)
 
@@ -51,7 +51,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  iView.LoadingBar.start()
+  ViewUI.LoadingBar.start()
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!auth.loggedIn()) {
@@ -68,7 +68,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from, next) => {
-  iView.LoadingBar.finish()
+  ViewUI.LoadingBar.finish()
 })
 
 export default router

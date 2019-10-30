@@ -3,7 +3,7 @@ import App from './app.vue'
 import router from './router'
 import store from './store'
 
-import iView from 'iview'
+import ViewUI from 'view-design'
 import globalPlugin from '@/plugins/global'
 import '@/utils/init'
 import '@/utils/styles'
@@ -12,7 +12,7 @@ import iviewArea from 'iview-area'
 
 Vue.config.productionTip = false
 
-Vue.use(iView)
+Vue.use(ViewUI)
 Vue.use(globalPlugin)
 Vue.use(iviewArea)
 
