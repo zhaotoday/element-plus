@@ -11,7 +11,7 @@ export default {
     return JSON.parse(JSON.stringify(obj))
   },
   getFileURLById (id) {
-    return `${consts.BASE_URL}/api/v1/public/files/${id}`
+    return `${consts.BASE_URL}/v1/public/files/${id}`
   },
   getItemById (items, id) {
     return items && items.length
