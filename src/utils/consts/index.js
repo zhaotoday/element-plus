@@ -26,10 +26,10 @@ import STATUSES from './statuses'
 const BASE_URL = env.isDev() ? 'http://localhost:3005' : 'https://hhx-api.liruan.cn'
 
 // 接口地址
-const API_URL = BASE_URL + '/api/v1/admin'
+const API_URL = BASE_URL + '/v1/admin'
 
 // 公开接口地址
-const PUBLIC_API_URL = BASE_URL + '/api/v1/public'
+const PUBLIC_API_URL = BASE_URL + '/v1/public'
 
 // 分页大小
 const PAGE_SIZE = 10
