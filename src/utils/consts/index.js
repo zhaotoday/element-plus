@@ -23,7 +23,7 @@ import PAY_WAYS from './pay-ways'
 import STATUSES from './statuses'
 
 // 基础地址
-const BASE_URL = !env.isDev() ? 'http://localhost:3005' : 'https://hhx-api.liruan.cn'
+const BASE_URL = env.isDev() ? 'http://localhost:3005' : 'https://hhx-api.liruan.cn'
 
 // 接口地址
 const API_URL = BASE_URL + '/v1/admin'
