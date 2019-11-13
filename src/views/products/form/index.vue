@@ -24,6 +24,15 @@
           style="width: 320px;" />
       </Form-item>
       <Form-item
+        label="供应商"
+        prop="supplierId">
+        <CSupplierSelect
+          :value="cForm.formValidate.supplierId"
+          @change="value => { cForm.formValidate.supplierId = value }"
+          style="width: 320px;"
+        />
+      </Form-item>
+      <Form-item
         label="原价"
         prop="originalPrice">
         <InputNumber

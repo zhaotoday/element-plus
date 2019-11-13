@@ -97,7 +97,7 @@ export default {
               h('Button', {
                 on: {
                   click: () => {
-                    this.$router.push(`/teaching/${this.alias}/suppliers/index/form/${row.id}`)
+                    this.$router.push(`/${this.alias}/suppliers/index/form/${row.id}`)
                   }
                 }
               }, '编辑'),

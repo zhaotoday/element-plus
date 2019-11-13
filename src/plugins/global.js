@@ -13,6 +13,7 @@ import CBatchDel from '@/components/batch-del'
 import CWXUserInfo from '@/components/wx-user-info'
 import CWxUserSelect from '@/components/wx-user-select'
 import CProductSelect from '@/components/product-select'
+import CSupplierSelect from '@/components/supplier-select'
 import CCouponSelect from '@/components/coupon-select'
 
 export default {
@@ -42,6 +43,7 @@ export default {
     Vue.component('CWXUserInfo', CWXUserInfo)
     Vue.component('CWxUserSelect', CWxUserSelect)
     Vue.component('CProductSelect', CProductSelect)
+    Vue.component('CSupplierSelect', CSupplierSelect)
     Vue.component('CCouponSelect', CCouponSelect)
   }
 }
