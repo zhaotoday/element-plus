@@ -1,25 +1,22 @@
 import time from "jt-time";
-import consts from "@/utils/consts";
-import helpers from "@/utils/helpers/base";
-import auth from "@/utils/auth";
-import globalMixin from "@/mixins/global";
+import consts from "../utils/consts";
+import helpers from "../utils/helpers/base";
+import auth from "../utils/auth";
+import globalMixin from "../mixins/global";
 import CList, {
   CListHeader,
   CListOperations,
   CListSearch,
   CListNavigation
-} from "@/components/list";
-import CCategories from "@/components/categories";
-import CEditor from "@/components/editor";
-import CUploader from "@/components/uploader";
-import CDropdown from "@/components/dropdown";
-import CDel from "@/components/del";
-import CBatchDel from "@/components/batch-del";
-import CWXUserInfo from "@/components/wx-user-info";
-import CWxUserSelect from "@/components/wx-user-select";
-import CProductSelect from "@/components/product-select";
-import CSupplierSelect from "@/components/supplier-select";
-import CCouponSelect from "@/components/coupon-select";
+} from "../components/list";
+import CCategories from "../components/categories";
+import CEditor from "../components/editor";
+import CUploader from "../components/uploader";
+import CDropdown from "../components/dropdown";
+import CDel from "../components/del";
+import CBatchDel from "../components/batch-del";
+import CWXUserInfo from "../components/wx-user-info";
+import CWxUserSelect from "../components/wx-user-select";
 
 export default {
   install(Vue) {
@@ -47,8 +44,5 @@ export default {
     Vue.component("CBatchDel", CBatchDel);
     Vue.component("CWXUserInfo", CWXUserInfo);
     Vue.component("CWxUserSelect", CWxUserSelect);
-    Vue.component("CProductSelect", CProductSelect);
-    Vue.component("CSupplierSelect", CSupplierSelect);
-    Vue.component("CCouponSelect", CCouponSelect);
   }
 };

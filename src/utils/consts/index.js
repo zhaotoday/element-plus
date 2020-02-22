@@ -7,14 +7,14 @@ import WX_USER_STATUSES from "./wx-user-statuses";
 
 // 基础地址
 const BASE_URL = env.isDev()
-  ? "http://localhost:3005"
+  ? "http://localhost:3000"
   : "https://hhx-api.liruan.cn";
 
 // 接口地址
-const API_URL = BASE_URL + "/v1/admin";
+const API_URL = BASE_URL + "/admin";
 
 // 公开接口地址
-const PUBLIC_API_URL = BASE_URL + "/v1/public";
+const PUBLIC_API_URL = BASE_URL + "/public";
 
 // 分页大小
 const PAGE_SIZE = 10;

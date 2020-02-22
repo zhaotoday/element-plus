@@ -16,11 +16,13 @@
     "jt-rest": "0.0.8",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.7",
+    "kindeditor": "^4.1.10",
     "sass-utils": "^1.0.23",
     "view-design": "^4.1.2",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "xlsx": "^0.15.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",
