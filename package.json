@@ -43,7 +43,8 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "@vue/standard"
+      "eslint:recommended",
+      "@vue/prettier"
     ],
     "rules": {
       "vue/no-parsing-error": [
@@ -55,11 +56,6 @@
     },
     "parserOptions": {
       "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
     }
   },
   "browserslist": [
