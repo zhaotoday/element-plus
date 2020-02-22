@@ -1,4 +1,4 @@
-@import "../../../../../../../styles/utils/index";
+@import "../../../../../../styles/utils/index";
 
 @include c(header) {
   @include text--middle($header-height);

@@ -2,7 +2,7 @@
   <div class="c-sidebar">
     <div class="c-sidebar__logo" @click="$router.push('/')">
       <div class="c-sidebar__logo-icon">
-        <CIcon type="cube" />
+        <c-icon type="cube"></c-icon>
       </div>
       后台管理系统
     </div>
@@ -36,42 +36,37 @@
 </template>
 
 <script>
-import CIcon from "@/components/icon";
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 
-export default {
-  name: "TheSidebar",
-  components: {
-    CIcon
-  },
-  data() {
-    return {
-      activeName: "",
-      openNames: []
-    };
-  },
+@Component
+export default class TheSidebar extends Vue {
+  activeName = "";
+  openNames = [];
+
   created() {
     this.update();
-  },
-  methods: {
-    handleSelect(name) {
-      this.$router.push(name);
-    },
-    update(route) {
-      const path = route ? route.path : this.$route.path;
-      const paths = path.split("/");
-      this.openNames = [paths[1]];
-      this.activeName = `/${paths[1]}/${paths[2]}/${paths[3]}`;
-
-      this.$nextTick(() => {
-        this.$refs.menu.updateActiveName();
-        this.$refs.menu.$children.forEach(item => {
-          item.opened = false;
-        });
-        this.$refs.menu.updateOpened();
-      });
-    }
   }
-};
+
+  handleSelect(name) {
+    this.$router.push(name);
+  }
+
+  update(route) {
+    const path = route ? route.path : this.$route.path;
+    const paths = path.split("/");
+    this.openNames = [paths[1]];
+    this.activeName = `/${paths[1]}/${paths[2]}/${paths[3]}`;
+
+    this.$nextTick(() => {
+      this.$refs.menu.updateActiveName();
+      this.$refs.menu.$children.forEach(item => {
+        item.opened = false;
+      });
+      this.$refs.menu.updateOpened();
+    });
+  }
+}
 </script>
 
-<style lang="scss" src="./styles/index.scss"></style>
+<style lang="scss" src="./style.scss"></style>

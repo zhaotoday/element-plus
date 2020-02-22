@@ -1,7 +1,7 @@
 <template>
   <div class="c-header">
-    <div class="c-header__logout" title="退出" @click="handleLogout">
-      <CIcon type="logout" />
+    <div class="c-header__logout" title="退出" @click="logout">
+      <c-icon type="logout"></c-icon>
     </div>
     <div class="c-header__user">{{ user.username }}</div>
     <div class="c-header__avatar">
@@ -11,25 +11,20 @@
 </template>
 
 <script>
-import CIcon from "@/components/icon";
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 
-export default {
-  name: "TheHeader",
-  components: {
-    CIcon
-  },
-  computed: {
-    user() {
-      return this.$auth.get()["user"];
-    }
-  },
-  methods: {
-    handleLogout() {
-      this.$router.push("/logout");
-      this.$Message.success("退出成功");
-    }
+@Component
+export default class TheHeader extends Vue {
+  get user() {
+    return this.$auth.get()["user"];
   }
-};
+
+  logout() {
+    this.$router.push("/logout");
+    this.$Message.success("退出成功");
+  }
+}
 </script>
 
-<style lang="scss" src="./styles/index.scss"></style>
+<style lang="scss" src="./style.scss"></style>

@@ -29,11 +29,12 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import Model from "@/models/admin/categories";
 import arrayToTree from "array-to-tree";
 
-export default {
-  name: "CCategories",
+@Component({
   props: {
     alias: {
       type: String,
@@ -51,12 +52,11 @@ export default {
       type: [String, Number],
       default: 0
     }
-  },
-  data() {
-    return {
-      items: []
-    };
-  },
+  }
+})
+export default class CategorySelect extends Vue {
+  items = [];
+
   async created() {
     const getRes = await new Model().GET({
       query: {
@@ -69,11 +69,10 @@ export default {
     this.items = arrayToTree(getRes.data.items, {
       parentProperty: "parentId"
     });
-  },
-  methods: {
-    change(val) {
-      this.$emit("on-change", val);
-    }
   }
-};
+
+  change(val) {
+    this.$emit("on-change", val);
+  }
+}
 </script>

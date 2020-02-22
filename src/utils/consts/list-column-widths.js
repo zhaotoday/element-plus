@@ -4,4 +4,4 @@ export default {
   CATEGORY: 180,
   CREATED_AT: 150,
   USER: 100
-}
+};

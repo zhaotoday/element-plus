@@ -9,14 +9,14 @@ import List, {
   ListSearch,
   ListNavigation
 } from "../components/list";
-import Categories from "../components/categories";
+import CategorySelect from "../components/category-select";
 import Editor from "../components/editor";
 import Uploader from "../components/uploader";
-import Dropdown from "../components/dropdown";
 import Delete from "../components/delete";
 import CBulkDelete from "../components/bulk-delete";
 import WxUserInfo from "../components/wx-user-info";
 import WxUserSelect from "../components/wx-user-select";
+import Icon from "../components/icon";
 
 export default {
   install(Vue) {
@@ -36,13 +36,13 @@ export default {
     Vue.component("c-list-operations", ListOperations);
     Vue.component("c-list-search", ListSearch);
     Vue.component("c-list-navigation", ListNavigation);
-    Vue.component("c-categories", Categories);
+    Vue.component("c-category-select", CategorySelect);
     Vue.component("c-editor", Editor);
     Vue.component("c-uploader", Uploader);
-    Vue.component("c-dropdown", Dropdown);
     Vue.component("c-delete", Delete);
     Vue.component("c-bulk-delete", CBulkDelete);
     Vue.component("c-wx-user-info", WxUserInfo);
     Vue.component("c-wx-user-select", WxUserSelect);
+    Vue.component("c-icon", Icon);
   }
 };

@@ -10,7 +10,7 @@
       :on-format-error="handleFormatError"
       :on-exceeded-size="handleExceededSize"
       :headers="headers"
-      :action="`${consts.API_URL}/files`"
+      :action="`${consts.API_URL}/files/actions/upload`"
     >
       <Button icon="ios-cloud-upload-outline" style="width: 320px;">
         上传文件
