@@ -18,7 +18,8 @@ const router = new Router({
           component: TheLayout,
           children: [
             require("./routes/home").default,
-            require("./routes/wx-users").default
+            require("./routes/wx-users").default,
+            require("./routes/products").default
           ],
           meta: {
             requiresAuth: true
