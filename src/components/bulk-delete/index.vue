@@ -17,22 +17,24 @@
 </template>
 
 <script>
-export default {
-  name: "CBatchDel",
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component({
   props: {
     selectedItems: {
       type: Array,
       default: () => []
     }
-  },
-  methods: {
-    handleOk() {
-      if (!this.selectedItems.length) {
-        this.$Message.error("没有选中记录");
-      } else {
-        this.$emit("ok", this.selectedItems.map(item => item.id).join(","));
-      }
+  }
+})
+export default class BulkDelete extends Vue {
+  handleOk() {
+    if (!this.selectedItems.length) {
+      this.$Message.error("没有选中记录");
+    } else {
+      this.$emit("ok", this.selectedItems.map(item => item.id).join(","));
     }
   }
-};
+}
 </script>

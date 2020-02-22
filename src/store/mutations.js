@@ -1,7 +1,7 @@
 import types from "./types";
 
 export default {
-  [types.RESET_STATE](state, payload) {
+  [types.RESET_STATE](state) {
     Object.keys(state).forEach(module => {
       if (state[module].getInitState) {
         const initState = state[module].getInitState();

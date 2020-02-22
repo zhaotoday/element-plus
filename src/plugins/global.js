@@ -14,7 +14,7 @@ import CEditor from "../components/editor";
 import CUploader from "../components/uploader";
 import CDropdown from "../components/dropdown";
 import CDel from "../components/del";
-import CBatchDel from "../components/batch-del";
+import CBulkDelete from "../components/bulk-delete";
 import CWXUserInfo from "../components/wx-user-info";
 import CWxUserSelect from "../components/wx-user-select";
 
@@ -41,7 +41,7 @@ export default {
     Vue.component("CUploader", CUploader);
     Vue.component("CDropdown", CDropdown);
     Vue.component("CDel", CDel);
-    Vue.component("CBatchDel", CBatchDel);
+    Vue.component("CBulkDelete", CBulkDelete);
     Vue.component("CWXUserInfo", CWXUserInfo);
     Vue.component("CWxUserSelect", CWxUserSelect);
   }

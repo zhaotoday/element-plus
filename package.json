@@ -20,6 +20,7 @@
     "sass-utils": "^1.0.23",
     "view-design": "^4.1.2",
     "vue": "^2.6.11",
+    "vue-property-decorator": "^8.4.0",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2",
     "xlsx": "^0.15.5"
@@ -41,6 +42,9 @@
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
+    "globals": {
+      "K": true
+    },
     "root": true,
     "env": {
       "node": true
@@ -59,7 +63,10 @@
       ]
     },
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "babel-eslint",
+      "ecmaFeatures": {
+        "legacyDecorators": true
+      }
     }
   },
   "browserslist": [
