@@ -81,4 +81,4 @@ export default class Login extends Vue {
 }
 </script>
 
-<style lang="scss" src="./styles.scss"></style>
+<style lang="scss" src="./style.scss"></style>
