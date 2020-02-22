@@ -1,8 +1,8 @@
 import Vue from "vue";
+import "./utils/class-component-hooks";
 import App from "./app.vue";
 import router from "./router";
 import store from "./store";
-import "./utils/class-component-hooks";
 
 import ViewUI from "view-design";
 import globalPlugin from "@/plugins/global";
