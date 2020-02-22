@@ -1,6 +1,6 @@
 <template>
   <div class="p-categories">
-    <CList
+    <c-list
       :data="list.items"
       :columns="cList.columns"
       :total="list.total"
@@ -8,8 +8,8 @@
       :searchWhere="listSearchWhere"
       @selection-change="handleListSelectionChange"
     >
-      <CListHeader>
-        <CListOperations>
+      <c-list-header>
+        <c-list-operations>
           <Button type="primary" @click="handleShowForm">
             新增
           </Button>
@@ -20,8 +20,8 @@
           <Button v-if="isParent" @click="handleGoParent">
             返回上一级
           </Button>
-        </CListOperations>
-        <CListSearch>
+        </c-list-operations>
+        <c-list-search>
           <Form inline @submit.native.prevent="search">
             <Form-item prop="name">
               <Input
@@ -37,15 +37,15 @@
               </Button>
             </Form-item>
           </Form>
-        </CListSearch>
-      </CListHeader>
-      <CListNavigation v-if="levels !== 1">
+        </c-list-search>
+      </c-list-header>
+      <c-list-navigation v-if="levels !== 1">
         <Alert v-if="isParent">
           <b>{{ parentDetail.name }}</b> 的子分类：
         </Alert>
         <Alert v-else> <b>顶级分类</b> 的子分类 </Alert>
-      </CListNavigation>
-    </CList>
+      </c-list-navigation>
+    </c-list>
     <Modal
       width="496"
       v-model="cForm.modal"
@@ -75,7 +75,7 @@
           </Row>
         </Form-item>
         <Form-item label="图标" prop="icon">
-          <CUploader
+          <c-uploader
             :has-default-file="!!cForm.formValidate.icon"
             v-model="cForm.formValidate.icon"
             @change="
@@ -86,7 +86,7 @@
           />
         </Form-item>
         <Form-item label="Banner" prop="banner">
-          <CUploader
+          <c-uploader
             :has-default-file="!!cForm.formValidate.banner"
             v-model="cForm.formValidate.banner"
             @change="
@@ -400,4 +400,4 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./styles/index.scss"></style>
+<style lang="scss" src="./style.scss"></style>

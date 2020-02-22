@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CChildUploader
+    <c-child-uploader
       key="0"
       v-if="hasDefaultFile && !value"
       ref="uploader"
@@ -9,7 +9,7 @@
       :format="format"
       @change="handleUploaderChange"
     />
-    <CChildUploader
+    <c-child-uploader
       key="1"
       v-if="hasDefaultFile && value"
       ref="uploader"
@@ -19,7 +19,7 @@
       :format="format"
       @change="handleUploaderChange"
     />
-    <CChildUploader
+    <c-child-uploader
       key="2"
       v-if="!hasDefaultFile"
       ref="uploader"
@@ -33,13 +33,15 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import CChildUploader from "./components/uploader";
 
-export default {
-  name: "CUploader",
+@Component({
   components: {
     CChildUploader
   },
+
   props: {
     hasDefaultFile: {
       type: Boolean,
@@ -63,14 +65,15 @@ export default {
       type: Number,
       default: 2048
     }
-  },
-  methods: {
-    handleUploaderChange(file) {
-      this.$emit("change", file);
-    },
-    remove() {
-      this.$refs.uploader.remove();
-    }
   }
-};
+})
+export default class Uploader extends Vue {
+  handleUploaderChange(file) {
+    this.$emit("change", file);
+  }
+
+  remove() {
+    this.$refs.uploader.remove();
+  }
+}
 </script>

@@ -34,12 +34,13 @@
   </div>
 </template>
 <script>
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import consts from "@/utils/consts";
 import helpers from "@/utils/helpers/base";
 import restHelpers from "@/utils/helpers/rest-helpers";
 
-export default {
-  name: "CChildUploader",
+@Component({
   props: {
     value: {
       type: [String, Number],
@@ -59,63 +60,65 @@ export default {
       type: Number,
       default: 2048
     }
-  },
-  data() {
-    return {
-      consts,
-      uploadList: []
-    };
-  },
-  computed: {
-    headers() {
-      return restHelpers.getHeaders();
-    },
-    defaultFileList() {
-      return this.value
-        ? [
-            {
-              name: "",
-              url: this.previewIcon || helpers.getFileURLById(this.value)
-            }
-          ]
-        : [];
-    }
-  },
-  methods: {
-    remove(file) {
-      const fileList = this.$refs.upload.fileList;
+  }
+})
+export default class ChildUploader extends Vue {
+  consts = consts;
+  uploadList = [];
 
-      if (file) {
-        this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
-      } else {
-        this.$refs.upload.fileList.splice(0, fileList.length);
-      }
-    },
-    handleRemove(file) {
-      this.remove(file);
-      this.$emit("change", null);
-    },
-    handleSuccess(res, file) {
-      file.url = helpers.getFileURLById(res.data.id);
-      file.name = res.data.title;
+  get headers() {
+    return restHelpers.getHeaders();
+  }
 
-      if (this.uploadList.length > 1) {
-        this.remove(this.uploadList[0]);
-      }
+  get defaultFileList() {
+    return this.value
+      ? [
+          {
+            name: "",
+            url: this.previewIcon || helpers.getFileURLById(this.value)
+          }
+        ]
+      : [];
+  }
 
-      this.$emit("change", res.data);
-    },
-    handleFormatError() {
-      this.$Message.error("文件格式不正确");
-    },
-    handleExceededSize() {
-      this.$Message.error(`文件不能超过 ${this.maxSize / 1024}M`);
-    }
-  },
   mounted() {
     this.uploadList = this.$refs.upload.fileList;
   }
-};
+
+  remove(file) {
+    const fileList = this.$refs.upload.fileList;
+
+    if (file) {
+      this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+    } else {
+      this.$refs.upload.fileList.splice(0, fileList.length);
+    }
+  }
+
+  handleRemove(file) {
+    this.remove(file);
+    this.$emit("change", null);
+  }
+
+  handleSuccess(res, file) {
+    file.url = helpers.getFileURLById(res.data.id);
+    file.name = res.data.title;
+
+    if (this.uploadList.length > 1) {
+      this.remove(this.uploadList[0]);
+    }
+
+    this.$emit("change", res.data);
+  }
+
+  handleFormatError() {
+    this.$Message.error("文件格式不正确");
+  }
+
+  handleExceededSize() {
+    this.$Message.error(`文件不能超过 ${this.maxSize / 1024}M`);
+  }
+}
 </script>
 
-<style lang="scss" src="./styles/index.scss"></style>
+<style lang="scss" src="./style.scss"></style>

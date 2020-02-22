@@ -9,14 +9,14 @@ import List, {
   ListSearch,
   ListNavigation
 } from "../components/list";
-import CCategories from "../components/categories";
-import CEditor from "../components/editor";
-import CUploader from "../components/uploader";
-import CDropdown from "../components/dropdown";
-import CDelete from "../components/delete";
+import Categories from "../components/categories";
+import Editor from "../components/editor";
+import Uploader from "../components/uploader";
+import Dropdown from "../components/dropdown";
+import Delete from "../components/delete";
 import CBulkDelete from "../components/bulk-delete";
-import CWXUserInfo from "../components/wx-user-info";
-import CWxUserSelect from "../components/wx-user-select";
+import WxUserInfo from "../components/wx-user-info";
+import WxUserSelect from "../components/wx-user-select";
 
 export default {
   install(Vue) {
@@ -36,13 +36,13 @@ export default {
     Vue.component("c-list-operations", ListOperations);
     Vue.component("c-list-search", ListSearch);
     Vue.component("c-list-navigation", ListNavigation);
-    Vue.component("c-categories", CCategories);
-    Vue.component("CEditor", CEditor);
-    Vue.component("CUploader", CUploader);
-    Vue.component("CDropdown", CDropdown);
-    Vue.component("CDelete", CDelete);
-    Vue.component("CBulkDelete", CBulkDelete);
-    Vue.component("CWXUserInfo", CWXUserInfo);
-    Vue.component("CWxUserSelect", CWxUserSelect);
+    Vue.component("c-categories", Categories);
+    Vue.component("c-editor", Editor);
+    Vue.component("c-uploader", Uploader);
+    Vue.component("c-dropdown", Dropdown);
+    Vue.component("c-delete", Delete);
+    Vue.component("c-bulk-delete", CBulkDelete);
+    Vue.component("c-wx-user-info", WxUserInfo);
+    Vue.component("c-wx-user-select", WxUserSelect);
   }
 };
