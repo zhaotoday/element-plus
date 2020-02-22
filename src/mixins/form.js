@@ -9,7 +9,7 @@ export default class FormMixin extends Vue {
   }
 
   resetFields(data = {}) {
-    this.$refs.model.resetFields();
+    this.$refs.form.resetFields();
     this.$set(this.cForm, "model", this.$helpers.deepCopy(data));
   }
 

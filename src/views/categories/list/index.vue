@@ -1,6 +1,5 @@
 <template>
   <div class="p-categories">
-    {{ list.total }}
     <c-list
       :data="list.items"
       :columns="cList.columns"
@@ -11,14 +10,14 @@
     >
       <c-list-header>
         <c-list-operations>
-          <Button type="primary" @click="handleShowForm">
+          <Button type="primary" @click="showForm">
             新增
           </Button>
           <c-bulk-delete
             :selected-items="listSelectedItems"
-            @ok="handleDelOk"
+            @ok="confirmDelete"
           ></c-bulk-delete>
-          <Button v-if="isParent" @click="handleGoParent">
+          <Button v-if="isParent" @click="gotoParent">
             返回上一级
           </Button>
         </c-list-operations>
@@ -53,7 +52,7 @@
       :title="cForm.id ? '编辑' : '新增'"
     >
       <Form
-        ref="model"
+        ref="form"
         :model="cForm.model"
         :rules="cForm.rules"
         :label-width="80"
@@ -111,7 +110,7 @@
         <Button type="text" size="large" @click="cForm.modal = false">
           取消
         </Button>
-        <Button type="primary" size="large" @click="handleFormOk">
+        <Button type="primary" size="large" @click="submit">
           确定
         </Button>
       </div>
@@ -129,7 +128,7 @@ import formMixin from "@/mixins/form";
 
 const module = "categories";
 const initWhere = {
-  parentIds: [""],
+  parentIds: [0],
   name: {
     $like: ""
   }
@@ -204,7 +203,7 @@ export default class CategoriesList extends Vue {
                   {
                     on: {
                       click: () => {
-                        this.handleShowForm(row);
+                        this.showForm(row);
                       }
                     }
                   },
@@ -215,7 +214,7 @@ export default class CategoriesList extends Vue {
                   {
                     on: {
                       ok: () => {
-                        this.handleDelOk(row.id);
+                        this.confirmDelete(row.id);
                       }
                     }
                   },
@@ -227,7 +226,7 @@ export default class CategoriesList extends Vue {
                       {
                         on: {
                           click: () => {
-                            this.handleManageChild(row.id);
+                            this.manageChild(row.id);
                           }
                         }
                       },
@@ -241,7 +240,7 @@ export default class CategoriesList extends Vue {
                   },
                   on: {
                     click: async value => {
-                      this.handleSort(row.id, value);
+                      this.sort(row.id, value);
                     }
                   }
                 })
@@ -281,7 +280,7 @@ export default class CategoriesList extends Vue {
   }
 
   async created() {
-    // await this.$store.dispatch(`${module}/resetList`);
+    this.$store.dispatch(`${module}/resetList`);
     this.initSearchWhere(initWhere);
     this.getList();
     this.getParentDetail();
@@ -312,7 +311,7 @@ export default class CategoriesList extends Vue {
     });
   }
 
-  async handleManageChild(id) {
+  async manageChild(id) {
     const parentIds =
       this.listSearchWhere && this.listSearchWhere.parentIds
         ? this.$helpers.deepCopy(this.listSearchWhere.parentIds)
@@ -331,7 +330,7 @@ export default class CategoriesList extends Vue {
     }
   }
 
-  handleGoParent() {
+  gotoParent() {
     const parentIds = this.$helpers.deepCopy(this.listSearchWhere.parentIds);
 
     parentIds.pop();
@@ -343,7 +342,7 @@ export default class CategoriesList extends Vue {
     });
   }
 
-  handleShowForm(detail) {
+  showForm(detail) {
     this.cForm.modal = true;
 
     if (detail.id) {
@@ -354,15 +353,15 @@ export default class CategoriesList extends Vue {
     }
   }
 
-  async handleDelOk(id) {
-    await this.$store.dispatch(`${module}/del`, { id });
+  async confirmDelete(id) {
+    await this.$store.dispatch(`${module}/delete`, { id });
     this.$Message.success("删除成功！");
 
     const getListRes = await this.getList();
     !getListRes.items.length && this.goPrevPage();
   }
 
-  async handleSort(id, value) {
+  async sort(id, value) {
     const { name } = this.listSearchWhere || initWhere;
 
     await this.$store.dispatch(`${module}/postAction`, {
@@ -379,8 +378,8 @@ export default class CategoriesList extends Vue {
     this.getList();
   }
 
-  handleFormOk() {
-    this.$refs.model.validate(async valid => {
+  submit() {
+    this.$refs.form.validate(async valid => {
       if (valid) {
         await this.$store.dispatch(
           this.cForm.id ? `${module}/put` : `${module}/post`,

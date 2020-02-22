@@ -26,7 +26,8 @@ export default class extends REST {
         if (
           typeof obj[v] !== "object" &&
           obj[v] !== undefined &&
-          obj[v] !== ""
+          obj[v] !== "" &&
+          obj[v] !== 0
         ) {
           ret[v] = obj[v];
         }
