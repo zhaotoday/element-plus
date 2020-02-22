@@ -1,10 +1,10 @@
 export default [
   {
-    value: "TO_PREV",
+    value: "ToPrev",
     label: "上移"
   },
   {
-    value: "TO_NEXT",
+    value: "ToNext",
     label: "下移"
   }
 ];
