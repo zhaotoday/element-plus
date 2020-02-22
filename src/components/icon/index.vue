@@ -1,0 +1,20 @@
+<template>
+  <i class="iconfont" :class="'icon-' + type" />
+</template>
+
+<script>
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component({
+  props: {
+    type: {
+      type: String,
+      default: ""
+    }
+  }
+})
+export default class Icon extends Vue {}
+</script>
+
+<style lang="scss" src="./style.scss"></style>

@@ -8,29 +8,28 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import WxUsersModel from "@/models/admin/wx-users";
 
-export default {
-  name: "CWXUserInfo",
+@Component({
   props: {
     id: {
       type: Number,
       default: 0
     }
-  },
-  data() {
-    return {
-      detail: {}
-    };
-  },
+  }
+})
+export default class WxUserInfo extends Vue {
+  detail = {};
+
   created() {
     this.getDetail();
-  },
-  methods: {
-    async getDetail() {
-      const { data } = await new WxUsersModel().GET({ id: this.id });
-      this.detail = data;
-    }
   }
-};
+
+  async getDetail() {
+    const { data } = await new WxUsersModel().GET({ id: this.id });
+    this.detail = data;
+  }
+}
 </script>

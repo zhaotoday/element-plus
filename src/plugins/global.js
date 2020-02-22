@@ -10,7 +10,6 @@ import List, {
   ListNavigation
 } from "../components/list";
 import CategorySelect from "../components/category-select";
-import Editor from "../components/editor";
 import Uploader from "../components/uploader";
 import Delete from "../components/delete";
 import CBulkDelete from "../components/bulk-delete";
@@ -37,7 +36,6 @@ export default {
     Vue.component("c-list-search", ListSearch);
     Vue.component("c-list-navigation", ListNavigation);
     Vue.component("c-category-select", CategorySelect);
-    Vue.component("c-editor", Editor);
     Vue.component("c-uploader", Uploader);
     Vue.component("c-delete", Delete);
     Vue.component("c-bulk-delete", CBulkDelete);

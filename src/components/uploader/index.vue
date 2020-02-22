@@ -41,7 +41,6 @@ import CChildUploader from "./components/uploader";
   components: {
     CChildUploader
   },
-
   props: {
     hasDefaultFile: {
       type: Boolean,
