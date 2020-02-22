@@ -1,21 +1,10 @@
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import { mapActions } from "vuex";
 
-export default {
-  methods: {
-    ...mapActions({
-      resetState: "resetState"
-    }),
-    addLog({ id, method, model, body } = {}) {
-      this.$store.dispatch("logs/post", {
-        body: {
-          managerId: this.$auth.get()["user"].id,
-          alias: "logs",
-          id,
-          method,
-          model,
-          body
-        }
-      });
-    }
-  }
-};
+@Component({
+  methods: mapActions({
+    resetState: "resetState"
+  })
+})
+export default class GlobalMixin extends Vue {}

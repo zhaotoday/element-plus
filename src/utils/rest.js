@@ -1,44 +1,72 @@
 import REST from "jt-rest";
+import auth from "./auth";
 import ViewUI from "view-design";
-import restHelpers from "./helpers/rest-helpers";
 
 export default class extends REST {
-  /**
-   * 重写父类 request 方法，按业务场景定制功能
-   * @override
-   */
-  request(method = "GET", options = {}) {
-    if (!options.query) {
-      options.query = {};
+  _toString(obj) {
+    let ret = {};
+    let types = [];
+
+    Object.keys(obj).forEach(v => {
+      ret[v] = {};
+      types = Object.keys(obj[v]);
+
+      types.forEach(type => {
+        if (obj[v][type] === undefined || obj[v][type] === "") {
+          delete ret[v];
+        } else if (type === "$like") {
+          ret[v][type] = `%${obj[v][type]}%`;
+        } else {
+          ret[v] = obj[v];
+        }
+      });
+    });
+
+    return JSON.stringify(ret);
+  }
+
+  request(
+    method = "GET",
+    { id, query = {}, body = {}, showLoading = false, showError = true }
+  ) {
+    if (auth.loggedIn()) {
+      const userId = auth.get()["user"]["id"];
+
+      query.wxUserId = userId;
+      body.wxUserId = userId;
     }
 
-    // 转 options.query.where 对象为字符串
-    if (options.query.where) {
-      options.query.where = restHelpers.whereToStr(options.query.where);
+    if (query.where) {
+      query.where = this._toString(query.where);
+    }
+
+    if (query.include) {
+      query.include = JSON.stringify(query.include);
     }
 
     if (method === "GET") {
-      options.query._ = new Date().getTime();
+      query._ = new Date().getTime();
     }
 
-    ViewUI.Spin.show();
+    showLoading && ViewUI.Spin.show();
 
     return new Promise(resolve => {
       super
-        .request(method, options)
+        .request(method, { id, query, body })
         .then(res => {
-          ViewUI.Spin.hide();
-          // 在这里可对 res 进行包装
+          showLoading && ViewUI.Spin.hide();
           resolve(res.data);
         })
         .catch(res => {
-          ViewUI.Spin.hide();
+          showLoading && ViewUI.Spin.hide();
 
-          if (res.response.data.error.code === "AUTHORIZATION/UNAUTHORIZED") {
+          if (res.statusCode === 500) {
+            showError && ViewUI.Message.error("服务器出错");
+          } else if (res.statusCode === 401) {
             ViewUI.Message.error("登入过期，请重新登入");
             window.location.href = "index.html#/logout";
           } else {
-            ViewUI.Message.error(res.response.data.error.message);
+            showError && ViewUI.Message.error(res.data.error.message);
           }
         });
     });
