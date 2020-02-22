@@ -40,7 +40,7 @@ import { Component } from "vue-property-decorator";
     }
   }
 })
-export default class CDropdown extends Vue {
+export default class extends Vue {
   handleClickItem(name) {
     this.$emit("click", name);
   }
