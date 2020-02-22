@@ -235,7 +235,7 @@ export default class CategoriesList extends Vue {
                     )
                   : null,
                 h("c-dropdown", {
-                  attrs: {
+                  props: {
                     title: "排序",
                     options: ORDER_ACTIONS
                   },

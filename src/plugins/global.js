@@ -16,7 +16,7 @@ import CBulkDelete from "../components/bulk-delete";
 import WxUserInfo from "../components/wx-user-info";
 import WxUserSelect from "../components/wx-user-select";
 import Icon from "../components/icon";
-import Dropdown from "../components/dropdown/index";
+import Dropdown from "../components/dropdown";
 
 export default {
   install(Vue) {
