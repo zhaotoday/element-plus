@@ -1,8 +1,0 @@
-@import "../../../../styles/utils/index";
-
-@include p(ads) {
-  @include pb(picture) {
-    @include margin(10px, null, 10px);
-    @include size(162px, 90px);
-  }
-}
