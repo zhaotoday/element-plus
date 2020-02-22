@@ -16,6 +16,7 @@ import CBulkDelete from "../components/bulk-delete";
 import WxUserInfo from "../components/wx-user-info";
 import WxUserSelect from "../components/wx-user-select";
 import Icon from "../components/icon";
+import Dropdown from "../components/dropdown/index";
 
 export default {
   install(Vue) {
@@ -42,5 +43,6 @@ export default {
     Vue.component("c-wx-user-info", WxUserInfo);
     Vue.component("c-wx-user-select", WxUserSelect);
     Vue.component("c-icon", Icon);
+    Vue.component("c-dropdown", Dropdown);
   }
 };

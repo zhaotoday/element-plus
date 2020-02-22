@@ -6,14 +6,14 @@ export default createStore({
   types: {
     RESET_LIST: null
   },
-  mutations(types) {
+  mutations({ types }) {
     return {
       [types.RESET_LIST](state) {
         state.list = {};
       }
     };
   },
-  actions(types) {
+  actions({ types }) {
     return {
       resetList({ commit }, payload) {
         commit(types.RESET_LIST, payload);

@@ -8,18 +8,29 @@ export default class extends REST {
     let types = [];
 
     Object.keys(obj).forEach(v => {
-      ret[v] = {};
       types = Object.keys(obj[v]);
 
-      types.forEach(type => {
-        if (obj[v][type] === undefined || obj[v][type] === "") {
-          delete ret[v];
-        } else if (type === "$like") {
-          ret[v][type] = `%${obj[v][type]}%`;
-        } else {
+      if (types.length) {
+        ret[v] = {};
+
+        types.forEach(type => {
+          if (obj[v][type] === undefined || obj[v][type] === "") {
+            delete ret[v];
+          } else if (type === "$like") {
+            ret[v][type] = `%${obj[v][type]}%`;
+          } else {
+            ret[v] = obj[v];
+          }
+        });
+      } else {
+        if (
+          typeof obj[v] !== "object" &&
+          obj[v] !== undefined &&
+          obj[v] !== ""
+        ) {
           ret[v] = obj[v];
         }
-      });
+      }
     });
 
     return JSON.stringify(ret);

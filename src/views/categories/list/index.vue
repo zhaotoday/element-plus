@@ -1,5 +1,6 @@
 <template>
   <div class="p-categories">
+    {{ list.total }}
     <c-list
       :data="list.items"
       :columns="cList.columns"
@@ -52,9 +53,9 @@
       :title="cForm.id ? '编辑' : '新增'"
     >
       <Form
-        ref="formValidate"
-        :model="cForm.formValidate"
-        :rules="cForm.ruleValidate"
+        ref="model"
+        :model="cForm.model"
+        :rules="cForm.rules"
         :label-width="80"
       >
         <Form-item v-if="levels !== 1" label="父类">
@@ -67,17 +68,14 @@
         <Form-item label="名称" prop="name">
           <Row>
             <Col span="20">
-              <Input
-                v-model="cForm.formValidate.name"
-                placeholder="请输入名称"
-              />
+              <Input v-model="cForm.model.name" placeholder="请输入名称" />
             </Col>
           </Row>
         </Form-item>
         <Form-item label="图标" prop="icon">
           <c-uploader
-            :has-default-file="!!cForm.formValidate.icon"
-            v-model="cForm.formValidate.icon"
+            :has-default-file="!!cForm.model.icon"
+            v-model="cForm.model.icon"
             @change="
               value => {
                 handleUploaderChange('icon', value);
@@ -87,8 +85,8 @@
         </Form-item>
         <Form-item label="Banner" prop="banner">
           <c-uploader
-            :has-default-file="!!cForm.formValidate.banner"
-            v-model="cForm.formValidate.banner"
+            :has-default-file="!!cForm.model.banner"
+            v-model="cForm.model.banner"
             @change="
               value => {
                 handleUploaderChange('banner', value);
@@ -100,7 +98,7 @@
           <Row>
             <Col span="20">
               <Input
-                v-model="cForm.formValidate.description"
+                v-model="cForm.model.description"
                 type="textarea"
                 :rows="3"
                 placeholder="请输入描述"
@@ -122,6 +120,8 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { Component, Watch } from "vue-property-decorator";
 import { mapState } from "vuex";
 import routeParamsMixin from "@/mixins/route-params";
 import listMixin from "@/mixins/list";
@@ -129,14 +129,34 @@ import formMixin from "@/mixins/form";
 
 const module = "categories";
 const initWhere = {
-  parentIds: [0],
+  parentIds: [""],
   name: {
     $like: ""
   }
 };
 
-export default {
+@Component({
   mixins: [routeParamsMixin, listMixin, formMixin],
+  computed: {
+    ...mapState({
+      list: state => state[module].list,
+      parentDetail: state => state[module].detail
+    }),
+    levels() {
+      return this.$consts.CATEGORY_LEVELS[this.$route.params.alias];
+    },
+    isParent() {
+      const listSearchWhere = this.listSearchWhere;
+
+      return (
+        listSearchWhere &&
+        listSearchWhere.parentIds &&
+        listSearchWhere.parentIds[listSearchWhere.parentIds.length - 1] !== 0
+      );
+    }
+  }
+})
+export default class CategoriesList extends Vue {
   data() {
     const { LIST_COLUMN_WIDTHS, ORDER_ACTIONS, CATEGORY_LEVELS } = this.$consts;
 
@@ -161,7 +181,7 @@ export default {
               return params.row.icon
                 ? h("img", {
                     attrs: {
-                      src: this.$helpers.getFileURLById(params.row.icon),
+                      src: this.$helpers.getFileURLById(params.row.iconId),
                       class: "pb-picture"
                     }
                   })
@@ -177,25 +197,25 @@ export default {
             title: "操作",
             key: "action",
             width: getLevels() === 1 ? 245 : 340,
-            render: (h, params) =>
+            render: (h, { row }) =>
               h("div", [
                 h(
                   "Button",
                   {
                     on: {
                       click: () => {
-                        this.handleShowForm(params.row);
+                        this.handleShowForm(row);
                       }
                     }
                   },
                   "编辑"
                 ),
                 h(
-                  "CDel",
+                  "c-delete",
                   {
                     on: {
                       ok: () => {
-                        this.handleDelOk(params.row.id);
+                        this.handleDelOk(row.id);
                       }
                     }
                   },
@@ -207,21 +227,21 @@ export default {
                       {
                         on: {
                           click: () => {
-                            this.handleManageChild(params.row.id);
+                            this.handleManageChild(row.id);
                           }
                         }
                       },
                       "管理子分类"
                     )
                   : null,
-                h("CDropdown", {
+                h("c-dropdown", {
                   attrs: {
                     title: "排序",
                     options: ORDER_ACTIONS
                   },
                   on: {
                     click: async value => {
-                      this.handleSort(params.row.id, value);
+                      this.handleSort(row.id, value);
                     }
                   }
                 })
@@ -235,8 +255,8 @@ export default {
       cForm: {
         id: 0,
         modal: false,
-        formValidate: {},
-        ruleValidate: {
+        model: {},
+        rules: {
           name: [
             {
               required: true,
@@ -246,158 +266,146 @@ export default {
         }
       }
     };
-  },
-  computed: {
-    ...mapState({
-      list: state => state[module].list,
-      parentDetail: state => state[module].detail
-    }),
-    levels() {
-      return this.$consts.CATEGORY_LEVELS[this.$route.params.alias];
-    },
-    isParent() {
-      const listSearchWhere = this.listSearchWhere;
+  }
 
-      return (
-        listSearchWhere &&
-        listSearchWhere.parentIds &&
-        listSearchWhere.parentIds[listSearchWhere.parentIds.length - 1] !== 0
-      );
-    }
-  },
-  watch: {
-    "cForm.modal": {
-      handler(newVal) {
-        !newVal && this.resetFields();
-      }
-    }
-  },
+  @Watch("cForm.modal")
+  onFormModalChange(newVal) {
+    !newVal && this.resetFields();
+  }
+
   async beforeRouteUpdate(to, from, next) {
     this.initSearchWhere(initWhere);
     this.getList();
     this.getParentDetail();
     next();
-  },
-  created() {
-    this.$store.dispatch(`${module}/resetList`);
+  }
+
+  async created() {
+    // await this.$store.dispatch(`${module}/resetList`);
     this.initSearchWhere(initWhere);
     this.getList();
     this.getParentDetail();
-  },
-  methods: {
-    getParentDetail() {
-      if (this.listSearchWhere && this.listSearchWhere.parentIds) {
-        const id = this.listSearchWhere.parentIds[
-          this.listSearchWhere.parentIds.length - 1
-        ];
-        id && this.$store.dispatch(`${module}/getDetail`, { id });
-      }
-    },
-    getList() {
-      const { name, parentIds = [0] } = this.listSearchWhere || initWhere;
+  }
 
-      return this.$store.dispatch(`${module}/getList`, {
-        query: {
-          offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
-          limit: this.$consts.PAGE_SIZE,
-          where: {
-            parentId: parentIds[parentIds.length - 1],
-            name,
-            alias: this.alias
-          }
+  getParentDetail() {
+    if (this.listSearchWhere && this.listSearchWhere.parentIds) {
+      const id = this.listSearchWhere.parentIds[
+        this.listSearchWhere.parentIds.length - 1
+      ];
+      id && this.$store.dispatch(`${module}/getDetail`, { id });
+    }
+  }
+
+  getList() {
+    const { name, parentIds = [0] } = this.listSearchWhere || initWhere;
+
+    return this.$store.dispatch(`${module}/getList`, {
+      query: {
+        offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
+        limit: this.$consts.PAGE_SIZE,
+        where: {
+          parentId: parentIds[parentIds.length - 1],
+          name
+          // alias: this.alias
         }
-      });
-    },
-    async handleManageChild(id) {
-      const parentIds =
-        this.listSearchWhere && this.listSearchWhere.parentIds
-          ? this.$helpers.deepCopy(this.listSearchWhere.parentIds)
-          : [0];
-
-      if (parentIds[parentIds.length - 1] !== id) {
-        parentIds.push(id);
-        this.$router.push({
-          query: {
-            listSearchWhere: JSON.stringify({
-              ...initWhere,
-              parentIds: parentIds
-            })
-          }
-        });
       }
-    },
-    handleGoParent() {
-      const parentIds = this.$helpers.deepCopy(this.listSearchWhere.parentIds);
+    });
+  }
 
-      parentIds.pop();
+  async handleManageChild(id) {
+    const parentIds =
+      this.listSearchWhere && this.listSearchWhere.parentIds
+        ? this.$helpers.deepCopy(this.listSearchWhere.parentIds)
+        : [0];
 
+    if (parentIds[parentIds.length - 1] !== id) {
+      parentIds.push(id);
       this.$router.push({
         query: {
-          listSearchWhere: JSON.stringify({ ...initWhere, parentIds })
-        }
-      });
-    },
-    handleShowForm(detail) {
-      this.cForm.modal = true;
-
-      if (detail.id) {
-        this.cForm.id = detail.id;
-        this.initFields(detail);
-      } else {
-        this.cForm.id = 0;
-      }
-    },
-    async handleDelOk(id) {
-      await this.$store.dispatch(`${module}/del`, { id });
-      this.$Message.success("删除成功！");
-
-      const getListRes = await this.getList();
-      !getListRes.items.length && this.goPrevPage();
-    },
-    async handleSort(id, value) {
-      const { name } = this.listSearchWhere || initWhere;
-
-      await this.$store.dispatch(`${module}/postAction`, {
-        query: {
-          where: {
-            parentId: this.isParent ? this.parentDetail.id : 0,
-            name,
-            alias: this.alias
-          }
-        },
-        body: { type: value, id }
-      });
-
-      this.getList();
-    },
-    handleFormOk() {
-      this.$refs.formValidate.validate(async valid => {
-        if (valid) {
-          await this.$store.dispatch(
-            this.cForm.id ? `${module}/put` : `${module}/post`,
-            {
-              id: this.cForm.id || "0",
-              body: {
-                ...this.cForm.formValidate,
-                alias: this.alias,
-                parentId: this.isParent ? this.parentDetail.id : undefined
-              }
-            }
-          );
-
-          this.cForm.modal = false;
-          this.$Message.success((this.cForm.id ? "编辑" : "新增") + "成功！");
-          !this.cForm.id &&
-            this.resetSearch({
-              ...initWhere,
-              parentIds: this.isParent ? this.listSearchWhere.parentIds : [0]
-            });
-          this.getList();
+          listSearchWhere: JSON.stringify({
+            ...initWhere,
+            parentIds: parentIds
+          })
         }
       });
     }
   }
-};
+
+  handleGoParent() {
+    const parentIds = this.$helpers.deepCopy(this.listSearchWhere.parentIds);
+
+    parentIds.pop();
+
+    this.$router.push({
+      query: {
+        listSearchWhere: JSON.stringify({ ...initWhere, parentIds })
+      }
+    });
+  }
+
+  handleShowForm(detail) {
+    this.cForm.modal = true;
+
+    if (detail.id) {
+      this.cForm.id = detail.id;
+      this.initFields(detail);
+    } else {
+      this.cForm.id = 0;
+    }
+  }
+
+  async handleDelOk(id) {
+    await this.$store.dispatch(`${module}/del`, { id });
+    this.$Message.success("删除成功！");
+
+    const getListRes = await this.getList();
+    !getListRes.items.length && this.goPrevPage();
+  }
+
+  async handleSort(id, value) {
+    const { name } = this.listSearchWhere || initWhere;
+
+    await this.$store.dispatch(`${module}/postAction`, {
+      query: {
+        where: {
+          parentId: this.isParent ? this.parentDetail.id : 0,
+          name
+          // alias: this.alias
+        }
+      },
+      body: { type: value, id }
+    });
+
+    this.getList();
+  }
+
+  handleFormOk() {
+    this.$refs.model.validate(async valid => {
+      if (valid) {
+        await this.$store.dispatch(
+          this.cForm.id ? `${module}/put` : `${module}/post`,
+          {
+            id: this.cForm.id || "0",
+            body: {
+              ...this.cForm.model,
+              // alias: this.alias,
+              parentId: this.isParent ? this.parentDetail.id : undefined
+            }
+          }
+        );
+
+        this.cForm.modal = false;
+        this.$Message.success((this.cForm.id ? "编辑" : "新增") + "成功！");
+        !this.cForm.id &&
+          this.resetSearch({
+            ...initWhere,
+            parentIds: this.isParent ? this.listSearchWhere.parentIds : [0]
+          });
+        this.getList();
+      }
+    });
+  }
+}
 </script>
 
 <style lang="scss" src="./style.scss"></style>

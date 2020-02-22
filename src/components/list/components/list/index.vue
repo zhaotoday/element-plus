@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot />
+    <slot></slot>
     <Table
       :context="$parent"
       class="u-mb15"
@@ -21,8 +21,10 @@
 </template>
 
 <script>
-export default {
-  name: "CList",
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component({
   props: {
     columns: {
       type: Array,
@@ -50,21 +52,22 @@ export default {
         return {};
       }
     }
-  },
-  methods: {
-    handleSelectionChange(selection) {
-      this.$emit("selection-change", selection);
-    },
-    handlePageChange(current) {
-      this.$router.push({
-        query: Object.assign(
-          { listPageCurrent: current },
-          this.searchWhere
-            ? { listSearchWhere: JSON.stringify(this.searchWhere) }
-            : null
-        )
-      });
-    }
   }
-};
+})
+export default class List extends Vue {
+  handleSelectionChange(selection) {
+    this.$emit("selection-change", selection);
+  }
+
+  handlePageChange(current) {
+    this.$router.push({
+      query: Object.assign(
+        { listPageCurrent: current },
+        this.searchWhere
+          ? { listSearchWhere: JSON.stringify(this.searchWhere) }
+          : null
+      )
+    });
+  }
+}
 </script>
