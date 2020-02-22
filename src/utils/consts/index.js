@@ -4,6 +4,7 @@ import GENDERS from "./genders";
 import MODELS from "./models";
 import CATEGORY_LEVELS from "./category-levels";
 import WX_USER_STATUSES from "./wx-user-statuses";
+import LIST_COLUMN_WIDTHS from "./list-column-widths";
 
 // 基础地址
 const BASE_URL = env.isDev()
@@ -28,6 +29,7 @@ export default {
   MODELS,
   CATEGORY_LEVELS,
   WX_USER_STATUSES,
+  LIST_COLUMN_WIDTHS,
   BASE_URL,
   API_URL,
   PUBLIC_API_URL,

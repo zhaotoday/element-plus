@@ -1,11 +1,12 @@
-export default {
-  data() {
-    return {
-      listSelectedItems: [],
-      listPageCurrent: 1,
-      listSearchWhere: {}
-    };
-  },
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component
+export default class List extends Vue {
+  listSelectedItems = [];
+  listPageCurrent = 1;
+  listSearchWhere = {};
+
   async beforeRouteUpdate(to, from, next) {
     const { query } = to;
 
@@ -15,7 +16,8 @@ export default {
       : null;
 
     next();
-  },
+  }
+
   async created() {
     const { query } = this.$route;
 
@@ -23,55 +25,59 @@ export default {
     this.listSearchWhere = query.listSearchWhere
       ? JSON.parse(query.listSearchWhere)
       : null;
-  },
-  methods: {
-    handleListSelectionChange(selection) {
-      this.listSelectedItems = selection;
-    },
-    initSearchWhere(initWhere) {
-      this.cList.cSearch.where = this.listSearchWhere
-        ? this.$helpers.deepCopy(this.listSearchWhere)
-        : this.$helpers.deepCopy(initWhere);
-    },
-    async resetList(initWhere) {
-      this.$router.push({
-        query: Object.assign(
-          {
-            listPageCurrent: 1
-          },
-          initWhere
-            ? {
-                listSearchWhere: JSON.stringify(initWhere)
-              }
-            : null
-        )
-      });
-    },
-    async resetSearch(initWhere) {
-      this.$router.push({
-        query: {
-          listPageCurrent: 1,
-          listSearchWhere: JSON.stringify(initWhere)
-        }
-      });
-    },
-    search() {
-      this.$router.push({
-        query: {
-          listPageCurrent: 1,
-          listSearchWhere: JSON.stringify(this.cList.cSearch.where)
-        }
-      });
-    },
-    goPrevPage() {
-      if (this.listPageCurrent !== 1) {
-        this.$router.push({
-          query: {
-            listPageCurrent: this.listPageCurrent - 1 || 1,
-            listSearchWhere: JSON.stringify(this.listSearchWhere)
-          }
-        });
+  }
+
+  handleListSelectionChange(selection) {
+    this.listSelectedItems = selection;
+  }
+
+  initSearchWhere(initWhere) {
+    this.cList.cSearch.where = this.listSearchWhere
+      ? this.$helpers.deepCopy(this.listSearchWhere)
+      : this.$helpers.deepCopy(initWhere);
+  }
+
+  async resetList(initWhere) {
+    this.$router.push({
+      query: Object.assign(
+        {
+          listPageCurrent: 1
+        },
+        initWhere
+          ? {
+              listSearchWhere: JSON.stringify(initWhere)
+            }
+          : null
+      )
+    });
+  }
+
+  async resetSearch(initWhere) {
+    this.$router.push({
+      query: {
+        listPageCurrent: 1,
+        listSearchWhere: JSON.stringify(initWhere)
       }
+    });
+  }
+
+  search() {
+    this.$router.push({
+      query: {
+        listPageCurrent: 1,
+        listSearchWhere: JSON.stringify(this.cList.cSearch.where)
+      }
+    });
+  }
+
+  goPrevPage() {
+    if (this.listPageCurrent !== 1) {
+      this.$router.push({
+        query: {
+          listPageCurrent: this.listPageCurrent - 1 || 1,
+          listSearchWhere: JSON.stringify(this.listSearchWhere)
+        }
+      });
     }
   }
-};
+}

@@ -13,7 +13,10 @@
           <Button type="primary" @click="handleShowForm">
             新增
           </Button>
-          <CBatchDel :selected-items="listSelectedItems" @ok="handleDelOk" />
+          <c-bulk-delete
+            :selected-items="listSelectedItems"
+            @ok="handleDelOk"
+          ></c-bulk-delete>
           <Button v-if="isParent" @click="handleGoParent">
             返回上一级
           </Button>

@@ -3,17 +3,17 @@ import consts from "../utils/consts";
 import helpers from "../utils/helpers/base";
 import auth from "../utils/auth";
 import globalMixin from "../mixins/global";
-import CList, {
-  CListHeader,
-  CListOperations,
-  CListSearch,
-  CListNavigation
+import List, {
+  ListHeader,
+  ListOperations,
+  ListSearch,
+  ListNavigation
 } from "../components/list";
 import CCategories from "../components/categories";
 import CEditor from "../components/editor";
 import CUploader from "../components/uploader";
 import CDropdown from "../components/dropdown";
-import CDel from "../components/del";
+import CDelete from "../components/delete";
 import CBulkDelete from "../components/bulk-delete";
 import CWXUserInfo from "../components/wx-user-info";
 import CWxUserSelect from "../components/wx-user-select";
@@ -31,16 +31,16 @@ export default {
 
     Vue.mixin(globalMixin);
 
-    Vue.component("CList", CList);
-    Vue.component("CListHeader", CListHeader);
-    Vue.component("CListOperations", CListOperations);
-    Vue.component("CListSearch", CListSearch);
-    Vue.component("CListNavigation", CListNavigation);
-    Vue.component("CCategories", CCategories);
+    Vue.component("c-list", List);
+    Vue.component("c-list-header", ListHeader);
+    Vue.component("c-list-operations", ListOperations);
+    Vue.component("c-list-search", ListSearch);
+    Vue.component("c-list-navigation", ListNavigation);
+    Vue.component("c-categories", CCategories);
     Vue.component("CEditor", CEditor);
     Vue.component("CUploader", CUploader);
     Vue.component("CDropdown", CDropdown);
-    Vue.component("CDel", CDel);
+    Vue.component("CDelete", CDelete);
     Vue.component("CBulkDelete", CBulkDelete);
     Vue.component("CWXUserInfo", CWXUserInfo);
     Vue.component("CWxUserSelect", CWxUserSelect);

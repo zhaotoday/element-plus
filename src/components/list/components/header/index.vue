@@ -1,13 +1,15 @@
 <template>
   <div class="c-list__header">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 
 <script>
-export default {
-  name: "CListHeader"
-};
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component
+export default class ListHeader extends Vue {}
 </script>
 
-<style lang="scss" src="./styles/index.scss"></style>
+<style lang="scss" src="./style.scss"></style>

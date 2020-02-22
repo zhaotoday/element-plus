@@ -1,13 +1,15 @@
 <template>
   <div class="c-list__navigation">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 
 <script>
-export default {
-  name: "CListNavigation"
-};
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component
+export default class ListNavigation extends Vue {}
 </script>
 
-<style lang="scss" src="./styles/index.scss"></style>
+<style lang="scss" src="./style.scss"></style>
