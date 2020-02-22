@@ -3,6 +3,9 @@ import Model from "../../../models/admin/categories";
 
 export default createStore({
   Model,
+  types: {
+    RESET_LIST: null
+  },
   mutations(types) {
     return {
       [types.RESET_LIST](state) {
