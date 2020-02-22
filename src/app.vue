@@ -5,11 +5,11 @@
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  }
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
 </style>

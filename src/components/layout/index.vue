@@ -6,20 +6,20 @@
 </template>
 
 <script>
-import TheSidebar from './components/sidebar'
-import TheMain from './components/main'
+import TheSidebar from "./components/sidebar";
+import TheMain from "./components/main";
 
 export default {
-  name: 'TheLayout',
+  name: "TheLayout",
   components: {
     TheSidebar,
     TheMain
   },
-  beforeRouteUpdate (to, from, next) {
+  beforeRouteUpdate(to, from, next) {
     this.$nextTick(() => {
-      this.$refs.sidebar.update(to)
-    })
-    next()
+      this.$refs.sidebar.update(to);
+    });
+    next();
   }
-}
+};
 </script>

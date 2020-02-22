@@ -1,33 +1,36 @@
 <template>
   <span class="c-wx-user-info">
-    {{ (detail.name ? detail.name: '' ) + (detail.phoneNumber ? `（${detail.phoneNumber}）` : '') }}
+    {{
+      (detail.name ? detail.name : "") +
+        (detail.phoneNumber ? `（${detail.phoneNumber}）` : "")
+    }}
   </span>
 </template>
 
 <script>
-import WxUsersModel from '@/models/admin/wx-users'
+import WxUsersModel from "@/models/admin/wx-users";
 
 export default {
-  name: 'CWXUserInfo',
+  name: "CWXUserInfo",
   props: {
     id: {
       type: Number,
       default: 0
     }
   },
-  data () {
+  data() {
     return {
       detail: {}
-    }
+    };
   },
-  created () {
-    this.getDetail()
+  created() {
+    this.getDetail();
   },
   methods: {
-    async getDetail () {
-      const { data } = await new WxUsersModel().GET({ id: this.id })
-      this.detail = data
+    async getDetail() {
+      const { data } = await new WxUsersModel().GET({ id: this.id });
+      this.detail = data;
     }
   }
-}
+};
 </script>

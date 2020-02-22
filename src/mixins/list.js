@@ -1,39 +1,39 @@
 export default {
-  data () {
+  data() {
     return {
       listSelectedItems: [],
       listPageCurrent: 1,
       listSearchWhere: {}
-    }
+    };
   },
-  async beforeRouteUpdate (to, from, next) {
-    const { query } = to
+  async beforeRouteUpdate(to, from, next) {
+    const { query } = to;
 
-    this.listPageCurrent = +query.listPageCurrent || 1
+    this.listPageCurrent = +query.listPageCurrent || 1;
     this.listSearchWhere = query.listSearchWhere
       ? JSON.parse(query.listSearchWhere)
-      : null
+      : null;
 
-    next()
+    next();
   },
-  async created () {
-    const { query } = this.$route
+  async created() {
+    const { query } = this.$route;
 
-    this.listPageCurrent = +query.listPageCurrent || 1
+    this.listPageCurrent = +query.listPageCurrent || 1;
     this.listSearchWhere = query.listSearchWhere
       ? JSON.parse(query.listSearchWhere)
-      : null
+      : null;
   },
   methods: {
-    handleListSelectionChange (selection) {
-      this.listSelectedItems = selection
+    handleListSelectionChange(selection) {
+      this.listSelectedItems = selection;
     },
-    initSearchWhere (initWhere) {
+    initSearchWhere(initWhere) {
       this.cList.cSearch.where = this.listSearchWhere
         ? this.$helpers.deepCopy(this.listSearchWhere)
-        : this.$helpers.deepCopy(initWhere)
+        : this.$helpers.deepCopy(initWhere);
     },
-    async resetList (initWhere) {
+    async resetList(initWhere) {
       this.$router.push({
         query: Object.assign(
           {
@@ -41,37 +41,37 @@ export default {
           },
           initWhere
             ? {
-              listSearchWhere: JSON.stringify(initWhere)
-            }
+                listSearchWhere: JSON.stringify(initWhere)
+              }
             : null
         )
-      })
+      });
     },
-    async resetSearch (initWhere) {
+    async resetSearch(initWhere) {
       this.$router.push({
         query: {
           listPageCurrent: 1,
           listSearchWhere: JSON.stringify(initWhere)
         }
-      })
+      });
     },
-    search () {
+    search() {
       this.$router.push({
         query: {
           listPageCurrent: 1,
           listSearchWhere: JSON.stringify(this.cList.cSearch.where)
         }
-      })
+      });
     },
-    goPrevPage () {
+    goPrevPage() {
       if (this.listPageCurrent !== 1) {
         this.$router.push({
           query: {
             listPageCurrent: this.listPageCurrent - 1 || 1,
             listSearchWhere: JSON.stringify(this.listSearchWhere)
           }
-        })
+        });
       }
     }
   }
-}
+};

@@ -1,21 +1,21 @@
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   methods: {
     ...mapActions({
-      resetState: 'resetState'
+      resetState: "resetState"
     }),
-    addLog ({ id, method, model, body } = {}) {
-      this.$store.dispatch('logs/post', {
+    addLog({ id, method, model, body } = {}) {
+      this.$store.dispatch("logs/post", {
         body: {
-          managerId: this.$auth.get()['user'].id,
-          alias: 'logs',
+          managerId: this.$auth.get()["user"].id,
+          alias: "logs",
           id,
           method,
           model,
           body
         }
-      })
+      });
     }
   }
-}
+};

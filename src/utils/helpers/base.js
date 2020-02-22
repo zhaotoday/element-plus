@@ -1,41 +1,52 @@
-import consts from '@/utils/consts'
-import helpers from 'jt-helpers'
-import dayjs from 'dayjs'
+import consts from "@/utils/consts";
+import helpers from "jt-helpers";
+import dayjs from "dayjs";
 
 export default {
   ...helpers,
-  goBack () {
-    window.history.go(-1)
+  goBack() {
+    window.history.go(-1);
   },
-  deepCopy (obj) {
-    return JSON.parse(JSON.stringify(obj))
+  deepCopy(obj) {
+    return JSON.parse(JSON.stringify(obj));
   },
-  getFileURLById (id) {
-    return `${consts.BASE_URL}/v1/public/files/${id}`
+  getFileURLById(id) {
+    return `${consts.BASE_URL}/v1/public/files/${id}`;
   },
-  getItemById (items, id) {
+  getItemById(items, id) {
     return items && items.length
-      ? (items.find(item => +item.id === +id) || {})
-      : {}
+      ? items.find(item => +item.id === +id) || {}
+      : {};
   },
-  getItem (items, key, val) {
+  getItem(items, key, val) {
     return items && items.length
-      ? (items.find(item => item[key] === val) || {})
-      : {}
+      ? items.find(item => item[key] === val) || {}
+      : {};
   },
-  getOption (options, value) {
-    return options.find(item => item.value === value) || {}
+  getOption(options, value) {
+    return options.find(item => item.value === value) || {};
   },
-  getOrderRoute ({ alias = 'orders', status, wxUserId }) {
-    const listSearchWhere = encodeURIComponent(JSON.stringify({
-      no: { $like: '' },
-      payWay: { $eq: '' },
-      status: status ? { $eq: status } : '',
-      wxUserId: { $eq: wxUserId || '' },
-      startTime: { $eq: dayjs().add(-1, 'day').startOf('day').format('YYYY-MM-DD HH:mm:ss') },
-      endTime: { $eq: dayjs().endOf('day').format('YYYY-MM-DD HH:mm:ss') }
-    }))
+  getOrderRoute({ alias = "orders", status, wxUserId }) {
+    const listSearchWhere = encodeURIComponent(
+      JSON.stringify({
+        no: { $like: "" },
+        payWay: { $eq: "" },
+        status: status ? { $eq: status } : "",
+        wxUserId: { $eq: wxUserId || "" },
+        startTime: {
+          $eq: dayjs()
+            .add(-1, "day")
+            .startOf("day")
+            .format("YYYY-MM-DD HH:mm:ss")
+        },
+        endTime: {
+          $eq: dayjs()
+            .endOf("day")
+            .format("YYYY-MM-DD HH:mm:ss")
+        }
+      })
+    );
 
-    return `/${alias}/orders/index?listSearchWhere=${listSearchWhere}`
+    return `/${alias}/orders/index?listSearchWhere=${listSearchWhere}`;
   }
-}
+};

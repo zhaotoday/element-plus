@@ -6,11 +6,8 @@
 
 <script>
 export default {
-  name: 'CListNavigation'
-}
+  name: "CListNavigation"
+};
 </script>
 
-<style
-  lang="scss"
-  src="./styles/index.scss">
-</style>
+<style lang="scss" src="./styles/index.scss"></style>

@@ -1,13 +1,13 @@
-import auth from '@/utils/auth'
+import auth from "@/utils/auth";
 
 export default {
-  path: 'login',
-  component: resolve => require(['@/views/login'], resolve),
-  beforeEnter (to, from, next) {
+  path: "login",
+  component: resolve => require(["@/views/login"], resolve),
+  beforeEnter(to, from, next) {
     if (auth.loggedIn()) {
-      next('/')
+      next("/");
     } else {
-      next()
+      next();
     }
   }
-}
+};

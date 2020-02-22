@@ -1,22 +1,17 @@
 <template>
-  <i
-    class="iconfont"
-    :class="'icon-' + type" />
+  <i class="iconfont" :class="'icon-' + type" />
 </template>
 
 <script>
 export default {
-  name: 'CIcon',
+  name: "CIcon",
   props: {
     type: {
       type: String,
-      default: ''
+      default: ""
     }
   }
-}
+};
 </script>
 
-<style
-  lang="scss"
-  src="./styles/index.scss">
-</style>
+<style lang="scss" src="./styles/index.scss"></style>

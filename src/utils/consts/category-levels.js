@@ -3,4 +3,4 @@ export default {
   products: 2,
   helpers: 1,
   activities: 1
-}
+};

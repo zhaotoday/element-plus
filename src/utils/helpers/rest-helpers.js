@@ -1,4 +1,4 @@
-import auth from '../auth'
+import auth from "../auth";
 
 /**
  * REST 辅助函数集合
@@ -9,42 +9,46 @@ export default {
    * 获取 Headers
    * @return {Object}
    */
-  getHeaders () {
+  getHeaders() {
     return {
-      Authorization: auth.get()['token']
-    }
+      Authorization: auth.get()["token"]
+    };
   },
 
   /**
    * 转字符串
    * @returns {string}
    */
-  whereToStr (obj) {
-    let ret = {}
-    let types = []
+  whereToStr(obj) {
+    let ret = {};
+    let types = [];
 
     Object.keys(obj).forEach(v => {
-      types = Object.keys(obj[v])
+      types = Object.keys(obj[v]);
 
       if (types.length) {
-        ret[v] = {}
+        ret[v] = {};
 
         types.forEach(type => {
-          if (obj[v][type] === undefined || obj[v][type] === '') {
-            delete ret[v]
-          } else if (type === '$like') {
-            ret[v][type] = `%${obj[v][type]}%`
+          if (obj[v][type] === undefined || obj[v][type] === "") {
+            delete ret[v];
+          } else if (type === "$like") {
+            ret[v][type] = `%${obj[v][type]}%`;
           } else {
-            ret[v] = obj[v]
+            ret[v] = obj[v];
           }
-        })
+        });
       } else {
-        if (typeof obj[v] !== 'object' && obj[v] !== undefined && obj[v] !== '') {
-          ret[v] = obj[v]
+        if (
+          typeof obj[v] !== "object" &&
+          obj[v] !== undefined &&
+          obj[v] !== ""
+        ) {
+          ret[v] = obj[v];
         }
       }
-    })
+    });
 
-    return JSON.stringify(ret)
+    return JSON.stringify(ret);
   }
-}
+};

@@ -8,7 +8,8 @@
       <DropdownItem
         v-for="item in options"
         :key="item.value"
-        :name="item.value">
+        :name="item.value"
+      >
         {{ item.label }}
       </DropdownItem>
     </DropdownMenu>
@@ -17,7 +18,7 @@
 
 <script>
 export default {
-  name: 'CDropdown',
+  name: "CDropdown",
   props: {
     width: {
       type: Number,
@@ -25,7 +26,7 @@ export default {
     },
     title: {
       type: String,
-      default: ''
+      default: ""
     },
     selected: {
       type: Object,
@@ -37,9 +38,9 @@ export default {
     }
   },
   methods: {
-    handleClickItem (name) {
-      this.$emit('click', name)
+    handleClickItem(name) {
+      this.$emit("click", name);
     }
   }
-}
+};
 </script>

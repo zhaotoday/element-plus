@@ -5,22 +5,24 @@
     filterable
     :multiple="multiple"
     :value.sync="value"
-    @on-change="change">
+    @on-change="change"
+  >
     <Option
       v-for="item in items"
       :key="item.id"
       :value="item.id"
-      :label="item.nickName">
+      :label="item.nickName"
+    >
       {{ item.nickName }}
     </Option>
   </Select>
 </template>
 
 <script>
-import Model from '@/models/admin/wx-users'
+import Model from "@/models/admin/wx-users";
 
 export default {
-  name: 'CWxUserSelect',
+  name: "CWxUserSelect",
   props: {
     value: {
       type: [String, Number],
@@ -31,28 +33,30 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       items: []
-    }
+    };
   },
-  async created () {
-    this.items = await this.getList()
+  async created() {
+    this.items = await this.getList();
   },
   methods: {
-    async getList () {
-      const { data: { items } } = await new Model().GET({
+    async getList() {
+      const {
+        data: { items }
+      } = await new Model().GET({
         query: {
           offset: 0,
           limit: 1000
         }
-      })
+      });
 
-      return items
+      return items;
     },
-    change (value) {
-      this.$emit('change', value)
+    change(value) {
+      this.$emit("change", value);
     }
   }
-}
+};
 </script>

@@ -1,16 +1,16 @@
-import Model from '@/models/admin/categories'
+import Model from "@/models/admin/categories";
 
 export default {
-  data () {
+  data() {
     return {
       allCategoriesList: {}
-    }
+    };
   },
-  async created () {
-    this.allCategoriesList = await this.getAllCategoriesList()
+  async created() {
+    this.allCategoriesList = await this.getAllCategoriesList();
   },
   methods: {
-    async getAllCategoriesList () {
+    async getAllCategoriesList() {
       const { data } = await new Model().GET({
         query: {
           offset: 0,
@@ -19,18 +19,18 @@ export default {
             // alias: this.alias || ''
           }
         }
-      })
+      });
 
-      return data
+      return data;
     },
-    getCategoryTitleById (id, hasParent = false) {
-      const item = this.$helpers.getItemById(this.allCategoriesList.items, id)
+    getCategoryTitleById(id, hasParent = false) {
+      const item = this.$helpers.getItemById(this.allCategoriesList.items, id);
 
       return item && item.name
         ? hasParent
           ? `${this.getCategoryTitleById(item.parentId)} - ${item.name}`
           : item.name
-        : ''
+        : "";
     }
   }
-}
+};

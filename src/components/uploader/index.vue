@@ -7,7 +7,8 @@
       :max-size="maxSize"
       :preview-icon="previewIcon"
       :format="format"
-      @change="handleUploaderChange" />
+      @change="handleUploaderChange"
+    />
     <CChildUploader
       key="1"
       v-if="hasDefaultFile && value"
@@ -16,7 +17,8 @@
       :max-size="maxSize"
       :preview-icon="previewIcon"
       :format="format"
-      @change="handleUploaderChange" />
+      @change="handleUploaderChange"
+    />
     <CChildUploader
       key="2"
       v-if="!hasDefaultFile"
@@ -24,18 +26,17 @@
       :max-size="maxSize"
       :preview-icon="previewIcon"
       :format="format"
-      @change="handleUploaderChange" />
-    <Input
-      :value="value"
-      style="display: none;" />
+      @change="handleUploaderChange"
+    />
+    <Input :value="value" style="display: none;" />
   </div>
 </template>
 
 <script>
-import CChildUploader from './components/uploader'
+import CChildUploader from "./components/uploader";
 
 export default {
-  name: 'CUploader',
+  name: "CUploader",
   components: {
     CChildUploader
   },
@@ -50,13 +51,13 @@ export default {
     },
     format: {
       type: Array,
-      default () {
-        return ['jpg', 'jpeg', 'png']
+      default() {
+        return ["jpg", "jpeg", "png"];
       }
     },
     previewIcon: {
       type: String,
-      default: ''
+      default: ""
     },
     maxSize: {
       type: Number,
@@ -64,12 +65,12 @@ export default {
     }
   },
   methods: {
-    handleUploaderChange (file) {
-      this.$emit('change', file)
+    handleUploaderChange(file) {
+      this.$emit("change", file);
     },
-    remove () {
-      this.$refs.uploader.remove()
+    remove() {
+      this.$refs.uploader.remove();
     }
   }
-}
+};
 </script>

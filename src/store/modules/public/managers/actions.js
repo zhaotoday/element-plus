@@ -1,7 +1,7 @@
-import Model from '@/models/public/managers'
+import Model from "@/models/public/managers";
 
 export default {
-  postAction ({ commit }, { query, body }) {
-    return new Model().addPath('actions').POST({ query, body })
+  postAction({ commit }, { query, body }) {
+    return new Model().addPath("actions").POST({ query, body });
   }
-}
+};

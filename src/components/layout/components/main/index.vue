@@ -7,17 +7,14 @@
   </div>
 </template>
 <script>
-import TheHeader from './components/header'
+import TheHeader from "./components/header";
 
 export default {
-  name: 'TheMain',
+  name: "TheMain",
   components: {
     TheHeader
   }
-}
+};
 </script>
 
-<style
-  lang="scss"
-  src="./styles/index.scss">
-</style>
+<style lang="scss" src="./styles/index.scss"></style>

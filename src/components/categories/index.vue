@@ -5,20 +5,23 @@
     clearable
     :multiple="multiple"
     :value.sync="value"
-    @on-change="change">
+    @on-change="change"
+  >
     <template v-for="item1 in items">
       <Option
         :key="item1.id"
         :value="item1.id"
         :label="item1.name"
-        :disabled="!selectParent">
+        :disabled="!selectParent"
+      >
         {{ item1.name }}
       </Option>
       <Option
         v-for="item2 in item1.children"
         :key="item2.id"
         :value="item2.id"
-        :label="item2.name">
+        :label="item2.name"
+      >
         &nbsp;&nbsp;&nbsp;&nbsp;{{ item2.name }}
       </Option>
     </template>
@@ -26,15 +29,15 @@
 </template>
 
 <script>
-import Model from '@/models/admin/categories'
-import arrayToTree from 'array-to-tree'
+import Model from "@/models/admin/categories";
+import arrayToTree from "array-to-tree";
 
 export default {
-  name: 'CCategories',
+  name: "CCategories",
   props: {
     alias: {
       type: String,
-      default: ''
+      default: ""
     },
     multiple: {
       type: Boolean,
@@ -49,28 +52,28 @@ export default {
       default: 0
     }
   },
-  data () {
+  data() {
     return {
       items: []
-    }
+    };
   },
-  async created () {
+  async created() {
     const getRes = await new Model().GET({
       query: {
         offset: 0,
         limit: 1000,
         where: { alias: this.alias }
       }
-    })
+    });
 
     this.items = arrayToTree(getRes.data.items, {
-      parentProperty: 'parentId'
-    })
+      parentProperty: "parentId"
+    });
   },
   methods: {
-    change (val) {
-      this.$emit('on-change', val)
+    change(val) {
+      this.$emit("on-change", val);
     }
   }
-}
+};
 </script>

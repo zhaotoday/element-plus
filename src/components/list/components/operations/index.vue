@@ -6,11 +6,8 @@
 
 <script>
 export default {
-  name: 'CListOperations'
-}
+  name: "CListOperations"
+};
 </script>
 
-<style
-  lang="scss"
-  src="./styles/index.scss">
-</style>
+<style lang="scss" src="./styles/index.scss"></style>

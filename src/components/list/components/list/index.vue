@@ -7,31 +7,33 @@
       border
       :columns="columns"
       :data="data"
-      @on-selection-change="handleSelectionChange" />
+      @on-selection-change="handleSelectionChange"
+    />
     <Page
       :total="total"
       :current="pageCurrent"
       :page-size="$consts.PAGE_SIZE"
       show-total
       show-elevator
-      @on-change="handlePageChange" />
+      @on-change="handlePageChange"
+    />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CList',
+  name: "CList",
   props: {
     columns: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     },
     data: {
       type: Array,
-      default () {
-        return []
+      default() {
+        return [];
       }
     },
     total: {
@@ -44,16 +46,16 @@ export default {
     },
     searchWhere: {
       type: Object,
-      default () {
-        return {}
+      default() {
+        return {};
       }
     }
   },
   methods: {
-    handleSelectionChange (selection) {
-      this.$emit('selection-change', selection)
+    handleSelectionChange(selection) {
+      this.$emit("selection-change", selection);
     },
-    handlePageChange (current) {
+    handlePageChange(current) {
       this.$router.push({
         query: Object.assign(
           { listPageCurrent: current },
@@ -61,8 +63,8 @@ export default {
             ? { listSearchWhere: JSON.stringify(this.searchWhere) }
             : null
         )
-      })
+      });
     }
   }
-}
+};
 </script>
