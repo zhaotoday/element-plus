@@ -25,6 +25,7 @@ export default new Vuex.Store({
   mutations,
   modules: {
     "public/managers": require("./modules/public/managers").default,
+    "public/dicts": require("./modules/public/dicts").default,
     categories: require("./modules/admin/categories").default,
     wxUsers: require("./modules/admin/wx-users").default,
     managers: require("./modules/admin/managers").default

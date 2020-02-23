@@ -6,6 +6,6 @@ export default class extends REST {
     super();
 
     this.baseURL = consts.PUBLIC_API_URL;
-    this.path = "managers";
+    this.path = "dicts";
   }
 }
