@@ -4,8 +4,8 @@
       :data="list.items"
       :columns="cList.columns"
       :total="list.total"
-      :pageCurrent="listPageCurrent"
-      :searchWhere="listSearchWhere"
+      :page-current="listPageCurrent"
+      :search-where="listSearchWhere"
       @selection-change="handleListSelectionChange"
     >
       <c-list-header>
