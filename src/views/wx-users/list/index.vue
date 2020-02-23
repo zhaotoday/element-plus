@@ -1,14 +1,14 @@
 <template>
   <div class="p-wx-user">
-    <CList
+    <c-list
       :data="list.items"
       :columns="cList.columns"
       :total="list.total"
-      :pageCurrent="listPageCurrent"
-      :searchWhere="listSearchWhere"
+      :page-current="listPageCurrent"
+      :search-where="listSearchWhere"
     >
-      <CListHeader>
-        <CListSearch>
+      <c-list-header>
+        <c-list-search>
           <Form inline @submit.native.prevent="search">
             <Form-item prop="nickName">
               <Input
@@ -37,13 +37,15 @@
               </Button>
             </FormItem>
           </Form>
-        </CListSearch>
-      </CListHeader>
-    </CList>
+        </c-list-search>
+      </c-list-header>
+    </c-list>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import { mapState } from "vuex";
 import routeParamsMixin from "@/mixins/route-params";
 import listMixin from "@/mixins/list";
@@ -60,8 +62,13 @@ const initWhere = {
   }
 };
 
-export default {
+@Component({
   mixins: [routeParamsMixin, listMixin],
+  computed: mapState({
+    list: state => state[module].list
+  })
+})
+export default class WxUsersList extends Vue {
   data() {
     const { LIST_COLUMN_WIDTHS, GENDERS } = this.$consts;
 
@@ -146,81 +153,79 @@ export default {
         modal: false
       }
     };
-  },
-  computed: mapState({
-    list: state => state[module].list
-  }),
+  }
+
   async beforeRouteUpdate(to, from, next) {
     this.initSearchWhere(initWhere);
     this.getList();
     next();
-  },
+  }
+
   async created() {
     this.initSearchWhere(initWhere);
     this.getList();
-  },
-  methods: {
-    getList() {
-      return this.$store.dispatch(`${module}/getList`, {
-        query: {
-          offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
-          limit: this.$consts.PAGE_SIZE,
-          where: this.listSearchWhere
-        }
-      });
-    },
-    async getExportWxUsersListItems() {
-      this.search();
-
-      const {
-        data: { items }
-      } = await new WxUsersModel().GET({
-        query: {
-          where: this.listSearchWhere,
-          offset: 0,
-          limit: 10000
-        }
-      });
-
-      return items;
-    },
-    async exportXLSX() {
-      const items = await this.getExportWxUsersListItems();
-
-      xlsx.download({
-        fileName: `微信用户（${this.$time.getDate()}）`,
-        data: (() => {
-          const columns = this.cList.columns;
-          const columnKeys = this.cList.columns.map(item => item.key);
-
-          return items.map(item => {
-            let ret = {};
-
-            Object.keys(item).forEach(key => {
-              const index = columnKeys.findIndex(
-                columnKey => columnKey === key
-              );
-
-              if (index !== -1) {
-                switch (key) {
-                  case "gender":
-                    ret[columns[index].title] =
-                      this.$consts.GENDERS[item[key]] || "未知";
-                    break;
-                  default:
-                    ret[columns[index].title] = item[key];
-                    break;
-                }
-              }
-            });
-
-            return ret;
-          });
-        })()
-      });
-    }
   }
-};
+
+  getList() {
+    return this.$store.dispatch(`${module}/getList`, {
+      query: {
+        offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
+        limit: this.$consts.PAGE_SIZE,
+        where: this.listSearchWhere
+      }
+    });
+  }
+
+  async getExportWxUsersListItems() {
+    this.search();
+
+    const {
+      data: { items }
+    } = await new WxUsersModel().GET({
+      query: {
+        where: this.listSearchWhere,
+        offset: 0,
+        limit: 10000
+      }
+    });
+
+    return items;
+  }
+
+  async exportXLSX() {
+    const items = await this.getExportWxUsersListItems();
+
+    xlsx.download({
+      fileName: `微信用户（${this.$time.getDate()}）`,
+      data: (() => {
+        const columns = this.cList.columns;
+        const columnKeys = this.cList.columns.map(item => item.key);
+
+        return items.map(item => {
+          let ret = {};
+
+          Object.keys(item).forEach(key => {
+            const index = columnKeys.findIndex(columnKey => columnKey === key);
+
+            if (index !== -1) {
+              switch (key) {
+                case "gender":
+                  ret[columns[index].title] =
+                    this.$consts.GENDERS[item[key]] || "未知";
+                  break;
+                default:
+                  ret[columns[index].title] = item[key];
+                  break;
+              }
+            }
+          });
+
+          return ret;
+        });
+      })()
+    });
+  }
+}
 </script>
 
-<style lang="scss" src="./styles/index.scss"></style>
+<style lang="scss" src="./style.scss"></style>
