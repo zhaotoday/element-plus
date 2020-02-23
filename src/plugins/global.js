@@ -3,6 +3,7 @@ import consts from "../utils/consts";
 import helpers from "../utils/helpers/base";
 import auth from "../utils/auth";
 import globalMixin from "../mixins/global";
+import dictsMixin from "../mixins/dicts";
 import List, {
   ListHeader,
   ListOperations,
@@ -30,6 +31,7 @@ export default {
     Vue.filter("itemById", (items, id) => helpers.getItemById(items, id));
 
     Vue.mixin(globalMixin);
+    Vue.mixin(dictsMixin);
 
     Vue.component("c-list", List);
     Vue.component("c-list-header", ListHeader);
