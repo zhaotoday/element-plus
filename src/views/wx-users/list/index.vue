@@ -70,7 +70,7 @@ const initWhere = {
 })
 export default class WxUsersList extends Vue {
   data() {
-    const { LIST_COLUMN_WIDTHS, GENDERS } = this.$consts;
+    const { LIST_COLUMN_WIDTHS } = this.$consts;
 
     return {
       cList: {
@@ -79,10 +79,10 @@ export default class WxUsersList extends Vue {
             title: "图片",
             key: "picture",
             width: 120,
-            render: (h, params) => {
+            render: (h, { row }) => {
               return h("img", {
                 attrs: {
-                  src: params.row.avatarUrl,
+                  src: row.avatarUrl,
                   class: "pb-picture"
                 }
               });
@@ -102,7 +102,12 @@ export default class WxUsersList extends Vue {
             title: "性别",
             key: "gender",
             width: 65,
-            render: (h, params) => h("span", null, GENDERS[params.row.gender])
+            render: (h, { row }) =>
+              h(
+                "span",
+                null,
+                this.$helpers.getItem(this.dicts.Gender, "value", row.gender)
+              )
           },
           {
             title: "国家",
@@ -123,7 +128,7 @@ export default class WxUsersList extends Vue {
             title: "操作",
             key: "action",
             width: 130,
-            render: (h, params) =>
+            render: (h, { row }) =>
               h("div", [
                 h(
                   "Button",
@@ -133,7 +138,7 @@ export default class WxUsersList extends Vue {
                         this.$router.push(
                           this.$helpers.getOrderRoute({
                             alias: "wxUsers",
-                            wxUserId: params.row.id
+                            wxUserId: row.id
                           })
                         );
                       }
@@ -182,11 +187,7 @@ export default class WxUsersList extends Vue {
     const {
       data: { items }
     } = await new WxUsersModel().GET({
-      query: {
-        where: this.listSearchWhere,
-        offset: 0,
-        limit: 10000
-      }
+      query: { where: this.listSearchWhere }
     });
 
     return items;
@@ -210,8 +211,11 @@ export default class WxUsersList extends Vue {
             if (index !== -1) {
               switch (key) {
                 case "gender":
-                  ret[columns[index].title] =
-                    this.$consts.GENDERS[item[key]] || "未知";
+                  ret[columns[index].title] = this.$helpers.getItem(
+                    this.dicts.Gender,
+                    "value",
+                    item[key]
+                  );
                   break;
                 default:
                   ret[columns[index].title] = item[key];
