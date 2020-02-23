@@ -123,30 +123,6 @@ export default class WxUsersList extends Vue {
             title: "城市",
             key: "city",
             width: 100
-          },
-          {
-            title: "操作",
-            key: "action",
-            width: 130,
-            render: (h, { row }) =>
-              h("div", [
-                h(
-                  "Button",
-                  {
-                    on: {
-                      click: () => {
-                        this.$router.push(
-                          this.$helpers.getOrderRoute({
-                            alias: "wxUsers",
-                            wxUserId: row.id
-                          })
-                        );
-                      }
-                    }
-                  },
-                  "查看订单"
-                )
-              ])
           }
         ],
         cSearch: {
