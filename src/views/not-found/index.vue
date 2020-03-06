@@ -1,5 +1,5 @@
 <template>
-  <div>not found</div>
+  <div class="p-not-found">not found</div>
 </template>
 
 <script>

@@ -1,7 +1,11 @@
 <template>
-  <router-view />
+  <router-view></router-view>
 </template>
 
 <script>
-export default {};
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+
+@Component
+export default class WxUsers extends Vue {}
 </script>

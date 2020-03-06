@@ -1,5 +1,5 @@
 <template>
-  <div>unauthorized</div>
+  <div class="p-unauthorized">unauthorized</div>
 </template>
 
 <script>

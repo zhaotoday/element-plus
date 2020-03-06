@@ -1,5 +1,5 @@
 <template>
-  <div>欢迎使用管理后台。</div>
+  <div class="p-home">欢迎使用管理后台。</div>
 </template>
 
 <script>
