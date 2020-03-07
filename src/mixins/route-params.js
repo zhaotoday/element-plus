@@ -4,7 +4,6 @@ import { Component } from "vue-property-decorator";
 @Component
 export default class RouteParamsMixin extends Vue {
   alias = "";
-
   id = 0;
 
   async beforeRouteUpdate(to, from, next) {
