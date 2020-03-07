@@ -1,6 +1,6 @@
 import time from "jt-time";
 import consts from "../utils/consts";
-import helpers from "../utils/helpers/base";
+import helpers from "../utils/helpers";
 import auth from "../utils/auth";
 import globalMixin from "../mixins/global";
 import dictsMixin from "../mixins/dicts";
