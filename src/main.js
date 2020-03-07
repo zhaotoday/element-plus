@@ -5,9 +5,9 @@ import router from "./router";
 import store from "./store";
 
 import ViewUI from "view-design";
-import globalPlugin from "@/plugins/global";
-import "@/utils/init";
-import "@/utils/styles";
+import globalPlugin from "./plugins/global";
+import "./utils/init";
+import "./utils/styles";
 
 Vue.config.productionTip = false;
 
