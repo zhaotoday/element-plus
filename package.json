@@ -12,7 +12,7 @@
     "core-js": "^3.6.4",
     "jt-env": "0.0.2",
     "jt-helpers": "0.0.6",
-    "jt-rest": "0.0.8",
+    "jt-rest": "0.0.12",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.7",
     "sass-utils": "^1.0.23",

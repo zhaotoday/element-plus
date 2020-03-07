@@ -69,12 +69,12 @@ export default class extends REST {
           showLoading && ViewUI.Spin.hide();
           resolve(res.data);
         })
-        .catch(res => {
+        .catch(({ response: res }) => {
           showLoading && ViewUI.Spin.hide();
 
-          if (res.statusCode === 500) {
+          if (res.status === 500) {
             showError && ViewUI.Message.error("服务器出错");
-          } else if (res.statusCode === 401) {
+          } else if (res.status === 401) {
             ViewUI.Message.error("登入过期，请重新登入");
             window.location.href = "index.html#/logout";
           } else {
