@@ -119,8 +119,7 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { Component, Watch } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import { mapState } from "vuex";
 import routeParamsMixin from "@/mixins/route-params";
 import listMixin from "@/mixins/list";

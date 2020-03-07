@@ -44,8 +44,7 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import { mapState } from "vuex";
 import routeParamsMixin from "@/mixins/route-params";
 import listMixin from "@/mixins/list";

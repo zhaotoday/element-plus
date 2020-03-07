@@ -1,5 +1,4 @@
-import Vue from "vue";
-import { Component, Watch } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 
 @Component
 export default class FormMixin extends Vue {

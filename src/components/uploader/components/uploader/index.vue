@@ -34,8 +34,7 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import consts from "@/utils/consts";
 import helpers from "@/utils/helpers/base";
 import restHelpers from "@/utils/helpers/rest-helpers";
