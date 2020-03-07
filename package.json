@@ -10,7 +10,6 @@
   "dependencies": {
     "array-to-tree": "^3.3.2",
     "core-js": "^3.6.4",
-    "dayjs": "^1.8.20",
     "jt-env": "0.0.2",
     "jt-helpers": "0.0.6",
     "jt-rest": "0.0.8",
