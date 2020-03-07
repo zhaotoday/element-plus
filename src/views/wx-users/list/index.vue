@@ -127,10 +127,6 @@ export default class WxUsersList extends Vue {
         cSearch: {
           where: this.$helpers.deepCopy(initWhere)
         }
-      },
-      cDel: {
-        id: 0,
-        modal: false
       }
     };
   }

@@ -175,11 +175,11 @@ export default class CategoriesList extends Vue {
             title: "图标",
             key: "icon",
             width: 120,
-            render: (h, params) => {
-              return params.row.icon
+            render: (h, { row }) => {
+              return row.icon
                 ? h("img", {
                     attrs: {
-                      src: this.$helpers.getFileURLById(params.row.iconId),
+                      src: this.$helpers.getFileURLById(row.iconId),
                       class: "pb-picture"
                     }
                   })
