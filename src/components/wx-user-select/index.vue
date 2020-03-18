@@ -44,12 +44,7 @@ export default class WxUserSelect extends Vue {
   async getList() {
     const {
       data: { items }
-    } = await new Model().GET({
-      query: {
-        offset: 0,
-        limit: 1000
-      }
-    });
+    } = await new Model().GET({ query: {} });
 
     return items;
   }

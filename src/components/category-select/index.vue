@@ -59,8 +59,6 @@ export default class CategorySelect extends Vue {
   async created() {
     const getRes = await new Model().GET({
       query: {
-        offset: 0,
-        limit: 1000,
         where: { alias: this.alias }
       }
     });
@@ -71,7 +69,7 @@ export default class CategorySelect extends Vue {
   }
 
   change(val) {
-    this.$emit("on-change", val);
+    this.$emit("change", val);
   }
 }
 </script>
