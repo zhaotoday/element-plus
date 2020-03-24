@@ -79,7 +79,7 @@
             v-model="cForm.model.icon"
             @change="
               value => {
-                handleUploaderChange('icon', value);
+                handleFormUploaderChange('icon', value);
               }
             "
           />
@@ -90,7 +90,7 @@
             v-model="cForm.model.banner"
             @change="
               value => {
-                handleUploaderChange('banner', value);
+                handleFormUploaderChange('banner', value);
               }
             "
           />
@@ -263,7 +263,7 @@ export default class CategoriesList extends Vue {
 
   @Watch("cForm.modal")
   onFormModalChange(newVal) {
-    !newVal && this.resetFields();
+    !newVal && this.resetFormFields();
   }
 
   async beforeRouteUpdate(to, from, next) {
@@ -341,7 +341,7 @@ export default class CategoriesList extends Vue {
 
     if (detail.id) {
       this.cForm.id = detail.id;
-      this.initFields(detail);
+      this.initFormFields(detail);
     } else {
       this.cForm.id = 0;
     }
