@@ -1,0 +1,13 @@
+@import "../../styles/utils/index";
+
+@include c(editor) {
+  @include e(editor-toolbar) {
+    border: 1px solid #e8eaec;
+    border-bottom: 0;
+  }
+
+  @include e(editor-text) {
+    border: 1px solid #e8eaec;
+    height: 600px;
+  }
+}
