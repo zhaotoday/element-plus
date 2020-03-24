@@ -397,7 +397,7 @@ export default class CategoriesList extends Vue {
         this.getList();
       }
 
-      this.fixFormButtonLoading("cForm");
+      this.fixFormButtonLoading();
     });
   }
 }
