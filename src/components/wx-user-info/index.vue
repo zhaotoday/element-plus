@@ -1,19 +1,16 @@
 <template>
   <span class="c-wx-user-info">
-    {{
-      (detail.name ? detail.name : "") +
-        (detail.phoneNumber ? `（${detail.phoneNumber}）` : "")
-    }}
+    {{ detail.nickName }}
   </span>
 </template>
 
 <script>
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Watch } from "vue-property-decorator";
 import WxUsersModel from "@/models/admin/wx-users";
 
 @Component({
   props: {
-    id: {
+    pk: {
       type: Number,
       default: 0
     }
@@ -22,12 +19,13 @@ import WxUsersModel from "@/models/admin/wx-users";
 export default class WxUserInfo extends Vue {
   detail = {};
 
-  created() {
-    this.getDetail();
+  @Watch("pk", { deep: true, immediate: true })
+  onPkChange(newVal) {
+    newVal && this.getDetail();
   }
 
   async getDetail() {
-    const { data } = await new WxUsersModel().GET({ id: this.id });
+    const { data } = await new WxUsersModel().GET({ id: this.pk });
     this.detail = data;
   }
 }
