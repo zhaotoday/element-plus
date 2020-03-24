@@ -50,6 +50,8 @@
       width="496"
       v-model="cForm.modal"
       :title="cForm.id ? '编辑' : '新增'"
+      :loading="cForm.loading"
+      @on-ok="submit"
     >
       <Form
         ref="form"
@@ -246,6 +248,7 @@ export default class CategoriesList extends Vue {
         id: 0,
         modal: false,
         model: {},
+        loading: true,
         rules: {
           name: [
             {
@@ -393,6 +396,8 @@ export default class CategoriesList extends Vue {
           });
         this.getList();
       }
+
+      this.fixFormButtonLoading("cForm");
     });
   }
 }
