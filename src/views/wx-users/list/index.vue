@@ -132,13 +132,13 @@ export default class WxUsersList extends Vue {
   }
 
   async beforeRouteUpdate(to, from, next) {
-    this.initSearchWhere(initWhere);
+    this.initListSearchWhere(initWhere);
     this.getList();
     next();
   }
 
   async created() {
-    this.initSearchWhere(initWhere);
+    this.initListSearchWhere(initWhere);
     this.getList();
   }
 

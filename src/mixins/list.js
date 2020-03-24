@@ -30,7 +30,7 @@ export default class ListMixin extends Vue {
     this.listSelectedItems = selection;
   }
 
-  initSearchWhere(initWhere) {
+  initListSearchWhere(initWhere) {
     this.cList.cSearch.where = this.listSearchWhere
       ? this.$helpers.deepCopy(this.listSearchWhere)
       : this.$helpers.deepCopy(initWhere);
@@ -51,7 +51,7 @@ export default class ListMixin extends Vue {
     });
   }
 
-  async resetSearch(initWhere) {
+  async resetListSearch(initWhere) {
     this.$router.push({
       query: {
         listPageCurrent: 1,

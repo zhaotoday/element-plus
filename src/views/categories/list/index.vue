@@ -267,7 +267,7 @@ export default class CategoriesList extends Vue {
   }
 
   async beforeRouteUpdate(to, from, next) {
-    this.initSearchWhere(initWhere);
+    this.initListSearchWhere(initWhere);
     this.getList();
     this.getParentDetail();
     next();
@@ -275,7 +275,7 @@ export default class CategoriesList extends Vue {
 
   async created() {
     this.$store.dispatch(`${module}/resetList`);
-    this.initSearchWhere(initWhere);
+    this.initListSearchWhere(initWhere);
     this.getList();
     this.getParentDetail();
   }
@@ -390,7 +390,7 @@ export default class CategoriesList extends Vue {
         this.cForm.modal = false;
         this.$Message.success((this.cForm.id ? "编辑" : "新增") + "成功！");
         !this.cForm.id &&
-          this.resetSearch({
+          this.resetListSearch({
             ...initWhere,
             parentIds: this.isParent ? this.listSearchWhere.parentIds : [0]
           });
