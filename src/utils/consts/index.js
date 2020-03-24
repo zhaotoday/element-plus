@@ -5,7 +5,7 @@ import CATEGORY_LEVELS from "./category-levels";
 import LIST_COLUMN_WIDTHS from "./list-column-widths";
 
 // 基础地址
-const BASE_URL = env.isDev()
+const BASE_URL = !env.isDev()
   ? "http://localhost:3000"
   : "https://hhx-api.liruan.cn";
 

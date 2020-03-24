@@ -46,8 +46,8 @@
 <script>
 import { Vue, Component } from "vue-property-decorator";
 import { mapState } from "vuex";
-import routeParamsMixin from "@/mixins/route-params";
-import listMixin from "@/mixins/list";
+import RouteParamsMixin from "@/mixins/route-params";
+import ListMixin from "@/mixins/list";
 import xlsx from "@/utils/xlsx";
 import WxUsersModel from "@/models/admin/wx-users";
 
@@ -62,7 +62,7 @@ const initWhere = {
 };
 
 @Component({
-  mixins: [routeParamsMixin, listMixin],
+  mixins: [RouteParamsMixin, ListMixin],
   computed: mapState({
     list: state => state[module].list
   })

@@ -2,8 +2,8 @@ import time from "jt-time";
 import consts from "../utils/consts";
 import helpers from "../utils/helpers";
 import auth from "../utils/auth";
-import globalMixin from "../mixins/global";
-import dictsMixin from "../mixins/dicts";
+import GlobalMixin from "../mixins/global";
+import DictsMixin from "../mixins/dicts";
 import List, {
   ListHeader,
   ListOperations,
@@ -30,8 +30,8 @@ export default {
     Vue.filter("date", val => time.getDate(val));
     Vue.filter("itemById", (items, id) => helpers.getItemById(items, id));
 
-    Vue.mixin(globalMixin);
-    Vue.mixin(dictsMixin);
+    Vue.mixin(GlobalMixin);
+    Vue.mixin(DictsMixin);
 
     Vue.component("c-list", List);
     Vue.component("c-list-header", ListHeader);

@@ -106,14 +106,6 @@
           </Row>
         </Form-item>
       </Form>
-      <div slot="footer">
-        <Button type="text" size="large" @click="cForm.modal = false">
-          取消
-        </Button>
-        <Button type="primary" size="large" @click="submit">
-          确定
-        </Button>
-      </div>
     </Modal>
   </div>
 </template>
@@ -121,9 +113,9 @@
 <script>
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { mapState } from "vuex";
-import routeParamsMixin from "@/mixins/route-params";
-import listMixin from "@/mixins/list";
-import formMixin from "@/mixins/form";
+import RouteParamsMixin from "@/mixins/route-params";
+import ListMixin from "@/mixins/list";
+import FormMixin from "@/mixins/form";
 
 const module = "categories";
 const initWhere = {
@@ -134,7 +126,7 @@ const initWhere = {
 };
 
 @Component({
-  mixins: [routeParamsMixin, listMixin, formMixin],
+  mixins: [RouteParamsMixin, ListMixin, FormMixin],
   computed: {
     ...mapState({
       list: state => state[module].list,
