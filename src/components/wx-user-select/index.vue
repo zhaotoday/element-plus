@@ -1,6 +1,6 @@
 <template>
   <Select
-    placeholder="请选择用户"
+    placeholder="请选择微信用户"
     clearable
     filterable
     :multiple="multiple"
