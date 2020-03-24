@@ -1,7 +1,7 @@
 import { Vue, Component } from "vue-property-decorator";
 
 @Component
-export default class List extends Vue {
+export default class ListMixin extends Vue {
   listSelectedItems = [];
   listPageCurrent = 1;
   listSearchWhere = {};

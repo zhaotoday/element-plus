@@ -7,28 +7,28 @@ export default class FormMixin extends Vue {
     this.$set(this.cForm, "model", newVal);
   }
 
-  resetFields(data = {}) {
-    this.$refs.form.resetFields();
-    this.$set(this.cForm, "model", this.$helpers.deepCopy(data));
-  }
-
-  initFields(data = {}) {
-    this.$set(this.cForm, "model", this.$helpers.deepCopy(data));
-  }
-
   getDetail(module, id) {
     return this.$store.dispatch(`${module}/getDetail`, { id });
   }
 
-  handleDatePickerChange(key, value) {
+  initFormFields(data = {}) {
+    this.$set(this.cForm, "model", this.$helpers.deepCopy(data));
+  }
+
+  resetFormFields(data = {}) {
+    this.$refs.form.resetFields();
+    this.$set(this.cForm, "model", this.$helpers.deepCopy(data));
+  }
+
+  handleFormDatePickerChange(key, value) {
     this.$set(this.cForm.model, key, value);
   }
 
-  handleUploaderChange(key, value) {
+  handleFormUploaderChange(key, value) {
     this.$set(this.cForm.model, key, value ? value.id : "");
   }
 
-  handleEditorChange(key, value) {
+  handleFormEditorChange(key, value) {
     this.$set(this.cForm.model, key, value);
   }
 
