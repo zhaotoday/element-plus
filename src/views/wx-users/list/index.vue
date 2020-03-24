@@ -105,7 +105,9 @@ export default class WxUsersList extends Vue {
               h(
                 "span",
                 null,
-                this.$helpers.getItem(this.dicts.Gender, "value", row.gender)
+                this.$helpers.getItem(this.dicts.Gender, "value", row.gender)[
+                  "label"
+                ]
               )
           },
           {
