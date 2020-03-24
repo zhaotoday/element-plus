@@ -27,7 +27,7 @@
               <Input
                 type="text"
                 placeholder="请输入名称"
-                v-model="cList.cSearch.where.name.$like"
+                v-model.trim="cList.cSearch.where.name.$like"
                 style="width: 190px;"
               />
             </Form-item>
@@ -69,7 +69,7 @@
         <Form-item label="名称" prop="name">
           <Row>
             <Col span="20">
-              <Input v-model="cForm.model.name" placeholder="请输入名称" />
+              <Input v-model.trim="cForm.model.name" placeholder="请输入名称" />
             </Col>
           </Row>
         </Form-item>
@@ -99,7 +99,7 @@
           <Row>
             <Col span="20">
               <Input
-                v-model="cForm.model.description"
+                v-model.trim="cForm.model.description"
                 type="textarea"
                 :rows="3"
                 placeholder="请输入描述"

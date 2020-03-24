@@ -14,7 +14,7 @@
               <Input
                 type="text"
                 placeholder="请输入昵称"
-                v-model="cList.cSearch.where.nickName.$like"
+                v-model.trim="cList.cSearch.where.nickName.$like"
                 style="width: 190px;"
               />
             </Form-item>
@@ -22,7 +22,7 @@
               <Input
                 type="text"
                 placeholder="请输入手机号"
-                v-model="cList.cSearch.where.phoneNumber.$like"
+                v-model.trim="cList.cSearch.where.phoneNumber.$like"
                 style="width: 190px;"
               />
             </Form-item>
