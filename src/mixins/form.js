@@ -31,4 +31,16 @@ export default class FormMixin extends Vue {
   handleEditorChange(key, value) {
     this.$set(this.cForm.model, key, value);
   }
+
+  fixFormButtonLoading(form) {
+    this[form].loading = false;
+
+    const messageChannel = new MessageChannel();
+    const port = messageChannel.port2;
+
+    messageChannel.port1.onmessage = () => {
+      this[form].loading = true;
+    };
+    port.postMessage(1);
+  }
 }
