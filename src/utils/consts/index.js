@@ -6,7 +6,7 @@ import LIST_COLUMN_WIDTHS from "./list-column-widths";
 
 // 基础地址
 const BASE_URL = env.isDev()
-  ? "http://localhost:"
+  ? "http://localhost:3000"
   : "https://hhx-api.liruan.cn";
 
 // 接口地址

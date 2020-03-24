@@ -69,7 +69,7 @@ export default class ListMixin extends Vue {
     });
   }
 
-  goPrevPage() {
+  goListPrevPage() {
     if (this.listPageCurrent !== 1) {
       this.$router.push({
         query: {

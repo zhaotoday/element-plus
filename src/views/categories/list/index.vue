@@ -352,7 +352,7 @@ export default class CategoriesList extends Vue {
     this.$Message.success("删除成功！");
 
     const getListRes = await this.getList();
-    !getListRes.items.length && this.goPrevPage();
+    !getListRes.items.length && this.goListPrevPage();
   }
 
   async sort(id, value) {
