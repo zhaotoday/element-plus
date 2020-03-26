@@ -53,6 +53,7 @@
       @on-ok="submit"
     >
       <Form
+        class="c-form c-form--sm"
         ref="form"
         :model="cForm.model"
         :rules="cForm.rules"
@@ -63,14 +64,14 @@
         </Form-item>
         <Form-item label="名称" prop="name">
           <Input
-            class="c-model__input"
+            class="c-form__input"
             v-model.trim="cForm.model.name"
             placeholder="请输入名称"
           />
         </Form-item>
         <Form-item label="图标" prop="iconId">
           <c-uploader
-            class="c-model__input"
+            class="c-form__input"
             :key="cForm.id"
             :has-default-file="!!cForm.model.iconId"
             v-model="cForm.model.iconId"
@@ -83,7 +84,7 @@
         </Form-item>
         <Form-item label="Banner" prop="bannerId">
           <c-uploader
-            class="c-model__input"
+            class="c-form__input"
             :key="cForm.id"
             :has-default-file="!!cForm.model.bannerId"
             v-model="cForm.model.bannerId"
@@ -96,7 +97,7 @@
         </Form-item>
         <Form-item label="描述" prop="description">
           <Input
-            class="c-model__input"
+            class="c-form__input"
             v-model.trim="cForm.model.description"
             type="textarea"
             :rows="3"

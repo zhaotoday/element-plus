@@ -7,6 +7,7 @@
     @on-ok="submit"
   >
     <Form
+      class="c-form c-form--sm"
       ref="form"
       :model="cForm.model"
       :rules="cForm.rules"
@@ -14,21 +15,21 @@
     >
       <Form-item label="标题" prop="title">
         <Input
-          class="c-model__input"
+          class="c-form__input"
           v-model.trim="cForm.model.title"
           placeholder="请输入标题"
         />
       </Form-item>
       <Form-item label="链接" prop="link">
         <Input
-          class="c-model__input"
+          class="c-form__input"
           v-model.trim="cForm.model.link"
           placeholder="请输入链接"
         />
       </Form-item>
       <Form-item label="图片" prop="pictureId">
         <c-uploader
-          class="c-model__input"
+          class="c-form__input"
           :key="cForm.id"
           :has-default-file="!!cForm.model.pictureId"
           v-model="cForm.model.pictureId"
@@ -40,7 +41,7 @@
         />
       </Form-item>
       <Form-item label="状态" prop="status">
-        <Select class="c-model__input" v-model.trim="cForm.model.status">
+        <Select class="c-form__input" v-model.trim="cForm.model.status">
           <Option
             v-for="item in dicts.Status"
             :key="item.value"
