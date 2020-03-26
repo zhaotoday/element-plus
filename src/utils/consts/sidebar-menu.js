@@ -5,6 +5,10 @@ export default [
     title: "商品",
     children: [
       {
+        title: "商品",
+        route: "/products/products/list"
+      },
+      {
         title: "商品分类",
         route: "/products/products/categories"
       }
@@ -24,10 +28,10 @@ export default [
   {
     icon: "md-person",
     name: "wxUsers",
-    title: "用户",
+    title: "微信用户",
     children: [
       {
-        title: "用户",
+        title: "微信用户",
         route: "/wxUsers/wxUsers/index"
       }
     ]

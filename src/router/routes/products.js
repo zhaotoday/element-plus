@@ -5,6 +5,14 @@ export default {
     {
       path: "categories",
       component: resolve => require(["@/views/categories/list"], resolve)
+    },
+    {
+      path: "list",
+      component: resolve => require(["@/views/products/list"], resolve)
+    },
+    {
+      path: "list/form/:id?",
+      component: resolve => require(["@/views/products/form"], resolve)
     }
   ]
 };

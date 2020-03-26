@@ -2,4 +2,8 @@
 
 @include c(form) {
   width: 1000px;
+
+  @include e(input) {
+    width: 400px !important;
+  }
 }

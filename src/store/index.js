@@ -29,6 +29,7 @@ export default new Vuex.Store({
     categories: require("./modules/admin/categories").default,
     wxUsers: require("./modules/admin/wx-users").default,
     managers: require("./modules/admin/managers").default,
-    ads: require("./modules/admin/ads").default
+    ads: require("./modules/admin/ads").default,
+    products: require("./modules/admin/products").default
   }
 });
