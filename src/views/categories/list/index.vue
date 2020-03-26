@@ -25,10 +25,9 @@
           <Form inline @submit.native.prevent="search">
             <Form-item prop="name">
               <Input
-                type="text"
                 placeholder="请输入名称"
                 v-model.trim="cList.cSearch.where.name.$like"
-                style="width: 190px;"
+                style="width: 200px;"
               />
             </Form-item>
             <Form-item>
@@ -73,24 +72,26 @@
             </Col>
           </Row>
         </Form-item>
-        <Form-item label="图标" prop="icon">
+        <Form-item label="图标" prop="iconId">
           <c-uploader
-            :has-default-file="!!cForm.model.icon"
-            v-model="cForm.model.icon"
+            :key="cForm.id"
+            :has-default-file="!!cForm.model.iconId"
+            v-model="cForm.model.iconId"
             @change="
               value => {
-                handleFormUploaderChange('icon', value);
+                handleFormUploaderChange('iconId', value);
               }
             "
           />
         </Form-item>
-        <Form-item label="Banner" prop="banner">
+        <Form-item label="Banner" prop="bannerId">
           <c-uploader
-            :has-default-file="!!cForm.model.banner"
-            v-model="cForm.model.banner"
+            :key="cForm.id"
+            :has-default-file="!!cForm.model.bannerId"
+            v-model="cForm.model.bannerId"
             @change="
               value => {
-                handleFormUploaderChange('banner', value);
+                handleFormUploaderChange('bannerId', value);
               }
             "
           />
@@ -150,7 +151,7 @@ const initWhere = {
 })
 export default class CategoriesList extends Vue {
   data() {
-    const { ListColumnWidth, ORDER_ACTIONS, CategoryLevel } = this.$consts;
+    const { ListColumnWidth, OrderAction, CategoryLevel } = this.$consts;
 
     const getLevels = () => {
       return CategoryLevel[this.$route.params.alias];
@@ -162,22 +163,19 @@ export default class CategoriesList extends Vue {
         columns: [
           {
             type: "selection",
-            width: 60,
-            align: "center"
+            width: 60
           },
           {
             title: "图标",
-            key: "icon",
-            width: 120,
+            width: 138,
             render: (h, { row }) => {
-              return row.icon
-                ? h("img", {
-                    attrs: {
-                      src: this.$helpers.getFileUrlById(row.iconId),
-                      class: "pb-picture"
+              return row.iconId
+                ? h("c-list-image", {
+                    props: {
+                      src: this.$helpers.getFileUrlById(row.iconIdId)
                     }
                   })
-                : h("span", null, "无");
+                : h("span", "无");
             }
           },
           {
@@ -229,11 +227,11 @@ export default class CategoriesList extends Vue {
                 h("c-dropdown", {
                   props: {
                     title: "排序",
-                    options: ORDER_ACTIONS
+                    options: OrderAction
                   },
                   on: {
-                    click: async value => {
-                      this.sort(row.id, value);
+                    click: action => {
+                      this.order(row.id, action);
                     }
                   }
                 })
@@ -259,11 +257,6 @@ export default class CategoriesList extends Vue {
         }
       }
     };
-  }
-
-  @Watch("cForm.modal")
-  onFormModalChange(newVal) {
-    !newVal && this.resetFormFields();
   }
 
   async beforeRouteUpdate(to, from, next) {
@@ -351,11 +344,11 @@ export default class CategoriesList extends Vue {
     await this.$store.dispatch(`${module}/delete`, { id });
     this.$Message.success("删除成功！");
 
-    const getListRes = await this.getList();
-    !getListRes.items.length && this.goListPrevPage();
+    const { items } = await this.getList();
+    !items.length && this.goListPrevPage();
   }
 
-  async sort(id, value) {
+  async order(id, action) {
     const { name } = this.listSearchWhere || initWhere;
 
     await this.$store.dispatch(`${module}/postAction`, {
@@ -366,7 +359,7 @@ export default class CategoriesList extends Vue {
           // alias: this.alias
         }
       },
-      body: { type: value, id }
+      body: { type: action, id }
     });
 
     this.getList();
@@ -375,21 +368,20 @@ export default class CategoriesList extends Vue {
   submit() {
     this.$refs.form.validate(async valid => {
       if (valid) {
-        await this.$store.dispatch(
-          this.cForm.id ? `${module}/put` : `${module}/post`,
-          {
-            id: this.cForm.id || "0",
-            body: {
-              ...this.cForm.model,
-              // alias: this.alias,
-              parentId: this.isParent ? this.parentDetail.id : undefined
-            }
+        const { id, model } = this.cForm;
+
+        await this.$store.dispatch(`${module}/${id ? "put" : "post"}`, {
+          id,
+          body: {
+            ...model,
+            // alias: this.alias,
+            parentId: this.isParent ? this.parentDetail.id : undefined
           }
-        );
+        });
 
         this.cForm.modal = false;
-        this.$Message.success((this.cForm.id ? "编辑" : "新增") + "成功！");
-        !this.cForm.id &&
+        this.$Message.success(`${id ? "编辑" : "新增"}成功`);
+        !id &&
           this.resetListSearch({
             ...initWhere,
             parentIds: this.isParent ? this.listSearchWhere.parentIds : [0]

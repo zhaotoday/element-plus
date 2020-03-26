@@ -12,18 +12,16 @@
           <Form inline @submit.native.prevent="search">
             <Form-item prop="nickName">
               <Input
-                type="text"
                 placeholder="请输入昵称"
                 v-model.trim="cList.cSearch.where.nickName.$like"
-                style="width: 190px;"
+                style="width: 200px;"
               />
             </Form-item>
             <Form-item prop="phoneNumber">
               <Input
-                type="text"
                 placeholder="请输入手机号"
                 v-model.trim="cList.cSearch.where.phoneNumber.$like"
-                style="width: 190px;"
+                style="width: 200px;"
               />
             </Form-item>
             <Form-item>
@@ -76,13 +74,11 @@ export default class WxUsersList extends Vue {
         columns: [
           {
             title: "图片",
-            key: "picture",
-            width: 120,
+            width: 138,
             render: (h, { row }) => {
-              return h("img", {
-                attrs: {
-                  src: row.avatarUrl,
-                  class: "pb-picture"
+              return h("c-list-image", {
+                props: {
+                  src: row.avatarUrl
                 }
               });
             }
@@ -104,7 +100,6 @@ export default class WxUsersList extends Vue {
             render: (h, { row }) =>
               h(
                 "span",
-                null,
                 this.$helpers.getItem(this.dicts.Gender, "value", row.gender)[
                   "label"
                 ]

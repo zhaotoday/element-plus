@@ -14,6 +14,10 @@ export default class FormMixin extends Vue {
     }
   }
 
+  getFormInitModel() {
+    return {};
+  }
+
   getDetail(module, id) {
     return this.$store.dispatch(`${module}/getDetail`, { id });
   }
