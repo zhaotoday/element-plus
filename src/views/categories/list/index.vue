@@ -59,21 +59,18 @@
         :label-width="80"
       >
         <Form-item v-if="levels !== 1" label="父类">
-          <Row>
-            <Col span="20">
-              {{ isParent ? parentDetail.name : "顶级分类" }}
-            </Col>
-          </Row>
+          {{ isParent ? parentDetail.name : "顶级分类" }}
         </Form-item>
         <Form-item label="名称" prop="name">
-          <Row>
-            <Col span="20">
-              <Input v-model.trim="cForm.model.name" placeholder="请输入名称" />
-            </Col>
-          </Row>
+          <Input
+            class="c-model__input"
+            v-model.trim="cForm.model.name"
+            placeholder="请输入名称"
+          />
         </Form-item>
         <Form-item label="图标" prop="iconId">
           <c-uploader
+            class="c-model__input"
             :key="cForm.id"
             :has-default-file="!!cForm.model.iconId"
             v-model="cForm.model.iconId"
@@ -86,6 +83,7 @@
         </Form-item>
         <Form-item label="Banner" prop="bannerId">
           <c-uploader
+            class="c-model__input"
             :key="cForm.id"
             :has-default-file="!!cForm.model.bannerId"
             v-model="cForm.model.bannerId"
@@ -97,16 +95,13 @@
           />
         </Form-item>
         <Form-item label="描述" prop="description">
-          <Row>
-            <Col span="20">
-              <Input
-                v-model.trim="cForm.model.description"
-                type="textarea"
-                :rows="3"
-                placeholder="请输入描述"
-              />
-            </Col>
-          </Row>
+          <Input
+            class="c-model__input"
+            v-model.trim="cForm.model.description"
+            type="textarea"
+            :rows="3"
+            placeholder="请输入描述"
+          />
         </Form-item>
       </Form>
     </Modal>

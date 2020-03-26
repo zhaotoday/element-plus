@@ -1,6 +1,5 @@
 <template>
   <Select
-    style="width: 190px"
     placeholder="请选择分类"
     clearable
     :multiple="multiple"
@@ -68,8 +67,8 @@ export default class CategorySelect extends Vue {
     });
   }
 
-  change(val) {
-    this.$emit("change", val);
+  change(value) {
+    this.$emit("change", value);
   }
 }
 </script>

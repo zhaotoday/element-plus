@@ -7,11 +7,47 @@
       :rules="cForm.rules"
       :label-width="100"
     >
-      <Form-item label="标题" prop="title">
+      <Form-item label="名称" prop="name">
         <Input
           class="c-form__input"
-          v-model.trim="cForm.model.title"
-          placeholder="请输入标题"
+          v-model.trim="cForm.model.name"
+          placeholder="请输入名称"
+        />
+      </Form-item>
+      <Form-item label="分类" prop="categoryId">
+        <c-category-select
+          class="c-form__input"
+          @change="
+            value => {
+              $set(cForm.model, 'categoryId', value);
+            }
+          "
+        ></c-category-select>
+      </Form-item>
+      <Form-item label="图片" prop="pictureId">
+        <c-uploader
+          class="c-form__input"
+          :key="cForm.id"
+          :has-default-file="!!cForm.model.pictureId"
+          v-model="cForm.model.pictureId"
+          @change="
+            value => {
+              handleFormUploaderChange('pictureId', value);
+            }
+          "
+        />
+      </Form-item>
+      <Form-item label="视频" prop="videoId">
+        <c-uploader
+          class="c-form__input"
+          :key="cForm.id"
+          :has-default-file="!!cForm.model.videoId"
+          v-model="cForm.model.videoId"
+          @change="
+            value => {
+              handleFormUploaderChange('videoId', value);
+            }
+          "
         />
       </Form-item>
       <Form-item label="状态" prop="status">
@@ -56,10 +92,16 @@ export default class ProductsForm extends Vue {
       cForm: {
         model: this.getFormInitModel(),
         rules: {
-          title: [
+          name: [
             {
               required: true,
-              message: "标题不能为空"
+              message: "名称不能为空"
+            }
+          ],
+          categoryId: [
+            {
+              required: true,
+              message: "分类不能为空"
             }
           ],
           pictureId: [

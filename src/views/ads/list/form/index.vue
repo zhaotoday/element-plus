@@ -13,21 +13,22 @@
       :label-width="80"
     >
       <Form-item label="标题" prop="title">
-        <Row>
-          <Col span="20">
-            <Input v-model.trim="cForm.model.title" placeholder="请输入标题" />
-          </Col>
-        </Row>
+        <Input
+          class="c-model__input"
+          v-model.trim="cForm.model.title"
+          placeholder="请输入标题"
+        />
       </Form-item>
       <Form-item label="链接" prop="link">
-        <Row>
-          <Col span="20">
-            <Input v-model.trim="cForm.model.link" placeholder="请输入链接" />
-          </Col>
-        </Row>
+        <Input
+          class="c-model__input"
+          v-model.trim="cForm.model.link"
+          placeholder="请输入链接"
+        />
       </Form-item>
       <Form-item label="图片" prop="pictureId">
         <c-uploader
+          class="c-model__input"
           :key="cForm.id"
           :has-default-file="!!cForm.model.pictureId"
           v-model="cForm.model.pictureId"
@@ -39,19 +40,15 @@
         />
       </Form-item>
       <Form-item label="状态" prop="status">
-        <Row>
-          <Col span="20">
-            <Select v-model.trim="cForm.model.status">
-              <Option
-                v-for="item in dicts.Status"
-                :key="item.value"
-                :value="item.value"
-              >
-                {{ item.label }}
-              </Option>
-            </Select>
-          </Col>
-        </Row>
+        <Select class="c-model__input" v-model.trim="cForm.model.status">
+          <Option
+            v-for="item in dicts.Status"
+            :key="item.value"
+            :value="item.value"
+          >
+            {{ item.label }}
+          </Option>
+        </Select>
       </Form-item>
     </Form>
   </Modal>

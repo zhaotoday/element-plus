@@ -1,10 +1,8 @@
 @import "../../utils/index";
 
-@include c(form) {
-  width: 1000px;
-
+@include c(model) {
   @include e(input) {
-    width: 400px !important;
+    width: 320px !important;
 
     .ivu-upload,
     .ivu-btn {
