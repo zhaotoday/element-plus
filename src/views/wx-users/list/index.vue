@@ -199,5 +199,3 @@ export default class WxUsersList extends Vue {
   }
 }
 </script>
-
-<style lang="scss" src="./style.scss"></style>
