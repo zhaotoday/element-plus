@@ -12,6 +12,17 @@ export default [
   },
   {
     icon: "md-person",
+    name: "ads",
+    title: "广告",
+    children: [
+      {
+        title: "广告",
+        route: "/ads/ads/index"
+      }
+    ]
+  },
+  {
+    icon: "md-person",
     name: "wxUsers",
     title: "用户",
     children: [
