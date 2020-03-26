@@ -77,7 +77,7 @@
         </Button>
         <Button
           @click="
-            id ? $helpers.goBack() : $router.push(`/${alias}/products/list`)
+            id ? $helpers.goBack() : $router.push(`/products/products/list`)
           "
         >
           返回
