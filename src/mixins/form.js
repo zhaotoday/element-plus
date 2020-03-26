@@ -7,6 +7,13 @@ export default class FormMixin extends Vue {
     this.$set(this.cForm, "model", newVal);
   }
 
+  @Watch("cForm.modal")
+  onModal(newVal) {
+    if (!newVal) {
+      this.resetFormFields();
+    }
+  }
+
   getDetail(module, id) {
     return this.$store.dispatch(`${module}/getDetail`, { id });
   }

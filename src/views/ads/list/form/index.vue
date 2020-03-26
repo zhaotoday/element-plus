@@ -28,6 +28,7 @@
       </Form-item>
       <Form-item label="图片" prop="pictureId">
         <c-uploader
+          :key="cForm.id"
           :has-default-file="!!cForm.model.pictureId"
           v-model="cForm.model.pictureId"
           @change="
@@ -40,7 +41,7 @@
       <Form-item label="状态" prop="status">
         <Row>
           <Col span="20">
-            <Select v-model.trim="cForm.model.status" style="width: 320px;">
+            <Select v-model.trim="cForm.model.status">
               <Option
                 v-for="item in dicts.Status"
                 :key="item.value"
@@ -70,7 +71,9 @@ export default class AdsListForm extends Vue {
     id: 0,
     modal: false,
     loading: true,
-    model: {},
+    model: {
+      status: 1
+    },
     rules: {
       title: [
         {

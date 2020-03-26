@@ -6,6 +6,7 @@
       :total="list.total"
       :page-current="listPageCurrent"
       :search-where="listSearchWhere"
+      @selection-change="handleListSelectionChange"
     >
       <c-list-header>
         <c-list-operations>
@@ -72,12 +73,11 @@ export default class AdsList extends Vue {
         columns: [
           {
             type: "selection",
-            width: 60,
-            align: "center"
+            width: 60
           },
           {
             title: "图片",
-            width: 200,
+            width: 138,
             render: (h, { row }) => {
               return h("c-list-image", {
                 props: {
@@ -130,8 +130,8 @@ export default class AdsList extends Vue {
                     options: OrderAction
                   },
                   on: {
-                    click: async value => {
-                      this.handleOrder(row.id, value);
+                    click: async action => {
+                      this.order(row.id, action);
                     }
                   }
                 })
@@ -166,12 +166,16 @@ export default class AdsList extends Vue {
     });
   }
 
-  async confirmDelete(id) {
-    await this.$store.dispatch(`${module}/delete`, { id });
+  async confirmDelete(ids) {
+    await this.$store.dispatch(`${module}/delete`, { id: ids });
     this.$Message.success("删除成功");
 
     const getListRes = await this.getList();
     !getListRes.items.length && this.goListPrevPage();
+  }
+
+  order(id, action) {
+    console.log(id, action);
   }
 }
 </script>
