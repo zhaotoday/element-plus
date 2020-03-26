@@ -48,7 +48,7 @@ export default class Editor extends Vue {
       "redo"
     ];
 
-    this.editor.customConfig.uploadImgServer = `${this.$consts.API_URL}/files/actions/upload`;
+    this.editor.customConfig.uploadImgServer = `${this.$consts.ApiUrl}/files/actions/upload`;
 
     this.editor.customConfig.uploadImgHeaders = this.$auth.getHeaders();
 
@@ -56,7 +56,7 @@ export default class Editor extends Vue {
 
     this.editor.customConfig.uploadImgHooks = {
       customInsert: (insertImg, result) => {
-        const url = this.$helpers.getFileURLById(result.data.id);
+        const url = this.$helpers.getFileUrlById(result.data.id);
         insertImg(url);
       }
     };

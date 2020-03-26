@@ -12,7 +12,7 @@
     <Page
       :total="total"
       :current="pageCurrent"
-      :page-size="$consts.PAGE_SIZE"
+      :page-size="$consts.PageSize"
       show-total
       show-elevator
       @on-change="handlePageChange"

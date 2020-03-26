@@ -15,7 +15,7 @@
       @on-select="handleSelect"
     >
       <Submenu
-        v-for="(menu1, index1) in $consts.SIDEBAR_MENUS"
+        v-for="(menu1, index1) in $consts.SidebarMenu"
         :key="index1"
         :name="menu1.name"
       >

@@ -10,7 +10,7 @@
       :on-format-error="handleFormatError"
       :on-exceeded-size="handleExceededSize"
       :headers="headers"
-      :action="`${consts.API_URL}/files/actions/upload`"
+      :action="`${consts.ApiUrl}/files/actions/upload`"
     >
       <Button icon="ios-cloud-upload-outline" style="width: 320px;">
         上传文件
@@ -74,7 +74,7 @@ export default class ChildUploader extends Vue {
       ? [
           {
             name: "",
-            url: this.previewIcon || helpers.getFileURLById(this.value)
+            url: this.previewIcon || helpers.getFileUrlById(this.value)
           }
         ]
       : [];
@@ -100,7 +100,7 @@ export default class ChildUploader extends Vue {
   }
 
   handleSuccess(res, file) {
-    file.url = helpers.getFileURLById(res.data.id);
+    file.url = helpers.getFileUrlById(res.data.id);
     file.name = res.data.title;
 
     if (this.uploadList.length > 1) {

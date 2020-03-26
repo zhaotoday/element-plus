@@ -135,7 +135,7 @@ const initWhere = {
       parentDetail: state => state[module].detail
     }),
     levels() {
-      return this.$consts.CATEGORY_LEVELS[this.$route.params.alias];
+      return this.$consts.CategoryLevel[this.$route.params.alias];
     },
     isParent() {
       const listSearchWhere = this.listSearchWhere;
@@ -150,10 +150,10 @@ const initWhere = {
 })
 export default class CategoriesList extends Vue {
   data() {
-    const { LIST_COLUMN_WIDTHS, ORDER_ACTIONS, CATEGORY_LEVELS } = this.$consts;
+    const { ListColumnWidth, ORDER_ACTIONS, CategoryLevel } = this.$consts;
 
     const getLevels = () => {
-      return CATEGORY_LEVELS[this.$route.params.alias];
+      return CategoryLevel[this.$route.params.alias];
     };
 
     return {
@@ -173,7 +173,7 @@ export default class CategoriesList extends Vue {
               return row.icon
                 ? h("img", {
                     attrs: {
-                      src: this.$helpers.getFileURLById(row.iconId),
+                      src: this.$helpers.getFileUrlById(row.iconId),
                       class: "pb-picture"
                     }
                   })
@@ -183,7 +183,7 @@ export default class CategoriesList extends Vue {
           {
             title: "名称",
             key: "name",
-            minWidth: LIST_COLUMN_WIDTHS.TITLE
+            minWidth: ListColumnWidth.Title
           },
           {
             title: "操作",
@@ -294,8 +294,8 @@ export default class CategoriesList extends Vue {
 
     return this.$store.dispatch(`${module}/getList`, {
       query: {
-        offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
-        limit: this.$consts.PAGE_SIZE,
+        offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
+        limit: this.$consts.PageSize,
         where: {
           parentId: parentIds[parentIds.length - 1],
           name

@@ -8,13 +8,18 @@
       :search-where="listSearchWhere"
     >
       <c-list-header>
+        <c-list-operations>
+          <Button type="primary" @click="$refs.form.show()">
+            新增
+          </Button>
+        </c-list-operations>
         <c-list-search>
           <Form inline @submit.native.prevent="search">
-            <Form-item prop="name">
+            <Form-item prop="title">
               <Input
                 type="text"
-                placeholder="请输入名称"
-                v-model="cList.cSearch.where.name.$like"
+                placeholder="请输入标题"
+                v-model="cList.cSearch.where.title.$like"
                 style="width: 190px;"
               />
             </Form-item>
@@ -27,25 +32,20 @@
         </c-list-search>
       </c-list-header>
     </c-list>
-    <c-projects-list-form ref="form" @get-list="getList"></c-projects-list-form>
-    <Modal width="496" v-model="cAttachments.modal" title="附件">
-      <div style="height: 500px; overflow-x: hidden; overflow-y: auto;">
-        <c-attachments ref="attachments"></c-attachments>
-      </div>
-    </Modal>
+    <c-ads-list-form ref="form" @get-list="getList"></c-ads-list-form>
   </div>
 </template>
 
 <script>
 import { Vue, Component } from "vue-property-decorator";
 import { mapState } from "vuex";
-import ProjectsListForm from "./components/form";
+import AdsListForm from "./form";
 import RouteParamsMixin from "@/mixins/route-params";
 import ListMixin from "@/mixins/list";
 
-const module = "projects";
+const module = "ads";
 const initWhere = {
-  name: {
+  title: {
     $like: ""
   }
 };
@@ -53,7 +53,7 @@ const initWhere = {
 @Component({
   mixins: [RouteParamsMixin, ListMixin],
   components: {
-    "c-projects-list-form": ProjectsListForm
+    "c-ads-list-form": AdsListForm
   },
   computed: mapState({
     list: state => state[module].list
@@ -61,38 +61,42 @@ const initWhere = {
 })
 export default class AdsList extends Vue {
   data() {
+    const { ListColumnWidth, SortAction } = this.$consts;
+
     return {
       cList: {
         columns: [
           {
-            title: "ID",
-            key: "id",
-            width: 70
+            type: "selection",
+            width: 60,
+            align: "center"
           },
           {
-            title: "名称",
-            key: "name"
-          },
-          {
-            title: "业主单位",
-            key: "ownerUnit",
-            width: 300
-          },
-          {
-            title: "项目经理",
-            width: 150,
-            render: (h, { row }) =>
-              h("c-user-info", {
-                props: {
-                  key: `${row.id}-${row.userId}`,
-                  pk: row.userId
+            title: "图片",
+            width: 200,
+            render: (h, { row }) => {
+              return h("Avatar", {
+                attrs: {
+                  src: this.$helpers.getFileUrlById(row.picture),
+                  size: "large"
                 }
-              })
+              });
+            }
+          },
+          {
+            title: "标题",
+            key: "title",
+            minWidth: ListColumnWidth.Title
+          },
+          {
+            title: "链接",
+            key: "link",
+            width: 300
           },
           {
             title: "操作",
             key: "action",
-            width: 340,
+            width: 245,
             render: (h, { row }) =>
               h("div", [
                 h(
@@ -104,30 +108,7 @@ export default class AdsList extends Vue {
                       }
                     }
                   },
-                  "立项信息"
-                ),
-                h(
-                  "Button",
-                  {
-                    on: {
-                      click: () => {
-                        this.showForm(row);
-                      }
-                    }
-                  },
-                  "子项信息"
-                ),
-                h(
-                  "Button",
-                  {
-                    on: {
-                      click: () => {
-                        this.$refs.attachments.init(row.id);
-                        this.cAttachments.modal = true;
-                      }
-                    }
-                  },
-                  "附件"
+                  "编辑"
                 ),
                 h(
                   "c-delete",
@@ -139,7 +120,18 @@ export default class AdsList extends Vue {
                     }
                   },
                   "删除"
-                )
+                ),
+                h("c-dropdown", {
+                  attrs: {
+                    title: "排序",
+                    options: SortAction
+                  },
+                  on: {
+                    click: async value => {
+                      this.handleOrder(row.id, value);
+                    }
+                  }
+                })
               ])
           }
         ],
@@ -167,12 +159,9 @@ export default class AdsList extends Vue {
   getList() {
     return this.$store.dispatch(`${module}/getList`, {
       query: {
-        offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
-        limit: this.$consts.PAGE_SIZE,
-        where: {
-          ...this.listSearchWhere,
-          isParent: { $eq: 1 }
-        }
+        offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
+        limit: this.$consts.PageSize,
+        where: this.listSearchWhere
       }
     });
   }

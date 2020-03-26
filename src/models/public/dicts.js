@@ -5,7 +5,7 @@ export default class extends REST {
   constructor() {
     super();
 
-    this.baseURL = consts.PUBLIC_API_URL;
+    this.baseURL = consts.publicApiUrl;
     this.path = "dicts";
   }
 }

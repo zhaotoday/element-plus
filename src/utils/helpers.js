@@ -9,8 +9,8 @@ export default {
   deepCopy(obj) {
     return JSON.parse(JSON.stringify(obj));
   },
-  getFileURLById(id) {
-    return `${consts.BASE_URL}/public/files/${id}`;
+  getFileUrlById(id) {
+    return `${consts.BaseUrl}/public/files/${id}`;
   },
   getItemById(items, id) {
     return items && items.length

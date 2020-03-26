@@ -74,7 +74,7 @@ const module = "ads";
 @Component({
   mixins: [FormMixin]
 })
-export default class adsListForm extends Vue {
+export default class AdsListForm extends Vue {
   cForm = {
     id: 0,
     modal: false,
@@ -108,8 +108,6 @@ export default class adsListForm extends Vue {
     if (detail && detail.id) {
       this.cForm.id = detail.id;
       this.initFormFields(detail);
-      this.$refs.types.init(detail.id);
-      this.$refs.uploader.init(detail.attachments);
     } else {
       this.cForm.id = 0;
       this.resetFormFields();

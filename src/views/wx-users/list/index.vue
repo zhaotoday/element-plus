@@ -69,7 +69,7 @@ const initWhere = {
 })
 export default class WxUsersList extends Vue {
   data() {
-    const { LIST_COLUMN_WIDTHS } = this.$consts;
+    const { ListColumnWidth } = this.$consts;
 
     return {
       cList: {
@@ -90,7 +90,7 @@ export default class WxUsersList extends Vue {
           {
             title: "昵称",
             key: "nickName",
-            minWidth: LIST_COLUMN_WIDTHS.USER
+            minWidth: ListColumnWidth.USER
           },
           {
             title: "手机号",
@@ -147,8 +147,8 @@ export default class WxUsersList extends Vue {
   getList() {
     return this.$store.dispatch(`${module}/getList`, {
       query: {
-        offset: (this.listPageCurrent - 1) * this.$consts.PAGE_SIZE,
-        limit: this.$consts.PAGE_SIZE,
+        offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
+        limit: this.$consts.PageSize,
         where: this.listSearchWhere
       }
     });
