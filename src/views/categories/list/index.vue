@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import { mapState } from "vuex";
 import RouteParamsMixin from "@/mixins/route-params";
 import ListMixin from "@/mixins/list";
@@ -172,7 +172,7 @@ export default class CategoriesList extends Vue {
               return row.iconId
                 ? h("c-list-image", {
                     props: {
-                      src: this.$helpers.getFileUrlById(row.iconIdId)
+                      src: this.$helpers.getFileUrlById(row.iconId)
                     }
                   })
                 : h("span", "无");
@@ -290,7 +290,7 @@ export default class CategoriesList extends Vue {
         offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
         limit: this.$consts.PageSize,
         where: {
-          parentId: parentIds[parentIds.length - 1],
+          parentId: { $eq: parentIds[parentIds.length - 1] || null },
           name
           // alias: this.alias
         }
