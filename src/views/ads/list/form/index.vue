@@ -15,20 +15,14 @@
       <Form-item label="标题" prop="title">
         <Row>
           <Col span="20">
-            <Input
-              v-model.trim="cForm.formValidate.title"
-              placeholder="请输入标题"
-            />
+            <Input v-model.trim="cForm.model.title" placeholder="请输入标题" />
           </Col>
         </Row>
       </Form-item>
       <Form-item label="链接" prop="link">
         <Row>
           <Col span="20">
-            <Input
-              v-model.trim="cForm.formValidate.link"
-              placeholder="请输入链接"
-            />
+            <Input v-model.trim="cForm.model.link" placeholder="请输入链接" />
           </Col>
         </Row>
       </Form-item>
@@ -46,12 +40,9 @@
       <Form-item label="状态" prop="status">
         <Row>
           <Col span="20">
-            <Select
-              v-model.trim="cForm.formValidate.status"
-              style="width: 320px;"
-            >
+            <Select v-model.trim="cForm.model.status" style="width: 320px;">
               <Option
-                v-for="item in $consts.AD_STATUSES"
+                v-for="item in dicts.Status"
                 :key="item.value"
                 :value="item.value"
               >
@@ -81,22 +72,22 @@ export default class AdsListForm extends Vue {
     loading: true,
     model: {},
     rules: {
-      name: [
+      title: [
         {
           required: true,
-          message: "名称不能为空"
+          message: "标题不能为空"
         }
       ],
-      nextNodeUserId: [
+      link: [
         {
           required: true,
-          message: "经办人不能为空"
+          message: "链接不能为空"
         }
       ],
-      types: [
+      pictureId: [
         {
           required: true,
-          message: "专业类别不能为空"
+          message: "图片不能为空"
         }
       ]
     }
@@ -114,26 +105,20 @@ export default class AdsListForm extends Vue {
     }
   }
 
-  handleTypeChange(value) {
-    this.$set(this.cForm.model, "types", value[0] ? value : null);
-    this.$refs.form.validate();
-  }
-
-  handleUploaderChange(attachments) {
-    this.$set(this.cForm.model, "attachments", attachments);
-  }
-
   submit() {
     this.$refs.form.validate(async valid => {
       if (valid) {
-        await this.$store.dispatch(`${module}/postAction`, {
-          action: "update",
-          body: {}
-        });
+        await this.$store.dispatch(
+          this.cForm.id ? `${module}/put` : `${module}/post`,
+          {
+            id: this.cForm.id || "0",
+            body: this.cForm.model
+          }
+        );
 
         this.cForm.modal = false;
-        this.$Message.success("编辑成功");
-        this.$emit("get-list");
+        this.$Message.success((this.cForm.id ? "编辑" : "新增") + "成功");
+        this.getList();
       }
 
       this.fixFormButtonLoading();

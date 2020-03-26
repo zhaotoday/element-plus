@@ -1,0 +1,9 @@
+@import "@/styles/utils/index";
+
+@include c(list-image) {
+  @include size(100px, 100px);
+
+  display: block;
+  border-radius: 6px;
+  margin: 10px;
+}

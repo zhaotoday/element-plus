@@ -18,6 +18,7 @@ import WxUserInfo from "../components/wx-user-info";
 import WxUserSelect from "../components/wx-user-select";
 import Icon from "../components/icon";
 import Dropdown from "../components/dropdown";
+import ListImage from "../components/list-image";
 
 export default {
   install(Vue) {
@@ -46,5 +47,6 @@ export default {
     Vue.component("c-wx-user-select", WxUserSelect);
     Vue.component("c-icon", Icon);
     Vue.component("c-dropdown", Dropdown);
+    Vue.component("c-list-image", ListImage);
   }
 };

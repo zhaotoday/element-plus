@@ -12,12 +12,16 @@
           <Button type="primary" @click="$refs.form.show()">
             新增
           </Button>
+          <c-bulk-delete
+            :selected-items="listSelectedItems"
+            @ok="confirmDelete"
+          >
+          </c-bulk-delete>
         </c-list-operations>
         <c-list-search>
           <Form inline @submit.native.prevent="search">
             <Form-item prop="title">
               <Input
-                type="text"
                 placeholder="请输入标题"
                 v-model="cList.cSearch.where.title.$like"
                 style="width: 190px;"
@@ -61,7 +65,7 @@ const initWhere = {
 })
 export default class AdsList extends Vue {
   data() {
-    const { ListColumnWidth, SortAction } = this.$consts;
+    const { ListColumnWidth, OrderAction } = this.$consts;
 
     return {
       cList: {
@@ -75,10 +79,9 @@ export default class AdsList extends Vue {
             title: "图片",
             width: 200,
             render: (h, { row }) => {
-              return h("Avatar", {
-                attrs: {
-                  src: this.$helpers.getFileUrlById(row.picture),
-                  size: "large"
+              return h("c-list-image", {
+                props: {
+                  src: this.$helpers.getFileUrlById(row.pictureId)
                 }
               });
             }
@@ -124,7 +127,7 @@ export default class AdsList extends Vue {
                 h("c-dropdown", {
                   attrs: {
                     title: "排序",
-                    options: SortAction
+                    options: OrderAction
                   },
                   on: {
                     click: async value => {
@@ -138,9 +141,6 @@ export default class AdsList extends Vue {
         cSearch: {
           where: this.$helpers.deepCopy(initWhere)
         }
-      },
-      cAttachments: {
-        modal: false
       }
     };
   }
