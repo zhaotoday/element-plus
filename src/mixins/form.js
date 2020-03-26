@@ -10,7 +10,7 @@ export default class FormMixin extends Vue {
   @Watch("cForm.modal")
   onModal(newVal) {
     if (!newVal) {
-      this.resetFormFields();
+      this.resetFormFields(this.getFormInitModel());
     }
   }
 

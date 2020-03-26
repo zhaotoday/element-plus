@@ -25,7 +25,7 @@
               <Input
                 placeholder="请输入标题"
                 v-model="cList.cSearch.where.title.$like"
-                style="width: 190px;"
+                style="width: 200px;"
               />
             </Form-item>
             <Form-item>
@@ -130,7 +130,7 @@ export default class AdsList extends Vue {
                     options: OrderAction
                   },
                   on: {
-                    click: async action => {
+                    click: action => {
                       this.order(row.id, action);
                     }
                   }
@@ -170,8 +170,8 @@ export default class AdsList extends Vue {
     await this.$store.dispatch(`${module}/delete`, { id: ids });
     this.$Message.success("删除成功");
 
-    const getListRes = await this.getList();
-    !getListRes.items.length && this.goListPrevPage();
+    const { items } = await this.getList();
+    !items.length && this.goListPrevPage();
   }
 
   order(id, action) {

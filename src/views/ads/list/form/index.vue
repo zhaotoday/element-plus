@@ -67,34 +67,36 @@ const module = "ads";
   mixins: [FormMixin]
 })
 export default class AdsListForm extends Vue {
-  cForm = {
-    id: 0,
-    modal: false,
-    loading: true,
-    model: {
+  data() {
+    return {
+      cForm: {
+        id: 0,
+        modal: false,
+        loading: true,
+        model: this.getFormInitModel(),
+        rules: {
+          title: [
+            {
+              required: true,
+              message: "标题不能为空"
+            }
+          ],
+          pictureId: [
+            {
+              required: true,
+              message: "图片不能为空"
+            }
+          ]
+        }
+      }
+    };
+  }
+
+  getFormInitModel() {
+    return {
       status: 1
-    },
-    rules: {
-      title: [
-        {
-          required: true,
-          message: "标题不能为空"
-        }
-      ],
-      link: [
-        {
-          required: true,
-          message: "链接不能为空"
-        }
-      ],
-      pictureId: [
-        {
-          required: true,
-          message: "图片不能为空"
-        }
-      ]
-    }
-  };
+    };
+  }
 
   show(detail) {
     this.cForm.modal = true;
@@ -104,24 +106,22 @@ export default class AdsListForm extends Vue {
       this.initFormFields(detail);
     } else {
       this.cForm.id = 0;
-      this.resetFormFields();
     }
   }
 
   submit() {
     this.$refs.form.validate(async valid => {
       if (valid) {
-        await this.$store.dispatch(
-          this.cForm.id ? `${module}/put` : `${module}/post`,
-          {
-            id: this.cForm.id || "0",
-            body: this.cForm.model
-          }
-        );
+        const { id, model } = this.cForm;
+
+        await this.$store.dispatch(`${module}/${id ? "put" : "post"}`, {
+          id,
+          body: model
+        });
 
         this.cForm.modal = false;
-        this.$Message.success((this.cForm.id ? "编辑" : "新增") + "成功");
-        this.getList();
+        this.$Message.success(`${id ? "编辑" : "新增"}成功`);
+        this.$emit("get-list");
       }
 
       this.fixFormButtonLoading();
