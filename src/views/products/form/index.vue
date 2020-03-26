@@ -61,6 +61,16 @@
           </Option>
         </Select>
       </Form-item>
+      <Form-item label="详情" prop="content">
+        <c-editor
+          :html="cForm.model.content"
+          @change="
+            html => {
+              $set(cForm.model, 'content', html);
+            }
+          "
+        ></c-editor>
+      </Form-item>
       <Form-item>
         <Button class="u-mr5" type="primary" @click="submit">
           保存
@@ -108,6 +118,12 @@ export default class ProductsForm extends Vue {
             {
               required: true,
               message: "图片不能为空"
+            }
+          ],
+          content: [
+            {
+              required: true,
+              message: "详情不能为空"
             }
           ]
         }

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
 import WangEditor from "wangeditor";
 
 @Component({
@@ -18,13 +18,6 @@ import WangEditor from "wangeditor";
   }
 })
 export default class Editor extends Vue {
-  @Watch("html")
-  onHtmlChange(newVal) {
-    if (newVal) {
-      this.editor.txt.html(newVal);
-    }
-  }
-
   mounted() {
     this.editor = new WangEditor("#editor-toolbar", "#editor-text");
 
@@ -66,6 +59,8 @@ export default class Editor extends Vue {
     };
 
     this.editor.create();
+
+    this.editor.txt.html(this.html);
   }
 }
 </script>
