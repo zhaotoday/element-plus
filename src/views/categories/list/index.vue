@@ -1,5 +1,5 @@
 <template>
-  <div class="p-categories">
+  <div>
     <c-list
       :data="list.items"
       :columns="cList.columns"
@@ -390,5 +390,3 @@ export default class CategoriesList extends Vue {
   }
 }
 </script>
-
-<style lang="scss" src="./style.scss"></style>

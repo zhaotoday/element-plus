@@ -1,5 +1,5 @@
 <template>
-  <div class="p-ads-list">
+  <div>
     <c-list
       :data="list.items"
       :columns="cList.columns"
