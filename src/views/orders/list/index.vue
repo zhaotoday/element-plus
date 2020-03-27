@@ -11,7 +11,7 @@
       <c-list-header>
         <c-list-operations>
           <Button
-            v-if="listSearchWhere.status.$eq === dicts.OrderStatus.Paid"
+            v-if="cList.cSearch.where.status.$eq === dicts.OrderStatus.Paid"
             type="primary"
             @click="deliver"
           >
@@ -20,25 +20,11 @@
           <c-bulk-delete
             :selected-items="listSelectedItems"
             @ok="confirmDelete"
-          ></c-bulk-delete>
-          <c-bulk-delete
-            :selected-items="listSelectedItems"
-            @ok="confirmDelete"
           >
           </c-bulk-delete>
         </c-list-operations>
         <c-list-search>
           <Form class="c-form" inline @submit.native.prevent="search">
-            <Form-item prop="payment">
-              <c-payment-select
-                class="c-form__input"
-                @change="
-                  value => {
-                    $set((cList.cSearch.where.payment.$eq = value));
-                  }
-                "
-              ></c-payment-select>
-            </Form-item>
             <Form-item prop="startTime">
               <DatePicker
                 class="c-form__input"
@@ -64,6 +50,16 @@
                   }
                 "
               />
+            </Form-item>
+            <Form-item prop="payment">
+              <c-payment-select
+                class="c-form__input"
+                @change="
+                  value => {
+                    $set((cList.cSearch.where.payment.$eq = value));
+                  }
+                "
+              ></c-payment-select>
             </Form-item>
             <Form-item prop="id">
               <Input
@@ -152,7 +148,6 @@ export default class OrdersList extends Vue {
           },
           {
             title: "商品",
-            width: 260,
             render: (h, { row }) => h("span", JSON.stringify(row.products))
           },
           {
@@ -278,8 +273,6 @@ export default class OrdersList extends Vue {
     !items.length && this.goListPrevPage();
   }
 
-  order(id, action) {
-    console.log(id, action);
-  }
+  deliver() {}
 }
 </script>
