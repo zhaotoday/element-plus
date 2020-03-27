@@ -20,7 +20,8 @@ const router = new Router({
             require("./routes/home").default,
             require("./routes/wx-users").default,
             require("./routes/products").default,
-            require("./routes/ads").default
+            require("./routes/ads").default,
+            require("./routes/orders").default
           ],
           meta: {
             requiresAuth: true
