@@ -1,7 +1,7 @@
 @import "../../utils/index";
 
 @include c(form) {
-  @include m(lg) {
+  @include m(form) {
     width: 1000px;
 
     @include c(form) {
@@ -18,7 +18,7 @@
     }
   }
 
-  @include m(sm) {
+  @include m(modal) {
     width: 480px !important;
 
     @include c(form) {
@@ -31,6 +31,14 @@
           width: 100% !important;
           text-align: left;
         }
+      }
+    }
+  }
+
+  @include m(search) {
+    @include c(form) {
+      @include e(input) {
+        width: 200px !important;
       }
     }
   }

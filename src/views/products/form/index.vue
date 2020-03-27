@@ -1,7 +1,7 @@
 <template>
   <div>
     <Form
-      class="c-form c-form--lg"
+      class="c-form c-form--form"
       ref="form"
       :model="cForm.model"
       :rules="cForm.rules"

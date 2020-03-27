@@ -53,7 +53,7 @@
       @on-ok="submit"
     >
       <Form
-        class="c-form c-form--sm"
+        class="c-form c-form--modal"
         ref="form"
         :model="cForm.model"
         :rules="cForm.rules"

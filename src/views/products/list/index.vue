@@ -20,12 +20,27 @@
           </c-bulk-delete>
         </c-list-operations>
         <c-list-search>
-          <Form inline @submit.native.prevent="search">
-            <Form-item prop="title">
+          <Form
+            class="c-form c-form--search"
+            inline
+            @submit.native.prevent="search"
+          >
+            <Form-item prop="categoryId">
+              <c-category-select
+                class="c-form__input"
+                v-model="cList.cSearch.where.categoryId.$eq"
+                @change="
+                  value => {
+                    cList.cSearch.where.categoryId.$eq = value;
+                  }
+                "
+              ></c-category-select>
+            </Form-item>
+            <Form-item prop="name">
               <Input
-                placeholder="请输入标题"
-                v-model="cList.cSearch.where.title.$like"
-                style="width: 200px;"
+                class="c-form__input"
+                placeholder="请输入名称"
+                v-model="cList.cSearch.where.name.$like"
               />
             </Form-item>
             <Form-item>
@@ -48,9 +63,16 @@ import ListMixin from "@/mixins/list";
 import AllCategoriesListMixin from "@/mixins/all-categories-list";
 
 const module = "products";
+
 const initWhere = {
-  title: {
+  name: {
     $like: ""
+  },
+  categoryId: {
+    $eq: ""
+  },
+  status: {
+    $eq: 1
   }
 };
 
