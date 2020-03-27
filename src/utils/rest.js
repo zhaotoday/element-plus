@@ -1,5 +1,4 @@
 import REST from "jt-rest";
-import auth from "./auth";
 import ViewUI from "view-design";
 
 export default class extends REST {
@@ -41,14 +40,6 @@ export default class extends REST {
     method = "GET",
     { id, query = {}, body = {}, showLoading = false, showError = true }
   ) {
-    if (auth.loggedIn()) {
-      const userId = auth.get()["user"]["id"];
-
-      if (!query.wxUserId) query.wxUserId = userId;
-
-      if (!body.wxUserId) body.wxUserId = userId;
-    }
-
     if (query.where) {
       query.where = this._toString(query.where);
     }

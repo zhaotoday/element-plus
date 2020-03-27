@@ -17,6 +17,7 @@
       <Form-item label="分类" prop="categoryId">
         <c-category-select
           class="c-form__input"
+          v-model="cForm.model.categoryId"
           @change="
             value => {
               $set(cForm.model, 'categoryId', value);
@@ -116,12 +117,17 @@
 
 <script>
 import { Vue, Component } from "vue-property-decorator";
+import RouteParamsMixin from "@/mixins/route-params";
 import FormMixin from "@/mixins/form";
+import { mapState } from "vuex";
 
 const module = "products";
 
 @Component({
-  mixins: [FormMixin]
+  mixins: [RouteParamsMixin, FormMixin],
+  computed: mapState({
+    detail: state => state[module].detail
+  })
 })
 export default class ProductsForm extends Vue {
   data() {
@@ -158,6 +164,10 @@ export default class ProductsForm extends Vue {
     };
   }
 
+  created() {
+    this.id && this.getDetail(module, this.id);
+  }
+
   getFormInitModel() {
     return {
       originalPrice: 0,
@@ -170,11 +180,13 @@ export default class ProductsForm extends Vue {
   submit() {
     this.$refs.form.validate(async valid => {
       if (valid) {
-        const { id, model } = this.cForm;
+        const {
+          model: { id, ...restModel }
+        } = this.cForm;
 
         await this.$store.dispatch(`${module}/${id ? "put" : "post"}`, {
           id,
-          body: model
+          body: restModel
         });
 
         this.cForm.modal = false;

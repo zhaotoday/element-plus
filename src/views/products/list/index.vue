@@ -77,7 +77,7 @@ export default class ProductsList extends Vue {
             render: (h, { row }) => {
               return h("c-list-image", {
                 props: {
-                  src: this.$helpers.getFileURLById(row.pictureId)
+                  src: this.$helpers.getFileUrlById(row.pictureId)
                 }
               });
             }
@@ -149,7 +149,7 @@ export default class ProductsList extends Vue {
                   "Button",
                   {
                     props: {
-                      to: `/${this.alias}/products/index/form/${row.id}`
+                      to: `/${this.alias}/products/list/form/${row.id}`
                     }
                   },
                   "编辑"
