@@ -17,12 +17,12 @@ export default class AllCategoriesListMixin extends Vue {
     return data;
   }
 
-  getCategoryTitleById(id, hasParent = false) {
+  getCategoryNameById(id, hasParent = false) {
     const item = this.$helpers.getItemById(this.allCategoriesList.items, id);
 
     return item && item.name
       ? hasParent
-        ? `${this.getCategoryTitleById(item.parentId)} - ${item.name}`
+        ? `${this.getCategoryNameById(item.parentId)} - ${item.name}`
         : item.name
       : "";
   }

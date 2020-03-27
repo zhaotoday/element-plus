@@ -1,7 +1,6 @@
 export default {
   Title: 250,
-  NAME: 250,
-  CATEGORY: 180,
-  CREATED_AT: 150,
-  USER: 100
+  Category: 180,
+  CreatedAt: 150,
+  User: 100
 };

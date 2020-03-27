@@ -24,6 +24,21 @@
           "
         ></c-category-select>
       </Form-item>
+      <Form-item label="原价" prop="originalPrice">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.model.originalPrice"
+        />
+        元
+      </Form-item>
+      <Form-item label="会员价" prop="price">
+        <InputNumber :min="0" :max="100000" v-model="cForm.model.price" />
+        元
+      </Form-item>
+      <Form-item label="库存" prop="stock">
+        <InputNumber :min="0" :max="100000" v-model="cForm.model.stock" />
+      </Form-item>
       <Form-item label="图片" prop="pictureId">
         <c-uploader
           class="c-form__input"
@@ -50,17 +65,6 @@
           "
         />
       </Form-item>
-      <Form-item label="状态" prop="status">
-        <Select class="c-form__input" v-model.trim="cForm.model.status">
-          <Option
-            v-for="item in dicts.Status"
-            :key="item.value"
-            :value="item.value"
-          >
-            {{ item.label }}
-          </Option>
-        </Select>
-      </Form-item>
       <Form-item label="详情" prop="content">
         <c-editor
           :html="cForm.model.content"
@@ -70,6 +74,29 @@
             }
           "
         ></c-editor>
+      </Form-item>
+      <Form-item label="标签" prop="tags">
+        <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.new">
+          新品
+        </Checkbox>
+        <Checkbox
+          :true-value="1"
+          :false-value="0"
+          v-model="cForm.model.recommended"
+        >
+          推荐
+        </Checkbox>
+      </Form-item>
+      <Form-item label="状态" prop="status">
+        <Select class="c-form__input" v-model.trim="cForm.model.status">
+          <Option
+            v-for="item in dicts.ProductStatus"
+            :key="item.value"
+            :value="item.value"
+          >
+            {{ item.label }}
+          </Option>
+        </Select>
       </Form-item>
       <Form-item>
         <Button class="u-mr5" type="primary" @click="submit">
@@ -133,6 +160,9 @@ export default class ProductsForm extends Vue {
 
   getFormInitModel() {
     return {
+      originalPrice: 0,
+      price: 0,
+      stock: 0,
       status: 1
     };
   }

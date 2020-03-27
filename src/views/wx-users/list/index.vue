@@ -86,7 +86,7 @@ export default class WxUsersList extends Vue {
           {
             title: "昵称",
             key: "nickName",
-            minWidth: ListColumnWidth.USER
+            minWidth: ListColumnWidth.User
           },
           {
             title: "手机号",

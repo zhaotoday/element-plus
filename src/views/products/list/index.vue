@@ -45,6 +45,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { mapState } from "vuex";
 import RouteParamsMixin from "@/mixins/route-params";
 import ListMixin from "@/mixins/list";
+import AllCategoriesListMixin from "@/mixins/all-categories-list";
 
 const module = "products";
 const initWhere = {
@@ -54,7 +55,7 @@ const initWhere = {
 };
 
 @Component({
-  mixins: [RouteParamsMixin, ListMixin],
+  mixins: [RouteParamsMixin, ListMixin, AllCategoriesListMixin],
   computed: mapState({
     list: state => state[module].list
   })
@@ -76,34 +77,79 @@ export default class ProductsList extends Vue {
             render: (h, { row }) => {
               return h("c-list-image", {
                 props: {
-                  src: this.$helpers.getFileUrlById(row.pictureId)
+                  src: this.$helpers.getFileURLById(row.pictureId)
                 }
               });
             }
           },
           {
-            title: "标题",
-            key: "title",
+            title: "名称",
+            key: "name",
             minWidth: ListColumnWidth.Title
           },
           {
-            title: "链接",
-            key: "link",
-            width: 300
+            title: "分类",
+            width: ListColumnWidth.Category,
+            render: (h, { row }) =>
+              h("span", this.getCategoryNameById(row.categoryId, true))
+          },
+          {
+            title: "价格",
+            width: 80,
+            render: (h, { row }) => h("span", row.originalPrice + "元")
+          },
+          {
+            title: "会员价",
+            width: 80,
+            render: (h, { row }) => h("span", row.price + " 元")
+          },
+          {
+            title: "库存",
+            key: "stock",
+            width: 80
+          },
+          {
+            title: "标签",
+            width: 100,
+            render: (h, { row }) => {
+              let tags = [];
+
+              if (row.new) {
+                tags.push("新品");
+              }
+
+              if (row.recommended) {
+                tags.push("推荐");
+              }
+
+              return h("span", tags.join("; "));
+            }
+          },
+          {
+            title: "状态",
+            width: 80,
+            render: (h, { row }) =>
+              h(
+                "span",
+                null,
+                this.$helpers.getItem(
+                  this.dicts.ProductStatus,
+                  "value",
+                  row.status
+                )["label"]
+              )
           },
           {
             title: "操作",
             key: "action",
-            width: 245,
+            width: 340,
             render: (h, { row }) =>
               h("div", [
                 h(
                   "Button",
                   {
-                    on: {
-                      click: () => {
-                        this.$refs.form.show(row);
-                      }
+                    props: {
+                      to: `/${this.alias}/products/index/form/${row.id}`
                     }
                   },
                   "编辑"
@@ -120,7 +166,19 @@ export default class ProductsList extends Vue {
                   "删除"
                 ),
                 h("c-dropdown", {
-                  attrs: {
+                  props: {
+                    width: 90,
+                    title: "修改状态",
+                    options: this.dicts.ProductStatus
+                  },
+                  on: {
+                    click: action => {
+                      this.changeStatus(row.id, action);
+                    }
+                  }
+                }),
+                h("c-dropdown", {
+                  props: {
                     title: "排序",
                     options: OrderAction
                   },
@@ -167,6 +225,10 @@ export default class ProductsList extends Vue {
 
     const { items } = await this.getList();
     !items.length && this.goListPrevPage();
+  }
+
+  changeStatus(id, action) {
+    console.log(id, action);
   }
 
   order(id, action) {
