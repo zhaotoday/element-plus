@@ -14,7 +14,7 @@ const BaseUrl = env.isDev()
 const ApiUrl = BaseUrl + "/admin";
 
 // 公开接口地址
-const publicApiUrl = BaseUrl + "/public";
+const PublicApiUrl = BaseUrl + "/public";
 
 // 分页大小
 const PageSize = 10;
@@ -30,7 +30,7 @@ export default {
   OrderAction,
   BaseUrl,
   ApiUrl,
-  publicApiUrl,
+  PublicApiUrl,
   PageSize,
   Title
 };
