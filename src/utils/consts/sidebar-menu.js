@@ -16,6 +16,17 @@ export default [
   },
   {
     icon: "md-person",
+    name: "orders",
+    title: "订单",
+    children: [
+      {
+        title: "订单",
+        route: "/orders/orders/index"
+      }
+    ]
+  },
+  {
+    icon: "md-person",
     name: "ads",
     title: "广告",
     children: [

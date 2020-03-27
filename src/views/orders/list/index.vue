@@ -10,9 +10,17 @@
     >
       <c-list-header>
         <c-list-operations>
-          <Button type="primary" @click="$refs.form.show()">
-            新增
+          <Button
+            v-if="listSearchWhere.status.$eq === dicts.OrderStatus.Paid"
+            type="primary"
+            @click="deliver"
+          >
+            配送订单
           </Button>
+          <c-bulk-delete
+            :selected-items="listSelectedItems"
+            @ok="confirmDelete"
+          ></c-bulk-delete>
           <c-bulk-delete
             :selected-items="listSelectedItems"
             @ok="confirmDelete"
@@ -20,13 +28,60 @@
           </c-bulk-delete>
         </c-list-operations>
         <c-list-search>
-          <Form inline @submit.native.prevent="search">
-            <Form-item prop="title">
-              <Input
-                placeholder="请输入标题"
-                v-model="cList.cSearch.where.title.$like"
-                style="width: 200px;"
+          <Form class="c-form" inline @submit.native.prevent="search">
+            <Form-item prop="payment">
+              <c-payment-select
+                class="c-form__input"
+                @change="
+                  value => {
+                    $set((cList.cSearch.where.payment.$eq = value));
+                  }
+                "
+              ></c-payment-select>
+            </Form-item>
+            <Form-item prop="startTime">
+              <DatePicker
+                class="c-form__input"
+                :value="cList.cSearch.where.startTime.$eq"
+                type="datetime"
+                placeholder="请选择起始时间"
+                @on-change="
+                  v => {
+                    handleFormDatePickerChange('startTime', v);
+                  }
+                "
               />
+            </Form-item>
+            <Form-item prop="endTime">
+              <DatePicker
+                class="c-form__input"
+                :value="cList.cSearch.where.endTime.$eq"
+                type="datetime"
+                placeholder="请选择结束时间"
+                @on-change="
+                  v => {
+                    handleFormDatePickerChange('endTime', v);
+                  }
+                "
+              />
+            </Form-item>
+            <Form-item prop="id">
+              <Input
+                class="c-form__input"
+                placeholder="请输入订单号"
+                v-model="cList.cSearch.where.no.$like"
+              />
+            </Form-item>
+            <Form-item prop="wxUserId">
+              <c-wx-user-select
+                :value="cList.cSearch.where.wxUserId.$eq"
+                @change="
+                  value => {
+                    $set(cList.cSearch.where.wxUserId.$eq, value);
+                  }
+                "
+              >
+              </c-wx-user-select>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="search">
@@ -48,8 +103,23 @@ import ListMixin from "@/mixins/list";
 
 const module = "orders";
 const initWhere = {
-  title: {
+  no: {
     $like: ""
+  },
+  payment: {
+    $eq: ""
+  },
+  status: {
+    $eq: ""
+  },
+  startTime: {
+    $eq: ""
+  },
+  endTime: {
+    $eq: ""
+  },
+  wxUserId: {
+    $eq: ""
   }
 };
 
@@ -61,7 +131,7 @@ const initWhere = {
 })
 export default class OrdersList extends Vue {
   data() {
-    const { ListColumnWidth, OrderAction } = this.$consts;
+    const { ListColumnWidth } = this.$consts;
 
     return {
       cList: {
@@ -71,30 +141,80 @@ export default class OrdersList extends Vue {
             width: 60
           },
           {
-            title: "图片",
-            width: 138,
-            render: (h, { row }) => {
-              return h("c-list-image", {
-                props: {
-                  src: this.$helpers.getFileUrlById(row.pictureId)
-                }
-              });
-            }
+            title: "订单号",
+            key: "no",
+            width: 150
           },
           {
-            title: "标题",
-            key: "title",
-            minWidth: ListColumnWidth.Title
+            title: "下单会员",
+            width: ListColumnWidth.User,
+            render: (h, { row }) => h("span", row.wxUser.nickName)
           },
           {
-            title: "链接",
-            key: "link",
-            width: 300
+            title: "商品",
+            width: 260,
+            render: (h, { row }) => h("span", JSON.stringify(row.products))
+          },
+          {
+            title: "支付方式",
+            width: 90,
+            render: (h, { row }) =>
+              h(
+                "span",
+                this.$helpers.getItem(
+                  this.dicts.OrderPayment,
+                  "value",
+                  row.payment
+                )["label"]
+              )
+          },
+          {
+            title: "支付金额",
+            width: 90,
+            render: (h, { row }) => h("span", row.amount + " 元")
+          },
+          {
+            title: "下单时间",
+            key: "createdAt",
+            width: 140,
+            render: (h, { row }) => h("span", this.$time.getTime(row.createdAt))
+          },
+          {
+            title: "完成时间",
+            width: 140,
+            render: (h, { row }) =>
+              h(
+                "span",
+                row.status === this.dicts.OrderStatus.Finished
+                  ? this.$time.getTime(row.updatedAt)
+                  : ""
+              )
+          },
+          {
+            title: "配送员",
+            key: "delivererId",
+            width: ListColumnWidth.User,
+            render: (h, { row }) =>
+              h("span", row.delivererUserId ? row.delivererUser.name : "")
+          },
+          {
+            title: "状态",
+            key: "status",
+            width: 80,
+            render: (h, { row }) =>
+              h(
+                "span",
+                this.$helpers.getItem(
+                  this.dicts.OrderStatus,
+                  "value",
+                  row.status
+                )["label"]
+              )
           },
           {
             title: "操作",
             key: "action",
-            width: 245,
+            width: 255,
             render: (h, { row }) =>
               h("div", [
                 h(
@@ -102,11 +222,11 @@ export default class OrdersList extends Vue {
                   {
                     on: {
                       click: () => {
-                        this.$refs.form.show(row);
+                        this.showDetail(row);
                       }
                     }
                   },
-                  "编辑"
+                  "详情"
                 ),
                 h(
                   "c-delete",
@@ -118,18 +238,7 @@ export default class OrdersList extends Vue {
                     }
                   },
                   "删除"
-                ),
-                h("c-dropdown", {
-                  attrs: {
-                    title: "排序",
-                    options: OrderAction
-                  },
-                  on: {
-                    click: action => {
-                      this.order(row.id, action);
-                    }
-                  }
-                })
+                )
               ])
           }
         ],

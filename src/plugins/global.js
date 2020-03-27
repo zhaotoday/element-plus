@@ -20,6 +20,7 @@ import Icon from "../components/icon";
 import Dropdown from "../components/dropdown";
 import ListImage from "../components/list-image";
 import Editor from "../components/editor";
+import PaymentSelect from "../components/payment-select";
 
 export default {
   install(Vue) {
@@ -50,5 +51,6 @@ export default {
     Vue.component("c-dropdown", Dropdown);
     Vue.component("c-list-image", ListImage);
     Vue.component("c-editor", Editor);
+    Vue.component("c-payment-select", PaymentSelect);
   }
 };
