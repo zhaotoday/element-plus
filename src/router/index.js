@@ -21,7 +21,8 @@ const router = new Router({
             require("./routes/wx-users").default,
             require("./routes/products").default,
             require("./routes/ads").default,
-            require("./routes/orders").default
+            require("./routes/orders").default,
+            require("./routes/articles").default
           ],
           meta: {
             requiresAuth: true
