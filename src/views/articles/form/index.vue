@@ -105,7 +105,7 @@
         </Button>
         <Button
           @click="
-            id ? $helpers.goBack() : $router.push(`/products/products/list`)
+            id ? $helpers.goBack() : $router.push(`/articles/articles/list`)
           "
         >
           返回
@@ -121,7 +121,7 @@ import RouteParamsMixin from "@/mixins/route-params";
 import FormMixin from "@/mixins/form";
 import { mapState } from "vuex";
 
-const module = "products";
+const module = "articles";
 
 @Component({
   mixins: [RouteParamsMixin, FormMixin],
@@ -129,7 +129,7 @@ const module = "products";
     detail: state => state[module].detail
   })
 })
-export default class ProductsForm extends Vue {
+export default class ArticlesForm extends Vue {
   data() {
     return {
       cForm: {

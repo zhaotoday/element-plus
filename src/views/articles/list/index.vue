@@ -10,7 +10,7 @@
     >
       <c-list-header>
         <c-list-operations>
-          <Button type="primary" to="/products/products/list/form">
+          <Button type="primary" to="/articles/articles/list/form">
             新增
           </Button>
           <c-bulk-delete
@@ -62,7 +62,7 @@ import RouteParamsMixin from "@/mixins/route-params";
 import ListMixin from "@/mixins/list";
 import AllCategoriesListMixin from "@/mixins/all-categories-list";
 
-const module = "products";
+const module = "articles";
 
 const initWhere = {
   name: {
@@ -82,7 +82,7 @@ const initWhere = {
     list: state => state[module].list
   })
 })
-export default class ProductsList extends Vue {
+export default class ArticlesList extends Vue {
   data() {
     const { ListColumnWidth, OrderAction } = this.$consts;
 
@@ -105,30 +105,9 @@ export default class ProductsList extends Vue {
             }
           },
           {
-            title: "名称",
-            key: "name",
+            title: "标题",
+            key: "title",
             minWidth: ListColumnWidth.Title
-          },
-          {
-            title: "分类",
-            width: ListColumnWidth.Category,
-            render: (h, { row }) =>
-              h("span", this.getCategoryNameById(row.categoryId, true))
-          },
-          {
-            title: "价格",
-            width: 80,
-            render: (h, { row }) => h("span", row.originalPrice + "元")
-          },
-          {
-            title: "会员价",
-            width: 80,
-            render: (h, { row }) => h("span", row.price + " 元")
-          },
-          {
-            title: "库存",
-            key: "stock",
-            width: 80
           },
           {
             title: "标签",
@@ -171,7 +150,7 @@ export default class ProductsList extends Vue {
                   "Button",
                   {
                     props: {
-                      to: `/${this.alias}/products/list/form/${row.id}`
+                      to: `/${this.alias}/articles/list/form/${row.id}`
                     }
                   },
                   "编辑"
