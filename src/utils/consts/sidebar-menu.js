@@ -42,12 +42,12 @@ export default [
     title: "文章管理",
     children: [
       {
-        title: "图文列表",
-        route: "/products/articles/list"
+        title: "文章列表",
+        route: "/articles/articles/list"
       },
       {
         title: "文章分类",
-        route: "/products/articles/categories"
+        route: "/articles/articles/categories"
       }
     ]
   },

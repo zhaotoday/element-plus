@@ -36,11 +36,11 @@
                 "
               ></c-category-select>
             </Form-item>
-            <Form-item prop="name">
+            <Form-item prop="title">
               <Input
                 class="c-form__input"
-                placeholder="请输入名称"
-                v-model="cList.cSearch.where.name.$like"
+                placeholder="请输入标题"
+                v-model="cList.cSearch.where.title.$like"
               />
             </Form-item>
             <Form-item>
@@ -65,7 +65,7 @@ import AllCategoriesListMixin from "@/mixins/all-categories-list";
 const module = "articles";
 
 const initWhere = {
-  name: {
+  title: {
     $like: ""
   },
   categoryId: {

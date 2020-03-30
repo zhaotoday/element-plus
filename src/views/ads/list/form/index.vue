@@ -43,7 +43,7 @@
       <Form-item label="状态" prop="status">
         <Select class="c-form__input" v-model.trim="cForm.model.status">
           <Option
-            v-for="item in dicts.Status"
+            v-for="item in dicts.AdStatus"
             :key="item.value"
             :value="item.value"
           >

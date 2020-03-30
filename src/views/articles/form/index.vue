@@ -7,11 +7,11 @@
       :rules="cForm.rules"
       :label-width="100"
     >
-      <Form-item label="名称" prop="name">
+      <Form-item label="标题" prop="title">
         <Input
           class="c-form__input"
-          v-model.trim="cForm.model.name"
-          placeholder="请输入名称"
+          v-model.trim="cForm.model.title"
+          placeholder="请输入标题"
         />
       </Form-item>
       <Form-item label="分类" prop="categoryId">
@@ -25,48 +25,26 @@
           "
         ></c-category-select>
       </Form-item>
-      <Form-item label="原价" prop="originalPrice">
-        <InputNumber
-          :min="0"
-          :max="100000"
-          v-model="cForm.model.originalPrice"
-        />
-        元
+      <Form-item label="状态" prop="status">
+        <Select class="c-form__input" v-model.trim="cForm.model.status">
+          <Option
+            v-for="item in dicts.ArticleStatus"
+            :key="item.value"
+            :value="item.value"
+          >
+            {{ item.label }}
+          </Option>
+        </Select>
       </Form-item>
-      <Form-item label="会员价" prop="price">
-        <InputNumber :min="0" :max="100000" v-model="cForm.model.price" />
-        元
+      <Form-item label="标签" prop="tags">
+        <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.hot">
+          热门
+        </Checkbox>
+        <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.new">
+          最新
+        </Checkbox>
       </Form-item>
-      <Form-item label="库存" prop="stock">
-        <InputNumber :min="0" :max="100000" v-model="cForm.model.stock" />
-      </Form-item>
-      <Form-item label="图片" prop="pictureId">
-        <c-uploader
-          class="c-form__input"
-          :key="cForm.id"
-          :has-default-file="!!cForm.model.pictureId"
-          v-model="cForm.model.pictureId"
-          @change="
-            value => {
-              handleFormUploaderChange('pictureId', value);
-            }
-          "
-        />
-      </Form-item>
-      <Form-item label="视频" prop="videoId">
-        <c-uploader
-          class="c-form__input"
-          :key="cForm.id"
-          :has-default-file="!!cForm.model.videoId"
-          v-model="cForm.model.videoId"
-          @change="
-            value => {
-              handleFormUploaderChange('videoId', value);
-            }
-          "
-        />
-      </Form-item>
-      <Form-item label="详情" prop="content">
+      <Form-item label="内容" prop="content">
         <c-editor
           :html="cForm.model.content"
           @change="
@@ -75,29 +53,6 @@
             }
           "
         ></c-editor>
-      </Form-item>
-      <Form-item label="标签" prop="tags">
-        <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.new">
-          新品
-        </Checkbox>
-        <Checkbox
-          :true-value="1"
-          :false-value="0"
-          v-model="cForm.model.recommended"
-        >
-          推荐
-        </Checkbox>
-      </Form-item>
-      <Form-item label="状态" prop="status">
-        <Select class="c-form__input" v-model.trim="cForm.model.status">
-          <Option
-            v-for="item in dicts.ProductStatus"
-            :key="item.value"
-            :value="item.value"
-          >
-            {{ item.label }}
-          </Option>
-        </Select>
       </Form-item>
       <Form-item>
         <Button class="u-mr5" type="primary" @click="submit">
@@ -135,28 +90,16 @@ export default class ArticlesForm extends Vue {
       cForm: {
         model: this.getFormInitModel(),
         rules: {
-          name: [
+          title: [
             {
               required: true,
-              message: "名称不能为空"
-            }
-          ],
-          categoryId: [
-            {
-              required: true,
-              message: "分类不能为空"
-            }
-          ],
-          pictureId: [
-            {
-              required: true,
-              message: "图片不能为空"
+              message: "标题不能为空"
             }
           ],
           content: [
             {
               required: true,
-              message: "详情不能为空"
+              message: "内容不能为空"
             }
           ]
         }

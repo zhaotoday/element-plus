@@ -66,15 +66,16 @@
           "
         />
       </Form-item>
-      <Form-item label="详情" prop="content">
-        <c-editor
-          :html="cForm.model.content"
-          @change="
-            html => {
-              $set(cForm.model, 'content', html);
-            }
-          "
-        ></c-editor>
+      <Form-item label="状态" prop="status">
+        <Select class="c-form__input" v-model.trim="cForm.model.status">
+          <Option
+            v-for="item in dicts.ProductStatus"
+            :key="item.value"
+            :value="item.value"
+          >
+            {{ item.label }}
+          </Option>
+        </Select>
       </Form-item>
       <Form-item label="标签" prop="tags">
         <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.new">
@@ -88,16 +89,15 @@
           推荐
         </Checkbox>
       </Form-item>
-      <Form-item label="状态" prop="status">
-        <Select class="c-form__input" v-model.trim="cForm.model.status">
-          <Option
-            v-for="item in dicts.ProductStatus"
-            :key="item.value"
-            :value="item.value"
-          >
-            {{ item.label }}
-          </Option>
-        </Select>
+      <Form-item label="详情" prop="content">
+        <c-editor
+          :html="cForm.model.content"
+          @change="
+            html => {
+              $set(cForm.model, 'content', html);
+            }
+          "
+        ></c-editor>
       </Form-item>
       <Form-item>
         <Button class="u-mr5" type="primary" @click="submit">
