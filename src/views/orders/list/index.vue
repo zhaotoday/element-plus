@@ -11,7 +11,6 @@
       <c-list-header>
         <c-list-operations>
           <Button
-            v-if="cList.cSearch.where.status.$eq === dicts.OrderStatus.Paid"
             type="primary"
             @click="deliver"
           >

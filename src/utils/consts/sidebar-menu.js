@@ -1,6 +1,6 @@
 export default [
   {
-    icon: "ios-cart",
+    icon: "md-cube",
     name: "products",
     title: "商品管理",
     children: [
@@ -15,7 +15,7 @@ export default [
     ]
   },
   {
-    icon: "md-person",
+    icon: "ios-folder-open",
     name: "orders",
     title: "订单管理",
     children: [
@@ -26,7 +26,7 @@ export default [
     ]
   },
   {
-    icon: "md-person",
+    icon: "ios-browsers",
     name: "ads",
     title: "轮播广告管理",
     children: [
@@ -37,13 +37,17 @@ export default [
     ]
   },
   {
-    icon: "md-person",
+    icon: "md-document",
     name: "articles",
     title: "文章管理",
     children: [
       {
-        title: "文章列表",
-        route: "/articles/articles/index"
+        title: "图文列表",
+        route: "/products/articles/list"
+      },
+      {
+        title: "文章分类",
+        route: "/products/articles/categories"
       }
     ]
   },
