@@ -94,37 +94,20 @@ export default class ArticlesList extends Vue {
             width: 60
           },
           {
-            title: "图片",
-            width: 138,
-            render: (h, { row }) => {
-              return h("c-list-image", {
-                props: {
-                  src: this.$helpers.getFileUrlById(row.pictureId)
-                }
-              });
-            }
-          },
-          {
             title: "标题",
             key: "title",
             minWidth: ListColumnWidth.Title
           },
           {
-            title: "标签",
-            width: 100,
-            render: (h, { row }) => {
-              let tags = [];
-
-              if (row.new) {
-                tags.push("新品");
-              }
-
-              if (row.recommended) {
-                tags.push("推荐");
-              }
-
-              return h("span", tags.join("; "));
-            }
+            title: "分类",
+            width: ListColumnWidth.Category,
+            render: (h, { row }) =>
+              h("span", this.getCategoryNameById(row.categoryId, true))
+          },
+          {
+            title: "发布时间",
+            width: ListColumnWidth.CreatedAt,
+            render: (h, { row }) => h("span", this.$time.getTime(row.createdAt))
           },
           {
             title: "状态",

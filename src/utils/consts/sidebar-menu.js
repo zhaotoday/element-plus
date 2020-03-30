@@ -2,10 +2,10 @@ export default [
   {
     icon: "ios-cart",
     name: "products",
-    title: "商品",
+    title: "商品管理",
     children: [
       {
-        title: "商品",
+        title: "商品列表",
         route: "/products/products/list"
       },
       {
@@ -17,10 +17,10 @@ export default [
   {
     icon: "md-person",
     name: "orders",
-    title: "订单",
+    title: "订单管理",
     children: [
       {
-        title: "订单",
+        title: "订单列表",
         route: "/orders/orders/index"
       }
     ]
@@ -28,21 +28,32 @@ export default [
   {
     icon: "md-person",
     name: "ads",
-    title: "广告",
+    title: "轮播广告管理",
     children: [
       {
-        title: "广告",
+        title: "轮播广告列表",
         route: "/ads/ads/index"
       }
     ]
   },
   {
     icon: "md-person",
-    name: "wxUsers",
-    title: "微信用户",
+    name: "articles",
+    title: "文章管理",
     children: [
       {
-        title: "微信用户",
+        title: "文章列表",
+        route: "/articles/articles/index"
+      }
+    ]
+  },
+  {
+    icon: "md-person",
+    name: "wxUsers",
+    title: "微信用户管理",
+    children: [
+      {
+        title: "微信用户列表",
         route: "/wxUsers/wxUsers/index"
       }
     ]
