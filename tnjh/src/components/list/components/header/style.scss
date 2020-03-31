@@ -1,8 +1,0 @@
-@import "../../../../styles/utils/index";
-
-@include c(list) {
-  @include e(header) {
-    position: relative;
-    height: 48px;
-  }
-}

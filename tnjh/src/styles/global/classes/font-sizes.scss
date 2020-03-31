@@ -1,7 +1,0 @@
-@import "../../utils/index";
-
-@each $key, $value in $font-sizes {
-  .#{$key} {
-    font-size: $value;
-  }
-}
