@@ -48,6 +48,10 @@ export default class extends REST {
       query.include = JSON.stringify(query.include);
     }
 
+    if (query.order) {
+      query.order = JSON.stringify(query.order);
+    }
+
     if (method === "GET") {
       query._ = new Date().getTime();
     }

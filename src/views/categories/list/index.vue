@@ -289,7 +289,8 @@ export default class CategoriesList extends Vue {
           parentId: { $eq: parentIds[parentIds.length - 1] || null },
           name
           // alias: this.alias
-        }
+        },
+        order: [["order", "DESC"]]
       }
     });
   }
@@ -348,6 +349,8 @@ export default class CategoriesList extends Vue {
     const { name } = this.listSearchWhere || initWhere;
 
     await this.$store.dispatch(`${module}/postAction`, {
+      id,
+      action: "order",
       query: {
         where: {
           parentId: this.isParent ? this.parentDetail.id : 0,
@@ -355,8 +358,10 @@ export default class CategoriesList extends Vue {
           // alias: this.alias
         }
       },
-      body: { type: action, id }
+      body: { action }
     });
+
+    this.$Message.success("排序成功");
 
     this.getList();
   }

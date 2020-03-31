@@ -29,9 +29,9 @@ export default ({ types, Model }) => {
       return new Model().DELETE({ showLoading, showError, id });
     },
 
-    postAction(context, { showLoading, showError, action, query, body }) {
+    postAction(context, { showLoading, showError, action, id, query, body }) {
       return new Model()
-        .addPath(`actions/${action}`)
+        .addPath(`${id ? id + "/" : ""}actions/${action}`)
         .POST({ showLoading, showError, query, body });
     }
   };
