@@ -10,10 +10,7 @@
     >
       <c-list-header>
         <c-list-operations>
-          <Button
-            type="primary"
-            @click="deliver"
-          >
+          <Button type="primary" @click="deliver">
             配送订单
           </Button>
           <c-bulk-delete
