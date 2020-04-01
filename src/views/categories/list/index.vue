@@ -287,8 +287,8 @@ export default class CategoriesList extends Vue {
         limit: this.$consts.PageSize,
         where: {
           parentId: { $eq: parentIds[parentIds.length - 1] || null },
-          name
-          // alias: this.alias
+          name,
+          alias: this.alias
         },
         order: [["order", "DESC"]]
       }
@@ -375,7 +375,7 @@ export default class CategoriesList extends Vue {
           id,
           body: {
             ...model,
-            // alias: this.alias,
+            alias: this.alias,
             parentId: this.isParent ? this.parentDetail.id : undefined
           }
         });
