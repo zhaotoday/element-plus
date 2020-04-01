@@ -52,6 +52,7 @@
           @change="
             html => {
               $set(cForm.model, 'content', html);
+              $refs.form.validateField('content');
             }
           "
         ></c-editor>
