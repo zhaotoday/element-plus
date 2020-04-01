@@ -55,7 +55,10 @@ export default class TheSidebar extends Vue {
     const path = route ? route.path : this.$route.path;
     const paths = path.split("/");
     this.openNames = [paths[1]];
-    this.activeName = `/${paths[1]}/${paths[2]}/${paths[3]}`;
+    this.activeName =
+      paths.length === 5
+        ? `/${paths[1]}/${paths[2]}/list`
+        : `/${paths[1]}/${paths[2]}/${paths[3]}`;
 
     this.$nextTick(() => {
       this.$refs.menu.updateActiveName();

@@ -41,15 +41,15 @@
       <Form-item label="库存" prop="stock">
         <InputNumber :min="0" :max="100000" v-model="cForm.model.stock" />
       </Form-item>
-      <Form-item label="图片" prop="pictureId">
+      <Form-item label="图片" prop="pictureIds">
         <c-uploader
           class="c-form__input"
           :key="cForm.id"
-          :has-default-file="!!cForm.model.pictureId"
-          v-model="cForm.model.pictureId"
+          :has-default-file="!!cForm.model.pictureIds"
+          v-model="cForm.model.pictureIds"
           @change="
             value => {
-              handleFormUploaderChange('pictureId', value);
+              handleFormUploaderChange('pictureIds', value);
             }
           "
         />
@@ -149,7 +149,7 @@ export default class ProductsForm extends Vue {
               message: "分类不能为空"
             }
           ],
-          pictureId: [
+          pictureIds: [
             {
               required: true,
               message: "图片不能为空"

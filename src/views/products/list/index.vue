@@ -111,7 +111,7 @@ export default class ProductsList extends Vue {
             render: (h, { row }) => {
               return h("c-list-image", {
                 props: {
-                  src: this.$helpers.getFileUrlById(row.pictureId)
+                  src: this.$helpers.getFileUrlById(row.pictureIds)
                 }
               });
             }
@@ -176,7 +176,7 @@ export default class ProductsList extends Vue {
           {
             title: "操作",
             key: "action",
-            width: 340,
+            width: 424,
             render: (h, { row }) =>
               h("div", [
                 h(
@@ -198,6 +198,15 @@ export default class ProductsList extends Vue {
                     }
                   },
                   "删除"
+                ),
+                h(
+                  "Button",
+                  {
+                    props: {
+                      to: `/${this.alias}/products/${row.id}/comments`
+                    }
+                  },
+                  "评价管理"
                 ),
                 h("c-dropdown", {
                   props: {

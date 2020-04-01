@@ -10,14 +10,14 @@
     >
       <c-list-header>
         <c-list-operations>
-          <Button type="primary" @click="$refs.form.show()">
-            新增
-          </Button>
           <c-bulk-delete
             :selected-items="listSelectedItems"
             @ok="confirmDelete"
           >
           </c-bulk-delete>
+          <Button @click="$helpers.goBack()">
+            返回
+          </Button>
         </c-list-operations>
         <c-list-search>
           <Form inline @submit.native.prevent="search">
