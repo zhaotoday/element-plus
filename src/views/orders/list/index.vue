@@ -50,9 +50,10 @@
             <Form-item prop="payment">
               <c-payment-select
                 class="c-form__input"
+                :value="cList.cSearch.where.payment.$eq"
                 @change="
                   value => {
-                    $set((cList.cSearch.where.payment.$eq = value));
+                    cList.cSearch.where.payment.$eq = value;
                   }
                 "
               ></c-payment-select>

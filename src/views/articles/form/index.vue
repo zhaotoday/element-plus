@@ -17,6 +17,7 @@
       <Form-item label="分类" prop="categoryId">
         <c-category-select
           class="c-form__input"
+          select-parent
           v-model="cForm.model.categoryId"
           @change="
             value => {

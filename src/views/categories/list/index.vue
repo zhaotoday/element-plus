@@ -354,15 +354,14 @@ export default class CategoriesList extends Vue {
       query: {
         where: {
           parentId: this.isParent ? this.parentDetail.id : 0,
-          name
-          // alias: this.alias
+          name,
+          alias: this.alias
         }
       },
       body: { action }
     });
 
     this.$Message.success("排序成功");
-
     this.getList();
   }
 

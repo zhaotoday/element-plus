@@ -1,0 +1,36 @@
+<template>
+  <Select
+    placeholder="请选择状态"
+    clearable
+    filterable
+    :value.sync="value"
+    @on-change="change"
+  >
+    <Option
+      v-for="item in dicts.PublishStatus"
+      :key="item.value"
+      :value="item.value"
+      :label="item.label"
+    >
+      {{ item.label }}
+    </Option>
+  </Select>
+</template>
+
+<script>
+import { Vue, Component } from "vue-property-decorator";
+
+@Component({
+  props: {
+    value: {
+      type: [String, Number],
+      default: ""
+    }
+  }
+})
+export default class PublishStatusSelect extends Vue {
+  change(value) {
+    this.$emit("change", value);
+  }
+}
+</script>

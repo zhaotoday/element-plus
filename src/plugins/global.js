@@ -21,6 +21,7 @@ import Dropdown from "../components/dropdown";
 import ListImage from "../components/list-image";
 import Editor from "../components/editor";
 import PaymentSelect from "../components/payment-select";
+import PublishStatusSelect from "../components/publish-status-select";
 
 export default {
   install(Vue) {
@@ -52,5 +53,6 @@ export default {
     Vue.component("c-list-image", ListImage);
     Vue.component("c-editor", Editor);
     Vue.component("c-payment-select", PaymentSelect);
+    Vue.component("c-publish-status-select", PublishStatusSelect);
   }
 };

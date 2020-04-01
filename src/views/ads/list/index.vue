@@ -21,6 +21,17 @@
         </c-list-operations>
         <c-list-search>
           <Form inline @submit.native.prevent="search">
+            <Form-item prop="status">
+              <c-publish-status-select
+                class="c-form__input"
+                :value="cList.cSearch.where.status.$eq"
+                @change="
+                  value => {
+                    cList.cSearch.where.status.$eq = value;
+                  }
+                "
+              ></c-publish-status-select>
+            </Form-item>
             <Form-item prop="title">
               <Input
                 placeholder="请输入标题"
@@ -50,6 +61,9 @@ import ListMixin from "@/mixins/list";
 
 const module = "ads";
 const initWhere = {
+  status: {
+    $eq: 1
+  },
   title: {
     $like: ""
   }
