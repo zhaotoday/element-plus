@@ -25,9 +25,21 @@
             inline
             @submit.native.prevent="search"
           >
+            <Form-item prop="status">
+              <c-publish-status-select
+                class="c-form__input"
+                :value="cList.cSearch.where.status.$eq"
+                @change="
+                  value => {
+                    cList.cSearch.where.status.$eq = value;
+                  }
+                "
+              ></c-publish-status-select>
+            </Form-item>
             <Form-item prop="categoryId">
               <c-category-select
                 class="c-form__input"
+                :alias="alias"
                 v-model="cList.cSearch.where.categoryId.$eq"
                 @change="
                   value => {
@@ -72,7 +84,7 @@ const initWhere = {
     $eq: ""
   },
   status: {
-    $eq: 1
+    $eq: ""
   }
 };
 
@@ -236,7 +248,8 @@ export default class ProductsList extends Vue {
       query: {
         offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
         limit: this.$consts.PageSize,
-        where: this.listSearchWhere
+        where: this.listSearchWhere || initWhere,
+        order: [["order", "DESC"]]
       }
     });
   }
@@ -249,12 +262,29 @@ export default class ProductsList extends Vue {
     !items.length && this.goListPrevPage();
   }
 
-  changeStatus(id, action) {
-    console.log(id, action);
+  async changeStatus(id, action) {
+    await this.$store.dispatch(`${module}/put`, {
+      id,
+      body: {
+        status: action
+      }
+    });
+    this.$Message.success("修改状态成功");
+    this.getList();
   }
 
-  order(id, action) {
-    console.log(id, action);
+  async order(id, action) {
+    await this.$store.dispatch(`${module}/postAction`, {
+      id,
+      action: "order",
+      query: {
+        where: this.listSearchWhere || initWhere
+      },
+      body: { action }
+    });
+
+    this.$Message.success("排序成功");
+    this.getList();
   }
 }
 </script>

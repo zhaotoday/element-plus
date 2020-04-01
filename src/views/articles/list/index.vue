@@ -39,6 +39,7 @@
             <Form-item prop="categoryId">
               <c-category-select
                 class="c-form__input"
+                :alias="alias"
                 select-parent
                 v-model="cList.cSearch.where.categoryId.$eq"
                 @change="
@@ -84,7 +85,7 @@ const initWhere = {
     $eq: ""
   },
   status: {
-    $eq: 1
+    $eq: ""
   }
 };
 

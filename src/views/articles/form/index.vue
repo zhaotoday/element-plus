@@ -18,6 +18,7 @@
         <c-category-select
           class="c-form__input"
           select-parent
+          :alias="alias"
           v-model="cForm.model.categoryId"
           @change="
             value => {

@@ -62,7 +62,7 @@ import ListMixin from "@/mixins/list";
 const module = "ads";
 const initWhere = {
   status: {
-    $eq: 1
+    $eq: ""
   },
   title: {
     $like: ""
@@ -111,9 +111,23 @@ export default class AdsList extends Vue {
             width: 300
           },
           {
+            title: "状态",
+            width: 80,
+            render: (h, { row }) =>
+              h(
+                "span",
+                null,
+                this.$helpers.getItem(
+                  this.dicts.PublishStatus,
+                  "value",
+                  row.status
+                )["label"]
+              )
+          },
+          {
             title: "操作",
             key: "action",
-            width: 245,
+            width: 340,
             render: (h, { row }) =>
               h("div", [
                 h(
@@ -138,6 +152,18 @@ export default class AdsList extends Vue {
                   },
                   "删除"
                 ),
+                h("c-dropdown", {
+                  props: {
+                    width: 90,
+                    title: "修改状态",
+                    options: this.dicts.PublishStatus
+                  },
+                  on: {
+                    click: action => {
+                      this.changeStatus(row.id, action);
+                    }
+                  }
+                }),
                 h("c-dropdown", {
                   attrs: {
                     title: "排序",
@@ -188,8 +214,29 @@ export default class AdsList extends Vue {
     !items.length && this.goListPrevPage();
   }
 
-  order(id, action) {
-    console.log(id, action);
+  async changeStatus(id, action) {
+    await this.$store.dispatch(`${module}/put`, {
+      id,
+      body: {
+        status: action
+      }
+    });
+    this.$Message.success("修改状态成功");
+    this.getList();
+  }
+
+  async order(id, action) {
+    await this.$store.dispatch(`${module}/postAction`, {
+      id,
+      action: "order",
+      query: {
+        where: this.listSearchWhere || initWhere
+      },
+      body: { action }
+    });
+
+    this.$Message.success("排序成功");
+    this.getList();
   }
 }
 </script>
