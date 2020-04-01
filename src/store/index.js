@@ -32,6 +32,7 @@ export default new Vuex.Store({
     ads: require("./modules/admin/ads").default,
     products: require("./modules/admin/products").default,
     orders: require("./modules/admin/orders").default,
-    articles: require("./modules/admin/articles").default
+    articles: require("./modules/admin/articles").default,
+    comments: require("./modules/admin/comments").default
   }
 });

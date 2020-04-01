@@ -3,16 +3,20 @@ export default {
   component: resolve => require(["@/views/categories"], resolve),
   children: [
     {
-      path: "categories",
-      component: resolve => require(["@/views/categories/list"], resolve)
-    },
-    {
       path: "list",
       component: resolve => require(["@/views/products/list"], resolve)
     },
     {
       path: "list/form/:id?",
       component: resolve => require(["@/views/products/form"], resolve)
+    },
+    {
+      path: "categories",
+      component: resolve => require(["@/views/categories/list"], resolve)
+    },
+    {
+      path: ":id/comments",
+      component: resolve => require(["@/views/comments/list"], resolve)
     }
   ]
 };
