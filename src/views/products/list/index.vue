@@ -155,7 +155,7 @@ export default class ProductsList extends Vue {
                 "span",
                 null,
                 this.$helpers.getItem(
-                  this.dicts.ProductStatus,
+                  this.dicts.PublishStatus,
                   "value",
                   row.status
                 )["label"]
@@ -191,7 +191,7 @@ export default class ProductsList extends Vue {
                   props: {
                     width: 90,
                     title: "修改状态",
-                    options: this.dicts.ProductStatus
+                    options: this.dicts.PublishStatus
                   },
                   on: {
                     click: action => {
