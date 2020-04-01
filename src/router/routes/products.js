@@ -15,7 +15,7 @@ export default {
       component: resolve => require(["@/views/categories/list"], resolve)
     },
     {
-      path: ":id/comments",
+      path: ":productId/comments",
       component: resolve => require(["@/views/comments/list"], resolve)
     }
   ]

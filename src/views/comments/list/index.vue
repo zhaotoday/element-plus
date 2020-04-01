@@ -152,7 +152,10 @@ export default class CommentsList extends Vue {
       query: {
         offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
         limit: this.$consts.PageSize,
-        where: this.listSearchWhere,
+        where: {
+          ...this.listSearchWhere,
+          productId: this.$route.params.productId
+        },
         include: [{ model: "WxUser", as: "wxUser" }]
       }
     });
