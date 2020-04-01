@@ -42,8 +42,8 @@
         <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.hot">
           热门
         </Checkbox>
-        <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.new">
-          最新
+        <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.top">
+          置顶
         </Checkbox>
       </Form-item>
       <Form-item label="内容" prop="content">

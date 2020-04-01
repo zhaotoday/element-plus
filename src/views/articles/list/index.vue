@@ -123,6 +123,23 @@ export default class ArticlesList extends Vue {
             render: (h, { row }) => h("span", this.$time.getTime(row.createdAt))
           },
           {
+            title: "标签",
+            width: 100,
+            render: (h, { row }) => {
+              let tags = [];
+
+              if (row.hot) {
+                tags.push("热门");
+              }
+
+              if (row.top) {
+                tags.push("置顶");
+              }
+
+              return h("span", tags.join("; "));
+            }
+          },
+          {
             title: "状态",
             width: 80,
             render: (h, { row }) =>
@@ -212,7 +229,10 @@ export default class ArticlesList extends Vue {
         offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
         limit: this.$consts.PageSize,
         where: this.listSearchWhere || initWhere,
-        order: [["order", "DESC"]]
+        order: [
+          ["top", "DESC"],
+          ["order", "DESC"]
+        ]
       }
     });
   }
