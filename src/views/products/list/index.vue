@@ -219,7 +219,18 @@ export default class ProductsList extends Vue {
                       this.order(row.id, action);
                     }
                   }
-                })
+                }),
+                h(
+                  "c-delete",
+                  {
+                    on: {
+                      ok: () => {
+                        this.confirmDelete(row.id);
+                      }
+                    }
+                  },
+                  "删除"
+                )
               ])
           }
         ],
