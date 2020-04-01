@@ -37,7 +37,7 @@ export default class ListMixin extends Vue {
   }
 
   async resetList(initWhere) {
-    this.$router.push({
+    this.$router.replace({
       query: Object.assign(
         {
           listPageCurrent: 1
@@ -52,7 +52,7 @@ export default class ListMixin extends Vue {
   }
 
   async resetListSearch(initWhere) {
-    this.$router.push({
+    this.$router.replace({
       query: {
         listPageCurrent: 1,
         listSearchWhere: JSON.stringify(initWhere)
@@ -61,7 +61,7 @@ export default class ListMixin extends Vue {
   }
 
   search() {
-    this.$router.push({
+    this.$router.replace({
       query: {
         listPageCurrent: 1,
         listSearchWhere: JSON.stringify(this.cList.cSearch.where)
@@ -71,7 +71,7 @@ export default class ListMixin extends Vue {
 
   goListPrevPage() {
     if (this.listPageCurrent !== 1) {
-      this.$router.push({
+      this.$router.replace({
         query: {
           listPageCurrent: this.listPageCurrent - 1 || 1,
           listSearchWhere: JSON.stringify(this.listSearchWhere)

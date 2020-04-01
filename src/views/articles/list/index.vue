@@ -168,17 +168,6 @@ export default class ArticlesList extends Vue {
                   },
                   "编辑"
                 ),
-                h(
-                  "c-delete",
-                  {
-                    on: {
-                      ok: () => {
-                        this.confirmDelete(row.id);
-                      }
-                    }
-                  },
-                  "删除"
-                ),
                 h("c-dropdown", {
                   props: {
                     width: 90,
@@ -201,7 +190,18 @@ export default class ArticlesList extends Vue {
                       this.order(row.id, action);
                     }
                   }
-                })
+                }),
+                h(
+                  "c-delete",
+                  {
+                    on: {
+                      ok: () => {
+                        this.confirmDelete(row.id);
+                      }
+                    }
+                  },
+                  "删除"
+                )
               ])
           }
         ],

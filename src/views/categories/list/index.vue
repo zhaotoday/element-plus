@@ -196,17 +196,6 @@ export default class CategoriesList extends Vue {
                   },
                   "编辑"
                 ),
-                h(
-                  "c-delete",
-                  {
-                    on: {
-                      ok: () => {
-                        this.confirmDelete(row.id);
-                      }
-                    }
-                  },
-                  "删除"
-                ),
                 this.levels === 2
                   ? h(
                       "Button",
@@ -230,7 +219,18 @@ export default class CategoriesList extends Vue {
                       this.order(row.id, action);
                     }
                   }
-                })
+                }),
+                h(
+                  "c-delete",
+                  {
+                    on: {
+                      ok: () => {
+                        this.confirmDelete(row.id);
+                      }
+                    }
+                  },
+                  "删除"
+                )
               ])
           }
         ],

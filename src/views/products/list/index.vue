@@ -189,17 +189,6 @@ export default class ProductsList extends Vue {
                   "编辑"
                 ),
                 h(
-                  "c-delete",
-                  {
-                    on: {
-                      ok: () => {
-                        this.confirmDelete(row.id);
-                      }
-                    }
-                  },
-                  "删除"
-                ),
-                h(
                   "Button",
                   {
                     props: {

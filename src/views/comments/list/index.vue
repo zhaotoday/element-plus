@@ -22,7 +22,7 @@
         <c-list-search>
           <Form inline @submit.native.prevent="search">
             <Form-item prop="status">
-              <c-publish-status-select
+              <c-check-status-select
                 class="c-form__input"
                 :value="cList.cSearch.where.status.$eq"
                 @change="
@@ -30,14 +30,7 @@
                     cList.cSearch.where.status.$eq = value;
                   }
                 "
-              ></c-publish-status-select>
-            </Form-item>
-            <Form-item prop="title">
-              <Input
-                placeholder="请输入标题"
-                v-model="cList.cSearch.where.title.$like"
-                style="width: 200px;"
-              />
+              ></c-check-status-select>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="search">
@@ -61,9 +54,6 @@ const module = "comments";
 const initWhere = {
   status: {
     $eq: ""
-  },
-  title: {
-    $like: ""
   }
 };
 
@@ -75,7 +65,7 @@ const initWhere = {
 })
 export default class CommentsList extends Vue {
   data() {
-    const { ListColumnWidth, OrderAction } = this.$consts;
+    const { ListColumnWidth } = this.$consts;
 
     return {
       cList: {
@@ -85,35 +75,23 @@ export default class CommentsList extends Vue {
             width: 60
           },
           {
-            title: "图片",
-            width: 138,
-            render: (h, { row }) => {
-              return h("c-list-image", {
-                props: {
-                  src: this.$helpers.getFileUrlById(row.pictureId)
-                }
-              });
-            }
+            title: "评价会员",
+            width: ListColumnWidth.User,
+            render: (h, { row }) => h("span", row.wxUser.nickName)
           },
           {
-            title: "标题",
-            key: "title",
-            minWidth: ListColumnWidth.Title
+            title: "评价内容",
+            key: "content"
           },
           {
-            title: "链接",
-            key: "link",
-            width: 300
-          },
-          {
-            title: "状态",
-            width: 80,
+            title: "审核状态",
+            width: 100,
             render: (h, { row }) =>
               h(
                 "span",
                 null,
                 this.$helpers.getItem(
-                  this.dicts.PublishStatus,
+                  this.dicts.CheckStatus,
                   "value",
                   row.status
                 )["label"]
@@ -122,20 +100,21 @@ export default class CommentsList extends Vue {
           {
             title: "操作",
             key: "action",
-            width: 340,
+            width: 180,
             render: (h, { row }) =>
               h("div", [
-                h(
-                  "Button",
-                  {
-                    on: {
-                      click: () => {
-                        this.$refs.form.show(row);
-                      }
-                    }
+                h("c-dropdown", {
+                  props: {
+                    width: 66,
+                    title: "审核",
+                    options: this.dicts.CheckStatus
                   },
-                  "编辑"
-                ),
+                  on: {
+                    click: action => {
+                      this.changeStatus(row.id, action);
+                    }
+                  }
+                }),
                 h(
                   "c-delete",
                   {
@@ -146,30 +125,7 @@ export default class CommentsList extends Vue {
                     }
                   },
                   "删除"
-                ),
-                h("c-dropdown", {
-                  props: {
-                    width: 90,
-                    title: "修改状态",
-                    options: this.dicts.PublishStatus
-                  },
-                  on: {
-                    click: action => {
-                      this.changeStatus(row.id, action);
-                    }
-                  }
-                }),
-                h("c-dropdown", {
-                  attrs: {
-                    title: "排序",
-                    options: OrderAction
-                  },
-                  on: {
-                    click: action => {
-                      this.order(row.id, action);
-                    }
-                  }
-                })
+                )
               ])
           }
         ],
@@ -196,7 +152,8 @@ export default class CommentsList extends Vue {
       query: {
         offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
         limit: this.$consts.PageSize,
-        where: this.listSearchWhere
+        where: this.listSearchWhere,
+        include: [{ model: "WxUser", as: "wxUser" }]
       }
     });
   }
@@ -217,20 +174,6 @@ export default class CommentsList extends Vue {
       }
     });
     this.$Message.success("修改状态成功");
-    this.getList();
-  }
-
-  async order(id, action) {
-    await this.$store.dispatch(`${module}/postAction`, {
-      id,
-      action: "order",
-      query: {
-        where: this.listSearchWhere || initWhere
-      },
-      body: { action }
-    });
-
-    this.$Message.success("排序成功");
     this.getList();
   }
 }
