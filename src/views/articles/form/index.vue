@@ -118,7 +118,8 @@ export default class ArticlesForm extends Vue {
       originalPrice: 0,
       price: 0,
       stock: 0,
-      status: 1
+      status: 1,
+      content: ""
     };
   }
 
