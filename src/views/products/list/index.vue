@@ -135,7 +135,7 @@ export default class ProductsList extends Vue {
           {
             title: "会员价",
             width: 80,
-            render: (h, { row }) => h("span", row.price + " 元")
+            render: (h, { row }) => h("span", row.price + "元")
           },
           {
             title: "库存",
