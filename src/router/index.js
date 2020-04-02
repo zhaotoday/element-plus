@@ -23,7 +23,8 @@ const router = new Router({
             require("./routes/ads").default,
             require("./routes/orders").default,
             require("./routes/articles").default,
-            require("./routes/merchants").default
+            require("./routes/merchants").default,
+            require("./routes/coupons").default
           ],
           meta: {
             requiresAuth: true

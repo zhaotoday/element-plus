@@ -34,6 +34,7 @@ export default new Vuex.Store({
     orders: require("./modules/admin/orders").default,
     articles: require("./modules/admin/articles").default,
     comments: require("./modules/admin/comments").default,
-    merchants: require("./modules/admin/merchants").default
+    merchants: require("./modules/admin/merchants").default,
+    coupons: require("./modules/admin/coupons").default
   }
 });
