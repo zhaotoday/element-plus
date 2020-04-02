@@ -94,9 +94,7 @@ export default class MerchantsListForm extends Vue {
   }
 
   getFormInitModel() {
-    return {
-      status: 1
-    };
+    return {};
   }
 
   show(detail) {
