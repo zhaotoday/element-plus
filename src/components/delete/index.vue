@@ -1,6 +1,7 @@
 <template>
   <Poptip
     confirm
+    placement="top-end"
     title="确认删除？"
     @on-ok="$emit('ok')"
     ok-text="确认"
