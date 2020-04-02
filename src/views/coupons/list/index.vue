@@ -36,10 +36,10 @@
                 "
               ></c-publish-status-select>
             </Form-item>
-            <Form-item prop="title">
+            <Form-item prop="name">
               <Input
-                placeholder="请输入标题"
-                v-model="cList.cSearch.where.title.$like"
+                placeholder="请输入名称"
+                v-model="cList.cSearch.where.name.$like"
                 style="width: 200px;"
               />
             </Form-item>
@@ -68,7 +68,7 @@ const initWhere = {
   status: {
     $eq: ""
   },
-  title: {
+  name: {
     $like: ""
   }
 };
@@ -84,8 +84,6 @@ const initWhere = {
 })
 export default class CouponsList extends Vue {
   data() {
-    const { ListColumnWidth, OrderAction } = this.$consts;
-
     return {
       cList: {
         columns: [
@@ -94,25 +92,34 @@ export default class CouponsList extends Vue {
             width: 60
           },
           {
-            title: "图片",
-            width: 138,
-            render: (h, { row }) => {
-              return h("c-list-image", {
-                props: {
-                  src: this.$helpers.getFileUrlById(row.pictureId)
-                }
-              });
-            }
+            title: "名称",
+            key: "name"
           },
           {
-            title: "标题",
-            key: "title",
-            minWidth: ListColumnWidth.Title
+            title: "类型",
+            width: 90,
+            render: (h, { row }) =>
+              h(
+                "span",
+                this.$helpers.getItem(this.dicts.CouponType, "value", row.type)[
+                  "label"
+                ]
+              )
           },
           {
-            title: "链接",
-            key: "link",
-            width: 300
+            title: "抵扣金额",
+            width: 100,
+            render: (h, { row }) => h("span", `${row.deductAmount}元`)
+          },
+          {
+            title: "最低消费",
+            width: 100,
+            render: (h, { row }) => h("span", `${row.minConsumeAmount}元`)
+          },
+          {
+            title: "有效期",
+            width: 100,
+            render: (h, params) => h("span", null, `${params.row.period}天`)
           },
           {
             title: "状态",
@@ -131,7 +138,7 @@ export default class CouponsList extends Vue {
           {
             title: "操作",
             key: "action",
-            width: 340,
+            width: 266,
             render: (h, { row }) =>
               h("div", [
                 h(
@@ -154,17 +161,6 @@ export default class CouponsList extends Vue {
                   on: {
                     click: action => {
                       this.changeStatus(row.id, action);
-                    }
-                  }
-                }),
-                h("c-dropdown", {
-                  attrs: {
-                    title: "排序",
-                    options: OrderAction
-                  },
-                  on: {
-                    click: action => {
-                      this.order(row.id, action);
                     }
                   }
                 }),
@@ -226,20 +222,6 @@ export default class CouponsList extends Vue {
       }
     });
     this.$Message.success("修改状态成功");
-    this.getList();
-  }
-
-  async order(id, action) {
-    await this.$store.dispatch(`${module}/postAction`, {
-      id,
-      action: "order",
-      query: {
-        where: this.listSearchWhere || initWhere
-      },
-      body: { action }
-    });
-
-    this.$Message.success("排序成功");
     this.getList();
   }
 }

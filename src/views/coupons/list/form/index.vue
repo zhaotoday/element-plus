@@ -56,42 +56,51 @@
         prop="productIds"
       >
         <c-product-select
+          class="c-form__input"
           :value="cForm.model.productIds"
           multiple
           @change="
             value => {
-              cForm.model.productIds = value;
+              $set(cForm.model, 'productIds', value);
             }
           "
         ></c-product-select>
       </Form-item>
       <Form-item
-        v-show="cForm.model.type === 'Category'"
+        v-show="cForm.model.objectType === 'Category'"
         label="指定分类"
         prop="categoryIds"
       >
         <c-category-select
+          class="c-form c-form__input"
           alias="products"
           multiple
-          select-parent
           v-model="cForm.model.categoryIds"
-          @on-change="
+          @change="
             value => {
-              cForm.model.categoryIds = value;
+              $set(cForm.model, 'categoryIds', value);
             }
           "
         ></c-category-select>
       </Form-item>
-      <Form-item label="抵扣金额" prop="value">
-        <InputNumber :min="0" :max="100000" v-model="cForm.model.value" />
+      <Form-item label="抵扣金额" prop="deductAmount">
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.model.deductAmount"
+        />
         元
       </Form-item>
       <Form-item
         v-show="cForm.model.type !== 'Reduction'"
         label="最低消费"
-        prop="value"
+        prop="minConsumeAmount"
       >
-        <InputNumber :min="0" :max="100000" v-model="cForm.model.minPrice" />
+        <InputNumber
+          :min="0"
+          :max="100000"
+          v-model="cForm.model.minConsumeAmount"
+        />
         元
       </Form-item>
       <Form-item label="有效期" prop="period">
@@ -120,16 +129,10 @@ export default class CouponsListForm extends Vue {
         loading: true,
         model: this.getFormInitModel(),
         rules: {
-          title: [
+          name: [
             {
               required: true,
-              message: "标题不能为空"
-            }
-          ],
-          pictureId: [
-            {
-              required: true,
-              message: "图片不能为空"
+              message: "名称不能为空"
             }
           ]
         }
@@ -139,7 +142,13 @@ export default class CouponsListForm extends Vue {
 
   getFormInitModel() {
     return {
-      status: 1
+      type: "FullReduction",
+      objectType: "All",
+      categoryIds: [],
+      productIds: [],
+      deductAmount: 0,
+      minConsumeAmount: 0,
+      period: 30
     };
   }
 

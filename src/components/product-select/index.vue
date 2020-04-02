@@ -35,11 +35,7 @@ export default class ProductSelect extends Vue {
   async created() {
     const {
       data: { items }
-    } = await new Model().GET({
-      query: {
-        where: { alias: this.alias }
-      }
-    });
+    } = await new Model().GET({});
     this.items = items;
   }
 
