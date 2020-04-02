@@ -28,15 +28,21 @@
         ></c-category-select>
       </Form-item>
       <Form-item label="状态" prop="status">
-        <c-publish-status-select
+        <Select
           class="c-form__input"
-          :value="cForm.model.status"
-          @change="
-            value => {
-              $set(cForm.model, 'status', value);
-            }
-          "
-        ></c-publish-status-select>
+          placeholder="请选择状态"
+          clearable
+          v-model="cForm.model.status"
+        >
+          <Option
+            v-for="item in dicts.PublishStatus"
+            :key="item.value"
+            :value="item.value"
+            :label="item.label"
+          >
+            {{ item.label }}
+          </Option>
+        </Select>
       </Form-item>
       <Form-item label="标签" prop="tags">
         <Checkbox :true-value="1" :false-value="0" v-model="cForm.model.hot">

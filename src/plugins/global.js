@@ -20,9 +20,6 @@ import Icon from "../components/icon";
 import Dropdown from "../components/dropdown";
 import ListImage from "../components/list-image";
 import Editor from "../components/editor";
-import PaymentSelect from "../components/payment-select";
-import PublishStatusSelect from "../components/publish-status-select";
-import CheckStatusSelect from "../components/check-status-select";
 import ProductSelect from "../components/product-select";
 
 export default {
@@ -54,9 +51,6 @@ export default {
     Vue.component("c-dropdown", Dropdown);
     Vue.component("c-list-image", ListImage);
     Vue.component("c-editor", Editor);
-    Vue.component("c-payment-select", PaymentSelect);
-    Vue.component("c-publish-status-select", PublishStatusSelect);
-    Vue.component("c-check-status-select", CheckStatusSelect);
     Vue.component("c-product-select", ProductSelect);
   }
 };

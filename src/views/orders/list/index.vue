@@ -52,15 +52,21 @@
               />
             </Form-item>
             <Form-item prop="payment">
-              <c-payment-select
+              <Select
                 class="c-form__input"
-                :value="cList.cSearch.where.payment.$eq"
-                @change="
-                  value => {
-                    cList.cSearch.where.payment.$eq = value;
-                  }
-                "
-              ></c-payment-select>
+                placeholder="请选择支付方式"
+                clearable
+                v-model="cList.cSearch.where.payment.$eq"
+              >
+                <Option
+                  v-for="item in dicts.OrderPayment"
+                  :key="item.value"
+                  :value="item.value"
+                  :label="item.label"
+                >
+                  {{ item.label }}
+                </Option>
+              </Select>
             </Form-item>
             <Form-item prop="id">
               <Input

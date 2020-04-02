@@ -26,15 +26,21 @@
             @submit.native.prevent="search"
           >
             <Form-item prop="status">
-              <c-publish-status-select
+              <Select
                 class="c-form__input"
-                :value="cList.cSearch.where.status.$eq"
-                @change="
-                  value => {
-                    cList.cSearch.where.status.$eq = value;
-                  }
-                "
-              ></c-publish-status-select>
+                placeholder="请选择状态"
+                clearable
+                v-model="cList.cSearch.where.status.$eq"
+              >
+                <Option
+                  v-for="item in dicts.PublishStatus"
+                  :key="item.value"
+                  :value="item.value"
+                  :label="item.label"
+                >
+                  {{ item.label }}
+                </Option>
+              </Select>
             </Form-item>
             <Form-item prop="name">
               <Input

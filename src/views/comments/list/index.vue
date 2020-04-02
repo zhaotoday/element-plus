@@ -20,17 +20,27 @@
           </Button>
         </c-list-operations>
         <c-list-search>
-          <Form inline @submit.native.prevent="search">
+          <Form
+            class="c-form c-form--search"
+            inline
+            @submit.native.prevent="search"
+          >
             <Form-item prop="status">
-              <c-check-status-select
+              <Select
                 class="c-form__input"
-                :value="cList.cSearch.where.status.$eq"
-                @change="
-                  value => {
-                    cList.cSearch.where.status.$eq = value;
-                  }
-                "
-              ></c-check-status-select>
+                clearable
+                placeholder="请选择审核状态"
+                v-model="cList.cSearch.where.status.$eq"
+              >
+                <Option
+                  v-for="item in dicts.CheckStatus"
+                  :key="item.value"
+                  :value="item.value"
+                  :label="item.label"
+                >
+                  {{ item.label }}
+                </Option>
+              </Select>
             </Form-item>
             <Form-item>
               <Button type="primary" @click="search">
