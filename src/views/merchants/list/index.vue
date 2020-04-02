@@ -109,8 +109,8 @@ export default class MerchantsList extends Vue {
             minWidth: ListColumnWidth.Title
           },
           {
-            title: "关联微信用户",
-            width: ListColumnWidth.User,
+            title: "关联的微信用户",
+            width: 130,
             render: (h, { row }) => h("span", row.wxUser.nickName)
           },
           {
