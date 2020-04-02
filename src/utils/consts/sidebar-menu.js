@@ -21,7 +21,7 @@ export default [
     children: [
       {
         title: "订单列表",
-        route: "/orders/orders/index"
+        route: "/orders/orders/list"
       }
     ]
   },
@@ -32,7 +32,7 @@ export default [
     children: [
       {
         title: "轮播广告列表",
-        route: "/ads/ads/index"
+        route: "/ads/ads/list"
       }
     ]
   },
@@ -48,6 +48,17 @@ export default [
       {
         title: "文章分类",
         route: "/articles/articles/categories"
+      }
+    ]
+  },
+  {
+    icon: "md-document",
+    name: "merchants",
+    title: "商家管理",
+    children: [
+      {
+        title: "商家列表",
+        route: "/merchants/merchants/list"
       }
     ]
   },

@@ -22,7 +22,8 @@ const router = new Router({
             require("./routes/products").default,
             require("./routes/ads").default,
             require("./routes/orders").default,
-            require("./routes/articles").default
+            require("./routes/articles").default,
+            require("./routes/merchants").default
           ],
           meta: {
             requiresAuth: true

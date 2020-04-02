@@ -3,7 +3,7 @@ export default {
   component: resolve => require(["@/views/orders"], resolve),
   children: [
     {
-      path: "index",
+      path: "list",
       component: resolve => require(["@/views/orders/list"], resolve)
     }
   ]
