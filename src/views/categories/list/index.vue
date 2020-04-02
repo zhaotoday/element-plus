@@ -25,9 +25,9 @@
           <Form inline @submit.native.prevent="search">
             <Form-item prop="name">
               <Input
+                class="c-form__input"
                 placeholder="请输入名称"
                 v-model.trim="cList.cSearch.where.name.$like"
-                style="width: 200px;"
               />
             </Form-item>
             <Form-item>

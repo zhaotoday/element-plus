@@ -44,9 +44,9 @@
             </Form-item>
             <Form-item prop="title">
               <Input
+                class="c-form__input"
                 placeholder="请输入标题"
                 v-model="cList.cSearch.where.title.$like"
-                style="width: 200px;"
               />
             </Form-item>
             <Form-item>

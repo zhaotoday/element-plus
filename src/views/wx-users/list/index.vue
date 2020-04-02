@@ -12,16 +12,16 @@
           <Form inline @submit.native.prevent="search">
             <Form-item prop="nickName">
               <Input
+                class="c-form__input"
                 placeholder="请输入昵称"
                 v-model.trim="cList.cSearch.where.nickName.$like"
-                style="width: 200px;"
               />
             </Form-item>
             <Form-item prop="phoneNumber">
               <Input
+                class="c-form__input"
                 placeholder="请输入手机号"
                 v-model.trim="cList.cSearch.where.phoneNumber.$like"
-                style="width: 200px;"
               />
             </Form-item>
             <Form-item>
