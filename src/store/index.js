@@ -33,6 +33,7 @@ export default new Vuex.Store({
     products: require("./modules/admin/products").default,
     orders: require("./modules/admin/orders").default,
     articles: require("./modules/admin/articles").default,
-    comments: require("./modules/admin/comments").default
+    comments: require("./modules/admin/comments").default,
+    merchants: require("./modules/admin/merchants").default
   }
 });

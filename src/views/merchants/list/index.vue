@@ -10,19 +10,19 @@
     >
       <c-list-header>
         <c-list-operations>
+          <Button type="primary" @click="$refs.form.show()">
+            新增
+          </Button>
           <c-bulk-delete
             :selected-items="listSelectedItems"
             @ok="confirmDelete"
           >
           </c-bulk-delete>
-          <Button @click="$helpers.goBack()">
-            返回
-          </Button>
         </c-list-operations>
         <c-list-search>
           <Form inline @submit.native.prevent="search">
             <Form-item prop="status">
-              <c-check-status-select
+              <c-publish-status-select
                 class="c-form__input"
                 :value="cList.cSearch.where.status.$eq"
                 @change="
@@ -30,7 +30,14 @@
                     cList.cSearch.where.status.$eq = value;
                   }
                 "
-              ></c-check-status-select>
+              ></c-publish-status-select>
+            </Form-item>
+            <Form-item prop="name">
+              <Input
+                placeholder="请输入名称"
+                v-model="cList.cSearch.where.name.$like"
+                style="width: 200px;"
+              />
             </Form-item>
             <Form-item>
               <Button type="primary" @click="search">
@@ -41,31 +48,42 @@
         </c-list-search>
       </c-list-header>
     </c-list>
+    <c-merchants-list-form
+      ref="form"
+      @get-list="getList"
+    ></c-merchants-list-form>
   </div>
 </template>
 
 <script>
 import { Vue, Component } from "vue-property-decorator";
 import { mapState } from "vuex";
+import MerchantsListForm from "./form";
 import RouteParamsMixin from "@/mixins/route-params";
 import ListMixin from "@/mixins/list";
 
-const module = "comments";
+const module = "merchants";
 const initWhere = {
   status: {
     $eq: ""
+  },
+  name: {
+    $like: ""
   }
 };
 
 @Component({
   mixins: [RouteParamsMixin, ListMixin],
+  components: {
+    "c-merchants-list-form": MerchantsListForm
+  },
   computed: mapState({
     list: state => state[module].list
   })
 })
-export default class CommentsList extends Vue {
+export default class MerchantsList extends Vue {
   data() {
-    const { ListColumnWidth } = this.$consts;
+    const { ListColumnWidth, OrderAction } = this.$consts;
 
     return {
       cList: {
@@ -75,23 +93,35 @@ export default class CommentsList extends Vue {
             width: 60
           },
           {
-            title: "评价用户",
+            title: "图片",
+            width: 138,
+            render: (h, { row }) => {
+              return h("c-list-image", {
+                props: {
+                  src: this.$helpers.getFileUrlById(row.pictureId)
+                }
+              });
+            }
+          },
+          {
+            title: "名称",
+            key: "name",
+            minWidth: ListColumnWidth.Title
+          },
+          {
+            title: "关联微信用户",
             width: ListColumnWidth.User,
             render: (h, { row }) => h("span", row.wxUser.nickName)
           },
           {
-            title: "评价内容",
-            key: "content"
-          },
-          {
-            title: "审核状态",
-            width: 100,
+            title: "状态",
+            width: 80,
             render: (h, { row }) =>
               h(
                 "span",
                 null,
                 this.$helpers.getItem(
-                  this.dicts.CheckStatus,
+                  this.dicts.PublishStatus,
                   "value",
                   row.status
                 )["label"]
@@ -100,18 +130,40 @@ export default class CommentsList extends Vue {
           {
             title: "操作",
             key: "action",
-            width: 180,
+            width: 340,
             render: (h, { row }) =>
               h("div", [
+                h(
+                  "Button",
+                  {
+                    on: {
+                      click: () => {
+                        this.$refs.form.show(row);
+                      }
+                    }
+                  },
+                  "编辑"
+                ),
                 h("c-dropdown", {
                   props: {
-                    width: 66,
-                    title: "审核",
-                    options: this.dicts.CheckStatus
+                    width: 90,
+                    title: "修改状态",
+                    options: this.dicts.PublishStatus
                   },
                   on: {
                     click: action => {
                       this.changeStatus(row.id, action);
+                    }
+                  }
+                }),
+                h("c-dropdown", {
+                  attrs: {
+                    title: "排序",
+                    options: OrderAction
+                  },
+                  on: {
+                    click: action => {
+                      this.order(row.id, action);
                     }
                   }
                 }),
@@ -152,10 +204,7 @@ export default class CommentsList extends Vue {
       query: {
         offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
         limit: this.$consts.PageSize,
-        where: {
-          ...(this.listSearchWhere || initWhere),
-          productId: this.$route.params.productId
-        },
+        where: this.listSearchWhere || initWhere,
         include: [{ model: "WxUser", as: "wxUser" }]
       }
     });
@@ -177,6 +226,20 @@ export default class CommentsList extends Vue {
       }
     });
     this.$Message.success("修改状态成功");
+    this.getList();
+  }
+
+  async order(id, action) {
+    await this.$store.dispatch(`${module}/postAction`, {
+      id,
+      action: "order",
+      query: {
+        where: this.listSearchWhere || initWhere
+      },
+      body: { action }
+    });
+
+    this.$Message.success("排序成功");
     this.getList();
   }
 }
