@@ -2,7 +2,6 @@
   <Select
     placeholder="请选择状态"
     clearable
-    filterable
     :value.sync="value"
     @on-change="change"
   >

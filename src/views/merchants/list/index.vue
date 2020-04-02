@@ -21,17 +21,6 @@
         </c-list-operations>
         <c-list-search>
           <Form inline @submit.native.prevent="search">
-            <Form-item prop="status">
-              <c-publish-status-select
-                class="c-form__input"
-                :value="cList.cSearch.where.status.$eq"
-                @change="
-                  value => {
-                    cList.cSearch.where.status.$eq = value;
-                  }
-                "
-              ></c-publish-status-select>
-            </Form-item>
             <Form-item prop="name">
               <Input
                 placeholder="请输入名称"
@@ -64,9 +53,6 @@ import ListMixin from "@/mixins/list";
 
 const module = "merchants";
 const initWhere = {
-  status: {
-    $eq: ""
-  },
   name: {
     $like: ""
   }
@@ -83,7 +69,7 @@ const initWhere = {
 })
 export default class MerchantsList extends Vue {
   data() {
-    const { ListColumnWidth, OrderAction } = this.$consts;
+    const { ListColumnWidth } = this.$consts;
 
     return {
       cList: {
@@ -91,17 +77,6 @@ export default class MerchantsList extends Vue {
           {
             type: "selection",
             width: 60
-          },
-          {
-            title: "图片",
-            width: 138,
-            render: (h, { row }) => {
-              return h("c-list-image", {
-                props: {
-                  src: this.$helpers.getFileUrlById(row.pictureId)
-                }
-              });
-            }
           },
           {
             title: "名称",
@@ -114,23 +89,19 @@ export default class MerchantsList extends Vue {
             render: (h, { row }) => h("span", row.wxUser.nickName)
           },
           {
-            title: "状态",
-            width: 80,
-            render: (h, { row }) =>
-              h(
-                "span",
-                null,
-                this.$helpers.getItem(
-                  this.dicts.PublishStatus,
-                  "value",
-                  row.status
-                )["label"]
-              )
+            title: "联系人",
+            key: "contactName",
+            width: 100
+          },
+          {
+            title: "手机号",
+            key: "phoneNumber",
+            width: 120
           },
           {
             title: "操作",
             key: "action",
-            width: 340,
+            width: 170,
             render: (h, { row }) =>
               h("div", [
                 h(
@@ -144,29 +115,6 @@ export default class MerchantsList extends Vue {
                   },
                   "编辑"
                 ),
-                h("c-dropdown", {
-                  props: {
-                    width: 90,
-                    title: "修改状态",
-                    options: this.dicts.PublishStatus
-                  },
-                  on: {
-                    click: action => {
-                      this.changeStatus(row.id, action);
-                    }
-                  }
-                }),
-                h("c-dropdown", {
-                  attrs: {
-                    title: "排序",
-                    options: OrderAction
-                  },
-                  on: {
-                    click: action => {
-                      this.order(row.id, action);
-                    }
-                  }
-                }),
                 h(
                   "c-delete",
                   {
@@ -216,31 +164,6 @@ export default class MerchantsList extends Vue {
 
     const { items } = await this.getList();
     !items.length && this.goListPrevPage();
-  }
-
-  async changeStatus(id, action) {
-    await this.$store.dispatch(`${module}/put`, {
-      id,
-      body: {
-        status: action
-      }
-    });
-    this.$Message.success("修改状态成功");
-    this.getList();
-  }
-
-  async order(id, action) {
-    await this.$store.dispatch(`${module}/postAction`, {
-      id,
-      action: "order",
-      query: {
-        where: this.listSearchWhere || initWhere
-      },
-      body: { action }
-    });
-
-    this.$Message.success("排序成功");
-    this.getList();
   }
 }
 </script>

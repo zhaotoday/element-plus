@@ -13,43 +13,46 @@
       :rules="cForm.rules"
       :label-width="80"
     >
-      <Form-item label="标题" prop="title">
+      <Form-item label="名称" prop="name">
         <Input
           class="c-form__input"
-          v-model.trim="cForm.model.title"
-          placeholder="请输入标题"
+          v-model.trim="cForm.model.name"
+          placeholder="请输入名称"
         />
       </Form-item>
-      <Form-item label="链接" prop="link">
+      <Form-item label="关联的微信用户" prop="wxUserId">
+        <c-wx-user-select
+          class="c-form__input"
+          :value="cForm.model.wxUserId"
+          @change="
+            value => {
+              $set(cForm.model.wxUserId, value);
+            }
+          "
+        >
+        </c-wx-user-select>
+      </Form-item>
+      <Form-item label="联系人" prop="contactName">
         <Input
           class="c-form__input"
-          v-model.trim="cForm.model.link"
-          placeholder="请输入链接"
+          v-model.trim="cForm.model.contactName"
+          placeholder="请输入联系人"
         />
       </Form-item>
-      <Form-item label="图片" prop="pictureId">
-        <c-uploader
+      <Form-item label="手机号" prop="phoneNumber">
+        <Input
           class="c-form__input"
-          :key="cForm.id"
-          :has-default-file="!!cForm.model.pictureId"
-          v-model="cForm.model.pictureId"
-          @change="
-            value => {
-              handleFormUploaderChange('pictureId', value);
-            }
-          "
+          v-model.trim="cForm.model.phoneNumber"
+          placeholder="请输入手机号"
         />
       </Form-item>
-      <Form-item label="状态" prop="status">
-        <c-publish-status-select
+      <Form-item label="密码" prop="password">
+        <Input
           class="c-form__input"
-          :value="cForm.model.status"
-          @change="
-            value => {
-              $set(cForm.model, 'status', value);
-            }
-          "
-        ></c-publish-status-select>
+          type="password"
+          v-model.trim="cForm.model.password"
+          placeholder="请输入密码"
+        />
       </Form-item>
     </Form>
   </Modal>
@@ -73,10 +76,10 @@ export default class MerchantsListForm extends Vue {
         loading: true,
         model: this.getFormInitModel(),
         rules: {
-          title: [
+          name: [
             {
               required: true,
-              message: "标题不能为空"
+              message: "名称不能为空"
             }
           ],
           pictureId: [

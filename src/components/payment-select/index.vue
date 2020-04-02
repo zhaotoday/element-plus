@@ -2,7 +2,6 @@
   <Select
     placeholder="请选择支付方式"
     clearable
-    filterable
     :value.sync="value"
     @on-change="change"
   >
