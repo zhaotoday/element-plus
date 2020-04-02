@@ -211,7 +211,8 @@ export default class AdsList extends Vue {
       query: {
         offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
         limit: this.$consts.PageSize,
-        where: this.listSearchWhere
+        where: this.listSearchWhere,
+        order: [["order", "DESC"]]
       }
     });
   }
