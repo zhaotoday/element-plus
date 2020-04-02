@@ -163,7 +163,7 @@ export default class CategoriesList extends Vue {
           },
           {
             title: "图标",
-            width: 138,
+            width: 128,
             render: (h, { row }) => {
               return row.iconId
                 ? h("c-list-image", {

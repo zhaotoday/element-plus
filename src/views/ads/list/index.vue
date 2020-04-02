@@ -101,7 +101,7 @@ export default class AdsList extends Vue {
           },
           {
             title: "图片",
-            width: 138,
+            width: 128,
             render: (h, { row }) => {
               return h("c-list-image", {
                 props: {
