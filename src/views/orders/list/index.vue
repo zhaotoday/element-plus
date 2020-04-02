@@ -20,7 +20,11 @@
           </c-bulk-delete>
         </c-list-operations>
         <c-list-search>
-          <Form class="c-form" inline @submit.native.prevent="search">
+          <Form
+            class="c-form c-form--search"
+            inline
+            @submit.native.prevent="search"
+          >
             <Form-item prop="startTime">
               <DatePicker
                 class="c-form__input"

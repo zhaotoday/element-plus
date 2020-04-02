@@ -23,6 +23,7 @@ import Editor from "../components/editor";
 import PaymentSelect from "../components/payment-select";
 import PublishStatusSelect from "../components/publish-status-select";
 import CheckStatusSelect from "../components/check-status-select";
+import ProductSelect from "../components/product-select";
 
 export default {
   install(Vue) {
@@ -56,5 +57,6 @@ export default {
     Vue.component("c-payment-select", PaymentSelect);
     Vue.component("c-publish-status-select", PublishStatusSelect);
     Vue.component("c-check-status-select", CheckStatusSelect);
+    Vue.component("c-product-select", ProductSelect);
   }
 };

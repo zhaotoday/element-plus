@@ -52,18 +52,18 @@
         </c-list-search>
       </c-list-header>
     </c-list>
-    <c-ads-list-form ref="form" @get-list="getList"></c-ads-list-form>
+    <c-coupons-list-form ref="form" @get-list="getList"></c-coupons-list-form>
   </div>
 </template>
 
 <script>
 import { Vue, Component } from "vue-property-decorator";
 import { mapState } from "vuex";
-import AdsListForm from "./form";
+import CouponsListForm from "./form";
 import RouteParamsMixin from "@/mixins/route-params";
 import ListMixin from "@/mixins/list";
 
-const module = "ads";
+const module = "coupons";
 const initWhere = {
   status: {
     $eq: ""
@@ -76,13 +76,13 @@ const initWhere = {
 @Component({
   mixins: [RouteParamsMixin, ListMixin],
   components: {
-    "c-ads-list-form": AdsListForm
+    "c-coupons-list-form": CouponsListForm
   },
   computed: mapState({
     list: state => state[module].list
   })
 })
-export default class AdsList extends Vue {
+export default class CouponsList extends Vue {
   data() {
     const { ListColumnWidth, OrderAction } = this.$consts;
 

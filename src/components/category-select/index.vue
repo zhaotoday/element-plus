@@ -47,8 +47,8 @@ import arrayToTree from "array-to-tree";
       default: false
     },
     value: {
-      type: [String, Number],
-      default: 0
+      type: [Array, String, Number],
+      default: ""
     }
   }
 })
