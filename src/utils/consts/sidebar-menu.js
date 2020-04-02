@@ -27,12 +27,16 @@ export default [
   },
   {
     icon: "ios-browsers",
-    name: "ads",
-    title: "轮播广告管理",
+    name: "marketing",
+    title: "营销管理",
     children: [
       {
         title: "轮播广告列表",
-        route: "/ads/ads/list"
+        route: "/marketing/ads/list"
+      },
+      {
+        title: "优惠券列表",
+        route: "/marketing/coupons/list"
       }
     ]
   },
