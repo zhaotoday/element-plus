@@ -22,7 +22,7 @@
       </Form-item>
       <Form-item label="类型" prop="type">
         <Select
-          class="c-form c-form__input"
+          class="c-form__input"
           placeholder="请选择类型"
           v-model="cForm.model.type"
         >
@@ -37,7 +37,7 @@
       </Form-item>
       <Form-item label="使用范围" prop="objectType">
         <Select
-          class="c-form c-form__input"
+          class="c-form__input"
           placeholder="请选择使用范围"
           v-model="cForm.model.objectType"
         >
@@ -72,7 +72,7 @@
         prop="categoryIds"
       >
         <c-category-select
-          class="c-form c-form__input"
+          class="c-form__input"
           alias="products"
           multiple
           v-model="cForm.model.categoryIds"
