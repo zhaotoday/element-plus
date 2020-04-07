@@ -36,7 +36,7 @@ export default class FormMixin extends Vue {
   }
 
   handleFormUploaderChange(key, value) {
-    this.$set(this.cForm.model, key, value ? value.id : "");
+    this.$set(this.cForm.model, key, value);
   }
 
   handleFormEditorChange(key, value) {
