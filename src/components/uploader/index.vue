@@ -40,7 +40,7 @@ const DefaultMaxSize = 2048;
       default: DefaultMaxSize
     },
     defaultFileIds: {
-      type: [Array, String],
+      type: [Array, String, Number],
       default: () => []
     }
   }
@@ -48,24 +48,29 @@ const DefaultMaxSize = 2048;
 export default class Uploader extends Vue {
   defaultFileList = [];
 
-  fileList = [];
-
   @Watch("defaultFileIds", { deep: true, immediate: true })
   async onDefaultFileIdsChange(newVal, oldVal) {
-    if ((!oldVal || !oldVal[0]) && newVal[0]) {
+    const multipleIf = this.multiple && (!oldVal || !oldVal[0]) && newVal[0];
+    const singleIf = !this.multiple && !oldVal && newVal;
+
+    if (multipleIf || singleIf) {
       const {
         data: { items }
       } = await this.getFilesList();
 
       this.defaultFileList = items.map(item => this.getFile(item));
-      this.fileList = this.$helpers.deepCopy(this.defaultFileList);
+      this.$refs.upload.fileList = this.$helpers.deepCopy(this.defaultFileList);
       this.$emit("change", this.getIds());
+    } else {
+      if (!this.multiple) {
+        this.$refs.upload.fileList = [];
+        this.$emit("change", "");
+      }
     }
   }
 
   getIds() {
-    const ids = this.fileList.map(item => item.id);
-
+    const ids = this.$refs.upload.fileList.map(item => item.id);
     return this.multiple ? ids : ids.join(",");
   }
 
@@ -97,25 +102,17 @@ export default class Uploader extends Vue {
     this.$Message.error(`文件 [${file.name}] 不能大于 ${this.maxSize / 1024}M`);
   }
 
-  handleRemove(file) {
-    const fileList = this.$refs.upload.fileList;
-
-    this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
-    this.fileList.splice(this.fileList.indexOf(file), 1);
-
+  handleRemove() {
     this.$emit("change", this.getIds());
   }
 
-  handleSuccess({ data }) {
-    const file = this.getFile(data);
-    const fileList = this.$refs.upload.fileList;
+  handleSuccess({ data }, file) {
+    file.id = data.id;
+    file.name = data.name;
+    file.url = this.$helpers.getFileUrlById(data.id);
 
-    if (this.multiple) {
-      this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
-      this.fileList.push(file);
-    } else {
+    if (!this.multiple) {
       this.$refs.upload.fileList = [file];
-      this.fileList = [file];
     }
 
     this.$emit("change", this.getIds());

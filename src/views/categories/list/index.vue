@@ -72,9 +72,7 @@
         <Form-item label="图标" prop="iconId">
           <c-uploader
             class="c-form__input"
-            :key="cForm.id"
-            :has-default-file="!!cForm.model.iconId"
-            v-model="cForm.model.iconId"
+            :default-file-ids="cForm.model.iconId"
             @change="
               value => {
                 handleFormUploaderChange('iconId', value);
@@ -85,9 +83,7 @@
         <Form-item label="Banner" prop="bannerId">
           <c-uploader
             class="c-form__input"
-            :key="cForm.id"
-            :has-default-file="!!cForm.model.bannerId"
-            v-model="cForm.model.bannerId"
+            :default-file-ids="cForm.model.bannerId"
             @change="
               value => {
                 handleFormUploaderChange('bannerId', value);

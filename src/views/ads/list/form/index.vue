@@ -30,9 +30,7 @@
       <Form-item label="图片" prop="pictureId">
         <c-uploader
           class="c-form__input"
-          :key="cForm.id"
-          :has-default-file="!!cForm.model.pictureId"
-          v-model="cForm.model.pictureId"
+          :default-file-ids="cForm.model.pictureId"
           @change="
             value => {
               handleFormUploaderChange('pictureId', value);

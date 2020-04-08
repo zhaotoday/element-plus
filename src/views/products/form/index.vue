@@ -44,22 +44,19 @@
       <Form-item label="图片" prop="pictureIds">
         <c-uploader
           class="c-form__input"
-          :key="cForm.id"
-          :has-default-file="!!cForm.model.pictureIds"
-          v-model="cForm.model.pictureIds"
+          multiple
+          :default-file-ids="cForm.model.pictureIds"
           @change="
             value => {
               handleFormUploaderChange('pictureIds', value);
             }
           "
-        />
+        ></c-uploader>
       </Form-item>
       <Form-item label="视频" prop="videoId">
         <c-uploader
           class="c-form__input"
-          :key="cForm.id"
-          :has-default-file="!!cForm.model.videoId"
-          v-model="cForm.model.videoId"
+          :default-file-ids="cForm.model.videoId"
           @change="
             value => {
               handleFormUploaderChange('videoId', value);
