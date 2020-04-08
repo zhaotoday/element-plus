@@ -21,6 +21,7 @@ import Dropdown from "../components/dropdown";
 import ListImage from "../components/list-image";
 import Editor from "../components/editor";
 import ProductSelect from "../components/product-select";
+import IconSelect from "../components/icon-select";
 
 export default {
   install(Vue) {
@@ -52,5 +53,6 @@ export default {
     Vue.component("c-list-image", ListImage);
     Vue.component("c-editor", Editor);
     Vue.component("c-product-select", ProductSelect);
+    Vue.component("c-icon-select", IconSelect);
   }
 };
