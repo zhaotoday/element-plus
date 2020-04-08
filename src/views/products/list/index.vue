@@ -117,7 +117,7 @@ export default class ProductsList extends Vue {
             render: (h, { row }) => {
               return h("c-list-image", {
                 props: {
-                  src: this.$helpers.getFileUrlById(row.pictureIds)
+                  src: this.$helpers.getFileUrlById(row.pictureIds[0])
                 }
               });
             }

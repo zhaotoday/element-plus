@@ -53,17 +53,6 @@
           "
         ></c-uploader>
       </Form-item>
-      <Form-item label="视频" prop="videoId">
-        <c-uploader
-          class="c-form__input"
-          :default-file-ids="cForm.model.videoId"
-          @change="
-            value => {
-              handleFormUploaderChange('videoId', value);
-            }
-          "
-        />
-      </Form-item>
       <Form-item label="状态" prop="status">
         <Select
           class="c-form__input"
