@@ -72,6 +72,7 @@
         <Form-item label="图标" prop="iconId">
           <c-uploader
             class="c-form__input"
+            :key="`icon-${cForm.id}`"
             :default-file-ids="cForm.model.iconId"
             @change="
               value => {
@@ -83,6 +84,7 @@
         <Form-item label="Banner" prop="bannerId">
           <c-uploader
             class="c-form__input"
+            :key="`banner-${cForm.id}`"
             :default-file-ids="cForm.model.bannerId"
             @change="
               value => {

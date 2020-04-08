@@ -61,11 +61,6 @@ export default class Uploader extends Vue {
       this.defaultFileList = items.map(item => this.getFile(item));
       this.$refs.upload.fileList = this.$helpers.deepCopy(this.defaultFileList);
       this.$emit("change", this.getIds());
-    } else {
-      if (!this.multiple) {
-        this.$refs.upload.fileList = [];
-        this.$emit("change", "");
-      }
     }
   }
 
