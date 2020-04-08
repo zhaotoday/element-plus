@@ -44,6 +44,7 @@
       <Form-item label="图片" prop="pictureIds">
         <c-uploader
           class="c-form__input"
+          :key="`picture-${cForm.id}`"
           multiple
           :default-file-ids="cForm.model.pictureIds"
           @change="

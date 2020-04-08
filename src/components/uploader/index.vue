@@ -1,7 +1,6 @@
 <template>
   <Upload
     ref="upload"
-    :multiple="multiple"
     :format="format"
     :max-size="maxSize"
     :default-file-list="defaultFileList"
@@ -48,10 +47,10 @@ const DefaultMaxSize = 2048;
 export default class Uploader extends Vue {
   defaultFileList = [];
 
-  @Watch("defaultFileIds", { deep: true, immediate: true })
+  @Watch("defaultFileIds", { immediate: true })
   async onDefaultFileIdsChange(newVal, oldVal) {
     const multipleIf = this.multiple && (!oldVal || !oldVal[0]) && newVal[0];
-    const singleIf = !this.multiple && !oldVal && newVal;
+    const singleIf = !this.multiple && newVal;
 
     if (multipleIf || singleIf) {
       const {
