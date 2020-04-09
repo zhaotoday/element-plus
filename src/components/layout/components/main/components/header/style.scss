@@ -3,7 +3,7 @@
 @include c(header) {
   @include text--middle($header-height);
 
-  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   background-color: white;
   transform-style: preserve-3d;
 
@@ -23,16 +23,18 @@
     @include padding(null, 10px, null, 10px);
   }
 
-  @include e(logout) {
-    @include padding(null, 20px, null, 20px);
-
-    i {
-      font-size: 18px;
+  @include e(avatar) {
+    .ivu-avatar {
+      background-color: #1890ff;
     }
   }
 
   @include e(user) {
     line-height: $header-height;
     font-size: 14px;
+  }
+
+  @include e(logout) {
+    @include padding(null, 20px, null, 20px);
   }
 }

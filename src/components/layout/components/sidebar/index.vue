@@ -2,7 +2,7 @@
   <div class="c-sidebar">
     <div class="c-sidebar__logo" @click="$router.push('/')">
       <div class="c-sidebar__logo-icon">
-        <c-icon type="cube"></c-icon>
+        <Avatar icon="logo-chrome"></Avatar>
       </div>
       后台管理系统
     </div>

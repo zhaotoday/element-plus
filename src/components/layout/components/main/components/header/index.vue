@@ -1,11 +1,11 @@
 <template>
   <div class="c-header">
     <div class="c-header__logout" title="退出" @click="logout">
-      <c-icon type="logout"></c-icon>
+      <Avatar icon="md-log-out"></Avatar>
     </div>
     <div class="c-header__user">{{ user.username }}</div>
     <div class="c-header__avatar">
-      <Avatar style="background-color: #1890ff;" icon="ios-person" />
+      <Avatar icon="ios-person"></Avatar>
     </div>
   </div>
 </template>
