@@ -1,5 +1,5 @@
-import createStore from "../../../utils/create-store";
-import Model from "../../../models/admin/categories";
+import createStore from "@/utils/create-store";
+import Model from "@/models/admin/categories";
 
 export default createStore({
   Model,
