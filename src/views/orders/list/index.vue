@@ -25,32 +25,6 @@
             inline
             @submit.native.prevent="search"
           >
-            <Form-item prop="startTime">
-              <DatePicker
-                class="c-form__input"
-                :value="cList.cSearch.where.startTime.$eq"
-                type="datetime"
-                placeholder="请选择起始时间"
-                @on-change="
-                  v => {
-                    handleFormDatePickerChange('startTime', v);
-                  }
-                "
-              />
-            </Form-item>
-            <Form-item prop="endTime">
-              <DatePicker
-                class="c-form__input"
-                :value="cList.cSearch.where.endTime.$eq"
-                type="datetime"
-                placeholder="请选择结束时间"
-                @on-change="
-                  v => {
-                    handleFormDatePickerChange('endTime', v);
-                  }
-                "
-              />
-            </Form-item>
             <Form-item prop="payment">
               <Select
                 class="c-form__input"
@@ -113,12 +87,6 @@ const initWhere = {
     $eq: ""
   },
   status: {
-    $eq: ""
-  },
-  startTime: {
-    $eq: ""
-  },
-  endTime: {
     $eq: ""
   },
   wxUserId: {

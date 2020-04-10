@@ -38,6 +38,10 @@
         <InputNumber :min="0" :max="100000" v-model="cForm.model.price" />
         元
       </Form-item>
+      <Form-item label="分销比例" prop="commissionRate">
+        <InputNumber :min="0" :max="100" v-model="cForm.model.commissionRate" />
+        %
+      </Form-item>
       <Form-item label="库存" prop="stock">
         <InputNumber :min="0" :max="100000" v-model="cForm.model.stock" />
       </Form-item>
@@ -167,6 +171,7 @@ export default class ProductsForm extends Vue {
     return {
       originalPrice: 0,
       price: 0,
+      commissionRate: 0,
       stock: 0,
       status: 1
     };

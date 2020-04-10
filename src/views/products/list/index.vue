@@ -113,7 +113,7 @@ export default class ProductsList extends Vue {
           },
           {
             title: "图片",
-            width: 128,
+            width: 118,
             render: (h, { row }) => {
               return h("c-list-image", {
                 props: {
@@ -142,6 +142,11 @@ export default class ProductsList extends Vue {
             title: "会员价",
             width: 80,
             render: (h, { row }) => h("span", row.price + "元")
+          },
+          {
+            title: "佣金比例",
+            width: 90,
+            render: (h, { row }) => h("span", row.commissionRate + "%")
           },
           {
             title: "库存",

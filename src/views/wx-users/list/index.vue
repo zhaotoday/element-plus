@@ -74,7 +74,7 @@ export default class WxUsersList extends Vue {
         columns: [
           {
             title: "图片",
-            width: 128,
+            width: 118,
             render: (h, { row }) => {
               return h("c-list-image", {
                 props: {
