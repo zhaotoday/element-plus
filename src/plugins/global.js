@@ -6,14 +6,14 @@ import GlobalMixin from "../mixins/global";
 import DictsMixin from "../mixins/dicts";
 import List, {
   ListHeader,
+  ListNavigation,
   ListOperations,
-  ListSearch,
-  ListNavigation
+  ListSearch
 } from "../components/list";
 import CategorySelect from "../components/category-select";
 import Uploader from "../components/uploader";
 import Delete from "../components/delete";
-import CBulkDelete from "../components/bulk-delete";
+import BulkDelete from "../components/bulk-delete";
 import WxUserInfo from "../components/wx-user-info";
 import WxUserSelect from "../components/wx-user-select";
 import Icon from "../components/icon";
@@ -45,7 +45,7 @@ export default {
     Vue.component("c-category-select", CategorySelect);
     Vue.component("c-uploader", Uploader);
     Vue.component("c-delete", Delete);
-    Vue.component("c-bulk-delete", CBulkDelete);
+    Vue.component("c-bulk-delete", BulkDelete);
     Vue.component("c-wx-user-info", WxUserInfo);
     Vue.component("c-wx-user-select", WxUserSelect);
     Vue.component("c-icon", Icon);

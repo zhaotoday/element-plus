@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import Model from "@/models/admin/products";
 
 @Component({

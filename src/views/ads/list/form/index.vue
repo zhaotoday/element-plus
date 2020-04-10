@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import FormMixin from "@/mixins/form";
 
 const module = "ads";

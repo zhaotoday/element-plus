@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import FilesModel from "@/models/admin/files";
 
 const DefaultFormat = ["jpg", "jpeg", "png", "gif"];

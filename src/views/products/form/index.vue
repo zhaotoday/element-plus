@@ -115,7 +115,7 @@
 </template>
 
 <script>
-import { Vue, Component } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import RouteParamsMixin from "@/mixins/route-params";
 import FormMixin from "@/mixins/form";
 import { mapState } from "vuex";

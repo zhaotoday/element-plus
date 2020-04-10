@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { Vue, Component, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import WangEditor from "wangeditor";
 
 @Component({
