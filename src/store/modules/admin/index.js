@@ -1,4 +1,4 @@
-import helpers from "@/utils/helpers";
+import helpers from '@/utils/helpers'
 
 const files = require.context(".", false, /\.js$/);
 const modules = [];

@@ -63,11 +63,11 @@
 </template>
 
 <script>
-import { Component, Vue } from "vue-property-decorator";
-import { mapState } from "vuex";
-import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
-import ListMixin from "view-ui-admin/src/mixins/list";
-import ListForm from "./form";
+import { Component, Vue } from 'vue-property-decorator'
+import { mapState } from 'vuex'
+import RouteParamsMixin from 'view-ui-admin/src/mixins/route-params'
+import ListMixin from 'view-ui-admin/src/mixins/list'
+import ListForm from './form'
 
 const module = "points";
 const initWhere = {

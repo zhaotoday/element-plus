@@ -63,11 +63,11 @@
 </template>
 
 <script>
-import { Component, Vue } from "vue-property-decorator";
-import { mapState } from "vuex";
-import ListForm from "./form";
-import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
-import ListMixin from "view-ui-admin/src/mixins/list";
+import { Component, Vue } from 'vue-property-decorator'
+import { mapState } from 'vuex'
+import ListForm from './form'
+import RouteParamsMixin from 'view-ui-admin/src/mixins/route-params'
+import ListMixin from 'view-ui-admin/src/mixins/list'
 
 const module = "ads";
 const initWhere = {

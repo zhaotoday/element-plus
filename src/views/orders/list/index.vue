@@ -119,12 +119,12 @@
 </template>
 
 <script>
-import { Component, Vue } from "vue-property-decorator";
-import { mapState } from "vuex";
-import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
-import ListMixin from "view-ui-admin/src/mixins/list";
-import xlsx from "view-ui-admin/src/utils/xlsx";
-import Model from "@/models/admin/orders";
+import { Component, Vue } from 'vue-property-decorator'
+import { mapState } from 'vuex'
+import RouteParamsMixin from 'view-ui-admin/src/mixins/route-params'
+import ListMixin from 'view-ui-admin/src/mixins/list'
+import xlsx from 'view-ui-admin/src/utils/xlsx'
+import Model from '@/models/admin/orders'
 
 const module = "orders";
 const initWhere = {

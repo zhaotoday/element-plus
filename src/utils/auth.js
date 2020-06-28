@@ -1,5 +1,5 @@
-import storage from "jt-storage";
-import qs from "query-string";
+import storage from 'jt-storage'
+import qs from 'query-string'
 
 const USER = "user";
 const TOKEN = "token";

@@ -78,10 +78,10 @@
 </template>
 
 <script>
-import { Component, Vue } from "vue-property-decorator";
-import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
-import FormMixin from "view-ui-admin/src/mixins/form";
-import { mapState } from "vuex";
+import { Component, Vue } from 'vue-property-decorator'
+import RouteParamsMixin from 'view-ui-admin/src/mixins/route-params'
+import FormMixin from 'view-ui-admin/src/mixins/form'
+import { mapState } from 'vuex'
 
 const module = "articles";
 
