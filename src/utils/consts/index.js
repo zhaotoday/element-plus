@@ -2,8 +2,6 @@ import Model from "./model";
 import CategoryLevel from "./category-level";
 import ListColumnWidth from "./list-column-width";
 import OrderAction from "./order-action";
-import EntryColor from "./entry-color";
-import ProductModifier from "./product-modifier";
 import ImageMaxWidth from "./image-max-width";
 
 // 基础地址
@@ -30,8 +28,6 @@ export default {
   CategoryLevel,
   ListColumnWidth,
   OrderAction,
-  EntryColor,
-  ProductModifier,
   ImageMaxWidth,
   BaseUrl,
   CdnUrl,
