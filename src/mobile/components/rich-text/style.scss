@@ -1,7 +1,0 @@
-@import "~@/assets/styles/utils/index";
-
-@include c(rich-text) {
-  min-height: px2rpx(100px);
-  border-radius: px2rpx(12px);
-  padding: px2rpx(20px);
-}
