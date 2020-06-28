@@ -1,0 +1,39 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(brands) {
+  margin-bottom: px2rpx(-20px);
+  min-height: px2rpx(224px);
+
+  @include o(grid) {
+    @include e(row) {
+      width: px2rpx(702px + 10px * 2);
+      margin-left: px2rpx(-10px);
+    }
+
+    @include e(col) {
+      @include padding(null, px2rpx(10px), px2rpx(20px), px2rpx(10px));
+    }
+  }
+
+  @include e(item) {
+    @include padding(px2rpx(30px), null, px2rpx(30px));
+
+    border-radius: px2rpx(12px);
+  }
+
+  @include e(icon) {
+    @include size(px2rpx(100px), px2rpx(100px));
+    @include block--center;
+
+    display: block;
+    border-radius: 50%;
+    border: 1px solid map-get($colors, c46);
+  }
+
+  @include e(title) {
+    @include text--overflow;
+
+    padding-top: px2rpx(20px);
+    line-height: 100%;
+  }
+}

@@ -1,0 +1,112 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(products) {
+  @include clearfix;
+  @include padding(null, px2rpx(30px), null, px2rpx(30px));
+
+  border-radius: px2rpx(12px);
+  min-height: px2rpx(300px);
+
+  @include m(horizontal) {
+    @include c(products) {
+      @include e(row) {
+        @include clearfix;
+
+        width: px2rpx(311px * 2 + 20px + 10px * 2);
+        margin-left: px2rpx(-10px);
+      }
+
+      @include e(col) {
+        @include padding(null, px2rpx(10px), null, px2rpx(10px));
+
+        float: left;
+        min-height: 1px;
+        box-sizing: border-box;
+        position: relative;
+        width: 50%;
+        height: px2rpx(207px + 158px);
+      }
+
+      @include e(picture) {
+        @include size(100%, px2rpx(207px));
+
+        display: block;
+        border-radius: px2rpx(12px);
+      }
+
+      @include e(title) {
+        @include text--overflow;
+
+        padding-top: px2rpx(30px);
+        line-height: 100%;
+      }
+
+      @include e(price, sell) {
+        position: absolute;
+        line-height: 100%;
+      }
+
+      @include e(price) {
+        bottom: px2rpx(42px);
+        left: px2rpx(10px);
+
+        span:first-child {
+          padding-right: px2rpx(10px);
+        }
+      }
+
+      @include e(sell) {
+        bottom: px2rpx(42px + 6px);
+        right: px2rpx(10px);
+      }
+    }
+  }
+
+  @include m(vertical) {
+    @include c(title) {
+      margin-bottom: px2rpx(-30px);
+    }
+
+    @include c(products) {
+      @include e(col) {
+        position: relative;
+        height: px2rpx(180px + 30px * 2);
+        border-bottom: 1px solid map-get($colors, c45);
+      }
+
+      @include e(picture, title) {
+        @include position--absolute(px2rpx(30px));
+      }
+
+      @include e(picture) {
+        @include size(px2rpx(300px), px2rpx(180px));
+
+        left: 0;
+        display: block;
+        border-radius: px2rpx(12px);
+      }
+
+      @include e(title) {
+        left: px2rpx(320px);
+        line-height: 100%;
+      }
+
+      @include e(price, sell) {
+        @include position--absolute(null, null, px2rpx(30px));
+      }
+
+      @include e(price) {
+        left: px2rpx(320px);
+
+        span:first-child {
+          padding-right: px2rpx(10px);
+        }
+      }
+
+      @include e(sell) {
+        right: 0;
+        bottom: px2rpx(30px + 4px);
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@import "~@/styles/utils/index";
+
+@include c(header) {
+  @include text--middle($header-height);
+
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  background-color: white;
+  transform-style: preserve-3d;
+
+  @include e(avatar, logout, user) {
+    @include text--middle($header-height);
+
+    float: right;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e6f7ff;
+    }
+  }
+
+  @include e(avatar, user) {
+    @include padding(null, 10px, null, 10px);
+  }
+
+  @include e(avatar) {
+    .ivu-avatar {
+      background-color: #1890ff;
+    }
+  }
+
+  @include e(user) {
+    line-height: $header-height;
+    font-size: 14px;
+  }
+
+  @include e(logout) {
+    @include padding(null, 20px, null, 20px);
+  }
+}

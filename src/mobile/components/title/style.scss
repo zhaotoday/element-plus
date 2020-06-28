@@ -1,0 +1,46 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(title) {
+  @include text--middle(px2rpx(88px));
+
+  position: relative;
+
+  @include e(title) {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    line-height: 100%;
+
+    &:before {
+      @include size(100%, px2rpx(10px));
+      @include position--absolute(null, null, 0, 0);
+
+      z-index: -1;
+      content: "";
+      display: block;
+      border-radius: px2rpx(5px);
+      background-color: map-get($colors, c21);
+    }
+  }
+
+  @include e(change, more) {
+    @include position--absolute(50%);
+
+    transform: translateY(-50%);
+    display: inline-block;
+    line-height: 100%;
+    padding: px2rpx(10px);
+  }
+
+  @include e(change) {
+    right: px2rpx(120px);
+  }
+
+  @include e(more) {
+    right: px2rpx(-10px);
+
+    @include c(iconfont) {
+      margin-left: px2rpx(6px);
+    }
+  }
+}

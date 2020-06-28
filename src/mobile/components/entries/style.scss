@@ -1,0 +1,33 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(entries) {
+  @include clearfix;
+
+  height: px2rpx(360px);
+  border-radius: px2rpx(12px);
+  overflow: hidden;
+
+  @include e(item) {
+    float: left;
+    width: 20%;
+  }
+
+  @include c(iconfont) {
+    @include size(px2rpx(48px), px2rpx(48px));
+    @include margin(px2rpx(52px), auto, px2rpx(30px), auto);
+
+    display: block;
+    line-height: px2rpx(48px);
+  }
+
+  img {
+    @include size(px2rpx(48px), px2rpx(48px));
+    @include margin(px2rpx(52px), auto, px2rpx(30px), auto);
+
+    display: block;
+  }
+
+  @include e(title) {
+    line-height: 100%;
+  }
+}

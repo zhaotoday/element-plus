@@ -1,0 +1,14 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(image-link) {
+  min-height: px2rpx(100px);
+  border-radius: px2rpx(12px);
+
+  a {
+    border: 0;
+  }
+
+  img {
+    width: 100%;
+  }
+}

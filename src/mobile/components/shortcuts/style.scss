@@ -1,0 +1,36 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(shortcuts) {
+  @include text--middle(px2rpx(88px));
+
+  border-radius: px2rpx(12px);
+  display: flex;
+
+  @include e(item) {
+    position: relative;
+    flex: 1;
+
+    &:after {
+      @include position--absolute(50%, null, null, 0);
+
+      transform: translateY(-50%);
+      content: "";
+      display: block;
+      height: px2rpx(48px);
+      border-left: 1px solid map-get($colors, c11);
+      opacity: 0.5;
+    }
+
+    &:first-child {
+      &:after {
+        border-left: 0;
+      }
+    }
+  }
+
+  @include e(title) {
+    display: inline-block;
+    line-height: 100%;
+    padding-left: px2rpx(16px);
+  }
+}

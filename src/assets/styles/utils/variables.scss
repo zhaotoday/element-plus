@@ -1,0 +1,100 @@
+// CDN
+$cdn: "http://localhost:88";
+
+// CDN 版本号
+$cdn-version: 0.1;
+
+// 图片地址
+$image-url: "/images/components";
+
+// 颜色
+$colors: (
+  c11: white,
+  c12: black,
+  c21: #ffca00,
+  c22: #ff6201,
+  c31: #f5f7fa,
+  c32: #f2f6fc,
+  c33: #ebeef5,
+  c34: #e4e7ed,
+  c35: #dcdfe6,
+  c36: #c0c4cc,
+  c37: #909399,
+  c38: #606266,
+  c39: #303133,
+  c41: #313131,
+  c42: #666666,
+  c43: #999999,
+  c44: #cccccc,
+  c45: #eeeeee,
+  c46: #dddddd,
+  c47: #f7f4f8
+);
+
+// button
+$button-widths: 160px, 440px, 610px, 650px;
+$button-heights: 48px, 76px, 88px;
+$button-border-radii: 12px;
+
+// tag
+$tag-heights: 34px, 46px, 48px, 50px, 56px, 60px;
+$tag-border-radii: 8px;
+
+// icon
+$icon-items: (
+  (
+    icon: logo,
+    width: 160px,
+    height: 160px,
+    widths: (
+      200px,
+      250px,
+      192px
+    ),
+    heights: (
+      200px,
+      250px,
+      268px
+    )
+  ),
+  (
+    icon: empty,
+    width: 220px,
+    height: 144px
+  ),
+  (
+    icon: more,
+    width: 20px,
+    height: 20px
+  ),
+  (
+    icon: wx,
+    width: 80px,
+    height: 80px
+  ),
+  (
+    icon: del,
+    width: 32px,
+    height: 32px
+  ),
+  (
+    icon: close,
+    width: 40px,
+    height: 40px
+  )
+);
+
+// grid
+$grid-paddings: 10px;
+
+// avatar
+$avatar-width: 120px;
+
+$z-indexes: (
+  c-overlay: 5,
+  c-dialog: 6,
+  c-popup: 6,
+  c-poster: 6,
+  c-qrcode: 6,
+  c-share-options: 7
+);

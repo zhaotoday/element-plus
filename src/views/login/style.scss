@@ -1,0 +1,32 @@
+@import "~@/styles/utils/index";
+
+@include p(login) {
+  @include position--absolute(50%, null, null, 50%);
+  @include size(360px, 430px);
+
+  padding: 20px 30px;
+  transform: translate(-50%, -80%);
+  background-color: white;
+  box-shadow: 0 0 6px 0 rgba(#cccccc, 0.4);
+
+  #login-container {
+    @include size(300px, 400px);
+    @include block--center;
+
+    overflow: hidden;
+
+    iframe {
+      margin-top: -40px;
+    }
+  }
+
+  @include b(form) {
+    margin-top: 20px;
+  }
+
+  @include b(tip) {
+    padding-top: 20px;
+    font-size: 13px;
+    line-height: 150%;
+  }
+}

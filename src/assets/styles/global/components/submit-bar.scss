@@ -1,0 +1,41 @@
+@include c(submit-bar) {
+  @include position--fixed(null, 0, 0, 0);
+
+  height: px2rpx(108px);
+  border-top: 1px solid map-get($colors, c45);
+
+  @include e(options) {
+    display: flex;
+  }
+
+  @include e(share, collect) {
+    @include size(px2rpx(100px), px2rpx(108px));
+
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    padding-top: px2rpx(68px);
+    text-align: center;
+    line-height: 100%;
+
+    i {
+      @include position--absolute(px2rpx(22px), null, null, 50%);
+
+      transform: translateX(-50%);
+    }
+
+    h2 {
+      line-height: 100%;
+    }
+  }
+
+  @include e(share) {
+    margin-left: px2rpx(20px);
+  }
+
+  @include e(submit) {
+    @include position--absolute(50%, px2rpx(24px));
+
+    transform: translateY(-50%);
+  }
+}

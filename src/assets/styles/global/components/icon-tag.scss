@@ -1,0 +1,26 @@
+@include c(icon-tag) {
+  @include m(set, unset, edit, del) {
+    @include text--middle(px2rpx(32px));
+    @include padding(px2rpx(8px), px2rpx(8px), px2rpx(8px));
+
+    background: {
+      size: px2rpx(32px) px2rpx(32px);
+      position: 0 center;
+      repeat: no-repeat;
+    }
+  }
+
+  @include m(set, unset) {
+    padding-left: px2rpx(32px + 10px);
+  }
+
+  @include m(edit, del) {
+    padding-left: px2rpx(32px);
+  }
+
+  @each $item in (set, unset, edit, del) {
+    @include m(#{$item}) {
+      background-image: url("#{$image-url}/icon-tag/#{$item}.png");
+    }
+  }
+}

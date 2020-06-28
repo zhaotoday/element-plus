@@ -1,0 +1,83 @@
+@import "~@/assets/styles/global/index.scss";
+
+@include p(dresses-home) {
+  @include b(phone) {
+    margin: 10px 30px;
+    background-color: #f5f7fa;
+    width: px2rpx(750px);
+    border: 1px solid #ebeef5;
+    box-shadow: 0 0 14px 0 rgba(#cccccc, 0.4);
+    padding-bottom: px2rpx(24px);
+  }
+
+  @include b(swiper) {
+    position: relative;
+    overflow: hidden;
+
+    @include b(swiper-wrap) {
+      @include size(px2rpx(702px), px2rpx(280px));
+      @include block--center;
+
+      position: relative;
+      border-radius: px2rpx(12px);
+      overflow: hidden;
+    }
+
+    &:before {
+      @include position--absolute(0, null, null, 0);
+      @include size(100%, px2rpx(176px));
+
+      content: "";
+      display: block;
+      background-color: map-get($colors, c21);
+    }
+  }
+
+  @include b(wrap) {
+    @include block--center;
+
+    width: px2rpx(702px);
+  }
+
+  // reset
+  @include c(swiper) {
+    height: px2rpx(280px);
+  }
+
+  .ivu-poptip-body-content {
+    width: 600px;
+    overflow: hidden;
+  }
+
+  @include b(modules) {
+    width: 460px;
+
+    .ivu-btn {
+      @include margin(null, 10px, 10px);
+
+      text-align: left;
+      width: 100px;
+      display: block;
+      float: left;
+    }
+  }
+
+  .ivu-poptip-popper {
+    z-index: 1;
+  }
+}
+
+@include b(qrcode-wrap) {
+  text-align: center;
+
+  img {
+    @include size(400px, 400px);
+
+    display: block;
+    box-shadow: 0 4px 6px 0 rgba(#cccccc, 0.4);
+  }
+
+  .ivu-btn {
+    margin-top: 10px;
+  }
+}

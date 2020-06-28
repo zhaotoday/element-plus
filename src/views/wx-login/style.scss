@@ -1,0 +1,6 @@
+@import "~@/styles/utils/index";
+
+@include p(wx-login) {
+  padding: 30px;
+  text-align: center;
+}

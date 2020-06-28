@@ -1,0 +1,62 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(editable-module) {
+  position: relative;
+
+  @include e(overlay) {
+    @include position--absolute(0, null, null, 0);
+    @include size(100%, 100%);
+
+    z-index: 1;
+  }
+
+  @include e(actions) {
+    position: absolute !important;
+    right: px2rpx(24px);
+    top: px2rpx(24px);
+    display: none !important;
+    z-index: 2;
+  }
+
+  @include s(is-active) {
+    &.draggable {
+      cursor: move;
+    }
+
+    &::after {
+      @include position--absolute(
+        px2rpx(24px / 2),
+        px2rpx(24px / 2),
+        null,
+        px2rpx(24px / 2)
+      );
+
+      height: 100%;
+      display: block;
+      content: "";
+      // border: 2px dotted map-get($colors, c34);
+    }
+
+    @include c(editable-module) {
+      @include e(actions) {
+        display: block !important;
+      }
+    }
+
+    .ivu-poptip-popper {
+      display: block;
+    }
+  }
+
+  .ivu-poptip-popper {
+    @include position--absolute(12px, null, null, px2rpx(750px));
+
+    cursor: default;
+    display: none;
+    width: 650px;
+  }
+}
+
+.ghost {
+  // opacity: 0.5;
+}
