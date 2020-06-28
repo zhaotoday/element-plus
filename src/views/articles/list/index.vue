@@ -75,11 +75,11 @@
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
-import { mapState } from 'vuex'
-import RouteParamsMixin from 'view-ui-admin/src/mixins/route-params'
-import ListMixin from 'view-ui-admin/src/mixins/list'
-import AllCategoriesListMixin from 'view-ui-admin/src/mixins/all-categories-list'
+import { Component, Vue } from "vue-property-decorator";
+import { mapState } from "vuex";
+import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
+import ListMixin from "view-ui-admin/src/mixins/list";
+import AllCategoriesListMixin from "view-ui-admin/src/mixins/all-categories-list";
 
 const module = "articles";
 

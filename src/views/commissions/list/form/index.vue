@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
-import FormMixin from 'view-ui-admin/src/mixins/form'
+import { Component, Vue } from "vue-property-decorator";
+import FormMixin from "view-ui-admin/src/mixins/form";
 
 const module = "commissions";
 

@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import auth from 'view-ui-admin/src/utils/auth'
-import TheLayout from '@/components/layout'
-import Root from '@/views/root'
-import ViewUI from 'view-design'
-import publicRoutes from './routes/public'
-import adminRoutes from './routes/admin'
+import Vue from "vue";
+import Router from "vue-router";
+import auth from "view-ui-admin/src/utils/auth";
+import TheLayout from "@/components/layout";
+import Root from "@/views/root";
+import ViewUI from "view-design";
+import publicRoutes from "./routes/public";
+import adminRoutes from "./routes/admin";
 
 Vue.use(Router);
 

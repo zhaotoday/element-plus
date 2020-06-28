@@ -1,4 +1,4 @@
-import auth from 'view-ui-admin/src/utils/auth'
+import auth from "view-ui-admin/src/utils/auth";
 
 export default {
   path: "logout",

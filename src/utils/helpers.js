@@ -1,5 +1,5 @@
-import helpers from 'jt-helpers'
-import consts from '@/utils/consts'
+import helpers from "jt-helpers";
+import consts from "@/utils/consts";
 
 export default {
   ...helpers,

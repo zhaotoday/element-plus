@@ -1,7 +1,7 @@
-import REST from 'jt-rest'
-import ViewUI from 'view-design'
-import auth from 'view-ui-admin/src/utils/auth'
-import dayjs from 'dayjs'
+import REST from "jt-rest";
+import ViewUI from "view-design";
+import auth from "view-ui-admin/src/utils/auth";
+import dayjs from "dayjs";
 
 export default class extends REST {
   _toString(obj) {

@@ -58,12 +58,12 @@
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
-import { mapState } from 'vuex'
-import RouteParamsMixin from 'view-ui-admin/src/mixins/route-params'
-import ListMixin from 'view-ui-admin/src/mixins/list'
-import xlsx from 'view-ui-admin/src/utils/xlsx'
-import WxUsersModel from '@/models/admin/wx-users'
+import { Component, Vue } from "vue-property-decorator";
+import { mapState } from "vuex";
+import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
+import ListMixin from "view-ui-admin/src/mixins/list";
+import xlsx from "view-ui-admin/src/utils/xlsx";
+import WxUsersModel from "@/models/admin/wx-users";
 
 const module = "wxUsers";
 const initWhere = {
