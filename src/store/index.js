@@ -28,11 +28,8 @@ export default new Vuex.Store({
     "public/dicts": require("./modules/public/dicts").default,
     "public/brands": require("./modules/public/brands").default,
     "public/categories": require("./modules/public/categories").default,
-    "public/entries": require("./modules/public/entries").default,
     "public/products": require("./modules/public/products").default,
-    "public/notices": require("./modules/public/notices").default,
     "public/ads": require("./modules/public/ads").default,
-    "public/schools": require("./modules/public/schools").default,
 
     categories: require("./modules/admin/categories").default,
     wxUsers: require("./modules/admin/wx-users").default,
@@ -44,20 +41,9 @@ export default new Vuex.Store({
     comments: require("./modules/admin/comments").default,
     merchants: require("./modules/admin/merchants").default,
     coupons: require("./modules/admin/coupons").default,
-    entries: require("./modules/admin/entries").default,
-    schools: require("./modules/admin/schools").default,
     brands: require("./modules/admin/brands").default,
-    notices: require("./modules/admin/notices").default,
     withdraws: require("./modules/admin/withdraws").default,
     commissions: require("./modules/admin/commissions").default,
-    points: require("./modules/admin/points").default,
-    shortcuts: require("./modules/admin/shortcuts").default,
-    distributorApplications: require("./modules/admin/distributor-applications")
-      .default,
-    videos: require("./modules/admin/videos").default,
-    outerProducts: require("./modules/admin/outer-products").default,
-    schoolWxUsers: require("./modules/admin/school-wx-users").default,
-    settings: require("./modules/admin/settings").default,
-    incomes: require("./modules/admin/incomes").default
+    points: require("./modules/admin/points").default
   }
 });
