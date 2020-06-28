@@ -1,6 +1,6 @@
 import REST from "view-ui-admin/src/utils/rest";
-import consts from "@/utils/consts";
 import auth from "view-ui-admin/src/utils/auth";
+import consts from "@/utils/consts";
 
 export default class extends REST {
   constructor() {
