@@ -6,31 +6,22 @@
       :total="list.total"
       :page-current="listPageCurrent"
       :search-where="listSearchWhere"
+      @selection-change="handleListSelectionChange"
     >
       <c-list-header>
+        <c-list-operations>
+          <c-bulk-delete
+            :selected-items="listSelectedItems"
+            @ok="confirmDelete"
+          >
+          </c-bulk-delete>
+        </c-list-operations>
         <c-list-search>
           <Form
             class="c-form c-form--search"
             inline
             @submit.native.prevent="search"
           >
-            <Form-item prop="type">
-              <Select
-                class="c-form__input"
-                placeholder="请选择用户类型"
-                clearable
-                v-model="cList.cSearch.where.type.$eq"
-              >
-                <Option
-                  v-for="item in dicts.WxUserType"
-                  :key="item.value"
-                  :value="item.value"
-                  :label="item.label"
-                >
-                  {{ item.label }}
-                </Option>
-              </Select>
-            </Form-item>
             <Form-item prop="nickName">
               <Input
                 class="c-form__input"
@@ -62,14 +53,9 @@ import { Component, Vue } from "vue-property-decorator";
 import { mapState } from "vuex";
 import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
 import ListMixin from "view-ui-admin/src/mixins/list";
-import xlsx from "view-ui-admin/src/utils/xlsx";
-import WxUsersModel from "@/models/admin/wx-users";
 
 const module = "wxUsers";
 const initWhere = {
-  type: {
-    $eq: ""
-  },
   nickName: {
     $like: ""
   },
@@ -92,6 +78,10 @@ export default class extends Vue {
       cList: {
         columns: [
           {
+            type: "selection",
+            width: 60
+          },
+          {
             title: "图片",
             width: 118,
             render: (h, { row }) => {
@@ -105,6 +95,11 @@ export default class extends Vue {
           {
             title: "昵称",
             key: "nickName",
+            minWidth: ListColumnWidth.User
+          },
+          {
+            title: "姓名",
+            key: "name",
             minWidth: ListColumnWidth.User
           },
           {
@@ -135,32 +130,19 @@ export default class extends Vue {
             width: 100
           },
           {
-            title: "用户类型",
-            width: 100,
-            render: (h, { row }) =>
-              h(
-                "span",
-                null,
-                this.$helpers.getItem(this.dicts.WxUserType, "value", row.type)[
-                  "label"
-                ]
-              )
-          },
-          {
             title: "操作",
             key: "action",
-            width: 166,
+            width: 90,
             render: (h, { row }) =>
               h("div", [
-                h("c-dropdown", {
+                h("c-confirm-button", {
                   props: {
-                    width: 114,
-                    title: "修改用户类型",
-                    options: this.dicts.WxUserType
+                    buttonText: "删除",
+                    confirmText: "确认删除？"
                   },
                   on: {
-                    click: type => {
-                      this.changeWxUserType(row.id, type);
+                    ok: () => {
+                      this.confirmDelete(row.id);
                     }
                   }
                 })
@@ -190,67 +172,17 @@ export default class extends Vue {
       query: {
         offset: (this.listPageCurrent - 1) * this.$consts.PageSize,
         limit: this.$consts.PageSize,
-        where: this.listSearchWhere
+        where: this.listSearchWhere || initWhere
       }
     });
   }
 
-  async getExportWxUsersListItems() {
-    this.search();
+  async confirmDelete(ids) {
+    await this.$store.dispatch(`${module}/delete`, { id: ids });
+    this.$Message.success("删除成功");
 
-    const {
-      data: { items }
-    } = await new WxUsersModel().GET({
-      query: { where: this.listSearchWhere }
-    });
-
-    return items;
-  }
-
-  async exportXLSX() {
-    const items = await this.getExportWxUsersListItems();
-
-    xlsx.download({
-      fileName: `微信用户（${this.$time.getDate()}）`,
-      data: (() => {
-        const columns = this.cList.columns;
-        const columnKeys = this.cList.columns.map(item => item.key);
-
-        return items.map(item => {
-          let ret = {};
-
-          Object.keys(item).forEach(key => {
-            const index = columnKeys.findIndex(columnKey => columnKey === key);
-
-            if (index !== -1) {
-              switch (key) {
-                case "gender":
-                  ret[columns[index].title] = this.$helpers.getItem(
-                    this.dicts.Gender,
-                    "value",
-                    item[key]
-                  );
-                  break;
-                default:
-                  ret[columns[index].title] = item[key];
-                  break;
-              }
-            }
-          });
-
-          return ret;
-        });
-      })()
-    });
-  }
-
-  async changeWxUserType(id, type) {
-    await this.$store.dispatch(`${module}/put`, {
-      id,
-      body: { type }
-    });
-    this.$Message.success("修改用户类型成功");
-    this.getList();
+    const { items } = await this.getList();
+    !items.length && this.goListPrevPage();
   }
 }
 </script>

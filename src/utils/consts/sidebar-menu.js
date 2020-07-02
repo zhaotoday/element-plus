@@ -73,7 +73,7 @@ export default [
     children: [
       {
         title: "微信用户列表",
-        route: "/wxUsers/wxUsers/index"
+        route: "/wxUsers/wxUsers/list"
       }
     ]
   }
