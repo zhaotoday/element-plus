@@ -4,6 +4,7 @@ import DictsMixin from "view-ui-admin/src/mixins/dicts";
 import consts from "@/utils/consts";
 import helpers from "@/utils/helpers";
 import GlobalMixin from "@/mixins/global";
+import ProductSelect from "@/components/product-select";
 
 export default {
   install(Vue) {
@@ -18,5 +19,7 @@ export default {
 
     Vue.mixin(GlobalMixin);
     Vue.mixin(DictsMixin);
+
+    Vue.component("c-product-select", ProductSelect);
   }
 };

@@ -10,7 +10,7 @@ const BaseUrl = "https://my-app.liruan.cn";
 // const BaseUrl = "http://localhost:3001";
 
 // CDN
-const CdnUrl = "https://tnjh-mall.lrcdn.cn";
+const CdnUrl = "https://my-app.lrcdn.cn";
 
 // 接口地址
 const ApiUrl = BaseUrl + "/admin";
