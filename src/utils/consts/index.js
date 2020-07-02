@@ -6,7 +6,7 @@ import ImageMaxWidth from "./image-max-width";
 import SidebarMenu from "./sidebar-menu";
 
 // 基础地址
-const BaseUrl = "https://mall.tongnianjihua.com";
+const BaseUrl = "https://my-app.liruan.cn";
 // const BaseUrl = "http://localhost:3001";
 
 // CDN

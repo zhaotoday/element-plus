@@ -187,6 +187,7 @@ export default class extends Vue {
       price: 0,
       commissionRate: 0,
       stock: 0,
+      sales: 0,
       status: 1
     };
   }
