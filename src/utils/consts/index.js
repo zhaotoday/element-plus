@@ -3,6 +3,7 @@ import CategoryLevel from "./category-level";
 import ListColumnWidth from "./list-column-width";
 import OrderAction from "./order-action";
 import ImageMaxWidth from "./image-max-width";
+import SidebarMenu from "./sidebar-menu";
 
 // 基础地址
 const BaseUrl = "https://mall.tongnianjihua.com";
@@ -29,6 +30,7 @@ export default {
   ListColumnWidth,
   OrderAction,
   ImageMaxWidth,
+  SidebarMenu,
   BaseUrl,
   CdnUrl,
   ApiUrl,
