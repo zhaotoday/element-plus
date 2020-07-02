@@ -86,7 +86,8 @@ export default class extends Vue {
           {
             title: "关联的微信用户",
             width: 130,
-            render: (h, { row }) => h("span", row.wxUser.nickName)
+            render: (h, { row }) =>
+              h("span", row.wxUser ? row.wxUser.nickName : "")
           },
           {
             title: "联系人",
