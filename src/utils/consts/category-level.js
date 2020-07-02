@@ -1,4 +1,4 @@
 export default {
-  products: 1,
+  products: 2,
   articles: 1
 };

@@ -14,31 +14,9 @@
           placeholder="请输入名称"
         />
       </Form-item>
-      <Form-item label="是否积分商品" prop="pointProduct">
-        <Select
-          class="c-form__input"
-          placeholder="请选择是或否"
-          clearable
-          v-model="cForm.model.pointProduct"
-        >
-          <Option
-            v-for="item in [
-              { value: 1, label: '是' },
-              { value: 0, label: '否' }
-            ]"
-            :key="item.value"
-            :value="item.value"
-            :label="item.label"
-            :disabled="item.value === 1 && !paidModules.includes('PointMall')"
-          >
-            {{ item.label }}
-          </Option>
-        </Select>
-      </Form-item>
       <Form-item label="分类" prop="categoryId">
         <c-category-select
           class="c-form__input"
-          select-parent
           :alias="alias"
           v-model="cForm.model.categoryId"
           @change="
@@ -47,24 +25,6 @@
             }
           "
         ></c-category-select>
-      </Form-item>
-      <Form-item label="类型" prop="type">
-        <Select
-          class="c-form__input"
-          placeholder="请选择类型"
-          clearable
-          v-model="cForm.model.type"
-        >
-          <Option
-            v-for="item in dicts.ProductType"
-            :key="item.value"
-            :value="item.value"
-            :label="item.label"
-            :disabled="!paidModules.includes(item.value)"
-          >
-            {{ item.label }}
-          </Option>
-        </Select>
       </Form-item>
       <Form-item label="图片" prop="pictureIds">
         <c-uploader
@@ -80,65 +40,7 @@
           "
         ></c-uploader>
       </Form-item>
-      <Form-item
-        v-if="cForm.model.type === 'Video'"
-        label="视频"
-        prop="videoId"
-      >
-        <c-video-uploader
-          class="c-form__input"
-          :key="`video-${cForm.id}`"
-          :format="['mp4']"
-          :max-size="1024 * 1024 * 2"
-          :default-id="cForm.model.videoId"
-          @change="
-            value => {
-              $set(cForm.model, 'videoId', value);
-            }
-          "
-        />
-      </Form-item>
-      <Form-item
-        v-if="cForm.model.type === 'CourseWare'"
-        label="课件"
-        prop="courseWareIds"
-      >
-        <c-uploader
-          class="c-form__input"
-          :key="`courseWare-${cForm.id}`"
-          multiple
-          :format="['doc', 'docx', 'ppt', 'pdf']"
-          :max-size="1024 * 1024"
-          :default-file-ids="cForm.model.courseWareIds"
-          @change="
-            value => {
-              handleFormUploaderChange('courseWareIds', value);
-            }
-          "
-        />
-      </Form-item>
-      <Form-item
-        v-show="cForm.model.type === 'Column'"
-        label="专栏商品"
-        prop="columnProductIds"
-      >
-        <c-product-select
-          class="c-form__input"
-          :value="cForm.model.columnProductIds"
-          multiple
-          :types="['Video', 'CourseWare']"
-          @change="
-            value => {
-              $set(cForm.model, 'columnProductIds', value);
-            }
-          "
-        ></c-product-select>
-      </Form-item>
-      <Form-item
-        v-if="!cForm.model.pointProduct"
-        label="原价"
-        prop="originalPrice"
-      >
+      <Form-item label="原价" prop="originalPrice">
         <InputNumber
           :min="0"
           :max="100000"
@@ -146,66 +48,19 @@
         />
         元
       </Form-item>
-      <Form-item v-if="!cForm.model.pointProduct" label="会员价" prop="price">
+      <Form-item label="会员价" prop="price">
         <InputNumber :min="0" :max="100000" v-model="cForm.model.price" />
         元
       </Form-item>
-      <Form-item
-        v-if="!cForm.model.pointProduct"
-        label="赠送积分"
-        prop="givingPoints"
-      >
-        <InputNumber
-          :min="0"
-          :max="100000"
-          v-model="cForm.model.givingPoints"
-        />
-      </Form-item>
-      <Form-item
-        v-if="!cForm.model.pointProduct"
-        label="佣金比例"
-        prop="commissionRate"
-      >
+      <Form-item label="佣金比例" prop="commissionRate">
         <InputNumber :min="0" :max="100" v-model="cForm.model.commissionRate" />
         %
-      </Form-item>
-      <Form-item v-if="cForm.model.pointProduct" label="兑换积分" prop="points">
-        <InputNumber :min="0" :max="100000" v-model="cForm.model.points" />
-      </Form-item>
-      <Form-item label="分销员奖励积分" prop="commissionPoints">
-        <InputNumber
-          :min="0"
-          :max="100000"
-          v-model="cForm.model.commissionPoints"
-        />
       </Form-item>
       <Form-item label="库存" prop="stock">
         <InputNumber :min="0" :max="100000" v-model="cForm.model.stock" />
       </Form-item>
       <Form-item label="销量" prop="sales">
         <InputNumber :min="0" :max="100000" v-model="cForm.model.sales" />
-      </Form-item>
-      <Form-item
-        v-if="cForm.model.type === 'Video' || cForm.model.type === 'CourseWare'"
-        label="观看密码"
-        prop="password"
-      >
-        <Input
-          class="c-form__input"
-          v-model.trim="cForm.model.password"
-          placeholder="请输入观看密码"
-        />
-      </Form-item>
-      <Form-item
-        v-if="cForm.model.type === 'Video' || cForm.model.type === 'CourseWare'"
-        label="第三方链接"
-        prop="link"
-      >
-        <Input
-          class="c-form__input"
-          v-model.trim="cForm.model.link"
-          placeholder="请输入第三方链接"
-        />
       </Form-item>
       <Form-item label="状态" prop="status">
         <Select
@@ -235,35 +90,6 @@
         >
           推荐
         </Checkbox>
-      </Form-item>
-      <Form-item label="购买按钮文字" prop="buyButtonText">
-        <Input
-          class="c-form__input"
-          v-model.trim="cForm.model.buyButtonText"
-          placeholder="请输入购买按钮文字（可不填）"
-        />
-      </Form-item>
-      <Form-item label="自定义表单" prop="formFields">
-        <Input
-          v-for="item in cForm.model.formFields"
-          :key="item.key"
-          style="width: 400px; margin-bottom: 6px;"
-          placeholder="请输入表单名称"
-          v-model.trim="item.label"
-        >
-          <Button
-            slot="append"
-            icon="md-close"
-            @click="deleteFormField(item)"
-          ></Button>
-        </Input>
-        <Input
-          style="width: 400px; margin-bottom: 6px;"
-          placeholder="请输入表单名称"
-          v-model.trim="formField.label"
-        >
-          <Button slot="append" icon="md-add" @click="addFormField"></Button>
-        </Input>
       </Form-item>
       <Form-item label="详情" prop="content">
         <c-editor
@@ -297,12 +123,11 @@ import { Component, Vue } from "vue-property-decorator";
 import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
 import FormMixin from "view-ui-admin/src/mixins/form";
 import { mapState } from "vuex";
-import PayModuleMixin from "@/mixins/pay-module";
 
 const module = "products";
 
 @Component({
-  mixins: [RouteParamsMixin, FormMixin, PayModuleMixin],
+  mixins: [RouteParamsMixin, FormMixin],
   computed: mapState({
     detail: state => state[module].detail
   })

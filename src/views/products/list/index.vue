@@ -45,7 +45,6 @@
             <Form-item prop="categoryId">
               <c-category-select
                 class="c-form__input"
-                select-parent
                 :alias="alias"
                 v-model="cList.cSearch.where.categoryId.$eq"
                 @change="
@@ -54,23 +53,6 @@
                   }
                 "
               ></c-category-select>
-            </Form-item>
-            <Form-item prop="type">
-              <Select
-                class="c-form__input"
-                placeholder="请选择类型"
-                clearable
-                v-model="cList.cSearch.where.type.$eq"
-              >
-                <Option
-                  v-for="item in dicts.ProductType"
-                  :key="item.value"
-                  :value="item.value"
-                  :label="item.label"
-                >
-                  {{ item.label }}
-                </Option>
-              </Select>
             </Form-item>
             <Form-item prop="name">
               <Input
@@ -101,17 +83,14 @@ import AllCategoriesListMixin from "view-ui-admin/src/mixins/all-categories-list
 const module = "products";
 
 const initWhere = {
-  name: {
-    $like: ""
+  status: {
+    $eq: ""
   },
   categoryId: {
     $eq: ""
   },
-  type: {
-    $eq: ""
-  },
-  status: {
-    $eq: ""
+  name: {
+    $like: ""
   }
 };
 
@@ -156,30 +135,17 @@ export default class extends Vue {
             title: "分类",
             width: 100,
             render: (h, { row }) =>
-              h("span", this.getCategoryNameById(row.categoryId, false))
+              h("span", this.getCategoryNameById(row.categoryId, true))
           },
           {
-            title: "类型",
+            title: "原价",
             width: 80,
-            render: (h, { row }) =>
-              h(
-                "span",
-                this.$helpers.getItem(
-                  this.dicts.ProductType,
-                  "value",
-                  row.type
-                )["label"]
-              )
+            render: (h, { row }) => h("span", row.originalPrice + "元")
           },
           {
             title: "会员价",
             width: 80,
             render: (h, { row }) => h("span", row.price + "元")
-          },
-          {
-            title: "积分",
-            key: "points",
-            width: 80
           },
           {
             title: "佣金比例",
@@ -189,6 +155,11 @@ export default class extends Vue {
           {
             title: "库存",
             key: "stock",
+            width: 80
+          },
+          {
+            title: "销量",
+            key: "sales",
             width: 80
           },
           {
@@ -243,24 +214,6 @@ export default class extends Vue {
                     }
                   }
                 }),
-                // h(
-                //   "Button",
-                //   {
-                //     on: {
-                //       click: () => {
-                //         this.$router.push({
-                //           path: "/reports/orders/list",
-                //           query: {
-                //             listSearchWhere: JSON.stringify({
-                //               productId: 0
-                //             })
-                //           }
-                //         });
-                //       }
-                //     }
-                //   },
-                //   "订单"
-                // ),
                 h("c-confirm-button", {
                   props: {
                     buttonText: "删除",
