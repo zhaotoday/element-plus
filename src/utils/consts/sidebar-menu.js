@@ -41,6 +41,25 @@ export default [
     ]
   },
   {
+    icon: "logo-bitcoin",
+    name: "finances",
+    title: "财务管理",
+    children: [
+      {
+        title: "订单列表",
+        route: "/finances/orders/list"
+      },
+      {
+        title: "分销员提现",
+        route: "/finances/withdraws/list"
+      },
+      {
+        title: "分销员佣金明细",
+        route: "/finances/commissions/list"
+      }
+    ]
+  },
+  {
     icon: "md-document",
     name: "articles",
     title: "文章管理",
@@ -63,6 +82,17 @@ export default [
       {
         title: "商家列表",
         route: "/merchants/merchants/list"
+      }
+    ]
+  },
+  {
+    icon: "md-document",
+    name: "brands",
+    title: "商标管理",
+    children: [
+      {
+        title: "商标列表",
+        route: "/brands/brands/list"
       }
     ]
   },

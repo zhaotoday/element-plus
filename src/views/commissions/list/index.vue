@@ -16,9 +16,6 @@
             @ok="confirmDelete"
           >
           </c-bulk-delete>
-          <Button v-if="isPlatform()" type="primary" @click="$refs.form.show()">
-            佣金增减
-          </Button>
         </c-list-operations>
         <c-list-search>
           <Form
@@ -26,17 +23,6 @@
             inline
             @submit.native.prevent="search"
           >
-            <Form-item prop="schoolId">
-              <c-school-select
-                :value="cList.cSearch.where.schoolId.$eq"
-                @change="
-                  value => {
-                    cList.cSearch.where.schoolId.$eq = value;
-                  }
-                "
-              >
-              </c-school-select>
-            </Form-item>
             <Form-item prop="dateRange">
               <c-date-range
                 class="c-form__input"
@@ -85,9 +71,6 @@ const initWhere = {
   dateRange: {
     $eq: []
   },
-  schoolId: {
-    $eq: 1
-  },
   wxUserId: {
     $eq: ""
   }
@@ -114,11 +97,6 @@ export default class extends Vue {
             width: 60
           },
           {
-            title: "校区",
-            width: 180,
-            render: (h, { row }) => h("span", row.school.name)
-          },
-          {
             title: "微信用户",
             width: 150,
             render: (h, { row }) => h("span", row.wxUser.nickName)
@@ -137,10 +115,6 @@ export default class extends Vue {
           {
             title: "佣金",
             render: (h, { row }) => h("span", `${row.value}元`)
-          },
-          {
-            title: "手续费",
-            render: (h, { row }) => h("span", `${row.serviceFees}元`)
           },
           {
             title: "时间",
@@ -199,10 +173,6 @@ export default class extends Vue {
         where: this.listSearchWhere,
         include: [
           {
-            model: "School",
-            as: "school"
-          },
-          {
             model: "WxUser",
             as: "wxUser"
           },
@@ -223,7 +193,7 @@ export default class extends Vue {
     const { data } = await this.$store.dispatch(`${module}/postAction`, {
       action: "getTotal",
       query: {
-        where: this.listSearchWhere
+        where: this.listSearchWhere || initWhere
       }
     });
     return data;
