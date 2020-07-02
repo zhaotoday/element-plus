@@ -50,12 +50,12 @@ export default [
         route: "/finances/orders/list"
       },
       {
-        title: "分销员提现",
-        route: "/finances/withdraws/list"
+        title: "分销员佣金",
+        route: "/finances/commissions/list"
       },
       {
-        title: "分销员佣金明细",
-        route: "/finances/commissions/list"
+        title: "分销员提现",
+        route: "/finances/withdraws/list"
       }
     ]
   },
