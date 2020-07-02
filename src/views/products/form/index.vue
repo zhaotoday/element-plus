@@ -135,7 +135,6 @@ const module = "products";
 export default class extends Vue {
   data() {
     return {
-      paidModules: [],
       cForm: {
         model: this.getFormInitModel(),
         rules: {
@@ -180,21 +179,15 @@ export default class extends Vue {
 
   async created() {
     this.id && this.getDetail(module, this.id);
-    this.paidModules = await this.getPaidModules();
   }
 
   getFormInitModel() {
     return {
-      pointProduct: 0,
       originalPrice: 0,
       price: 0,
-      points: 0,
-      commissionPoints: 0,
-      givingPoints: 0,
       commissionRate: 0,
       stock: 0,
-      status: 1,
-      formFields: []
+      status: 1
     };
   }
 
@@ -220,27 +213,6 @@ export default class extends Vue {
 
       this.fixFormButtonLoading();
     });
-  }
-
-  deleteFormField(item) {
-    const index = this.cForm.model.formFields.findIndex(
-      ({ key }) => key === item.key
-    );
-    this.cForm.model.formFields.splice(index, 1);
-  }
-
-  addFormField() {
-    if (!this.formField.label) {
-      this.$Message.error("表单名称不能为空");
-      return;
-    }
-    if (!this.cForm.model.formFields) {
-      this.cForm.model.formFields = [];
-    }
-    this.formField.key = `form${new Date().getTime()}`;
-    this.cForm.model.formFields.push(this.$helpers.deepCopy(this.formField));
-    this.formField.key = 0;
-    this.formField.label = "";
   }
 }
 </script>
