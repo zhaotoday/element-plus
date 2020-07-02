@@ -25,19 +25,7 @@
           class="c-form__input"
           v-model.trim="cForm.model.link"
           placeholder="请输入链接"
-          search
-          enter-button="选择链接"
-          @on-search="$refs.linkSelect.show()"
-        >
-        </Input>
-        <c-link-select
-          ref="linkSelect"
-          @select="
-            link => {
-              $set(cForm.model, 'link', link);
-            }
-          "
-        ></c-link-select>
+        />
       </Form-item>
       <Form-item label="图片" prop="pictureId">
         <c-uploader
