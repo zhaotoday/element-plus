@@ -41,7 +41,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Login extends Vue {
+export default class extends Vue {
   cForm = {
     model: {},
     rules: {
@@ -63,15 +63,14 @@ export default class Login extends Vue {
   login() {
     this.$refs.form.validate(async valid => {
       if (valid) {
-        const { data } = await this.$store.dispatch(
-          "public/managers/postAction",
-          {
-            action: "login",
-            body: this.cForm.model
-          }
-        );
+        const {
+          data: { manager, token }
+        } = await this.$store.dispatch("public/managers/postAction", {
+          action: "login",
+          body: this.cForm.model
+        });
 
-        this.$auth.login({ user: data.manager, token: data.token });
+        this.$auth.login({ user: manager, token });
         this.$Message.success("登录成功");
         this.$router.push(this.$route.query.redirect || "/");
       }
