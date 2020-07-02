@@ -21,17 +21,6 @@
           inline
           @submit.native.prevent="search"
         >
-          <Form-item prop="dateRange">
-            <c-date-range
-              class="c-form__input"
-              :value="cList.cSearch.where.dateRange.$eq"
-              @change="
-                date => {
-                  cList.cSearch.where.dateRange.$eq = date;
-                }
-              "
-            ></c-date-range>
-          </Form-item>
           <Form-item prop="wxUserId">
             <c-wx-user-select
               :value="cList.cSearch.where.wxUserId.$eq"
@@ -62,9 +51,6 @@ import ListMixin from "view-ui-admin/src/mixins/list";
 
 const module = "commissions";
 const initWhere = {
-  dateRange: {
-    $eq: []
-  },
   wxUserId: {
     $eq: ""
   }
