@@ -15,7 +15,7 @@
       @on-select="handleSelect"
     >
       <Submenu
-        v-for="(menu1, index1) in sidebarMenu"
+        v-for="(menu1, index1) in $consts.SidebarMenu"
         :key="index1"
         :name="menu1.name"
       >
@@ -37,16 +37,11 @@
 
 <script>
 import { Component, Vue } from "vue-property-decorator";
-import getSidebarMenu from "@/utils/get-sidebar-menu";
 
 @Component
 export default class TheSidebar extends Vue {
   activeName = "";
   openNames = [];
-
-  get sidebarMenu() {
-    return getSidebarMenu(this.getSchoolId());
-  }
 
   created() {
     this.update();
@@ -63,8 +58,6 @@ export default class TheSidebar extends Vue {
     this.activeName =
       paths.length === 5
         ? `/${paths[1]}/${paths[2]}/list`
-        : paths.length === 6
-        ? `/${paths[1]}/${paths[2]}/${paths[3]}/${paths[4]}/${paths[5]}`
         : `/${paths[1]}/${paths[2]}/${paths[3]}`;
 
     this.$nextTick(() => {

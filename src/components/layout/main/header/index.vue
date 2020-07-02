@@ -3,7 +3,7 @@
     <div class="c-header__logout" title="退出" @click="logout">
       <Avatar icon="md-log-out"></Avatar>
     </div>
-    <div class="c-header__user">{{ user.nickName }}</div>
+    <div class="c-header__user">{{ user.username }}</div>
     <div class="c-header__avatar">
       <Avatar icon="ios-person"></Avatar>
     </div>
@@ -15,6 +15,10 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class TheHeader extends Vue {
+  get user() {
+    return this.$auth.get()["user"];
+  }
+
   logout() {
     this.$router.push("/logout");
     this.$Message.success("退出成功");
