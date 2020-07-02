@@ -10,8 +10,10 @@
   >
     <c-list-header>
       <c-list-operations>
-        <c-bulk-delete :selected-items="listSelectedItems" @ok="confirmDelete">
-        </c-bulk-delete>
+        <c-bulk-delete
+          :selected-items="listSelectedItems"
+          @ok="confirmDelete"
+        ></c-bulk-delete>
       </c-list-operations>
       <c-list-search>
         <Form
