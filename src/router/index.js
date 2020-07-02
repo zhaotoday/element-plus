@@ -23,7 +23,11 @@ const router = new Router({
             requiresAuth: true
           }
         },
-        ...publicRoutes
+        ...publicRoutes,
+        {
+          path: "*",
+          component: resolve => require(["@/views/not-found"], resolve)
+        }
       ]
     }
   ]
