@@ -21,6 +21,17 @@
           inline
           @submit.native.prevent="search"
         >
+          <Form-item prop="dateRange">
+            <c-date-range
+              class="c-form__input"
+              :value="cList.cSearch.where.dateRange.$eq"
+              @change="
+                date => {
+                  cList.cSearch.where.dateRange.$eq = date;
+                }
+              "
+            ></c-date-range>
+          </Form-item>
           <Form-item prop="status">
             <Select
               class="c-form__input"
@@ -99,6 +110,9 @@ import Model from "@/models/admin/orders";
 
 const module = "orders";
 const initWhere = {
+  dateRange: {
+    $eq: []
+  },
   payment: {
     $eq: ""
   },

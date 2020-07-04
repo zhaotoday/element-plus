@@ -20,6 +20,17 @@
           inline
           @submit.native.prevent="search"
         >
+          <Form-item prop="dateRange">
+            <c-date-range
+              class="c-form__input"
+              :value="cList.cSearch.where.dateRange.$eq"
+              @change="
+                date => {
+                  cList.cSearch.where.dateRange.$eq = date;
+                }
+              "
+            ></c-date-range>
+          </Form-item>
           <Form-item prop="status">
             <Select
               class="c-form__input"
@@ -67,6 +78,9 @@ import ListMixin from "view-ui-admin/src/mixins/list";
 
 const module = "withdraws";
 const initWhere = {
+  dateRange: {
+    $eq: []
+  },
   status: {
     $eq: ""
   },
