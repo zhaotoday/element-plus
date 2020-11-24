@@ -1,4 +1,4 @@
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { mapState } from "vuex";
 import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
 import ListMixin from "view-ui-admin/src/mixins/list";
@@ -14,12 +14,11 @@ const initWhere = {
 };
 
 @Component({
-  mixins: [RouteParamsMixin, ListMixin],
   computed: mapState({
     list: state => state[module].list
   })
 })
-export default class extends Vue {
+export default class extends Mixins(RouteParamsMixin, ListMixin) {
   data() {
     const { ListColumnWidth } = this.$consts;
 

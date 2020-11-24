@@ -1,4 +1,4 @@
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
 import FormMixin from "view-ui-admin/src/mixins/form";
 import { mapState } from "vuex";
@@ -6,12 +6,11 @@ import { mapState } from "vuex";
 const module = "products";
 
 @Component({
-  mixins: [RouteParamsMixin, FormMixin],
   computed: mapState({
     detail: state => state[module].detail
   })
 })
-export default class extends Vue {
+export default class extends Mixins(RouteParamsMixin, FormMixin) {
   data() {
     return {
       cForm: {

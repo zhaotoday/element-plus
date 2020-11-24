@@ -1,12 +1,10 @@
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import FormMixin from "view-ui-admin/src/mixins/form";
 
 const module = "ads";
 
-@Component({
-  mixins: [FormMixin]
-})
-export default class ListForm extends Vue {
+@Component
+export default class ListForm extends Mixins(FormMixin) {
   data() {
     return {
       cForm: {

@@ -1,4 +1,4 @@
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Mixins } from "vue-property-decorator";
 import { mapState } from "vuex";
 import MerchantsListForm from "./form";
 import RouteParamsMixin from "view-ui-admin/src/mixins/route-params";
@@ -12,7 +12,6 @@ const initWhere = {
 };
 
 @Component({
-  mixins: [RouteParamsMixin, ListMixin],
   components: {
     "c-merchants-list-form": MerchantsListForm
   },
@@ -20,7 +19,7 @@ const initWhere = {
     list: state => state[module].list
   })
 })
-export default class extends Vue {
+export default class extends Mixins(RouteParamsMixin, ListMixin) {
   data() {
     const { ListColumnWidth } = this.$consts;
 
