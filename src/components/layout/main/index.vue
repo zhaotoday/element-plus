@@ -6,16 +6,7 @@
     </div>
   </div>
 </template>
-<script>
-import { Component, Vue } from "vue-property-decorator";
-import TheHeader from "./header";
 
-@Component({
-  components: {
-    TheHeader
-  }
-})
-export default class TheMain extends Vue {}
-</script>
+<script src="./script.js"></script>
 
 <style lang="scss" src="./style.scss"></style>

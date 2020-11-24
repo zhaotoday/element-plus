@@ -13,38 +13,4 @@
   </Select>
 </template>
 
-<script>
-import { Component, Vue } from "vue-property-decorator";
-import Model from "@/models/admin/products";
-
-@Component({
-  props: {
-    placeholder: {
-      type: String,
-      default: "请选择商品"
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    value: {
-      type: [Array, String, Number],
-      default: ""
-    }
-  }
-})
-export default class ProductSelect extends Vue {
-  items = [];
-
-  async created() {
-    const {
-      data: { items }
-    } = await new Model().GET({});
-    this.items = items;
-  }
-
-  change(value) {
-    this.$emit("change", value);
-  }
-}
-</script>
+<script src="./script.js"></script>
