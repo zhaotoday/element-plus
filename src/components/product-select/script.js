@@ -1,4 +1,4 @@
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 import Model from "@/models/admin/products";
 
 @Component
@@ -30,7 +30,8 @@ export default class ProductSelect extends Vue {
     this.items = items;
   }
 
+  @Emit()
   change(value) {
-    this.$emit("change", value);
+    return value;
   }
 }
