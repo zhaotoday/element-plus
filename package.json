@@ -9,7 +9,20 @@
     "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
   "dependencies": {
-    "vue": "^3.0.5"
+    "core-js": "^3.13.0",
+    "element-plus": "^1.0.2-beta.45",
+    "js-base64": "^3.6.1",
+    "jt-helpers": "0.0.12",
+    "jt-rest": "0.0.16",
+    "jt-storage": "0.0.2",
+    "jt-time": "0.0.9",
+    "nprogress": "^0.2.0",
+    "sass-utils": "^1.0.35",
+    "vue": "^3.0.5",
+    "vue-router": "^3.5.1",
+    "vuex": "^3.6.2",
+    "vuex-persistedstate": "^4.0.0-beta.3",
+    "wangeditor": "^4.7.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.2",
