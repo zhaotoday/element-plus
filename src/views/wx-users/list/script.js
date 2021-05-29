@@ -1,5 +1,5 @@
 import { useList } from "@/components/list/composables/use-list";
-import { WxUsersModel } from "@/models/admin/wx-users";
+import { WxUsersModel } from "@/apis/admin/wx-users";
 
 export default {
   setup() {

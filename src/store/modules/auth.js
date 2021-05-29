@@ -1,5 +1,5 @@
 import { helpers } from "@/utils/helpers";
-import { ManagersModel } from "@/models/public/managers";
+import { ManagersApi } from "@/apis/public/managers";
 
 const state = {
   user: {
@@ -26,7 +26,7 @@ const mutations = {
 
 const actions = {
   async login({ commit }, data) {
-    const res = await new ManagersModel()
+    const res = await new ManagersApi()
       .addPath("actions/login")
       .POST({ body: data });
 
