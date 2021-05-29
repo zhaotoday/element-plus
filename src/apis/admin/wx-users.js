@@ -1,6 +1,6 @@
 import { Rest } from "@/utils/rest";
-import { consts } from "@/utils/consts";
 import { getRequestHeaders } from "@/utils/auth";
+import { consts } from "@/utils/consts";
 
 export class WxUsersApi extends Rest {
   constructor() {
