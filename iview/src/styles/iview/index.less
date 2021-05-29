@@ -1,0 +1,78 @@
+@import "~view-design/src/styles/index.less";
+
+@font-size-base: 12px;
+@body-background: #f1f2f6;
+
+.ivu-menu-vertical {
+  .ivu-menu-submenu {
+    .ivu-menu-item {
+      font-size: 12px;
+    }
+  }
+}
+
+.ivu-menu-light {
+  height: 2000px;
+
+  &:after {
+    border-right: 1px solid #f1f2f6;
+  }
+}
+
+.ivu-breadcrumb {
+  display: none;
+  margin-bottom: 25px;
+  font-size: 12px;
+}
+
+.ivu-spin-fix {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.demo-spin-icon-load {
+  animation: ani-demo-spin 1s linear infinite;
+}
+
+.ivu-menu-dark {
+  background-color: #001529;
+}
+
+.ivu-menu-submenu-title {
+  font-size: 14px;
+}
+
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title {
+  background: #001529;
+}
+
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
+  background: #000c17;
+}
+
+.ivu-menu-submenu-title:hover {
+  background: #001529 !important;
+}
+
+.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item {
+  padding-left: 50px !important;
+}
+
+.ivu-table-cell {
+  .ivu-btn {
+    margin-left: 6px;
+  }
+}
+
+.ivu-table-wrapper {
+  overflow: inherit;
+}
+
+.order-detail {
+  .ivu-form-item {
+    margin-bottom: 5px !important;
+  }
+}
+
+.ivu-upload-list-file {
+  line-height: 18px;
+}

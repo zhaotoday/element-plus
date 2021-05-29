@@ -1,0 +1,17 @@
+@import "~@/styles/utils/index";
+
+@include o(grid) {
+  display: flex;
+
+  @include m(full) {
+    flex-wrap: wrap;
+  }
+
+  @include e(cell) {
+    flex: 1;
+
+    @include m(width-fixed) {
+      flex: 0 1 auto;
+    }
+  }
+}

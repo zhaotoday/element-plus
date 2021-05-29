@@ -1,0 +1,60 @@
+@import "~@/styles/utils/index";
+
+@include c(form) {
+  @include m(form) {
+    width: 1000px;
+
+    @include c(form) {
+      @include e(input) {
+        width: 400px !important;
+
+        .ivu-upload {
+          display: block !important;
+          width: 100% !important;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  @include m(modal) {
+    width: 480px !important;
+
+    @include c(form) {
+      @include e(input) {
+        width: 320px !important;
+
+        .ivu-upload {
+          display: block !important;
+          width: 100% !important;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  @include m(dress) {
+    width: 580px !important;
+
+    @include c(form) {
+      @include e(input) {
+        width: 430px !important;
+
+        .ivu-upload,
+        .ivu-btn {
+          display: block !important;
+          width: 100% !important;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  @include m(search) {
+    @include c(form) {
+      @include e(input) {
+        width: 200px !important;
+      }
+    }
+  }
+}
