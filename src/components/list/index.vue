@@ -1,5 +1,9 @@
 <template>
-  <div v-if="showHeader" class="c-list__header">
+  <div
+    v-if="showHeader"
+    class="c-list__header"
+    :class="{ 'is-simple': simpleHeader }"
+  >
     <div class="c-list__operations">
       <slot name="operations" />
     </div>
