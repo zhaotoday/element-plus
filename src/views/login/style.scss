@@ -1,12 +1,12 @@
 @import "~@/assets/styles/utils/index";
 
-@include p(login) {
+@include v(login) {
   @include position--absolute(40%, null, null, 50%);
 
   transform: translate(-50%, -50%);
-  width: 480px;
+  width: 440px;
 
   @include b(form) {
-    width: 380px;
+    width: 360px;
   }
 }
