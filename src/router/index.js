@@ -15,7 +15,7 @@ const routes = [
   ...publicRoutes,
   {
     path: "/:matchOthers(.*)*",
-    component: () => import("@/views/404"),
+    component: () => import("@/views/404/index.vue"),
   },
 ];
 
