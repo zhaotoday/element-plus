@@ -2,6 +2,7 @@ import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
+import { formValidators } from "@/utils/form-validators";
 
 export default {
   setup() {
@@ -13,22 +14,10 @@ export default {
     const cForm = reactive({
       model: {},
       rules: {
-        username: [
-          {
-            required: true,
-            message: "用户名不能为空",
-          },
-        ],
+        username: [formValidators.required({ label: "用户名" })],
         password: [
-          {
-            required: true,
-            message: "密码不能为空",
-          },
-          {
-            min: 6,
-            max: 30,
-            message: "密码格式错误",
-          },
+          formValidators.required({ label: "密码" }),
+          formValidators.password(),
         ],
       },
     });
@@ -39,7 +28,7 @@ export default {
           await dispatch("auth/login", cForm.model);
           ElMessage.success("登录成功");
           await dispatch("auth/getMenus");
-          await router.push("/questions/list");
+          await router.push("/");
         }
       });
     };
