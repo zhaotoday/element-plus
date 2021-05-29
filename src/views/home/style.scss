@@ -1,0 +1,11 @@
+@import "~@/assets/styles/utils/index";
+
+@include v(home) {
+  @include b(image) {
+    @include size(720px * 0.384, 1280px * 0.384);
+
+    display: block;
+    float: left;
+    margin-right: 4px;
+  }
+}
