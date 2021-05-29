@@ -1,9 +1,5 @@
-const files = require.context(".", false, /\.js$/);
-const modules = [];
+import home from "./home";
+import questions from "./questions";
+import wxUsers from "./wx-users";
 
-files.keys().forEach(key => {
-  if (key === "./index.js") return;
-  modules.push(files(key).default);
-});
-
-export default modules;
+export default [home, questions, wxUsers];

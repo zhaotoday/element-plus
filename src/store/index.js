@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import storage from "jt-storage";
-import auth from "./modules/auth";
+import modules from "./modules";
 
 export const store = createStore({
   plugins: [
@@ -14,7 +14,5 @@ export const store = createStore({
       },
     }),
   ],
-  modules: {
-    auth,
-  },
+  modules,
 });
