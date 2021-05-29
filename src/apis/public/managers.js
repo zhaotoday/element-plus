@@ -5,7 +5,7 @@ export class PublicManagersApi extends Rest {
   constructor() {
     super();
 
-    this.baseURL = consts.ApiUrl;
+    this.baseUrl = consts.ApiUrl;
     this.path = "public/managers";
   }
 }

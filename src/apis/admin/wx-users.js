@@ -6,7 +6,7 @@ export class WxUsersApi extends Rest {
   constructor() {
     super();
 
-    this.baseURL = consts.ApiUrl;
+    this.baseUrl = consts.ApiUrl;
     this.headers = getRequestHeaders();
     this.path = "admin/wxUsers";
   }

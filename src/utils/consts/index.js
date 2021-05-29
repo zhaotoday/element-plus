@@ -1,7 +1,7 @@
 import { SidebarMenu } from "@/utils/consts/sidebar-menu";
 
 // 基础地址
-const BaseUrl = import.meta.env["BASE_URL"];
+const baseUrl = import.meta.env["BASE_URL"];
 
 // 接口地址
 const ApiUrl = import.meta.env["VUE_APP_API_URL"];
@@ -14,7 +14,7 @@ const PageSize = 10;
 
 export const consts = {
   SidebarMenu,
-  BaseUrl,
+  baseUrl,
   ApiUrl,
   StaticUrl,
   PageSize,
