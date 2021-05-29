@@ -1,18 +1,20 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import storage from "jt-storage";
-import modules from "./modules";
+import auth from "./modules/auth";
 
 export const store = createStore({
   plugins: [
     createPersistedState({
       paths: ["auth"],
       storage: {
-        getItem: key => storage.get(key),
+        getItem: (key) => storage.get(key),
         setItem: (key, value) => storage.set(key, value),
-        removeItem: key => storage.remove(key)
-      }
-    })
+        removeItem: (key) => storage.remove(key),
+      },
+    }),
   ],
-  modules
+  modules: {
+    auth,
+  },
 });
