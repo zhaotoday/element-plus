@@ -1,0 +1,5 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(json-pretty) {
+  line-height: 140%;
+}

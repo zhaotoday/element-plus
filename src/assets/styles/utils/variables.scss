@@ -1,0 +1,32 @@
+// 页面最小宽度
+$min-width: 1200px;
+
+// 头部高度
+$header-height: 60px;
+
+// 导航菜单栏宽度
+$sidebar-width: 210px;
+
+// 色值
+$colors: (
+  cprimary: #549af5,
+  csuccess: #67c23a,
+  cwarning: #e6a23c,
+  cdanger: #f56c6c,
+  cinfo: #909399,
+  cregular: #606266,
+  csecondary: #909399,
+  cplaceholder: #c0c4cc,
+  c31: #f5f7fa,
+  c41: #101010
+);
+
+$border-colors: (
+  base: #dcdfe6,
+  light: #e4e7ed,
+  lighter: #ebeef5,
+  extra-light: #f2f6fc
+);
+
+// 表单页宽度
+$c-form-width: 1120px;
