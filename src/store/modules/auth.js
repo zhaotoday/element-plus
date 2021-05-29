@@ -5,14 +5,14 @@ const state = {
   user: {
     id: "",
     name: "",
-    token: ""
+    token: "",
   },
-  menus: []
+  menus: [],
 };
 
 const types = helpers.keyMirror({
   SetUser: null,
-  SetMenus: null
+  SetMenus: null,
 });
 
 const mutations = {
@@ -21,7 +21,7 @@ const mutations = {
   },
   [types.SetMenus](state, menus) {
     state.menus = menus;
-  }
+  },
 };
 
 const actions = {
@@ -32,7 +32,7 @@ const actions = {
 
     const {
       manager: { id, username },
-      token
+      token,
     } = res;
 
     commit(types.SetUser, { id, name: username, token });
@@ -47,12 +47,12 @@ const actions = {
     commit(types.SetUser, state.user);
     commit(types.SetMenus, state.menus);
     return null;
-  }
+  },
 };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  actions,
 };

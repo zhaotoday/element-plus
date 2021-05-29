@@ -10,5 +10,5 @@ export const helpers = {
   },
   toLowerCamelCase(str) {
     return str.replace(/-([a-z])/g, (all, letter) => letter.toUpperCase());
-  }
+  },
 };

@@ -9,5 +9,5 @@ export default {
     } else {
       next();
     }
-  }
+  },
 };

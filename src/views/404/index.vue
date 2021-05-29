@@ -1,3 +1,1 @@
-<template>
-  not fount
-</template>
+<template>not fount</template>

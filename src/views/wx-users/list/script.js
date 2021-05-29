@@ -3,22 +3,16 @@ import { WxUsersModel } from "@/models/admin/wx-users";
 
 export default {
   setup() {
-    const {
-      list,
-      currentPage,
-      reRender,
-      onPageChange,
-      search,
-      cFilters
-    } = useList({
-      api: new WxUsersModel(),
-      filters: {
-        model: {},
-        rules: {}
-      }
-    });
+    const { list, currentPage, reRender, onPageChange, search, cFilters } =
+      useList({
+        api: new WxUsersModel(),
+        filters: {
+          model: {},
+          rules: {},
+        },
+      });
 
-    const getPrize = answeredQuestionsCount => {
+    const getPrize = (answeredQuestionsCount) => {
       if (answeredQuestionsCount >= 9) {
         return "一等奖";
       } else if (answeredQuestionsCount <= 8 && answeredQuestionsCount >= 6) {
@@ -37,7 +31,7 @@ export default {
       onPageChange,
       search,
       cFilters,
-      getPrize
+      getPrize,
     };
-  }
+  },
 };

@@ -1,4 +1,4 @@
 export default {
   path: "/",
-  component: () => import("@/views/home")
+  component: () => import("@/views/home"),
 };

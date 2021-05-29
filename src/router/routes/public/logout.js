@@ -5,5 +5,5 @@ export default {
   beforeEnter(to, from, next) {
     loggedIn() && logout();
     next("/login");
-  }
+  },
 };

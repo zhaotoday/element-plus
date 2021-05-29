@@ -16,25 +16,25 @@ export default {
         username: [
           {
             required: true,
-            message: "用户名不能为空"
-          }
+            message: "用户名不能为空",
+          },
         ],
         password: [
           {
             required: true,
-            message: "密码不能为空"
+            message: "密码不能为空",
           },
           {
             min: 6,
             max: 30,
-            message: "密码格式错误"
-          }
-        ]
-      }
+            message: "密码格式错误",
+          },
+        ],
+      },
     });
 
     const submit = () => {
-      form.value.validate(async valid => {
+      form.value.validate(async (valid) => {
         if (valid) {
           await dispatch("auth/login", cForm.model);
           ElMessage.success("登录成功");
@@ -47,7 +47,7 @@ export default {
     return {
       form,
       cForm,
-      submit
+      submit,
     };
-  }
+  },
 };

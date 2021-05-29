@@ -5,9 +5,9 @@ export const SidebarMenu = [
     children: [
       {
         title: "灯谜列表",
-        path: "/questions/list"
-      }
-    ]
+        path: "/questions/list",
+      },
+    ],
   },
   {
     icon: "user",
@@ -15,8 +15,8 @@ export const SidebarMenu = [
     children: [
       {
         title: "参赛人员列表",
-        path: "/wx-users/list"
-      }
-    ]
-  }
+        path: "/wx-users/list",
+      },
+    ],
+  },
 ];

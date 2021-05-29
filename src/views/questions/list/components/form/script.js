@@ -11,7 +11,7 @@ export default {
     const form = ref(null);
 
     const cDialog = reactive({
-      visible: false
+      visible: false,
     });
 
     const cForm = reactive({
@@ -21,19 +21,19 @@ export default {
         title: [
           {
             required: true,
-            message: "谜面不能为空"
-          }
+            message: "谜面不能为空",
+          },
         ],
         answer: [
           {
             required: true,
-            message: "谜面不能为空"
-          }
-        ]
-      }
+            message: "谜面不能为空",
+          },
+        ],
+      },
     });
 
-    const show = row => {
+    const show = (row) => {
       cForm.model = helpers.deepCopy(row || initModel);
       cForm.updateMode = !!row;
       cDialog.visible = true;
@@ -41,7 +41,7 @@ export default {
     };
 
     const submit = () => {
-      form.value.validate(async valid => {
+      form.value.validate(async (valid) => {
         if (!valid) return;
 
         if (cForm.updateMode) {
@@ -64,7 +64,7 @@ export default {
       cForm,
       form,
       show,
-      submit
+      submit,
     };
-  }
+  },
 };

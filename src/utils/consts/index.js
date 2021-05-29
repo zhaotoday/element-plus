@@ -17,5 +17,5 @@ export const consts = {
   BaseUrl,
   ApiUrl,
   StaticUrl,
-  PageSize
+  PageSize,
 };

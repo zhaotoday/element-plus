@@ -9,28 +9,28 @@ const routes = [
     component: () => import("@/components/layout/index.vue"),
     children: privateRoutes,
     meta: {
-      requiresAuth: true
-    }
+      requiresAuth: true,
+    },
   },
   ...publicRoutes,
   {
     path: "/:matchOthers(.*)*",
-    component: () => import("@/views/404")
-  }
+    component: () => import("@/views/404"),
+  },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
 });
 
 router.beforeEach(async (to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!loggedIn()) {
       logout();
       next({
         path: "login",
-        query: { redirect: to.fullPath }
+        query: { redirect: to.fullPath },
       });
     } else {
       next();

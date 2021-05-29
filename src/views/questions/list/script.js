@@ -10,7 +10,7 @@ export default {
     const form = ref(null);
 
     const { list, currentPage, reRender, onPageChange } = useList({
-      api: new QuestionsModel()
+      api: new QuestionsModel(),
     });
 
     const del = async ({ id }) => {
@@ -25,7 +25,7 @@ export default {
       currentPage,
       reRender,
       onPageChange,
-      del
+      del,
     };
-  }
+  },
 };

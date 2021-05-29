@@ -10,7 +10,7 @@
       :rules="cForm.rules"
       label-position="right"
       label-width="90px"
-      style="width: 470px;"
+      style="width: 470px"
     >
       <el-form-item label="谜面" prop="title">
         <el-input type="textarea" rows="6" v-model="cForm.model.title" />

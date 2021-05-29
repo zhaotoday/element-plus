@@ -11,7 +11,7 @@ export const useList = ({
   filtersAsKeyValue = false,
   api,
   filters = {},
-  sort = ""
+  sort = "",
 } = {}) => {
   const route = useRoute();
   const router = useRouter();
@@ -19,29 +19,27 @@ export const useList = ({
   const loading = ref(false);
   const currentPage = ref(1);
   const cFilters = reactive({
-    ref: el => (filtersRef = el),
-    ...filters
+    ref: (el) => (filtersRef = el),
+    ...filters,
   });
   const filtersModel = filters.model;
 
   let filtersRef = null;
 
-  const getQuery = query => {
-    const {
-      currentPage = 1,
-      filters = helpers.deepCopy(filtersModel)
-    } = $helpers.decode(query.$list);
+  const getQuery = (query) => {
+    const { currentPage = 1, filters = helpers.deepCopy(filtersModel) } =
+      $helpers.decode(query.$list);
 
     return { currentPage, filters };
   };
 
   const render = async ({
     currentPage = 1,
-    filters = helpers.deepCopy(filtersModel)
+    filters = helpers.deepCopy(filtersModel),
   } = {}) => {
     const query = {
       offset: (currentPage - 1) * consts.PageSize,
-      limit: consts.PageSize
+      limit: consts.PageSize,
       // sort: $helpers.formatOrders(sort)
     };
 
@@ -97,7 +95,7 @@ export const useList = ({
 
   const search = async (filters = {}) => {
     filtersRef &&
-      filtersRef.validate(async valid => {
+      filtersRef.validate(async (valid) => {
         if (!valid) return;
 
         loading.value = true;
@@ -107,9 +105,9 @@ export const useList = ({
             query: {
               $list: $helpers.encode({
                 currentPage: 1,
-                filters: { ...cFilters.model, ...filters }
-              })
-            }
+                filters: { ...cFilters.model, ...filters },
+              }),
+            },
           });
         } else {
           currentPage.value = 1;
@@ -117,7 +115,7 @@ export const useList = ({
 
           await render({
             currentPage: 1,
-            filters: cFilters.model
+            filters: cFilters.model,
           });
         }
 
@@ -125,15 +123,15 @@ export const useList = ({
       });
   };
 
-  const onPageChange = async current => {
+  const onPageChange = async (current) => {
     if (!loading.value) {
       if (routeMode) {
         const query = getQuery(route.query);
 
         await router.replace({
           query: {
-            $list: $helpers.encode({ ...query, currentPage: current })
-          }
+            $list: $helpers.encode({ ...query, currentPage: current }),
+          },
         });
       } else {
         loading.value = true;
@@ -152,6 +150,6 @@ export const useList = ({
     initialize,
     reRender,
     search,
-    onPageChange
+    onPageChange,
   };
 };

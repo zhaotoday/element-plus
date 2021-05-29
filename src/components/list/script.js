@@ -6,23 +6,23 @@ export default {
   props: {
     total: {
       type: Number,
-      default: 0
+      default: 0,
     },
     pageSize: {
       type: Number,
-      default: consts.PageSize
+      default: consts.PageSize,
     },
     currentPage: {
       type: Number,
-      default: 1
+      default: 1,
     },
     showHeader: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showPagination: {
       type: Boolean,
-      default: true
-    }
-  }
+      default: true,
+    },
+  },
 };
