@@ -19,8 +19,8 @@
     "nprogress": "^0.2.0",
     "sass-utils": "^1.0.35",
     "vue": "^3.0.5",
-    "vue-router": "^3.5.1",
-    "vuex": "^3.6.2",
+    "vue-router": "^4.0.2",
+    "vuex": "^4.0.0-rc.2",
     "vuex-persistedstate": "^4.0.0-beta.3",
     "wangeditor": "^4.7.1"
   },

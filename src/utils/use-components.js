@@ -1,5 +1,5 @@
-import List from "@/components/list";
-import ListImage from "@/components/list-image";
+import List from "@/components/list/index.vue";
+import ListImage from "@/components/list-image/index.vue";
 
 export const useComponents = app => {
   app.component("c-list", List);

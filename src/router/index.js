@@ -6,7 +6,7 @@ import privateRoutes from "./routes/private";
 const routes = [
   {
     path: "/",
-    component: () => import("@/components/layout"),
+    component: () => import("@/components/layout/index.vue"),
     children: privateRoutes,
     meta: {
       requiresAuth: true
