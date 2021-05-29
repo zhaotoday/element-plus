@@ -1,0 +1,13 @@
+@import "~@/styles/utils/index";
+
+@include p(login) {
+  @include position--absolute(50%, null, null, 50%);
+
+  transform: translate(-50%, -80%);
+  background-color: white;
+  width: 320px;
+
+  @include b(form) {
+    @include margin(10px, null, 10px, null);
+  }
+}

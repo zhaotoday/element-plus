@@ -1,0 +1,14 @@
+@import "~@/styles/utils/index";
+
+@include o(media) {
+  display: flex;
+
+  @include e(image) {
+    flex: 0 1 auto;
+    display: block;
+  }
+
+  @include e(body) {
+    flex: 1;
+  }
+}
