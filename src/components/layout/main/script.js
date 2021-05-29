@@ -23,6 +23,9 @@ export default {
           ) {
             menus.value[0] = item1;
             menus.value[1] = item2;
+          } else {
+            menus.value[0] = {};
+            menus.value[1] = {};
           }
         });
       });
