@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "format": "prettier --write \"src/**/*.{vue,js}\"",
+    "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
   "dependencies": {
     "vue": "^3.0.5"
@@ -37,10 +39,5 @@
     "rules": {
       "no-unused-vars": "off"
     }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  }
 }
