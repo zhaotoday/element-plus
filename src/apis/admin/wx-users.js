@@ -2,7 +2,7 @@ import { Rest } from "@/utils/rest";
 import { consts } from "@/utils/consts";
 import { getRequestHeaders } from "@/utils/auth";
 
-export class WxUsersModel extends Rest {
+export class WxUsersApi extends Rest {
   constructor() {
     super();
 

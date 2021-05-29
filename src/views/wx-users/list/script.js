@@ -1,11 +1,11 @@
 import { useList } from "@/components/list/composables/use-list";
-import { WxUsersModel } from "@/apis/admin/wx-users";
+import { WxUsersApi } from "@/apis/admin/wx-users";
 
 export default {
   setup() {
     const { list, currentPage, reRender, onPageChange, search, cFilters } =
       useList({
-        api: new WxUsersModel(),
+        api: new WxUsersApi(),
         filters: {
           model: {},
           rules: {},
