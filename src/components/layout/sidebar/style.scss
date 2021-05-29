@@ -1,0 +1,72 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(sidebar) {
+  @include position--absolute(0, null, 0, 0);
+
+  z-index: 1;
+  width: $sidebar-width;
+  background-color: #001529;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+
+  @include e(logo) {
+    @include size(100%, $header-height);
+
+    background-color: #002140;
+    line-height: $header-height;
+    padding-left: 60px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    transform-style: preserve-3d;
+  }
+
+  @include e(logo-icon) {
+    @include position--absolute(50%, null, null, 20px);
+
+    transform: translateY(-50%);
+    line-height: 0;
+
+    .el-avatar {
+      background-color: #1890ff;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .el-menu {
+    width: $sidebar-width + 2px;
+  }
+
+  .el-submenu .el-menu-item {
+    @include text--middle(44px);
+
+    font-size: 12px !important;
+
+    &.is-active {
+      background-color: map-get($colors, cprimary) !important;
+    }
+
+    @include c(iconfont) {
+      font-size: 18px;
+      margin-right: 8px;
+    }
+  }
+
+  .el-submenu__title {
+    background-color: #021d36 !important;
+
+    @include c(iconfont) {
+      font-size: 18px;
+      color: white;
+      margin-right: 8px;
+    }
+  }
+
+  .el-menu-item-group__title {
+    display: none;
+  }
+}
