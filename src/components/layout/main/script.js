@@ -1,5 +1,5 @@
 import { onMounted, ref } from "vue";
-import TheHeader from "./header";
+import TheHeader from "./header/index.vue";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { consts } from "@/utils/consts";
 

@@ -1,5 +1,5 @@
-import TheSidebar from "./sidebar";
-import TheMain from "./main";
+import TheSidebar from "./sidebar/index.vue";
+import TheMain from "./main/index.vue";
 
 export default {
   name: "TheLayout",
