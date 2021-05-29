@@ -6,14 +6,14 @@ import { consts } from "@/utils/consts";
 export default {
   name: "TheMain",
   components: {
-    TheHeader,
+    TheHeader
   },
   setup() {
     const menus = ref([{}, {}]);
 
-    const renderMenus = (path) => {
-      consts.SidebarMenu.forEach((item1) => {
-        item1.children.forEach((item2) => {
+    const renderMenus = path => {
+      consts.SidebarMenu.forEach(item1 => {
+        item1.children.forEach(item2 => {
           const routePaths = path.split("/");
           const itemPaths = item2.path.split("/");
 
@@ -38,7 +38,7 @@ export default {
     });
 
     return {
-      menus,
+      menus
     };
-  },
+  }
 };

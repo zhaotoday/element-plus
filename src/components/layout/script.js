@@ -5,6 +5,6 @@ export default {
   name: "TheLayout",
   components: {
     TheSidebar,
-    TheMain,
-  },
+    TheMain
+  }
 };

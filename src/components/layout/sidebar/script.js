@@ -8,7 +8,7 @@ export default {
     const router = useRouter();
     const route = useRoute();
 
-    const getActiveKey = (path) => {
+    const getActiveKey = path => {
       let key = "0-0";
 
       consts.SidebarMenu.forEach((item1, index1) => {
@@ -35,7 +35,7 @@ export default {
       next();
     });
 
-    const onSelect = async (key) => {
+    const onSelect = async key => {
       const indexes = key.split("-");
       const index1 = indexes[0];
       const index2 = indexes[1];
@@ -45,7 +45,7 @@ export default {
       await router.push(path);
     };
 
-    const openWindow = (key) => {
+    const openWindow = key => {
       const indexes = key.split("-");
       const index1 = indexes[0];
       const index2 = indexes[1];
@@ -59,7 +59,7 @@ export default {
       router,
       activeKey,
       onSelect,
-      openWindow,
+      openWindow
     };
-  },
+  }
 };

@@ -18,7 +18,7 @@ export default {
 
     return {
       user,
-      logout,
+      logout
     };
-  },
+  }
 };
