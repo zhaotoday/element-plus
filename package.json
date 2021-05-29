@@ -13,7 +13,7 @@
     "element-plus": "^1.0.2-beta.45",
     "js-base64": "^3.6.1",
     "jt-helpers": "0.0.12",
-    "jt-rest": "0.0.16",
+    "jt-rest": "^1.0.3",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.9",
     "nprogress": "^0.2.0",
