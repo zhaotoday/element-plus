@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "serve": "vite preview",
+    "build": "vite build",
+    "build:test": "vite build --mode test",
     "format": "prettier --write \"src/**/*.{vue,js}\"",
     "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
