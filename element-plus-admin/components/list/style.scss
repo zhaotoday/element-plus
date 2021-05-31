@@ -1,0 +1,43 @@
+@import "~@/assets/styles/utils/index";
+
+@include c(list) {
+  @include e(header) {
+    @include clearfix;
+
+    .el-form-item {
+      margin-bottom: 18px !important;
+    }
+
+    @include s(is-simple) {
+      @include c(list) {
+        @include e(operations) {
+          margin-bottom: 18px;
+          float: left;
+        }
+
+        @include e(filters) {
+          float: right;
+          margin-right: -10px;
+        }
+      }
+    }
+  }
+
+  @include e(operations) {
+    margin-bottom: 10px;
+  }
+
+  @include e(filters) {
+    .el-select,
+    .el-input {
+      width: 200px !important;
+    }
+  }
+
+  @include e(pagination) {
+    padding-top: 10px;
+    position: relative;
+    text-align: right;
+    right: -9px;
+  }
+}

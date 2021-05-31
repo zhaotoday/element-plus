@@ -1,6 +1,6 @@
 {
   "name": "element-plus-admin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "element-plus toolkits",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,9 @@
   "author": "zhaojintian",
   "license": "ISC",
   "dependencies": {
+    "element-plus": "^1.0.2-beta.45",
+    "jt-rest": "^1.0.3",
+    "nprogress": "^0.2.0",
     "wangeditor": "^4.7.1"
   },
   "devDependencies": {
