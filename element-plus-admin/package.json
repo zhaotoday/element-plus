@@ -1,11 +1,38 @@
 {
   "name": "element-plus-admin",
   "version": "0.0.1",
-  "description": "element-plus admin toolkits",
+  "description": "element-plus toolkits",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write \"components/**/*.{vue,js}\" \"utils/**/*.js\"",
+    "lint": "eslint \"components/**/*.{vue,js}\" \"utils/**/*.js\" --fix"
   },
   "author": "zhaojintian",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "wangeditor": "^4.7.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.2",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.27.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^7.10.0",
+    "prettier": "^2.3.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/prettier"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  }
 }
