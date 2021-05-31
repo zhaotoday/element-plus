@@ -1,4 +1,4 @@
-import { useList } from "@/components/list/composables/use-list";
+import { useList } from "element-plus-admin/components/list/composables/use-list";
 import { WxUsersApi } from "@/apis/admin/wx-users";
 
 export default {

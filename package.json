@@ -10,15 +10,11 @@
     "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
   "dependencies": {
-    "core-js": "^3.13.0",
     "element-plus": "^1.0.2-beta.45",
     "element-plus-admin": "0.0.2",
-    "js-base64": "^3.6.1",
     "jt-helpers": "0.0.12",
-    "jt-rest": "^1.0.3",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.9",
-    "nprogress": "^0.2.0",
     "sass-utils": "^1.0.37",
     "vue": "^3.0.5",
     "vue-router": "^4.0.2",
