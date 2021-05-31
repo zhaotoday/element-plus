@@ -1,7 +1,7 @@
 import $Rest from "jt-rest";
 import { ElMessage } from "element-plus";
 import { router } from "@/router";
-import { logout } from "@/utils/auth";
+import { logout } from "element-plus-admin/utils/auth";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 

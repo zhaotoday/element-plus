@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { loggedIn, logout } from "@/utils/auth";
+import { loggedIn, logout } from "element-plus-admin/utils/auth";
 import publicRoutes from "./routes/public";
 import privateRoutes from "./routes/private";
 

@@ -1,4 +1,4 @@
-import { loggedIn, logout } from "@/utils/auth";
+import { loggedIn, logout } from "element-plus-admin/utils/auth";
 
 export default {
   path: "/logout",

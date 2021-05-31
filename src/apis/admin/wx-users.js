@@ -1,5 +1,5 @@
-import { Rest } from "@/utils/rest";
-import { getRequestHeaders } from "@/utils/auth";
+import { Rest } from "element-plus-admin/utils/rest";
+import { getRequestHeaders } from "element-plus-admin/utils/auth";
 import { consts } from "@/utils/consts";
 
 export class WxUsersApi extends Rest {
