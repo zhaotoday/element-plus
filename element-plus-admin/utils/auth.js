@@ -1,7 +1,7 @@
-import store from "jt-storage";
+import storage from "jt-storage";
 
 export const getUser = () => {
-  const vuexStore = store.get("vuex");
+  const vuexStore = storage.get("vuex");
 
   try {
     return vuexStore && JSON.parse(vuexStore).auth
@@ -26,5 +26,5 @@ export const loggedIn = () => {
 };
 
 export const logout = () => {
-  store.remove("vuex");
+  storage.remove("vuex");
 };
