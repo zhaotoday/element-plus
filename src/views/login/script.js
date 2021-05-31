@@ -2,7 +2,7 @@ import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import { formValidators } from "@/utils/form-validators";
+import { formValidators } from "element-plus-admin/utils/form-validators";
 
 export default {
   setup() {

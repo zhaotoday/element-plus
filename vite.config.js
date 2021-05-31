@@ -10,6 +10,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
       "~@": path.resolve(__dirname, "src"),
       "~sass-utils": "sass-utils",
+      "element-plus-admin": path.resolve(__dirname, "element-plus-admin"),
     },
   },
 });
