@@ -15,7 +15,7 @@
     "jt-helpers": "0.0.13",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.9",
-    "sass-utils": "^1.0.37",
+    "sass-utils": "^1.0.47",
     "vue": "^3.0.11",
     "vue-router": "^4.0.8",
     "vuex": "^4.0.1",
