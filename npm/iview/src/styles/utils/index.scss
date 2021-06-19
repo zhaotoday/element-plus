@@ -3,6 +3,3 @@
 @import "./functions";
 @import "./mixins";
 
-@function px2rpx($px) {
-  @return $px * 0.6;
-}
