@@ -47,7 +47,7 @@
     font-size: 12px !important;
 
     &.is-active {
-      background-color: map-get($colors, cprimary) !important;
+      background-color: map-get($colors, primary) !important;
     }
 
     @include c(iconfont) {

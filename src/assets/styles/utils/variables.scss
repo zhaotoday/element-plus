@@ -7,20 +7,19 @@ $header-height: 60px;
 // 导航菜单栏宽度
 $sidebar-width: 210px;
 
+// 字体大小
+$font-sizes: $pxes;
+
 // 色值
 $colors: (
-  cprimary: #549af5,
-  csuccess: #67c23a,
-  cwarning: #e6a23c,
-  cdanger: #f56c6c,
-  cinfo: #909399,
-  cregular: #606266,
-  csecondary: #909399,
-  cplaceholder: #c0c4cc,
-  c31: #f5f7fa,
-  c41: #101010,
+  primary: #549af5,
+  success: #67c23a,
+  warning: #e6a23c,
+  danger: #f56c6c,
+  info: #909399,
 );
 
+// 边框色值
 $border-colors: (
   base: #dcdfe6,
   light: #e4e7ed,
