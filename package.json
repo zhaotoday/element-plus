@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "element-plus": "^1.0.2-beta.45",
-    "element-plus-admin": "^0.0.12",
+    "element-plus-admin": "^0.0.14",
     "jt-helpers": "0.0.13",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.9",
