@@ -18,8 +18,33 @@ export class Rest extends $Rest {
 
   request(
     method = "GET",
-    { id, query = {}, body = {}, showLoading = true, showError = true }
+    {
+      id,
+      query = {},
+      body = {},
+      action = "",
+      showLoading = true,
+      showError = true,
+    }
   ) {
+    if (action) {
+      this.addPath(`actions/${action}`);
+    }
+
+    if (query.where) {
+      query.where = this.toString(query.where);
+    }
+
+    ["include", "order", "attributes"].forEach((key) => {
+      if (query[key]) {
+        query[key] = JSON.stringify(query[key]);
+      }
+    });
+
+    if (method === "GET") {
+      query._ = new Date().getTime();
+    }
+
     showLoading && this.showLoading();
 
     return new Promise((resolve, reject) => {

@@ -50,7 +50,7 @@ const actions = {
   },
 };
 
-export default {
+export const auth = {
   namespaced: true,
   state,
   mutations,

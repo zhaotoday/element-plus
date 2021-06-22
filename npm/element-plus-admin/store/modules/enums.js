@@ -27,7 +27,7 @@ const actions = {
   },
 };
 
-export default {
+export const enums = {
   namespaced: true,
   state,
   mutations,
