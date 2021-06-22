@@ -1,9 +1,11 @@
 import { computed } from "vue";
-import { store } from "@/store";
+import { useStore } from "vuex";
 import { PublicEnumsApi } from "../apis/public/enums";
 
 export const useEnums = () => {
-  const enums = computed(() => store.state["enums"].data);
+  const { dispatch, state } = useStore();
+
+  const enums = computed(() => state["enums"].data);
 
   const getEnums = async () => {
     const { version } = await new PublicEnumsApi().POST({
@@ -11,7 +13,7 @@ export const useEnums = () => {
     });
 
     if (version !== enums.value.config.version) {
-      await store.dispatch("enums/get");
+      await dispatch("enums/get");
     }
   };
 
