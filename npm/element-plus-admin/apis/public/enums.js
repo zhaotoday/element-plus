@@ -6,6 +6,6 @@ export class PublicEnumsApi extends Rest {
     super();
 
     this.baseUrl = consts.ApiUrl;
-    this.path = "public/enums";
+    this.path = "public/dicts";
   }
 }
