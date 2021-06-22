@@ -3,7 +3,7 @@ export const formValidators = {
     return {
       validator(rule, value) {
         return (
-          !value || /^[1-9]\d{7}$/.test(value) || new Error("请填写8位数字ID")
+          !value || /^[1-9]\d{7}$/.test(value) || new Error("请输入8位数字ID")
         );
       },
     };
@@ -23,7 +23,7 @@ export const formValidators = {
   required({ label, message } = {}) {
     return {
       required: true,
-      message: message || `请填写${label}`,
+      message: message || `请输入${label}`,
     };
   },
   phoneNumber({ label = "手机号" } = {}) {
