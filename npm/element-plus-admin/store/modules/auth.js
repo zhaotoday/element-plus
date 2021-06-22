@@ -1,5 +1,5 @@
 import { helpers } from "@/utils/helpers";
-import { PublicManagersApi } from "element-plus-admin/apis/public/managers";
+import { PublicManagersApi } from "../../apis/public/managers";
 
 const state = {
   user: {
