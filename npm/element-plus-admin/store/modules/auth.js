@@ -1,4 +1,4 @@
-import { helpers } from "@/utils/helpers";
+import helpers from "jt-helpers";
 import { PublicManagersApi } from "../../apis/public/managers";
 
 const state = {
