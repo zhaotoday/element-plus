@@ -6,7 +6,7 @@ import modules from "./modules";
 export const store = createStore({
   plugins: [
     createPersistedState({
-      paths: ["auth"],
+      paths: ["enums", "auth"],
       storage: {
         getItem: (key) => storage.get(key),
         setItem: (key, value) => storage.set(key, value),
