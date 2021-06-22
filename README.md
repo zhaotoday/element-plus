@@ -32,34 +32,34 @@ $ npm run newfile
 #### 项目结构
 
 ```
-|-- plop-templates                   基本模板
-|-- public                           网站公共目录
-|   |-- favicon.ico                  网站图标
-|   |-- index.html                   HTML 模板
-|-- src                              源码目录
-|   |-- assets                       待编译的静态资源
-|       |-- images                   图片
-|           |-- components           组件图片
-|       |-- styles                   样式
-|            |-- global              全局样式
-|                |-- components      组件样式
-|                    |-- iconfont.scss iconfont
-|                |-- reset           CSS Reset
-|            |-- utils               Sass 工具
-|                |-- variables       Sass 变量
-|   |-- components                   公共组件
-|   |-- composables                  公用 composiable 函数
-|   |-- models                       数据模型
-|   |-- router                       路由配置
-|       |-- routes                   各个视图的路由配置
-|   |-- store                        状态管理
-|       |-- modules                  状态管理（指定命名空间）
-|           |-- auth.js              auth 状态管理
-|   |-- utils                        JS 工具
-|   |-- views                        视图
-|       |-- home                     首页
-|   |-- App.vue                      页面入口
-|   |-- main.js                      程序入口
+|- plop-templates                   基本模板
+|- public                           网站公共目录
+|   |- favicon.ico                  网站图标
+|   |- index.html                   HTML 模板
+|- src                              源码目录
+|   |- assets                       待编译的静态资源
+|       |- images                   图片
+|           |- components           组件图片
+|       |- styles                   样式
+|            |- global              全局样式
+|                |- components      组件样式
+|                    |- iconfont.scss iconfont
+|                |- reset           CSS Reset
+|            |- utils               Sass 工具
+|                |- variables       Sass 变量
+|   |- components                   公共组件
+|   |- composables                  公用 composiable 函数
+|   |- models                       数据模型
+|   |- router                       路由配置
+|       |- routes                   各个视图的路由配置
+|   |- store                        状态管理
+|       |- modules                  状态管理（指定命名空间）
+|           |- auth.js              auth 状态管理
+|   |- utils                        JS 工具
+|   |- views                        视图
+|       |- home                     首页
+|   |- App.vue                      页面入口
+|   |- main.js                      程序入口
 ```
 
 #### 公共组件规范
@@ -67,13 +67,13 @@ $ npm run newfile
 公共组件放在 /src/components 下。
 
 ```
-|-- my-component               my component 组件
-|   |-- index.vue              my component 的入口
-|   |-- script.js              my component 的脚本
-|   |-- style.scss             my component 的样式
-|   |-- utils                  my component 的 JS 工具
-|   |-- components             my component 的子组件
-|       |-- child-component    my component 的子组件 child component
+|- my-component               my component 组件
+|   |- index.vue              my component 的入口
+|   |- script.js              my component 的脚本
+|   |- style.scss             my component 的样式
+|   |- utils                  my component 的 JS 工具
+|   |- components             my component 的子组件
+|       |- child-component    my component 的子组件 child component
 ```
 
 #### 视图规范
