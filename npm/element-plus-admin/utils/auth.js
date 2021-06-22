@@ -21,8 +21,7 @@ export const getRequestHeaders = () => {
 };
 
 export const loggedIn = () => {
-  return true;
-  // return !!getToken();
+  return !!getToken();
 };
 
 export const logout = () => {
