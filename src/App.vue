@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import { useEnums } from "element-plus-admin/composables/use-enums";
 import { onMounted } from "vue";
+import { useEnums } from "element-plus-admin/composables/use-enums";
 
 export default {
   setup() {
