@@ -11,7 +11,7 @@ export const useEnums = () => {
     });
 
     if (version !== enums.value.config.version) {
-      await store.dispatch("public/enums/get");
+      await store.dispatch("enums/get");
     }
   };
 
