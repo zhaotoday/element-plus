@@ -16,6 +16,29 @@ export class Rest extends $Rest {
     NProgress.done();
   }
 
+  toString(obj) {
+    const ret = {};
+
+    Object.keys(obj).forEach((attribute) => {
+      ret[attribute] = {};
+
+      Object.keys(obj[attribute]).forEach((operator) => {
+        if (
+          obj[attribute][operator] === undefined ||
+          obj[attribute][operator] === ""
+        ) {
+          delete ret[attribute];
+        } else if (operator === "$like") {
+          ret[attribute][operator] = `%${obj[attribute][operator]}%`;
+        } else {
+          ret[attribute] = obj[attribute];
+        }
+      });
+    });
+
+    return JSON.stringify(ret);
+  }
+
   request(
     method = "GET",
     {

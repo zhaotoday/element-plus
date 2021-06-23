@@ -2,7 +2,7 @@ import { onMounted, reactive, ref } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { consts } from "@/utils/consts";
 import { helpers } from "@/utils/helpers";
-import { $helpers } from "./utils/helpers";
+import { useHelpers } from "./use-helpers";
 
 export const useList = ({
   onRendered,
@@ -11,10 +11,11 @@ export const useList = ({
   filtersAsKeyValue = false,
   api,
   filters = {},
-  sort = "",
+  data = {},
 } = {}) => {
   const route = useRoute();
   const router = useRouter();
+  const { formatFilters, encode, decode } = useHelpers();
   const list = reactive({ items: [], total: 0 });
   const loading = ref(false);
   const currentPage = ref(1);
@@ -28,7 +29,7 @@ export const useList = ({
 
   const getQuery = (query) => {
     const { currentPage = 1, filters = helpers.deepCopy(filtersModel) } =
-      $helpers.decode(query.$list);
+      decode(query.$list);
 
     return { currentPage, filters };
   };
@@ -40,15 +41,13 @@ export const useList = ({
     const query = {
       offset: (currentPage - 1) * consts.PageSize,
       limit: consts.PageSize,
-      // sort: $helpers.formatOrders(sort)
+      ...data,
     };
-
-    console.log(sort);
 
     if (filtersAsKeyValue) {
       Object.assign(query, filters);
     } else {
-      // query.where = $helpers.formatFilters(filters);
+      query.where = formatFilters(filters);
     }
 
     const { items, total } = await api.GET({ query });
@@ -103,7 +102,7 @@ export const useList = ({
         if (routeMode) {
           await router.replace({
             query: {
-              $list: $helpers.encode({
+              $list: encode({
                 currentPage: 1,
                 filters: { ...cFilters.model, ...filters },
               }),
@@ -130,7 +129,7 @@ export const useList = ({
 
         await router.replace({
           query: {
-            $list: $helpers.encode({ ...query, currentPage: current }),
+            $list: encode({ ...query, currentPage: current }),
           },
         });
       } else {
