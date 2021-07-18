@@ -1,4 +1,4 @@
-import { consts } from "@/utils/consts";
+import { useConsts } from "@/composables/use-consts";
 
 export default {
   name: "List",
@@ -10,7 +10,7 @@ export default {
     },
     pageSize: {
       type: Number,
-      default: consts.PageSize,
+      default: useConsts().PageSize,
     },
     currentPage: {
       type: Number,

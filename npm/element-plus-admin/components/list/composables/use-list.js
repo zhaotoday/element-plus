@@ -1,8 +1,8 @@
 import { onMounted, reactive, ref } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
-import { consts } from "@/utils/consts";
-import { helpers } from "@/utils/helpers";
-import { useHelpers } from "./use-helpers";
+import { useConsts } from "@/composables/use-consts";
+import { useHelpers } from "@/composables/use-helpers";
+import { useHelpers as $useHelpers } from "./use-helpers";
 
 export const useList = ({
   onRendered,
@@ -15,7 +15,8 @@ export const useList = ({
 } = {}) => {
   const route = useRoute();
   const router = useRouter();
-  const { formatFilters, encode, decode } = useHelpers();
+  const { deepCopy } = useHelpers();
+  const { formatFilters, encode, decode } = $useHelpers();
   const list = reactive({ items: [], total: 0 });
   const loading = ref(false);
   const currentPage = ref(1);
@@ -28,19 +29,22 @@ export const useList = ({
   let filtersRef = null;
 
   const getQuery = (query) => {
-    const { currentPage = 1, filters = helpers.deepCopy(filtersModel) } =
-      decode(query.$list);
+    const { currentPage = 1, filters = deepCopy(filtersModel) } = decode(
+      query.$list
+    );
 
     return { currentPage, filters };
   };
 
   const render = async ({
     currentPage = 1,
-    filters = helpers.deepCopy(filtersModel),
+    filters = deepCopy(filtersModel),
   } = {}) => {
+    const { PageSize } = useConsts();
+
     const query = {
-      offset: (currentPage - 1) * consts.PageSize,
-      limit: consts.PageSize,
+      offset: (currentPage - 1) * PageSize,
+      limit: PageSize,
       ...data,
     };
 
@@ -58,7 +62,7 @@ export const useList = ({
     onRendered && onRendered();
   };
 
-  const initialize = async ({ filters = helpers.deepCopy(filtersModel) }) => {
+  const initialize = async ({ filters = deepCopy(filtersModel) }) => {
     currentPage.value = 1;
     cFilters.model = filters;
     await render({ filters });
