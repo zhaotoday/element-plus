@@ -2,12 +2,13 @@ import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import { formValidators } from "element-plus-admin/utils/form-validators";
+import { useFormValidators } from "element-plus-admin/composables/use-form-validators";
 
 export default {
   setup() {
     const { dispatch } = useStore();
     const router = useRouter();
+    const formValidators = useFormValidators();
 
     const form = ref(null);
 
