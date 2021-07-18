@@ -1,4 +1,6 @@
-import { loggedIn, logout } from "element-plus-admin/utils/auth";
+import { useAuth } from "element-plus-admin/composables/use-auth";
+
+const { loggedIn, logout } = useAuth();
 
 export default {
   path: "/logout",

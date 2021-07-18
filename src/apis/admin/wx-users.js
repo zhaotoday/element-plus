@@ -1,5 +1,5 @@
 import { Rest } from "element-plus-admin/utils/rest";
-import { getRequestHeaders } from "element-plus-admin/utils/auth";
+import { useAuth } from "element-plus-admin/composables/use-auth";
 import { useConsts } from "@/composables/use-consts";
 
 export class WxUsersApi extends Rest {
@@ -7,7 +7,7 @@ export class WxUsersApi extends Rest {
     super();
 
     this.baseUrl = useConsts().ApiUrl;
-    this.headers = getRequestHeaders();
+    this.headers = useAuth().getRequestHeaders();
     this.path = "admin/wxUsers";
   }
 }

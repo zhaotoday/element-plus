@@ -1,7 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { loggedIn, logout } from "element-plus-admin/utils/auth";
+import { useAuth } from "element-plus-admin/composables/use-auth";
 import publicRoutes from "./routes/public";
 import privateRoutes from "./routes/private";
+
+const { loggedIn, logout } = useAuth();
 
 const routes = [
   {
