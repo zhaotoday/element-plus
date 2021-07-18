@@ -1,17 +1,18 @@
 import { ref } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
-import { consts } from "@/utils/consts";
+import { useConsts } from "@/composables/use-consts";
 
 export default {
   name: "TheSidebar",
   setup() {
     const router = useRouter();
     const route = useRoute();
+    const { SidebarMenu } = useConsts();
 
     const getActiveKey = (path) => {
       let key = "0-0";
 
-      consts.SidebarMenu.forEach((item1, index1) => {
+      SidebarMenu.forEach((item1, index1) => {
         item1.children.forEach((item2, index2) => {
           const routePaths = (path || route.path).split("/");
           const itemPaths = item2.path.split("/");
@@ -40,7 +41,7 @@ export default {
       const index1 = indexes[0];
       const index2 = indexes[1];
 
-      const { path } = consts.SidebarMenu[index1].children[index2];
+      const { path } = SidebarMenu[index1].children[index2];
 
       await router.push(path);
     };
@@ -50,7 +51,7 @@ export default {
       const index1 = indexes[0];
       const index2 = indexes[1];
 
-      const { path } = consts.SidebarMenu[index1].children[index2];
+      const { path } = SidebarMenu[index1].children[index2];
 
       window.open(`/#${path}`);
     };

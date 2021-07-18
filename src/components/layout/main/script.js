@@ -1,7 +1,7 @@
 import { onMounted, ref } from "vue";
 import TheHeader from "./header/index.vue";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
-import { consts } from "@/utils/consts";
+import { useConsts } from "@/composables/use-consts";
 
 export default {
   name: "TheMain",
@@ -12,7 +12,7 @@ export default {
     const menus = ref([{}, {}]);
 
     const renderMenus = (path) => {
-      consts.SidebarMenu.forEach((item1) => {
+      useConsts().SidebarMenu.forEach((item1) => {
         item1.children.forEach((item2) => {
           const routePaths = path.split("/");
           const itemPaths = item2.path.split("/");
