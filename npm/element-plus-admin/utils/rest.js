@@ -1,7 +1,7 @@
 import $Rest from "jt-rest";
 import { ElMessage } from "element-plus";
 import { router } from "@/router";
-import { logout } from "./auth";
+import { useAuth } from "../composables/use-auth";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
@@ -80,7 +80,7 @@ export class Rest extends $Rest {
         })
         .catch(async ({ response: { status, data } }) => {
           if (status === 401) {
-            logout();
+            useAuth().logout();
             await router.push("/login");
           } else {
             showError && ElMessage.error(data.error || "服务器内部错误");
