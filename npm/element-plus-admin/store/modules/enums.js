@@ -1,5 +1,7 @@
-import helpers from "jt-helpers";
+import { useHelpers } from "@/composables/use-helpers";
 import { PublicEnumsApi } from "../../apis/public/enums";
+
+const { keyMirror } = useHelpers();
 
 const state = {
   data: {
@@ -9,7 +11,7 @@ const state = {
   },
 };
 
-const types = helpers.keyMirror({
+const types = keyMirror({
   SetData: null,
 });
 
