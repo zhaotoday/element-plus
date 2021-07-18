@@ -46,21 +46,10 @@ export default {
       await router.push(path);
     };
 
-    const openWindow = (key) => {
-      const indexes = key.split("-");
-      const index1 = indexes[0];
-      const index2 = indexes[1];
-
-      const { path } = SidebarMenu[index1].children[index2];
-
-      window.open(`/#${path}`);
-    };
-
     return {
       router,
       activeKey,
       onSelect,
-      openWindow,
     };
   },
 };
