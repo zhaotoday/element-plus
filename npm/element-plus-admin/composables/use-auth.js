@@ -3,7 +3,9 @@ import { useStore } from "vuex";
 
 export const useAuth = () => {
   const { dispatch, state } = useStore();
+
   const user = computed(() => state.auth.user);
+
   const menus = computed(() => state.auth.menus);
 
   const getRequestHeaders = () => {
