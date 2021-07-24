@@ -1,11 +1,13 @@
 import { useAuth } from "element-plus-admin/composables/use-auth";
 
-const { loggedIn, logout } = useAuth();
-
 export default {
   path: "/logout",
-  beforeEnter(to, from, next) {
-    loggedIn() && logout();
+  async beforeEnter(to, from, next) {
+    const { loggedIn, logout } = useAuth();
+
+    if (loggedIn()) {
+      await logout();
+    }
     next("/login");
   },
 };

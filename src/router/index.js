@@ -3,8 +3,6 @@ import { useAuth } from "element-plus-admin/composables/use-auth";
 import publicRoutes from "./routes/public";
 import privateRoutes from "./routes/private";
 
-const { loggedIn, logout } = useAuth();
-
 const routes = [
   {
     path: "/",
@@ -28,8 +26,10 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
+    const { loggedIn, logout } = useAuth();
+
     if (!loggedIn()) {
-      logout();
+      await logout();
       next({
         path: "login",
         query: { redirect: to.fullPath },

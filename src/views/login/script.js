@@ -18,7 +18,7 @@ export default {
         username: [formValidators.required({ label: "用户名" })],
         password: [
           formValidators.required({ label: "密码" }),
-          formValidators.password(),
+          // formValidators.password(),
         ],
       },
     });
