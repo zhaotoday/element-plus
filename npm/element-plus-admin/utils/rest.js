@@ -80,7 +80,7 @@ export class Rest extends $Rest {
         })
         .catch(async ({ response: { status, data } }) => {
           if (status === 401) {
-            useAuth().logout();
+            await useAuth().logout();
             await router.push("/login");
           } else {
             showError && ElMessage.error(data.error || "服务器内部错误");

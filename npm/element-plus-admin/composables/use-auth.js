@@ -1,39 +1,27 @@
-import storage from "jt-storage";
+import { computed } from "vue";
+import { useStore } from "vuex";
 
 export const useAuth = () => {
-  const getUser = () => {
-    const vuexStore = storage.get("vuex");
-
-    try {
-      return vuexStore && JSON.parse(vuexStore).auth
-        ? JSON.parse(vuexStore).auth.user
-        : {};
-    } catch (e) {
-      return {};
-    }
-  };
-
-  const getToken = () => {
-    return getUser().token || "";
-  };
+  const { dispatch, state } = useStore();
+  const user = computed(() => state.auth.user);
+  const menus = computed(() => state.auth.menus);
 
   const getRequestHeaders = () => {
-    return { Authorization: `Bearer ${getToken()}` };
+    return { Authorization: `Bearer ${user.value.token}` };
   };
 
-  const loggedIn = () => {
-    return !!getToken();
-  };
+  const loggedIn = () => !!user.value.token;
 
-  const logout = () => {
-    storage.remove("vuex");
-  };
+  const login = (options) => dispatch("auth/login", options);
+
+  const logout = () => dispatch("auth/logout");
 
   return {
-    getUser,
-    getToken,
+    user,
+    menus,
     getRequestHeaders,
     loggedIn,
+    login,
     logout,
   };
 };
