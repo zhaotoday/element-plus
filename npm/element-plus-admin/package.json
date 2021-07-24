@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "core-js": "^3.15.2",
-    "element-plus": "^1.0.2-beta.55",
+    "element-plus": "^1.0.2-beta.58",
     "js-base64": "^3.6.1",
     "jt-rest": "^1.0.3",
     "jt-storage": "0.0.2",
@@ -24,7 +24,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^7.31.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^7.13.0",
+    "eslint-plugin-vue": "^7.14.0",
     "prettier": "^2.3.2"
   },
   "eslintConfig": {
