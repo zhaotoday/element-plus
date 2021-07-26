@@ -1,12 +1,10 @@
-import { useAuth } from "element-plus-admin/composables/use-auth";
+import { store } from "@/store";
 
 export default {
   path: "/logout",
   async beforeEnter(to, from, next) {
-    const { loggedIn, logout } = useAuth();
-
-    if (loggedIn()) {
-      await logout();
+    if (store.state.auth.user.token) {
+      await store.dispatch("auth/logout");
     }
     next("/login");
   },

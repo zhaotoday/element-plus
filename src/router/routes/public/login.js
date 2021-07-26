@@ -1,10 +1,10 @@
-import { useAuth } from "element-plus-admin/composables/use-auth";
+import { store } from "@/store";
 
 export default {
   path: "/login",
   component: () => import("@/views/login/index.vue"),
   beforeEnter(to, from, next) {
-    if (useAuth().loggedIn()) {
+    if (store.state.auth.user.token) {
       next("/");
     } else {
       next();

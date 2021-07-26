@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { useAuth } from "element-plus-admin/composables/use-auth";
 import publicRoutes from "./routes/public";
 import privateRoutes from "./routes/private";
+import { store } from "@/store";
 
 const routes = [
   {
@@ -26,10 +26,9 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const { loggedIn, logout } = useAuth();
+    if (!store.state.auth.user.token) {
+      await store.dispatch("auth/logout");
 
-    if (!loggedIn()) {
-      await logout();
       next({
         path: "login",
         query: { redirect: to.fullPath },
