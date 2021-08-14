@@ -10,17 +10,22 @@
       :rules="cForm.rules"
     >
       <el-form-item label="用户名" prop="username">
-        <el-input v-model="cForm.model.username" @keyup.enter="submit" />
+        <el-input
+          size="big"
+          v-model="cForm.model.username"
+          @keyup.enter="submit"
+        />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input
           type="password"
+          size="big"
           v-model="cForm.model.password"
           @keyup.enter="submit"
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submit">登录</el-button>
+        <el-button type="primary" size="big" @click="submit">登录</el-button>
       </el-form-item>
     </el-form>
   </el-card>
