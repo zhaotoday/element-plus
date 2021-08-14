@@ -1,20 +1,22 @@
+@use "sass:map";
+
 @import "~@/assets/styles/utils/index";
 
 @include c(sidebar) {
   @include position--absolute(0, null, 0, 0);
 
   z-index: 1;
-  width: $sidebar-width;
+  width: map.get($the-layout, the-sidebar, width);
   background-color: #001529;
   overflow-x: hidden;
   overflow-y: auto;
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 
   @include e(logo) {
-    @include size(100%, $header-height);
+    @include size(100%, map.get($the-layout, the-header, height));
 
     background-color: #002140;
-    line-height: $header-height;
+    line-height: map.get($the-layout, the-header, height);
     padding-left: 60px;
     cursor: pointer;
     color: white;
@@ -38,7 +40,7 @@
   }
 
   .el-menu {
-    width: $sidebar-width + 2px;
+    width: map.get($the-layout, the-sidebar, width) + 2px;
   }
 
   .el-submenu .el-menu-item {

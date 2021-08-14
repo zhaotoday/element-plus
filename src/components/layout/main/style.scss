@@ -1,13 +1,15 @@
+@use "sass:map";
+
 @import "~@/assets/styles/utils/index";
 
 @include c(main) {
-  @include position--absolute(0, 0, 0, $sidebar-width);
+  @include position--absolute(0, 0, 0, map.get($the-layout, the-sidebar, width));
 
   overflow: hidden;
   min-width: 1200px;
 
   @include e(body) {
-    @include position--absolute($header-height + 14px, 14px, 14px, 14px);
+    @include position--absolute(map.get($the-layout, the-header, height) + 14px, 14px, 14px, 14px);
     @include padding(50px + 12px, 20px, 20px, 20px);
 
     background-color: white;
@@ -31,7 +33,7 @@
 
   @include e(breadcrumb) {
     @include position--absolute(
-      $header-height + 14px,
+      map.get($the-layout, the-header, height) + 14px,
       14px + 20px,
       null,
       14px + 20px
@@ -39,6 +41,6 @@
     @include text--middle(50px);
 
     background-color: white;
-    border-bottom: 1px solid map-get($border-colors, light);
+    border-bottom: 1px solid map.get($--border-color, "light");
   }
 }

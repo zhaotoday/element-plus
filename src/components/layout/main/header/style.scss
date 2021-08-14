@@ -1,13 +1,15 @@
+@use "sass:map";
+
 @import "~@/assets/styles/utils/index";
 
 @include c(header) {
-  @include text--middle($header-height);
+  @include text--middle(map.get($the-layout, the-header, height));
 
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   background-color: white;
 
   @include e(user, logout) {
-    @include text--middle($header-height);
+    @include text--middle(map.get($the-layout, the-header, height));
 
     float: right;
     text-align: center;
