@@ -1,31 +1,23 @@
-// 页面最小宽度
-$min-width: 1200px;
+@use "sass:map";
 
-// 头部高度
-$header-height: 60px;
+@import "../element-plus/variables";
+@import "node_modules/element-plus/packages/theme-chalk/src/var";
 
-// 导航菜单栏宽度
-$sidebar-width: 210px;
-
-// 字体大小
 $font-sizes: $pxes;
 
-// 色值
 $colors: (
-  primary: #549af5,
-  success: #67c23a,
-  warning: #e6a23c,
-  danger: #f56c6c,
-  info: #909399,
+  primary: map.get($--colors, primary, base),
+  success: map.get($--colors, success, base),
+  warning: map.get($--colors, warning, base),
+  danger: map.get($--colors, danger, base),
+  info: map.get($--colors, info, base),
 );
 
-// 边框色值
-$border-colors: (
-  base: #dcdfe6,
-  light: #e4e7ed,
-  lighter: #ebeef5,
-  extra-light: #f2f6fc,
+$the-layout: (
+  the-header: (
+    height: 60px,
+  ),
+  the-sidebar: (
+    width: 210px,
+  ),
 );
-
-// 表单页宽度
-$c-form-width: 1120px;

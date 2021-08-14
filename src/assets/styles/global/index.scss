@@ -5,5 +5,7 @@
 @import "~sass-utils/ui/element-plus/global/index";
 
 @import "./components/index";
-@import "./element-plus/index";
+@import "../element-plus/index";
 @import "./reset/index";
+
+@import "node_modules/element-plus/packages/theme-chalk/src/index";
