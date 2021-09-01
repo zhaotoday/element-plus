@@ -10,9 +10,9 @@
     "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
   "dependencies": {
-    "element-plus": "^1.0.2-beta.71",
+    "element-plus": "^1.1.0-beta.8",
     "element-plus-admin": "0.0.21",
-    "jt-helpers": "0.0.13",
+    "jt-helpers": "^1.0.6",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.9",
     "sass-utils": "^1.0.56",
@@ -27,7 +27,7 @@
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.17.0",
     "prettier": "^2.3.2",
     "sass": "^1.38.2",
