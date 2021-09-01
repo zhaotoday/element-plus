@@ -10,21 +10,21 @@
   "author": "zhaojintian",
   "license": "ISC",
   "dependencies": {
-    "core-js": "^3.16.0",
-    "element-plus": "^1.0.2-beta.70",
+    "core-js": "^3.16.4",
+    "element-plus": "^1.0.2-beta.71",
     "js-base64": "^3.6.1",
     "jt-rest": "^1.0.3",
     "jt-storage": "0.0.2",
     "nprogress": "^0.2.0",
-    "vue-router": "^4.0.10"
+    "vue-router": "^4.0.11"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.4.0",
+    "@vitejs/plugin-vue": "^1.6.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^7.15.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-vue": "^7.17.0",
     "prettier": "^2.3.2"
   },
   "eslintConfig": {
