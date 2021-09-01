@@ -10,28 +10,28 @@
     "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
   "dependencies": {
-    "element-plus": "^1.0.2-beta.70",
+    "element-plus": "^1.0.2-beta.71",
     "element-plus-admin": "0.0.21",
     "jt-helpers": "0.0.13",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.9",
-    "sass-utils": "^1.0.55",
-    "vue": "^3.2.2",
+    "sass-utils": "^1.0.56",
+    "vue": "^3.2.6",
     "vue-router": "^4.0.11",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.0.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.4.0",
-    "@vue/compiler-sfc": "^3.2.2",
+    "@vitejs/plugin-vue": "^1.6.0",
+    "@vue/compiler-sfc": "^3.2.6",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^7.16.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-vue": "^7.17.0",
     "prettier": "^2.3.2",
-    "sass": "^1.37.5",
-    "vite": "^2.4.4"
+    "sass": "^1.38.2",
+    "vite": "^2.5.2"
   },
   "eslintConfig": {
     "root": true,
