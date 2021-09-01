@@ -8,7 +8,7 @@ export const useEnums = () => {
   const enums = computed(() => state["enums"].data);
 
   const getEnums = async () => {
-    const { version } = await new PublicEnumsApi().POST({
+    const { version } = await new PublicEnumsApi().post({
       action: "getVersion",
     });
 

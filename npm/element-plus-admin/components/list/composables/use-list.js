@@ -52,7 +52,7 @@ export const useList = ({
       query.where = formatFilters(filters);
     }
 
-    const { items, total } = await api.GET({ query });
+    const { items, total } = await api.get({ query });
 
     list.items = items;
     list.total = total;

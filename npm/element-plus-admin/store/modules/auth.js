@@ -28,7 +28,7 @@ const actions = {
   async login({ commit }, data) {
     const res = await new PublicManagersApi()
       .addPath("actions/login")
-      .POST({ body: data });
+      .post({ body: data });
 
     const {
       manager: { id, username },
