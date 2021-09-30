@@ -2,12 +2,11 @@
   "name": "my-app",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "serve": "vite preview",
-    "build": "vite build",
-    "build:test": "vite build --mode test",
     "format": "prettier --write \"src/**/*.{vue,js}\"",
-    "lint": "eslint \"src/**/*.{vue,js}\" --fix"
+    "lint": "eslint \"src/**/*.{vue,js}\" --fix",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:test": "vue-cli-service build --mode test"
   },
   "dependencies": {
     "element-plus": "^1.1.0-beta.18",
@@ -22,7 +21,9 @@
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.2",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
     "@vue/compiler-sfc": "^3.2.19",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
@@ -31,7 +32,7 @@
     "eslint-plugin-vue": "^7.18.0",
     "prettier": "^2.4.1",
     "sass": "^1.42.1",
-    "vite": "^2.6.1"
+    "sass-loader": "^8.0.2"
   },
   "eslintConfig": {
     "root": true,
@@ -44,7 +45,16 @@
       "@vue/prettier"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  }
+      "parser": "babel-eslint",
+      "ecmaFeatures": {
+        "legacyDecorators": true
+      }
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
