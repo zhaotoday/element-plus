@@ -2,11 +2,11 @@
   "name": "my-app",
   "version": "0.0.0",
   "scripts": {
-    "format": "prettier --write \"src/**/*.{vue,js}\"",
-    "lint": "eslint \"src/**/*.{vue,js}\" --fix",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:test": "vue-cli-service build --mode test"
+    "build:test": "vue-cli-service build --mode test",
+    "format": "prettier --write \"src/**/*.{vue,js}\"",
+    "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
   "dependencies": {
     "element-plus": "^1.1.0-beta.18",

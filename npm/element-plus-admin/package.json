@@ -1,6 +1,6 @@
 {
   "name": "element-plus-admin",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "element-plus toolkits",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,6 @@
     "vue-router": "^4.0.11"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.2",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
