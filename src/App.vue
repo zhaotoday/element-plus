@@ -11,7 +11,7 @@ export default {
     const { getEnums } = useEnums();
 
     onMounted(async () => {
-      // await getEnums();
+      await getEnums();
     });
   },
 };
