@@ -12,6 +12,8 @@ export const useHelpers = () => {
         typeof filters[key] === "number"
       ) {
         ret[key] = { $eq: filters[key] };
+      } else {
+        ret[key] = filters[key];
       }
     });
 
