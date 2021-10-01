@@ -1,8 +1,8 @@
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { store } from "@/store";
 
 export const useAuth = () => {
-  const { dispatch, state } = useStore();
+  const { dispatch, state } = store;
 
   const user = computed(() => state.auth.user);
 
