@@ -17,7 +17,8 @@
     "jt-storage": "0.0.2",
     "nprogress": "^0.2.0",
     "vue": "^3.2.19",
-    "vue-router": "^4.0.11"
+    "vue-router": "^4.0.11",
+    "wangeditor": "^4.7.8"
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^6.0.0",
