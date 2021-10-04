@@ -2,6 +2,7 @@ import { onMounted, ref } from "vue";
 import WangEditor from "wangeditor";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
+import { sleep } from "jt-helpers";
 
 export default {
   props: {
@@ -20,7 +21,7 @@ export default {
     const editorToolbar = ref(null);
     const editorText = ref(null);
 
-    onMounted(() => {
+    onMounted(async () => {
       editor = new WangEditor(editorToolbar.value, editorText.value);
 
       editor.config.menus = [
@@ -56,14 +57,17 @@ export default {
         },
       };
 
+      editor.create();
+
       editor.txt.html(props.value);
+
+      // 不监听第一次 onchange 事件
+      await sleep(10);
 
       editor.config.onchange = (html) => {
         context.emit("update:value", html);
         context.emit("change", html);
       };
-
-      editor.create();
     });
 
     return {
