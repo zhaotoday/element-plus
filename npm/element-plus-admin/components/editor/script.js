@@ -10,7 +10,7 @@ export default {
       default: "",
     },
   },
-  emits: ["update:value"],
+  emits: ["update:value", "change"],
   setup(props, context) {
     let editor = null;
 
@@ -68,6 +68,7 @@ export default {
 
       editor.config.onchange = (html) => {
         context.emit("update:value", html);
+        context.emit("change", html);
       };
 
       editor.create();

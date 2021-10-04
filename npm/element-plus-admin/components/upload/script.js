@@ -24,7 +24,7 @@ export default {
       default: "",
     },
   },
-  emits: ["update:value"],
+  emits: ["update:value", "change"],
   setup(props, context) {
     const { getRequestHeaders } = useAuth();
 
@@ -69,11 +69,13 @@ export default {
 
       uploadedFileId.value = id;
       context.emit("update:value", id);
+      context.emit("change", id);
     };
 
     const onRemove = () => {
       uploadedFileId.value = 0;
       context.emit("update:value", undefined);
+      context.emit("change", undefined);
     };
 
     const onPreview = () => {
