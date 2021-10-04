@@ -62,7 +62,7 @@ export default {
       editor.txt.html(props.value);
 
       // 不监听第一次 onchange 事件
-      await sleep(10);
+      await sleep(1000);
 
       editor.config.onchange = (html) => {
         context.emit("update:value", html);
