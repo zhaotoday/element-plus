@@ -22,10 +22,8 @@ export default {
 
     watch(
       () => props.value,
-      (newVal, oldVal) => {
-        if (newVal && !oldVal) {
-          editor && editor.txt.html(newVal);
-        }
+      (newVal) => {
+        editor && editor.txt.html(newVal);
       },
       { immediate: true }
     );
