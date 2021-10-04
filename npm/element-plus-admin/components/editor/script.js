@@ -1,4 +1,4 @@
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import WangEditor from "wangeditor";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
@@ -19,14 +19,6 @@ export default {
 
     const editorToolbar = ref(null);
     const editorText = ref(null);
-
-    watch(
-      () => props.value,
-      (newVal) => {
-        editor && editor.txt.html(newVal);
-      },
-      { immediate: true }
-    );
 
     onMounted(() => {
       editor = new WangEditor(editorToolbar.value, editorText.value);
@@ -64,14 +56,14 @@ export default {
         },
       };
 
+      editor.txt.html(props.value);
+
       editor.config.onchange = (html) => {
         context.emit("update:value", html);
         context.emit("change", html);
       };
 
       editor.create();
-
-      editor.txt.html(props.value);
     });
 
     return {
