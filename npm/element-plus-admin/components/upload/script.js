@@ -1,11 +1,15 @@
-import { reactive, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
-import { FilesApi } from "@/apis/admin/files";
+import { useHelpers } from "@/composables/use-helpers";
+import Files from "./files/index.vue";
 
 const { ApiUrl } = useConsts();
 
 export default {
+  components: {
+    "cc-files": Files,
+  },
   props: {
     action: {
       type: String,
@@ -15,8 +19,12 @@ export default {
       type: Boolean,
       default: false,
     },
+    placeholder: {
+      type: String,
+      default: "请选择文件",
+    },
     value: {
-      type: Number,
+      type: [Number, Array],
       default: 0,
     },
     tip: {
@@ -26,72 +34,71 @@ export default {
   },
   emits: ["update:value", "change"],
   setup(props, context) {
+    const { getImageUrl, deepCopy } = useHelpers();
+
     const { getRequestHeaders } = useAuth();
 
-    const upload = ref(null);
+    const uploadedFileIds = ref([]);
 
-    const defaultFileList = ref([]);
-
-    const uploadedFileId = ref(0);
-
-    const cImageViewer = reactive({
-      visible: false,
-    });
+    const uploadedFileId = ref(undefined);
 
     watch(
       () => props.value,
-      async (newVal) => {
-        if (newVal) {
-          const { name } = await new FilesApi().get({ id: newVal });
-
-          defaultFileList.value = [
-            {
-              id: newVal,
-              name,
-              url: `${ApiUrl}/public/files/${newVal}`,
-            },
-          ];
-          uploadedFileId.value = newVal;
+      (newVal, oldVal) => {
+        if (oldVal === undefined) {
+          if (props.multiple) {
+            uploadedFileIds.value = deepCopy(props.value);
+          } else {
+            uploadedFileId.value = props.value;
+          }
         } else {
-          defaultFileList.value = [];
-          uploadedFileId.value = 0;
+          if (props.multiple) {
+            uploadedFileIds.value = [];
+          } else {
+            uploadedFileId.value = undefined;
+          }
         }
       },
       { immediate: true }
     );
 
-    const onBeforeUpload = () => {
-      upload.value.clearFiles();
-    };
-
     const onSuccess = (res) => {
-      const id = res.data.id;
+      const { id } = res.data;
 
-      uploadedFileId.value = id;
-      context.emit("update:value", id);
-      context.emit("change", id);
+      if (props.multiple) {
+        uploadedFileIds.value.push(id);
+
+        context.emit("update:value", uploadedFileIds);
+        context.emit("change", uploadedFileIds);
+      } else {
+        uploadedFileId.value = id;
+
+        context.emit("update:value", uploadedFileId);
+        context.emit("change", uploadedFileId);
+      }
     };
 
-    const onRemove = () => {
-      uploadedFileId.value = 0;
-      context.emit("update:value", undefined);
-      context.emit("change", undefined);
-    };
+    const onDelete = (index) => {
+      if (props.multiple) {
+        uploadedFileIds.value.splice(index, 1);
 
-    const onPreview = () => {
-      cImageViewer.visible = true;
+        context.emit("update:value", uploadedFileIds);
+        context.emit("change", uploadedFileIds);
+      } else {
+        uploadedFileId.value = undefined;
+
+        context.emit("update:value", undefined);
+        context.emit("change", undefined);
+      }
     };
 
     return {
       getRequestHeaders,
-      upload,
-      defaultFileList,
+      getImageUrl,
       uploadedFileId,
-      cImageViewer,
-      onBeforeUpload,
+      uploadedFileIds,
       onSuccess,
-      onRemove,
-      onPreview,
+      onDelete,
     };
   },
 };

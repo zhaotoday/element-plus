@@ -5,22 +5,20 @@
     :action="action"
     :headers="getRequestHeaders()"
     :multiple="multiple"
-    :file-list="defaultFileList"
-    :before-upload="onBeforeUpload"
+    :show-file-list="false"
     :on-success="onSuccess"
-    :on-preview="onPreview"
-    :on-remove="onRemove"
   >
-    <el-button size="small" type="primary">请选择文件</el-button>
+    <el-button size="small" type="primary">{{ placeholder }}</el-button>
     <template #tip>
       <div v-if="tip" class="c-upload__tip fs12 t-info">{{ tip }}</div>
+      <cc-files
+        :ids="
+          multiple ? uploadedFileIds : uploadedFileId ? [uploadedFileId] : []
+        "
+        @delete="onDelete"
+      />
     </template>
   </el-upload>
-  <el-image-viewer
-    v-if="cImageViewer.visible"
-    :url-list="[`${$consts.ApiUrl}/public/files/${uploadedFileId}`]"
-    @close="cImageViewer.visible = false"
-  />
 </template>
 
 <script src="./script.js"></script>
