@@ -46,16 +46,18 @@ export default {
       () => props.value,
       (newVal, oldVal) => {
         if (oldVal === undefined) {
-          if (props.multiple) {
-            uploadedFileIds.value = deepCopy(props.value);
+          if (newVal) {
+            if (props.multiple) {
+              uploadedFileIds.value = deepCopy(props.value);
+            } else {
+              uploadedFileId.value = props.value;
+            }
           } else {
-            uploadedFileId.value = props.value;
-          }
-        } else {
-          if (props.multiple) {
-            uploadedFileIds.value = [];
-          } else {
-            uploadedFileId.value = undefined;
+            if (props.multiple) {
+              uploadedFileIds.value = [];
+            } else {
+              uploadedFileId.value = undefined;
+            }
           }
         }
       },
