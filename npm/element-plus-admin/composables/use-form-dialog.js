@@ -14,7 +14,7 @@ export const useFormDialog = ({ cDialog, cForm, form, initialModel } = {}) => {
 
   const show = ({ id, ...rest } = {}) => {
     cForm.id = id || 0;
-    cForm.model = deepCopy(id ? rest : initialModel);
+    cForm.model = { ...initialModel, ...rest };
 
     cDialog.visible = true;
     form.value && form.value.resetFields();
