@@ -12,6 +12,7 @@ export const useList = ({
   api,
   filters = {},
   data = {},
+  extraQuery = {},
 } = {}) => {
   const route = useRoute();
   const router = useRouter();
@@ -52,7 +53,9 @@ export const useList = ({
       query.where = formatFilters(filters);
     }
 
-    const { items, total } = await api.get({ query });
+    const { items, total } = await api.get({
+      query: { ...query, ...extraQuery },
+    });
 
     list.items = items;
     list.total = total;
