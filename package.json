@@ -9,8 +9,8 @@
     "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
   "dependencies": {
-    "element-plus": "^1.1.0-beta.18",
-    "element-plus-admin": "0.0.26",
+    "element-plus": "^1.1.0-beta.19",
+    "element-plus-admin": "0.0.37",
     "jt-helpers": "^1.0.6",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.9",
