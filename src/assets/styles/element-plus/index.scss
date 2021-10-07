@@ -13,3 +13,15 @@
     width: 100% !important;
   }
 }
+
+@include c(select) {
+  @include m(full) {
+    width: 100%;
+  }
+}
+
+.el-dialog {
+  &__body {
+    padding-bottom: 10px !important;
+  }
+}

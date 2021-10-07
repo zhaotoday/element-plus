@@ -1,0 +1,19 @@
+@use "sass:map";
+
+@include c(scrollbar) {
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: map.get($colors, white);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: map.get($border-color, base);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: map.get($border-color, extra-light);
+    border-radius: 5px;
+  }
+}
