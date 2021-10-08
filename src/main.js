@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import "@/assets/styles/global/index.scss";
+import "@/assets/styles/element-plus/index.scss";
 import ElementPlus from "element-plus";
 import locale from "element-plus/lib/locale/lang/zh-cn";
 import "element-plus-admin/utils/polyfills";
