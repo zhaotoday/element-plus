@@ -1,29 +1,9 @@
 @use "sass:map";
 
-$--colors: () !default;
-
-$--colors: map.deep-merge(
-  (
-    "white": #ffffff,
-    "black": #000000,
+@forward "node_modules/element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
     "primary": (
       "base": #549af5,
     ),
-    "success": (
-      "base": #67c23a,
-    ),
-    "warning": (
-      "base": #e6a23c,
-    ),
-    "danger": (
-      "base": #f56c6c,
-    ),
-    "error": (
-      "base": #f56c6c,
-    ),
-    "info": (
-      "base": #909399,
-    ),
   ),
-  $--colors
 );

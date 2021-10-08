@@ -1,27 +1,7 @@
-.el-dialog__body {
-  padding: 20px !important;
-}
+@use "sass:map";
 
-@include c(date-picker) {
-  @include m(two-days) {
-    width: 360px !important;
-  }
-}
+@import "./variables";
+@import "node_modules/element-plus/theme-chalk/src";
 
-@include c(input-number) {
-  @include m(full) {
-    width: 100% !important;
-  }
-}
-
-@include c(select) {
-  @include m(full) {
-    width: 100%;
-  }
-}
-
-.el-dialog {
-  &__body {
-    padding-bottom: 10px !important;
-  }
-}
+@import "./components";
+@import "./reset";

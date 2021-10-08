@@ -1,0 +1,19 @@
+@import "~sass-utils";
+
+@include c(date-picker) {
+  @include m(two-days) {
+    width: 360px !important;
+  }
+}
+
+@include c(input-number) {
+  @include m(full) {
+    width: 100% !important;
+  }
+}
+
+@include c(select) {
+  @include m(full) {
+    width: 100% !important;
+  }
+}
