@@ -18,7 +18,7 @@
       @current-change="$emit('page-change', $event)"
       :current-page="currentPage"
       :page-size="pageSize"
-      layout="prev, pager, next, jumper"
+      layout="total, prev, pager, next, jumper"
       :total="total"
     />
   </div>
