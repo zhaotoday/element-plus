@@ -29,7 +29,7 @@ export default {
     watch(
       () => props.ids,
       async (newVal) => {
-        if (newVal) {
+        if (newVal && newVal.length) {
           const { items } = await new FilesApi().get({
             query: {
               where: {
