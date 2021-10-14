@@ -72,6 +72,7 @@ export default {
     };
 
     return {
+      officeView,
       getImageUrl,
       cImageViewer,
       files,
