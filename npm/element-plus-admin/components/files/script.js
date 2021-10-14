@@ -13,6 +13,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    className: {
+      type: String,
+      default: "",
+    },
+    canPreview: {
+      type: Boolean,
+      default: true,
+    },
   },
   setup(props) {
     const { getFileUrl } = useHelpers();
@@ -50,6 +58,8 @@ export default {
     );
 
     const preview = (file, index) => {
+      if (!props.canPreview) return;
+
       switch (true) {
         case ["jpg", "jpeg", "png", "gif"].includes(file.ext):
           previewImage(index);
