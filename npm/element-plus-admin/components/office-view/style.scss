@@ -1,0 +1,15 @@
+@use "sass:map";
+
+@import "~@/assets/styles/utils";
+
+@include c(office-view) {
+  .el-dialog__body {
+    padding: 0 !important;
+  }
+
+  @include e(iframe) {
+    @include size(100%, 700px);
+
+    border: 0;
+  }
+}
