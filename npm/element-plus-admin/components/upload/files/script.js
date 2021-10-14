@@ -14,7 +14,7 @@ export default {
     },
   },
   setup(props) {
-    const { getImageUrl } = useHelpers();
+    const { getImageUrl, getFileUrl } = useHelpers();
 
     const officeView = ref(null);
 
@@ -67,8 +67,8 @@ export default {
       cImageViewer.visible = true;
     };
 
-    const previewOffice = (file) => {
-      officeView.value.show({ src: file.id });
+    const previewOffice = ({ id }) => {
+      officeView.value.show({ src: getFileUrl({ id }) });
     };
 
     return {
