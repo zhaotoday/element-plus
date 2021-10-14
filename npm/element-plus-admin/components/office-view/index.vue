@@ -3,7 +3,7 @@
     custom-class="c-office-view"
     title="预览"
     v-model="cDialog.visible"
-    width="900px"
+    width="950px"
   >
     <div v-if="!cDialog.src" class="c-office-view__iframe"></div>
     <iframe
