@@ -5,7 +5,7 @@
       :key="file.id"
       class="el-upload-list__item is-success"
       tabindex="0"
-      @click="previewImage(index)"
+      @click="preview(file, index)"
     >
       <a class="el-upload-list__item-name">
         <i class="el-icon-document"></i>
@@ -23,6 +23,7 @@
     :initial-index="cImageViewer.index"
     @close="cImageViewer.visible = false"
   />
+  <c-office-view ref="officeView" />
 </template>
 
 <script src="./script.js"></script>
