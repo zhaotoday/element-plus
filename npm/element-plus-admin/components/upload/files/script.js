@@ -14,7 +14,7 @@ export default {
     },
   },
   setup(props) {
-    const { getImageUrl, getFileUrl } = useHelpers();
+    const { getFileUrl } = useHelpers();
 
     const officeView = ref(null);
 
@@ -37,10 +37,11 @@ export default {
             },
           });
 
-          files.value = items.map(({ id, name }) => ({
+          files.value = items.map(({ id, name, ext }) => ({
             id,
             name,
-            url: getImageUrl({ id }),
+            ext,
+            url: getFileUrl({ id }),
           }));
         }
       },
@@ -73,9 +74,9 @@ export default {
 
     return {
       officeView,
-      getImageUrl,
       cImageViewer,
       files,
+      getFileUrl,
       preview,
     };
   },

@@ -19,7 +19,7 @@
   </ul>
   <el-image-viewer
     v-if="cImageViewer.visible"
-    :url-list="ids.map((id) => getImageUrl({ id }))"
+    :url-list="ids.map((id) => getFileUrl({ id }))"
     :initial-index="cImageViewer.index"
     @close="cImageViewer.visible = false"
   />
