@@ -2,6 +2,7 @@ import { reactive, ref, watch } from "vue";
 import { FilesApi } from "@/apis/admin/files";
 import { useHelpers } from "@/composables/use-helpers";
 import OfficeView from "../../office-view/index.vue";
+import { ElMessage } from "element-plus";
 
 export default {
   components: {
@@ -59,6 +60,7 @@ export default {
           break;
 
         default:
+          ElMessage.error("该文件类型暂不支持预览");
           break;
       }
     };
