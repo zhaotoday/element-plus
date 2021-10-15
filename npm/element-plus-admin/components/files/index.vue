@@ -5,10 +5,7 @@
       :key="file.id"
       @click="preview(file, index)"
     >
-      <a class="el-upload-list__item-name">
-        <i class="el-icon-document"></i>
-        {{ file.name }}
-      </a>
+      {{ file.name }}
     </li>
   </ul>
   <el-image-viewer
