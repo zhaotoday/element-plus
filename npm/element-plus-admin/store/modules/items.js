@@ -24,6 +24,8 @@ const actions = {
     if (state.data[resource] && state.data[resource][key]) {
       return state.data[resource][key];
     } else {
+      state.data[resource] = { [key]: {} };
+
       const { items } = await api.post({
         action: "findAllByIds",
         body: { ids },

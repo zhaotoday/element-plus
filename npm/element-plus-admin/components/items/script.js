@@ -1,4 +1,4 @@
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -19,19 +19,21 @@ export default {
     api: Object,
   },
   setup(props) {
-    const { dispatch } = useStore();
+    const { state, dispatch } = useStore();
 
-    const items = ref([]);
+    const items = computed(() =>
+      state.items.data[props.resource]
+        ? state.items.data[props.resource][props.ids.join(",")]
+        : {}
+    );
 
     watch(
       () => props.ids,
       async (newVal) => {
         if (newVal && newVal.length) {
-          const { resource, api } = props;
-
-          items.value = await dispatch("items/getItems", {
-            resource,
-            api,
+          await dispatch("items/getItems", {
+            resource: props.resource,
+            api: props.api,
             ids: newVal,
           });
         } else {
