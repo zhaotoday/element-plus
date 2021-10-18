@@ -17,13 +17,16 @@
       <i class="el-icon-close" @click.stop="$emit('delete', index)"></i>
     </li>
   </ul>
-  <el-image-viewer
-    v-if="cImageViewer.visible"
-    :url-list="ids.map((id) => getFileUrl({ id }))"
-    :initial-index="cImageViewer.index"
-    @close="cImageViewer.visible = false"
-  />
-  <c-office-view ref="officeView" />
+  <teleport to="body">
+    <el-image-viewer
+      v-if="cImageViewer.visible"
+      :url-list="ids.map((id) => getFileUrl({ id }))"
+      :initial-index="cImageViewer.index"
+      z-index="20000"
+      @close="cImageViewer.visible = false"
+    />
+    <c-office-view ref="officeView" />
+  </teleport>
 </template>
 
 <script src="./script.js"></script>
