@@ -1,4 +1,5 @@
 import { ref, watch } from "vue";
+import { useStore } from "vuex";
 
 export default {
   props: {
@@ -17,18 +18,21 @@ export default {
     api: Object,
   },
   setup(props) {
+    const { dispatch } = useStore();
+
     const items = ref([]);
 
     watch(
       () => props.ids,
       async (newVal) => {
         if (newVal && newVal.length) {
-          const res = await props.api.post({
-            action: "findAllByIds",
-            body: { ids: newVal },
-          });
+          const { resource, api } = props;
 
-          items.value = res.items;
+          items.value = await dispatch("items/getItems", {
+            resource,
+            api,
+            ids: newVal,
+          });
         } else {
           items.value = [];
         }
