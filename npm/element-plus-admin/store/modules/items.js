@@ -10,7 +10,10 @@ const types = keyMirror({
 
 const mutations = {
   [types.SetData](state, { resource, key, items }) {
-    state[resource][key] = items;
+    state.data[resource] = {
+      ...state.data[resource],
+      [key]: items,
+    };
   },
 };
 
@@ -18,8 +21,8 @@ const actions = {
   async getItems({ state, commit }, { resource, api, ids }) {
     const key = ids.join(",");
 
-    if (state[resource] && state[resource][key]) {
-      return state[resource][key];
+    if (state.data[resource] && state.data[resource][key]) {
+      return state.data[resource][key];
     } else {
       const { items } = await api.post({
         action: "findAllByIds",
