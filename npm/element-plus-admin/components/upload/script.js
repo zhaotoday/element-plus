@@ -40,7 +40,7 @@ export default {
       const { id } = res.data;
 
       if (props.multiple) {
-        const value = [...props.value, id];
+        const value = props.value ? [...props.value, id] : [id];
 
         context.emit("update:value", value);
         context.emit("change", value);
