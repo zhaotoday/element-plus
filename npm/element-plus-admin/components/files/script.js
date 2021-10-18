@@ -1,8 +1,8 @@
 import { reactive, ref, watch } from "vue";
-import { FilesApi } from "@/apis/admin/files";
 import { useHelpers } from "@/composables/use-helpers";
 import OfficeView from "../office-view/index.vue";
 import { ElMessage } from "element-plus";
+import { PublicFilesApi } from "../../apis/public/files";
 
 export default {
   components: {
@@ -38,12 +38,9 @@ export default {
       () => props.ids,
       async (newVal) => {
         if (newVal && newVal.length) {
-          const { items } = await new FilesApi().get({
-            query: {
-              where: {
-                id: { $in: newVal },
-              },
-            },
+          const { items } = await new PublicFilesApi().post({
+            action: "findAllByIds",
+            body: { ids: newVal },
           });
 
           files.value = items.map(({ id, name, ext }) => ({
