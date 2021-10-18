@@ -15,6 +15,7 @@ export default {
       type: String,
       default: "name",
     },
+    resource: String,
     api: Object,
   },
   setup(props) {
