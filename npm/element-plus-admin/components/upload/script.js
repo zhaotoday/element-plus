@@ -44,24 +44,22 @@ export default {
 
     watch(
       () => props.value,
-      (newVal, oldVal) => {
-        if (oldVal === undefined) {
-          if (newVal) {
-            if (props.multiple) {
-              uploadedFileIds.value = deepCopy(props.value);
-            } else {
-              uploadedFileId.value = props.value;
-            }
+      (newVal) => {
+        if (newVal) {
+          if (props.multiple) {
+            uploadedFileIds.value = deepCopy(props.value);
           } else {
-            if (props.multiple) {
-              uploadedFileIds.value = [];
-            } else {
-              uploadedFileId.value = undefined;
-            }
+            uploadedFileId.value = props.value;
+          }
+        } else {
+          if (props.multiple) {
+            uploadedFileIds.value = [];
+          } else {
+            uploadedFileId.value = undefined;
           }
         }
       },
-      { immediate: true }
+      { immediate: true, deep: true }
     );
 
     const onSuccess = (res) => {
