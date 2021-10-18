@@ -29,6 +29,8 @@ export default {
           });
 
           items.value = res.items;
+        } else {
+          items.value = [];
         }
       },
       { immediate: true, deep: true }

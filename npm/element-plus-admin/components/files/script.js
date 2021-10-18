@@ -49,6 +49,8 @@ export default {
             ext,
             url: getFileUrl({ id }),
           }));
+        } else {
+          files.value = [];
         }
       },
       { immediate: true, deep: true }

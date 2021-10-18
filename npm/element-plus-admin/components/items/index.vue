@@ -3,7 +3,7 @@
     <li
       v-for="(item, index) in items"
       :key="item.id"
-      @click="$emit({ item, index })"
+      @click="$emit('click', { item, index })"
     >
       {{ item[labelKey] }}
     </li>
