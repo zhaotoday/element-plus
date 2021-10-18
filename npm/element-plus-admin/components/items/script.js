@@ -10,6 +10,10 @@ export default {
       type: String,
       default: "",
     },
+    labelKey: {
+      type: String,
+      default: "name",
+    },
     api: Object,
   },
   setup(props) {
@@ -30,6 +34,8 @@ export default {
       { immediate: true, deep: true }
     );
 
-    return {};
+    return {
+      items,
+    };
   },
 };

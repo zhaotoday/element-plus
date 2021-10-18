@@ -5,7 +5,7 @@
       :key="item.id"
       @click="$emit({ item, index })"
     >
-      {{ item.name }}
+      {{ item[labelKey] }}
     </li>
   </ul>
 </template>
