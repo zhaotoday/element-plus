@@ -3,6 +3,10 @@ import { useStore } from "vuex";
 
 export default {
   props: {
+    placeholder: {
+      type: String,
+      default: "请选择",
+    },
     multiple: {
       type: Boolean,
       default: false,
@@ -12,6 +16,10 @@ export default {
       default: false,
     },
     clearable: {
+      type: Boolean,
+      default: false,
+    },
+    allowCreate: {
       type: Boolean,
       default: false,
     },

@@ -1,9 +1,11 @@
 <template>
   <el-select
     ref="select"
+    :placeholder="placeholder"
     :multiple="multiple"
     :filterable="filterable"
     :clearable="clearable"
+    :allow-create="allowCreate"
     :automatic-dropdown="automaticDropdown"
     :collapse-tags="collapseTags"
     :model-value="value"
