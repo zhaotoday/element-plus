@@ -26,7 +26,7 @@ export default {
     });
 
     onMounted(async () => {
-      list.value = await new props.api.get({});
+      list.value = await new props.api().get({});
     });
 
     const onChange = (index) => {
