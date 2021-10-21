@@ -7,6 +7,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    filterable: {
+      type: Boolean,
+      default: false,
+    },
     clearable: {
       type: Boolean,
       default: false,

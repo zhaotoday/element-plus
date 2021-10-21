@@ -1,6 +1,7 @@
 <template>
   <el-select
     :multiple="multiple"
+    :filterable="filterable"
     :clearable="clearable"
     :model-value="value"
     @change="onChange"
