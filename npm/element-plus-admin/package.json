@@ -1,6 +1,6 @@
 {
   "name": "element-plus-admin",
-  "version": "0.0.64",
+  "version": "0.0.65",
   "description": "element-plus toolkits",
   "main": "index.js",
   "scripts": {

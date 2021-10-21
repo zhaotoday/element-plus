@@ -3,7 +3,6 @@ import { useStore } from "vuex";
 
 export default {
   props: {
-    className: String,
     placeholder: {
       type: String,
       default: "请选择",

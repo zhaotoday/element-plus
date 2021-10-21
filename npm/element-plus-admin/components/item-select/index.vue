@@ -1,7 +1,6 @@
 <template>
   <el-select
     ref="select"
-    :class="className"
     :placeholder="placeholder"
     :multiple="multiple"
     :filterable="filterable"
