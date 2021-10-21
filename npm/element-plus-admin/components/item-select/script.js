@@ -15,6 +15,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    automaticDropdown: {
+      type: Boolean,
+      default: false,
+    },
+    collapseTags: {
+      type: Boolean,
+      default: false,
+    },
     value: {
       type: [String, Number],
     },
