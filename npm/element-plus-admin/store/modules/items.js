@@ -19,7 +19,7 @@ const mutations = {
 
 const actions = {
   async getItems({ state, commit }, { resource, Api, ids }) {
-    const key = ids.join(",");
+    const key = ids ? ids.join(",") : "__";
 
     if (state.data[resource] && state.data[resource][key]) {
       return state.data[resource][key];

@@ -1,4 +1,5 @@
-import { onMounted, ref } from "vue";
+import { computed, onMounted } from "vue";
+import { useStore } from "vuex";
 
 export default {
   props: {
@@ -17,16 +18,24 @@ export default {
       type: String,
       default: "name",
     },
+    resource: String,
     api: Object,
   },
   emits: ["update:value"],
   setup(props, context) {
-    const list = ref({
-      items: [],
-    });
+    const { state, dispatch } = useStore();
+
+    const items = computed(() =>
+      state.items.data[props.resource]
+        ? state.items.data[props.resource]["__"]
+        : {}
+    );
 
     onMounted(async () => {
-      list.value = await new props.api().get({});
+      await dispatch("items/getItems", {
+        resource: props.resource,
+        Api: props.api,
+      });
     });
 
     const onChange = (index) => {
@@ -34,7 +43,7 @@ export default {
     };
 
     return {
-      list,
+      items,
       onChange,
     };
   },

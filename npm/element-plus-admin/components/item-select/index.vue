@@ -6,7 +6,7 @@
     @change="onChange"
   >
     <el-option
-      v-for="item in list.items"
+      v-for="item in items"
       :key="item.id"
       :label="item[labelKey]"
       :value="item.id"
