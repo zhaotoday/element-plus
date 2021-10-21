@@ -5,6 +5,8 @@
     :clearable="clearable"
     :model-value="value"
     @change="onChange"
+    @focus="($event) => $emit('focus', $event)"
+    @blur="($event) => $emit('blur', $event)"
   >
     <el-option
       v-for="item in items"
