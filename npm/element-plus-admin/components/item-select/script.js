@@ -1,4 +1,4 @@
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -27,6 +27,8 @@ export default {
   },
   emits: ["update:value"],
   setup(props, context) {
+    const select = ref(null);
+
     const { state, dispatch } = useStore();
 
     const items = computed(() =>
@@ -42,12 +44,18 @@ export default {
       });
     });
 
+    const focus = () => {
+      select.value.focus();
+    };
+
     const onChange = (index) => {
       context.emit("update:value", index);
     };
 
     return {
+      select,
       items,
+      focus,
       onChange,
     };
   },

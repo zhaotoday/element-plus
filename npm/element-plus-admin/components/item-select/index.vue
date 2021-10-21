@@ -1,5 +1,6 @@
 <template>
   <el-select
+    ref="select"
     :multiple="multiple"
     :filterable="filterable"
     :clearable="clearable"
