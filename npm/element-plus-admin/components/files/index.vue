@@ -16,7 +16,7 @@
       z-index="20000"
       @close="cImageViewer.visible = false"
     />
-    <c-office-view ref="officeView" />
+    <c-office-viewer ref="officeViewer" />
   </teleport>
 </template>
 

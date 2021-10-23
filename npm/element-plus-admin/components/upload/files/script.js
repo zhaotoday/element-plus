@@ -1,12 +1,12 @@
 import { reactive, ref, watch } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
-import OfficeView from "../../office-view/index.vue";
+import OfficeViewer from "../../office-viewer/index.vue";
 import { ElMessage } from "element-plus";
 import { PublicFilesApi } from "../../../apis/public/files";
 
 export default {
   components: {
-    "c-office-view": OfficeView,
+    "c-office-viewer": OfficeViewer,
   },
   props: {
     ids: {
@@ -17,7 +17,7 @@ export default {
   setup(props) {
     const { getFileUrl } = useHelpers();
 
-    const officeView = ref(null);
+    const officeViewer = ref(null);
 
     const cImageViewer = reactive({
       visible: false,
@@ -70,11 +70,11 @@ export default {
     };
 
     const previewOffice = ({ id }) => {
-      officeView.value.show({ src: getFileUrl({ id }) });
+      officeViewer.value.show({ src: getFileUrl({ id }) });
     };
 
     return {
-      officeView,
+      officeViewer,
       cImageViewer,
       files,
       getFileUrl,

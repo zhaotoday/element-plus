@@ -2,7 +2,7 @@
 
 @import "~@/assets/styles/utils";
 
-@include c(office-view) {
+@include c(office-viewer) {
   .el-dialog__body {
     padding: 0 !important;
   }
