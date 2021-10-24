@@ -1,10 +1,10 @@
 <template>
   <template v-if="plain">
-    {{ items.map((item) => item[labelKey]).join(joinString) }}
+    {{ (items || []).map((item) => item[labelKey]).join(joinString) }}
   </template>
   <ul v-else :class="className">
     <li
-      v-for="(item, index) in items"
+      v-for="(item, index) in items || []"
       :key="item.id"
       @click="$emit('click', { item, index })"
     >
