@@ -1,5 +1,8 @@
 <template>
-  <ul :class="className">
+  <template v-if="plain">
+    {{ items.map((item) => item[labelKey]).join(joinString) }}
+  </template>
+  <ul v-else :class="className">
     <li
       v-for="(item, index) in items"
       :key="item.id"

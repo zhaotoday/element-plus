@@ -17,6 +17,14 @@ export default {
     },
     resource: String,
     api: Object,
+    plain: {
+      type: Boolean,
+      default: false,
+    },
+    joinString: {
+      type: String,
+      default: "、",
+    },
   },
   setup(props) {
     const { state, dispatch } = useStore();
