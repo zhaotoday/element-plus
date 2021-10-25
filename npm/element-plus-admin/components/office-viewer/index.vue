@@ -9,7 +9,7 @@
     <iframe
       v-else
       class="c-office-viewer__iframe"
-      :src="`https://view.officeapps.live.com/op/view.aspx?src=${cDialog.src}`"
+      :src="cDialog.serviceUrl + cDialog.src"
       frameborder="0"
     ></iframe>
   </el-dialog>
