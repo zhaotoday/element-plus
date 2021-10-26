@@ -77,11 +77,12 @@ export class Rest extends $Rest {
           resolve(data);
         })
         .catch(async ({ response: { status, data } }) => {
+          showLoading && this.hideLoading();
+
           if (status === 401) {
             window.location.href = "/#/logout";
           } else {
             showError && ElMessage.error(data.error || "服务器内部错误");
-            showLoading && this.hideLoading();
           }
 
           reject(data);
