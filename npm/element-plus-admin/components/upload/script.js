@@ -30,6 +30,7 @@ export default {
       type: String,
       default: "",
     },
+    headers: Object,
   },
   emits: ["update:value", "change"],
   setup(props, context) {
