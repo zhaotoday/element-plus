@@ -1,8 +1,6 @@
 @import "~@/assets/styles/utils/index";
 
 @include c(upload) {
-  display: inline-block;
-
   @include e(tip) {
     @include text--middle(20px);
   }
