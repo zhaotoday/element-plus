@@ -22,6 +22,15 @@ export default {
       type: String,
       default: "请选择文件",
     },
+    buttonSize: {
+      type: String,
+      default: "small",
+    },
+    buttonClass: String,
+    showUploaded: {
+      type: Boolean,
+      default: true,
+    },
     value: {
       type: [Number, Array],
       default: 0,

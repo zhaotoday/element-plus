@@ -8,10 +8,13 @@
     :show-file-list="false"
     :on-success="onSuccess"
   >
-    <el-button size="small" type="primary">{{ placeholder }}</el-button>
+    <el-button :class="buttonClass" :size="buttonSize" type="primary">
+      {{ placeholder }}
+    </el-button>
     <template #tip>
       <div v-if="tip" class="c-upload__tip fs12 t-info">{{ tip }}</div>
       <cc-files
+        v-show="showUploaded"
         :ids="multiple ? value : value ? [value] : []"
         @delete="onDelete"
       />
