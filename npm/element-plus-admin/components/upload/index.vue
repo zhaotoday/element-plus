@@ -7,6 +7,7 @@
     :multiple="multiple"
     :show-file-list="false"
     :on-success="onSuccess"
+    :on-error="onError"
   >
     <el-button :class="buttonClass" :size="buttonSize" type="primary">
       {{ placeholder }}

@@ -41,7 +41,7 @@ export default {
     },
     headers: Object,
   },
-  emits: ["update:value", "change"],
+  emits: ["update:value", "change", "success", "error"],
   setup(props, context) {
     const { deepCopy } = useHelpers();
     const { getRequestHeaders } = useAuth();
@@ -58,6 +58,10 @@ export default {
         context.emit("update:value", id);
         context.emit("change", id);
       }
+    };
+
+    const onError = (err, file, fileList) => {
+      context.emit("error", { err, file, fileList });
     };
 
     const onDelete = (index) => {
@@ -77,6 +81,7 @@ export default {
     return {
       getRequestHeaders,
       onSuccess,
+      onError,
       onDelete,
     };
   },
