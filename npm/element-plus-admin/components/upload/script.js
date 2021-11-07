@@ -48,6 +48,8 @@ export default {
     const { getRequestHeaders } = useAuth();
 
     const onSuccess = (res) => {
+      context.emit("success", res.data);
+
       const { id } = res.data;
 
       if (props.multiple) {
