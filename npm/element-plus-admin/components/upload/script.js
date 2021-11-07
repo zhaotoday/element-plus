@@ -40,6 +40,7 @@ export default {
       default: "",
     },
     headers: Object,
+    data: Object,
   },
   emits: ["update:value", "change", "success", "error"],
   setup(props, context) {

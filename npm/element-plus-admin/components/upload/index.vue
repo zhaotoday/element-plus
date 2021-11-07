@@ -4,6 +4,7 @@
     ref="upload"
     :action="action"
     :headers="headers || getRequestHeaders()"
+    :data="data"
     :multiple="multiple"
     :show-file-list="false"
     :on-success="onSuccess"
