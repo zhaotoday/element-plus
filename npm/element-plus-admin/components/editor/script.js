@@ -4,19 +4,27 @@ import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
 import { sleep } from "jt-helpers";
 
+const { ApiUrl } = useConsts();
+const { getRequestHeaders } = useAuth();
+
 export default {
   props: {
     value: {
       type: String,
       default: "",
     },
+    uploadHeaders: {
+      type: Object,
+      default: () => getRequestHeaders(),
+    },
+    uploadAction: {
+      type: String,
+      default: `${ApiUrl}/admin/files/actions/upload`,
+    },
   },
   emits: ["update:value", "change"],
   setup(props, context) {
     let editor = null;
-
-    const { ApiUrl } = useConsts();
-    const { getRequestHeaders } = useAuth();
 
     const editorToolbar = ref(null);
     const editorText = ref(null);
@@ -45,9 +53,9 @@ export default {
 
       editor.config.uploadImgMaxLength = 1;
 
-      editor.config.uploadImgServer = `${ApiUrl}/admin/files/actions/upload`;
+      editor.config.uploadImgServer = props.uploadAction;
 
-      editor.config.uploadImgHeaders = getRequestHeaders();
+      editor.config.uploadImgHeaders = props.uploadHeaders;
 
       editor.config.uploadFileName = "file";
 
