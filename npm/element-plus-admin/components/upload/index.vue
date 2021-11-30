@@ -5,13 +5,17 @@
     :action="action"
     :headers="headers || getRequestHeaders()"
     :data="data"
-    :multiple="multiple"
     :show-file-list="false"
     :before-upload="beforeUpload"
     :on-success="onSuccess"
     :on-error="onError"
   >
-    <el-button :class="buttonClass" :size="buttonSize" type="primary">
+    <el-button
+      :class="buttonClass"
+      :size="buttonSize"
+      type="primary"
+      :disabled="cUpload.progress !== 0 && cUpload.progress !== 100"
+    >
       {{ placeholder }}
     </el-button>
     <template #tip>
