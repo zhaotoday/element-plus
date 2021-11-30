@@ -84,19 +84,22 @@ export default {
 
         switch (props.uploadTo) {
           case "AliCloudOss":
-            await aliCloudOssClient.multipartUpload(
-              `${date}/${uuid}.${ext}`,
-              file,
-              {
-                progress(p) {
-                  cUpload.progress = +(p * 100).toFixed(0);
-                },
-                parallel: 4,
-                partSize: 1024 * 1024,
-                meta: { year: 2020, people: "test" },
-                mime: "text/plain",
-              }
-            );
+            {
+              await aliCloudOssClient.multipartUpload(
+                `${date}/${uuid}.${ext}`,
+                file,
+                {
+                  progress(p) {
+                    cUpload.progress = +(p * 100).toFixed(0);
+                  },
+                  parallel: 4,
+                  partSize: 1024 * 1024,
+                  meta: { year: 2020, people: "test" },
+                  mime: "text/plain",
+                }
+              );
+              cUpload.progress = 0;
+            }
             break;
 
           default:
