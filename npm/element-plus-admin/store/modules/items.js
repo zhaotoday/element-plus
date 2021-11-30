@@ -26,7 +26,7 @@ const actions = {
     } else {
       state.data[resource] = {
         ...state.data[resource],
-        [key]: {},
+        [key]: [],
       };
 
       const { items } = await new Api().post({
