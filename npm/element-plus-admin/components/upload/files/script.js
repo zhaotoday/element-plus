@@ -1,8 +1,9 @@
-import { reactive, ref, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
-import OfficeViewer from "../../office-viewer/index.vue";
+import OfficeViewer from "../../../components/office-viewer/index.vue";
 import { ElMessage } from "element-plus";
 import { PublicFilesApi } from "../../../apis/public/files";
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -15,6 +16,8 @@ export default {
     },
   },
   setup(props) {
+    const { state, dispatch } = useStore();
+
     const { getFileUrl } = useHelpers();
 
     const officeViewer = ref(null);
@@ -24,23 +27,30 @@ export default {
       index: -1,
     });
 
-    const files = ref([]);
+    const files = computed(() => {
+      console.log(state.items.data.files, "--");
+
+      return state.items.data.files
+        ? (state.items.data.files[props.ids.join(",")] || []).map(
+            ({ id, name, ext }) => ({
+              id,
+              name,
+              ext,
+              url: getFileUrl({ id }),
+            })
+          )
+        : [];
+    });
 
     watch(
       () => props.ids,
       async (newVal) => {
         if (newVal && newVal.length) {
-          const { items } = await new PublicFilesApi().post({
-            action: "findAllByIds",
-            body: { ids: newVal },
+          await dispatch("items/getItems", {
+            resource: "files",
+            Api: PublicFilesApi,
+            ids: newVal,
           });
-
-          files.value = items.map(({ id, name, ext }) => ({
-            id,
-            name,
-            ext,
-            url: getFileUrl({ id }),
-          }));
         } else {
           files.value = [];
         }

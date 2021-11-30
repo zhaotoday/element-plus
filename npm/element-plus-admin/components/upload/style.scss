@@ -4,4 +4,10 @@
   @include e(tip) {
     @include text--middle(20px);
   }
+
+  @include e(progress) {
+    .el-progress__text {
+      min-width: 20px !important;
+    }
+  }
 }
