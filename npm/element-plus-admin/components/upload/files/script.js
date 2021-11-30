@@ -1,6 +1,6 @@
 import { computed, reactive, ref, watch } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
-import OfficeViewer from "../../../components/office-viewer/index.vue";
+import OfficeViewer from "../../office-viewer/index.vue";
 import { ElMessage } from "element-plus";
 import { PublicFilesApi } from "../../../apis/public/files";
 import { useStore } from "vuex";
@@ -28,9 +28,7 @@ export default {
     });
 
     const files = computed(() => {
-      console.log(state.items.data.files, "--");
-
-      return state.items.data.files
+      return state.items.data.files && props.ids
         ? (state.items.data.files[props.ids.join(",")] || []).map(
             ({ id, name, ext }) => ({
               id,
