@@ -4,6 +4,7 @@ import OfficeViewer from "../../office-viewer/index.vue";
 import { ElMessage } from "element-plus";
 import { PublicFilesApi } from "../../../apis/public/files";
 import { useStore } from "vuex";
+import { useConsts } from "@/composables/use-consts";
 
 export default {
   components: {
@@ -30,14 +31,7 @@ export default {
 
     const files = computed(() => {
       return state.items.data.files && props.ids
-        ? (state.items.data.files[props.ids.join(",")] || []).map(
-            ({ id, name, ext }) => ({
-              id,
-              name,
-              ext,
-              url: getFileUrl({ id }),
-            })
-          )
+        ? state.items.data.files[props.ids.join(",")] || []
         : [];
     });
 
@@ -78,8 +72,10 @@ export default {
       cImageViewer.visible = true;
     };
 
-    const previewOffice = ({ id }) => {
-      officeViewer.value.show({ src: getFileUrl({ id }) });
+    const previewOffice = ({ dir, uuid, ext }) => {
+      const url = `${useConsts().StaticUrl}/${dir}/${uuid}.${ext}`;
+
+      officeViewer.value.show({ src: url });
     };
 
     return {
