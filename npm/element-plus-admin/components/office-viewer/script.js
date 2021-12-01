@@ -19,7 +19,9 @@ export default {
 
     const show = ({ serviceUrl, src }) => {
       cDialog.visible = true;
-      cDialog.serviceUrl = serviceUrl;
+
+      if (cDialog.serviceUrl) cDialog.serviceUrl = serviceUrl;
+
       cDialog.src = src;
     };
 
