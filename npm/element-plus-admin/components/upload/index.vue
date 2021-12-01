@@ -9,13 +9,9 @@
     :before-upload="beforeUpload"
     :on-success="onSuccess"
     :on-error="onError"
+    :disabled="cUpload.progress !== 0 && cUpload.progress !== 100"
   >
-    <el-button
-      :class="buttonClass"
-      :size="buttonSize"
-      type="primary"
-      :disabled="cUpload.progress !== 0 && cUpload.progress !== 100"
-    >
+    <el-button :class="buttonClass" :size="buttonSize" type="primary">
       {{ placeholder }}
     </el-button>
     <template #tip>
