@@ -1,10 +1,15 @@
 import { reactive, watch } from "vue";
 
 export default {
-  setup() {
+  props: {
+    serviceUrl: String,
+  },
+  setup(props) {
     const cDialog = reactive({
       visible: false,
-      serviceUrl: "https://view.officeapps.live.com/op/view.aspx?src=",
+      serviceUrl:
+        props.serviceUrl ||
+        "https://view.officeapps.live.com/op/view.aspx?src=",
       src: "",
     });
 

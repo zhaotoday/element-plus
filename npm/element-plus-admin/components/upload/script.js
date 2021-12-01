@@ -48,6 +48,7 @@ export default {
     },
     headers: Object,
     data: Object,
+    officeViewerServiceUrl: String,
   },
   emits: ["update:value", "change", "success", "error"],
   setup(props, context) {

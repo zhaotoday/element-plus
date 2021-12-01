@@ -14,6 +14,7 @@ export default {
       type: Array,
       default: () => [],
     },
+    officeViewerServiceUrl: String,
   },
   setup(props) {
     const { state, dispatch } = useStore();

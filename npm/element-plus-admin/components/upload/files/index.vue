@@ -25,7 +25,7 @@
       z-index="20000"
       @close="cImageViewer.visible = false"
     />
-    <c-office-viewer ref="officeViewer" />
+    <c-office-viewer ref="officeViewer" :service-url="officeViewerServiceUrl" />
   </teleport>
 </template>
 

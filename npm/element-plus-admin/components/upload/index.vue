@@ -24,6 +24,7 @@
       <cc-files
         v-show="showUploaded"
         :ids="multiple ? value : value ? [value] : []"
+        :office-viewer-service-url="officeViewerServiceUrl"
         @delete="onDelete"
       />
     </template>
