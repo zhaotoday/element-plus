@@ -13,6 +13,14 @@ export default {
       type: String,
       default: "",
     },
+    height: {
+      type: String,
+      default: "500px",
+    },
+    menus: {
+      type: Array,
+      default: () => null,
+    },
     uploadHeaders: {
       type: Object,
       default: () => getRequestHeaders(),
@@ -27,12 +35,12 @@ export default {
     let editor = null;
 
     const editorToolbar = ref(null);
-    const editorText = ref(null);
+    const editorInput = ref(null);
 
     onMounted(async () => {
-      editor = new WangEditor(editorToolbar.value, editorText.value);
+      editor = new WangEditor(editorToolbar.value, editorInput.value);
 
-      editor.config.menus = [
+      editor.config.menus = props.menus || [
         "head",
         "bold",
         "fontSize",
@@ -80,7 +88,7 @@ export default {
 
     return {
       editorToolbar,
-      editorText,
+      editorInput,
     };
   },
 };

@@ -6,8 +6,7 @@
     border-bottom: 0;
   }
 
-  @include e(text) {
+  @include e(input) {
     border: 1px solid #e8eaec;
-    height: 500px;
   }
 }
