@@ -17,9 +17,9 @@ export default {
       type: String,
       default: "500px",
     },
-    menus: {
-      type: Array,
-      default: () => null,
+    style: {
+      type: String,
+      default: "height: 500px",
     },
     uploadHeaders: {
       type: Object,

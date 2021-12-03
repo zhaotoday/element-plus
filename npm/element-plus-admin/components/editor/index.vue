@@ -1,7 +1,7 @@
 <template>
   <div class="c-editor">
     <div ref="editorToolbar" class="c-editor__toolbar"></div>
-    <div ref="editorInput" class="c-editor__input" :style="{ height }"></div>
+    <div ref="editorInput" class="c-editor__input" :style="style"></div>
   </div>
 </template>
 
