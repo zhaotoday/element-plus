@@ -3,6 +3,7 @@ import WangEditor from "wangeditor";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
 import { sleep } from "jt-helpers";
+import { aliCloudOss } from "../upload/utils/alicloud-oss";
 
 const { ApiUrl } = useConsts();
 const { getRequestHeaders } = useAuth();
@@ -28,6 +29,10 @@ export default {
     uploadAction: {
       type: String,
       default: `${ApiUrl}/admin/files/actions/upload`,
+    },
+    uploadTo: {
+      type: String,
+      default: "Server",
     },
   },
   emits: ["update:value", "change"],
@@ -59,19 +64,8 @@ export default {
 
       editor.config.zIndex = 0;
 
-      editor.config.uploadImgMaxLength = 1;
-
-      editor.config.uploadImgServer = props.uploadAction;
-
-      editor.config.uploadImgHeaders = props.uploadHeaders;
-
       editor.config.uploadFileName = "file";
 
-      editor.config.uploadImgHooks = {
-        customInsert: (insertImg, result) => {
-          insertImg(`${ApiUrl}/public/files/${result.data.id}`);
-        },
-      };
 
       editor.create();
 
