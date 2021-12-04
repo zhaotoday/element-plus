@@ -37,6 +37,10 @@ export default {
       type: String,
       default: "Server",
     },
+    aliCloudOssConfig: {
+      type: Object,
+      default: () => ({}),
+    },
     value: {
       type: [Number, Array],
       default: 0,
@@ -60,6 +64,7 @@ export default {
     });
 
     const aliCloudOss = useAliCloudOss({
+      ...props.aliCloudOssConfig,
       onProgress(progress) {
         cUpload.progress = progress;
       },

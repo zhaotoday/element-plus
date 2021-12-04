@@ -1,11 +1,13 @@
-import { onMounted } from "vue";
-import { aliCloudOss } from "../../upload/utils/alicloud-oss";
+import { useAliCloudOss } from "../../upload/composables/use-alicloud-oss";
 import { useConsts } from "@/composables/use-consts";
 
-export const useUploadImage = ({ props, editor }) => {
+export const useUploadImage = ({ region, bucket, props, editor }) => {
   const { ApiUrl } = useConsts();
 
-  let aliCloudOssClient = null;
+  const aliClousOss = useAliCloudOss({
+    region,
+    bucket,
+  });
 
   editor.config.uploadImgMaxLength = 1;
 

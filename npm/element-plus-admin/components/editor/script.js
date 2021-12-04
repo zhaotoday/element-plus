@@ -34,6 +34,10 @@ export default {
       type: String,
       default: "Server",
     },
+    aliCloudOssConfig: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   emits: ["update:value", "change"],
   setup(props, context) {
@@ -65,7 +69,6 @@ export default {
       editor.config.zIndex = 0;
 
       editor.config.uploadFileName = "file";
-
 
       editor.create();
 

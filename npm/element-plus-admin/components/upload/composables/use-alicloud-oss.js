@@ -1,8 +1,8 @@
 import { FilesApi } from "@/apis/admin/files";
 import { AliCloudStsApi } from "@/apis/admin/alicloud-sts";
-import * as OSS from "ali-oss";
+import * as Oss from "ali-oss";
 
-export const useAliCloudOss = ({ onProgress }) => {
+export const useAliCloudOss = ({ region, bucket, onProgress }) => {
   let client = null;
 
   const initialize = async () => {
@@ -12,9 +12,9 @@ export const useAliCloudOss = ({ onProgress }) => {
       action: "getToken",
     });
 
-    client = new OSS({
-      region: "oss-cn-hangzhou",
-      bucket: "fzznx-faie",
+    client = new Oss({
+      region,
+      bucket,
       accessKeyId: AccessKeyId,
       accessKeySecret: AccessKeySecret,
       stsToken: SecurityToken,
@@ -31,7 +31,7 @@ export const useAliCloudOss = ({ onProgress }) => {
 
     await client.multipartUpload(`${date}/${uuid}.${ext}`, file, {
       progress(p) {
-        onProgress(+(p * 100).toFixed(0));
+        onProgress && onProgress(+(p * 100).toFixed(0));
       },
       parallel: 4,
       partSize: 1024 * 1024,
@@ -39,7 +39,7 @@ export const useAliCloudOss = ({ onProgress }) => {
       mime: "text/plain",
     });
 
-    onProgress(0);
+    onProgress && onProgress(0);
 
     await new FilesApi().post({
       action: "update",
