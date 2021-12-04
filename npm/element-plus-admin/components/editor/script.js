@@ -3,7 +3,7 @@ import WangEditor from "wangeditor";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
 import { sleep } from "jt-helpers";
-import { aliCloudOss } from "../upload/utils/alicloud-oss";
+import { useUploadImage } from "./composables/use-upload-image";
 
 const { ApiUrl } = useConsts();
 const { getRequestHeaders } = useAuth();
@@ -70,6 +70,10 @@ export default {
 
       editor.config.uploadFileName = "file";
 
+      const uploadImage = useUploadImage({
+        ...props.aliCloudOssConfig,
+      });
+
       editor.create();
 
       editor.txt.html(props.value);
@@ -81,6 +85,8 @@ export default {
         context.emit("update:value", html);
         context.emit("change", html);
       };
+
+      await uploadImage.initializeClient();
     });
 
     return {

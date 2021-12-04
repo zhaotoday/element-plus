@@ -4,7 +4,7 @@ import { useConsts } from "@/composables/use-consts";
 export const useUploadImage = ({ region, bucket, props, editor }) => {
   const { ApiUrl } = useConsts();
 
-  const aliClousOss = useAliCloudOss({
+  const aliCloudOss = useAliCloudOss({
     region,
     bucket,
   });
@@ -23,7 +23,10 @@ export const useUploadImage = ({ region, bucket, props, editor }) => {
     };
   } else {
     editor.config.customUploadImg = function (resultFiles, insertImg) {
-      insertImg(imgUrl);
+      resultFiles.forEach(async (file) => {
+        const { id } = await aliCloudOss.upload(file);
+        insertImg(`${ApiUrl}/public/files/${id}`);
+      });
     };
   }
 
