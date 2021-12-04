@@ -41,6 +41,8 @@ export default {
   },
   emits: ["update:value", "change"],
   setup(props, context) {
+    const uploadImage = useUploadImage(props.aliCloudOssConfig);
+
     let editor = null;
 
     const editorToolbar = ref(null);
@@ -70,9 +72,7 @@ export default {
 
       editor.config.uploadFileName = "file";
 
-      const uploadImage = useUploadImage({
-        ...props.aliCloudOssConfig,
-      });
+      uploadImage.configEditor(editor);
 
       editor.create();
 
