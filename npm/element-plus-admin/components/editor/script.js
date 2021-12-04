@@ -13,9 +13,9 @@ export default {
       type: String,
       default: "",
     },
-    height: {
-      type: String,
-      default: "500px",
+    menus: {
+      type: Array,
+      default: () => null,
     },
     style: {
       type: String,
