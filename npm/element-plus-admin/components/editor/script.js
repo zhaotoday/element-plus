@@ -39,7 +39,7 @@ export default {
       default: () => ({}),
     },
   },
-  emits: ["update:value", "change"],
+  emits: ["update:value", "change", "focus", "blur"],
   setup(props, context) {
     const uploadImage = useUploadImage(props.aliCloudOssConfig);
 
@@ -86,9 +86,13 @@ export default {
         context.emit("change", html);
       };
 
-      editor.config.onblur = () => {};
+      editor.config.onblur = (newHtml) => {
+        context.emit("blur", newHtml);
+      };
 
-      editor.config.onfocus = () => {};
+      editor.config.onfocus = (newHtml) => {
+        context.emit("focus", newHtml);
+      };
     });
 
     return {
