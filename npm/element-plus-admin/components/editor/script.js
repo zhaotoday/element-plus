@@ -72,7 +72,7 @@ export default {
 
       editor.config.uploadFileName = "file";
 
-      uploadImage.configEditor(editor, props);
+      await uploadImage.configEditor(editor, props);
 
       editor.create();
 
