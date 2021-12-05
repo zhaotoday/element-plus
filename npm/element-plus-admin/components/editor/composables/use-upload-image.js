@@ -12,21 +12,17 @@ export const useUploadImage = ({ region, bucket }) => {
   const configEditor = async (editor, props) => {
     editor.config.uploadImgMaxLength = 1;
 
+    editor.config.uploadImgServer = props.uploadAction;
+
+    editor.config.uploadImgHeaders = props.uploadHeaders;
+
     if (props.uploadTo === "Server") {
-      editor.config.uploadImgServer = props.uploadAction;
-
-      editor.config.uploadImgHeaders = props.uploadHeaders;
-
       editor.config.uploadImgHooks = {
         customInsert: (insertImg, result) => {
           insertImg(`${ApiUrl}/public/files/${result.data.id}`);
         },
       };
     } else {
-      editor.config.uploadImgServer = props.uploadAction;
-
-      editor.config.uploadImgHeaders = props.uploadHeaders;
-
       await aliCloudOss.initialize();
 
       editor.config.customUploadImg = (resultFiles, insertImg) => {
