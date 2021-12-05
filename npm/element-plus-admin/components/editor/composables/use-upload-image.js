@@ -23,6 +23,10 @@ export const useUploadImage = ({ region, bucket }) => {
         },
       };
     } else {
+      editor.config.uploadImgServer = props.uploadAction;
+
+      editor.config.uploadImgHeaders = props.uploadHeaders;
+
       await aliCloudOss.initialize();
 
       editor.config.customUploadImg = (resultFiles, insertImg) => {
