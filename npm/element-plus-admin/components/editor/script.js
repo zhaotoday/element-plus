@@ -86,7 +86,9 @@ export default {
         context.emit("change", html);
       };
 
-      await uploadImage.initializeClient();
+      editor.config.onblur = () => {};
+
+      editor.config.onfocus = () => {};
     });
 
     return {
