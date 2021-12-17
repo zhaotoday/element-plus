@@ -27,6 +27,7 @@ export const useAliCloudOss = ({ region, bucket, onProgress }) => {
 
     const { id, date, uuid } = await new FilesApi().post({
       action: "create",
+      body: { dir: fileDir },
     });
 
     await client.multipartUpload(`${date}/${uuid}.${ext}`, file, {

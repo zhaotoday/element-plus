@@ -103,7 +103,7 @@ export default {
       } else {
         switch (props.uploadTo) {
           case "AliCloudOss":
-            update((await aliCloudOss.upload(file)).id);
+            update((await aliCloudOss.upload(file, props.fileDir)).id);
             break;
 
           default:
