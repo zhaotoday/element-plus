@@ -37,6 +37,10 @@ export default {
       type: String,
       default: "Server",
     },
+    fileDir: {
+      type: String,
+      default: "",
+    },
     aliCloudOssConfig: {
       type: Object,
       default: () => ({}),

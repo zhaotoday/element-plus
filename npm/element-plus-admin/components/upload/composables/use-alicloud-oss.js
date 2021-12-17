@@ -21,7 +21,7 @@ export const useAliCloudOss = ({ region, bucket, onProgress }) => {
     });
   };
 
-  const upload = async (file) => {
+  const upload = async (file, fileDir) => {
     const { name, type, size } = file;
     const ext = name.split(".").pop();
 
