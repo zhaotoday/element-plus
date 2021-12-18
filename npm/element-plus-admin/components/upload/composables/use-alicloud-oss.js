@@ -30,15 +30,19 @@ export const useAliCloudOss = ({ region, bucket, onProgress }) => {
       body: { dir: fileDir },
     });
 
-    await client.multipartUpload(`${date}/${uuid}.${ext}`, file, {
-      progress(p) {
-        onProgress && onProgress(+(p * 100).toFixed(0));
-      },
-      parallel: 4,
-      partSize: 1024 * 1024,
-      meta: { year: 2020, people: "test" },
-      mime: "text/plain",
-    });
+    await client.multipartUpload(
+      `${fileDir ? fileDir + "/" : ""}${date}/${uuid}.${ext}`,
+      file,
+      {
+        progress(p) {
+          onProgress && onProgress(+(p * 100).toFixed(0));
+        },
+        parallel: 4,
+        partSize: 1024 * 1024,
+        meta: { year: 2020, people: "test" },
+        mime: "text/plain",
+      }
+    );
 
     onProgress && onProgress(0);
 
