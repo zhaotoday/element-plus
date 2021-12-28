@@ -51,7 +51,7 @@ export default {
     watch(
       () => props.value,
       (newVal, oldVal) => {
-        if (newVal !== oldVal) editor.txt.html(newVal);
+        if (newVal === "" && oldVal) editor.txt.html("");
       }
     );
 
