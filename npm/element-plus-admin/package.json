@@ -21,12 +21,12 @@
     "wangeditor": "^4.7.11"
   },
   "devDependencies": {
-    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.6.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^7.18.0",
-    "prettier": "^2.4.1"
+    "eslint-plugin-vue": "^8.2.0",
+    "prettier": "^2.5.1"
   },
   "eslintConfig": {
     "root": true,
