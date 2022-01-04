@@ -3,11 +3,16 @@
 </template>
 
 <script>
-const apis = {};
+import request from "@/utils/request";
+import { onMounted } from "vue";
 
 export default {
   setup() {
-    console.log(apis);
+    // action: "http://127.0.0.1:3101/public/dicts/actions/getVersion",
+
+    onMounted(async () => {
+      console.log(await request.post("/public/dicts/actions/getVersion"));
+    });
   },
 };
 </script>

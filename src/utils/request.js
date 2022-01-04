@@ -1,13 +1,15 @@
 import axios from "axios";
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: process.env.VUE_APP_API_URL,
   timeout: 5000,
 });
 
 service.interceptors.request.use(
   (config) => {
-    config.headers["X-Token"] = {};
+    // config.headers["X-Token"] = {};
+
+    console.log(config, "--");
     return config;
   },
   (error) => Promise.reject(error)
