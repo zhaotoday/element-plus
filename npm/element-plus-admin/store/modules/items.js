@@ -18,7 +18,7 @@ const mutations = {
 };
 
 const actions = {
-  async getItems({ state, commit }, { resource, Api, ids }) {
+  async getItems({ state, commit }, { resource, api, ids }) {
     const key = ids ? ids.join(",") : "__";
 
     if (state.data[resource] && state.data[resource][key]) {
@@ -29,7 +29,7 @@ const actions = {
         [key]: [],
       };
 
-      const { items } = await new Api().post({
+      const { items } = await api.post({
         action: "findAllByIds",
         body: { ids },
       });
