@@ -3,6 +3,8 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { ElMessage } from "element-plus";
 
+NProgress.configure({ showSpinner: false });
+
 const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
   const request = axios.create({
     baseURL: baseUrl || process.env.VUE_APP_API_URL,
@@ -19,18 +21,22 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
         config.headers = headers;
       }
 
-      if (params.where) {
+      if (params && params.where) {
         config.params.where = formatQuery(params.where);
       }
 
       ["include", "order", "attributes"].forEach((key) => {
-        if (params[key]) {
+        if (params && params[key]) {
           config.params[key] = JSON.stringify(params[key]);
         }
       });
 
       if (method === "get") {
-        config.params._ = new Date().getTime();
+        if (params) {
+          config.params._ = new Date().getTime();
+        } else {
+          config.params = { _: new Date().getTime() };
+        }
       }
 
       return config;
@@ -39,7 +45,16 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
   );
 
   request.interceptors.response.use(
-    (response) => response.data,
+    (response) => {
+      const {
+        config,
+        data: { data },
+      } = response;
+
+      config.showLoading && NProgress.done();
+
+      return data;
+    },
     (error) => {
       const {
         response: { config, status, data },
