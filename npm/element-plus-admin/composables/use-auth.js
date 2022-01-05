@@ -8,7 +8,7 @@ export const useAuth = () => {
 
   const menus = computed(() => state.auth.menus);
 
-  const getRequestHeaders = () => {
+  const getHeaders = () => {
     return { Authorization: `Bearer ${user.value.token}` };
   };
 
@@ -21,7 +21,7 @@ export const useAuth = () => {
   return {
     user,
     menus,
-    getRequestHeaders,
+    getHeaders,
     loggedIn,
     login,
     logout,

@@ -6,7 +6,7 @@ import { sleep } from "jt-helpers";
 import { useUploadImage } from "./composables/use-upload-image";
 
 const { ApiUrl } = useConsts();
-const { getRequestHeaders } = useAuth();
+const { getHeaders } = useAuth();
 
 export default {
   props: {
@@ -24,7 +24,7 @@ export default {
     },
     uploadHeaders: {
       type: Object,
-      default: () => getRequestHeaders(),
+      default: () => getHeaders(),
     },
     uploadAction: {
       type: String,

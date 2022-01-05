@@ -61,7 +61,7 @@ export default {
   setup(props, context) {
     const { deepCopy } = useHelpers();
 
-    const { getRequestHeaders } = useAuth();
+    const { getHeaders } = useAuth();
 
     const cUpload = reactive({
       progress: 0,
@@ -139,7 +139,7 @@ export default {
 
     return {
       cUpload,
-      getRequestHeaders,
+      getHeaders,
       beforeUpload,
       onSuccess,
       onError,
