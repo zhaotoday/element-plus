@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { enumsApi } from "element-plus-admin/apis/public/enums";
+import { publicEnumsApi } from "element-plus-admin/apis/public/enums";
 import { onMounted } from "vue";
 
 export default {
@@ -11,7 +11,7 @@ export default {
     onMounted(async () => {
       console.log(
         222,
-        await enumsApi.post({
+        await publicEnumsApi.post({
           action: "getVersion",
           query: { cc: 33 },
           body: {
