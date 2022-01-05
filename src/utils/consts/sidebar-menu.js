@@ -1,11 +1,11 @@
 export const SidebarMenu = [
   {
-    icon: "user",
-    title: "参赛人员管理",
+    icon: "xxx",
+    title: "xxx",
     children: [
       {
-        title: "参赛人员列表",
-        path: "/wx-users/list",
+        title: "xxx",
+        path: "/xxx/list",
       },
     ],
   },
