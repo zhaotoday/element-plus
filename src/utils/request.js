@@ -84,7 +84,7 @@ const formatQuery = (obj) => {
   return JSON.stringify(ret);
 };
 
-export const createApi = ({ baseUrl, url, requiresAuth }) => {
+export const createApi = ({ baseUrl, url, requiresAuth = true }) => {
   const headers = requiresAuth ? useAuth().getRequestHeaders() : null;
   const request = createRequest({ baseUrl, headers });
 
