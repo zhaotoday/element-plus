@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useAuth } from "element-plus-admin/composables/use-auth";
+import { useAuth } from "../composables/use-auth";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { ElMessage } from "element-plus";
