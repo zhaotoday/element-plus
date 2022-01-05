@@ -12,7 +12,11 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
 
   request.interceptors.request.use(
     (config) => {
-      const { params } = config;
+      const { method, params, showLoading } = config;
+
+      console.log(config, "----");
+
+      showLoading && NProgress.start();
 
       if (headers) {
         config.headers = headers;
@@ -24,11 +28,11 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
 
       ["include", "order", "attributes"].forEach((key) => {
         if (params[key]) {
-          config.params[key] = JSON.stringify(config.params[key]);
+          config.params[key] = JSON.stringify(params[key]);
         }
       });
 
-      if (config.method === "get") {
+      if (method === "get") {
         config.params._ = new Date().getTime();
       }
 
