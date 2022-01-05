@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { dictsApi } from "@/apis/public/dicts";
+import {enumsApi } from "element-plus-admin/apis/public/enums";
 import { onMounted } from "vue";
 
 export default {
@@ -11,7 +11,7 @@ export default {
     onMounted(async () => {
       console.log(
         222,
-        await dictsApi.post({
+        await enumsApi.post({
           action: "getVersion",
           query: { cc: 33 },
           body: {
