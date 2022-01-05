@@ -13,13 +13,13 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
 
   request.interceptors.request.use(
     (config) => {
+      const { params } = config;
+
       if (headers) {
         config.headers = headers;
       }
 
       console.log(config.params, "---");
-
-      const { params } = config;
 
       if (params.where) {
         config.params.where = formatQuery(params.where);
