@@ -11,13 +11,11 @@ export default {
     onMounted(async () => {
       console.log(
         await dictsApi.post({
-          config: {
-            abc: 323,
-          },
-          data: {
+          action: "getVersion",
+          query: { cc: 33 },
+          body: {
             dd: 33,
           },
-          action: "getVersion",
         })
       );
     });

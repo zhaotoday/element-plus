@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useAuth } from "element-plus-admin/composables/use-auth";
 
 const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
   const request = axios.create({
@@ -39,20 +40,20 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
     }
   );
 
-  return service;
+  return request;
 };
 
-export const createApi = ({ baseUrl, requiresAuth }) => {
-const headers = requiresAuth? {'Auth':}
-  const request = createRequest({ baseUrl });
+export const createApi = ({ baseUrl, url, requiresAuth }) => {
+  const headers = requiresAuth ? useAuth().getRequestHeaders() : null;
+  const request = createRequest({ baseUrl, headers });
 
   return {
-    post({ path, action }) {
-      return request.post(action ? `${path}/actions/${action}` : path, {
-        baseUrl,
-        requiresAuth,
-        ...restOptions,
-      });
+    post({ extraUrl = "", action, body, query }) {
+      return request.post(
+        action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
+        body,
+        { params: query }
+      );
     },
   };
 };
