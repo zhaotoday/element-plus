@@ -17,6 +17,24 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
         config.headers = headers;
       }
 
+      console.log(config.params, "---");
+
+      const { params } = config;
+
+      if (params.where) {
+        config.params.where = formatQuery(params.where);
+      }
+
+      ["include", "order", "attributes"].forEach((key) => {
+        if (params[key]) {
+          config.params[key] = JSON.stringify(config.params[key]);
+        }
+      });
+
+      if (config.method === "GET") {
+        config.params._ = new Date().getTime();
+      }
+
       return config;
     },
     (error) => Promise.reject(error)
@@ -68,7 +86,9 @@ const formatQuery = (obj) => {
   return JSON.stringify(ret);
 };
 
-const dealWithRequest = ({ request, showLoading, showError }) => {
+const handleRequest = ({ request, showLoading, showError }) => {
+  console.log(formatQuery, showLoading, showError, "--");
+
   return request
     .then(({ data }) => data)
     .catch((e) => {
@@ -91,7 +111,7 @@ export const createApi = ({ baseUrl, url, requiresAuth }) => {
       showLoading = true,
       showError = true,
     }) => {
-      dealWithRequest({
+      handleRequest({
         request: request.get(
           action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
           { params: query }
@@ -109,7 +129,7 @@ export const createApi = ({ baseUrl, url, requiresAuth }) => {
       showLoading,
       showError,
     }) => {
-      return dealWithRequest({
+      return handleRequest({
         request: request.post(
           action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
           body,

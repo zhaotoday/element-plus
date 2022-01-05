@@ -11,7 +11,7 @@ export default {
     onMounted(async () => {
       console.log(
         222,
-        await dictsApi.post({
+        await dictsApi.get({
           action: "getVersion",
           query: { cc: 33 },
           body: {
