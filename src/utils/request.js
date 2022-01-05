@@ -4,8 +4,6 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { ElMessage } from "element-plus";
 
-NProgress.configure({ showSpinner: false });
-
 const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
   const request = axios.create({
     baseURL: baseUrl || process.env.VUE_APP_API_URL,
