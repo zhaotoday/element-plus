@@ -5,7 +5,7 @@ import { ElMessage } from "element-plus";
 
 NProgress.configure({ showSpinner: false });
 
-const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
+const createRequest = ({ baseUrl, timeout = 5000, headers, query = {} }) => {
   const request = axios.create({
     baseURL: baseUrl || process.env.VUE_APP_API_URL,
     timeout,
@@ -21,8 +21,15 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
         config.headers = headers;
       }
 
-      if (params && params.where) {
-        config.params.where = formatQuery(params.where);
+      if (params) {
+        if (params.where) {
+          config.params.where = formatQuery({
+            ...params.where,
+            ...(query.where || {}),
+          });
+        } else {
+          config.params.where = formatQuery(query.where || {});
+        }
       }
 
       ["include", "order", "attributes"].forEach((key) => {
