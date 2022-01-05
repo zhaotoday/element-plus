@@ -14,8 +14,6 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
     (config) => {
       const { method, params, showLoading } = config;
 
-      console.log(config, "----");
-
       showLoading && NProgress.start();
 
       if (headers) {
@@ -93,17 +91,21 @@ export const createApi = ({ baseUrl, url, requiresAuth }) => {
   return {
     get: ({ query, showLoading = true, showError = true }) =>
       request.get(url, { params: query, showLoading, showError }),
+
     post: ({ action, body, query, showLoading = true, showError = true }) =>
       request.post(action ? `${url}/actions/${action}` : url, body, {
         params: query,
         showLoading,
         showError,
       }),
+
     put: ({ id, body, query, showLoading = true, showError = true }) =>
       request.post(`${url}/${id}`, body, {
         params: query,
         showLoading,
         showError,
       }),
+
+    delete: ({ id }) => request.delete(`${url}/${id}`),
   };
 };
