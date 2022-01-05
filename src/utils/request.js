@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useAuth } from "element-plus-admin/composables/use-auth";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+
+NProgress.configure({ showSpinner: false });
 
 const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
   const request = axios.create({
@@ -12,8 +16,6 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
       if (headers) {
         config.headers = headers;
       }
-
-      console.log(config, "--");
 
       return config;
     },
@@ -43,21 +45,79 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
   return request;
 };
 
+const formatQuery = (obj) => {
+  const ret = {};
+
+  Object.keys(obj).forEach((attribute) => {
+    ret[attribute] = {};
+
+    Object.keys(obj[attribute]).forEach((operator) => {
+      if (
+        obj[attribute][operator] === undefined ||
+        obj[attribute][operator] === ""
+      ) {
+        delete ret[attribute];
+      } else if (operator === "$like") {
+        ret[attribute][operator] = `%${obj[attribute][operator]}%`;
+      } else {
+        ret[attribute] = obj[attribute];
+      }
+    });
+  });
+
+  return JSON.stringify(ret);
+};
+
+const dealWithRequest = ({ request, showLoading, showError }) => {
+  return request
+    .then(({ data }) => data)
+    .catch((e) => {
+      console.log(e);
+    })
+    .finally(() => {
+      console.log("finished");
+    });
+};
+
 export const createApi = ({ baseUrl, url, requiresAuth }) => {
   const headers = requiresAuth ? useAuth().getRequestHeaders() : null;
   const request = createRequest({ baseUrl, headers });
 
   return {
-    get: ({ extraUrl = "", action, query }) =>
-      request.get(
-        action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
-        { params: query }
-      ),
-    post: ({ extraUrl = "", action, body, query }) =>
-      request.post(
-        action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
-        body,
-        { params: query }
-      ),
+    get: async ({
+      extraUrl = "",
+      action,
+      query,
+      showLoading = true,
+      showError = true,
+    }) => {
+      dealWithRequest({
+        request: request.get(
+          action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
+          { params: query }
+        ),
+        showLoading,
+        showError,
+      });
+    },
+
+    post: async ({
+      extraUrl = "",
+      action,
+      body,
+      query,
+      showLoading,
+      showError,
+    }) => {
+      return dealWithRequest({
+        request: request.post(
+          action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
+          body,
+          { params: query }
+        ),
+        showLoading,
+        showError,
+      });
+    },
   };
 };
