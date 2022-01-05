@@ -11,8 +11,8 @@ export default {
     onMounted(async () => {
       console.log(
         222,
-        await publicEnumsApi.post({
-          action: "getVersion",
+        await publicEnumsApi.delete({
+          id: 2,
           query: { cc: 33 },
           body: {
             dd: 33,
