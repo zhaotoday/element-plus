@@ -8,7 +8,7 @@ export const useAliCloudOss = ({ region, bucket, onProgress }) => {
   const initialize = async () => {
     const {
       Credentials: { AccessKeyId, AccessKeySecret, SecurityToken },
-    } = await new AliCloudStsApi().post({
+    } = await aliCloudStsApi.post({
       action: "getToken",
     });
 
@@ -25,7 +25,7 @@ export const useAliCloudOss = ({ region, bucket, onProgress }) => {
     const { name, type, size } = file;
     const ext = name.split(".").pop();
 
-    const { id, date, uuid } = await new FilesApi().post({
+    const { id, date, uuid } = await filesApi.post({
       action: "create",
       body: { dir: fileDir },
     });
@@ -46,7 +46,7 @@ export const useAliCloudOss = ({ region, bucket, onProgress }) => {
 
     onProgress && onProgress(0);
 
-    await new FilesApi().post({
+    await filesApi.post({
       action: "update",
       body: { date, uuid, name, type, ext, size },
     });

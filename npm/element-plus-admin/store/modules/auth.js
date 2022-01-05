@@ -26,9 +26,7 @@ const mutations = {
 
 const actions = {
   async login({ commit }, data) {
-    const res = await new PublicManagersApi()
-      .addPath("actions/login")
-      .post({ body: data });
+    const res = await publicManagersApi.post({ action: "login", body: data });
 
     const {
       manager: { id, username },

@@ -38,7 +38,7 @@ export default {
       () => props.ids,
       async (newVal) => {
         if (newVal && newVal.length) {
-          const { items } = await new PublicFilesApi().post({
+          const { items } = await publicFilesApi.post({
             action: "findAllByIds",
             body: { ids: newVal },
           });

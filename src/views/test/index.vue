@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {enumsApi } from "element-plus-admin/apis/public/enums";
+import { enumsApi } from "element-plus-admin/apis/public/enums";
 import { onMounted } from "vue";
 
 export default {
