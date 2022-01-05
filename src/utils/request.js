@@ -20,8 +20,6 @@ const createRequest = ({ baseUrl, timeout = 5000, headers }) => {
         config.headers = headers;
       }
 
-      console.log(config, "---");
-
       if (params.where) {
         config.params.where = formatQuery(params.where);
       }
@@ -91,29 +89,19 @@ export const createApi = ({ baseUrl, url, requiresAuth }) => {
   const request = createRequest({ baseUrl, headers });
 
   return {
-    get: async ({
-      extraUrl = "",
-      action,
-      query,
-      showLoading = true,
-      showError = true,
-    }) =>
-      request.get(
-        action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
-        { params: query, showLoading, showError }
-      ),
-    post: async ({
-      extraUrl = "",
-      action,
-      body,
-      query,
-      showLoading,
-      showError,
-    }) =>
-      request.post(
-        action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
-        body,
-        { params: query, showLoading, showError }
-      ),
+    get: ({ query, showLoading = true, showError = true }) =>
+      request.get(url, { params: query, showLoading, showError }),
+    post: ({ action, body, query, showLoading = true, showError = true }) =>
+      request.post(action ? `${url}/actions/${action}` : url, body, {
+        params: query,
+        showLoading,
+        showError,
+      }),
+    put: ({ id, body, query, showLoading = true, showError = true }) =>
+      request.post(`${url}/${id}`, body, {
+        params: query,
+        showLoading,
+        showError,
+      }),
   };
 };
