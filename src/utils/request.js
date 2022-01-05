@@ -10,6 +10,13 @@ service.interceptors.request.use(
     // config.headers["X-Token"] = {};
 
     console.log(config, "--");
+
+    const { data } = config;
+
+    if (data.baseUrl) {
+      config.baseURL = data.baseUrl;
+    }
+
     return config;
   },
   (error) => Promise.reject(error)

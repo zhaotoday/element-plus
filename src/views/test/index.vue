@@ -11,7 +11,12 @@ export default {
     // action: "http://127.0.0.1:3101/public/dicts/actions/getVersion",
 
     onMounted(async () => {
-      console.log(await request.post("/public/dicts/actions/getVersion"));
+      console.log(
+        await request.post({
+          baseUrl: "http://127.0.0.1:8080",
+          url: "/public/dicts/actions/getVersion",
+        })
+      );
     });
   },
 };
