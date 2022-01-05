@@ -100,12 +100,17 @@ export const createApi = ({ baseUrl, url, requiresAuth = true }) => {
       }),
 
     put: ({ id, body, query, showLoading = true, showError = true }) =>
-      request.post(`${url}/${id}`, body, {
+      request.put(`${url}/${id}`, body, {
         params: query,
         showLoading,
         showError,
       }),
 
-    delete: ({ id }) => request.delete(`${url}/${id}`),
+    delete: ({ id, query, showLoading = true, showError = true }) =>
+      request.delete(`${url}/${id}`, {
+        params: query,
+        showLoading,
+        showError,
+      }),
   };
 };
