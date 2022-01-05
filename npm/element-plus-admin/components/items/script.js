@@ -41,7 +41,7 @@ export default {
         if (newVal && newVal.length) {
           await dispatch("items/getItems", {
             resource: props.resource,
-            Api: props.api,
+            api: props.api,
             ids: newVal,
           });
         } else {

@@ -56,7 +56,7 @@ export default {
     onMounted(async () => {
       await dispatch("items/getItems", {
         resource: props.resource,
-        Api: props.api,
+        api: props.api,
       });
     });
 

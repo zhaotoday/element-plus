@@ -41,7 +41,7 @@ export default {
         if (newVal && newVal.length) {
           await dispatch("items/getItems", {
             resource: "files",
-            Api: PublicFilesApi,
+            api: publicFilesApi,
             ids: newVal,
           });
         } else {
