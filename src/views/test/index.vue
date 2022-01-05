@@ -10,7 +10,7 @@ export default {
   setup() {
     onMounted(async () => {
       console.log(
-        await dictsApi.post({
+        await dictsApi.get({
           action: "getVersion",
           query: { cc: 33 },
           body: {

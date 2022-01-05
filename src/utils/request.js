@@ -48,12 +48,16 @@ export const createApi = ({ baseUrl, url, requiresAuth }) => {
   const request = createRequest({ baseUrl, headers });
 
   return {
-    post({ extraUrl = "", action, body, query }) {
-      return request.post(
+    get: ({ extraUrl = "", action, query }) =>
+      request.get(
+        action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
+        { params: query }
+      ),
+    post: ({ extraUrl = "", action, body, query }) =>
+      request.post(
         action ? `${url}/actions/${action}${extraUrl}` : url + extraUrl,
         body,
         { params: query }
-      );
-    },
+      ),
   };
 };
