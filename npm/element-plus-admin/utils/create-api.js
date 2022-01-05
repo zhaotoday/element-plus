@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useAuth } from "../composables/use-auth";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { ElMessage } from "element-plus";
@@ -84,8 +83,7 @@ const formatQuery = (obj) => {
   return JSON.stringify(ret);
 };
 
-export const createApi = ({ baseUrl, url, requiresAuth = true }) => {
-  const headers = requiresAuth ? useAuth().getRequestHeaders() : null;
+export const createApi = ({ baseUrl, headers, url }) => {
   const request = createRequest({ baseUrl, headers });
 
   return {
