@@ -1,5 +1,5 @@
 import helpers from "jt-helpers";
-import { PublicManagersApi } from "../../apis/public/managers";
+import { publicManagersApi } from "../../apis/public/managers";
 
 const state = {
   user: {

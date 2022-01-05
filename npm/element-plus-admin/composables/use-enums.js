@@ -1,6 +1,6 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
-import { PublicEnumsApi } from "../apis/public/enums";
+import { publicEnumsApi } from "../apis/public/enums";
 
 export const useEnums = () => {
   const { dispatch, state } = useStore();

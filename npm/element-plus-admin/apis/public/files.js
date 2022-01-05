@@ -1,6 +1,6 @@
 import { createApi } from "../../utils/create-api";
 
-export const filesApi = createApi({
+export const publicFilesApi = createApi({
   requiresAuth: false,
   url: "/public/files",
 });

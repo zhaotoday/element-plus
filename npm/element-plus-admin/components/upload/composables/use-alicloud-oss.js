@@ -1,5 +1,5 @@
-import { FilesApi } from "@/apis/admin/files";
-import { AliCloudStsApi } from "@/apis/admin/alicloud-sts";
+import { filesApi } from "@/apis/admin/files";
+import { aliCloudStsApi } from "@/apis/admin/alicloud-sts";
 import * as Oss from "ali-oss";
 
 export const useAliCloudOss = ({ region, bucket, onProgress }) => {

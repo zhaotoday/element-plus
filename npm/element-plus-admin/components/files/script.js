@@ -2,7 +2,7 @@ import { reactive, ref, watch } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
 import OfficeViewer from "../office-viewer/index.vue";
 import { ElMessage } from "element-plus";
-import { PublicFilesApi } from "../../apis/public/files";
+import { publicFilesApi } from "../../apis/public/files";
 
 export default {
   components: {

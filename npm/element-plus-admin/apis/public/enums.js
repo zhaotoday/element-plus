@@ -1,6 +1,6 @@
 import { createApi } from "../../utils/create-api";
 
-export const enumsApi = createApi({
+export const publicEnumsApi = createApi({
   requiresAuth: false,
   url: "/public/dicts",
 });
