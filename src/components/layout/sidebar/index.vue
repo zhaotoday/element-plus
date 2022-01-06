@@ -10,11 +10,11 @@
       :default-active="activeKey"
       background-color="#001529"
       text-color="#fff"
-      active-text-color="white"
+      active-text-color="#e6a23c"
       unique-opened
       @select="onSelect"
     >
-      <el-submenu
+      <el-sub-menu
         v-for="(item1, index1) in $consts.SidebarMenu"
         :key="index1"
         :index="`${index1}`"
@@ -32,7 +32,7 @@
             {{ item2.title }}
           </el-menu-item>
         </el-menu-item-group>
-      </el-submenu>
+      </el-sub-menu>
     </el-menu>
   </div>
 </template>

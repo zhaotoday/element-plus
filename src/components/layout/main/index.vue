@@ -8,6 +8,9 @@
       <template v-if="menus[0].title">
         <el-breadcrumb-item>{{ menus[0].title }}</el-breadcrumb-item>
         <el-breadcrumb-item>{{ menus[1].title }}</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="menus[2].title">
+          {{ menus[2].title }}
+        </el-breadcrumb-item>
       </template>
       <template v-else>
         <el-breadcrumb-item>首页</el-breadcrumb-item>
