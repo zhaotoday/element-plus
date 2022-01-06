@@ -5,7 +5,7 @@ import { ElMessage } from "element-plus";
 
 NProgress.configure({ showSpinner: false });
 
-const createRequest = ({ baseUrl, timeout = 5000, headers, query = {} }) => {
+const createRequest = ({ baseUrl, timeout = 5000, headers, query }) => {
   const request = axios.create({
     baseURL: baseUrl || process.env.VUE_APP_API_URL,
     timeout,
@@ -105,8 +105,8 @@ const formatQuery = (obj) => {
   return JSON.stringify(ret);
 };
 
-export const createApi = ({ baseUrl, headers, url }) => {
-  const request = createRequest({ baseUrl, headers });
+export const createApi = ({ baseUrl, headers, url, query = {} }) => {
+  const request = createRequest({ baseUrl, headers, query });
 
   return {
     get: ({ joinUrl = "", query, showLoading = true, showError = true }) =>
