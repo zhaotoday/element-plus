@@ -130,14 +130,27 @@ export const createApi = ({ baseUrl, headers, url }) => {
         }
       ),
 
-    put: ({ joinUrl, id, body, query, showLoading = true, showError = true }) =>
+    put: ({
+      joinUrl = "",
+      id,
+      body,
+      query,
+      showLoading = true,
+      showError = true,
+    }) =>
       request.put(`${url}${joinUrl}/${id}`, body, {
         params: query,
         showLoading,
         showError,
       }),
 
-    delete: ({ joinUrl, id, query, showLoading = true, showError = true }) =>
+    delete: ({
+      joinUrl = "",
+      id,
+      query,
+      showLoading = true,
+      showError = true,
+    }) =>
       request.delete(`${url}${joinUrl}/${id}`, {
         params: query,
         showLoading,
