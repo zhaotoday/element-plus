@@ -26,7 +26,7 @@ export default {
     },
     buttonSize: {
       type: String,
-      default: "small",
+      default: "default",
     },
     buttonClass: String,
     showUploaded: {
