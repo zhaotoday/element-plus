@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import "@/assets/styles/global/index.scss";
 import "@/assets/styles/element-plus/index.scss";
 import ElementPlus from "element-plus";
-import locale from "element-plus/lib/locale/lang/zh-cn";
+import zhCn from "element-plus/es/locale/lang/zh-cn";
 import "element-plus-admin/utils/polyfills";
 import { config } from "@/utils/config";
 import { useComponents } from "@/utils/use-components";
@@ -15,7 +15,7 @@ const app = createApp(App);
 app
   .use(store)
   .use(router)
-  .use(ElementPlus, { size: "medium", locale })
+  .use(ElementPlus, { size: "medium", locale: zhCn })
   .mount("#app");
 
 config(app);
