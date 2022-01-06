@@ -5,6 +5,7 @@ export default {
     row: Object,
     api: Object,
   },
+  emits: ["ok"],
   setup(props, context) {
     const onChange = debounce(async (value) => {
       await props.api.post({
