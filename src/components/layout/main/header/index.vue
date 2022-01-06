@@ -1,7 +1,7 @@
 <template>
   <div class="c-header">
     <div class="c-header__logout" title="退出" @click="logout">
-      <el-avatar icon="el-icon-right" />
+      <el-avatar icon="el-icon-right" size="default" />
     </div>
     <div class="c-header__user">{{ user.name }}</div>
   </div>
