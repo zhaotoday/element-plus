@@ -2,7 +2,7 @@
   <div class="c-sidebar">
     <div class="c-sidebar__logo" @click="router.push('/questions/list')">
       <div class="c-sidebar__logo-icon">
-        <el-avatar icon="el-icon-eleme" size="small" />
+        <el-avatar icon="el-icon-eleme" />
       </div>
       后台管理系统
     </div>
