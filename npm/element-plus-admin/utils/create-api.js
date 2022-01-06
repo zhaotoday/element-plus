@@ -109,25 +109,36 @@ export const createApi = ({ baseUrl, headers, url }) => {
   const request = createRequest({ baseUrl, headers });
 
   return {
-    get: ({ query, showLoading = true, showError = true }) =>
-      request.get(url, { params: query, showLoading, showError }),
+    get: ({ joinUrl = "", query, showLoading = true, showError = true }) =>
+      request.get(url + joinUrl, { params: query, showLoading, showError }),
 
-    post: ({ action, body, query, showLoading = true, showError = true }) =>
-      request.post(action ? `${url}/actions/${action}` : url, body, {
+    post: ({
+      joinUrl = "",
+      action,
+      body,
+      query,
+      showLoading = true,
+      showError = true,
+    }) =>
+      request.post(
+        action ? `${url}${joinUrl}/actions/${action}` : url + joinUrl,
+        body,
+        {
+          params: query,
+          showLoading,
+          showError,
+        }
+      ),
+
+    put: ({ joinUrl, id, body, query, showLoading = true, showError = true }) =>
+      request.put(`${url}${joinUrl}/${id}`, body, {
         params: query,
         showLoading,
         showError,
       }),
 
-    put: ({ id, body, query, showLoading = true, showError = true }) =>
-      request.put(`${url}/${id}`, body, {
-        params: query,
-        showLoading,
-        showError,
-      }),
-
-    delete: ({ id, query, showLoading = true, showError = true }) =>
-      request.delete(`${url}/${id}`, {
+    delete: ({ joinUrl, id, query, showLoading = true, showError = true }) =>
+      request.delete(`${url}${joinUrl}/${id}`, {
         params: query,
         showLoading,
         showError,
