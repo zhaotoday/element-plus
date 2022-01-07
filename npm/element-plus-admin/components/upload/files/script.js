@@ -2,12 +2,16 @@ import { computed, reactive, ref, watch } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
 import OfficeViewer from "../../office-viewer/index.vue";
 import { ElMessage } from "element-plus";
+import { Document, CircleCheck, Close } from "@element-plus/icons";
 import { publicFilesApi } from "../../../apis/public/files";
 import { useStore } from "vuex";
 import { useConsts } from "@/composables/use-consts";
 
 export default {
   components: {
+    "el-icon-document": Document,
+    "el-circle-check": CircleCheck,
+    "el-close": Close,
     "c-office-viewer": OfficeViewer,
   },
   props: {

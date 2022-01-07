@@ -1,20 +1,22 @@
 <template>
-  <ul class="el-upload-list el-upload-list--text">
+  <ul class="cc-files">
     <li
       v-for="(file, index) in files"
       :key="file.id"
-      class="el-upload-list__item is-success"
+      class="cc-file__item"
       tabindex="0"
       @click="preview(file, index)"
     >
-      <a class="el-upload-list__item-name">
-        <i class="el-icon-document"></i>
-        {{ file.name }}
-      </a>
-      <label class="el-upload-list__item-status-label">
-        <i class="el-icon-upload-success el-icon-circle-check"></i>
-      </label>
-      <i class="el-icon-close" @click.stop="$emit('delete', index)"></i>
+      <el-icon class="cc-files__icon">
+        <el-icon-document />
+      </el-icon>
+      <div class="cc-files__name">{{ file.name }}</div>
+      <el-icon class="el-icon--check el-icon--upload-success">
+        <el-circle-check />
+      </el-icon>
+      <el-icon class="el-icon--close" @click.stop="$emit('delete', index)">
+        <el-close />
+      </el-icon>
     </li>
   </ul>
   <teleport to="body">
@@ -30,3 +32,5 @@
 </template>
 
 <script src="./script.js"></script>
+
+<style lang="scss" scoped src="./style.scss"></style>

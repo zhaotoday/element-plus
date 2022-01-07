@@ -1,0 +1,30 @@
+@import "~@/assets/styles/utils/index";
+
+@include cc(files) {
+  @include text--middle(30px);
+  @include padding(null, 10px, 10px);
+
+  position: relative;
+
+  @include e(item) {
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #f5f7fa;
+    }
+  }
+
+  @include e(icon, status) {
+    @include position--absolute(50%);
+
+    transform: translateY(-50%);
+  }
+
+  @include e(icon) {
+    left: 10px;
+  }
+
+  @include e(status) {
+    right: 10px;
+  }
+}
