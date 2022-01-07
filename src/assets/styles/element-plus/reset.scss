@@ -4,3 +4,9 @@
     padding-bottom: 10px !important;
   }
 }
+
+.el-form-item {
+  &__content {
+    display: block !important;
+  }
+}
