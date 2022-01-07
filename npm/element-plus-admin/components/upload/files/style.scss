@@ -1,20 +1,33 @@
+@use "sass:map";
+
 @import "~@/assets/styles/utils/index";
 
 @include cc(files) {
-  @include text--middle(30px);
-  @include padding(null, 10px, 10px);
-
-  position: relative;
+  padding-top: 4px;
 
   @include e(item) {
+    @include text--middle(32px);
+
+    position: relative;
     border-radius: 4px;
+    cursor: pointer;
 
     &:hover {
       background-color: #f5f7fa;
+
+      @include cc(files) {
+        @include e(status) {
+          display: none;
+        }
+
+        @include e(close) {
+          display: block;
+        }
+      }
     }
   }
 
-  @include e(icon, status) {
+  @include e(icon, status, close, name) {
     @include position--absolute(50%);
 
     transform: translateY(-50%);
@@ -24,7 +37,19 @@
     left: 10px;
   }
 
-  @include e(status) {
+  @include e(status, close) {
     right: 10px;
+  }
+
+  @include e(status) {
+    color: map.get($colors, success) !important;
+  }
+
+  @include e(close) {
+    display: none;
+  }
+
+  @include e(name) {
+    left: 30px;
   }
 }

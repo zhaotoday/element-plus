@@ -3,7 +3,7 @@
     <li
       v-for="(file, index) in files"
       :key="file.id"
-      class="cc-file__item"
+      class="cc-files__item"
       tabindex="0"
       @click="preview(file, index)"
     >
@@ -11,10 +11,13 @@
         <el-icon-document />
       </el-icon>
       <div class="cc-files__name">{{ file.name }}</div>
-      <el-icon class="el-icon--check el-icon--upload-success">
+      <el-icon class="cc-files__status el-icon--check">
         <el-circle-check />
       </el-icon>
-      <el-icon class="el-icon--close" @click.stop="$emit('delete', index)">
+      <el-icon
+        class="cc-files__close el-icon--close"
+        @click.stop="$emit('delete', index)"
+      >
         <el-close />
       </el-icon>
     </li>
