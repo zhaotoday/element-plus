@@ -1,8 +1,6 @@
 @import "~@/assets/styles/utils/index";
 
 @include c(upload) {
-  width: 100%;
-
   @include e(tip) {
     @include text--middle(20px);
   }
