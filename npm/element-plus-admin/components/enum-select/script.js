@@ -1,7 +1,9 @@
-import { onMounted, ref } from "vue";
-
 export default {
   props: {
+    placeholder: {
+      type: String,
+      default: "请选择",
+    },
     multiple: {
       type: Boolean,
       default: false,

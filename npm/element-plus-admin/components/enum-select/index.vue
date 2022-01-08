@@ -1,5 +1,6 @@
 <template>
   <el-select
+    :placeholder="placeholder"
     :multiple="multiple"
     :clearable="clearable"
     :model-value="value"
