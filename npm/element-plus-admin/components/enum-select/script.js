@@ -20,10 +20,11 @@ export default {
       type: [String, Number],
     },
   },
-  emits: ["update:value"],
+  emits: ["update:value", "change"],
   setup(props, context) {
-    const onChange = (index) => {
-      context.emit("update:value", index);
+    const onChange = (value) => {
+      context.emit("update:value", value);
+      context.emit("change", value);
     };
 
     return {
