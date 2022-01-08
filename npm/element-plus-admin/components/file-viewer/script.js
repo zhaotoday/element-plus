@@ -1,7 +1,6 @@
 import { ElMessage } from "element-plus";
 import { useConsts } from "@/composables/use-consts";
 import { reactive, ref } from "vue";
-import { useHelpers } from "@/composables/use-helpers";
 import OfficeViewer from "./components/office-viewer/index.vue";
 
 export default {
