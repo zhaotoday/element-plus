@@ -5,15 +5,15 @@ import { useHelpers } from "@/composables/use-helpers";
 import OfficeViewer from "./components/office-viewer/index.vue";
 
 export default {
+  components: {
+    "c-office-viewer": OfficeViewer,
+  },
   props: {
     urls: {
       type: Array,
       default: () => [],
     },
     officeViewerServiceUrl: String,
-  },
-  components: {
-    "c-office-viewer": OfficeViewer,
   },
   setup() {
     const { getFileUrl } = useHelpers();
