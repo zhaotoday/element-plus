@@ -2,13 +2,9 @@ import { onMounted, ref } from "vue";
 
 export default {
   props: {
-    labelKey: {
+    placeholder: {
       type: String,
-      default: "name",
-    },
-    api: {
-      type: Object,
-      default: () => null,
+      default: "请选择",
     },
     multiple: {
       type: Boolean,
@@ -17,6 +13,14 @@ export default {
     clearable: {
       type: Boolean,
       default: false,
+    },
+    labelKey: {
+      type: String,
+      default: "name",
+    },
+    api: {
+      type: Object,
+      default: () => null,
     },
     value: {
       type: [String, Number],
