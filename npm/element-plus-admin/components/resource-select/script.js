@@ -33,7 +33,6 @@ export default {
     });
 
     onMounted(async () => {
-      console.log(props.api, "--=");
       list.value = await props.api.get({});
     });
 
