@@ -16,8 +16,6 @@ export default {
     officeViewerServiceUrl: String,
   },
   setup() {
-    const { getFileUrl } = useHelpers();
-
     const officeViewer = ref(null);
 
     const cImageViewer = reactive({
@@ -55,7 +53,6 @@ export default {
     return {
       officeViewer,
       cImageViewer,
-      getFileUrl,
       preview,
     };
   },
