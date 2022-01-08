@@ -25,7 +25,7 @@
   <teleport to="body">
     <c-file-viewer
       ref="fileViewer"
-      :urls="ids.map((id) => getFileUrl({ id }))"
+      :urls="(ids || []).map((id) => getFileUrl({ id }))"
       :office-viewer-service-url="officeViewerServiceUrl"
     />
   </teleport>

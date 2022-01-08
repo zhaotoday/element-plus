@@ -43,8 +43,10 @@ export default {
       cImageViewer.visible = true;
     };
 
-    const previewOffice = ({ dir, uuid, ext }) => {
-      const url = `${useConsts().StaticUrl}/${dir}/${uuid}.${ext}`;
+    const previewOffice = ({ dir, date, uuid, ext }) => {
+      const url = `${useConsts().StaticUrl}/${
+        dir ? `${dir}/` : ""
+      }${date}/${uuid}.${ext}`;
 
       officeViewer.value.show({ src: url });
     };
