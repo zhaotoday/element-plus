@@ -1,16 +1,17 @@
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+import { useStore } from "vuex";
 
 export default {
   props: {
-    labelKey: {
+    placeholder: {
       type: String,
-      default: "name",
-    },
-    api: {
-      type: Object,
-      default: () => null,
+      default: "请选择",
     },
     multiple: {
+      type: Boolean,
+      default: false,
+    },
+    filterable: {
       type: Boolean,
       default: false,
     },
@@ -18,26 +19,59 @@ export default {
       type: Boolean,
       default: false,
     },
+    allowCreate: {
+      type: Boolean,
+      default: false,
+    },
+    automaticDropdown: {
+      type: Boolean,
+      default: false,
+    },
+    collapseTags: {
+      type: Boolean,
+      default: false,
+    },
     value: {
       type: [String, Number],
     },
+    labelKey: {
+      type: String,
+      default: "name",
+    },
+    resource: String,
+    api: Object,
   },
   emits: ["update:value"],
   setup(props, context) {
-    const list = ref({
-      items: [],
-    });
+    const select = ref(null);
+
+    const { state, dispatch } = useStore();
+
+    const items = computed(() =>
+      state.items.data[props.resource]
+        ? state.items.data[props.resource]["__"]
+        : {}
+    );
 
     onMounted(async () => {
-      list.value = await props.api.get({});
+      await dispatch("items/getItems", {
+        resource: props.resource,
+        api: props.api,
+      });
     });
+
+    const focus = () => {
+      select.value.focus();
+    };
 
     const onChange = (index) => {
       context.emit("update:value", index);
     };
 
     return {
-      list,
+      select,
+      items,
+      focus,
       onChange,
     };
   },
