@@ -3,12 +3,12 @@
     <li
       v-for="(file, index) in files"
       :key="file.id"
-      @click="fileViewer.preview(file, index)"
+      @click="preview(file, index)"
     >
       {{ file.name }}
     </li>
   </ul>
-  <teleport to="body">
+  <teleport v-if="canPreview" to="body">
     <c-file-viewer
       ref="fileViewer"
       :urls="(ids || []).map((id) => getFileUrl({ id }))"

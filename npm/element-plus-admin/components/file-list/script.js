@@ -1,7 +1,6 @@
-import { reactive, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
 import FileViewer from "../file-viewer/index.vue";
-import { ElMessage } from "element-plus";
 import { publicFilesApi } from "../../apis/public/files";
 
 export default {
@@ -52,10 +51,16 @@ export default {
       { immediate: true, deep: true }
     );
 
+    const preview = (file, index) => {
+      if (!props.canPreview) return;
+      fileViewer.value.preview(file, index);
+    };
+
     return {
       fileViewer,
       files,
       getFileUrl,
+      preview,
     };
   },
 };
