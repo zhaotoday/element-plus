@@ -1,0 +1,15 @@
+@use "sass:map";
+
+@import "~@/assets/styles/utils";
+
+@include c(video-viewer) {
+  .el-dialog__body {
+    padding: 0 !important;
+  }
+
+  @include e(video) {
+    @include size(100%, 540px);
+
+    border: 0;
+  }
+}
