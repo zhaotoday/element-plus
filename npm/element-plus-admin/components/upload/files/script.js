@@ -1,18 +1,16 @@
-import { computed, reactive, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
-import OfficeViewer from "../../office-viewer/index.vue";
-import { ElMessage } from "element-plus";
-import { Document, CircleCheck, Close } from "@element-plus/icons";
+import { CircleCheck, Close, Document } from "@element-plus/icons";
+import FileViewer from "../../file-viewer/index.vue";
 import { publicFilesApi } from "../../../apis/public/files";
 import { useStore } from "vuex";
-import { useConsts } from "@/composables/use-consts";
 
 export default {
   components: {
     "el-icon-document": Document,
     "el-circle-check": CircleCheck,
     "el-close": Close,
-    "c-office-viewer": OfficeViewer,
+    "c-file-viewer": FileViewer,
   },
   props: {
     ids: {
@@ -26,12 +24,7 @@ export default {
 
     const { getFileUrl } = useHelpers();
 
-    const officeViewer = ref(null);
-
-    const cImageViewer = reactive({
-      visible: false,
-      index: -1,
-    });
+    const fileViewer = ref(null);
 
     const files = computed(() => {
       return state.items.data.files && props.ids
@@ -55,39 +48,10 @@ export default {
       { immediate: true, deep: true }
     );
 
-    const preview = (file, index) => {
-      switch (true) {
-        case ["jpg", "jpeg", "png", "gif"].includes(file.ext):
-          previewImage(index);
-          break;
-
-        case ["ppt", "pptx", "doc", "docx", "xls", "xlsx"].includes(file.ext):
-          previewOffice(file);
-          break;
-
-        default:
-          ElMessage.error("该文件类型暂不支持预览");
-          break;
-      }
-    };
-
-    const previewImage = (index) => {
-      cImageViewer.index = index;
-      cImageViewer.visible = true;
-    };
-
-    const previewOffice = ({ dir, uuid, ext }) => {
-      const url = `${useConsts().StaticUrl}/${dir}/${uuid}.${ext}`;
-
-      officeViewer.value.show({ src: url });
-    };
-
     return {
-      officeViewer,
-      cImageViewer,
+      fileViewer,
       files,
       getFileUrl,
-      preview,
     };
   },
 };

@@ -5,7 +5,7 @@
       :key="file.id"
       class="cc-files__item"
       tabindex="0"
-      @click="preview(file, index)"
+      @click="fileViewer.preview(file, index)"
     >
       <el-icon class="cc-files__icon">
         <el-icon-document />
@@ -23,14 +23,11 @@
     </li>
   </ul>
   <teleport to="body">
-    <el-image-viewer
-      v-if="cImageViewer.visible"
-      :url-list="ids.map((id) => getFileUrl({ id }))"
-      :initial-index="cImageViewer.index"
-      z-index="20000"
-      @close="cImageViewer.visible = false"
+    <c-file-viewer
+      ref="fileViewer"
+      :urls="ids.map((id) => getFileUrl({ id }))"
+      :office-viewer-service-url="officeViewerServiceUrl"
     />
-    <c-office-viewer ref="officeViewer" :service-url="officeViewerServiceUrl" />
   </teleport>
 </template>
 
