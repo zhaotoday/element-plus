@@ -109,6 +109,8 @@ export const createApi = ({ baseUrl, headers, url, query = {} }) => {
   const request = createRequest({ baseUrl, headers, query });
 
   return {
+    config: { baseUrl, headers, url, query },
+
     get: ({ joinUrl = "", query, showLoading = true, showError = true }) =>
       request.get(url + joinUrl, { params: query, showLoading, showError }),
 

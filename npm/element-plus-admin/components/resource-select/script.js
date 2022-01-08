@@ -38,7 +38,6 @@ export default {
       type: String,
       default: "name",
     },
-    resource: String,
     api: Object,
   },
   emits: ["update:value"],
@@ -47,15 +46,15 @@ export default {
 
     const { state, dispatch } = useStore();
 
+    const resource = props.api.config.url.split("/").slice(-1)[0];
+
     const items = computed(() =>
-      state.items.data[props.resource]
-        ? state.items.data[props.resource]["__"]
-        : {}
+      state.items.data[resource] ? state.items.data[resource]["__"] : {}
     );
 
     onMounted(async () => {
       await dispatch("items/getItems", {
-        resource: props.resource,
+        resource,
         api: props.api,
       });
     });
