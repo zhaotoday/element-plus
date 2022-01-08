@@ -3,20 +3,17 @@
     <li
       v-for="(file, index) in files"
       :key="file.id"
-      @click="preview(file, index)"
+      @click="fileViewer.preview(file, index)"
     >
       {{ file.name }}
     </li>
   </ul>
   <teleport to="body">
-    <el-image-viewer
-      v-if="cImageViewer.visible"
-      :url-list="ids.map((id) => getFileUrl({ id }))"
-      :initial-index="cImageViewer.index"
-      z-index="20000"
-      @close="cImageViewer.visible = false"
+    <c-file-viewer
+      ref="fileViewer"
+      :urls="(ids || []).map((id) => getFileUrl({ id }))"
+      :office-viewer-service-url="officeViewerServiceUrl"
     />
-    <c-office-viewer ref="officeViewer" />
   </teleport>
 </template>
 

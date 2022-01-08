@@ -1,12 +1,12 @@
 import { reactive, ref, watch } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
-import OfficeViewer from "../office-viewer/index.vue";
+import FileViewer from "../file-viewer/index.vue";
 import { ElMessage } from "element-plus";
 import { publicFilesApi } from "../../apis/public/files";
 
 export default {
   components: {
-    "c-office-viewer": OfficeViewer,
+    "c-file-viewer": FileViewer,
   },
   props: {
     ids: {
@@ -21,16 +21,12 @@ export default {
       type: Boolean,
       default: true,
     },
+    officeViewerServiceUrl: String,
   },
   setup(props) {
     const { getFileUrl } = useHelpers();
 
-    const officeViewer = ref(null);
-
-    const cImageViewer = reactive({
-      visible: false,
-      index: -1,
-    });
+    const fileViewer = ref(null);
 
     const files = ref([]);
 
@@ -56,39 +52,10 @@ export default {
       { immediate: true, deep: true }
     );
 
-    const preview = (file, index) => {
-      if (!props.canPreview) return;
-
-      switch (true) {
-        case ["jpg", "jpeg", "png", "gif"].includes(file.ext):
-          previewImage(index);
-          break;
-
-        case ["ppt", "pptx", "doc", "docx", "xls", "xlsx"].includes(file.ext):
-          previewOffice(file);
-          break;
-
-        default:
-          ElMessage.error("该文件类型暂不支持预览");
-          break;
-      }
-    };
-
-    const previewImage = (index) => {
-      cImageViewer.index = index;
-      cImageViewer.visible = true;
-    };
-
-    const previewOffice = ({ id }) => {
-      officeViewer.value.show({ src: getFileUrl({ id }) });
-    };
-
     return {
-      officeViewer,
-      cImageViewer,
+      fileViewer,
       files,
       getFileUrl,
-      preview,
     };
   },
 };
