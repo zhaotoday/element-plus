@@ -1,21 +1,12 @@
 <template>
   <el-select
-    ref="select"
-    :placeholder="placeholder"
     :multiple="multiple"
-    :filterable="filterable"
     :clearable="clearable"
-    :allow-create="allowCreate"
-    :automatic-dropdown="automaticDropdown"
-    :collapse-tags="collapseTags"
     :model-value="value"
     @change="onChange"
-    @focus="($event) => $emit('focus', $event)"
-    @blur="($event) => $emit('blur', $event)"
-    @visible-change="($event) => $emit('visible-change', $event)"
   >
     <el-option
-      v-for="item in items"
+      v-for="item in list.items"
       :key="item.id"
       :label="item[labelKey]"
       :value="item.id"
