@@ -1,5 +1,5 @@
 import { filesApi } from "@/apis/admin/files";
-import { aliCloudStsApi } from "@/apis/admin/alicloud-sts";
+import { aliCloudOssApi } from "@/apis/admin/alicloud-oss";
 import * as Oss from "ali-oss";
 
 export const useAliCloudOss = ({ region, bucket, onProgress }) => {
@@ -8,8 +8,9 @@ export const useAliCloudOss = ({ region, bucket, onProgress }) => {
   const initialize = async () => {
     const {
       Credentials: { AccessKeyId, AccessKeySecret, SecurityToken },
-    } = await aliCloudStsApi.post({
-      action: "getToken",
+    } = await aliCloudOssApi.post({
+      action: "getStsCredential",
+      body: { region, bucket },
     });
 
     client = new Oss({
