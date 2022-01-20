@@ -3,7 +3,7 @@ import { useAuth } from "../../composables/use-auth";
 import { useHelpers } from "@/composables/use-helpers";
 import Files from "./files/index.vue";
 import { onMounted, reactive } from "vue";
-import { useAliCloudOss } from "./composables/use-alicloud-oss";
+import { useAliCloudOss } from "./composables/use-ali-cloud-oss";
 
 const { ApiUrl } = useConsts();
 

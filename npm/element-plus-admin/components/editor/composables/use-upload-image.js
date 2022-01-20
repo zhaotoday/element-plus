@@ -1,4 +1,4 @@
-import { useAliCloudOss } from "../../upload/composables/use-alicloud-oss";
+import { useAliCloudOss } from "../../upload/composables/use-ali-cloud-oss";
 import { useConsts } from "@/composables/use-consts";
 
 export const useUploadImage = ({ region, bucket }) => {
