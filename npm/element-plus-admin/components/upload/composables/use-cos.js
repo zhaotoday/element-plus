@@ -2,7 +2,7 @@ import { filesApi } from "@/apis/admin/files";
 import { aliCloudOssApi } from "@/apis/admin/alicloud-oss";
 import * as Oss from "ali-oss";
 
-export const useAliCloudOss = ({ region, bucket, onProgress }) => {
+export const useCos = ({ region, bucket, onProgress }) => {
   let client = null;
 
   const initialize = async () => {

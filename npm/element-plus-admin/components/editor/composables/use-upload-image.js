@@ -1,10 +1,10 @@
-import { useAliCloudOss } from "../../upload/composables/use-ali-cloud-oss";
+import { useObjectStorage } from "../../upload/composables/use-os";
 import { useConsts } from "@/composables/use-consts";
 
 export const useUploadImage = ({ region, bucket }) => {
   const { ApiUrl } = useConsts();
 
-  const aliCloudOss = useAliCloudOss({
+  const aliCloudOss = useObjectStorage({
     region,
     bucket,
   });

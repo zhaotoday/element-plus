@@ -3,7 +3,8 @@ import { useAuth } from "../../composables/use-auth";
 import { useHelpers } from "@/composables/use-helpers";
 import Files from "./files/index.vue";
 import { onMounted, reactive } from "vue";
-import { useAliCloudOss } from "./composables/use-ali-cloud-oss";
+import { useObjectStorage } from "./composables/use-os";
+import { UploadTo } from "../../enums/upload-to";
 
 const { ApiUrl } = useConsts();
 
@@ -35,13 +36,13 @@ export default {
     },
     uploadTo: {
       type: String,
-      default: "Server",
+      default: UploadTo.Server,
     },
     fileDir: {
       type: String,
       default: "",
     },
-    aliCloudOssConfig: {
+    osConfig: {
       type: Object,
       default: () => ({}),
     },
@@ -67,8 +68,9 @@ export default {
       progress: 0,
     });
 
-    const aliCloudOss = useAliCloudOss({
-      ...props.aliCloudOssConfig,
+    const aliCloudOss = useObjectStorage({
+      ...props.osConfig,
+      uploadTo: props.uploadTo,
       onProgress(progress) {
         cUpload.progress = progress;
       },
