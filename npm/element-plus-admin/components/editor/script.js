@@ -34,14 +34,14 @@ export default {
       type: String,
       default: "Server",
     },
-    osConfig: {
+    cosConfig: {
       type: Object,
       default: () => ({}),
     },
   },
   emits: ["update:value", "change", "focus", "blur"],
   setup(props, context) {
-    const uploadImage = useUploadImage(props.osConfig);
+    const uploadImage = useUploadImage(props.cosConfig);
 
     let editor = null;
 
