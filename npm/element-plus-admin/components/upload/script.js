@@ -66,15 +66,14 @@ export default {
 
     const aliCloudOss = useCos({
       ...props.cosConfig,
-      uploadTo: props.uploadTo,
       onProgress(progress) {
         cUpload.progress = progress;
       },
     });
 
     onMounted(async () => {
-      switch (props.uploadTo) {
-        case "AliCloudOss":
+      switch (props.cosConfig.uploadTo) {
+        case UploadTo.AliCloud:
           await aliCloudOss.initialize();
           break;
 

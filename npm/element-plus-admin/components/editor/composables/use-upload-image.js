@@ -1,5 +1,6 @@
 import { useCos } from "../../upload/composables/use-cos";
 import { useConsts } from "@/composables/use-consts";
+import {UploadTo} from "../../../enums/upload-to";
 
 export const useUploadImage = ({ region, bucket }) => {
   const { ApiUrl } = useConsts();
@@ -16,7 +17,7 @@ export const useUploadImage = ({ region, bucket }) => {
 
     editor.config.uploadImgHeaders = props.uploadHeaders;
 
-    if (props.uploadTo === "Server") {
+    if (props.cosConfig.uploadTo === UploadTo.Server) {
       editor.config.uploadImgHooks = {
         customInsert: (insertImg, result) => {
           insertImg(`${ApiUrl}/public/files/${result.data.id}`);

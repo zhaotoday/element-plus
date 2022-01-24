@@ -30,10 +30,6 @@ export default {
       type: String,
       default: `${ApiUrl}/admin/files/actions/upload`,
     },
-    uploadTo: {
-      type: String,
-      default: "Server",
-    },
     cosConfig: {
       type: Object,
       default: () => ({}),
