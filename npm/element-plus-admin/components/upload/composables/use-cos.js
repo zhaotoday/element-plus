@@ -1,7 +1,7 @@
 import { filesApi } from "@/apis/admin/files";
 import * as Oss from "ali-oss";
 
-export const useCos = ({ api,region, bucket, onProgress }) => {
+export const useCos = ({ api, region, bucket, onProgress }) => {
   let client = null;
 
   const initialize = async () => {

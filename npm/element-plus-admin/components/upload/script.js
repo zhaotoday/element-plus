@@ -34,17 +34,13 @@ export default {
       type: Boolean,
       default: true,
     },
-    uploadTo: {
-      type: String,
-      default: UploadTo.Server,
-    },
     fileDir: {
       type: String,
       default: "",
     },
     cosConfig: {
       type: Object,
-      default: () => ({}),
+      default: () => null,
     },
     value: {
       type: [Number, Array],
