@@ -1,9 +1,15 @@
-import { filesApi } from "@/apis/admin/files";
 import * as AliCloudOss from "ali-oss";
 import * as TencentCloudCos from "cos-js-sdk-v5";
 import { UploadTo } from "../../../enums/upload-to";
 
-export const useCos = ({ api, uploadTo, region, bucket, onProgress }) => {
+export const useCos = ({
+  cosApi,
+  filesApi,
+  uploadTo,
+  region,
+  bucket,
+  onProgress,
+}) => {
   let client = null;
 
   const initialize = async () => {
@@ -12,7 +18,7 @@ export const useCos = ({ api, uploadTo, region, bucket, onProgress }) => {
         {
           const {
             Credentials: { AccessKeyId, AccessKeySecret, SecurityToken },
-          } = await api.post({
+          } = await cosApi.post({
             action: "getStsCredential",
             body: { region, bucket },
           });
@@ -25,7 +31,6 @@ export const useCos = ({ api, uploadTo, region, bucket, onProgress }) => {
             stsToken: SecurityToken,
           });
         }
-
         break;
 
       case UploadTo.TencentCloudOss:
@@ -34,7 +39,7 @@ export const useCos = ({ api, uploadTo, region, bucket, onProgress }) => {
             credentials: { tmpSecretId, tmpSecretKey, sessionToken },
             startTime,
             expiredTime,
-          } = await api.post({
+          } = await cosApi.post({
             action: "getStsCredential",
             body: { region, bucket },
           });
