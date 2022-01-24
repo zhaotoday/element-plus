@@ -31,26 +31,21 @@ export const useCos = ({ api, uploadTo, region, bucket, onProgress }) => {
       case UploadTo.TencentCloudOss:
         {
           const {
-            credentials: {
-              tmpSecretId,
-              tmpSecretKey,
-              sessionToken,
-              startTime,
-              expiredTime,
-            },
+            credentials: { tmpSecretId, tmpSecretKey, sessionToken },
+            startTime,
+            expiredTime,
           } = await api.post({
             action: "getStsCredential",
             body: { region, bucket },
           });
           client = new TencentCloudCos({
-            getAuthorization: function (options, callback) {
+            getAuthorization(options, callback) {
               callback({
                 TmpSecretId: tmpSecretId,
                 TmpSecretKey: tmpSecretKey,
                 SecurityToken: sessionToken,
-                // 建议返回服务器时间作为签名的开始时间，避免用户浏览器本地时间偏差过大导致签名错误
-                StartTime: data.startTime, // 时间戳，单位秒，如：1580000000
-                ExpiredTime: data.expiredTime, // 时间戳，单位秒，如：1580000000
+                StartTime: startTime,
+                ExpiredTime: expiredTime,
               });
             },
           });
