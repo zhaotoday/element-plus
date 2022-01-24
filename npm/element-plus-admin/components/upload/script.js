@@ -1,6 +1,6 @@
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "../../composables/use-auth";
-import { useHelpers } from "@/composables/use-helpers";
+import { deepCopy } from "jt-helpers";
 import Files from "./files/index.vue";
 import { onMounted, reactive } from "vue";
 import { useCos } from "./composables/use-cos";
@@ -56,8 +56,6 @@ export default {
   },
   emits: ["update:value", "change", "success", "error"],
   setup(props, context) {
-    const { deepCopy } = useHelpers();
-
     const { getHeaders } = useAuth();
 
     const cUpload = reactive({
