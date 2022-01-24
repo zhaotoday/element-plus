@@ -73,7 +73,7 @@ export default {
 
     onMounted(async () => {
       switch (props.cosConfig.uploadTo) {
-        case UploadTo.AliCloud:
+        case UploadTo.AliCloudOss:
           await aliCloudOss.initialize();
           break;
 
