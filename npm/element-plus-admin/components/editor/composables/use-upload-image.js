@@ -1,14 +1,11 @@
 import { useCos } from "../../upload/composables/use-cos";
 import { useConsts } from "@/composables/use-consts";
-import {UploadTo} from "../../../enums/upload-to";
+import { UploadTo } from "../../../enums/upload-to";
 
 export const useUploadImage = ({ region, bucket }) => {
   const { ApiUrl } = useConsts();
 
-  const aliCloudOss = useCos({
-    region,
-    bucket,
-  });
+  const cos = useCos({ region, bucket });
 
   const configEditor = async (editor, props) => {
     editor.config.uploadImgMaxLength = 1;
@@ -24,11 +21,11 @@ export const useUploadImage = ({ region, bucket }) => {
         },
       };
     } else {
-      await aliCloudOss.initialize();
+      await cos.initialize();
 
       editor.config.customUploadImg = (resultFiles, insertImg) => {
         resultFiles.forEach(async (file) => {
-          const { id } = await aliCloudOss.upload(file);
+          const { id } = await cos.upload(file);
           insertImg(`${ApiUrl}/public/files/${id}`);
         });
       };

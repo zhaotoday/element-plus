@@ -64,7 +64,7 @@ export default {
       progress: 0,
     });
 
-    const aliCloudOss = useCos({
+    const cos = useCos({
       ...props.cosConfig,
       onProgress(progress) {
         cUpload.progress = progress;
@@ -74,7 +74,7 @@ export default {
     onMounted(async () => {
       switch (props.cosConfig.uploadTo) {
         case UploadTo.AliCloudOss:
-          await aliCloudOss.initialize();
+          await cos.initialize();
           break;
 
         default:
@@ -100,7 +100,7 @@ export default {
       } else {
         switch (props.uploadTo) {
           case "AliCloudOss":
-            update((await aliCloudOss.upload(file, props.fileDir)).id);
+            update((await cos.upload(file, props.fileDir)).id);
             break;
 
           default:
