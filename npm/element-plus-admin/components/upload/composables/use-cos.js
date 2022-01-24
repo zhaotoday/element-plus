@@ -43,6 +43,7 @@ export const useCos = ({
             action: "getStsCredential",
             body: { region, bucket },
           });
+
           client = new TencentCloudCos({
             getAuthorization(options, callback) {
               callback({
