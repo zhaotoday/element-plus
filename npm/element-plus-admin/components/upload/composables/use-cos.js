@@ -65,20 +65,36 @@ export const useCos = ({ api, uploadTo, region, bucket, onProgress }) => {
       action: "create",
       body: { dir: fileDir },
     });
+    const filePath = `${fileDir ? fileDir + "/" : ""}${date}/${uuid}.${ext}`;
 
-    await client.multipartUpload(
-      `${fileDir ? fileDir + "/" : ""}${date}/${uuid}.${ext}`,
-      file,
-      {
-        progress(p) {
-          onProgress && onProgress(+(p * 100).toFixed(0));
-        },
-        parallel: 4,
-        partSize: 1024 * 1024,
-        meta: { year: 2020, people: "test" },
-        mime: "text/plain",
-      }
-    );
+    switch (uploadTo) {
+      case UploadTo.AliCloudOss:
+        await client.multipartUpload(filePath, file, {
+          progress(p) {
+            onProgress && onProgress(+(p * 100).toFixed(0));
+          },
+          parallel: 4,
+          partSize: 1024 * 1024,
+          meta: { year: 2020, people: "test" },
+          mime: "text/plain",
+        });
+        break;
+
+      case UploadTo.TencentCloudOss:
+        await client.putObject({
+          Bucket: bucket,
+          Region: region,
+          Key: filePath,
+          Body: file,
+          onProgress(progressData) {
+            console.log(JSON.stringify(progressData));
+          },
+        });
+        break;
+
+      default:
+        break;
+    }
 
     onProgress && onProgress(0);
 
