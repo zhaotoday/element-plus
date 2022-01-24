@@ -17,6 +17,8 @@ export default {
       type: String,
       default: `${ApiUrl}/admin/files/actions/upload`,
     },
+    headers: Object,
+    data: Object,
     multiple: {
       type: Boolean,
       default: false,
@@ -50,8 +52,6 @@ export default {
       type: String,
       default: "",
     },
-    headers: Object,
-    data: Object,
     officeViewerServiceUrl: String,
   },
   emits: ["update:value", "change", "success", "error"],
