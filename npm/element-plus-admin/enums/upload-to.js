@@ -1,5 +1,5 @@
 export const UploadTo = {
   Server: "Server",
-  AliCloud: "AliCloud",
-  TencentCloud: "TencentCloud",
+  AliCloudOss: "AliCloudOss",
+  TencentCloudOss: "TencentCloudOss",
 };
