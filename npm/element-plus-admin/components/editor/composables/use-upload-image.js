@@ -13,7 +13,7 @@ export const useUploadImage = (cosConfig) => {
 
     editor.config.uploadImgHeaders = props.uploadHeaders;
 
-    if (this.props.cosConfig) {
+    if (props.cosConfig) {
       await cos.initialize();
 
       editor.config.customUploadImg = (resultFiles, insertImg) => {
