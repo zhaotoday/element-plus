@@ -88,19 +88,11 @@ export default {
     };
 
     const beforeUpload = async (file) => {
-      if (props.cosConfig.uploadTo === "Server") {
-        return Promise.resolve();
-      } else {
-        switch (props.uploadTo) {
-          case "AliCloudOss":
-            update((await cos.upload(file, props.fileDir)).id);
-            break;
-
-          default:
-            break;
-        }
-
+      if (props.cosConfig) {
+        update((await cos.upload(file, props.fileDir)).id);
         return Promise.reject();
+      } else {
+        return Promise.resolve();
       }
     };
 
