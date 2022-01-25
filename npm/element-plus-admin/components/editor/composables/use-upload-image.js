@@ -1,6 +1,5 @@
 import { useCos } from "../../upload/composables/use-cos";
 import { useConsts } from "@/composables/use-consts";
-import { UploadTo } from "../../../enums/upload-to";
 
 export const useUploadImage = (cosConfig) => {
   const { ApiUrl } = useConsts();

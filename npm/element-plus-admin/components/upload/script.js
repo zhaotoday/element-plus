@@ -4,7 +4,6 @@ import { deepCopy } from "jt-helpers";
 import Files from "./files/index.vue";
 import { onMounted, reactive } from "vue";
 import { useCos } from "./composables/use-cos";
-import { UploadTo } from "../../enums/upload-to";
 
 const { ApiUrl } = useConsts();
 const { getHeaders } = useAuth();
