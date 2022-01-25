@@ -7,6 +7,7 @@ import { useCos } from "./composables/use-cos";
 import { UploadTo } from "../../enums/upload-to";
 
 const { ApiUrl } = useConsts();
+const { getHeaders } = useAuth();
 
 export default {
   components: {
@@ -17,7 +18,10 @@ export default {
       type: String,
       default: `${ApiUrl}/admin/files/actions/upload`,
     },
-    headers: Object,
+    headers: {
+      type: Object,
+      default: () => getHeaders(),
+    },
     data: Object,
     multiple: {
       type: Boolean,
@@ -56,8 +60,6 @@ export default {
   },
   emits: ["update:value", "change", "success", "error"],
   setup(props, context) {
-    const { getHeaders } = useAuth();
-
     const cUpload = reactive({
       progress: 0,
     });
@@ -121,7 +123,6 @@ export default {
 
     return {
       cUpload,
-      getHeaders,
       beforeUpload,
       onSuccess,
       onError,

@@ -2,10 +2,10 @@ import { useCos } from "../../upload/composables/use-cos";
 import { useConsts } from "@/composables/use-consts";
 import { UploadTo } from "../../../enums/upload-to";
 
-export const useUploadImage = ({ region, bucket }) => {
+export const useUploadImage = (cosConfig) => {
   const { ApiUrl } = useConsts();
 
-  const cos = useCos({ region, bucket });
+  const cos = useCos(cosConfig);
 
   const configEditor = async (editor, props) => {
     editor.config.uploadImgMaxLength = 1;

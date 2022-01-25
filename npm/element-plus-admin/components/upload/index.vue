@@ -3,7 +3,7 @@
     class="c-upload"
     ref="upload"
     :action="action"
-    :headers="headers || getHeaders()"
+    :headers="headers"
     :data="data"
     :show-file-list="false"
     :before-upload="beforeUpload"

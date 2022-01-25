@@ -22,17 +22,17 @@ export default {
       type: String,
       default: "height: 500px",
     },
-    uploadHeaders: {
-      type: Object,
-      default: () => getHeaders(),
-    },
     uploadAction: {
       type: String,
       default: `${ApiUrl}/admin/files/actions/upload`,
     },
+    uploadHeaders: {
+      type: Object,
+      default: () => getHeaders(),
+    },
     cosConfig: {
       type: Object,
-      default: () => ({}),
+      default: () => null,
     },
   },
   emits: ["update:value", "change", "focus", "blur"],
