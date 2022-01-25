@@ -70,13 +70,8 @@ export default {
     });
 
     onMounted(async () => {
-      switch (props.cosConfig.uploadTo) {
-        case UploadTo.AliCloudOss:
-          await cos.initialize();
-          break;
-
-        default:
-          break;
+      if (props.cosConfig) {
+        await cos.initialize();
       }
     });
 
@@ -93,7 +88,7 @@ export default {
     };
 
     const beforeUpload = async (file) => {
-      if (props.uploadTo === "Server") {
+      if (props.cosConfig.uploadTo === "Server") {
         return Promise.resolve();
       } else {
         switch (props.uploadTo) {
