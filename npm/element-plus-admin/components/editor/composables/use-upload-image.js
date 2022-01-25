@@ -14,13 +14,7 @@ export const useUploadImage = (cosConfig) => {
 
     editor.config.uploadImgHeaders = props.uploadHeaders;
 
-    if (props.cosConfig.uploadTo === UploadTo.Server) {
-      editor.config.uploadImgHooks = {
-        customInsert: (insertImg, result) => {
-          insertImg(`${ApiUrl}/public/files/${result.data.id}`);
-        },
-      };
-    } else {
+    if (this.props.cosConfig) {
       await cos.initialize();
 
       editor.config.customUploadImg = (resultFiles, insertImg) => {
@@ -28,6 +22,12 @@ export const useUploadImage = (cosConfig) => {
           const { id } = await cos.upload(file);
           insertImg(`${ApiUrl}/public/files/${id}`);
         });
+      };
+    } else {
+      editor.config.uploadImgHooks = {
+        customInsert: (insertImg, result) => {
+          insertImg(`${ApiUrl}/public/files/${result.data.id}`);
+        },
       };
     }
   };
