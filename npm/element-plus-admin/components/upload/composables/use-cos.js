@@ -87,14 +87,25 @@ export const useCos = ({
         break;
 
       case UploadTo.TencentCloudOss:
-        await client.putObject({
-          Bucket: bucket,
-          Region: region,
-          Key: filePath,
-          Body: file,
-          onProgress(progressData) {
-            console.log(JSON.stringify(progressData));
-          },
+        await new Promise((resolve, reject) => {
+          client.putObject(
+            {
+              Bucket: bucket,
+              Region: region,
+              Key: filePath,
+              Body: file,
+              onProgress({ percent }) {
+                onProgress && onProgress(+(percent * 100).toFixed(0));
+              },
+            },
+            (err, data) => {
+              if (err) {
+                reject(err);
+              } else {
+                resolve(data);
+              }
+            }
+          );
         });
         break;
 
