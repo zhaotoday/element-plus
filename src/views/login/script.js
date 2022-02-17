@@ -2,24 +2,21 @@ import { reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import { useFormValidators } from "element-plus-admin/composables/use-form-validators";
+import { useValidators } from "vue-validation";
 
 export default {
   setup() {
     const { dispatch } = useStore();
     const router = useRouter();
-    const formValidators = useFormValidators();
+    const { isRequired, isPassword } = useValidators();
 
     const form = ref(null);
 
     const cForm = reactive({
       model: {},
       rules: {
-        username: [formValidators.required({ label: "用户名" })],
-        password: [
-          formValidators.required({ label: "密码" }),
-          // formValidators.password(),
-        ],
+        username: [isRequired({ label: "用户名" })],
+        password: [isRequired({ label: "密码" }), isPassword()],
       },
     });
 
