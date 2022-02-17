@@ -10,3 +10,9 @@
     display: block !important;
   }
 }
+
+.el-form--inline {
+  .el-form-item {
+    margin-right: 10px !important;
+  }
+}
