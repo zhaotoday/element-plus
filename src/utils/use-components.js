@@ -1,5 +1,5 @@
 import List from "element-plus-admin/components/list/index.vue";
-import ListImage from "element-plus-admin/components/list/components/image/index.vue";
+import ListImage from "element-plus-admin/components/list-image/index.vue";
 import { Eleme, Right } from "@element-plus/icons";
 
 export const useComponents = (app) => {
