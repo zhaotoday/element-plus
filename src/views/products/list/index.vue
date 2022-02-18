@@ -28,8 +28,8 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="title" label="广告标题" />
-      <el-table-column label="广告图片" width="120">
+      <el-table-column prop="name" label="产品名称" />
+      <el-table-column label="产品图片" width="120">
         <template #default="{ row }">
           <c-list-image
             :src="`${$helpers.getImageUrl({ id: row.pictureId })}`"
