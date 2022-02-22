@@ -22,7 +22,8 @@
     "nprogress": "^0.2.0",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12",
-    "wangeditor": "^4.7.11"
+    "wangeditor": "^4.7.11",
+    "xlsx": "^0.18.2"
   },
   "devDependencies": {
     "@vue/eslint-config-prettier": "^7.0.0",
