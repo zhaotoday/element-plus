@@ -5,7 +5,7 @@ export const useXlsx = () => {
     const worksheet = Xlsx.utils.json_to_sheet(data);
     const workbook = Xlsx.utils.book_new();
 
-    Xlsx.utils.book_append_sheet(workbook, worksheet, "People");
+    Xlsx.utils.book_append_sheet(workbook, worksheet, "Sheet");
     Xlsx.writeFile(workbook, `${fileName}.xlsx`);
   };
 
