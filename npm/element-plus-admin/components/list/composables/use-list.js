@@ -82,6 +82,8 @@ export const useList = ({
   });
 
   onBeforeRouteUpdate(async (to, from, next) => {
+    if (!routeMode) return;
+
     filtersRef && filtersRef.resetFields();
 
     const query = getQuery(to.query);
