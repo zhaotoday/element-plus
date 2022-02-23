@@ -10,6 +10,11 @@ export default {
     const onChange = debounce(async (value) => {
       await props.api.post({
         joinUrl: `${props.row.id}/actions/order`,
+        query: {
+          where: {
+            id: { $ne: 0 },
+          },
+        },
         body: {
           action: "Update",
           order: value,
