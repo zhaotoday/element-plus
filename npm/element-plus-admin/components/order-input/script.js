@@ -9,7 +9,7 @@ export default {
   setup(props, context) {
     const onChange = debounce(async (value) => {
       await props.api.post({
-        joinUrl: `${props.row.id}/actions/order`,
+        joinUrl: `/${props.row.id}/actions/order`,
         query: {
           where: {
             id: { $ne: 0 },
