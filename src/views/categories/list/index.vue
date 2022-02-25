@@ -18,7 +18,7 @@
         <el-form-item prop="name">
           <el-input
             clearable
-            placeholder="请输入商品名称"
+            placeholder="请输入商品分类名称"
             v-model.trim="cFilters.model.name.$like"
           />
         </el-form-item>
@@ -28,8 +28,8 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="name" label="商品名称" />
-      <el-table-column label="商品图片" width="120">
+      <el-table-column prop="name" label="商品分类名称" />
+      <el-table-column label="商品分类图片" width="120">
         <template #default="{ row }">
           <c-list-image :src="`${$helpers.getFileUrl({ id: row.imageFileId })}`" />
         </template>

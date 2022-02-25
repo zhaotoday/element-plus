@@ -31,7 +31,7 @@ export default {
       model: deepCopy(initialModel),
       rules: {
         name: [isRequired({ label: "商品名称" })],
-        imageFileId: [isRequired({ message: "请选择商品图片" })],
+        imageFileIds: [isRequired({ message: "请选择商品图片" })],
       },
     });
 
