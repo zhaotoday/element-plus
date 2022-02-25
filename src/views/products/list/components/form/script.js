@@ -1,6 +1,5 @@
 import { reactive, ref } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
-import { adsApi } from "@/apis/admin/ads";
 import { ElMessage } from "element-plus";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { useValidators } from "vue-validation";
@@ -8,6 +7,7 @@ import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";
 import { tencentCloudCosApi } from "@/apis/admin/tencent-cloud-cos";
 import { filesApi } from "@/apis/admin/files";
 import { UploadTo } from "element-plus-admin/enums/upload-to";
+import { productsApi } from "@/apis/admin/products";
 
 export default {
   emits: ["render-list"],
@@ -30,7 +30,8 @@ export default {
       id: 0,
       model: deepCopy(initialModel),
       rules: {
-        pictureId: [isRequired({ message: "请选择广告图片" })],
+        name: [isRequired({ label: "商品名称" })],
+        imageId: [isRequired({ message: "请选择商品图片" })],
       },
     });
 
@@ -44,7 +45,7 @@ export default {
     const submit = async () => {
       const { id, model } = await validate();
 
-      await adsApi[id ? "put" : "post"]({ id, body: model });
+      await productsApi[id ? "put" : "post"]({ id, body: model });
       ElMessage.success(id ? "修改成功" : "新增成功");
       context.emit("render-list");
       cDialog.visible = false;

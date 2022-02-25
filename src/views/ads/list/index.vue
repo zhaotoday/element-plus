@@ -32,7 +32,7 @@
       <el-table-column label="广告图片" width="120">
         <template #default="{ row }">
           <c-list-image
-            :src="`${$helpers.getFileUrl({ id: row.pictureId })}`"
+            :src="`${$helpers.getFileUrl({ id: row.imageId })}`"
           />
         </template>
       </el-table-column>

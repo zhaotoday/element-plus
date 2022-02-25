@@ -15,11 +15,11 @@
         :rules="cFilters.rules"
         inline
       >
-        <el-form-item prop="title">
+        <el-form-item prop="name">
           <el-input
             clearable
-            placeholder="请输入广告标题"
-            v-model.trim="cFilters.model.title.$like"
+            placeholder="请输入商品名称"
+            v-model.trim="cFilters.model.name.$like"
           />
         </el-form-item>
         <el-form-item>
@@ -28,12 +28,10 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="name" label="产品名称" />
-      <el-table-column label="产品图片" width="120">
+      <el-table-column prop="name" label="商品名称" />
+      <el-table-column label="商品图片" width="120">
         <template #default="{ row }">
-          <c-list-image
-            :src="`${$helpers.getFileUrl({ id: row.pictureId })}`"
-          />
+          <c-list-image :src="`${$helpers.getFileUrl({ id: row.imageId })}`" />
         </template>
       </el-table-column>
       <el-table-column label="排序" width="120">
