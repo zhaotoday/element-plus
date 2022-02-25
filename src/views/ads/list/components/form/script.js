@@ -30,7 +30,7 @@ export default {
       id: 0,
       model: deepCopy(initialModel),
       rules: {
-        imageId: [isRequired({ message: "请选择广告图片" })],
+        imageFileId: [isRequired({ message: "请选择广告图片" })],
       },
     });
 
