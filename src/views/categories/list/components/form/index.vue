@@ -9,7 +9,7 @@
       :model="cForm.model"
       :rules="cForm.rules"
       label-position="right"
-      label-width="100px"
+      label-width="120px"
     >
       <el-form-item label="商品分类名称" prop="name">
         <el-input v-model.trim="cForm.model.name" />
