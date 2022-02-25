@@ -20,7 +20,7 @@ export default {
         api: productsApi,
         filters: {
           model: {
-            title: { $like: "" },
+            name: { $like: "" },
           },
           rules: {},
         },
