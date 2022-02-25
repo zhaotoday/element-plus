@@ -8,6 +8,10 @@ export const SidebarMenu = [
         title: "商品管理",
         path: "/product/products/list",
       },
+      {
+        title: "商品分类",
+        path: "/product/categories/list",
+      },
     ],
   },
   {
