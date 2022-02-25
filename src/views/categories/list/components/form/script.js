@@ -7,7 +7,7 @@ import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";
 import { tencentCloudCosApi } from "@/apis/admin/tencent-cloud-cos";
 import { filesApi } from "@/apis/admin/files";
 import { UploadTo } from "element-plus-admin/enums/upload-to";
-import { productsApi } from "@/apis/admin/products";
+import { categoriesApi } from "@/apis/admin/categories";
 
 export default {
   emits: ["render-list"],
@@ -45,7 +45,7 @@ export default {
     const submit = async () => {
       const { id, model } = await validate();
 
-      await productsApi[id ? "put" : "post"]({ id, body: model });
+      await categoriesApi[id ? "put" : "post"]({ id, body: model });
       ElMessage.success(id ? "修改成功" : "新增成功");
       context.emit("render-list");
       cDialog.visible = false;
