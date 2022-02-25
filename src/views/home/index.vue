@@ -1,13 +1,3 @@
 <template>
-  <div class="v-home">{{ enums }}</div>
+  <div class="v-home">欢饮使用后台管理系统！</div>
 </template>
-<script>
-import { useEnums } from "element-plus-admin/composables/use-enums";
-
-export default {
-  setup() {
-    const { enums } = useEnums();
-    return { enums };
-  },
-};
-</script>
