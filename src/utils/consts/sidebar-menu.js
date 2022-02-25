@@ -1,12 +1,12 @@
 export const SidebarMenu = [
   {
-    name: "ad",
+    name: "product",
     title: "商品管理",
     icon: "ad",
     children: [
       {
         title: "商品管理",
-        path: "/ad/ads/list",
+        path: "/product/products/list",
       },
     ],
   },
