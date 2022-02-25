@@ -1,13 +1,13 @@
-import {reactive, ref} from "vue";
-import {useHelpers} from "@/composables/use-helpers";
-import {adsApi} from "@/apis/admin/ads";
-import {ElMessage} from "element-plus";
-import {useEnums} from "element-plus-admin/composables/use-enums";
-import {useValidators} from "vue-validation";
-import {useFormDialog} from "element-plus-admin/composables/use-form-dialog";
-import {tencentCloudCosApi} from "@/apis/admin/tencent-cloud-cos";
-import {filesApi} from "@/apis/admin/files";
-import {UploadTo} from "element-plus-admin/enums/upload-to";
+import { reactive, ref } from "vue";
+import { useHelpers } from "@/composables/use-helpers";
+import { adsApi } from "@/apis/admin/ads";
+import { ElMessage } from "element-plus";
+import { useEnums } from "element-plus-admin/composables/use-enums";
+import { useValidators } from "vue-validation";
+import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";
+import { tencentCloudCosApi } from "@/apis/admin/tencent-cloud-cos";
+import { filesApi } from "@/apis/admin/files";
+import { UploadTo } from "element-plus-admin/enums/upload-to";
 
 export default {
   emits: ["render-list"],

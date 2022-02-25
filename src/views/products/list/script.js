@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { adsApi } from "@/apis/admin/ads";
 import Form from "./components/form/index.vue";
 import { ElMessage } from "element-plus";
+import { productsApi } from "@/apis/admin/products";
 
 export default {
   components: {
@@ -16,7 +17,7 @@ export default {
 
     const { list, currentPage, cFilters, reRender, onPageChange, search } =
       useList({
-        api: adsApi,
+        api: productsApi,
         filters: {
           model: {
             title: { $like: "" },
