@@ -18,11 +18,11 @@
         <c-upload
           :key="`${cForm.id}:pictureId`"
           :cos-config="{
-            cosApi: aliCloudOssApi,
+            cosApi: tencentCloudCosApi,
             filesApi,
-            uploadTo: UploadTo.AliCloudOss,
-            region: 'oss-cn-hangzhou',
-            bucket: 'fzznx-faie',
+            uploadTo: UploadTo.TencentCloudOss,
+            region: 'ap-shanghai',
+            bucket: 'test-1251051722',
           }"
           v-model:value="cForm.model.pictureId"
           @change="validateField('pictureId')"
