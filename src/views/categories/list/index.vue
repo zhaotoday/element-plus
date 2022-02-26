@@ -29,9 +29,9 @@
     </template>
     <el-table :data="list.items" stripe>
       <el-table-column prop="name" label="商品分类名称" />
-      <el-table-column label="商品分类图片" width="120">
+      <el-table-column label="商品分类图标" width="120">
         <template #default="{ row }">
-          <c-list-image :src="`${$helpers.getFileUrl({ id: row.imageFileId })}`" />
+          <c-list-image :src="`${$helpers.getFileUrl({ id: row.iconFileId })}`" />
         </template>
       </el-table-column>
       <el-table-column label="排序" width="120">

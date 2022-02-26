@@ -14,9 +14,9 @@
       <el-form-item label="商品分类名称" prop="name">
         <el-input v-model.trim="cForm.model.name" />
       </el-form-item>
-      <el-form-item label="商品分类图片" prop="imageFileId">
+      <el-form-item label="商品分类图标" prop="iconFileId">
         <c-upload
-          :key="`${cForm.id}:imageFileId`"
+          :key="`${cForm.id}:iconFileId`"
           :cos-config="{
             cosApi: tencentCloudCosApi,
             filesApi,
@@ -24,8 +24,8 @@
             region: 'ap-shanghai',
             bucket: 'test-1251051722',
           }"
-          v-model:value="cForm.model.imageFileId"
-          @change="validateField('imageFileId')"
+          v-model:value="cForm.model.iconFileId"
+          @change="validateField('iconFileId')"
         />
       </el-form-item>
     </el-form>
