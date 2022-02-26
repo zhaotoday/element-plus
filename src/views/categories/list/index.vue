@@ -31,12 +31,14 @@
       <el-table-column prop="name" label="商品分类名称" />
       <el-table-column label="商品分类图标" width="120">
         <template #default="{ row }">
-          <c-list-image :src="`${$helpers.getFileUrl({ id: row.iconFileId })}`" />
+          <c-list-image
+            :src="`${$helpers.getFileUrl({ id: row.iconFileId })}`"
+          />
         </template>
       </el-table-column>
       <el-table-column label="排序" width="120">
         <template #default="{ row }">
-          <c-order-input :api="adsApi" :row="row" @ok="reRender" />
+          <c-order-input :api="categoriesApi" :row="row" @ok="reRender" />
         </template>
       </el-table-column>
       <el-table-column label="操作" width="150px">

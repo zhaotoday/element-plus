@@ -1,10 +1,9 @@
 import { useList } from "element-plus-admin/components/list/composables/use-list";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ref } from "vue";
-import { adsApi } from "@/apis/admin/ads";
+import { categoriesApi } from "@/apis/admin/categories";
 import Form from "./components/form/index.vue";
 import { ElMessage } from "element-plus";
-import { categoriesApi } from "@/apis/admin/categories";
 
 export default {
   components: {
@@ -27,13 +26,13 @@ export default {
       });
 
     const del = async ({ id }) => {
-      await adsApi.delete({ id });
+      await categoriesApi.delete({ id });
       ElMessage.success("删除成功");
       await reRender();
     };
 
     return {
-      adsApi,
+      categoriesApi,
       form,
       enums,
       list,
