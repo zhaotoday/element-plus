@@ -52,5 +52,6 @@
 
     background-color: white;
     border-bottom: 1px solid map.get($border-color, light);
+    z-index: 1;
   }
 }
