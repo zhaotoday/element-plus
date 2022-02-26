@@ -23,6 +23,9 @@ export default {
           },
           rules: {},
         },
+        extraQuery: {
+          order: [["order", "DESC"]],
+        },
       });
 
     const del = async ({ id }) => {
