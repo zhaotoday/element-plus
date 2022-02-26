@@ -6,6 +6,7 @@ import { useValidators } from "vue-validation";
 import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";
 import { tencentCloudCosApi } from "@/apis/admin/tencent-cloud-cos";
 import { filesApi } from "@/apis/admin/files";
+import { categoriesApi } from "@/apis/admin/categories";
 import { UploadTo } from "element-plus-admin/enums/upload-to";
 import { productsApi } from "@/apis/admin/products";
 
@@ -54,6 +55,7 @@ export default {
     return {
       tencentCloudCosApi,
       filesApi,
+      categoriesApi,
       UploadTo,
       enums,
       form,

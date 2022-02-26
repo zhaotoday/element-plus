@@ -29,6 +29,11 @@
     </template>
     <el-table :data="list.items" stripe>
       <el-table-column prop="name" label="商品名称" />
+      <el-table-column label="商品分类" width="100">
+        <template #default="{ row }">
+          {{ row.category ? row.category.name : "" }}
+        </template>
+      </el-table-column>
       <el-table-column label="商品图片" width="120">
         <template #default="{ row }">
           <c-list-image

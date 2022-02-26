@@ -14,12 +14,12 @@
       <el-form-item label="商品名称" prop="name">
         <el-input v-model.trim="cForm.model.name" />
       </el-form-item>
-      <el-form-item label="shangsshssh" prop="studentId">
+      <el-form-item label="商品分类" prop="categoryId">
         <c-resource-select
           class="c-select--full"
-          :key="`${cForm.id}:studentId`"
-          :api="studentsApi"
-          v-model:value="cForm.model.studentId"
+          :key="`${cForm.id}:categoryId`"
+          :api="categoriesApi"
+          v-model:value="cForm.model.categoryId"
         />
       </el-form-item>
       <el-form-item label="商品图片" prop="imageFileIds">

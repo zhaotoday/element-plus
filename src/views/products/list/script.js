@@ -24,6 +24,9 @@ export default {
           },
           rules: {},
         },
+        extraQuery: {
+          include: [{ model: "Category", as: "category" }],
+        },
       });
 
     const del = async ({ id }) => {
