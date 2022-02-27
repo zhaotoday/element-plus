@@ -21,6 +21,13 @@
             v-model.trim="cFilters.model.nickName.$like"
           />
         </el-form-item>
+        <el-form-item prop="phoneNumber">
+          <el-input
+            clearable
+            placeholder="请输入手机号"
+            v-model.trim="cFilters.model.phoneNumber.$like"
+          />
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="search">查询</el-button>
         </el-form-item>
@@ -33,7 +40,12 @@
         </template>
       </el-table-column>
       <el-table-column prop="nickName" label="用户昵称" />
-      <el-table-column prop="nickName" label="手机号" />
+      <el-table-column prop="phoneNumber" label="手机号" width="140" />
+      <el-table-column label="性别" width="80">
+        <template #default="{ row }">
+          {{ $helpers.getItem(enums.Gender, "value", row.gender)["label"] }}
+        </template>
+      </el-table-column>
     </el-table>
   </c-list>
 </template>
