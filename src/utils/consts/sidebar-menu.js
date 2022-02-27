@@ -2,7 +2,7 @@ export const SidebarMenu = [
   {
     name: "product",
     title: "商品管理",
-    icon: "ad",
+    icon: "product-filled",
     children: [
       {
         title: "商品管理",
@@ -17,7 +17,7 @@ export const SidebarMenu = [
   {
     name: "ad",
     title: "广告管理",
-    icon: "ad",
+    icon: "ad-filled",
     children: [
       {
         title: "广告管理",
@@ -28,7 +28,7 @@ export const SidebarMenu = [
   {
     name: "order",
     title: "订单管理",
-    icon: "order",
+    icon: "order-filled",
     children: [
       {
         title: "订单列表",
@@ -39,7 +39,7 @@ export const SidebarMenu = [
   {
     name: "user",
     title: "用户管理",
-    icon: "user",
+    icon: "user-filled",
     children: [
       {
         title: "用户列表",
