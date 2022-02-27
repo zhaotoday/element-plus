@@ -43,7 +43,7 @@ export const SidebarMenu = [
     children: [
       {
         title: "用户列表",
-        path: "/user/list",
+        path: "/user/users/list",
       },
     ],
   },
