@@ -1,7 +1,7 @@
 import { useList } from "element-plus-admin/components/list/composables/use-list";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ref } from "vue";
-import { categoriesApi } from "@/apis/admin/categories";
+import { usersApi } from "@/apis/admin/users";
 import Form from "./components/form/index.vue";
 import { ElMessage } from "element-plus";
 
@@ -16,7 +16,7 @@ export default {
 
     const { list, currentPage, cFilters, reRender, onPageChange, search } =
       useList({
-        api: categoriesApi,
+        api: usersApi,
         filters: {
           model: {
             name: { $like: "" },
@@ -29,13 +29,13 @@ export default {
       });
 
     const del = async ({ id }) => {
-      await categoriesApi.delete({ id });
+      await usersApi.delete({ id });
       ElMessage.success("删除成功");
       await reRender();
     };
 
     return {
-      categoriesApi,
+      usersApi,
       form,
       enums,
       list,
