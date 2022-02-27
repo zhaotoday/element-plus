@@ -26,12 +26,24 @@ export const SidebarMenu = [
     ],
   },
   {
-    icon: "xxx",
-    title: "xxx",
+    name: "user",
+    title: "用户管理",
+    icon: "user",
     children: [
       {
-        title: "xxx",
-        path: "/xxx/list",
+        title: "用户列表",
+        path: "/user/list",
+      },
+    ],
+  },
+  {
+    name: "user",
+    title: "用户管理",
+    icon: "user",
+    children: [
+      {
+        title: "用户列表",
+        path: "/user/list",
       },
     ],
   },
