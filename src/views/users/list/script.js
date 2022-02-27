@@ -1,8 +1,6 @@
 import { useList } from "element-plus-admin/components/list/composables/use-list";
 import { useEnums } from "element-plus-admin/composables/use-enums";
-import { ref } from "vue";
 import { usersApi } from "@/apis/admin/users";
-import { ElMessage } from "element-plus";
 
 export default {
   setup() {
@@ -13,7 +11,8 @@ export default {
         api: usersApi,
         filters: {
           model: {
-            name: { $like: "" },
+            nickName: { $like: "" },
+            phoneNumber: { $like: "" },
           },
           rules: {},
         },

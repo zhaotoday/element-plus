@@ -17,8 +17,8 @@
         <el-form-item prop="name">
           <el-input
             clearable
-            placeholder="请输入商品分类名称"
-            v-model.trim="cFilters.model.name.$like"
+            placeholder="请输入用户昵称"
+            v-model.trim="cFilters.model.nickName.$like"
           />
         </el-form-item>
         <el-form-item>
@@ -27,19 +27,13 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="name" label="商品分类名称" />
-      <el-table-column label="商品分类图标" width="120">
+      <el-table-column label="用户头像" width="120">
         <template #default="{ row }">
-          <c-list-image
-            :src="`${$helpers.getFileUrl({ id: row.iconFileId })}`"
-          />
+          <c-list-image :src="row.wxAvatarUrl" />
         </template>
       </el-table-column>
-      <el-table-column label="排序" width="120">
-        <template #default="{ row }">
-          <c-order-input :api="usersApi" :row="row" @ok="reRender" />
-        </template>
-      </el-table-column>
+      <el-table-column prop="nickName" label="用户昵称" />
+      <el-table-column prop="nickName" label="手机号" />
     </el-table>
   </c-list>
 </template>
