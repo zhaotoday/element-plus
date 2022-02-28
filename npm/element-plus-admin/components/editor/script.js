@@ -4,6 +4,7 @@ import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
 import { sleep } from "jt-helpers";
 import { useUploadImage } from "./composables/use-upload-image";
+import { useUploadVideo } from "./composables/use-upload-video";
 
 const { ApiUrl } = useConsts();
 const { getHeaders } = useAuth();
@@ -38,6 +39,7 @@ export default {
   emits: ["update:value", "change", "focus", "blur"],
   setup(props, context) {
     const uploadImage = useUploadImage(props.cosConfig);
+    const uploadVideo = useUploadVideo(props.cosConfig);
 
     let editor = null;
 
@@ -72,6 +74,7 @@ export default {
         "justify",
         "quote",
         "image",
+        "video",
         "table",
       ];
 
@@ -80,6 +83,7 @@ export default {
       editor.config.uploadFileName = "file";
 
       await uploadImage.configEditor(editor, props);
+      await uploadVideo.configEditor(editor, props);
 
       editor.create();
 
