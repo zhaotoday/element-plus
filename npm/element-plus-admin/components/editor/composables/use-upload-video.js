@@ -21,7 +21,7 @@ export const useUploadVideo = (cosConfig) => {
         });
       };
     } else {
-      editor.config.uploadImgHooks = {
+      editor.config.uploadVideoHooks = {
         customInsert: (insertVideo, result) => {
           insertVideo(`${ApiUrl}/public/files/${result.data.id}`);
         },

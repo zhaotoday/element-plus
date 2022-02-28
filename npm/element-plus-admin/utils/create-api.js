@@ -5,7 +5,7 @@ import { ElMessage } from "element-plus";
 
 NProgress.configure({ showSpinner: false });
 
-const createRequest = ({ baseUrl, timeout = 5000, headers, query }) => {
+const createRequest = ({ baseUrl, timeout = 5000, headers, query, body }) => {
   const request = axios.create({
     baseURL: baseUrl || process.env.VUE_APP_API_URL,
     timeout,
@@ -13,7 +13,7 @@ const createRequest = ({ baseUrl, timeout = 5000, headers, query }) => {
 
   request.interceptors.request.use(
     (config) => {
-      const { method, params, showLoading } = config;
+      const { method, params, data, showLoading } = config;
 
       showLoading && NProgress.start();
 
@@ -30,6 +30,10 @@ const createRequest = ({ baseUrl, timeout = 5000, headers, query }) => {
         } else {
           config.params.where = formatQuery(query.where || {});
         }
+      }
+
+      if (data) {
+        Object.assign(config.data, body);
       }
 
       ["include", "order", "attributes"].forEach((key) => {
@@ -105,11 +109,11 @@ const formatQuery = (obj) => {
   return JSON.stringify(ret);
 };
 
-export const createApi = ({ baseUrl, headers, url, query = {} }) => {
-  const request = createRequest({ baseUrl, headers, query });
+export const createApi = ({ baseUrl, headers, url, query = {}, body = {} }) => {
+  const request = createRequest({ baseUrl, headers, query, body });
 
   return {
-    config: { baseUrl, headers, url, query },
+    config: { baseUrl, headers, url, query, body },
 
     get: ({ joinUrl = "", id, query, showLoading = true, showError = true }) =>
       request.get(`${url}${joinUrl}${id ? `/${id}` : ""}`, {
