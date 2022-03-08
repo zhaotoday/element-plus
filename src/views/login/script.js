@@ -16,7 +16,7 @@ export default {
       model: {},
       rules: {
         username: [isRequired({ label: "用户名" })],
-        password: [isRequired({ label: "密码" }),],
+        password: [isRequired({ label: "密码" })],
       },
     });
 

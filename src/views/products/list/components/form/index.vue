@@ -25,7 +25,7 @@
       <el-form-item label="商品图片" prop="imageFileIds">
         <c-upload
           :key="`${cForm.id}:imageFileIds`"
-             multiple
+          multiple
           v-model:value="cForm.model.imageFileIds"
           @change="validateField('imageFileIds')"
         />
