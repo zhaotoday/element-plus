@@ -24,7 +24,7 @@ export default {
           rules: {},
         },
         extraQuery: {
-          order: [["order", "DESC"]],
+          order: [["order", "ASC"]],
         },
       });
 

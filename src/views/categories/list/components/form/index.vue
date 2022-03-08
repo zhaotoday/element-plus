@@ -17,13 +17,7 @@
       <el-form-item label="商品分类图标" prop="iconFileId">
         <c-upload
           :key="`${cForm.id}:iconFileId`"
-          :cos-config="{
-            cosApi: tencentCloudCosApi,
-            filesApi,
-            uploadTo: UploadTo.TencentCloudOss,
-            region: 'ap-shanghai',
-            bucket: 'test-1251051722',
-          }"
+
           v-model:value="cForm.model.iconFileId"
           @change="validateField('iconFileId')"
         />

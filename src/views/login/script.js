@@ -8,7 +8,7 @@ export default {
   setup() {
     const { dispatch } = useStore();
     const router = useRouter();
-    const { isRequired, isPassword } = useValidators();
+    const { isRequired } = useValidators();
 
     const form = ref(null);
 
@@ -16,7 +16,7 @@ export default {
       model: {},
       rules: {
         username: [isRequired({ label: "用户名" })],
-        password: [isRequired({ label: "密码" }), isPassword()],
+        password: [isRequired({ label: "密码" }),],
       },
     });
 

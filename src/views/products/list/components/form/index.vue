@@ -25,14 +25,7 @@
       <el-form-item label="商品图片" prop="imageFileIds">
         <c-upload
           :key="`${cForm.id}:imageFileIds`"
-          :cos-config="{
-            cosApi: tencentCloudCosApi,
-            filesApi,
-            uploadTo: UploadTo.TencentCloudOss,
-            region: 'ap-shanghai',
-            bucket: 'test-1251051722',
-          }"
-          multiple
+             multiple
           v-model:value="cForm.model.imageFileIds"
           @change="validateField('imageFileIds')"
         />
