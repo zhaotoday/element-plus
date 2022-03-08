@@ -4,17 +4,6 @@
 
 $font-sizes: $pxes;
 
-$colors: (
-  white: white,
-  black: black,
-  primary: map.get($colors, primary, base),
-  success: map.get($colors, success, base),
-  warning: map.get($colors, warning, base),
-  danger: map.get($colors, danger, base),
-  info: map.get($colors, info, base),
-  secondary: #409eff,
-);
-
 $the-layout: (
   the-header: (
     height: 60px,

@@ -1,6 +1,7 @@
 @import "~@/assets/styles/utils/index";
 
-@import "~sass-utils/global/index";
+@import "~sass-utils/global/reset/base";
+@import "~sass-utils/global/utils/base";
 @import "~sass-utils/pc/global/index";
 @import "~sass-utils/ui/element-plus/global/index";
 

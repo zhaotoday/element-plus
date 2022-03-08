@@ -1,7 +1,7 @@
 import { createApp } from "vue";
-import "@/assets/styles/global/index.scss";
 import "@/assets/styles/element-plus/index.scss";
 import ElementPlus from "element-plus";
+import "@/assets/styles/global/index.scss";
 import "element-plus-admin/utils/polyfills";
 import { config } from "@/utils/config";
 import { useComponents } from "@/utils/use-components";
