@@ -42,7 +42,7 @@
   }
 
   @include e(status) {
-    color: map.get($colors, success) !important;
+    color: map.get($colors, success, base) !important;
   }
 
   @include e(close) {
