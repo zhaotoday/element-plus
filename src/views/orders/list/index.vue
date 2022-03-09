@@ -27,18 +27,8 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column label="用户头像" width="120">
-        <template #default="{ row }">
-          <c-list-image
-            :src="
-              row.user.avatarFileId
-                ? $helpers.getFileUrl({ id: row.user.avatarFileId })
-                : row.wxAvatarUrl
-            "
-          />
-        </template>
-      </el-table-column>
-      <el-table-column label="用户名">
+      <el-table-column label="订单号" prop="no" width="150" />
+      <el-table-column label="用户名" width="120">
         <template #default="{ row }">
           {{ row.user.name }}
         </template>

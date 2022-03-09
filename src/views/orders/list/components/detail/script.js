@@ -1,12 +1,16 @@
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 export default {
   setup() {
     const cDialog = reactive({
-      visible: true,
+      visible: false,
     });
 
-    const show = () => {};
+    const detail = ref({});
+
+    const show = (data) => {
+      detail.value = data;
+    };
 
     return {
       cDialog,
