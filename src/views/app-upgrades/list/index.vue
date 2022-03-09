@@ -18,14 +18,14 @@
         <el-form-item prop="versionName">
           <el-input
             clearable
-            placeholder="请输入版本号"
+            placeholder="请输入版本名称"
             v-model.trim="cFilters.model.versionName.$like"
           />
         </el-form-item>
         <el-form-item prop="versionCode">
           <el-input
             clearable
-            placeholder="请输入版本代码"
+            placeholder="请输入版本号"
             v-model.trim="cFilters.model.versionCode.$like"
           />
         </el-form-item>
@@ -43,8 +43,8 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="versionName" label="版本号" width="100" />
-      <el-table-column prop="versionCode" label="版本代码" width="100" />
+      <el-table-column prop="versionName" label="版本名称" width="100" />
+      <el-table-column prop="versionCode" label="版本号" width="100" />
       <el-table-column prop="log" label="更新日志" />
       <el-table-column label="状态" width="100">
         <template #default="{ row }">

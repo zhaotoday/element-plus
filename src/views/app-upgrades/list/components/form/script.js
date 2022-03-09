@@ -32,8 +32,8 @@ export default {
       id: 0,
       model: deepCopy(initialModel),
       rules: {
-        versionName: [isRequired({ label: "版本号" })],
-        versionCode: [isRequired({ label: "版本代码" })],
+        versionName: [isRequired({ label: "版本名称" })],
+        versionCode: [isRequired({ label: "版本号" })],
         fileId: [isRequired({ label: "应用文件" })],
         log: [isRequired({ label: "更新日志" })],
       },

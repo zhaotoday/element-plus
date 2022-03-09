@@ -11,10 +11,10 @@
       label-position="right"
       label-width="120px"
     >
-      <el-form-item label="版本号" prop="versionName">
+      <el-form-item label="版本名称" prop="versionName">
         <el-input v-model.trim="cForm.model.versionName" />
       </el-form-item>
-      <el-form-item label="版本代码" prop="versionCode">
+      <el-form-item label="版本号" prop="versionCode">
         <el-input v-model.trim="cForm.model.versionCode" />
       </el-form-item>
       <el-form-item label="更新日志" prop="log">
