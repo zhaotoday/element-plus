@@ -25,9 +25,6 @@ export default {
           },
           rules: {},
         },
-        extraQuery: {
-          order: [["order", "ASC"]],
-        },
       });
 
     const del = async ({ id }) => {
