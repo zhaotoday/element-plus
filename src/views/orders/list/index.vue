@@ -14,18 +14,11 @@
         :rules="cFilters.rules"
         inline
       >
-        <el-form-item prop="name">
+        <el-form-item prop="no">
           <el-input
             clearable
-            placeholder="请输入用户昵称"
-            v-model.trim="cFilters.model.nickName.$like"
-          />
-        </el-form-item>
-        <el-form-item prop="phoneNumber">
-          <el-input
-            clearable
-            placeholder="请输入手机号"
-            v-model.trim="cFilters.model.phoneNumber.$like"
+            placeholder="请输入订单号"
+            v-model.trim="cFilters.model.no.$like"
           />
         </el-form-item>
         <el-form-item>
@@ -38,6 +31,9 @@
         <template #default="{ row }">
           <c-list-image :src="row.wxAvatarUrl" />
         </template>
+      </el-table-column>
+      <el-table-column label="用户名" width="120">
+        <template #default="{ row }">{{ row.user.name }}</template>
       </el-table-column>
       <el-table-column prop="nickName" label="用户昵称" />
       <el-table-column prop="phoneNumber" label="手机号" width="140" />

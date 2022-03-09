@@ -11,10 +11,12 @@ export default {
         api: ordersApi,
         filters: {
           model: {
-            nickName: { $like: "" },
-            phoneNumber: { $like: "" },
+            no: { $like: "" },
           },
           rules: {},
+        },
+        extraQuery: {
+          include: [{ model: "User", as: "user" }],
         },
       });
 
