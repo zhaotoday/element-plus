@@ -33,7 +33,7 @@
           <c-enum-select
             clearable
             placeholder="请选择状态"
-            :items="enums.PublicStatus"
+            :items="enums.PublishStatus"
             v-model:value="cFilters.model.status"
           />
         </el-form-item>
