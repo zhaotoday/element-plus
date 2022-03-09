@@ -3,6 +3,11 @@
 @import "~@/assets/styles/utils/index";
 
 @include vc(detail) {
+  max-height: 450px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 4px;
+
   li {
     @include padding(6px, null, 6px, 90px);
 
