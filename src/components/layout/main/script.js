@@ -9,42 +9,42 @@ export default {
     TheHeader,
   },
   setup() {
-    const menus = ref([{}, {}, {}]);
+    const menus = ref([{}, {}, {}, {}]);
 
     const renderMenus = (path) => {
-      menus.value = [{}, {}, {}];
+      const routePaths = path.substr(1).split("/");
+
+      menus.value = [{}, {}, {}, {}];
 
       useConsts().SidebarMenu.forEach((item1) => {
         item1.children.forEach((item2) => {
-          const routePaths = path.split("/");
+          const itemPaths = item2.path.substr(1).split("/");
 
-          if (item2.children) {
-            item2.children.forEach((item3) => {
-              const itemPaths = item3.path.split("/");
+          if (
+            routePaths[0] === itemPaths[0] &&
+            routePaths[1] === itemPaths[1]
+          ) {
+            menus.value[0] = item1;
+            menus.value[1] = item2;
 
-              if (
-                routePaths[2] === itemPaths[2] &&
-                routePaths[3] === itemPaths[3]
-              ) {
-                menus.value[0] = item1;
-                menus.value[1] = item2;
+            if (item2.children) {
+              item2.children.forEach((item3) => {
+                const itemPaths = item3.path.substr(1).split("/");
 
-                if (
-                  routePaths[4] === itemPaths[4] &&
-                  routePaths[5] === itemPaths[5]
-                ) {
+                if (routePaths[2] === itemPaths[2]) {
                   menus.value[2] = item3;
-                }
-              }
-            });
-          } else {
-            const itemPaths = item2.path.split("/");
 
-            if (
-              routePaths[2] === itemPaths[2] &&
-              routePaths[3] === itemPaths[3]
-            ) {
-              menus.value = [item1, item2, {}];
+                  if (item3.children) {
+                    item3.children.forEach((item4) => {
+                      const itemPaths = item4.path.substr(1).split("/");
+
+                      if (routePaths[3] === itemPaths[3]) {
+                        menus.value[3] = item4;
+                      }
+                    });
+                  }
+                }
+              });
             }
           }
         });
