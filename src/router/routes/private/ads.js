@@ -3,7 +3,7 @@ export default {
   component: () => import("@/views/ads/index.vue"),
   children: [
     {
-      path: "list",
+      path: "",
       component: () => import("@/views/ads/list/index.vue"),
     },
   ],

@@ -3,7 +3,7 @@ export default {
   component: () => import("@/views/users/index.vue"),
   children: [
     {
-      path: "list",
+      path: "",
       component: () => import("@/views/users/list/index.vue"),
     },
   ],
