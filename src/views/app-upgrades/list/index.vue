@@ -45,16 +45,12 @@
     <el-table :data="list.items" stripe>
       <el-table-column prop="versionName" label="版本号" width="100" />
       <el-table-column prop="versionCode" label="版本代码" width="100" />
-      <el-table-column label="商品分类图标" width="120">
+      <el-table-column prop="log" label="更新日志" />
+      <el-table-column label="状态" width="100">
         <template #default="{ row }">
-          <c-list-image
-            :src="`${$helpers.getFileUrl({ id: row.iconFileId })}`"
-          />
-        </template>
-      </el-table-column>
-      <el-table-column label="排序" width="120">
-        <template #default="{ row }">
-          <c-order-input :api="appUpgradesApi" :row="row" @ok="reRender" />
+          {{
+            $helpers.getItem(enums.PublishStatus, "value", row.status)["label"]
+          }}
         </template>
       </el-table-column>
       <el-table-column label="操作" width="150px">
