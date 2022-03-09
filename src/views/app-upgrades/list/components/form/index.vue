@@ -17,7 +17,7 @@
       <el-form-item label="版本代码" prop="versionCode">
         <el-input v-model.trim="cForm.model.versionCode" />
       </el-form-item>
-      <el-form-item label="更新日志" prop="logo">
+      <el-form-item label="更新日志" prop="log">
         <el-input type="textarea" :rows="5" v-model.trim="cForm.model.log" />
       </el-form-item>
       <el-form-item label="应用文件" prop="fileId">
@@ -30,7 +30,7 @@
       <el-form-item label="状态">
         <c-enum-select
           class="c-select--full"
-          placeholder="请选择年段"
+          placeholder="请选择状态"
           :items="enums.PublishStatus"
           v-model:value="cForm.model.status"
         />
