@@ -43,7 +43,8 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="name" label="商品分类名称" />
+      <el-table-column prop="versionName" label="版本号" width="100" />
+      <el-table-column prop="versionCode" label="版本代码" width="100" />
       <el-table-column label="商品分类图标" width="120">
         <template #default="{ row }">
           <c-list-image

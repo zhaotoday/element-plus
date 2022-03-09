@@ -30,8 +30,10 @@ export default {
       id: 0,
       model: deepCopy(initialModel),
       rules: {
-        name: [isRequired({ label: "商品分类名称" })],
-        iconFileId: [isRequired({ message: "请选择商品分类图标" })],
+        versionName: [isRequired({ label: "版本号" })],
+        versionCode: [isRequired({ label: "版本代码" })],
+        fileId: [isRequired({ label: "应用文件" })],
+        log: [isRequired({ label: "更新日志" })],
       },
     });
 
