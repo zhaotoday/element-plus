@@ -1,0 +1,18 @@
+@use "sass:map";
+
+@import "~@/assets/styles/utils/index";
+
+@include vc(detail) {
+  li {
+    @include padding(6px, null, 6px, 90px);
+
+    position: relative;
+    line-height: 150%;
+  }
+
+  label {
+    @include position--absolute(10px, null, null, 0);
+
+    line-height: 100%;
+  }
+}

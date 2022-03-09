@@ -1,18 +1,40 @@
 <template>
   <el-dialog title="订单详情" v-model="cDialog.visible" width="550px">
-    <el-descriptions v-if="cDialog.visible" :column="1">
-      <el-descriptions-item label="订单号" :width="200">
+    <ul class="vc-detail">
+      <li>
+        <label>订单号</label>
         {{ detail.no }}
-      </el-descriptions-item>
-      <el-descriptions-item label="用户" width="100px">
+      </li>
+      <li>
+        <label>用户</label>
         {{ detail.user.name }}
-      </el-descriptions-item>
-      <el-descriptions-item label="下单时间" width="100px">
+      </li>
+      <li>
+        <label>下单时间</label>
         {{ $time.getTime(detail.createdAt) }}
-      </el-descriptions-item>
-      <el-descriptions-item label="Place">Suzhou</el-descriptions-item>
-    </el-descriptions>
+      </li>
+      <li>
+        <label>送达时间</label>
+        {{ detail.finishedAt ? $time.getTime(detail.finishedAt) : "-" }}
+      </li>
+      <li>
+        <label>金额</label>
+        ${{ detail.amount }}
+      </li>
+      <li>
+        <label>状态</label>
+        {{
+          $helpers.getItem(enums.OrderStatus, "value", detail.status)["label"]
+        }}
+      </li>
+      <li>
+        <label>购物清单</label>
+        abc
+      </li>
+    </ul>
   </el-dialog>
 </template>
 
 <script src="./script.js"></script>
+
+<style lang="scss" scoped src="./style.scss"></style>

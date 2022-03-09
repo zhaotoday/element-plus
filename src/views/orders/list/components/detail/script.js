@@ -1,7 +1,10 @@
 import { reactive, ref } from "vue";
+import { useEnums } from "element-plus-admin/composables/use-enums";
 
 export default {
   setup() {
+    const { enums } = useEnums();
+
     const cDialog = reactive({
       visible: false,
     });
@@ -15,6 +18,7 @@ export default {
     };
 
     return {
+      enums,
       cDialog,
       detail,
       show,

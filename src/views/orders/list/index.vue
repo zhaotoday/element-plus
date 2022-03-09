@@ -50,6 +50,13 @@
           {{ row.finishedAt ? $time.getTime(row.finishedAt) : "" }}
         </template>
       </el-table-column>
+      <el-table-column label="状态">
+        <template #default="{ row }">
+          {{
+            $helpers.getItem(enums.OrderStatus, "value", row.status)["label"]
+          }}
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="160px">
         <template #default="{ row }">
           <el-button type="" size="small" @click="detail.show(row)">
