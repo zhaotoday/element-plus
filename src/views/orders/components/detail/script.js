@@ -6,8 +6,11 @@ export default {
       visible: true,
     });
 
+    const show = () => {};
+
     return {
       cDialog,
+      show,
     };
   },
 };
