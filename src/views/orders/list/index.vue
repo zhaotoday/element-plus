@@ -39,7 +39,9 @@
           {{ address.location.name + address.room }}
         </template>
       </el-table-column>
-      <el-table-column prop="amount" label="金额" width="80" />
+      <el-table-column prop="amount" label="金额" width="60">
+        <template #default="{ row }"> ${{ row.amount }} </template>
+      </el-table-column>
       <el-table-column label="下单时间" width="140">
         <template #default="{ row }">
           {{ $time.getTime(row.createdAt) }}
@@ -50,7 +52,7 @@
           {{ row.finishedAt ? $time.getTime(row.finishedAt) : "" }}
         </template>
       </el-table-column>
-      <el-table-column label="状态">
+      <el-table-column label="状态" width="100">
         <template #default="{ row }">
           {{
             $helpers.getItem(enums.OrderStatus, "value", row.status)["label"]

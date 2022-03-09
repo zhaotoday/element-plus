@@ -18,6 +18,11 @@
         {{ detail.finishedAt ? $time.getTime(detail.finishedAt) : "-" }}
       </li>
       <li>
+        <label>收货地址</label>
+        {{ detail.address.name }} {{ detail.address.phoneNumber }}<br />
+        {{ detail.address.location.name + detail.address.room }}
+      </li>
+      <li>
         <label>金额</label>
         ${{ detail.amount }}
       </li>
