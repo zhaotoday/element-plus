@@ -15,11 +15,18 @@
         :rules="cFilters.rules"
         inline
       >
-        <el-form-item prop="name">
+        <el-form-item prop="versionName">
           <el-input
             clearable
-            placeholder="请输入商品分类名称"
-            v-model.trim="cFilters.model.name.$like"
+            placeholder="请输入版本号"
+            v-model.trim="cFilters.model.versionName.$like"
+          />
+        </el-form-item>
+        <el-form-item prop="versionCode">
+          <el-input
+            clearable
+            placeholder="请输入版本代码"
+            v-model.trim="cFilters.model.versionCode.$like"
           />
         </el-form-item>
         <el-form-item>

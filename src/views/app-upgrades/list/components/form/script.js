@@ -7,7 +7,7 @@ import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";
 import { tencentCloudCosApi } from "@/apis/admin/tencent-cloud-cos";
 import { filesApi } from "@/apis/admin/files";
 import { UploadTo } from "element-plus-admin/enums/upload-to";
-import { appUpgradesApi } from "@/apis/admin/appUpgrades";
+import { appUpgradesApi } from "@/apis/admin/app-upgrades";
 
 export default {
   emits: ["render-list"],

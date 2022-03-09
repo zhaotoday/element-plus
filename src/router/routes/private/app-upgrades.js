@@ -1,10 +1,10 @@
 export default {
-  path: ":menu/appUpgrades",
-  component: () => import("@/views/appUpgrades/index.vue"),
+  path: ":menu/app-upgrades",
+  component: () => import("@/views/app-upgrades/index.vue"),
   children: [
     {
       path: "",
-      component: () => import("@/views/appUpgrades/list/index.vue"),
+      component: () => import("@/views/app-upgrades/list/index.vue"),
     },
   ],
 };

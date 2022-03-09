@@ -47,4 +47,15 @@ export const SidebarMenu = [
       },
     ],
   },
+  {
+    name: "app",
+    title: "应用管理",
+    icon: "app-filled",
+    children: [
+      {
+        title: "应用升级",
+        path: "/app/app-upgrades",
+      },
+    ],
+  },
 ];
