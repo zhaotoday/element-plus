@@ -21,7 +21,7 @@ export default {
           model: {
             versionName: { $like: "" },
             versionCode: { $like: "" },
-            status: { $eq: "" },
+            status: undefined,
           },
           rules: {},
         },
