@@ -49,10 +49,27 @@
           {{ address.location.name + address.room }}
         </template>
       </el-table-column>
-      <el-table-column prop="amount" label="金额" width="140" />
-      <el-table-column label="性别" width="80">
+      <el-table-column prop="amount" label="金额" width="80" />
+      <el-table-column label="下单时间" width="140">
         <template #default="{ row }">
-          {{ $helpers.getItem(enums.Gender, "value", row.gender)["label"] }}
+          {{ $time.getTime(row.createdAt) }}
+        </template>
+      </el-table-column>
+      <el-table-column label="送达时间" width="140">
+        <template #default="{ row }">
+          {{ row.finishedAt ? $time.getTime(row.finishedAt) : "" }}
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" width="160px">
+        <template #default="{ row }">
+          <el-button type="" size="small" @click="detail.show(item)">
+            查看详情
+          </el-button>
+          <el-popconfirm title="确定删除吗？" @confirm="del(row)">
+            <template #reference>
+              <el-button type="danger" size="small"> 删除 </el-button>
+            </template>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
