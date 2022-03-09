@@ -29,14 +29,27 @@
     <el-table :data="list.items" stripe>
       <el-table-column label="用户头像" width="120">
         <template #default="{ row }">
-          <c-list-image :src="row.wxAvatarUrl" />
+          <c-list-image
+            :src="
+              row.user.avatarFileId
+                ? $helpers.getFileUrl({ id: row.user.avatarFileId })
+                : row.wxAvatarUrl
+            "
+          />
         </template>
       </el-table-column>
-      <el-table-column label="用户名" width="120">
-        <template #default="{ row }">{{ row.user.name }}</template>
+      <el-table-column label="用户名">
+        <template #default="{ row }">
+          {{ row.user.name }}
+        </template>
       </el-table-column>
-      <el-table-column prop="nickName" label="用户昵称" />
-      <el-table-column prop="phoneNumber" label="手机号" width="140" />
+      <el-table-column label="收货地址">
+        <template #default="{ row: { address } }">
+          {{ address.name }} {{ address.phoneNumber }}<br />
+          {{ address.location.name + address.room }}
+        </template>
+      </el-table-column>
+      <el-table-column prop="amount" label="金额" width="140" />
       <el-table-column label="性别" width="80">
         <template #default="{ row }">
           {{ $helpers.getItem(enums.Gender, "value", row.gender)["label"] }}
