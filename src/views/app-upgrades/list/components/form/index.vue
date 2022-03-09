@@ -9,7 +9,7 @@
       :model="cForm.model"
       :rules="cForm.rules"
       label-position="right"
-      label-width="100px"
+      label-width="90px"
     >
       <el-form-item label="平台" prop="platform">
         <c-enum-select

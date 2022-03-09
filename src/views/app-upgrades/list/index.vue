@@ -15,6 +15,22 @@
         :rules="cFilters.rules"
         inline
       >
+        <el-form-item prop="status">
+          <c-enum-select
+            clearable
+            placeholder="请选择平台"
+            :items="enums.AppPlatform"
+            v-model:value="cFilters.model.platform"
+          />
+        </el-form-item>
+        <el-form-item prop="status">
+          <c-enum-select
+            clearable
+            placeholder="请选择状态"
+            :items="enums.PublishStatus"
+            v-model:value="cFilters.model.status"
+          />
+        </el-form-item>
         <el-form-item prop="versionName">
           <el-input
             clearable
@@ -29,20 +45,28 @@
             v-model.trim="cFilters.model.versionCode.$like"
           />
         </el-form-item>
-        <el-form-item prop="status">
-          <c-enum-select
-            clearable
-            placeholder="请选择状态"
-            :items="enums.PublishStatus"
-            v-model:value="cFilters.model.status"
-          />
-        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="search">查询</el-button>
         </el-form-item>
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
+      <el-table-column label="平台" width="100">
+        <template #default="{ row }">
+          {{
+            $helpers.getItem(enums.AppPlatform, "value", row.platform)["label"]
+          }}
+        </template>
+      </el-table-column>
+      <el-table-column label="包类型" width="100">
+        <template #default="{ row }">
+          {{
+            $helpers.getItem(enums.AppPackageType, "value", row.packageType)[
+              "label"
+            ]
+          }}
+        </template>
+      </el-table-column>
       <el-table-column prop="versionName" label="版本名称" width="100" />
       <el-table-column prop="versionCode" label="版本号" width="100" />
       <el-table-column prop="log" label="更新日志" />
