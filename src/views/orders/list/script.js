@@ -2,8 +2,13 @@ import { useList } from "element-plus-admin/components/list/composables/use-list
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ordersApi } from "@/apis/admin/orders";
 import { ElMessage } from "element-plus";
+import Detail from "./components/detail/index.vue";
+import { ref } from "vue";
 
 export default {
+  components: {
+    "vc-detail": Detail,
+  },
   setup() {
     const { enums } = useEnums();
 
@@ -21,6 +26,8 @@ export default {
         },
       });
 
+    const detail = ref(null);
+
     const del = async ({ id }) => {
       await ordersApi.delete({ id });
       ElMessage.success("删除成功");
@@ -33,6 +40,7 @@ export default {
       list,
       currentPage,
       cFilters,
+      detail,
       reRender,
       onPageChange,
       search,
