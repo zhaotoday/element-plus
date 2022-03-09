@@ -28,7 +28,6 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="title" label="广告标题" />
       <el-table-column label="广告图片" width="120">
         <template #default="{ row }">
           <c-list-image
@@ -36,6 +35,7 @@
           />
         </template>
       </el-table-column>
+      <el-table-column prop="title" label="广告标题" />
       <el-table-column label="排序" width="120">
         <template #default="{ row }">
           <c-order-input :api="adsApi" :row="row" @ok="reRender" />
