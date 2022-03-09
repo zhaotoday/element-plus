@@ -1,6 +1,6 @@
 import { useList } from "element-plus-admin/components/list/composables/use-list";
 import { useEnums } from "element-plus-admin/composables/use-enums";
-import { usersApi } from "@/apis/admin/users";
+import { ordersApi } from "@/apis/admin/orders";
 
 export default {
   setup() {
@@ -8,7 +8,7 @@ export default {
 
     const { list, currentPage, cFilters, reRender, onPageChange, search } =
       useList({
-        api: usersApi,
+        api: ordersApi,
         filters: {
           model: {
             nickName: { $like: "" },
@@ -19,7 +19,7 @@ export default {
       });
 
     return {
-      usersApi,
+      ordersApi,
       enums,
       list,
       currentPage,
