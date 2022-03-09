@@ -9,8 +9,24 @@
       :model="cForm.model"
       :rules="cForm.rules"
       label-position="right"
-      label-width="120px"
+      label-width="100px"
     >
+      <el-form-item label="平台" prop="platform">
+        <c-enum-select
+          class="c-select--full"
+          placeholder="请选择平台"
+          :items="enums.AppPlatform"
+          v-model:value="cForm.model.platform"
+        />
+      </el-form-item>
+      <el-form-item label="包类型" prop="packageType">
+        <c-enum-select
+          class="c-select--full"
+          placeholder="请选择包类型"
+          :items="enums.AppPackageType"
+          v-model:value="cForm.model.packageType"
+        />
+      </el-form-item>
       <el-form-item label="版本名称" prop="versionName">
         <el-input v-model.trim="cForm.model.versionName" />
       </el-form-item>
