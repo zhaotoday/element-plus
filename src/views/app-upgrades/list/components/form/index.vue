@@ -18,7 +18,7 @@
         <el-input v-model.trim="cForm.model.versionCode" />
       </el-form-item>
       <el-form-item label="更新日志" prop="log">
-        <el-input type="textarea" :rows="5" v-model.trim="cForm.model.log" />
+        <el-input type="textarea" :rows="5" v-model="cForm.model.log" />
       </el-form-item>
       <el-form-item label="应用文件" prop="fileId">
         <c-upload

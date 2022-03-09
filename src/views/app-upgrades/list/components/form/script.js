@@ -24,7 +24,9 @@ export default {
       visible: false,
     });
 
-    const initialModel = {};
+    const initialModel = {
+      status: 1,
+    };
 
     const cForm = reactive({
       id: 0,
