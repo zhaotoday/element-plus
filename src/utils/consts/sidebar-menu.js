@@ -6,11 +6,11 @@ export const SidebarMenu = [
     children: [
       {
         title: "商品管理",
-        path: "/product/products/list",
+        path: "/product/products",
       },
       {
         title: "商品分类",
-        path: "/product/categories/list",
+        path: "/product/categories",
       },
     ],
   },
@@ -21,7 +21,7 @@ export const SidebarMenu = [
     children: [
       {
         title: "广告管理",
-        path: "/ad/ads/list",
+        path: "/ad/ads",
       },
     ],
   },
@@ -32,7 +32,7 @@ export const SidebarMenu = [
     children: [
       {
         title: "订单列表",
-        path: "/user/list",
+        path: "/user",
       },
     ],
   },
@@ -43,7 +43,7 @@ export const SidebarMenu = [
     children: [
       {
         title: "用户列表",
-        path: "/user/users/list",
+        path: "/user/users",
       },
     ],
   },
