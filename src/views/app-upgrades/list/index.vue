@@ -29,6 +29,14 @@
             v-model.trim="cFilters.model.versionCode.$like"
           />
         </el-form-item>
+        <el-form-item prop="status">
+          <c-enum-select
+            clearable
+            placeholder="请选择状态"
+            :items="enums.PublicStatus"
+            v-model:value="cFilters.model.status"
+          />
+        </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="search">查询</el-button>
         </el-form-item>
