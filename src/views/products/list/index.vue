@@ -28,12 +28,6 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="name" label="商品名称" />
-      <el-table-column label="商品分类" width="100">
-        <template #default="{ row }">
-          {{ row.category ? row.category.name : "" }}
-        </template>
-      </el-table-column>
       <el-table-column label="商品图片" width="120">
         <template #default="{ row }">
           <c-list-image
@@ -41,7 +35,15 @@
           />
         </template>
       </el-table-column>
+      <el-table-column prop="name" label="商品名称" />
+      <el-table-column label="商品分类" width="100">
+        <template #default="{ row }">
+          {{ row.category ? row.category.name : "" }}
+        </template>
+      </el-table-column>
       <el-table-column prop="price" label="价格" width="80" />
+      <el-table-column prop="stock" label="库存" width="80" />
+      <el-table-column prop="sales" label="销量" width="80" />
       <el-table-column label="操作" width="150px">
         <template #default="{ row }">
           <el-button type="" size="small" @click="form.show(row)">
