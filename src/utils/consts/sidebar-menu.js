@@ -5,7 +5,7 @@ export const SidebarMenu = [
     icon: "product-filled",
     children: [
       {
-        title: "商品管理",
+        title: "商品列表",
         path: "/product/products",
       },
       {
