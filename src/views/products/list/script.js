@@ -5,6 +5,7 @@ import { adsApi } from "@/apis/admin/ads";
 import Form from "./components/form/index.vue";
 import { ElMessage } from "element-plus";
 import { productsApi } from "@/apis/admin/products";
+import { categoriesApi } from "@/apis/admin/categories";
 
 export default {
   components: {
@@ -30,13 +31,13 @@ export default {
       });
 
     const del = async ({ id }) => {
-      await adsApi.delete({ id });
+      await productsApi.delete({ id });
       ElMessage.success("删除成功");
       await reRender();
     };
 
     return {
-      adsApi,
+      categoriesApi,
       form,
       enums,
       list,
