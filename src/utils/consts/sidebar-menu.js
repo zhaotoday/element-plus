@@ -20,7 +20,7 @@ export const SidebarMenu = [
     icon: "ad-filled",
     children: [
       {
-        title: "广告管理",
+        title: "广告列表",
         path: "/ad/ads",
       },
     ],
