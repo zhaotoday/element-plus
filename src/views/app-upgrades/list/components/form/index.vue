@@ -39,6 +39,9 @@
       <el-form-item label="应用文件" prop="fileId">
         <c-upload
           :key="`${cForm.id}:fileId`"
+          :data="{
+            dir: 'apps',
+          }"
           v-model:value="cForm.model.fileId"
           @change="validateField('fileId')"
         />
