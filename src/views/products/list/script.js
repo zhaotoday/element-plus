@@ -1,7 +1,6 @@
 import { useList } from "element-plus-admin/components/list/composables/use-list";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ref } from "vue";
-import { adsApi } from "@/apis/admin/ads";
 import Form from "./components/form/index.vue";
 import { ElMessage } from "element-plus";
 import { productsApi } from "@/apis/admin/products";
@@ -21,6 +20,7 @@ export default {
         api: productsApi,
         filters: {
           model: {
+            categoryId: undefined,
             name: { $like: "" },
           },
           rules: {},

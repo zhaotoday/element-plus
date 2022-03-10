@@ -15,7 +15,7 @@
         :rules="cFilters.rules"
         inline
       >
-        <el-form-item label="商品分类" prop="categoryId">
+        <el-form-item prop="categoryId">
           <c-resource-select
             placeholder="请选择商品分类"
             :api="categoriesApi"
