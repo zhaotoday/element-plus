@@ -17,6 +17,7 @@
       <el-form-item label="商品分类图标" prop="iconFileId">
         <c-upload
           :key="`${cForm.id}:iconFileId`"
+          file-dir="categories"
           v-model:value="cForm.model.iconFileId"
           @change="validateField('iconFileId')"
         />

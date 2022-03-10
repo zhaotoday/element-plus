@@ -26,6 +26,7 @@
         <c-upload
           :key="`${cForm.id}:imageFileIds`"
           multiple
+          file-dir="products"
           v-model:value="cForm.model.imageFileIds"
           @change="validateField('imageFileIds')"
         />

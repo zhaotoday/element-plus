@@ -17,6 +17,7 @@
       <el-form-item label="广告图片" prop="imageFileId">
         <c-upload
           :key="`${cForm.id}:imageFileId`"
+          file-dir="ads"
           v-model:value="cForm.model.imageFileId"
           @change="validateField('imageFileId')"
         />
