@@ -33,10 +33,8 @@ export default {
       model: deepCopy(initialModel),
       rules: {
         platform: [isRequired({ label: "平台" })],
-        packageType: [isRequired({ label: "包类型" })],
         versionName: [isRequired({ label: "版本名称" })],
         versionCode: [isRequired({ label: "版本号" })],
-        fileId: [isRequired({ label: "应用文件" })],
         log: [isRequired({ label: "更新日志" })],
       },
     });
