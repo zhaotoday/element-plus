@@ -36,14 +36,24 @@
       <el-form-item label="更新日志" prop="log">
         <el-input type="textarea" :rows="5" v-model="cForm.model.log" />
       </el-form-item>
-      <el-form-item label="应用文件" prop="fileId">
+      <el-form-item label="App 文件" prop="appFileId">
         <c-upload
-          :key="`${cForm.id}:fileId`"
+          :key="`${cForm.id}:appFileId`"
           :data="{
             dir: 'apps',
           }"
-          v-model:value="cForm.model.fileId"
-          @change="validateField('fileId')"
+          v-model:value="cForm.model.appFileId"
+          @change="validateField('appFileId')"
+        />
+      </el-form-item>
+      <el-form-item label="Wgt 文件" prop="wgtFileId">
+        <c-upload
+          :key="`${cForm.id}:wgtFileId`"
+          :data="{
+            dir: 'apps',
+          }"
+          v-model:value="cForm.model.wgtFileId"
+          @change="validateField('wgtFileId')"
         />
       </el-form-item>
       <el-form-item label="状态">
