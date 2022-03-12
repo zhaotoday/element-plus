@@ -30,8 +30,11 @@
             v-model:value="cForm.model.categoryId"
           />
         </el-form-item>
-        <el-form-item label="商品名称" prop="name">
+        <el-form-item label="商品英文名称" prop="name">
           <el-input v-model.trim="cForm.model.name" />
+        </el-form-item>
+        <el-form-item label="商品中文名称" prop="cnName">
+          <el-input v-model.trim="cForm.model.cnName" />
         </el-form-item>
         <el-form-item label="商品图片" prop="imageFileIds">
           <c-upload

@@ -11,8 +11,11 @@
       label-position="right"
       label-width="120px"
     >
-      <el-form-item label="商品分类名称" prop="name">
+      <el-form-item label="商品分类英文名称" prop="name">
         <el-input v-model.trim="cForm.model.name" />
+      </el-form-item>
+      <el-form-item label="商品分类中文名称" prop="cnName">
+        <el-input v-model.trim="cForm.model.cnName" />
       </el-form-item>
       <el-form-item label="商品分类图标" prop="iconFileId">
         <c-upload
