@@ -25,8 +25,15 @@
         <el-form-item prop="name">
           <el-input
             clearable
-            placeholder="请输入商品名称"
+            placeholder="请输入商品英文名称"
             v-model.trim="cFilters.model.name.$like"
+          />
+        </el-form-item>
+        <el-form-item prop="name">
+          <el-input
+            clearable
+            placeholder="请输入商品中文名称"
+            v-model.trim="cFilters.model.cnName.$like"
           />
         </el-form-item>
         <el-form-item>
@@ -43,6 +50,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="name" label="商品名称" />
+      <el-table-column prop="cnName" label="商品英文名称" />
       <el-table-column label="商品分类" width="100">
         <template #default="{ row }">
           {{ row.category ? row.category.name : "" }}

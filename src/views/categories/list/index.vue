@@ -18,8 +18,15 @@
         <el-form-item prop="name">
           <el-input
             clearable
-            placeholder="请输入商品分类名称"
+            placeholder="请输入商品分类英文名称"
             v-model.trim="cFilters.model.name.$like"
+          />
+        </el-form-item>
+        <el-form-item prop="name">
+          <el-input
+            clearable
+            placeholder="请输入商品分类中文名称"
+            v-model.trim="cFilters.model.cnName.$like"
           />
         </el-form-item>
         <el-form-item>
