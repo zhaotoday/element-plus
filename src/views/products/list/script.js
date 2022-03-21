@@ -22,6 +22,7 @@ export default {
           model: {
             categoryId: undefined,
             name: { $like: "" },
+            cnName: { $like: "" },
           },
           rules: {},
         },

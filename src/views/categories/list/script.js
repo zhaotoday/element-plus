@@ -20,6 +20,7 @@ export default {
         filters: {
           model: {
             name: { $like: "" },
+            cnName: { $like: "" },
           },
           rules: {},
         },
