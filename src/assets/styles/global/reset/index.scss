@@ -1,6 +1,7 @@
 @use "sass:map";
 
-@import "node_modules/element-plus-admin/assets/styles/global/reset/base";
+@import "node_modules/element-plus-admin/assets/styles/global/reset/root";
+@import "node_modules/element-plus-admin/assets/styles/global/reset/tags";
 
 body {
   font-family: $font-family;
