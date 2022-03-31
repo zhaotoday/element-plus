@@ -4,7 +4,8 @@
 @import "node_modules/element-plus-admin/assets/styles/global/reset/tags";
 
 body {
-  font-family: $font-family;
+  font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei",
+    "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
   color: map.get($text-color, regular);
   background-color: #f2f6fc;
   margin: 0;
