@@ -50,8 +50,12 @@
     @include c(iconfont) {
       font-size: 16px;
       color: white;
-      margin-right: 6px;
+      margin-right: 10px;
     }
+  }
+
+  .el-sub-menu .el-menu-item {
+    padding-left: 46px !important;
   }
 
   .el-menu > .el-menu-item {
