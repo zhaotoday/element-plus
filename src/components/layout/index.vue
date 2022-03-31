@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <the-sidebar ref="sidebar" />
-    <the-main />
-  </div>
+  <the-sidebar show-home />
+  <the-main />
 </template>
 
 <script src="./script.js"></script>
