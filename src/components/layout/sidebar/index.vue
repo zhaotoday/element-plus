@@ -14,6 +14,10 @@
       unique-opened
       @select="onSelect"
     >
+      <el-menu-item index="0">
+        <i class="c-iconfont c-iconfont--user-filled"></i>
+        <span>首页</span>
+      </el-menu-item>
       <el-sub-menu
         v-for="(item1, index1) in $consts.SidebarMenu"
         :key="index1"

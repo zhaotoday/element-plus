@@ -11,6 +11,9 @@
         <el-breadcrumb-item v-if="menus[2].title">
           {{ menus[2].title }}
         </el-breadcrumb-item>
+        <el-breadcrumb-item v-if="menus[3].title">
+          {{ menus[3].title }}
+        </el-breadcrumb-item>
       </template>
       <template v-else>
         <el-breadcrumb-item>首页</el-breadcrumb-item>
