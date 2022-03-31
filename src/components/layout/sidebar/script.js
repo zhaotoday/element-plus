@@ -16,7 +16,7 @@ export default {
     const { SidebarMenu } = useConsts();
 
     const getActiveKey = (path) => {
-      let key = "0-0";
+      let key = "-1";
 
       SidebarMenu.forEach((item1, index1) => {
         item1.children.forEach((item2, index2) => {
@@ -43,7 +43,7 @@ export default {
     });
 
     const onSelect = async (key) => {
-      if (key === "0") {
+      if (key === "-1") {
         await router.push("/");
       } else {
         const indexes = key.split("-");

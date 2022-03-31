@@ -11,7 +11,7 @@
       unique-opened
       @select="onSelect"
     >
-      <el-menu-item v-if="showHome" index="0">
+      <el-menu-item v-if="showHome" index="-1">
         <i class="c-iconfont c-iconfont--home-filled"></i>
         <span>首页</span>
       </el-menu-item>
