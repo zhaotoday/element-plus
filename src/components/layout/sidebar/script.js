@@ -43,13 +43,17 @@ export default {
     });
 
     const onSelect = async (key) => {
-      const indexes = key.split("-");
-      const index1 = indexes[0];
-      const index2 = indexes[1];
+      if (key === "0") {
+        await router.push("/");
+      } else {
+        const indexes = key.split("-");
+        const index1 = indexes[0];
+        const index2 = indexes[1];
 
-      const { path } = SidebarMenu[index1].children[index2];
+        const { path } = SidebarMenu[index1].children[index2];
 
-      await router.push(path);
+        await router.push(path);
+      }
     };
 
     return {

@@ -1,10 +1,7 @@
 <template>
   <div class="c-sidebar">
     <div class="c-sidebar__logo" @click="router.push('/')">
-      <div class="c-sidebar__logo-icon">
-        <el-avatar icon="el-icon-eleme" size="small" />
-      </div>
-      后台管理系统
+      <slot name="logo" />
     </div>
     <el-menu
       :default-active="activeKey"
