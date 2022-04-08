@@ -1,13 +1,10 @@
 @use "sass:map";
 
+@import "node_modules/sass-utils/pc/global/reset/base";
+
 @import "node_modules/element-plus-admin/assets/styles/global/reset/root";
-@import "node_modules/element-plus-admin/assets/styles/global/reset/tags";
 
 body {
-  font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei",
-    "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
   color: map.get($text-color, regular);
   background-color: #f2f6fc;
-  margin: 0;
-  padding: 0;
 }
