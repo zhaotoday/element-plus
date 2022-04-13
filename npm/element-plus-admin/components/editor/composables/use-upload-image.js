@@ -4,8 +4,6 @@ import { useConsts } from "@/composables/use-consts";
 export const useUploadImage = (cosConfig) => {
   const { ApiUrl } = useConsts();
 
-  const cos = useCos(cosConfig);
-
   const configEditor = async (editor, props) => {
     editor.config.uploadImgMaxLength = 1;
 
@@ -14,6 +12,8 @@ export const useUploadImage = (cosConfig) => {
     editor.config.uploadImgHeaders = props.uploadHeaders;
 
     if (props.cosConfig) {
+      const cos = useCos(cosConfig);
+
       await cos.initialize();
 
       editor.config.customUploadImg = (resultFiles, insertImg) => {
