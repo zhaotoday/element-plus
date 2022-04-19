@@ -13,6 +13,8 @@ export const useList = ({
   filters = {},
   data = {},
   extraQuery = {},
+  mounted = () => {},
+  beforeRouteUpdate = () => {},
 } = {}) => {
   const route = useRoute();
   const router = useRouter();
@@ -54,7 +56,10 @@ export const useList = ({
     }
 
     const { items, total, ...extra } = await api.get({
-      query: { ...query, ...extraQuery },
+      query: {
+        ...query,
+        ...(typeof extraQuery === "function" ? extraQuery() : extraQuery),
+      },
     });
 
     list.items = items;
@@ -71,6 +76,8 @@ export const useList = ({
   };
 
   onMounted(async () => {
+    await mounted();
+
     if (!autoRender) return;
 
     const query = getQuery(route.query);
@@ -82,6 +89,8 @@ export const useList = ({
   });
 
   onBeforeRouteUpdate(async (to, from, next) => {
+    await beforeRouteUpdate(to, from);
+
     if (!routeMode) return;
 
     filtersRef && filtersRef.resetFields();
