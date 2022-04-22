@@ -1,4 +1,4 @@
-@import "~@/assets/styles/utils/index";
+@import "~@/assets/styles/utils";
 
 @include v(login) {
   @include position--absolute(40%, null, null, 50%);

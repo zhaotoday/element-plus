@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@import "~@/assets/styles/utils/index";
+@import "~@/assets/styles/utils";
 
 @include vc(detail) {
   max-height: 450px;

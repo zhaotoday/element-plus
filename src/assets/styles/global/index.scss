@@ -1,10 +1,10 @@
-@import "~@/assets/styles/utils/index";
+@import "~@/assets/styles/utils";
 
 @import "~sass-utils/global/reset/base";
 @import "~sass-utils/global/utils/base";
-@import "~sass-utils/pc/global/index";
-@import "~sass-utils/ui/element-plus/global/index";
+@import "~sass-utils/pc/global";
+@import "~sass-utils/ui/element-plus/global";
 
-@import "./components/index";
-@import "../element-plus/index";
-@import "./reset/index";
+@import "./components";
+@import "../element-plus";
+@import "./reset";
