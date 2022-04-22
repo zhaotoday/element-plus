@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@import "~@/assets/styles/utils/index";
+@import "~@/assets/styles/utils";
 
 @include c(sidebar) {
   @include position--absolute(0, null, 0, 0);

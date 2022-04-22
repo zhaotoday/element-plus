@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@import "~@/assets/styles/utils/index";
+@import "~@/assets/styles/utils";
 
 @include c(header) {
   @include text--middle(map.get($the-layout, the-header, height));
