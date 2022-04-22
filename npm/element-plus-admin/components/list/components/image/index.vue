@@ -1,5 +1,6 @@
 <template>
   <el-image
+    class="b-image"
     :style="{ display: 'block', cursor: 'pointer', width, height }"
     :src="src"
     fit="cover"
