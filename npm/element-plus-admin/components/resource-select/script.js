@@ -19,7 +19,7 @@ export default {
       default: "name",
     },
     api: {
-      type: Object,
+      type: [Object, Function],
       default: () => null,
     },
     value: {
@@ -33,7 +33,10 @@ export default {
     });
 
     onMounted(async () => {
-      list.value = await props.api.get({});
+      list.value =
+        typeof props.api === "function"
+          ? await props.api()
+          : await props.api.get({});
     });
 
     const onChange = (index) => {
