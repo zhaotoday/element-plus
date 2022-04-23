@@ -107,7 +107,7 @@ const formatQuery = (obj) => {
 
 export const createApi = ({
   baseUrl,
-  getHeaders,
+  getHeaders = () => null,
   url,
   query = {},
   body = {},
