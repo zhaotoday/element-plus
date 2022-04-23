@@ -5,7 +5,7 @@ import { ElMessage } from "element-plus";
 
 NProgress.configure({ showSpinner: false });
 
-const createRequest = ({ baseUrl, timeout = 5000, headers, query, body }) => {
+const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
   const request = axios.create({
     baseURL: baseUrl || process.env.VUE_APP_API_URL,
     timeout,
@@ -16,10 +16,6 @@ const createRequest = ({ baseUrl, timeout = 5000, headers, query, body }) => {
       const { method, params, data, showLoading } = config;
 
       showLoading && NProgress.start();
-
-      if (headers) {
-        config.headers = headers;
-      }
 
       if (params) {
         if (params.where) {
@@ -109,14 +105,21 @@ const formatQuery = (obj) => {
   return JSON.stringify(ret);
 };
 
-export const createApi = ({ baseUrl, headers, url, query = {}, body = {} }) => {
-  const request = createRequest({ baseUrl, headers, query, body });
+export const createApi = ({
+  baseUrl,
+  getHeaders,
+  url,
+  query = {},
+  body = {},
+}) => {
+  const request = createRequest({ baseUrl, query, body });
 
   return {
-    config: { baseUrl, headers, url, query, body },
+    config: { baseUrl, url, query, body },
 
     get: ({ joinUrl = "", id, query, showLoading = true, showError = true }) =>
       request.get(`${url}${joinUrl}${id ? `/${id}` : ""}`, {
+        headers: getHeaders(),
         params: query,
         showLoading,
         showError,
@@ -134,6 +137,7 @@ export const createApi = ({ baseUrl, headers, url, query = {}, body = {} }) => {
         action ? `${url}${joinUrl}/actions/${action}` : url + joinUrl,
         body,
         {
+          headers: getHeaders(),
           params: query,
           showLoading,
           showError,
@@ -149,6 +153,7 @@ export const createApi = ({ baseUrl, headers, url, query = {}, body = {} }) => {
       showError = true,
     }) =>
       request.put(`${url}${joinUrl}/${id}`, body, {
+        headers: getHeaders(),
         params: query,
         showLoading,
         showError,
@@ -162,6 +167,7 @@ export const createApi = ({ baseUrl, headers, url, query = {}, body = {} }) => {
       showError = true,
     }) =>
       request.delete(`${url}${joinUrl}/${id}`, {
+        headers: getHeaders(),
         params: query,
         showLoading,
         showError,
