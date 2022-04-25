@@ -15,4 +15,11 @@
   @include c(container) {
     height: 100%;
   }
+
+  @include e(icon) {
+    @include position--absolute(50%, null, null, 0);
+    @include size(520px, 446px);
+
+    transform: translateY(-50%);
+  }
 }

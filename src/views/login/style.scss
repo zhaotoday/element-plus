@@ -5,14 +5,22 @@
   @import "./components/main/style";
   @import "./components/footer/style";
 
-  @include b(card) {
+  @include b(login) {
     @include position--absolute(50%, 0);
+    @include padding(40px, 36px, 20px, 36px);
 
     transform: translateY(-50%);
-    width: 440px;
+    background: white;
+
+    @include e(title) {
+      padding-bottom: 30px;
+      line-height: 100%;
+      font-size: 18px;
+      text-align: center;
+    }
   }
 
   @include b(form) {
-    width: 360px;
+    width: 280px;
   }
 }

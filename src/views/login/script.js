@@ -6,6 +6,7 @@ import { useValidators } from "vue-validation";
 import Header from "./components/header/index.vue";
 import Main from "./components/main/index.vue";
 import Footer from "./components/footer/index.vue";
+import { UserFilled } from "@element-plus/icons";
 
 export default {
   components: {
@@ -40,6 +41,7 @@ export default {
     };
 
     return {
+      UserFilled,
       form,
       cForm,
       submit,
