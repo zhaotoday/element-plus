@@ -1,9 +1,11 @@
 <template>
-  <b-header />
-  <b-footer />
   <el-card class="v-login">
+    <b-header />
+    <b-footer />
+    <b-main />
     <template #header>后台管理系统</template>
     <el-form
+      v-if="false"
       class="b-form"
       ref="form"
       label-position="right"

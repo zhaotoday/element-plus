@@ -3,20 +3,29 @@
 @import "~@/assets/styles/utils";
 
 @include b(header) {
-  @include size(100%, 160px);
+  @include position--fixed(0, null, null, 0);
+  @include size(100%, 80px);
 
-  position: relative;
   background-color: white;
 
   @include c(container) {
-    height: 160px;
+    height: 80px;
   }
 
   @include e(logo) {
     @include position--absolute(50%, null, null, 0);
-    @include size(568px, 120px);
+    @include text--middle(50px);
 
     transform: translateY(-50%);
-    display: block;
+    padding-left: 60px;
+    font-size: 18px;
+    font-weight: bold;
+
+    img {
+      @include position--absolute(0, null, null, 0);
+      @include size(50px, 50px);
+
+      display: block;
+    }
   }
 }

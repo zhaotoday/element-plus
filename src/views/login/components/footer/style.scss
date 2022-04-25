@@ -3,8 +3,11 @@
 @import "~@/assets/styles/utils";
 
 @include b(footer) {
-  @include padding(30px, null, 30px);
+  @include position--fixed(null, null, 0, 0);
+  @include text--middle(80px);
 
-  color: white;
+  width: 100%;
+  text-align: center;
+  background-color: white;
   font-size: 14px;
 }

@@ -4,11 +4,13 @@ import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { useValidators } from "vue-validation";
 import Header from "./components/header/index.vue";
+import Main from "./components/main/index.vue";
 import Footer from "./components/footer/index.vue";
 
 export default {
   components: {
     "b-header": Header,
+    "b-main": Main,
     "b-footer": Footer,
   },
   setup() {

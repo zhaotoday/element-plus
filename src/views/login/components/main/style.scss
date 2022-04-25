@@ -1,0 +1,14 @@
+@use "sass:map";
+
+@import "~@/assets/styles/utils";
+
+@include b(main) {
+  @include position--fixed(80px, null, 80px, 0);
+
+  width: 100%;
+  background: {
+    image: url("./components/main/images/bg.png");
+    position: center center;
+    size: auto 100%;
+  }
+}
