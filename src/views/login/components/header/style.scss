@@ -1,0 +1,36 @@
+@use "sass:map";
+
+@import "~/assets/styles/utils";
+
+@include l(header) {
+  @include size(100%, 160px);
+
+  position: relative;
+  background: {
+    image: url("./images/bg.png");
+    size: auto 100%;
+    position: center center;
+  }
+
+  @include c(container) {
+    height: 160px;
+  }
+
+  @include e(logo) {
+    @include position--absolute(50%, null, null, 0);
+    @include size(568px, 120px);
+
+    transform: translateY(-50%);
+    display: block;
+    background: {
+      image: url("./images/logo.png");
+      size: 100% 100%;
+    }
+  }
+
+  @include c(search) {
+    @include position--absolute(50%, 0);
+
+    transform: translateY(-50%);
+  }
+}

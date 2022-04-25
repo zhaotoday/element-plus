@@ -1,0 +1,26 @@
+@use "sass:map";
+
+@import "~/assets/styles/utils";
+
+@include l(footer) {
+  @include padding(30px, null, 30px);
+
+  color: white;
+  font-size: 14px;
+  background: linear-gradient(90deg, #096dcb 0%, #27a2f2 100%);
+
+  label {
+    @include padding(null, 10px, null, 20px);
+
+    color: rgba(white, 0.6);
+  }
+
+  @include e(contact) {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(white, 0.1);
+  }
+
+  @include e(copyright) {
+    padding-top: 20px;
+  }
+}
