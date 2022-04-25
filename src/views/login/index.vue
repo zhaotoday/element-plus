@@ -3,7 +3,7 @@
     <b-header />
     <b-footer />
     <b-main>
-      <div class="b-login">
+      <div class="b-login u-shadow u-br2">
         <div class="b-login__title">管理员登录</div>
         <el-form
           class="b-form"

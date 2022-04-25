@@ -22,6 +22,7 @@
     transform: translateY(-50%);
 
     h2 {
+      padding-top: 50px;
       color: map.get($colors, primary, base);
       font-size: 22px;
       line-height: 100%;
@@ -29,7 +30,7 @@
     }
 
     img {
-      @include size(520px * 0.9, 446px * 0.9);
+      @include size(520px * 0.85, 446px * 0.85);
 
       display: block;
     }
