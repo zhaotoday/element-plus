@@ -18,8 +18,20 @@
 
   @include e(icon) {
     @include position--absolute(50%, null, null, 0);
-    @include size(520px, 446px);
 
     transform: translateY(-50%);
+
+    h2 {
+      color: map.get($colors, primary, base);
+      font-size: 22px;
+      line-height: 100%;
+      text-align: center;
+    }
+
+    img {
+      @include size(520px * 0.9, 446px * 0.9);
+
+      display: block;
+    }
   }
 }

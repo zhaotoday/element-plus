@@ -6,7 +6,7 @@
   @import "./components/footer/style";
 
   @include b(login) {
-    @include position--absolute(50%, 0);
+    @include position--absolute(50%, 30px);
     @include padding(40px, 36px, 20px, 36px);
 
     transform: translateY(-50%);

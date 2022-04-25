@@ -40,6 +40,21 @@
               </template>
             </el-input>
           </el-form-item>
+          <el-form-item prop="password">
+            <el-input
+              type="password"
+              size="large"
+              v-model="cForm.model.password"
+              @keyup.enter="submit"
+            >
+              <template #prefix>
+                <i
+                  class="c-iconfont c-iconfont--lock-filled fs18"
+                  style="margin-left: -8px"
+                ></i>
+              </template>
+            </el-input>
+          </el-form-item>
           <el-form-item>
             <el-button
               type="primary"
