@@ -3,8 +3,14 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { useValidators } from "vue-validation";
+import Header from "./components/header/index.vue";
+import Footer from "./components/footer/index.vue";
 
 export default {
+  components: {
+    "b-header": Header,
+    "b-footer": Footer,
+  },
   setup() {
     const { dispatch } = useStore();
     const router = useRouter();

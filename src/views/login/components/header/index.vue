@@ -1,7 +1,7 @@
 <template>
-  <div class="l-header">
+  <div class="b-header">
     <div class="c-container">
-      <a class="l-header__logo" href="/"></a>
+      <a class="b-header__logo" href="/"></a>
       <c-search />
     </div>
   </div>

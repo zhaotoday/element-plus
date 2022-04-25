@@ -1,6 +1,8 @@
 @import "~@/assets/styles/utils";
 
 @include v(login) {
+  @import "./components/header/style";
+
   @include position--absolute(40%, null, null, 50%);
 
   transform: translate(-50%, -50%);
