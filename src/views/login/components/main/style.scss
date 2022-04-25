@@ -11,4 +11,8 @@
     position: center center;
     size: auto 100%;
   }
+
+  @include c(container) {
+    height: 100%;
+  }
 }

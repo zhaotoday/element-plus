@@ -5,12 +5,14 @@
   @import "./components/main/style";
   @import "./components/footer/style";
 
-  //@include position--absolute(40%, null, null, 50%);
-  //
-  //transform: translate(-50%, -50%);
-  //width: 440px;
-  //
-  //@include b(form) {
-  //  width: 360px;
-  //}
+  @include b(card) {
+    @include position--absolute(50%, 0);
+
+    transform: translateY(-50%);
+    width: 440px;
+  }
+
+  @include b(form) {
+    width: 360px;
+  }
 }
