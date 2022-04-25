@@ -2,6 +2,7 @@
 
 @include v(login) {
   @import "./components/header/style";
+  @import "./components/footer/style";
 
   @include position--absolute(40%, null, null, 50%);
 

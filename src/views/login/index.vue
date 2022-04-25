@@ -1,4 +1,6 @@
 <template>
+  <b-header />
+  <b-footer />
   <el-card class="v-login">
     <template #header>后台管理系统</template>
     <el-form

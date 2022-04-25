@@ -1,16 +1,12 @@
 @use "sass:map";
 
-@import "~/assets/styles/utils";
+@import "~@/assets/styles/utils";
 
-@include l(header) {
+@include b(header) {
   @include size(100%, 160px);
 
   position: relative;
-  background: {
-    image: url("./images/bg.png");
-    size: auto 100%;
-    position: center center;
-  }
+  background-color: white;
 
   @include c(container) {
     height: 160px;
@@ -22,15 +18,5 @@
 
     transform: translateY(-50%);
     display: block;
-    background: {
-      image: url("./images/logo.png");
-      size: 100% 100%;
-    }
-  }
-
-  @include c(search) {
-    @include position--absolute(50%, 0);
-
-    transform: translateY(-50%);
   }
 }
