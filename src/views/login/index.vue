@@ -1,6 +1,9 @@
 <template>
   <div class="v-login">
-    <b-header />
+    <b-header>
+      <img src="./images/logo.png" />
+      福州力软信息科技有限公司
+    </b-header>
     <b-main>
       <div class="b-login u-shadow u-br2">
         <div class="b-login__title">管理员登录</div>
