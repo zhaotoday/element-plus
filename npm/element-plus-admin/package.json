@@ -1,51 +1,23 @@
 {
   "name": "element-plus-admin",
-  "version": "1.1.19",
-  "description": "element-plus toolkits",
+  "version": "1.1.20",
+  "description": "element-plus admin system",
   "main": "index.js",
-  "scripts": {
-    "format": "prettier --write \"components/**/*.{vue,js}\" \"utils/**/*.js\"",
-    "lint": "eslint \"components/**/*.{vue,js}\" \"utils/**/*.js\" --fix"
-  },
   "author": "zhaojintian",
   "license": "ISC",
   "dependencies": {
-    "@element-plus/icons": "0.0.11",
+    "@element-plus/icons": "^0.0.11",
     "ali-oss": "^6.17.1",
-    "axios": "^0.26.0",
-    "core-js": "^3.21.1",
-    "cos-js-sdk-v5": "^1.3.5",
-    "element-plus": "2.1.11",
+    "axios": "^0.27.1",
+    "core-js": "^3.22.2",
+    "cos-js-sdk-v5": "^1.3.7",
+    "element-plus": "^2.1.11",
     "js-base64": "^3.7.2",
-    "jt-rest": "^2.0.3",
-    "jt-storage": "^0.0.2",
     "nprogress": "^0.2.0",
-    "sass-utils": "1.1.10",
-    "vue": "^3.2.31",
-    "vue-router": "^4.0.12",
-    "wangeditor": "^4.7.11",
-    "xlsx": "^0.18.2"
-  },
-  "devDependencies": {
-    "@vue/eslint-config-prettier": "^7.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.6.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.2.0",
-    "prettier": "^2.5.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended",
-      "@vue/prettier"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
+    "sass-utils": "^1.1.10",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14",
+    "wangeditor": "^4.7.15",
+    "xlsx": "^0.18.5"
   }
 }
