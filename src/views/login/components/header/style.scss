@@ -9,7 +9,7 @@
   background-color: white;
 
   @include c(container) {
-    height: 80px;
+    height: 100%;
   }
 
   @include e(logo) {
