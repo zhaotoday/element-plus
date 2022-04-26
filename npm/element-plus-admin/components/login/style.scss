@@ -1,0 +1,7 @@
+@import "~@/assets/styles/utils";
+
+@include c(login) {
+  @import "./components/header/style";
+  @import "./components/main/style";
+  @import "./components/footer/style";
+}

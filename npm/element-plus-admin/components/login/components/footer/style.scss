@@ -1,0 +1,8 @@
+@import "~@/assets/styles/utils";
+
+@include b(footer) {
+  @include position--fixed(null, null, 0, 0);
+  @include text--middle(80px);
+
+  width: 100%;
+}
