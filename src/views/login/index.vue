@@ -1,7 +1,6 @@
 <template>
   <div class="v-login">
     <b-header />
-    <b-footer />
     <b-main>
       <div class="b-login u-shadow u-br2">
         <div class="b-login__title">管理员登录</div>
@@ -54,6 +53,10 @@
         </el-form>
       </div>
     </b-main>
+    <b-footer>
+      福建省智慧医工联合工程研究中心 &nbsp;&nbsp; fjmec.cn &nbsp;&nbsp;
+      闽ICP备2021009415号-1
+    </b-footer>
   </div>
 </template>
 
