@@ -1,0 +1,30 @@
+@import "~@/assets/styles/utils";
+
+@include v(login) {
+  @import "./components/header/style";
+  @import "./components/main/style";
+  @import "./components/footer/style";
+
+  @include b(login) {
+    @include position--absolute(50%, 50px);
+    @include padding(44px, 36px, 24px, 36px);
+
+    transform: translateY(-50%);
+    background: white;
+
+    @include e(title) {
+      padding-bottom: 30px;
+      line-height: 100%;
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+
+  @include b(form) {
+    width: 280px;
+
+    .el-form-item {
+      margin-bottom: 24px;
+    }
+  }
+}
