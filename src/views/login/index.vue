@@ -20,7 +20,7 @@
               <template #prefix>
                 <i
                   class="c-iconfont c-iconfont--user-filled fs16"
-                  style="margin-left: -8px"
+                  style="margin-left: -6px; margin-right: 6px"
                 ></i>
               </template>
             </el-input>
@@ -29,13 +29,14 @@
             <el-input
               type="password"
               size="large"
+              autocomplete="new-password"
               v-model="cForm.model.password"
               @keyup.enter="submit"
             >
               <template #prefix>
                 <i
-                  class="c-iconfont c-iconfont--lock-filled fs18"
-                  style="margin-left: -8px"
+                  class="c-iconfont c-iconfont--lock-filled fs16"
+                  style="margin-left: -6px; margin-right: 6px"
                 ></i>
               </template>
             </el-input>
