@@ -9,15 +9,15 @@
     "lint": "eslint \"src/**/*.{vue,js}\" --fix"
   },
   "dependencies": {
-    "@element-plus/icons": "0.0.11",
-    "element-plus": "2.1.11",
-    "element-plus-admin": "1.1.19",
+    "@element-plus/icons": "^0.0.11",
+    "element-plus": "^2.1.11",
+    "element-plus-admin": "^1.1.20",
     "jt-helpers": "^1.0.11",
     "jt-storage": "^0.0.2",
     "jt-time": "^0.0.9",
-    "sass-utils": "1.1.8",
-    "vue": "^3.2.31",
-    "vue-router": "^4.0.12",
+    "sass-utils": "^1.1.10",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.14",
     "vue-validation": "^1.0.3",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.1.0"
