@@ -1,6 +1,6 @@
 {
   "name": "element-plus-admin",
-  "version": "1.1.13",
+  "version": "1.1.19",
   "description": "element-plus toolkits",
   "main": "index.js",
   "scripts": {
@@ -10,16 +10,17 @@
   "author": "zhaojintian",
   "license": "ISC",
   "dependencies": {
-    "@element-plus/icons": "^0.0.11",
+    "@element-plus/icons": "0.0.11",
     "ali-oss": "^6.17.1",
     "axios": "^0.26.0",
     "core-js": "^3.21.1",
     "cos-js-sdk-v5": "^1.3.5",
-    "element-plus": "^2.0.2",
+    "element-plus": "2.1.11",
     "js-base64": "^3.7.2",
     "jt-rest": "^2.0.3",
     "jt-storage": "^0.0.2",
     "nprogress": "^0.2.0",
+    "sass-utils": "1.1.10",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12",
     "wangeditor": "^4.7.11",

@@ -1,7 +1,7 @@
-import Login from "@/components/login/index.vue";
-import LoginHeader from "@/components/login/components/header/index.vue";
-import LoginMain from "@/components/login/components/main/index.vue";
-import LoginFooter from "@/components/login/components/footer/index.vue";
+import Login from "element-plus-admin/components/login/index.vue";
+import LoginHeader from "element-plus-admin/components/login/components/header/index.vue";
+import LoginMain from "element-plus-admin/components/login/components/main/index.vue";
+import LoginFooter from "element-plus-admin/components/login/components/footer/index.vue";
 import Form from "./components/form/index.vue";
 
 export default {
