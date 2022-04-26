@@ -4,6 +4,12 @@
 
 $font-sizes: $pxes;
 
+$base-colors: (
+  white: white,
+  black: black,
+  primary: map.get($colors, primary, base),
+);
+
 $the-layout: (
   the-header: (
     height: 60px,
