@@ -1,10 +1,6 @@
 @import "~@/assets/styles/utils";
 
 @include v(login) {
-  @import "./components/header/style";
-  @import "./components/main/style";
-  @import "./components/footer/style";
-
   @include b(login) {
     @include position--absolute(50%, 50px);
     @include padding(44px, 36px, 24px, 36px);
