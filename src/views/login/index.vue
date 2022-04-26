@@ -1,10 +1,12 @@
 <template>
-  <div class="v-login">
-    <b-header>
-      <img src="./images/logo.png" />
-      福州力软信息科技有限公司
-    </b-header>
-    <b-main>
+  <c-login>
+    <template #header>
+      <c-login-header>
+        <img src="./images/logo.png" />
+        福州力软信息科技有限公司
+      </c-login-header>
+    </template>
+    <template #main>
       <div class="b-login u-shadow u-br2">
         <div class="b-login__title">管理员登录</div>
         <el-form
@@ -55,12 +57,14 @@
           </el-form-item>
         </el-form>
       </div>
-    </b-main>
-    <b-footer>
-      福建省智慧医工联合工程研究中心 &nbsp;&nbsp; fjmec.cn &nbsp;&nbsp;
-      闽ICP备2021009415号-1
-    </b-footer>
-  </div>
+    </template>
+    <template #footer>
+      <b-footer>
+        福建省智慧医工联合工程研究中心 &nbsp;&nbsp; fjmec.cn &nbsp;&nbsp;
+        闽ICP备2021009415号-1
+      </b-footer>
+    </template>
+  </c-login>
 </template>
 
 <script src="./script.js"></script>
