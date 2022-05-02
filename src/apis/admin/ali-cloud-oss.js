@@ -3,5 +3,5 @@ import { useAuth } from "element-plus-admin/composables/use-auth";
 
 export const aliCloudOssApi = createApi({
   url: "/admin/aliCloudOss",
-  headers: useAuth().getHeaders(),
+  getHeaders: useAuth().getHeaders,
 });

@@ -3,5 +3,5 @@ import { useAuth } from "element-plus-admin/composables/use-auth";
 
 export const tencentCloudCosApi = createApi({
   url: "/admin/tencentCloudCos",
-  headers: useAuth().getHeaders(),
+  getHeaders: useAuth().getHeaders,
 });
