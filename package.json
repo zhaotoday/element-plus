@@ -11,7 +11,7 @@
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
     "element-plus": "^2.1.11",
-    "element-plus-admin": "^1.1.20",
+    "element-plus-admin": "1.1.21",
     "jt-helpers": "^1.0.11",
     "jt-storage": "^0.0.2",
     "jt-time": "^0.0.9",
