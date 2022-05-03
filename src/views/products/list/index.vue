@@ -61,10 +61,10 @@
       <el-table-column prop="sales" label="销量" width="80" />
       <el-table-column label="操作" width="150px">
         <template #default="{ row }">
-          <el-button size="small" @click="form.show(row)"> 编辑 </el-button>
+          <el-button size="small" @click="form.show(row)">编辑</el-button>
           <el-popconfirm title="确定删除吗？" @confirm="del(row)">
             <template #reference>
-              <el-button type="danger" size="small"> 删除 </el-button>
+              <el-button type="danger" size="small">删除</el-button>
             </template>
           </el-popconfirm>
         </template>

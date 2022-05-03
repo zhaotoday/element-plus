@@ -40,7 +40,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="amount" label="金额" width="60">
-        <template #default="{ row }"> ${{ row.amount }} </template>
+        <template #default="{ row }">${{ row.amount }} </template>
       </el-table-column>
       <el-table-column label="下单时间" width="140">
         <template #default="{ row }">
@@ -66,7 +66,7 @@
           </el-button>
           <el-popconfirm title="确定删除吗？" @confirm="del(row)">
             <template #reference>
-              <el-button type="danger" size="small"> 删除 </el-button>
+              <el-button type="danger" size="small">删除</el-button>
             </template>
           </el-popconfirm>
         </template>

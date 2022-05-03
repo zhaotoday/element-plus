@@ -46,10 +46,10 @@
             </template>
           </el-table-column>
           <el-table-column width="60">
-            <template #default="{ row }"> ${{ row.price }} </template>
+            <template #default="{ row }">${{ row.price }} </template>
           </el-table-column>
           <el-table-column width="60">
-            <template #default="{ row }"> x{{ row.number }} </template>
+            <template #default="{ row }">x{{ row.number }} </template>
           </el-table-column>
         </el-table>
       </li>
