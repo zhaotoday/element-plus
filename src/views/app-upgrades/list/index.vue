@@ -79,9 +79,7 @@
       </el-table-column>
       <el-table-column label="操作" width="150px">
         <template #default="{ row }">
-          <el-button type="" size="small" @click="form.show(row)">
-            编辑
-          </el-button>
+          <el-button size="small" @click="form.show(row)"> 编辑 </el-button>
           <el-popconfirm title="确定删除吗？" @confirm="del(row)">
             <template #reference>
               <el-button type="danger" size="small"> 删除 </el-button>
