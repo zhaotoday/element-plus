@@ -10,7 +10,7 @@ import { UploadTo } from "element-plus-admin/enums/upload-to";
 import { appUpgradesApi } from "@/apis/admin/app-upgrades";
 
 export default {
-  emits: ["render-list"],
+  emits: ["ok"],
   setup(props, context) {
     const form = ref(null);
 
@@ -51,7 +51,7 @@ export default {
 
       await appUpgradesApi[id ? "put" : "post"]({ id, body: model });
       ElMessage.success(id ? "修改成功" : "新增成功");
-      context.emit("render-list");
+      context.emit("ok");
       cDialog.visible = false;
     };
 

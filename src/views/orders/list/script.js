@@ -7,7 +7,7 @@ import { ref } from "vue";
 
 export default {
   components: {
-    "vc-detail": Detail,
+    "b-detail": Detail,
   },
   setup() {
     const { enums } = useEnums();

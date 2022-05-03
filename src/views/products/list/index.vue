@@ -73,7 +73,7 @@
       </el-table-column>
     </el-table>
   </c-list>
-  <vc-form ref="form" @render-list="reRender" />
+  <b-form ref="form" @ok="reRender" />
 </template>
 
 <script src="./script.js"></script>

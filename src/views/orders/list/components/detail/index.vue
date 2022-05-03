@@ -1,6 +1,6 @@
 <template>
   <el-dialog title="订单详情" v-model="cDialog.visible" width="550px">
-    <ul class="vc-detail c-scrollbar">
+    <ul class="b-detail c-scrollbar">
       <li>
         <label>订单号</label>
         {{ detail.no }}

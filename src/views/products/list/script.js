@@ -8,7 +8,7 @@ import { categoriesApi } from "@/apis/admin/categories";
 
 export default {
   components: {
-    "vc-form": Form,
+    "b-form": Form,
   },
   setup() {
     const form = ref(null);

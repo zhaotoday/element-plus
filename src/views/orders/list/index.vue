@@ -73,7 +73,7 @@
       </el-table-column>
     </el-table>
   </c-list>
-  <vc-detail ref="detail" />
+  <b-detail ref="detail" />
 </template>
 
 <script src="./script.js"></script>

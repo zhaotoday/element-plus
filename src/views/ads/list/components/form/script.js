@@ -10,7 +10,7 @@ import { filesApi } from "@/apis/admin/files";
 import { UploadTo } from "element-plus-admin/enums/upload-to";
 
 export default {
-  emits: ["render-list"],
+  emits: ["ok"],
   setup(props, context) {
     const form = ref(null);
 
@@ -46,7 +46,7 @@ export default {
 
       await adsApi[id ? "put" : "post"]({ id, body: model });
       ElMessage.success(id ? "修改成功" : "新增成功");
-      context.emit("render-list");
+      context.emit("ok");
       cDialog.visible = false;
     };
 

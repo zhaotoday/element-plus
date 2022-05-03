@@ -7,7 +7,7 @@ import { ElMessage } from "element-plus";
 
 export default {
   components: {
-    "vc-form": Form,
+    "b-form": Form,
   },
   setup() {
     const form = ref(null);
