@@ -2,7 +2,7 @@
 
 @import "~@/assets/styles/utils";
 
-@include vc(detail) {
+@include b(detail) {
   max-height: 450px;
   overflow-x: hidden;
   overflow-y: auto;
