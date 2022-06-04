@@ -15,7 +15,7 @@ export default {
       default: false,
     },
     labelKey: {
-      type: String,
+      type: [String, Function],
       default: "name",
     },
     api: {

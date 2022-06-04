@@ -9,7 +9,7 @@
     <el-option
       v-for="item in list.items"
       :key="item.id"
-      :label="item[labelKey]"
+      :label="typeof labelKey === 'function' ? labelKey(item) : item[labelKey]"
       :value="item.id"
     />
   </el-select>
