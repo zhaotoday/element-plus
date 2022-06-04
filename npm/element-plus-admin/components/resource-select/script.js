@@ -14,7 +14,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    labelKey: {
+    optionLabel: {
       type: [String, Function],
       default: "name",
     },
