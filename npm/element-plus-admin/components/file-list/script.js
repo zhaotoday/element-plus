@@ -34,7 +34,7 @@ export default {
       async (newVal) => {
         if (newVal && newVal.length) {
           const { items } = await publicFilesApi.post({
-            action: "findAllByIds",
+            action: "getAllByIds",
             body: { ids: newVal },
           });
 

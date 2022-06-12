@@ -30,7 +30,7 @@ const actions = {
       };
 
       const { items } = await api.post({
-        action: "findAllByIds",
+        action: "getAllByIds",
         body: { ids },
       });
 
