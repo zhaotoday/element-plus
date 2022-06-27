@@ -4,6 +4,10 @@ export default {
   props: {
     row: Object,
     api: Object,
+    where: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   emits: ["ok"],
   setup(props, context) {
@@ -13,6 +17,7 @@ export default {
         query: {
           where: {
             id: { $ne: 0 },
+            ...props.where,
           },
         },
         body: {
