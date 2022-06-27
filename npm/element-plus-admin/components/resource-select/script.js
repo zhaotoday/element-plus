@@ -32,11 +32,15 @@ export default {
       items: [],
     });
 
-    onMounted(async () => {
+    const render = async () => {
       list.value =
         typeof props.api === "function"
           ? await props.api()
           : await props.api.get({});
+    };
+
+    onMounted(async () => {
+      await render();
     });
 
     const onChange = (index) => {
@@ -45,6 +49,7 @@ export default {
 
     return {
       list,
+      render,
       onChange,
     };
   },
