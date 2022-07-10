@@ -4,8 +4,13 @@
       <slot name="logo" />
     </div>
     <div class="c-header__user">
-      {{ user.name }}
-      <el-avatar icon="el-icon-right" title="退出" @click="logout" />
+      {{ userName }}
+      <el-avatar
+        icon="el-icon-right"
+        title="退出"
+        :size="36"
+        @click="$emit('logout')"
+      />
     </div>
   </div>
 </template>

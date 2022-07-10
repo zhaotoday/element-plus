@@ -1,5 +1,5 @@
 <template>
-  <the-header>
+  <the-header :user-name="user.name" @logout="logout">
     <template #logo>
       <img
         src="https://element-plus.org/images/formmaking.png"
