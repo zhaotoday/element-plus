@@ -4,26 +4,20 @@
 
 @include c(main) {
   @include position--absolute(
+    map.get($the-layout, the-header, height) + 14px,
     0,
-    0,
-    0,
-    map.get($the-layout, the-sidebar, width)
+    14px,
+    map.get($the-layout, the-sidebar, width) + 14px * 2
   );
 
   overflow: hidden;
   min-width: 1200px;
 
   @include e(body) {
-    @include position--absolute(
-      map.get($the-layout, the-header, height) + 14px,
-      14px,
-      14px,
-      14px
-    );
+    @include position--absolute(0, 14px, 0, 0);
     @include padding(50px + 12px, 20px, 20px, 20px);
 
     background-color: white;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.04);
     overflow-x: hidden;
     overflow-y: auto;
 
@@ -42,12 +36,7 @@
   }
 
   @include e(breadcrumb) {
-    @include position--absolute(
-      map.get($the-layout, the-header, height) + 14px,
-      14px + 20px,
-      null,
-      14px + 20px
-    );
+    @include position--absolute(0, 14px + 20px, null, 20px);
     @include text--middle(50px);
 
     background-color: white;

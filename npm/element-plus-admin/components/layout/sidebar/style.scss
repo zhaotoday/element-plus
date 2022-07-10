@@ -3,37 +3,18 @@
 @import "~@/assets/styles/utils";
 
 @include c(sidebar) {
-  @include position--absolute(0, null, 0, 0);
+  @include position--absolute(
+    map.get($the-layout, the-header, height) + 14px,
+    null,
+    14px,
+    14px
+  );
 
   z-index: 1;
   width: map.get($the-layout, the-sidebar, width);
-  background-color: #001529;
+  background-color: map.get($base-colors, primary);
   overflow-x: hidden;
   overflow-y: auto;
-  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.1);
-
-  @include e(logo) {
-    @include size(100%, map.get($the-layout, the-header, height));
-
-    background-color: #002140;
-    line-height: map.get($the-layout, the-header, height);
-    padding-left: 60px;
-    cursor: pointer;
-    color: white;
-    font-size: 20px;
-    transform-style: preserve-3d;
-  }
-
-  @include e(logo-icon) {
-    @include position--absolute(50%, null, null, 20px);
-
-    transform: translateY(-50%);
-    line-height: 0;
-
-    .el-avatar {
-      background-color: #1890ff;
-    }
-  }
 
   &::-webkit-scrollbar {
     width: 0;
@@ -45,8 +26,6 @@
 
   .el-sub-menu__title,
   .el-menu > .el-menu-item {
-    background-color: #021d36 !important;
-
     @include c(iconfont) {
       font-size: 16px;
       color: white;
@@ -58,13 +37,17 @@
     padding-left: 46px !important;
   }
 
-  .el-menu > .el-menu-item {
-    &.is-active {
-      background-color: transparent !important;
-    }
-  }
-
   .el-menu-item-group__title {
     display: none;
+  }
+
+  .el-menu-item {
+    &.is-active {
+      background-color: white;
+
+      i {
+        color: map.get($base-colors, primary) !important;
+      }
+    }
   }
 }

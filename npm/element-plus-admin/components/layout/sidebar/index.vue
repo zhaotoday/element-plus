@@ -1,13 +1,10 @@
 <template>
   <div class="c-sidebar">
-    <div class="c-sidebar__logo" @click="router.push('/')">
-      <slot name="logo" />
-    </div>
     <el-menu
       :default-active="activeKey"
-      background-color="#001529"
+      background-color="#0080ff"
       text-color="#fff"
-      active-text-color="#e6a23c"
+      active-text-color="#0080ff"
       unique-opened
       @select="onSelect"
     >

@@ -1,13 +1,9 @@
 import { onMounted, ref } from "vue";
-import TheHeader from "./header/index.vue";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { useConsts } from "@/composables/use-consts";
 
 export default {
   name: "TheMain",
-  components: {
-    TheHeader,
-  },
   setup() {
     const menus = ref([{}, {}, {}, {}]);
 

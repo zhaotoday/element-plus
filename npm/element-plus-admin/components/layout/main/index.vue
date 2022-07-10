@@ -1,6 +1,5 @@
 <template>
   <div class="c-main">
-    <the-header />
     <div class="c-main__body">
       <router-view />
     </div>
