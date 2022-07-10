@@ -5,7 +5,7 @@ import ListImage from "element-plus-admin/components/list/components/image/index
 import OrderInput from "element-plus-admin/components/order-input/index.vue";
 import ResourceSelect from "element-plus-admin/components/resource-select/index.vue";
 import Upload from "element-plus-admin/components/upload/index.vue";
-import { Eleme, Right } from "@element-plus/icons";
+import { Eleme, Right } from "@element-plus/icons-vue";
 
 export const useComponents = (app) => {
   app.component("c-editor", Editor);
