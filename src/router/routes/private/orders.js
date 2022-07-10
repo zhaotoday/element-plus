@@ -1,6 +1,6 @@
 import { RouterView } from "vue-router";
 
-export default {
+export const ordersRoute = {
   path: ":menu/orders",
   component: <RouterView />,
   children: [

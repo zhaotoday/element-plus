@@ -1,5 +1,5 @@
-import login from "./login";
-import logout from "./logout";
-import test from "./test";
+import { loginRoute } from "./login";
+import { logoutRoute } from "./logout";
+import { testRoute } from "./test";
 
-export default [login, logout, test];
+export default [loginRoute, logoutRoute, testRoute];

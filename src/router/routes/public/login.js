@@ -1,6 +1,6 @@
 import { store } from "@/store";
 
-export default {
+export const loginRoute={
   path: "/login",
   component: () => import("@/views/login/index.vue"),
   beforeEnter(to, from, next) {

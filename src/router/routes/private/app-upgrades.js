@@ -1,6 +1,6 @@
 import { RouterView } from "vue-router";
 
-export default {
+export const appUpgradesRoute = {
   path: ":menu/app-upgrades",
   component: <RouterView />,
   children: [

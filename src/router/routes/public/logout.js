@@ -1,6 +1,6 @@
 import { store } from "@/store";
 
-export default {
+export const logoutRoute = {
   path: "/logout",
   async beforeEnter(to, from, next) {
     if (store.state.auth.user.token) {

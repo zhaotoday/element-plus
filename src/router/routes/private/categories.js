@@ -1,6 +1,6 @@
 import { RouterView } from "vue-router";
 
-export default {
+export const categoriesRoute = {
   path: ":menu/categories",
   component: <RouterView />,
   children: [

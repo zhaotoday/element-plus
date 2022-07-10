@@ -1,9 +1,17 @@
-import ads from "./ads";
-import appUpgrades from "./app-upgrades";
-import categories from "./categories";
-import home from "./home";
-import orders from "./orders";
-import products from "./products";
-import users from "./users";
+import { adsRoute } from "./ads";
+import { appUpgradesRoute } from "./app-upgrades";
+import { categoriesRoute } from "./categories";
+import { homeRoute } from "./home";
+import { ordersRoute } from "./orders";
+import { productsRoute } from "./products";
+import { usersRoute } from "./users";
 
-export default [ads, appUpgrades, categories, home, orders, products, users];
+export default [
+  adsRoute,
+  appUpgradesRoute,
+  categoriesRoute,
+  homeRoute,
+  ordersRoute,
+  productsRoute,
+  usersRoute,
+];

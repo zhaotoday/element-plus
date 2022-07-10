@@ -1,6 +1,6 @@
 import { RouterView } from "vue-router";
 
-export default {
+export const usersRoute = {
   path: ":menu/users",
   component: <RouterView />,
   children: [
