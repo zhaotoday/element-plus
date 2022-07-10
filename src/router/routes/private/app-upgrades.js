@@ -1,6 +1,8 @@
+import { RouterView } from "vue-router";
+
 export default {
   path: ":menu/app-upgrades",
-  component: () => import("@/views/app-upgrades/index.vue"),
+  component: <RouterView />,
   children: [
     {
       path: "",

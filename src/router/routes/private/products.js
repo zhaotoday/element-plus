@@ -1,6 +1,8 @@
+import { RouterView } from "vue-router";
+
 export default {
   path: ":menu/products",
-  component: <router-view />,
+  component: <RouterView />,
   children: [
     {
       path: "",

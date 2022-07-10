@@ -1,6 +1,8 @@
+import { RouterView } from "vue-router";
+
 export default {
   path: ":menu/ads",
-  component: () => import("@/views/ads/index.vue"),
+  component: <RouterView />,
   children: [
     {
       path: "",

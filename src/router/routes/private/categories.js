@@ -1,6 +1,8 @@
+import { RouterView } from "vue-router";
+
 export default {
   path: ":menu/categories",
-  component: () => import("@/views/categories/index.vue"),
+  component: <RouterView />,
   children: [
     {
       path: "",
