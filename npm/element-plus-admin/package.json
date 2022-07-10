@@ -1,23 +1,23 @@
 {
   "name": "element-plus-admin",
-  "version": "1.1.29",
+  "version": "1.1.31",
   "description": "element-plus admin system",
   "main": "index.js",
   "author": "zhaojintian",
   "license": "ISC",
   "dependencies": {
-    "@element-plus/icons": "^0.0.11",
-    "ali-oss": "^6.17.1",
-    "axios": "^0.27.1",
-    "core-js": "^3.22.2",
-    "cos-js-sdk-v5": "^1.3.7",
-    "element-plus": "^2.1.11",
-    "js-base64": "^3.7.2",
-    "nprogress": "^0.2.0",
-    "sass-utils": "^1.1.10",
-    "vue": "^3.2.33",
-    "vue-router": "^4.0.14",
-    "wangeditor": "^4.7.15",
-    "xlsx": "^0.18.5"
+    "@element-plus/icons-vue": "2.0.6",
+    "ali-oss": "6.17.1",
+    "axios": "0.27.2",
+    "core-js": "3.23.4",
+    "cos-js-sdk-v5": "1.3.9",
+    "element-plus": "2.2.9",
+    "js-base64": "3.7.2",
+    "nprogress": "0.2.0",
+    "sass-utils": "1.1.10",
+    "vue": "3.2.37",
+    "vue-router": "4.1.1",
+    "wangeditor": "4.7.15",
+    "xlsx": "0.18.5"
   }
 }

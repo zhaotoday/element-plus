@@ -1,0 +1,17 @@
+@each $key, $value in $base-colors {
+  .t-#{"" + $key} {
+    color: $value !important;
+  }
+
+  .bg-#{"" + $key} {
+    background-color: $value !important;
+  }
+
+  .bd-#{"" + $key} {
+    border: 1px solid $value !important;
+  }
+
+  .bdb-#{"" + $key} {
+    border-bottom: 1px solid $value !important;
+  }
+}
