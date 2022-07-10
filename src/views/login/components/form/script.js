@@ -3,7 +3,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { useValidators } from "vue-validation";
-import { UserFilled } from "@element-plus/icons";
+import { UserFilled } from "@element-plus/icons-vue";
 
 export default {
   setup() {
