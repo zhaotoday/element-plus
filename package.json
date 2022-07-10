@@ -11,7 +11,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "2.0.6",
     "element-plus": "2.2.9",
-    "element-plus-admin": "1.1.34",
+    "element-plus-admin": "1.1.35",
     "jt-helpers": "1.0.11",
     "jt-storage": "0.0.2",
     "jt-time": "0.0.9",
