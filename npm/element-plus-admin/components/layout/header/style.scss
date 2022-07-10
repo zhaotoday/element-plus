@@ -16,6 +16,7 @@
     padding-left: 50px;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
 
     img {
       @include position--absolute(0, null, null, 0);
