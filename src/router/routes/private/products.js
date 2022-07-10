@@ -1,6 +1,6 @@
 export default {
   path: ":menu/products",
-  component: () => import("@/views/products/index.vue"),
+  component: <router-view />,
   children: [
     {
       path: "",
