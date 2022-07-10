@@ -1,0 +1,42 @@
+@use "sass:map";
+
+@import "~@/assets/styles/utils";
+
+@include c(header) {
+  @include text--middle(map.get($the-layout, the-header, height));
+
+  position: relative;
+  background-color: white;
+  box-shadow: 0 0 6px 2px rgba(gray, 0.05);
+
+  @include e(logo) {
+    @include position--absolute(50%, null, null, 20px);
+    @include text--middle(40px);
+
+    transform: translateY(-50%);
+    padding-left: 50px;
+    font-size: 20px;
+    font-weight: bold;
+
+    img {
+      @include position--absolute(0, null, null, 0);
+      @include size(40px, 40px);
+
+      display: block;
+    }
+  }
+
+  @include e(user) {
+    @include position--absolute(0, 20px);
+    @include text--middle(map.get($the-layout, the-header, height));
+
+    padding-right: 50px;
+
+    .el-avatar {
+      @include position--absolute(50%, 0);
+
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
+}
