@@ -10,10 +10,9 @@
     14px
   );
 
-  box-shadow: 0 0 6px 2px rgba(gray, 0.05);
   z-index: 1;
   width: map.get($the-layout, the-sidebar, width);
-  background-color: #409eff;
+  background-color: map.get($base-colors, primary);
   overflow-x: hidden;
   overflow-y: auto;
 
@@ -47,7 +46,7 @@
       background-color: white;
 
       i {
-        color: #409eff !important;
+        color: map.get($base-colors, primary) !important;
       }
     }
   }

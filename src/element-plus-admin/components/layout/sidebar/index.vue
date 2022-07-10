@@ -2,9 +2,9 @@
   <div class="c-sidebar">
     <el-menu
       :default-active="activeKey"
-      background-color="#409eff"
+      background-color="#0080ff"
       text-color="#fff"
-      active-text-color="#409eff"
+      active-text-color="#0080ff"
       unique-opened
       @select="onSelect"
     >

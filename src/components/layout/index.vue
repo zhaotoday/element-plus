@@ -1,12 +1,14 @@
 <template>
-  <the-sidebar show-home>
+  <the-header>
     <template #logo>
-      <div class="c-sidebar__logo-icon">
-        <el-avatar icon="el-icon-eleme" size="small" />
-      </div>
+      <img
+        src="https://element-plus.org/images/formmaking.png"
+        style="border-radius: 50%"
+      />
       后台管理系统
     </template>
-  </the-sidebar>
+  </the-header>
+  <the-sidebar show-home />
   <the-main />
 </template>
 
