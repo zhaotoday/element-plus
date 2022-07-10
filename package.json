@@ -11,16 +11,16 @@
   "dependencies": {
     "@element-plus/icons-vue": "2.0.6",
     "element-plus": "2.2.9",
-    "element-plus-admin": "1.1.29",
-    "jt-helpers": "^1.0.11",
-    "jt-storage": "^0.0.2",
-    "jt-time": "^0.0.9",
-    "sass-utils": "^1.1.10",
-    "vue": "^3.2.33",
-    "vue-router": "^4.0.14",
-    "vue-validation": "^1.0.3",
-    "vuex": "^4.0.2",
-    "vuex-persistedstate": "^4.1.0"
+    "element-plus-admin": "1.1.31",
+    "jt-helpers": "1.0.11",
+    "jt-storage": "0.0.2",
+    "jt-time": "0.0.9",
+    "sass-utils": "1.1.10",
+    "vue": "3.2.37",
+    "vue-router": "4.1.1",
+    "vue-validation": "1.0.3",
+    "vuex": "4.0.2",
+    "vuex-persistedstate": "4.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
