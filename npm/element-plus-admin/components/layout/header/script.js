@@ -4,7 +4,6 @@ import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 
 export default {
-  name: "TheHeader",
   setup() {
     const { state } = useStore();
     const router = useRouter();

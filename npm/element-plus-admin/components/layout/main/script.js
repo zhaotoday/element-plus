@@ -3,7 +3,6 @@ import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { useConsts } from "@/composables/use-consts";
 
 export default {
-  name: "TheMain",
   setup() {
     const menus = ref([{}, {}, {}, {}]);
 

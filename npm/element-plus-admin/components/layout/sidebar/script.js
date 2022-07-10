@@ -3,7 +3,6 @@ import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { useConsts } from "@/composables/use-consts";
 
 export default {
-  name: "TheSidebar",
   props: {
     showHome: {
       type: Boolean,
