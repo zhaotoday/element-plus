@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import publicRoutes from "./routes/public";
-import privateRoutes from "./routes/private";
+import { publicRoutes } from "./routes/public";
+import { privateRoutes } from "./routes/private";
 import { store } from "@/store";
 
 const routes = [

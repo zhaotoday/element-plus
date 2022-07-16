@@ -6,7 +6,7 @@ import { ordersRoute } from "./orders";
 import { productsRoute } from "./products";
 import { usersRoute } from "./users";
 
-export default [
+export const privateRoutes = [
   adsRoute,
   appUpgradesRoute,
   categoriesRoute,
