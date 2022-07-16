@@ -28,7 +28,9 @@ export default {
 
                 if (
                   routePaths[2] === itemPaths[2] ||
-                  (itemPaths[2] === ":id" && !isNaN(routePaths[2]))
+                  (itemPaths[2] === ":id" &&
+                    !isNaN(routePaths[2]) &&
+                    itemPaths[3] === routePaths[3])
                 ) {
                   menus.value[2] = item3;
 
