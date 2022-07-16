@@ -26,7 +26,10 @@ export default {
               item2.children.forEach((item3) => {
                 const itemPaths = item3.path.substr(1).split("/");
 
-                if (routePaths[2] === itemPaths[2]) {
+                if (
+                  routePaths[2] === itemPaths[2] ||
+                  (itemPaths[2] === ":id" && !isNaN(routePaths[2]))
+                ) {
                   menus.value[2] = item3;
 
                   if (item3.children) {
