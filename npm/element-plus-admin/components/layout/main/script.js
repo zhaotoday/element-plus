@@ -1,9 +1,14 @@
 import { onMounted, ref } from "vue";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
-import { useConsts } from "@/composables/use-consts";
 
 export default {
-  setup() {
+  props: {
+    menus: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  setup(props) {
     const menus = ref([{}, {}, {}, {}]);
 
     const renderMenus = (path) => {
@@ -11,7 +16,7 @@ export default {
 
       menus.value = [{}, {}, {}, {}];
 
-      useConsts().SidebarMenu.forEach((item1) => {
+      props.menus.forEach((item1) => {
         item1.children.forEach((item2) => {
           const itemPaths = item2.path.substr(1).split("/");
 

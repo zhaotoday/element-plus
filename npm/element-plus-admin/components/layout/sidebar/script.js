@@ -4,20 +4,23 @@ import { useConsts } from "@/composables/use-consts";
 
 export default {
   props: {
-    showHome: {
+    showHomeMenu: {
       type: Boolean,
       default: false,
     },
+    menus: {
+      type: Array,
+      default: () => [],
+    },
   },
-  setup() {
+  setup(props) {
     const router = useRouter();
     const route = useRoute();
-    const { SidebarMenu } = useConsts();
 
     const getActiveKey = (path) => {
       let key = "-1";
 
-      SidebarMenu.forEach((item1, index1) => {
+      props.menu.forEach((item1, index1) => {
         item1.children.forEach((item2, index2) => {
           const routePaths = (path || route.path).split("/");
           const itemPaths = item2.path.split("/");
@@ -49,7 +52,7 @@ export default {
         const index1 = indexes[0];
         const index2 = indexes[1];
 
-        const { path } = SidebarMenu[index1].children[index2];
+        const { path } = props.menus[index1].children[index2];
 
         await router.push(path);
       }
