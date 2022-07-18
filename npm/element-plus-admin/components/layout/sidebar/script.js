@@ -19,7 +19,7 @@ export default {
     const getActiveKey = (path) => {
       let key = "-1";
 
-      props.menu.forEach((item1, index1) => {
+      props.menus.forEach((item1, index1) => {
         item1.children.forEach((item2, index2) => {
           const routePaths = (path || route.path).split("/");
           const itemPaths = item2.path.split("/");
