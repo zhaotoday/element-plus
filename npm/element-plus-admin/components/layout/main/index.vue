@@ -6,9 +6,17 @@
     <el-breadcrumb class="c-main__breadcrumb" separator="/">
       <template v-if="menus[0].title">
         <el-breadcrumb-item>{{ menus[0].title }}</el-breadcrumb-item>
-        <el-breadcrumb-item>{{ menus[1].title }}</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="menus[2].title">
+        <el-breadcrumb-item :to="menus[1].path">
+          {{ menus[1].title }}
+        </el-breadcrumb-item>
+        <el-breadcrumb-item v-if="$route.query.$menu1Title">
+          {{ $route.query.$menu1Title }}
+        </el-breadcrumb-item>
+        <el-breadcrumb-item v-if="menus[2].title" :to="menus[2].path">
           {{ menus[2].title }}
+        </el-breadcrumb-item>
+        <el-breadcrumb-item v-if="$route.query.$menu2Title">
+          {{ $route.query.$menu2Title }}
         </el-breadcrumb-item>
         <el-breadcrumb-item v-if="menus[3].title">
           {{ menus[3].title }}

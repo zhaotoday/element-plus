@@ -119,6 +119,7 @@ export const useList = ({
         if (routeMode) {
           await router.replace({
             query: {
+              ...route.query,
               $list: encode({
                 currentPage: 1,
                 filters: { ...cFilters.model, ...filters },
@@ -146,6 +147,7 @@ export const useList = ({
 
         await router.replace({
           query: {
+            ...route.query,
             $list: encode({ ...query, currentPage: current }),
           },
         });
