@@ -1,6 +1,5 @@
 import { ref } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
-import { useConsts } from "@/composables/use-consts";
 
 export default {
   props: {

@@ -13,7 +13,7 @@
         <span>首页</span>
       </el-menu-item>
       <el-sub-menu
-        v-for="(item1, index1) in $consts.SidebarMenu"
+        v-for="(item1, index1) in menus"
         :key="index1"
         :index="`${index1}`"
       >
