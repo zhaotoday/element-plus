@@ -6,7 +6,7 @@
     <el-breadcrumb class="c-main__breadcrumb" separator="/">
       <template v-if="menus[0].title">
         <el-breadcrumb-item>{{ menus[0].title }}</el-breadcrumb-item>
-        <el-breadcrumb-item :to="menus[1].path">
+        <el-breadcrumb-item :to="menus[2].title ? menus[1].path : ''">
           {{ menus[1].title }}
         </el-breadcrumb-item>
         <el-breadcrumb-item v-if="$route.query.$menu1Title">
@@ -14,7 +14,7 @@
         </el-breadcrumb-item>
         <el-breadcrumb-item
           v-if="menus[2].title"
-          :to="menus[3] ? menus[2].path : ''"
+          :to="menus[3].title ? menus[2].route : ''"
         >
           {{ menus[2].title }}
         </el-breadcrumb-item>

@@ -9,6 +9,8 @@ export default {
     },
   },
   setup(props) {
+    const { query } = useRoute();
+
     const menus = ref([{}, {}, {}, {}]);
 
     const renderMenus = (path) => {
@@ -37,7 +39,12 @@ export default {
                     !isNaN(routePaths[2]) &&
                     itemPaths[3] === routePaths[3])
                 ) {
-                  menus.value[2] = item3;
+                  menus.value[2] = {
+                    ...item3,
+                    route: {
+                      path: item3.path.replace(":id", routePaths[2]),
+                    },
+                  };
 
                   if (item3.children) {
                     item3.children.forEach((item4) => {
@@ -49,7 +56,17 @@ export default {
                           !isNaN(routePaths[4]) &&
                           itemPaths[5] === routePaths[5])
                       ) {
-                        menus.value[3] = item4;
+                        menus.value[3] = {
+                          ...item4,
+                          route: {
+                            path: item4.path
+                              .replace(":id", routePaths[2])
+                              .replace(":id", routePaths[4]),
+                            query: {
+                              $menu1Title: query.$menu1Title,
+                            },
+                          },
+                        };
                       }
                     });
                   }
