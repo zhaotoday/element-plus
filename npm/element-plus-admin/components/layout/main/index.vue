@@ -12,8 +12,14 @@
         <el-breadcrumb-item v-if="$route.query.$menu1Title">
           {{ $route.query.$menu1Title }}
         </el-breadcrumb-item>
-        <el-breadcrumb-item v-if="menus[2].title">
+        <el-breadcrumb-item
+          v-if="menus[2].title"
+          :to="menus[3] ? menus[2].path : ''"
+        >
           {{ menus[2].title }}
+        </el-breadcrumb-item>
+        <el-breadcrumb-item v-if="$route.query.$menu2Title">
+          {{ $route.query.$menu2Title }}
         </el-breadcrumb-item>
         <el-breadcrumb-item v-if="menus[3].title">
           {{ menus[3].title }}
