@@ -43,6 +43,9 @@ export default {
                     ...item3,
                     route: {
                       path: item3.path.replace(":id", routePaths[2]),
+                      query: {
+                        $menu1Title: query.$menu1Title,
+                      },
                     },
                   };
 
@@ -64,6 +67,7 @@ export default {
                               .replace(":id", routePaths[4]),
                             query: {
                               $menu1Title: query.$menu1Title,
+                              $menu2Title: query.$menu2Title,
                             },
                           },
                         };
