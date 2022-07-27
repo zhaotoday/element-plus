@@ -6,7 +6,7 @@
     "build": "vue-cli-service build",
     "build:test": "vue-cli-service build --mode test",
     "format": "prettier --write \"src/**/*.{vue,js}\"",
-    "lint": "eslint \"src/**/*.{vue,js}\" --fix"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@element-plus/icons-vue": "2.0.6",
