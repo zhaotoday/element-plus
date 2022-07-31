@@ -2,8 +2,13 @@ import axios from "axios";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { ElMessage } from "element-plus";
+import { debounce } from "throttle-debounce";
 
 NProgress.configure({ showSpinner: false });
+
+const startProgress = debounce(500, NProgress.start, { atBegin: true });
+
+const doneProgress = debounce(500, NProgress.done, { atBegin: true });
 
 const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
   const request = axios.create({
@@ -15,7 +20,7 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
     (config) => {
       const { method, params, data, showLoading } = config;
 
-      showLoading && NProgress.start();
+      showLoading && startProgress();
 
       if (params) {
         if (params.where) {
@@ -58,7 +63,7 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
         data: { data },
       } = response;
 
-      config.showLoading && NProgress.done();
+      config.showLoading && doneProgress();
 
       return data;
     },
@@ -67,7 +72,7 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
         response: { config, status, data },
       } = error;
 
-      config.showLoading && NProgress.done();
+      config.showLoading && doneProgress();
 
       if (status === 401) {
         window.location.href = "/#/logout";

@@ -15,6 +15,7 @@
     "js-base64": "3.7.2",
     "nprogress": "0.2.0",
     "sass-utils": "1.1.10",
+    "throttle-debounce": "^5.0.0",
     "vue": "3.2.37",
     "vue-router": "4.1.1",
     "wangeditor": "4.7.15",
