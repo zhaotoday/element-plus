@@ -9,18 +9,18 @@
     "format": "prettier --write \"src/**/*.{vue,js}\""
   },
   "dependencies": {
-    "@element-plus/icons-vue": "2.0.6",
-    "element-plus": "2.2.9",
-    "element-plus-admin": "1.1.35",
-    "jt-helpers": "1.0.11",
-    "jt-storage": "0.0.2",
-    "jt-time": "0.0.9",
-    "sass-utils": "1.1.10",
-    "vue": "3.2.37",
-    "vue-router": "4.1.1",
-    "vue-validation": "1.0.3",
-    "vuex": "4.0.2",
-    "vuex-persistedstate": "4.1.0"
+    "@element-plus/icons-vue": "^2.0.6",
+    "element-plus": "^2.2.11",
+    "element-plus-admin": "^1.1.48",
+    "jt-helpers": "^1.0.11",
+    "jt-storage": "^0.0.2",
+    "jt-time": "^0.0.9",
+    "sass-utils": "^1.1.10",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.3",
+    "vue-validation": "^1.0.3",
+    "vuex": "^4.0.2",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
