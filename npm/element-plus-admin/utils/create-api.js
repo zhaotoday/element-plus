@@ -25,8 +25,8 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
       if (params) {
         if (params.where) {
           config.params.where = formatQuery({
-            ...params.where,
             ...(query.where || {}),
+            ...params.where,
           });
         } else {
           config.params.where = formatQuery(query.where || {});
@@ -34,7 +34,7 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
       }
 
       if (data) {
-        Object.assign(config.data, body);
+        config.data = { ...body, ...data };
       }
 
       ["include", "order", "attributes"].forEach((key) => {
