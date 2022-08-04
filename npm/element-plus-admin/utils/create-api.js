@@ -6,9 +6,9 @@ import { debounce } from "throttle-debounce";
 
 NProgress.configure({ showSpinner: false });
 
-const startProgress = debounce(100, NProgress.start, { atBegin: true });
+const startProgress = debounce(200, NProgress.start, { atBegin: true });
 
-const doneProgress = debounce(100, NProgress.done, { atBegin: false });
+const doneProgress = debounce(200, NProgress.done, { atBegin: false });
 
 const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
   const request = axios.create({
