@@ -112,12 +112,12 @@ const formatQuery = (obj) => {
 
 export const createApi = ({
   baseUrl,
-  getHeaders = () => null,
+  headers = () => ({}),
   url,
-  query = {},
-  body = {},
+  query = () => ({}),
+  body = () => ({}),
 }) => {
-  const request = createRequest({ baseUrl, query, body });
+  const request = createRequest({ baseUrl, query: query(), body: body() });
 
   return {
     config: { baseUrl, url, query, body },
@@ -130,7 +130,7 @@ export const createApi = ({
       showError = true,
     } = {}) =>
       request.get(`${url}${joinUrl}${id ? `/${id}` : ""}`, {
-        headers: getHeaders(),
+        headers: headers(),
         params: query,
         showLoading,
         showError,
@@ -148,7 +148,7 @@ export const createApi = ({
         action ? `${url}${joinUrl}/actions/${action}` : url + joinUrl,
         body,
         {
-          headers: getHeaders(),
+          headers: headers(),
           params: query,
           showLoading,
           showError,
@@ -164,7 +164,7 @@ export const createApi = ({
       showError = true,
     } = {}) =>
       request.put(`${url}${joinUrl}/${id}`, body, {
-        headers: getHeaders(),
+        headers: headers(),
         params: query,
         showLoading,
         showError,
@@ -178,7 +178,7 @@ export const createApi = ({
       showError = true,
     } = {}) =>
       request.delete(`${url}${joinUrl}/${id}`, {
-        headers: getHeaders(),
+        headers: headers(),
         params: query,
         showLoading,
         showError,
