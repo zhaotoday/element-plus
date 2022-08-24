@@ -25,16 +25,16 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
       if (params) {
         if (params.where) {
           config.params.where = formatWhere({
-            ...(query.where || {}),
+            ...(query().where || {}),
             ...params.where,
           });
         } else {
-          config.params.where = formatWhere(query.where || {});
+          config.params.where = formatWhere(query().where || {});
         }
       }
 
       if (data) {
-        config.data = { ...body, ...data };
+        config.data = { ...body(), ...data };
       }
 
       ["include", "order", "attributes"].forEach((key) => {
@@ -118,7 +118,7 @@ export const createApi = ({
   query = () => ({}),
   body = () => ({}),
 }) => {
-  const request = createRequest({ baseUrl, query: query(), body: body() });
+  const request = createRequest({ baseUrl, query, body });
 
   return {
     config: { baseUrl, url, query, body },
