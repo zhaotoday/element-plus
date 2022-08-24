@@ -24,12 +24,12 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
 
       if (params) {
         if (params.where) {
-          config.params.where = formatQuery({
+          config.params.where = formatWhere({
             ...(query.where || {}),
             ...params.where,
           });
         } else {
-          config.params.where = formatQuery(query.where || {});
+          config.params.where = formatWhere(query.where || {});
         }
       }
 
@@ -87,7 +87,7 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
   return request;
 };
 
-const formatQuery = (obj) => {
+const formatWhere = (obj) => {
   const ret = {};
 
   Object.keys(obj).forEach((attribute) => {
@@ -96,7 +96,8 @@ const formatQuery = (obj) => {
     Object.keys(obj[attribute]).forEach((operator) => {
       if (
         obj[attribute][operator] === undefined ||
-        obj[attribute][operator] === ""
+        obj[attribute][operator] === "" ||
+        obj[attribute][operator] === null
       ) {
         delete ret[attribute];
       } else if (operator === "$like") {
