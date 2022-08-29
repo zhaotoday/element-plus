@@ -94,7 +94,9 @@ const formatWhere = (obj) => {
     ret[attribute] = {};
 
     Object.keys(obj[attribute]).forEach((operator) => {
-      if (
+      if (operator.substring(0, 2) === "$$") {
+        ret[attribute.replace("$$", "$")] = obj[attribute];
+      } else if (
         obj[attribute][operator] === undefined ||
         obj[attribute][operator] === "" ||
         obj[attribute][operator] === null
