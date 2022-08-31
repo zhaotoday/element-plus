@@ -117,8 +117,8 @@ const formatWhere = (obj) => {
 
 export const createApi = ({
   baseUrl,
-  headers = () => ({}),
   url,
+  headers = () => ({}),
   query = () => ({}),
   body = () => ({}),
 }) => {
