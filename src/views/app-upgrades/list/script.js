@@ -2,12 +2,12 @@ import { useList } from "element-plus-admin/components/list/composables/use-list
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ref } from "vue";
 import { appUpgradesApi } from "@/apis/admin/app-upgrades";
-import Form from "./components/form/index.vue";
+import BForm from "./components/form/index.vue";
 import { ElMessage } from "element-plus";
 
 export default {
   components: {
-    "b-form": Form,
+    BForm,
   },
   setup() {
     const formRef = ref(null);
