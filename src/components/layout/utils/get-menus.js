@@ -1,144 +1,63 @@
-import { useAuth } from "@/composables/use-auth";
-
 export const getMenus = () => {
-  const { schoolId } = useAuth();
-
-  const isAdmin = !schoolId.value || +schoolId.value === 1;
-
-  const sidebarMenus = [
+  return [
     {
-      name: "school",
-      title: "教务管理",
-      icon: "school",
+      name: "product",
+      title: "商品管理",
+      icon: "product-filled",
       children: [
-        isAdmin
-          ? {
-              title: "学校管理",
-              path: "/school/schools",
-            }
-          : null,
         {
-          title: "教师管理",
-          path: "/school/teachers",
+          title: "商品列表",
+          path: "/product/products",
         },
         {
-          title: "行政班管理",
-          path: "/school/classes-Administration",
-          children: [
-            {
-              title: "学生管理",
-              path: "/school/classes-Administration/:id/students",
-            },
-          ],
-        },
-        {
-          title: "课程班管理",
-          path: "/school/classes-Course",
-          children: [
-            {
-              title: "学生管理",
-              path: "/school/classes-Course/:id/class-students",
-            },
-            {
-              title: "排课",
-              path: "/school/classes-Course/:id/schedules",
-            },
-          ],
-        },
-        {
-          title: "学生管理",
-          path: "/school/students",
+          title: "商品分类",
+          path: "/product/categories",
         },
       ],
     },
     {
-      name: "resource",
-      title: "资源管理",
-      icon: "resource",
+      name: "ad",
+      title: "广告管理",
+      icon: "ad-filled",
       children: [
         {
-          title: "实验管理",
-          path: "/resource/experiments",
-          children: [
-            {
-              title: "步骤设置",
-              path: "/resource/experiments/:id/steps",
-            },
-            {
-              title: "作品管理",
-              path: "/resource/experiments/:id/works",
-            },
-          ],
-        },
-        {
-          title: "课程管理",
-          path: "/resource/courses",
-          children: [
-            {
-              title: "课时管理",
-              path: "/resource/courses/:id/class-hours",
-              children: [
-                {
-                  title: "知识点管理",
-                  path: "/resource/courses/:id/class-hours/:id/course-hour-ppt-pages",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          title: "考试管理",
-          path: "/resource/exams",
-          children: [
-            {
-              title: "题目管理",
-              path: "/resource/exams/:id/questions",
-            },
-            {
-              title: "考试结果",
-              path: "/resource/exams/:id/results",
-            },
-            {
-              title: "考试结果",
-              path: "/resource/exams/:id/results/:id",
-            },
-            {
-              title: "数据报表",
-              path: "/resource/exams/:id/result-reports",
-            },
-          ],
+          title: "广告列表",
+          path: "/ad/ads",
         },
       ],
     },
     {
-      name: "config",
-      title: "基础设置",
-      icon: "config--filled",
+      name: "order",
+      title: "订单管理",
+      icon: "order-filled",
       children: [
-        isAdmin
-          ? {
-              title: "模块/标签管理",
-              path: "/config/modules",
-              children: [
-                {
-                  title: "标签管理",
-                  path: "/config/modules/:id/tags",
-                },
-              ],
-            }
-          : null,
         {
-          title: "停课日管理",
-          path: "/config/festivals",
+          title: "订单列表",
+          path: "/order/orders",
+        },
+      ],
+    },
+    {
+      name: "user",
+      title: "用户管理",
+      icon: "user-filled",
+      children: [
+        {
+          title: "用户列表",
+          path: "/user/users",
+        },
+      ],
+    },
+    {
+      name: "app",
+      title: "应用管理",
+      icon: "app-filled",
+      children: [
+        {
+          title: "应用升级",
+          path: "/app/app-upgrades",
         },
       ],
     },
   ];
-
-  return sidebarMenus
-    .filter((item) => !!item)
-    .map(({ children, ...rest }) => ({
-      ...rest,
-      children: (children || []).filter((item) => !!item),
-    }));
 };
