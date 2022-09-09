@@ -3,6 +3,8 @@ import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { useConsts } from "@/composables/use-consts";
 import helpers from "jt-helpers";
 import { useHelpers } from "./use-helpers";
+import { adsApi } from "../../../../../src/apis/admin/ads";
+import { ElMessage } from "element-plus";
 
 export const useList = ({
   onRendered,
@@ -140,6 +142,12 @@ export const useList = ({
       });
   };
 
+  const del = async ({ id }) => {
+    await api.delete({ id });
+    ElMessage.success("删除成功");
+    await reRender();
+  };
+
   const onPageChange = async (current) => {
     if (!loading.value) {
       if (routeMode) {
@@ -168,6 +176,7 @@ export const useList = ({
     initialize,
     reRender,
     search,
+    del,
     onPageChange,
   };
 };

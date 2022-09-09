@@ -14,7 +14,7 @@ export default {
 
     const { enums } = useEnums();
 
-    const { list, currentPage, cFilters, reRender, onPageChange, search } =
+    const { list, currentPage, cFilters, reRender, onPageChange, search, del } =
       useList({
         api: appUpgradesApi,
         filters: {
@@ -26,12 +26,6 @@ export default {
           rules: {},
         },
       });
-
-    const del = async ({ id }) => {
-      await appUpgradesApi.delete({ id });
-      ElMessage.success("删除成功");
-      await reRender();
-    };
 
     return {
       appUpgradesApi,

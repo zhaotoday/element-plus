@@ -14,7 +14,7 @@ export default {
 
     const { enums } = useEnums();
 
-    const { list, currentPage, cFilters, reRender, onPageChange, search } =
+    const { list, currentPage, cFilters, reRender, onPageChange, search, del } =
       useList({
         api: adsApi,
         filters: {
@@ -27,12 +27,6 @@ export default {
           order: [["order", "DESC"]],
         },
       });
-
-    const del = async ({ id }) => {
-      await adsApi.delete({ id });
-      ElMessage.success("删除成功");
-      await reRender();
-    };
 
     return {
       adsApi,
