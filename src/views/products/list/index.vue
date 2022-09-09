@@ -6,7 +6,7 @@
   >
     <template #operations>
       <el-button type="primary" @click="reRender">刷新</el-button>
-      <el-button type="primary" @click="form.show()">新增</el-button>
+      <el-button type="primary" @click="formRef.show()">新增</el-button>
     </template>
     <template #filters>
       <el-form
@@ -61,7 +61,7 @@
       <el-table-column prop="sales" label="销量" width="80" />
       <el-table-column label="操作" width="150px">
         <template #default="{ row }">
-          <el-button size="small" @click="form.show(row)">编辑</el-button>
+          <el-button size="small" @click="formRef.show(row)">编辑</el-button>
           <el-popconfirm title="确定删除吗？" @confirm="del(row)">
             <template #reference>
               <el-button type="danger" size="small">删除</el-button>
