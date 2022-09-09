@@ -12,7 +12,7 @@ import { appUpgradesApi } from "@/apis/admin/app-upgrades";
 export default {
   emits: ["ok"],
   setup(props, context) {
-    const form = ref(null);
+    const formRef = ref(null);
 
     const { deepCopy } = useHelpers();
 
@@ -42,7 +42,7 @@ export default {
     const { show, validate, validateField } = useFormDialog({
       cDialog,
       cForm,
-      form,
+      formRef,
       initialModel,
     });
 
@@ -60,7 +60,7 @@ export default {
       filesApi,
       UploadTo,
       enums,
-      form,
+      formRef,
       cDialog,
       cForm,
       show,

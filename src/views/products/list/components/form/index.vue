@@ -15,7 +15,7 @@
       "
     >
       <el-form
-        ref="form"
+        ref="formRef"
         :model="cForm.model"
         :rules="cForm.rules"
         label-position="right"

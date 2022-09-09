@@ -37,7 +37,7 @@ export default {
     const { show, validate, validateField } = useFormDialog({
       cDialog,
       cForm,
-      form: formRef,
+      formRef,
       initialModel,
     });
 
