@@ -61,7 +61,7 @@
       </el-table-column>
     </el-table>
   </c-list>
-  <b-form ref="form" @ok="reRender" />
+  <b-form ref="formRef" @ok="reRender" />
 </template>
 
 <script src="./script.js"></script>

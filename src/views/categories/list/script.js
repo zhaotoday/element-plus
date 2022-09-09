@@ -10,7 +10,7 @@ export default {
     "b-form": Form,
   },
   setup() {
-    const form = ref(null);
+    const formRef = ref(null);
 
     const { enums } = useEnums();
 
@@ -37,7 +37,7 @@ export default {
 
     return {
       categoriesApi,
-      form,
+      formRef,
       enums,
       list,
       currentPage,

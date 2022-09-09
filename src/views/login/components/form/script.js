@@ -11,7 +11,7 @@ export default {
     const router = useRouter();
     const { isRequired } = useValidators();
 
-    const form = ref(null);
+    const formRef = ref(null);
 
     const cForm = reactive({
       model: {},
@@ -22,7 +22,7 @@ export default {
     });
 
     const submit = () => {
-      form.value.validate(async (valid) => {
+      formRef.value.validate(async (valid) => {
         if (valid) {
           await dispatch("auth/login", cForm.model);
           ElMessage.success("登录成功");
@@ -34,7 +34,7 @@ export default {
 
     return {
       UserFilled,
-      form,
+      formRef,
       cForm,
       submit,
     };

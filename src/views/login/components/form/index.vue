@@ -3,7 +3,7 @@
     <div class="b-form__title">管理员登录</div>
     <el-form
       class="b-form"
-      ref="form"
+      ref="formRef"
       :model="cForm.model"
       :rules="cForm.rules"
     >
