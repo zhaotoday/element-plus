@@ -1,20 +1,20 @@
-import Editor from "element-plus-admin/components/editor/index.vue";
-import EnumSelect from "element-plus-admin/components/enum-select/index.vue";
-import List from "element-plus-admin/components/list/index.vue";
-import ListImage from "element-plus-admin/components/list/components/image/index.vue";
-import OrderInput from "element-plus-admin/components/order-input/index.vue";
-import ResourceSelect from "element-plus-admin/components/resource-select/index.vue";
-import Upload from "element-plus-admin/components/upload/index.vue";
+import CEditor from "element-plus-admin/components/editor/index.vue";
+import CEnumSelect from "element-plus-admin/components/enum-select/index.vue";
+import CList from "element-plus-admin/components/list/index.vue";
+import CListImage from "element-plus-admin/components/list/components/image/index.vue";
+import COrderInput from "element-plus-admin/components/order-input/index.vue";
+import CResourceSelect from "element-plus-admin/components/resource-select/index.vue";
+import CUpload from "element-plus-admin/components/upload/index.vue";
 import { Eleme, Right } from "@element-plus/icons-vue";
 
 export const useComponents = (app) => {
-  app.component("c-editor", Editor);
-  app.component("c-enum-select", EnumSelect);
-  app.component("c-list", List);
-  app.component("c-list-image", ListImage);
-  app.component("c-order-input", OrderInput);
-  app.component("c-resource-select", ResourceSelect);
-  app.component("c-upload", Upload);
+  app.component("c-editor", CEditor);
+  app.component("c-enum-select", CEnumSelect);
+  app.component("c-list", CList);
+  app.component("c-list-image", CListImage);
+  app.component("c-order-input", COrderInput);
+  app.component("c-resource-select", CResourceSelect);
+  app.component("c-upload", CUpload);
   app.component("el-icon-right", Right);
   app.component("el-icon-eleme", Eleme);
 };

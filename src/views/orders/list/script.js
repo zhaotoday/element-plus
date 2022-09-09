@@ -2,12 +2,12 @@ import { useList } from "element-plus-admin/components/list/composables/use-list
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ordersApi } from "@/apis/admin/orders";
 import { ElMessage } from "element-plus";
-import Detail from "./components/detail/index.vue";
+import BDetail from "./components/detail/index.vue";
 import { ref } from "vue";
 
 export default {
   components: {
-    "b-detail": Detail,
+    BDetail,
   },
   setup() {
     const { enums } = useEnums();
