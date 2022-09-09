@@ -1,5 +1,3 @@
-import { SidebarMenu } from "@/utils/consts/sidebar-menu";
-
 export const useConsts = () => {
   // 基础地址
   const BaseUrl = process.env["BASE_URL"];
@@ -14,7 +12,6 @@ export const useConsts = () => {
   const PageSize = 10;
 
   return {
-    SidebarMenu,
     BaseUrl,
     ApiUrl,
     StaticUrl,
