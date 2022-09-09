@@ -1,10 +1,11 @@
 import TheHeader from "element-plus-admin/components/layout/header/index.vue";
 import TheSidebar from "element-plus-admin/components/layout/sidebar/index.vue";
 import TheMain from "element-plus-admin/components/layout/main/index.vue";
-import { useStore } from "vuex";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
-import { computed } from "vue";
+import { onMounted, ref } from "vue";
+import { useAuth } from "@/composables/use-auth";
+import { getMenus } from "./utils/get-menus";
 
 export default {
   components: {
@@ -13,10 +14,17 @@ export default {
     TheMain,
   },
   setup() {
-    const { state } = useStore();
     const router = useRouter();
+    const { user } = useAuth();
 
-    const user = computed(() => state.auth.user);
+    const userName = ref("");
+
+    onMounted(() => {
+      userName.value =
+        user.value && user.value.account
+          ? `${user.value.account}@${user.value.school.name} `
+          : "";
+    });
 
     const logout = async () => {
       await router.push("/logout");
@@ -24,7 +32,8 @@ export default {
     };
 
     return {
-      user,
+      userName,
+      getMenus,
       logout,
     };
   },

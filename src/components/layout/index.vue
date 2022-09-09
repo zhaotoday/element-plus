@@ -1,15 +1,15 @@
 <template>
-  <the-header :user-name="user.name" @logout="logout">
+  <the-header :user-name="userName" @logout="logout">
     <template #logo>
       <img
         src="https://element-plus.org/images/formmaking.png"
         style="border-radius: 50%"
       />
-      后台管理系统
+      FAIE 管理后台
     </template>
   </the-header>
-  <the-sidebar show-home />
-  <the-main />
+  <the-sidebar show-home :menus="getMenus()" />
+  <the-main :menus="getMenus()" />
 </template>
 
 <script src="./script.js"></script>
