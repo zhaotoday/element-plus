@@ -15,7 +15,7 @@ export default {
 
     const { enums } = useEnums();
 
-    const { list, currentPage, cFilters, reRender, onPageChange, search } =
+    const { list, currentPage, cFilters, reRender, onPageChange, search, del } =
       useList({
         api: productsApi,
         filters: {
@@ -30,12 +30,6 @@ export default {
           include: [{ model: "Category", as: "category" }],
         },
       });
-
-    const del = async ({ id }) => {
-      await productsApi.delete({ id });
-      ElMessage.success("删除成功");
-      await reRender();
-    };
 
     return {
       categoriesApi,

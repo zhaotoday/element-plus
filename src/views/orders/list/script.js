@@ -12,7 +12,7 @@ export default {
   setup() {
     const { enums } = useEnums();
 
-    const { list, currentPage, cFilters, reRender, onPageChange, search } =
+    const { list, currentPage, cFilters, reRender, onPageChange, search, del } =
       useList({
         api: ordersApi,
         filters: {
@@ -27,12 +27,6 @@ export default {
       });
 
     const detail = ref(null);
-
-    const del = async ({ id }) => {
-      await ordersApi.delete({ id });
-      ElMessage.success("删除成功");
-      await reRender();
-    };
 
     return {
       ordersApi,
