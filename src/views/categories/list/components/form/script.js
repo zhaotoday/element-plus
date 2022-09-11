@@ -1,6 +1,5 @@
 import { reactive, ref } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
-import { ElMessage } from "element-plus";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { useValidators } from "vue-validation";
 import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";
@@ -36,21 +35,16 @@ export default {
       },
     });
 
-    const { show, validate, validateField } = useFormDialog({
+    const { show, validateField, submit } = useFormDialog({
+      api: categoriesApi,
       cDialog,
       cForm,
       formRef,
       initialModel,
+      onOk() {
+        context.emit("ok");
+      },
     });
-
-    const submit = async () => {
-      const { id, model } = await validate();
-
-      await categoriesApi[id ? "put" : "post"]({ id, body: model });
-      ElMessage.success(id ? "修改成功" : "新增成功");
-      context.emit("ok");
-      cDialog.visible = false;
-    };
 
     return {
       tencentCloudCosApi,
