@@ -1,7 +1,10 @@
 import { watch } from "vue";
 import { deepCopy } from "jt-helpers";
+import { ElMessage } from "element-plus";
 
 export const useFormDialog = ({
+  context,
+  api,
   cDialog,
   cForm,
   formRef,
@@ -41,9 +44,19 @@ export const useFormDialog = ({
     });
   };
 
+  const submit = async () => {
+    const { id, model } = await validate();
+
+    await api[id ? "put" : "post"]({ id, body: model });
+    ElMessage.success(id ? "修改成功" : "新增成功");
+    context.emit("ok");
+    cDialog.visible = false;
+  };
+
   return {
     show,
     validate,
     validateField,
+    submit,
   };
 };
