@@ -2,7 +2,6 @@ import { useList } from "element-plus-admin/components/list/composables/use-list
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ref } from "vue";
 import BForm from "./components/form/index.vue";
-import { ElMessage } from "element-plus";
 import { productsApi } from "@/apis/admin/products";
 import { categoriesApi } from "@/apis/admin/categories";
 

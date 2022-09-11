@@ -1,7 +1,6 @@
 import { reactive, ref } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
 import { adsApi } from "@/apis/admin/ads";
-import { ElMessage } from "element-plus";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { useValidators } from "vue-validation";
 import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";

@@ -3,7 +3,6 @@ import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ref } from "vue";
 import { appUpgradesApi } from "@/apis/admin/app-upgrades";
 import BForm from "./components/form/index.vue";
-import { ElMessage } from "element-plus";
 
 export default {
   components: {
