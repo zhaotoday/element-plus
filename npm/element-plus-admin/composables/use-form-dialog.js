@@ -3,12 +3,12 @@ import { deepCopy } from "jt-helpers";
 import { ElMessage } from "element-plus";
 
 export const useFormDialog = ({
-  context,
   api,
   cDialog,
   cForm,
   formRef,
   initialModel,
+  onOk,
 } = {}) => {
   watch(
     () => cDialog.visible,
@@ -49,8 +49,8 @@ export const useFormDialog = ({
 
     await api[id ? "put" : "post"]({ id, body: model });
     ElMessage.success(id ? "修改成功" : "新增成功");
-    context.emit("ok");
     cDialog.visible = false;
+    onOk && onOk();
   };
 
   return {

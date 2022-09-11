@@ -34,21 +34,16 @@ export default {
       },
     });
 
-    const { show, validate, validateField } = useFormDialog({
+    const { show, validateField, submit } = useFormDialog({
+      api: adsApi,
       cDialog,
       cForm,
       formRef,
       initialModel,
+      onOk() {
+        context.emit("ok");
+      },
     });
-
-    const submit = async () => {
-      const { id, model } = await validate();
-
-      await adsApi[id ? "put" : "post"]({ id, body: model });
-      ElMessage.success(id ? "修改成功" : "新增成功");
-      context.emit("ok");
-      cDialog.visible = false;
-    };
 
     return {
       tencentCloudCosApi,
