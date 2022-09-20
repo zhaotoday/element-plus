@@ -1,10 +1,10 @@
-import { onMounted, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { useConsts } from "@/composables/use-consts";
 import helpers from "jt-helpers";
 import { useHelpers } from "./use-helpers";
 import { adsApi } from "../../../../../src/apis/admin/ads";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 
 export const useList = ({
   onRendered,
@@ -31,6 +31,17 @@ export const useList = ({
   const filtersModel = filters.model;
 
   let filtersRef = null;
+
+  const state = reactive({
+    checkAll: false,
+    checkedItems: {},
+  });
+
+  const checkedIds = computed(() =>
+    Object.keys(state.checkedItems)
+      .filter((key) => state.checkedItems[key])
+      .map((item) => parseInt(item, 10))
+  );
 
   const getQuery = (query) => {
     const { currentPage = 1, filters = helpers.deepCopy(filtersModel) } =
@@ -148,6 +159,27 @@ export const useList = ({
     await reRender();
   };
 
+  const bulkDel = async () => {
+    if (!checkedIds.value.length) {
+      ElMessage.error("未选中数据");
+      return;
+    }
+
+    await ElMessageBox.confirm("确认删除选中数据?", "提示", {
+      confirmButtonText: "删除",
+      confirmButtonClass: "el-button--danger",
+      cancelButtonText: "取消",
+      type: "warning",
+    });
+
+    await api.post({
+      action: "bulkDestroy",
+      body: { ids: checkedIds.value },
+    });
+    ElMessage.success("删除成功");
+    await reRender();
+  };
+
   const onPageChange = async (current) => {
     if (!loading.value) {
       if (routeMode) {
@@ -168,15 +200,38 @@ export const useList = ({
     }
   };
 
+  const onCheckAllChange = () => {
+    list.items.forEach((item) => {
+      state.checkedItems[item.id + ""] = state.checkAll;
+    });
+  };
+
+  const onCheckChange = () => {
+    let isAllChecked = true;
+
+    list.items.forEach((item) => {
+      if (!state.checkedItems[item.id + ""]) {
+        isAllChecked = false;
+      }
+    });
+
+    state.checkAll = isAllChecked;
+  };
+
   return {
     list,
     currentPage,
     cFilters,
+    state,
+    checkedIds,
     render,
     initialize,
     reRender,
     search,
     del,
+    bulkDel,
     onPageChange,
+    onCheckAllChange,
+    onCheckChange,
   };
 };
