@@ -35,8 +35,6 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column prop="name" label="商品分类英文名称" />
-      <el-table-column prop="cnName" label="商品分类中文名称" />
       <el-table-column label="商品分类图标" width="120">
         <template #default="{ row }">
           <c-list-image
@@ -44,6 +42,7 @@
           />
         </template>
       </el-table-column>
+      <el-table-column prop="name" label="商品分类名称" />
       <el-table-column label="排序" width="120">
         <template #default="{ row }">
           <c-order-input :api="categoriesApi" :row="row" @ok="reRender" />
