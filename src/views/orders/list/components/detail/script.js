@@ -12,7 +12,6 @@ export default {
     const detail = ref({});
 
     const show = (data) => {
-      console.log(data, "abc");
       detail.value = data;
       cDialog.visible = true;
     };

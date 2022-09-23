@@ -7,24 +7,24 @@
       </li>
       <li>
         <label>用户</label>
-        {{ detail.user.name }}
+        {{ detail.user.name || detail.user.wxNickName }}
       </li>
       <li>
         <label>下单时间</label>
         {{ $time.getTime(detail.createdAt) }}
       </li>
       <li>
-        <label>送达时间</label>
-        {{ detail.finishedAt ? $time.getTime(detail.finishedAt) : "-" }}
+        <label>支付时间</label>
+        {{ detail.paidAt ? $time.getTime(detail.paidAt) : "" }}
       </li>
-      <li>
+      <li v-if="detail.address.location">
         <label>收货地址</label>
         {{ detail.address.name }} {{ detail.address.phoneNumber }}<br />
         {{ detail.address.location.name + detail.address.room }}
       </li>
       <li>
         <label>金额</label>
-        ${{ detail.amount }}
+        {{ detail.amount }}元
       </li>
       <li>
         <label>状态</label>
@@ -34,21 +34,16 @@
       </li>
       <li>
         <label>购物清单</label>
-        <el-table
-          :data="detail.products"
-          size="small"
-          border
-          :show-header="false"
-        >
-          <el-table-column>
+        <el-table :data="detail.products" size="small" border>
+          <el-table-column label="商品名称">
             <template #default="{ row }">
               {{ row.name }}
             </template>
           </el-table-column>
-          <el-table-column width="60">
+          <el-table-column label="价格" width="60">
             <template #default="{ row }">${{ row.price }} </template>
           </el-table-column>
-          <el-table-column width="60">
+          <el-table-column label="数量" width="60">
             <template #default="{ row }">x{{ row.number }} </template>
           </el-table-column>
         </el-table>

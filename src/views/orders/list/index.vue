@@ -27,29 +27,31 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column label="订单号" prop="no" width="150" />
+      <el-table-column label="订单号" prop="no" width="160" />
       <el-table-column label="用户名" width="120">
         <template #default="{ row }">
-          {{ row.user.name }}
+          {{ row.user.name || row.user.wxNickName }}
         </template>
       </el-table-column>
       <el-table-column label="收货地址">
         <template #default="{ row: { address } }">
-          {{ address.name }} {{ address.phoneNumber }}<br />
-          {{ address.location.name + address.room }}
+          <template v-if="address.location">
+            {{ address.name }} {{ address.phoneNumber }}<br />
+            {{ address.location.name + address.room }}
+          </template>
         </template>
       </el-table-column>
-      <el-table-column prop="amount" label="金额" width="60">
-        <template #default="{ row }">${{ row.amount }} </template>
+      <el-table-column prop="amount" label="金额" width="80">
+        <template #default="{ row }">{{ row.amount }}元</template>
       </el-table-column>
-      <el-table-column label="下单时间" width="140">
+      <el-table-column label="下单时间" width="150">
         <template #default="{ row }">
           {{ $time.getTime(row.createdAt) }}
         </template>
       </el-table-column>
-      <el-table-column label="送达时间" width="140">
+      <el-table-column label="支付时间" width="150">
         <template #default="{ row }">
-          {{ row.finishedAt ? $time.getTime(row.finishedAt) : "" }}
+          {{ row.paidAt ? $time.getTime(row.paidAt) : "" }}
         </template>
       </el-table-column>
       <el-table-column label="状态" width="100">
