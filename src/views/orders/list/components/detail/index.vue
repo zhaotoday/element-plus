@@ -15,7 +15,7 @@
       </li>
       <li>
         <label>支付时间</label>
-        {{ detail.paidAt ? $time.getTime(detail.paidAt) : "" }}
+        {{ detail.paidAt ? $time.getTime(detail.paidAt) : "--" }}
       </li>
       <li v-if="detail.address.location">
         <label>收货地址</label>
