@@ -28,7 +28,7 @@
     </template>
     <el-table :data="list.items" stripe>
       <el-table-column label="订单号" prop="no" width="160" />
-      <el-table-column label="用户名" width="120">
+      <el-table-column label="用户" width="120">
         <template #default="{ row }">
           {{ row.user.name || row.user.wxNickName }}
         </template>
