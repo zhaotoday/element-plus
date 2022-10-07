@@ -1,7 +1,7 @@
 import { computed, onMounted, reactive, ref } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { useConsts } from "@/composables/use-consts";
-import helpers from "jt-helpers";
+import { deepCopy } from "jt-helpers";
 import { useHelpers } from "./use-helpers";
 import { ElMessage, ElMessageBox } from "element-plus";
 
@@ -219,6 +219,9 @@ export const useList = ({
   const onPageSizeChange = async (pageSize) => {
     if (!loading.value) {
       if (routeMode) {
+        currentPageSize.value = pageSize;
+        currentPage.value = 1;
+
         const query = getQuery(route.query);
 
         await router.replace({

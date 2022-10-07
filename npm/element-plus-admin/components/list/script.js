@@ -1,5 +1,5 @@
 import { useConsts } from "@/composables/use-consts";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 export default {
   name: "List",
@@ -36,6 +36,14 @@ export default {
   },
   setup(props) {
     const currentPageSize = ref(props.pageSize);
+
+    watch(
+      () => props.pageSize,
+      (newVal) => {
+        currentPageSize.value = newVal;
+      },
+      { deep: true, immediate: true }
+    );
 
     return {
       currentPageSize,
