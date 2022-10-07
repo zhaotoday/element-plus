@@ -18,9 +18,11 @@
         background
         @current-change="$emit('page-change', $event)"
         :current-page="currentPage"
-        :page-size="pageSize"
-        layout="total, prev, pager, next, jumper"
+        v-model:page-size="currentPageSize"
+        layout="sizes,total, prev, pager, next, jumper"
         :total="total"
+        :page-sizes="[10, 20, 30, 40, 50]"
+        @size-change="onPageSizeChange"
       />
     </div>
   </div>

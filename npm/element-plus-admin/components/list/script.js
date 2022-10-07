@@ -1,4 +1,5 @@
 import { useConsts } from "@/composables/use-consts";
+import { ref } from "vue";
 
 export default {
   name: "List",
@@ -28,5 +29,17 @@ export default {
       type: Boolean,
       default: true,
     },
+  },
+  setup(props) {
+    const currentPageSize = ref(props.pageSize);
+
+    const onPageSizeChange = (a) => {
+      console.log(a);
+    };
+
+    return {
+      currentPageSize,
+      onPageSizeChange,
+    };
   },
 };
