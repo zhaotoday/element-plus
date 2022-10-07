@@ -196,13 +196,51 @@ export const useList = ({
         await router.replace({
           query: {
             ...route.query,
-            $list: encode({ ...query, currentPage: current }),
+            $list: encode({
+              ...query,
+              currentPageSize: currentPageSize.value,
+              currentPage: current,
+            }),
           },
         });
       } else {
         loading.value = true;
         currentPage.value = current;
-        await render({ currentPage: current, filters: cFilters.model });
+        await render({
+          currentPageSize: currentPageSize.value,
+          currentPage: current,
+          filters: cFilters.model,
+        });
+        loading.value = false;
+      }
+    }
+  };
+
+  const onPageSizeChange = async (pageSize) => {
+    if (!loading.value) {
+      if (routeMode) {
+        const query = getQuery(route.query);
+
+        await router.replace({
+          query: {
+            ...route.query,
+            $list: encode({
+              ...query,
+              currentPageSize: pageSize,
+              currentPage: 1,
+            }),
+          },
+        });
+      } else {
+        loading.value = true;
+        currentPageSize.value = pageSize;
+        currentPage.value = 1;
+
+        await render({
+          currentPageSize: pageSize,
+          currentPage: 1,
+          filters: cFilters.model,
+        });
         loading.value = false;
       }
     }
@@ -240,6 +278,7 @@ export const useList = ({
     del,
     bulkDel,
     onPageChange,
+    onPageSizeChange,
     onCheckAllChange,
     onCheckChange,
   };

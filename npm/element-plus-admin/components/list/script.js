@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 export default {
   name: "List",
-  emits: ["page-change"],
+  emits: ["page-change", "page-size-change"],
   props: {
     total: {
       type: Number,
@@ -29,17 +29,16 @@ export default {
       type: Boolean,
       default: true,
     },
+    showPageSizes: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     const currentPageSize = ref(props.pageSize);
 
-    const onPageSizeChange = (a) => {
-      console.log(a);
-    };
-
     return {
       currentPageSize,
-      onPageSizeChange,
     };
   },
 };
