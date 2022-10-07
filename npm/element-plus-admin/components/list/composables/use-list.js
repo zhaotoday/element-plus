@@ -3,7 +3,6 @@ import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { useConsts } from "@/composables/use-consts";
 import helpers from "jt-helpers";
 import { useHelpers } from "./use-helpers";
-import { adsApi } from "../../../../../src/apis/admin/ads";
 import { ElMessage, ElMessageBox } from "element-plus";
 
 export const useList = ({
@@ -11,6 +10,7 @@ export const useList = ({
   routeMode = true,
   autoRender = true,
   filtersAsKeyValue = false,
+  pageSize = useConsts().PageSize,
   api,
   filters = {},
   data = {},
@@ -23,6 +23,7 @@ export const useList = ({
   const { formatFilters, encode, decode } = useHelpers();
   const list = reactive({ items: [], total: 0 });
   const loading = ref(false);
+  const currentPageSize = ref(pageSize);
   const currentPage = ref(1);
   const cFilters = reactive({
     ref: (el) => (filtersRef = el),
@@ -44,21 +45,23 @@ export const useList = ({
   );
 
   const getQuery = (query) => {
-    const { currentPage = 1, filters = helpers.deepCopy(filtersModel) } =
-      decode(query.$list);
+    const {
+      currentPageSize = pageSize,
+      currentPage = 1,
+      filters = helpers.deepCopy(filtersModel),
+    } = decode(query.$list);
 
-    return { currentPage, filters };
+    return { currentPageSize, currentPage, filters };
   };
 
   const render = async ({
+    currentPageSize = pageSize,
     currentPage = 1,
     filters = helpers.deepCopy(filtersModel),
   } = {}) => {
-    const { PageSize } = useConsts();
-
     const query = {
-      offset: (currentPage - 1) * PageSize,
-      limit: PageSize,
+      offset: (currentPage - 1) * currentPageSize,
+      limit: currentPageSize,
       ...data,
     };
 
@@ -83,6 +86,7 @@ export const useList = ({
   };
 
   const initialize = async ({ filters = helpers.deepCopy(filtersModel) }) => {
+    currentPageSize.value = pageSize;
     currentPage.value = 1;
     cFilters.model = filters;
     await render({ filters });
@@ -95,6 +99,7 @@ export const useList = ({
 
     const query = getQuery(route.query);
 
+    currentPageSize.value = query.currentPageSize;
     currentPage.value = query.currentPage;
     cFilters.model = query.filters;
 
@@ -110,6 +115,7 @@ export const useList = ({
 
     const query = getQuery(to.query);
 
+    currentPageSize.value = query.currentPageSize;
     currentPage.value = query.currentPage;
     cFilters.model = query.filters;
 
@@ -134,6 +140,7 @@ export const useList = ({
             query: {
               ...route.query,
               $list: encode({
+                currentPageSize: currentPageSize.value,
                 currentPage: 1,
                 filters: { ...cFilters.model, ...filters },
               }),
@@ -144,6 +151,7 @@ export const useList = ({
           cFilters.model = { ...cFilters.model, ...filters };
 
           await render({
+            currentPageSize: currentPageSize.value,
             currentPage: 1,
             filters: cFilters.model,
           });
@@ -220,6 +228,7 @@ export const useList = ({
 
   return {
     list,
+    currentPageSize,
     currentPage,
     cFilters,
     state,
