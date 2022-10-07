@@ -48,7 +48,7 @@ export const useList = ({
     const {
       currentPageSize = pageSize,
       currentPage = 1,
-      filters = helpers.deepCopy(filtersModel),
+      filters = deepCopy(filtersModel),
     } = decode(query.$list);
 
     return { currentPageSize, currentPage, filters };
@@ -57,7 +57,7 @@ export const useList = ({
   const render = async ({
     currentPageSize = pageSize,
     currentPage = 1,
-    filters = helpers.deepCopy(filtersModel),
+    filters = deepCopy(filtersModel),
   } = {}) => {
     const query = {
       offset: (currentPage - 1) * currentPageSize,
@@ -85,7 +85,7 @@ export const useList = ({
     onRendered && onRendered();
   };
 
-  const initialize = async ({ filters = helpers.deepCopy(filtersModel) }) => {
+  const initialize = async ({ filters = deepCopy(filtersModel) }) => {
     currentPageSize.value = pageSize;
     currentPage.value = 1;
     cFilters.model = filters;
