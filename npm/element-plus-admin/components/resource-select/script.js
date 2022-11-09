@@ -14,6 +14,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    filterable: {
+      type: Boolean,
+      default: false,
+    },
     optionLabel: {
       type: [String, Function],
       default: "name",

@@ -3,6 +3,7 @@
     :placeholder="placeholder"
     :multiple="multiple"
     :clearable="clearable"
+    :filterable="filterable"
     collapse-tags
     :model-value="value"
     @change="onChange"
