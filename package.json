@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
-    "element-plus": "^2.2.28",
+    "element-plus": "^2.2.32",
     "element-plus-admin": "^1.2.6",
     "jt-helpers": "^1.0.11",
     "jt-storage": "^0.0.2",

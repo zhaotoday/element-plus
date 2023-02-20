@@ -9,11 +9,11 @@
     @change="onChange"
   >
     <el-option
-      v-for="item in list.items"
+      v-for="(item, index) in list.items"
       :key="item.id"
       :label="
         typeof optionLabel === 'function'
-          ? optionLabel(item)
+          ? optionLabel(item, index)
           : item[optionLabel]
       "
       :value="item.id"
