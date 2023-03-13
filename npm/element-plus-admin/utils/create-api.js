@@ -74,7 +74,7 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
 
       config.showLoading && doneProgress();
 
-      if (status === 400 || status === 401) {
+      if (status === 401) {
         window.location.href = "/#/logout";
       } else {
         config.showError && ElMessage.error(data.error || "服务器内部错误");
