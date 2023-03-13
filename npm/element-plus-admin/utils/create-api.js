@@ -77,7 +77,22 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
       if (status === 401) {
         window.location.href = "/#/logout";
       } else {
-        config.showError && ElMessage.error(data.error || "服务器内部错误");
+        if (config.showError) {
+          if (data.error && data.error.message) {
+            const { message } = data.error;
+
+            if (typeof message === "string") {
+              ElMessage.error(message);
+            } else if (typeof message === "object") {
+              ElMessage.error({
+                message: Object.values(message).join("<br />"),
+                dangerouslyUseHTMLString: true,
+              });
+            }
+          } else {
+            ElMessage.error("服务器内部错误");
+          }
+        }
       }
 
       return Promise.reject(error);
