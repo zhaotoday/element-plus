@@ -24,6 +24,10 @@ const createRequest = ({ baseUrl, timeout = 5000, query, body }) => {
 
       if (params) {
         if (params.where) {
+          if (params.where._vts) {
+            delete params.where._vts;
+          }
+
           config.params.where = formatWhere({
             ...(query().where || {}),
             ...params.where,
