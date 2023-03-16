@@ -150,12 +150,14 @@ export const createApi = ({
       joinUrl = "",
       id,
       query = {},
+      timeout = 5000,
       showLoading = true,
       showError = true,
     } = {}) =>
       request.get(`${url}${joinUrl}${id ? `/${id}` : ""}`, {
         headers: headers(),
         params: query,
+        timeout,
         showLoading,
         showError,
       }),
@@ -165,6 +167,7 @@ export const createApi = ({
       action,
       body = {},
       query = {},
+      timeout = 5000,
       showLoading = true,
       showError = true,
     } = {}) =>
@@ -174,6 +177,7 @@ export const createApi = ({
         {
           headers: headers(),
           params: query,
+          timeout,
           showLoading,
           showError,
         }
@@ -184,12 +188,14 @@ export const createApi = ({
       id,
       body = {},
       query = {},
+      timeout = 5000,
       showLoading = true,
       showError = true,
     } = {}) =>
       request.put(`${url}${joinUrl}/${id}`, body, {
         headers: headers(),
         params: query,
+        timeout,
         showLoading,
         showError,
       }),
@@ -198,12 +204,14 @@ export const createApi = ({
       joinUrl = "",
       id,
       query = {},
+      timeout = 5000,
       showLoading = true,
       showError = true,
     } = {}) =>
       request.delete(`${url}${joinUrl}/${id}`, {
         headers: headers(),
         params: query,
+        timeout,
         showLoading,
         showError,
       }),
