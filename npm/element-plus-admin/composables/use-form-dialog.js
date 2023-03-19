@@ -8,6 +8,7 @@ export const useFormDialog = ({
   cForm,
   formRef,
   initialModel,
+  onSubmit,
   onOk,
 } = {}) => {
   watch(
@@ -47,7 +48,12 @@ export const useFormDialog = ({
   const submit = async () => {
     const { id, model } = await validate();
 
-    await api[id ? "put" : "post"]({ id, body: model });
+    if (onSubmit) {
+      await onSubmit({ id, model });
+    } else {
+      await api[id ? "put" : "post"]({ id, body: model });
+    }
+
     ElMessage.success(id ? "修改成功" : "新增成功");
     cDialog.visible = false;
     onOk && onOk();
