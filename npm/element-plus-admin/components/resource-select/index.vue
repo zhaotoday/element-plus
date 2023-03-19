@@ -5,7 +5,7 @@
     :clearable="clearable"
     :filterable="filterable"
     collapse-tags
-    :model-value="value"
+    :model-value="list.items.length ? value : ''"
     @change="onChange"
   >
     <el-option
