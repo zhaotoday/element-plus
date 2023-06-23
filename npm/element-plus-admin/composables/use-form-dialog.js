@@ -52,9 +52,9 @@ export const useFormDialog = ({
       await onSubmit({ id, model });
     } else {
       await api[id ? "put" : "post"]({ id, body: model });
+      ElMessage.success(id ? "修改成功" : "新增成功");
     }
 
-    ElMessage.success(id ? "修改成功" : "新增成功");
     cDialog.visible = false;
     onOk && onOk();
   };
