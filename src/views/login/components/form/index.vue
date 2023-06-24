@@ -10,6 +10,7 @@
       <el-form-item prop="username">
         <el-input
           size="large"
+          placeholder="请输入用户名"
           v-model="cForm.model.username"
           @keyup.enter="submit"
         >
@@ -25,6 +26,7 @@
         <el-input
           type="password"
           size="large"
+          placeholder="请输入密码"
           autocomplete="new-password"
           v-model="cForm.model.password"
           @keyup.enter="submit"
