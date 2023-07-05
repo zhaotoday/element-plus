@@ -1,5 +1,4 @@
 import { defineStore } from "pinia/dist/pinia.cjs";
-import { publicManagersApi } from "element-plus-admin/apis/public/managers";
 import { ref } from "vue";
 import { publicEnumsApi } from "element-plus-admin/apis/public/enums";
 
