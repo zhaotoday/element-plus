@@ -1,28 +1,22 @@
 import { defineStore } from "pinia/dist/pinia.cjs";
 import { publicManagersApi } from "element-plus-admin/apis/public/managers";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
+import { stat } from "@babel/core/lib/gensync-utils/fs";
 
 export const useUserStore = defineStore(
   "user",
   () => {
-      const user=ref({})
-      const token=ref('')
+    const user = ref({});
+    const token = ref("");
 
     const login = async (data) => {
-      const data = await publicManagersApi.post({ action: "login", body: data });
+      const res = await publicManagersApi.post({ action: "login", body: data });
 
-      const {
-        manager: { id, username },
-        token,
-      } = res;
-
-      user.value = { id: data.manager., name: username };
-
-      return res;
+      user.value = { id: res.manager.id, name: res.manager.username };
+      token.value = res.token;
     };
 
     return {
-      state,
       login,
     };
   },
