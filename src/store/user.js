@@ -1,7 +1,6 @@
 import { defineStore } from "pinia/dist/pinia.cjs";
 import { publicManagersApi } from "element-plus-admin/apis/public/managers";
-import { reactive, ref } from "vue";
-import { stat } from "@babel/core/lib/gensync-utils/fs";
+import { ref } from "vue";
 
 export const useUserStore = defineStore(
   "user",
@@ -17,6 +16,8 @@ export const useUserStore = defineStore(
     };
 
     return {
+      user,
+      token,
       login,
     };
   },
