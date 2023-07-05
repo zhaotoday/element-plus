@@ -13,7 +13,7 @@ import { router } from "./router";
 const pinia = createPinia()
 const app = createApp(App);
 
-app.use(store).use(router).use(ElementPlus).mount("#app");
+app.use(pinia).use(store).use(router).use(ElementPlus).mount("#app");
 
 config(app);
 useComponents(app);
