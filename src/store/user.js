@@ -15,10 +15,16 @@ export const useUserStore = defineStore(
       token.value = res.token;
     };
 
+    const logout = () => {
+      user.value = {};
+      token.value = "";
+    };
+
     return {
       user,
       token,
       login,
+      logout,
     };
   },
   {
