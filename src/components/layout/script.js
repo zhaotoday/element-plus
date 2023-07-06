@@ -14,10 +14,11 @@ export default {
   },
   setup() {
     const router = useRouter();
-    const { user } = useAuth();
+    const { user, logout: userLogout } = useAuth();
 
     const logout = async () => {
-      await router.push("/logout");
+      await userLogout();
+      await router.push("/login");
       ElMessage.success("退出成功");
     };
 
