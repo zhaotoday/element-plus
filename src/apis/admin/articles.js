@@ -3,5 +3,5 @@ import { useAuth } from "element-plus-admin/composables/use-auth";
 
 export const articlesApi = createApi({
   url: "/admin/articles",
-  headers: useAuth().getHeaders(),
+  headers: useAuth().getHeaders,
 });
