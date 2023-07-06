@@ -6,6 +6,11 @@ import { ordersRoute } from "./orders";
 import { productsRoute } from "./products";
 import { usersRoute } from "./users";
 
+import { articlesRoute } from "@/router/routes/private/articles";
+import { contentRoute } from "@/router/routes/private/contents";
+import { researchAreasRoute } from "@/router/routes/private/research-areas";
+import { teamMembersRoute } from "@/router/routes/private/team-members";
+
 export const privateRoutes = [
   adsRoute,
   appUpgradesRoute,
@@ -14,4 +19,9 @@ export const privateRoutes = [
   ordersRoute,
   productsRoute,
   usersRoute,
+
+  articlesRoute,
+  contentRoute,
+  researchAreasRoute,
+  teamMembersRoute,
 ];
