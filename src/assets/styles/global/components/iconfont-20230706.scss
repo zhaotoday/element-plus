@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "c-iconfont"; /* Project id 2745224 */
+  src: url("//at.alicdn.com/t/font_2745224_q7cc1l2clf.woff2?t=1648688085392")
+      format("woff2"),
+    url("//at.alicdn.com/t/font_2745224_q7cc1l2clf.woff?t=1648688085392")
+      format("woff"),
+    url("//at.alicdn.com/t/font_2745224_q7cc1l2clf.ttf?t=1648688085392")
+      format("truetype");
+}
+
+.c-iconfont {
+  font-family: "c-iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.c-iconfont--home-filled:before {
+  content: "\e8c6";
+}
+
+.c-iconfont--app-filled:before {
+  content: "\e6d4";
+}
+
+.c-iconfont--product-filled:before {
+  content: "\e888";
+}
+
+.c-iconfont--ad-filled:before {
+  content: "\e600";
+}
+
+.c-iconfont--order-filled:before {
+  content: "\e616";
+}
+
+.c-iconfont--camera-filled:before {
+  content: "\e60d";
+}
+
+.c-iconfont--upload-filled:before {
+  content: "\e613";
+}
+
+.c-iconfont--edit-filled:before {
+  content: "\e607";
+}
+
+.c-iconfont--more-drop-filled:before {
+  content: "\e602";
+}
+
+.c-iconfont--server-filled:before {
+  content: "\e65b";
+}
+
+.c-iconfont--setup-filled:before {
+  content: "\e611";
+}
+
+.c-iconfont--safe-filled:before {
+  content: "\e63e";
+}
+
+.c-iconfont--lock-filled:before {
+  content: "\e62e";
+}
+
+.c-iconfont--user-filled:before {
+  content: "\e601";
+}
