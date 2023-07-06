@@ -1,4 +1,4 @@
-export const SidebarMenu = [
+export const getMenus = [
   {
     name: "introduction",
     title: "中心介绍",
