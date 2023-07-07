@@ -1,7 +1,7 @@
 export const getMenus = () => [
   {
     name: "introduction",
-    title: "中心介绍",
+    title: "研究院概况",
     icon: "introduction",
     children: [
       {
