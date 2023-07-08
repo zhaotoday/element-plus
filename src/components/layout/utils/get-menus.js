@@ -12,10 +12,6 @@ export const getMenus = () => [
         title: "组织机构",
         path: "/introduction/contents-introduction-organization",
       },
-      {
-        title: "学术委员会",
-        path: "/introduction/contents-introduction-committee",
-      },
     ],
   },
   {
@@ -72,6 +68,17 @@ export const getMenus = () => [
       {
         title: "优博优硕",
         path: "/talent/contents-talent-people",
+      },
+    ],
+  },
+  {
+    name: "talent",
+    title: "人才培养",
+    icon: "talent",
+    children: [
+      {
+        title: "人才培养",
+        path: "/talents/contents-talents",
       },
     ],
   },
