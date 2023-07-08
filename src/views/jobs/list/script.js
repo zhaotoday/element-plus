@@ -18,7 +18,7 @@ export default {
         api: jobsApi,
         filters: {
           model: {
-            title: { $like: "" },
+            name: { $like: "" },
           },
           rules: {},
         },

@@ -15,11 +15,11 @@
         :rules="cFilters.rules"
         inline
       >
-        <el-form-item prop="title">
+        <el-form-item prop="name">
           <el-input
             clearable
-            placeholder="请输入广告标题"
-            v-model.trim="cFilters.model.title.$like"
+            placeholder="请输入职位名称"
+            v-model.trim="cFilters.model.name.$like"
           />
         </el-form-item>
         <el-form-item>
@@ -28,14 +28,10 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
-      <el-table-column label="广告图片" width="120">
-        <template #default="{ row }">
-          <c-list-image
-            :src="`${$helpers.getFileUrl({ id: row.imageFileId })}`"
-          />
-        </template>
-      </el-table-column>
-      <el-table-column prop="title" label="广告标题" />
+      <el-table-column prop="name" label="职位名称" />
+      <el-table-column prop="salaryRange" label="薪资范围" />
+      <el-table-column prop="skills" label="技能" />
+      <el-table-column prop="address" label="工作地点" />
       <el-table-column label="排序" width="120">
         <template #default="{ row }">
           <c-order-input :api="jobsApi" :row="row" @ok="reRender" />
