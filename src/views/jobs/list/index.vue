@@ -29,9 +29,12 @@
     </template>
     <el-table :data="list.items" stripe>
       <el-table-column prop="name" label="职位名称" />
-      <el-table-column prop="salaryRange" label="薪资范围" width="120px" />
+      <el-table-column prop="experience" label="工作经验" width="90px" />
+      <el-table-column prop="recruitment" label="招聘人数" width="90px" />
+      <el-table-column prop="education" label="学历要求" width="90px" />
+      <el-table-column prop="salaryRange" label="薪资范围" width="100px" />
       <el-table-column prop="skills" label="技能" width="250px" />
-      <el-table-column prop="address" label="工作地点" width="300px" />
+      <el-table-column prop="address" label="工作地点" width="280px" />
       <el-table-column label="排序" width="120">
         <template #default="{ row }">
           <c-order-input :api="jobsApi" :row="row" @ok="reRender" />
