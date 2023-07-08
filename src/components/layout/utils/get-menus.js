@@ -20,20 +20,20 @@ export const getMenus = () => [
   },
   {
     name: "research",
-    title: "科学研究",
+    title: "科研成果",
     icon: "research",
     children: [
       {
-        title: "研究方向",
-        path: "/research/research-areas-research-direction",
+        title: "获奖情况",
+        path: "/research/contents-research-rewarded",
       },
       {
-        title: "科研项目",
-        path: "/research/contents-research-project",
+        title: "专利",
+        path: "/research/contents-research-patents",
       },
       {
-        title: "科研成果",
-        path: "/research/contents-research-fruit",
+        title: "论文",
+        path: "/research/contents-research-theses",
       },
     ],
   },
