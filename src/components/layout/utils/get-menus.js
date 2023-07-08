@@ -92,15 +92,15 @@ export const getMenus = () => [
   },
   {
     name: "information",
-    title: "信息发布",
+    title: "最新动态",
     icon: "information",
     children: [
       {
-        title: "新闻快讯",
+        title: "我院新闻",
         path: "/information/articles-information-news",
       },
       {
-        title: "通知公告",
+        title: "活动通知",
         path: "/information/articles-information-notice",
       },
     ],
