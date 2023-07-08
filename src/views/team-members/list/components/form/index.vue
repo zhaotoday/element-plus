@@ -9,7 +9,7 @@
       style="height: 600px; overflow-y: auto; padding-right: 10px"
     >
       <el-form
-        ref="form"
+        ref="formRef"
         :model="cForm.model"
         :rules="cForm.rules"
         label-position="right"
