@@ -14,6 +14,15 @@
       <el-form-item label="职位名称" prop="name">
         <el-input v-model.trim="cForm.model.name" />
       </el-form-item>
+      <el-form-item label="工作经验" prop="experience">
+        <el-input v-model.trim="cForm.model.experience" />
+      </el-form-item>
+      <el-form-item label="招聘人数" prop="recruitment">
+        <el-input v-model.trim="cForm.model.recruitment" />
+      </el-form-item>
+      <el-form-item label="学历要求" prop="education">
+        <el-input v-model.trim="cForm.model.education" />
+      </el-form-item>
       <el-form-item label="薪资范围" prop="salaryRange">
         <el-input v-model.trim="cForm.model.salaryRange" />
       </el-form-item>
@@ -23,7 +32,7 @@
       <el-form-item label="职位描述" prop="description">
         <div style="position: relative; z-index: 2">
           <c-editor
-            style="height: 300px"
+            style="height: 250px"
             v-model:value="cForm.model.description"
             @change="form.validateField('description')"
           />
