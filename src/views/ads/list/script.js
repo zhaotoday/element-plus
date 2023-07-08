@@ -1,7 +1,7 @@
 import { useList } from "element-plus-admin/components/list/composables/use-list";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { ref } from "vue";
-import { adsApi } from "@/apis/admin/ads";
+import { jobsApi } from "@/apis/admin/jobs";
 import BForm from "./components/form/index.vue";
 
 export default {
@@ -15,7 +15,7 @@ export default {
 
     const { list, currentPage, cFilters, reRender, onPageChange, search, del } =
       useList({
-        api: adsApi,
+        api: jobsApi,
         filters: {
           model: {
             title: { $like: "" },
@@ -28,7 +28,7 @@ export default {
       });
 
     return {
-      adsApi,
+      jobsApi,
       formRef,
       enums,
       list,

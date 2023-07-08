@@ -18,7 +18,7 @@
         <c-upload
           :key="`${cForm.id}:imageFileId`"
           :data="{
-            dir: 'ads',
+            dir: 'jobs',
           }"
           v-model:value="cForm.model.imageFileId"
           @change="validateField('imageFileId')"

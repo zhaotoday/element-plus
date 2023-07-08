@@ -1,6 +1,6 @@
 import { reactive, ref } from "vue";
 import { useHelpers } from "@/composables/use-helpers";
-import { adsApi } from "@/apis/admin/ads";
+import { jobsApi } from "@/apis/admin/jobs";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 import { useValidators } from "vue-validation";
 import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";
@@ -34,7 +34,7 @@ export default {
     });
 
     const { show, validateField, submit } = useFormDialog({
-      api: adsApi,
+      api: jobsApi,
       cDialog,
       cForm,
       formRef,

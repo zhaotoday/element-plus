@@ -38,7 +38,7 @@
       <el-table-column prop="title" label="广告标题" />
       <el-table-column label="排序" width="120">
         <template #default="{ row }">
-          <c-order-input :api="adsApi" :row="row" @ok="reRender" />
+          <c-order-input :api="jobsApi" :row="row" @ok="reRender" />
         </template>
       </el-table-column>
       <el-table-column label="操作" width="150px">
