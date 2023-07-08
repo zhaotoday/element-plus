@@ -21,19 +21,19 @@ export const getMenus = () => [
   {
     name: "research",
     title: "科研成果",
-    icon: "research",
+    icon: "fruit",
     children: [
       {
         title: "获奖情况",
-        path: "/research/contents-research-rewarded",
+        path: "/fruit/contents-fruit-rewarded",
       },
       {
         title: "专利",
-        path: "/research/contents-research-patents",
+        path: "/fruit/contents-fruit-patents",
       },
       {
         title: "论文",
-        path: "/research/contents-research-theses",
+        path: "/fruit/contents-fruit-theses",
       },
     ],
   },
