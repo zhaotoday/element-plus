@@ -107,16 +107,16 @@ export const getMenus = () => [
   },
   {
     name: "other",
-    title: "其他",
+    title: "联系/加入我们",
     icon: "other",
     children: [
       {
-        title: "首页轮播广告",
-        path: "/other/ads",
+        title: "联系我们",
+        path: "/contact/contents-contact",
       },
       {
-        title: "联系我们",
-        path: "/other/contents-contact",
+        title: "招聘岗位",
+        path: "/contact/jobs",
       },
     ],
   },
