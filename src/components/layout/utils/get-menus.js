@@ -108,7 +108,7 @@ export const getMenus = () => [
       },
       {
         title: "活动通知",
-        path: "/information/articles-information-notice",
+        path: "/information/articles-information-notices",
       },
     ],
   },
