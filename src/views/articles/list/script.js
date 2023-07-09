@@ -13,7 +13,7 @@ export default {
   setup() {
     const { params } = useRoute();
 
-    const form = ref(null);
+    const formRef = ref(null);
 
     const currentPath = ref("");
 
@@ -66,7 +66,7 @@ export default {
     return {
       articlesApi,
       currentPath,
-      form,
+      formRef,
       enums,
       list,
       currentPage,

@@ -6,7 +6,7 @@
   >
     <template #operations>
       <el-button type="primary" @click="reRender">刷新</el-button>
-      <el-button type="primary" @click="form.show()">新增</el-button>
+      <el-button type="primary" @click="formRef.show()">新增</el-button>
     </template>
     <template #filters>
       <el-form
@@ -48,7 +48,7 @@
       </el-table-column>
     </el-table>
   </c-list>
-  <b-form ref="form" :path="currentPath" @ok="reRender" />
+  <b-form ref="formRef" :path="currentPath" @ok="reRender" />
 </template>
 
 <script src="./script.js"></script>
