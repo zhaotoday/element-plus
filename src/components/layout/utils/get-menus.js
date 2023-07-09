@@ -104,11 +104,11 @@ export const getMenus = () => [
     children: [
       {
         title: "技术研发中心",
-        path: "/information/articles-information-tech",
+        path: "/research/researches-research-tech",
       },
       {
         title: "应用研究与临床转化",
-        path: "/information/articles-information-application",
+        path: "/research/researches-research-application",
       },
     ],
   },

@@ -37,7 +37,7 @@ export default {
         rules: {},
       },
       extraQuery: () => ({
-        order: [["order", "DESC"]],
+        order: [["order", "ASC"]],
         where: { path: currentPath.value, ...cFilters.model },
       }),
       beforeRouteUpdate(to, from) {
