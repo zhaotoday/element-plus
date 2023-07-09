@@ -15,25 +15,6 @@ export const getMenus = () => [
     ],
   },
   {
-    name: "research",
-    title: "科研成果",
-    icon: "fruit",
-    children: [
-      {
-        title: "获奖情况",
-        path: "/fruit/contents-fruit-rewarded",
-      },
-      {
-        title: "专利",
-        path: "/fruit/contents-fruit-patents",
-      },
-      {
-        title: "论文",
-        path: "/fruit/contents-fruit-theses",
-      },
-    ],
-  },
-  {
     name: "team",
     title: "研究队伍",
     icon: "team",
@@ -49,6 +30,25 @@ export const getMenus = () => [
       {
         title: "博硕学生",
         path: "/team/contents-team-student",
+      },
+    ],
+  },
+  {
+    name: "research",
+    title: "科研成果",
+    icon: "fruit",
+    children: [
+      {
+        title: "获奖情况",
+        path: "/fruit/contents-fruit-rewarded",
+      },
+      {
+        title: "专利",
+        path: "/fruit/contents-fruit-patents",
+      },
+      {
+        title: "论文",
+        path: "/fruit/contents-fruit-theses",
       },
     ],
   },
