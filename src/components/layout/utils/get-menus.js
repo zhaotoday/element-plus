@@ -99,6 +99,21 @@ export const getMenus = () => [
   },
   {
     name: "information",
+    title: "科学研究",
+    icon: "information",
+    children: [
+      {
+        title: "技术研发中心",
+        path: "/information/articles-information-tech",
+      },
+      {
+        title: "应用研究与临床转化",
+        path: "/information/articles-information-application",
+      },
+    ],
+  },
+  {
+    name: "information",
     title: "最新动态",
     icon: "information",
     children: [
