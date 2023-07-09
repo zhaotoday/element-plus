@@ -14,7 +14,7 @@
       <el-form-item label="标题" prop="title">
         <el-input v-model.trim="cForm.model.title" />
       </el-form-item>
-      <el-form-item v-if="false" label="封面" prop="coverFileId">
+      <el-form-item label="封面" prop="coverFileId">
         <c-upload
           :key="`${cForm.id}:coverFileId`"
           v-model:value="cForm.model.coverFileId"

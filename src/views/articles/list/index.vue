@@ -28,6 +28,13 @@
       </el-form>
     </template>
     <el-table :data="list.items" stripe>
+      <el-table-column label="封面" width="120">
+        <template #default="{ row }">
+          <c-list-image
+            :src="`${$helpers.getFileUrl({ id: row.coverFileId })}`"
+          />
+        </template>
+      </el-table-column>
       <el-table-column prop="title" label="标题" />
       <el-table-column label="发布时间" width="150">
         <template #default="{ row }">
