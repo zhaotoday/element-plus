@@ -5,11 +5,11 @@ export const getMenus = () => [
     icon: "introduction",
     children: [
       {
-        title: "中心简介",
+        title: "院况简介",
         path: "/introduction/contents-introduction-summary",
       },
       {
-        title: "组织机构",
+        title: "组织架构",
         path: "/introduction/contents-introduction-organization",
       },
     ],
@@ -30,6 +30,21 @@ export const getMenus = () => [
       {
         title: "博硕学生",
         path: "/team/contents-team-student",
+      },
+    ],
+  },
+  {
+    name: "information",
+    title: "科学研究",
+    icon: "information",
+    children: [
+      {
+        title: "技术研发中心",
+        path: "/research/researches-research-tech",
+      },
+      {
+        title: "应用研究与临床转化",
+        path: "/research/researches-research-application",
       },
     ],
   },
@@ -58,57 +73,8 @@ export const getMenus = () => [
     icon: "talent",
     children: [
       {
-        title: "教学获奖",
-        path: "/talent/contents-talent-prize",
-      },
-      {
-        title: "学生竞赛获奖",
-        path: "/talent/contents-talent-student-prize",
-      },
-      {
-        title: "优博优硕",
-        path: "/talent/contents-talent-people",
-      },
-    ],
-  },
-  {
-    name: "talent",
-    title: "人才培养",
-    icon: "talent",
-    children: [
-      {
         title: "人才培养",
         path: "/talents/contents-talents",
-      },
-    ],
-  },
-  {
-    name: "job",
-    title: "人才招聘",
-    icon: "job",
-    children: [
-      {
-        title: "招聘信息",
-        path: "/job/articles-job-info",
-      },
-      {
-        title: "人才政策",
-        path: "/job/articles-job-policy",
-      },
-    ],
-  },
-  {
-    name: "information",
-    title: "科学研究",
-    icon: "information",
-    children: [
-      {
-        title: "技术研发中心",
-        path: "/research/researches-research-tech",
-      },
-      {
-        title: "应用研究与临床转化",
-        path: "/research/researches-research-application",
       },
     ],
   },
@@ -129,7 +95,7 @@ export const getMenus = () => [
   },
   {
     name: "other",
-    title: "联系/加入我们",
+    title: "招贤纳士",
     icon: "other",
     children: [
       {
