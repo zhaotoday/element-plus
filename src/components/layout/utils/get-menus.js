@@ -49,9 +49,9 @@ export const getMenus = () => [
     ],
   },
   {
-    name: "research",
+    name: "fruit",
     title: "科研成果",
-    icon: "fruit",
+    icon: "research",
     children: [
       {
         title: "获奖情况",
