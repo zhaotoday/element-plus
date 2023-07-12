@@ -3,7 +3,7 @@
     <template #header>
       <c-login-header>
         <img src="/static/logo.png" />
-        福州力软信息科技有限公司
+        福州大学未名医疗机器人研究院
       </c-login-header>
     </template>
     <template #main>
@@ -13,8 +13,8 @@
     </template>
     <template #footer>
       <c-login-footer>
-        福建省智慧医工联合工程研究中心 &nbsp;&nbsp; fjmec.cn &nbsp;&nbsp;
-        闽ICP备2021009415号-1
+        福州大学未名医疗机器人研究院&nbsp;&nbsp; imr.weimingfj.com &nbsp;&nbsp;
+        闽ICP备09078326号
       </c-login-footer>
     </template>
   </c-login>
