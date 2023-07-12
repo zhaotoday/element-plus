@@ -2,7 +2,7 @@
   <c-login class="v-login">
     <template #header>
       <c-login-header>
-        <img src="https://element-plus.org/images/formmaking.png" />
+        <img src="/static/logo.png" />
         福州力软信息科技有限公司
       </c-login-header>
     </template>
