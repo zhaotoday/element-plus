@@ -41,6 +41,11 @@
           {{ $time.getTime(row.createdAt) }}
         </template>
       </el-table-column>
+      <el-table-column label="排序（从大到小）" width="140">
+        <template #default="{ row }">
+          <c-order-input :api="articlesApi" :row="row" @ok="reRender" />
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="150px">
         <template #default="{ row }">
           <el-button size="small" @click="formRef.show(row)">编辑</el-button>
