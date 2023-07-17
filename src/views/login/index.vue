@@ -2,7 +2,7 @@
   <c-login class="v-login">
     <template #header>
       <c-login-header>
-        <img src="/static/logo.png" />
+        <img src="/fjqshadmin/static/logo.png" />
         福州大学未名医疗机器人研究院
       </c-login-header>
     </template>
