@@ -55,12 +55,6 @@ export default {
       fieldName: "file",
       maxNumberOfFiles: 1,
       headers: props.uploadHeaders,
-
-      // 单个文件上传成功之后
-      onSuccess(file, res) {
-        console.log(`${file.name} 上传成功`, res);
-      },
-      // 自定义插入图片
       customInsert(res, insertFn) {
         insertFn(`${ApiUrl}/public/files/${res.data.id}`);
       },
