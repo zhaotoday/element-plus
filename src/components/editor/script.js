@@ -1,5 +1,5 @@
 import "@wangeditor/editor/dist/css/style.css";
-import { onBeforeUnmount, ref, shallowRef } from "vue";
+import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
@@ -36,12 +36,19 @@ export default {
     },
   },
   emits: ["update:value", "change", "focus", "blur"],
-  setup(props) {
-    // 编辑器实例，必须用 shallowRef
+  setup(props, context) {
     const editorRef = shallowRef();
 
-    // 内容 HTML
     const valueHtml = ref("<p>hello</p>");
+
+    watch(
+      () => valueHtml.value,
+      (newVal) => {
+        console.log(valueHtml.value, "==");
+        context.emit("update:value", newVal);
+        //        console.log(newVal); // context.emi
+      }
+    );
 
     const toolbarConfig = {};
 
@@ -60,7 +67,6 @@ export default {
       },
     };
 
-    // 组件销毁时，也及时销毁编辑器
     onBeforeUnmount(() => {
       const editor = editorRef.value;
       if (editor == null) return;
@@ -68,7 +74,6 @@ export default {
     });
 
     const onCreated = (editor) => {
-      // 记录 editor 实例，重要！
       editorRef.value = editor;
     };
 
