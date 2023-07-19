@@ -1,10 +1,41 @@
-import "@wangeditor/editor/dist/css/style.css"; // 引入 css
-
-import { onBeforeUnmount, ref, shallowRef, onMounted } from "vue";
+import "@wangeditor/editor/dist/css/style.css";
+import { onBeforeUnmount, ref, shallowRef } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
+import { useConsts } from "@/composables/use-consts";
+import { useAuth } from "element-plus-admin/composables/use-auth";
+
+const { ApiUrl } = useConsts();
+const { getHeaders } = useAuth();
 
 export default {
   components: { Editor, Toolbar },
+  props: {
+    value: {
+      type: String,
+      default: "",
+    },
+    menus: {
+      type: Array,
+      default: () => null,
+    },
+    style: {
+      type: String,
+      default: "height: 500px",
+    },
+    uploadAction: {
+      type: String,
+      default: `${ApiUrl}/admin/files/actions/upload`,
+    },
+    uploadHeaders: {
+      type: Object,
+      default: () => getHeaders(),
+    },
+    cosConfig: {
+      type: Object,
+      default: () => null,
+    },
+  },
+  emits: ["update:value", "change", "focus", "blur"],
   setup() {
     // 编辑器实例，必须用 shallowRef
     const editorRef = shallowRef();
@@ -12,15 +43,17 @@ export default {
     // 内容 HTML
     const valueHtml = ref("<p>hello</p>");
 
-    // 模拟 ajax 异步获取内容
-    onMounted(() => {
-      setTimeout(() => {
-        valueHtml.value = "<p>模拟 Ajax 异步设置内容</p>";
-      }, 1500);
-    });
-
     const toolbarConfig = {};
-    const editorConfig = { placeholder: "请输入内容..." };
+
+    const editorConfig = {
+      MENU_CONF: {},
+      placeholder: "请输入内容...",
+    };
+
+    editorConfig.MENU_CONF["uploadImage"] = {
+      server: "/api/upload-image/abc",
+      fieldName: "file",
+    };
 
     // 组件销毁时，也及时销毁编辑器
     onBeforeUnmount(() => {
@@ -29,17 +62,17 @@ export default {
       editor.destroy();
     });
 
-    const handleCreated = (editor) => {
-      editorRef.value = editor; // 记录 editor 实例，重要！
+    const onCreated = (editor) => {
+      // 记录 editor 实例，重要！
+      editorRef.value = editor;
     };
 
     return {
       editorRef,
       valueHtml,
-      mode: "default", // 或 'simple'
       toolbarConfig,
       editorConfig,
-      handleCreated,
+      onCreated,
     };
   },
 };

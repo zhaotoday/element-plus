@@ -1,17 +1,17 @@
 <template>
   <div style="border: 1px solid #ccc">
-    <Toolbar
+    <toolbar
       style="border-bottom: 1px solid #ccc"
       :editor="editorRef"
-      :defaultConfig="toolbarConfig"
-      :mode="mode"
+      :default-config="toolbarConfig"
+      mode="default"
     />
-    <Editor
+    <editor
       style="height: 500px; overflow-y: hidden"
       v-model="valueHtml"
-      :defaultConfig="editorConfig"
-      :mode="mode"
-      @onCreated="handleCreated"
+      :default-config="editorConfig"
+      mode="default"
+      @on-created="onCreated"
     />
   </div>
 </template>
