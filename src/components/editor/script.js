@@ -36,7 +36,7 @@ export default {
     },
   },
   emits: ["update:value", "change", "focus", "blur"],
-  setup() {
+  setup(props) {
     // 编辑器实例，必须用 shallowRef
     const editorRef = shallowRef();
 
@@ -51,8 +51,19 @@ export default {
     };
 
     editorConfig.MENU_CONF["uploadImage"] = {
-      server: "/api/upload-image/abc",
+      server: props.uploadAction,
       fieldName: "file",
+      maxNumberOfFiles: 1,
+      headers: props.uploadHeaders,
+
+      // 单个文件上传成功之后
+      onSuccess(file, res) {
+        console.log(`${file.name} 上传成功`, res);
+      },
+      // 自定义插入图片
+      customInsert(res, insertFn) {
+        insertFn(`${ApiUrl}/public/files/${res.data.id}`);
+      },
     };
 
     // 组件销毁时，也及时销毁编辑器
