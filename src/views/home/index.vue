@@ -15,13 +15,7 @@ export default {
     Editor,
   },
   setup() {
-    const value = ref("");
-
-    let i = 0;
-
-    setInterval(() => {
-      value.value = i++ + "";
-    }, 1000);
+    const value = ref("222");
 
     return {
       value,

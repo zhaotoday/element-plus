@@ -14,10 +14,6 @@ export default {
       type: String,
       default: "",
     },
-    menus: {
-      type: Array,
-      default: () => null,
-    },
     style: {
       type: String,
       default: "height: 500px",
@@ -30,23 +26,17 @@ export default {
       type: Object,
       default: () => getHeaders(),
     },
-    cosConfig: {
-      type: Object,
-      default: () => null,
-    },
   },
   emits: ["update:value", "change", "focus", "blur"],
   setup(props, context) {
     const editorRef = shallowRef();
 
-    const valueHtml = ref("<p>hello</p>");
+    const valueHtml = ref(props.value);
 
     watch(
       () => valueHtml.value,
       (newVal) => {
-        console.log(valueHtml.value, "==");
         context.emit("update:value", newVal);
-        //        console.log(newVal); // context.emi
       }
     );
 

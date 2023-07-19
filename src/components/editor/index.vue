@@ -7,8 +7,8 @@
       mode="default"
     />
     <editor
-      style="height: 500px; overflow-y: hidden"
-      v-model="value"
+      :style="style"
+      v-model="valueHtml"
       :default-config="editorConfig"
       mode="default"
       @on-created="onCreated"

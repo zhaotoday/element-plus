@@ -1,4 +1,4 @@
-import CEditor from "element-plus-admin/components/editor/index.vue";
+import CEditor from "@/components/editor";
 import CEnumSelect from "element-plus-admin/components/enum-select/index.vue";
 import CList from "element-plus-admin/components/list/index.vue";
 import CListImage from "element-plus-admin/components/list/components/image/index.vue";
