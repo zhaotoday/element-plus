@@ -34,6 +34,13 @@ export default {
     const valueHtml = ref(props.value);
 
     watch(
+      () => props.value,
+      (newVal) => {
+        valueHtml.value = newVal;
+      }
+    );
+
+    watch(
       () => valueHtml.value,
       (newVal) => {
         context.emit("update:value", newVal);
