@@ -44,7 +44,7 @@
         </template>
       </el-table-column>
       <el-table-column label="职位" prop="title" />
-      <el-table-column label="排序" width="120">
+      <el-table-column label="排序（从小大到）" width="140">
         <template #default="{ row }">
           <c-order-input :api="teamMembersApi" :row="row" @ok="reRender" />
         </template>
