@@ -41,7 +41,7 @@
           {{ $time.getTime(row.createdAt) }}
         </template>
       </el-table-column>
-      <el-table-column label="排序" width="120">
+      <el-table-column label="排序（从小到大）" width="140">
         <template #default="{ row }">
           <c-order-input :api="researchesApi" :row="row" @ok="reRender" />
         </template>
