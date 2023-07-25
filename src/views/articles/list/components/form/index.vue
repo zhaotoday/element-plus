@@ -36,7 +36,7 @@
         获取草稿
       </el-button>
       <el-button @click="submit({ draft: true })">保存为草稿</el-button>
-      <el-button type="primary" @click="submit">保存</el-button>
+      <el-button type="primary" @click="submit">发布</el-button>
     </template>
   </el-dialog>
 </template>
