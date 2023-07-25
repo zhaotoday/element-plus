@@ -39,6 +39,10 @@ export default {
       initialModel,
     });
 
+    const getDraft = () => {
+      cForm.model.content = cForm.model.draft;
+    };
+
     const submit = async ({ draft = false } = {}) => {
       const { id, model } = await validate();
 
@@ -67,6 +71,7 @@ export default {
       cForm,
       show,
       validateField,
+      getDraft,
       submit,
     };
   },
