@@ -31,7 +31,11 @@
     </el-form>
     <template #footer>
       <el-button @click="cDialog.visible = false">取消</el-button>
-      <el-button type="primary" @click="submit">确定</el-button>
+      <el-button type="primary" @click="submit">保存</el-button>
+      <el-button type="primary" @click="submit({ draft: true })">
+        保存为草稿
+      </el-button>
+      <el-button type="primary" @click="submit">获取草稿</el-button>
     </template>
   </el-dialog>
 </template>

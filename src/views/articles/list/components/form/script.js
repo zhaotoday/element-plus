@@ -39,12 +39,19 @@ export default {
       initialModel,
     });
 
-    const submit = async () => {
+    const submit = async ({ draft = false } = {}) => {
       const { id, model } = await validate();
+
+      const postData = { ...model, path: props.path };
+
+      if (draft) {
+        postData.draft = model.content;
+        delete postData.content;
+      }
 
       await articlesApi[id ? "put" : "post"]({
         id,
-        body: { ...model, path: props.path },
+        body: postData,
         query: {
           where: { path: props.path },
         },
