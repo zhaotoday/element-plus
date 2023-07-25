@@ -63,6 +63,11 @@ export default {
       await reRender();
     };
 
+    const getStatus = (row) =>
+      row.draft && (!row.content || row.content === "<p><br></p>")
+        ? "草稿"
+        : "已发布";
+
     return {
       articlesApi,
       currentPath,
@@ -75,6 +80,7 @@ export default {
       onPageChange,
       search,
       del,
+      getStatus,
     };
   },
 };

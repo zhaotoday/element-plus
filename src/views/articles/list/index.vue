@@ -36,7 +36,10 @@
         </template>
       </el-table-column>
       <el-table-column prop="title" label="标题" />
-      <el-table-column label="发布时间" width="150">
+      <el-table-column label="状态" width="80">
+        <template #default="{ row }">{{ getStatus(row) }}</template>
+      </el-table-column>
+      <el-table-column label="创建时间" width="150">
         <template #default="{ row }">
           {{ $time.getTime(row.createdAt) }}
         </template>
