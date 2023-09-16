@@ -26,6 +26,10 @@ export default {
       type: Object,
       default: () => getHeaders(),
     },
+    cosConfig: {
+      type: Object,
+      default: () => null,
+    },
   },
   emits: ["update:value", "change", "focus", "blur"],
   setup(props, context) {

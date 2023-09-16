@@ -21,6 +21,13 @@
         <el-form-item label="头像" prop="avatarFileId">
           <c-upload
             :key="`${cForm.id}:avatarFileId`"
+            :cos-config="{
+              cosApi: tencentCloudCosApi,
+              filesApi,
+              uploadTo: UploadTo.TencentCloudOss,
+              region: 'ap-shanghai',
+              bucket: 'fjqsh-1251051722',
+            }"
             v-model:value="cForm.model.avatarFileId"
             @change="validateField('avatarFileId')"
           />
