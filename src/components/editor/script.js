@@ -34,7 +34,7 @@ export default {
   },
   emits: ["update:value"],
   setup(props, context) {
-    const uploadImage = useUpload({ props });
+    const upload = useUpload({ props });
 
     const editorRef = shallowRef();
 
@@ -61,7 +61,7 @@ export default {
       placeholder: "请输入内容...",
     };
 
-    uploadImage.configEditor({ editorConfig });
+    upload.configEditor({ editorConfig });
 
     onBeforeUnmount(() => {
       const editor = editorRef.value;

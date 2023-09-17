@@ -1,10 +1,19 @@
 <template>
-  <div class="c-editor">
-    <div ref="editorToolbar" class="c-editor__toolbar"></div>
-    <div ref="editorInput" class="c-editor__input" :style="style"></div>
+  <div style="border: 1px solid #ccc">
+    <toolbar
+      style="border-bottom: 1px solid #ccc"
+      :editor="editorRef"
+      :default-config="toolbarConfig"
+      mode="default"
+    />
+    <editor
+      :style="style"
+      v-model="valueHtml"
+      :default-config="editorConfig"
+      mode="default"
+      @on-created="onCreated"
+    />
   </div>
 </template>
 
 <script src="./script.js"></script>
-
-<style lang="scss" src="./style.scss"></style>

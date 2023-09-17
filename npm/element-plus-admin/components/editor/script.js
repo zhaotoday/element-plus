@@ -1,23 +1,19 @@
-import { onMounted, ref, watch } from "vue";
-import WangEditor from "wangeditor";
+import "@wangeditor/editor/dist/css/style.css";
+import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
+import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
-import { sleep } from "jt-helpers";
-import { useUploadImage } from "./composables/use-upload-image";
-import { useUploadVideo } from "./composables/use-upload-video";
+import { useUpload } from "./composables/use-upload";
 
 const { ApiUrl } = useConsts();
 const { getHeaders } = useAuth();
 
 export default {
+  components: { Editor, Toolbar },
   props: {
     value: {
       type: String,
       default: "",
-    },
-    menus: {
-      type: Array,
-      default: () => null,
     },
     style: {
       type: String,
@@ -36,79 +32,53 @@ export default {
       default: () => null,
     },
   },
-  emits: ["update:value", "change", "focus", "blur"],
+  emits: ["update:value"],
   setup(props, context) {
-    const uploadImage = useUploadImage(props.cosConfig);
-    const uploadVideo = useUploadVideo(props.cosConfig);
+    const upload = useUpload({ props });
 
-    let editor = null;
+    const editorRef = shallowRef();
 
-    const editorToolbar = ref(null);
-    const editorInput = ref(null);
+    const valueHtml = ref(props.value);
 
     watch(
       () => props.value,
-      (newVal, oldVal) => {
-        if (oldVal) {
-          if (!newVal) editor.txt.html("");
-        } else {
-          if (newVal) editor.txt.html(newVal);
-        }
+      (newVal) => {
+        valueHtml.value = newVal;
       }
     );
 
-    onMounted(async () => {
-      editor = new WangEditor(editorToolbar.value, editorInput.value);
+    watch(
+      () => valueHtml.value,
+      (newVal) => {
+        context.emit("update:value", newVal);
+      }
+    );
 
-      editor.config.menus = props.menus || [
-        "head",
-        "bold",
-        "fontSize",
-        "italic",
-        "underline",
-        "strikeThrough",
-        "foreColor",
-        "backColor",
-        "link",
-        "list",
-        "justify",
-        "quote",
-        "image",
-        "video",
-        "table",
-      ];
+    const toolbarConfig = {};
 
-      editor.config.zIndex = 0;
+    const editorConfig = {
+      MENU_CONF: {},
+      placeholder: "请输入内容...",
+    };
 
-      editor.config.uploadFileName = "file";
+    upload.configEditor({ editorConfig });
 
-      await uploadImage.configEditor(editor, props);
-      await uploadVideo.configEditor(editor, props);
-
-      editor.create();
-
-      editor.txt.html(props.value);
-
-      // 不监听第一次 onchange 事件
-      await sleep(1000);
-
-      editor.config.onchange = (html) => {
-        context.emit("update:value", html);
-        context.emit("change", html);
-      };
-
-      editor.config.onblur = (newHtml) => {
-        context.emit("blur", newHtml);
-      };
-
-      editor.config.onfocus = (newHtml) => {
-        context.emit("focus", newHtml);
-      };
+    onBeforeUnmount(() => {
+      const editor = editorRef.value;
+      if (editor == null) return;
+      editor.destroy();
     });
 
+    const onCreated = (editor) => {
+      editorRef.value = editor;
+    };
+
     return {
-      editorToolbar,
-      editorInput,
+      editorRef,
+      valueHtml,
+      toolbarConfig,
+      editorConfig,
+      onCreated,
     };
   },
 };
