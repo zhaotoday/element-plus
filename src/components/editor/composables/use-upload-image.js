@@ -1,5 +1,6 @@
 import { useCos } from "element-plus-admin/components/upload/composables/use-cos";
 import { useConsts } from "@/composables/use-consts";
+import { ElLoading, ElMessage } from "element-plus";
 
 export const useUploadImage = ({ props }) => {
   const { ApiUrl } = useConsts();
@@ -8,14 +9,21 @@ export const useUploadImage = ({ props }) => {
     if (props.cosConfig) {
       const cos = useCos(props.cosConfig);
 
-      await cos.initialize();
-
       editorConfig.MENU_CONF["uploadImage"] = {
-        customBrowseAndUpload(insertFn) {
-          resultFiles.forEach(async (file) => {
-            const { id } = await cos.upload(file);
-            insertFn(`${ApiUrl}/public/files/${id}`);
+        async customUpload(file, insertFn) {
+          const loading = ElLoading.service({
+            text: "正在上传...",
+            lock: true,
+            background: "rgba(122, 122, 122, 0.1)",
           });
+
+          await cos.initialize();
+
+          const { id } = await cos.upload(file);
+          insertFn(`${ApiUrl}/public/files/${id}`);
+
+          loading.close();
+          ElMessage.success("上传成功");
         },
       };
     } else {
