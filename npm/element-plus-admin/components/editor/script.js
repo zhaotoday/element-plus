@@ -2,7 +2,7 @@ import "@wangeditor/editor/dist/css/style.css";
 import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { useConsts } from "@/composables/use-consts";
-import { useAuth } from "element-plus-admin/composables/use-auth";
+import { useAuth } from "../../composables/use-auth";
 import { useUpload } from "./composables/use-upload";
 
 const { ApiUrl } = useConsts();
