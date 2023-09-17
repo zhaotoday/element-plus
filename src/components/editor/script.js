@@ -3,7 +3,7 @@ import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
-import { useUploadImage } from "./composables/use-upload-image";
+import { useUpload } from "./composables/use-upload";
 
 const { ApiUrl } = useConsts();
 const { getHeaders } = useAuth();
@@ -32,9 +32,9 @@ export default {
       default: () => null,
     },
   },
-  emits: ["update:value", "change", "focus", "blur"],
+  emits: ["update:value"],
   setup(props, context) {
-    const uploadImage = useUploadImage({ props });
+    const uploadImage = useUpload({ props });
 
     const editorRef = shallowRef();
 
