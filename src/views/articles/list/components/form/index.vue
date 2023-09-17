@@ -25,6 +25,13 @@
       <el-form-item label="内容" prop="content">
         <c-editor
           style="height: 500px"
+          :cos-config="{
+            cosApi: tencentCloudCosApi,
+            filesApi,
+            uploadTo: UploadTo.TencentCloudOss,
+            region: 'ap-shanghai',
+            bucket: 'fjqsh-1251051722',
+          }"
           v-model:value="cForm.model.content"
           @change="validateField('content')"
         />

@@ -3,6 +3,7 @@ import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { useConsts } from "@/composables/use-consts";
 import { useAuth } from "element-plus-admin/composables/use-auth";
+import { useUploadImage } from "./composables/use-upload-image";
 
 const { ApiUrl } = useConsts();
 const { getHeaders } = useAuth();
@@ -33,6 +34,8 @@ export default {
   },
   emits: ["update:value", "change", "focus", "blur"],
   setup(props, context) {
+    const uploadImage = useUploadImage({ props });
+
     const editorRef = shallowRef();
 
     const valueHtml = ref(props.value);
@@ -58,15 +61,7 @@ export default {
       placeholder: "请输入内容...",
     };
 
-    editorConfig.MENU_CONF["uploadImage"] = {
-      server: props.uploadAction,
-      fieldName: "file",
-      maxNumberOfFiles: 1,
-      headers: props.uploadHeaders,
-      customInsert(res, insertFn) {
-        insertFn(`${ApiUrl}/public/files/${res.data.id}`);
-      },
-    };
+    uploadImage.configEditor({ editorConfig });
 
     onBeforeUnmount(() => {
       const editor = editorRef.value;

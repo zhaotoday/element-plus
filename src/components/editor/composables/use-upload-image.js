@@ -1,31 +1,31 @@
-import { useCos } from "../../upload/composables/use-cos";
+import { useCos } from "element-plus-admin/components/upload/composables/use-cos";
 import { useConsts } from "@/composables/use-consts";
 
-export const useUploadImage = (cosConfig) => {
+export const useUploadImage = ({ props }) => {
   const { ApiUrl } = useConsts();
 
-  const configEditor = async (editor, props) => {
-    editor.config.uploadImgMaxLength = 1;
-
-    editor.config.uploadImgServer = props.uploadAction;
-
-    editor.config.uploadImgHeaders = props.uploadHeaders;
-
+  const configEditor = async ({ editorConfig }) => {
     if (props.cosConfig) {
-      const cos = useCos(cosConfig);
+      const cos = useCos(props.cosConfig);
 
       await cos.initialize();
 
-      editor.config.customUploadImg = (resultFiles, insertImg) => {
-        resultFiles.forEach(async (file) => {
-          const { id } = await cos.upload(file);
-          insertImg(`${ApiUrl}/public/files/${id}`);
-        });
+      editorConfig.MENU_CONF["uploadImage"] = {
+        customBrowseAndUpload(insertFn) {
+          resultFiles.forEach(async (file) => {
+            const { id } = await cos.upload(file);
+            insertFn(`${ApiUrl}/public/files/${id}`);
+          });
+        },
       };
     } else {
-      editor.config.uploadImgHooks = {
-        customInsert: (insertImg, result) => {
-          insertImg(`${ApiUrl}/public/files/${result.data.id}`);
+      editorConfig.MENU_CONF["uploadImage"] = {
+        server: props.uploadAction,
+        fieldName: "file",
+        maxNumberOfFiles: 1,
+        headers: props.uploadHeaders,
+        customInsert(res, insertFn) {
+          insertFn(`${ApiUrl}/public/files/${res.data.id}`);
         },
       };
     }
