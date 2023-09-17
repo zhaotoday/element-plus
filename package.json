@@ -10,10 +10,8 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
-    "@wangeditor/editor": "^5.1.23",
-    "@wangeditor/editor-for-vue": "^5.1.12",
     "element-plus": "^2.3.7",
-    "element-plus-admin": "^1.2.16",
+    "element-plus-admin": "^1.2.17",
     "jt-helpers": "^1.0.12",
     "jt-storage": "^0.0.2",
     "jt-time": "^0.0.10",
