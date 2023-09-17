@@ -42,6 +42,13 @@
           <div style="position: relative; z-index: 2">
             <c-editor
               style="height: 250px"
+              :cos-config="{
+                cosApi: tencentCloudCosApi,
+                filesApi,
+                uploadTo: UploadTo.TencentCloudOss,
+                region: 'ap-shanghai',
+                bucket: 'fjqsh-1251051722',
+              }"
               v-model:value="cForm.model.description"
               @change="form.validateField('description')"
             />

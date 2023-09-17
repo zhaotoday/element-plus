@@ -5,6 +5,13 @@
         <c-editor
           :key="`${currentPath}:editor`"
           style="height: 650px"
+          :cos-config="{
+            cosApi: tencentCloudCosApi,
+            filesApi,
+            uploadTo: UploadTo.TencentCloudOss,
+            region: 'ap-shanghai',
+            bucket: 'fjqsh-1251051722',
+          }"
           v-model:value="cForm.model.content"
           @change="form.validateField('content')"
         />

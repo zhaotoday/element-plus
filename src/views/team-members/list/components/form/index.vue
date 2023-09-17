@@ -66,6 +66,13 @@
         <el-form-item label="介绍" prop="introduction">
           <c-editor
             style="height: 500px"
+            :cos-config="{
+              cosApi: tencentCloudCosApi,
+              filesApi,
+              uploadTo: UploadTo.TencentCloudOss,
+              region: 'ap-shanghai',
+              bucket: 'fjqsh-1251051722',
+            }"
             v-model:value="cForm.model.introduction"
             @change="validateField('introduction')"
           />

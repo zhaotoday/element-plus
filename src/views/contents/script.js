@@ -3,6 +3,9 @@ import { useValidators } from "vue-validation";
 import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { contentsApi } from "@/apis/admin/contents";
 import { ElMessage } from "element-plus";
+import { tencentCloudCosApi } from "@/apis/admin/tencent-cloud-cos";
+import { filesApi } from "@/apis/admin/files";
+import { UploadTo } from "element-plus-admin/enums/upload-to";
 
 export default {
   setup() {
@@ -62,6 +65,9 @@ export default {
     };
 
     return {
+      tencentCloudCosApi,
+      filesApi,
+      UploadTo,
       form,
       cForm,
       currentPath,

@@ -4,6 +4,9 @@ import { researchesApi } from "@/apis/admin/researches";
 import { ElMessage } from "element-plus";
 import { useValidators } from "vue-validation";
 import { useFormDialog } from "element-plus-admin/composables/use-form-dialog";
+import { tencentCloudCosApi } from "@/apis/admin/tencent-cloud-cos";
+import { filesApi } from "@/apis/admin/files";
+import { UploadTo } from "element-plus-admin/enums/upload-to";
 
 export default {
   props: {
@@ -55,6 +58,9 @@ export default {
     };
 
     return {
+      tencentCloudCosApi,
+      filesApi,
+      UploadTo,
       formRef,
       cDialog,
       cForm,
