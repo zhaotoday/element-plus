@@ -7,7 +7,7 @@
 <script>
 import { defineComponent, onMounted } from "vue";
 import { ElConfigProvider } from "element-plus";
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
+import zhCn from "element-plus/dist/locale/zh-cn.mjs";
 import { useEnums } from "element-plus-admin/composables/use-enums";
 
 export default defineComponent({
