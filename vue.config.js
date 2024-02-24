@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: "/fjqshadmin/",
+  // publicPath: "/fjqshadmin/",
   transpileDependencies: ["element-plus-admin"],
   configureWebpack: {
     module: {
