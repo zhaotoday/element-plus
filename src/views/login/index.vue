@@ -2,8 +2,8 @@
   <c-login class="v-login">
     <template #header>
       <c-login-header>
-        <img src="/fjqshadmin/static/logo.png" />
-        福州大学未名医疗机器人研究院
+        <img src="/static/logo.png" />
+        煊赫生活（厦门）传媒有限公司
       </c-login-header>
     </template>
     <template #main>
@@ -13,7 +13,7 @@
     </template>
     <template #footer>
       <c-login-footer>
-        福州大学未名医疗机器人研究院&nbsp;&nbsp; imr.weimingfj.com &nbsp;&nbsp;
+        煊赫生活（厦门）传媒有限公司&nbsp;&nbsp; xmxhsh.cn &nbsp;&nbsp;
         闽ICP备09078326号
       </c-login-footer>
     </template>
