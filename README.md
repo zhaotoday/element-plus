@@ -126,4 +126,3 @@ $ npm run newfile
 - [Ant Design Pro](https://pro.ant.design/zh-CN/)
 - [Ant Design Pro Components](https://procomponents.ant.design/)
 - [View UI 专业版](https://pro.iviewui.com/)
-- [Ant Design Pro](https://pro.ant.design)
