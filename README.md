@@ -126,3 +126,4 @@ $ npm run newfile
 - [Ant Design Pro](https://pro.ant.design/zh-CN/)
 - [Ant Design Pro Components](https://procomponents.ant.design/)
 - [View UI 专业版](https://pro.iviewui.com/)
+- [复盘20+基于React的开源管理后台&插件](https://juejin.cn/post/7304919237983404083)
