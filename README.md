@@ -129,6 +129,7 @@ $ npm run newfile
 - [vue-admin-better](https://github.com/chuzhixin/vue-admin-better)
 - [vue-element-ui-admin(Vue3+ScriptSetup)](https://github.com/xusenlin/vue-element-ui-admin)
 - [v3-admin-vite](https://github.com/un-pany/v3-admin-vite)
+- [vue-element-plus-admin](https://github.com/kailong321200875/vue-element-plus-admin)
 
 #### 交互参考
 
