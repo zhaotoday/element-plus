@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源
 - [vue-vben-admin](https://github.com/vbenjs/vue-vben-admin)
+- [vue3-antdv-admin](https://github.com/buqiyuan/vue3-antdv-admin)
 
 #### 交互参考
 
