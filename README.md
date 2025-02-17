@@ -121,6 +121,9 @@ $ npm run newfile
 - [Vue3 实战笔记](https://juejin.cn/post/6909632635665039367)
 - [快速使用 Vue3 最新的 15 个常用 API](https://juejin.cn/post/6897030228867022856)
 
+#### 开源
+- [vue-vben-admin](https://github.com/vbenjs/vue-vben-admin)
+
 #### 交互参考
 
 - [Ant Design Pro](https://pro.ant.design/zh-CN/)
