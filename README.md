@@ -130,6 +130,7 @@ $ npm run newfile
 - [vue-element-ui-admin(Vue3+ScriptSetup)](https://github.com/xusenlin/vue-element-ui-admin)
 - [v3-admin-vite](https://github.com/un-pany/v3-admin-vite)
 - [vue-element-plus-admin](https://github.com/kailong321200875/vue-element-plus-admin)
+- [SnowAdmin](https://gitee.com/wang_fan_w/SnowAdmin)
 
 #### 交互参考
 
