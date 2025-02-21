@@ -131,6 +131,7 @@ $ npm run newfile
 - [v3-admin-vite](https://github.com/un-pany/v3-admin-vite)
 - [vue-element-plus-admin](https://github.com/kailong321200875/vue-element-plus-admin)
 - [SnowAdmin](https://gitee.com/wang_fan_w/SnowAdmin)
+- [vue3-element-admin](https://github.com/youlaitech/vue3-element-admin)
 
 #### 交互参考
 
