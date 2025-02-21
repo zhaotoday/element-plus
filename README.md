@@ -132,6 +132,7 @@ $ npm run newfile
 - [vue-element-plus-admin](https://github.com/kailong321200875/vue-element-plus-admin)
 - [SnowAdmin](https://gitee.com/wang_fan_w/SnowAdmin)
 - [vue3-element-admin](https://github.com/youlaitech/vue3-element-admin)
+- [naive-ui-admin](https://github.com/jekip/naive-ui-admin)
 
 #### 交互参考
 
