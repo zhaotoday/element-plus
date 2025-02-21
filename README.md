@@ -134,6 +134,7 @@ $ npm run newfile
 - [vue3-element-admin](https://github.com/youlaitech/vue3-element-admin)
 - [naive-ui-admin](https://github.com/jekip/naive-ui-admin)
 - [soybean-admin](https://github.com/soybeanjs/soybean-admin)
+- [后台集合](http://vue.easydo.work/)
 
 #### 交互参考
 
