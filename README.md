@@ -136,6 +136,7 @@ $ npm run newfile
 - [soybean-admin](https://github.com/soybeanjs/soybean-admin)
 - [后台集合](http://vue.easydo.work/)
 - [Arco Design Pro](https://github.com/arco-design/arco-design-pro-vue)
+- [fantastic-admin](https://fantastic-admin.hurui.me/)
 
 #### 交互参考
 
