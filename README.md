@@ -137,6 +137,7 @@ $ npm run newfile
 - [后台集合](http://vue.easydo.work/)
 - [Arco Design Pro](https://github.com/arco-design/arco-design-pro-vue)
 - [fantastic-admin](https://fantastic-admin.hurui.me/)
+- [AdminLTE](https://github.com/ColorlibHQ/AdminLTE)
 
 #### 交互参考
 
