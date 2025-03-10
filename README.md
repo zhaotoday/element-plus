@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源后台
 
+- [primevue](https://github.com/primefaces/primevue)
 - [vue-pure-admin](https://github.com/pure-admin/vue-pure-admin)
 - [vue-vben-admin](https://github.com/vbenjs/vue-vben-admin)
 - [vue3-antdv-admin](https://github.com/buqiyuan/vue3-antdv-admin)
