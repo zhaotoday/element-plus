@@ -139,6 +139,7 @@ $ npm run newfile
 - [Arco Design Pro](https://github.com/arco-design/arco-design-pro-vue)
 - [fantastic-admin](https://fantastic-admin.hurui.me/)
 - [AdminLTE](https://github.com/ColorlibHQ/AdminLTE)
+- [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin)
 
 #### 交互参考
 
