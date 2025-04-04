@@ -141,6 +141,7 @@ $ npm run newfile
 - [fantastic-admin](https://fantastic-admin.hurui.me/)
 - [AdminLTE](https://github.com/ColorlibHQ/AdminLTE)
 - [gin-vue-admin](https://github.com/flipped-aurora/gin-vue-admin)
+- [panis-admin](https://github.com/paynezhuang/panis-admin)
 
 #### 交互参考
 
