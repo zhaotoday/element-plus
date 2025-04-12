@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源后台
 
+- [shadcn-admin](https://github.com/satnaing/shadcn-admin)
 - [primevue](https://github.com/primefaces/primevue)
 - [volt](https://volt.primevue.org/)
 - [vue-pure-admin](https://github.com/pure-admin/vue-pure-admin)
