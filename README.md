@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源后台
 
+- [Snowy](https://github.com/xiaonuobase/Snowy)
 - [smart-admin](https://github.com/1024-lab/smart-admin)
 - [shadcn-admin](https://github.com/satnaing/shadcn-admin)
 - [primevue](https://github.com/primefaces/primevue)
