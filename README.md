@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源后台
 
+- [sz-admin](https://github.com/feiyuchuixue/sz-admin)
 - [continew-admin](https://github.com/continew-org/continew-admin)
 - [nova-admin](https://github.com/chansee97/nova-admin)
 - [Snowy](https://github.com/xiaonuobase/Snowy)
