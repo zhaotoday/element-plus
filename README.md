@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源后台
 
+- [M-Admin](https://github.com/sina-xys-felix/M-Admin)
 - [opentiny](https://opentiny.design/)
 - [art-design-pro](https://www.lingchen.kim/art-design-pro/docs/zh/)
 - [una-ui](https://github.com/una-ui/una-ui)
