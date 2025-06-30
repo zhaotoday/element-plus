@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源后台
 
+- [nuxt-shadcn-dashboard](https://github.com/dianprata/nuxt-shadcn-dashboard)
 - [M-Admin](https://github.com/sina-xys-felix/M-Admin)
 - [opentiny](https://opentiny.design/)
 - [art-design-pro](https://www.lingchen.kim/art-design-pro/docs/zh/)
