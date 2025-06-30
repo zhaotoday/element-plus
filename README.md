@@ -155,6 +155,7 @@ $ npm run newfile
 
 #### 交互参考
 
+- [nuxt-ui-pro/dashboard](https://github.com/nuxt-ui-pro/dashboard)
 - [orangeforms](https://www.orangeforms.com/)
 - [shop-vite](https://vuejs-core.cn/shop-vite/)
 - [semi](https://semi.design/zh-CN/)
