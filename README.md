@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源后台
 
+- [miitvip-vue-admin-manager](https://github.com/lirongtong/miitvip-vue-admin-manager)
 - [nuxt-shadcn-dashboard](https://github.com/dianprata/nuxt-shadcn-dashboard)
 - [M-Admin](https://github.com/sina-xys-felix/M-Admin)
 - [opentiny](https://opentiny.design/)
