@@ -121,8 +121,9 @@ $ npm run newfile
 - [Vue3 实战笔记](https://juejin.cn/post/6909632635665039367)
 - [快速使用 Vue3 最新的 15 个常用 API](https://juejin.cn/post/6897030228867022856)
 
-#### 开源后台
+#### 开源
 
+- [element-plus-theme](https://github.com/ele-admin/element-plus-theme)
 - [miitvip-vue-admin-manager](https://github.com/lirongtong/miitvip-vue-admin-manager)
 - [nuxt-shadcn-dashboard](https://github.com/dianprata/nuxt-shadcn-dashboard)
 - [M-Admin](https://github.com/sina-xys-felix/M-Admin)
