@@ -169,3 +169,4 @@ $ npm run newfile
 - [Ant Design Pro Components](https://procomponents.ant.design/)
 - [View UI 专业版](https://pro.iviewui.com/)
 - [复盘20+基于React的开源管理后台&插件](https://juejin.cn/post/7304919237983404083)
+- [vue-admin-arco](https://github.com/zxwk1998/vue-admin-arco)
