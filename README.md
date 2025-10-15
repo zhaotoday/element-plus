@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源
 
+- [element-plus-x](https://github.com/SorrowX/element-plus-x)
 - [agile-admin](https://github.com/gmingchen/agile-admin)
 - [element-plus-theme](https://github.com/ele-admin/element-plus-theme)
 - [miitvip-vue-admin-manager](https://github.com/lirongtong/miitvip-vue-admin-manager)
