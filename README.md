@@ -161,6 +161,7 @@ $ npm run newfile
 
 #### 交互参考
 
+- [naive-ui-pro](https://naive-ui-pro.pro-components.cn/home)
 - [metis-ui](https://github.com/metisjs/metis-ui)
 - [FinCRM](https://github.com/MrXujiang/FinCRM)
 - [nuxt-ui-pro/dashboard](https://github.com/nuxt-ui-pro/dashboard)
