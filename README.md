@@ -164,6 +164,7 @@ $ npm run newfile
 
 #### 交互参考
 
+- [vite-shadcn](https://github.com/yluiop123/vite-shadcn)
 - [tdesign](https://tdesign.tencent.com/starter/vue-next/dashboard/base)
 - [mineadmin](https://www.mineadmin.com/)
 - [kottster](https://kottster.app/)
