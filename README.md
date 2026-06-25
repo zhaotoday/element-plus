@@ -123,6 +123,7 @@ $ npm run newfile
 
 #### 开源
 
+- [MineAdmin-Vue](https://github.com/mineadmin/MineAdmin-Vue)
 - [meimei-nestjs-admin](https://github.com/87789771/meimei-nestjs-admin)
 - [ikun-ui](https://github.com/ikun-svelte/ikun-ui)
 - [plus-pro-components](https://github.com/plus-pro-components/plus-pro-components)
