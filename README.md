@@ -2,83 +2,96 @@
 
 #### 介绍
 
-基于 Vue 3.0 + Element Plus 的后台前端解决方案，支持：开发调试、构建、代码规范校验等。
+基于 Nuxt 4 + Vue 3 + Element Plus 的后台管理系统，采用 pnpm workspace + Turborepo 的 monorepo 架构。
 
 #### 技术栈
 
-Vue、Webpack、ES6、Vue Router、Vuex、Sass、PostCSS 等。
+- **框架**：Nuxt 4、Vue 3、TypeScript
+- **UI**：Element Plus、UnoCSS、Sass
+- **状态管理**：Pinia（持久化）
+- **请求**：Axios、VueUse
+- **内部包**：`@vuejs-repo/core`（通用逻辑）、`@vuejs-repo/element-plus`（组件库）
 
 ## 命令
 
 ```bash
-# 安装依赖
-$ npm install
+# 安装依赖（项目根目录）
+$ pnpm install
 
-# 开发调试
-$ npm run serve
+# 开发调试（apps/admin）
+$ pnpm --filter admin dev
 
-# 代码校验
-$ npm run lint
+# 构建（使用 .env.production 环境变量）
+$ pnpm --filter admin build
 
-# 构建
-$ npm run build
+# 预览构建产物
+$ pnpm --filter admin preview
 
-# 从模板创建文件
-$ npm run newfile
+# 生产环境启动（PM2）
+$ pnpm --filter admin start
 ```
 
-## 规范
-
-#### 项目结构
+## 项目结构
 
 ```
-|- plop-templates                   基本模板
-|- public                           网站公共目录
-|  |- favicon.ico                   网站图标
-|  |- index.html                    HTML 模板
-|- src                              源码目录
-|  |- assets                        待编译的静态资源
-|     |- images                     图片
-|        |- components              组件图片
-|     |- styles                     样式
-|        |- global                  全局样式
-|           |- components           组件样式
-|              |- iconfont.scss     iconfont
-|           |- reset                CSS Reset
-|        |- utils                   Sass 工具
-|           |- variables            Sass 变量
-|  |- components                    公共组件
-|  |- composables                   公用 composiable 函数
-|  |- models                        数据模型
-|  |- router                        路由配置
-|     |- routes                     各个视图的路由配置
-|  |- store                         状态管理
-|     |- modules                    状态管理（指定命名空间）
-|        |- auth.js                 auth 状态管理
-|  |- utils                         JS 工具
-|  |- views                         视图
-|     |- home                       首页
-|  |- App.vue                       页面入口
-|  |- main.js                       程序入口
+apps/admin/
+|- .env                              本地环境变量
+|- .env.production                   生产环境变量
+|- nuxt.config.ts                    Nuxt 配置
+|- uno.config.ts                     UnoCSS 配置
+|- package.json                      依赖与脚本
+|- processes.json                    PM2 部署配置
+|- public/                           静态资源
+|  |- favicon.ico
+|  |- static/images/common/logo.png
+|- app/
+|  |- app.vue                        应用入口
+|  |- assets/styles/                 全局样式
+|  |- components/                    公共组件
+|     |- CategorySelect.vue          分类选择器
+|  |- composables/                   组合式函数
+|     |- useAdminAxios.ts            管理端 Axios 封装
+|  |- config/
+|     |- menu.tsx                    菜单配置
+|  |- layouts/                       布局
+|     |- default.vue                 默认布局（侧边栏 + 头部）
+|     |- root.vue                    空布局（登录页）
+|  |- middleware/
+|     |- auth.global.ts              全局认证守卫
+|  |- pages/                         页面（基于文件路由）
+|     |- login/                      登录
+|     |- [module]/ads/               轮播图管理
+|     |- [module]/categories/        分类管理
+|     |- [module]/contents/          内容管理
+|  |- plugins/
+|     |- library-defaults.ts         上传 / 列表 / 文件 URL 初始化
+|  |- stores/
+|     |- manager.ts                  管理员状态（Pinia 持久化）
+|  |- types/                         类型定义
+|  |- utils/
+|     |- helpers.ts                  工具函数（转发自 @vuejs-repo/core）
+|     |- request.ts                  请求实例（公共 / 管理端 / 文件）
 ```
 
-#### 公共组件规范
+#### 页面模块
 
-公共组件放在 /src/components 下。
+当前菜单包含以下模块，使用 `[module]` 动态路由复用页面：
+
+| 模块 | 路由前缀 | 子页面 |
+|------|----------|--------|
+| 首页 | `/home` | 轮播图管理 |
+| 新闻动态 | `/news` | 新闻管理、分类管理 |
+
+#### 页面规范
+
+页面放在 `app/pages/` 下，遵循 Nuxt 文件路由约定：
 
 ```
-|- my-component               my component 组件
-|  |- index.vue               my component 的入口
-|  |- script.js               my component 的脚本
-|  |- style.scss              my component 的样式
-|  |- utils                   my component 的 JS 工具
-|  |- components              my component 的子组件
-|     |- child-component      my component 的子组件 child component
+|- [module]/contents/
+|  |- index.vue                 列表页
+|  |- components/
+|     |- FormDialog.vue         表单弹窗
 ```
-
-#### 视图规范
-
-视图，也就是页面，放在 /src/views 下。规范和公共组件一致。
 
 ## 链接
 
