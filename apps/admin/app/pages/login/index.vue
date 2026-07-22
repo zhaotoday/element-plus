@@ -24,7 +24,7 @@ definePageMeta({
               alt=""
             />
             <span class="text-20px font-bold ml-14px">
-              福建华继电器科技有限公司管理后台
+              福州力软信息科技有限公司管理后台
             </span>
           </div>
         </LoginHeader>
@@ -35,7 +35,7 @@ definePageMeta({
         </LoginMain>
       </template>
       <template #footer>
-        <LoginFooter>福建华继电器科技有限公司</LoginFooter>
+        <LoginFooter>福州力软信息科技有限公司</LoginFooter>
       </template>
     </LoginLayout>
   </ClientOnly>

@@ -4,7 +4,7 @@ import ElementPlus from 'unplugin-element-plus/vite'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
 
 // 网站名称配置
-const SITE_NAME = '福建华继电器科技有限公司管理后台'
+const SITE_NAME = '福州力软信息科技有限公司管理后台'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
