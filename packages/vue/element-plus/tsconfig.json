@@ -1,0 +1,5 @@
+{
+  "extends": "@vuejs-repo/typescript-config/vue.json",
+  "include": [".", "types/vue-globals.d.ts"],
+  "exclude": ["dist", "build", "node_modules"]
+}

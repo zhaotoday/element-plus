@@ -1,0 +1,586 @@
+// Element Plus 主题：Shadcn/ui 风格 + AntD 主题色
+// 参考：
+//   - Element Plus: https://element-plus.org/zh-CN/guide/theming
+//   - Shadcn/ui: https://ui.shadcn.com/themes
+//   - Ant Design 5 Token: https://ant-design.antgroup.com/docs/react/customize-theme-cn
+//
+// 设计语言取 Shadcn（圆角、阴影、灰阶、尺寸、字体等），
+// 主题色沿用 AntD 5 Seed Token：
+//   colorPrimary: #1677ff | colorSuccess: #52c41a | colorWarning: #faad14
+//   colorError: #ff4d4f  | colorInfo: #1677ff
+//
+// 注意：EP 的 Dialog / MessageBox 关闭按钮取的是 color-info，
+//       而 AntD 关闭图标用 colorIcon rgba(0,0,0,0.45) ≈ #8c8c8c，
+//       因此 info 需设为中性灰以保证关闭按钮仅在 hover 时高亮。
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  // =============================================
+  // 品牌色 — AntD 5 Seed Token
+  //   info 特意使用中性灰：EP 关闭按钮 / 图标默认取 color-info，
+  //   AntD 关闭图标 colorIcon = rgba(0,0,0,0.45) ≈ #8c8c8c
+  // =============================================
+  $colors: (
+    'white': #ffffff,
+    'black': #000000,
+    'primary': (
+      'base': #1677ff,
+    ),
+    'success': (
+      'base': #52c41a,
+    ),
+    'warning': (
+      'base': #faad14,
+    ),
+    'danger': (
+      'base': #ff4d4f,
+    ),
+    'error': (
+      'base': #ff4d4f,
+    ),
+    'info': (
+      'base': #8c8c8c,
+    ),
+  ),
+
+  // =============================================
+  // 文本色 — Shadcn 黑白灰体系
+  //   foreground:       #09090b (zinc-950)
+  //   muted-foreground: #71717a (zinc-500)
+  //   placeholder:      #a1a1aa (zinc-400)
+  // =============================================
+  $text-color: (
+    'primary': #09090b,
+    'regular': #09090b,
+    'secondary': #71717a,
+    'placeholder': #a1a1aa,
+    'disabled': #a1a1aa,
+  ),
+
+  // =============================================
+  // 边框色 — Shadcn Zinc 灰阶
+  //   --border: #e4e4e7 (zinc-200)
+  //   --input:  #e4e4e7 (zinc-200)
+  // =============================================
+  $border-color: (
+    '': #e4e4e7,
+    'light': #f4f4f5,
+    'lighter': #fafafa,
+    'extra-light': #fafafa,
+    'dark': #d4d4d8,
+    'darker': #a1a1aa,
+  ),
+
+  // AntD Input hover 边框变为 colorPrimaryHover (#4096ff)
+  $border-color-hover: #4096ff,
+
+  // =============================================
+  // 填充色 — Shadcn muted / accent 层级
+  //   --muted:  #f4f4f5 (zinc-100)
+  //   --accent: #f4f4f5 (zinc-100)
+  // =============================================
+  $fill-color: (
+    '': #f4f4f5,
+    'light': #fafafa,
+    'lighter': #fafafa,
+    'extra-light': #fafafa,
+    'dark': #e4e4e7,
+    'darker': #d4d4d8,
+    'blank': #ffffff,
+  ),
+
+  // =============================================
+  // 背景色
+  //   --background: #ffffff
+  //   --card:       #ffffff
+  //   --popover:    #ffffff
+  // =============================================
+  $bg-color: (
+    '': #ffffff,
+    'page': #fafafa,
+    'overlay': #ffffff,
+  ),
+
+  // =============================================
+  // 圆角 — Shadcn --radius: 0.5rem (8px)
+  //   rounded-lg = var(--radius) = 8px
+  //   rounded-md = calc(var(--radius) - 2px) = 6px
+  //   rounded-sm = calc(var(--radius) - 4px) = 4px
+  // =============================================
+  $border-radius: (
+    'base': 6px,
+    'small': 4px,
+    'round': 9999px,
+    'circle': 100%,
+  ),
+
+  $border-width: 1px,
+  $border-style: solid,
+
+  // =============================================
+  // 阴影 — Shadcn 极简阴影
+  //   shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05)
+  //   shadow:    0 1px 3px 0 rgb(0 0 0 / 0.1), …
+  //   shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), …
+  //   shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), …
+  // =============================================
+  $box-shadow: (
+    '': (
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1),
+    ),
+    'light': (
+      0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px -1px rgba(0, 0, 0, 0.1),
+    ),
+    'lighter': (
+      0 1px 2px 0 rgba(0, 0, 0, 0.05),
+    ),
+    'dark': (
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.1),
+    ),
+  ),
+
+  // =============================================
+  // 字体 — Shadcn 推荐 Inter
+  // =============================================
+  $font-family: (
+    '':
+      "Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+  ),
+
+  // Shadcn: text-sm 14px | text-xs 12px | text-base 16px | text-lg 18px
+  $font-size: (
+    'extra-large': 18px,
+    'large': 16px,
+    'medium': 14px,
+    'base': 14px,
+    'small': 12px,
+    'extra-small': 12px,
+  ),
+
+  // =============================================
+  // 组件尺寸 — Shadcn 尺寸体系
+  //   h-10 40px (lg) | h-9 36px (default) | h-8 32px (sm)
+  // =============================================
+  $common-component-size: (
+    'large': 40px,
+    'default': 36px,
+    'small': 32px,
+  ),
+
+  // =============================================
+  // 遮罩 — Shadcn bg-black/80
+  // =============================================
+  $overlay-color: (
+    '': rgba(0, 0, 0, 0.8),
+    'light': rgba(0, 0, 0, 0.6),
+    'lighter': rgba(0, 0, 0, 0.4),
+  ),
+
+  $mask-color: (
+    '': rgba(255, 255, 255, 0.9),
+    'extra-light': rgba(255, 255, 255, 0.3),
+  ),
+
+  // =============================================
+  // 禁用态
+  //   Shadcn 以 opacity + pointer-events 处理禁用，
+  //   EP 需映射为具体色值
+  // =============================================
+  $disabled: (
+    'bg-color': #f4f4f5,
+    'text-color': #a1a1aa,
+    'border-color': #e4e4e7,
+  ),
+
+  // =============================================
+  // Input 输入框
+  //   Shadcn: h-9 (36px)  px-3 (12px)  py-1
+  // =============================================
+  $input-height: (
+    'large': 40px,
+    'default': 36px,
+    'small': 32px,
+  ),
+
+  $input-font-size: (
+    'large': 14px,
+    'default': 14px,
+    'small': 14px,
+  ),
+
+  $input-padding-horizontal: (
+    'large': 12px,
+    'default': 12px,
+    'small': 8px,
+  ),
+
+  // =============================================
+  // Button 按钮
+  //   Shadcn: h-9 px-4 py-2 (default) | h-10 px-8 (lg) | h-8 px-3 (sm)
+  // =============================================
+  $button-padding-vertical: (
+    'large': 8px,
+    'default': 8px,
+    'small': 4px,
+  ),
+
+  $button-padding-horizontal: (
+    'large': 24px,
+    'default': 16px,
+    'small': 12px,
+  ),
+
+  $button-border-radius: (
+    'large': 8px,
+    'default': 6px,
+    'small': 4px,
+  ),
+
+  // =============================================
+  // Checkbox 复选框
+  //   Shadcn: h-4 w-4 (16px)  rounded-sm (4px)
+  // =============================================
+  $checkbox: (
+    'font-size': 14px,
+    'input-height': 16px,
+    'input-width': 16px,
+    'border-radius': 4px,
+  ),
+
+  // =============================================
+  // Radio 单选框
+  //   Shadcn: h-4 w-4 (16px)  rounded-full
+  // =============================================
+  $radio: (
+    'font-size': 14px,
+    'input-height': 16px,
+    'input-width': 16px,
+  ),
+
+  // =============================================
+  // Switch 开关
+  //   Shadcn off: bg-input (#e4e4e7)
+  // =============================================
+  $switch: (
+    'off-color': #e4e4e7,
+  ),
+
+  // =============================================
+  // Select 选择器
+  //   Shadcn: option 高度 32px  hover: accent (#f4f4f5)
+  // =============================================
+  $select-option: (
+    'height': 32px,
+    'hover-background': #f4f4f5,
+  ),
+
+  $select-dropdown: (
+    'padding': 4px 0,
+    'border': 1px solid #e4e4e7,
+  ),
+
+  // =============================================
+  // Dropdown 下拉菜单
+  //   Shadcn: hover accent  text foreground
+  // =============================================
+  $dropdown: (
+    'menuItem-hover-fill': #f4f4f5,
+    'menuItem-hover-color': #09090b,
+    'menu-index': 10,
+  ),
+
+  // =============================================
+  // Table 表格
+  //   Shadcn: 极简设计，无表头背景
+  //   header: muted-foreground (#71717a)
+  //   border: 仅底部线 (#e4e4e7)
+  //   hover:  muted (#f4f4f5)
+  // =============================================
+  $table: (
+    'border-color': #e4e4e7,
+    'border': 1px solid #e4e4e7,
+    'text-color': #09090b,
+    'header-text-color': #71717a,
+    'row-hover-bg-color': #f4f4f5,
+    'header-bg-color': #ffffff,
+    'bg-color': #ffffff,
+    'tr-bg-color': #ffffff,
+    'expanded-cell-bg-color': #fafafa,
+  ),
+
+  $table-padding: (
+    'large': 16px 0,
+    'default': 12px 0,
+    'small': 8px 0,
+  ),
+
+  $table-cell-padding: (
+    'large': 0 16px,
+    'default': 0 16px,
+    'small': 0 8px,
+  ),
+
+  // =============================================
+  // Pagination 分页
+  //   Shadcn: rounded-md (6px)  outline 按钮风格
+  // =============================================
+  $pagination: (
+    'font-size': 14px,
+    'bg-color': #ffffff,
+    'text-color': #09090b,
+    'border-radius': 6px,
+    'button-color': #09090b,
+    'button-width': 36px,
+    'button-height': 36px,
+    'button-disabled-color': #a1a1aa,
+    'button-disabled-bg-color': #ffffff,
+    'button-bg-color': #ffffff,
+    'hover-color': #1677ff,
+    'font-size-small': 12px,
+    'button-width-small': 32px,
+    'button-height-small': 32px,
+    'button-width-large': 40px,
+    'button-height-large': 40px,
+    'item-gap': 8px,
+  ),
+
+  // =============================================
+  // Dialog / Modal 对话框
+  //   Shadcn: rounded-lg  p-6 (24px)  标题 text-lg (18px)
+  // =============================================
+  $dialog: (
+    'width': 520px,
+    'margin-top': 15vh,
+    'title-font-size': 18px,
+    'content-font-size': 14px,
+    'padding-primary': 24px,
+    'border-radius': 12px,
+  ),
+
+  // =============================================
+  // Drawer 抽屉
+  //   Shadcn: p-6 (24px)
+  // =============================================
+  $drawer: (
+    'padding-primary': 24px,
+  ),
+
+  // =============================================
+  // MessageBox 消息弹框
+  //   Shadcn AlertDialog: rounded-lg  p-6
+  // =============================================
+  $messagebox: (
+    'width': 420px,
+    'border-radius': 12px,
+    'font-size': 18px,
+    'content-font-size': 14px,
+    'error-font-size': 12px,
+    'padding-primary': 24px,
+  ),
+
+  // =============================================
+  // Message 消息提示
+  //   Shadcn Sonner: 白底 + 细边框 + 极简阴影
+  // =============================================
+  $message: (
+    'padding': 12px 16px,
+    'close-size': 16px,
+    'close-icon-color': #a1a1aa,
+    'close-hover-color': #09090b,
+  ),
+
+  // =============================================
+  // Notification 通知
+  //   Shadcn Sonner: 圆角 12px  细边框  极简阴影
+  // =============================================
+  $notification: (
+    'width': 420px,
+    'padding': 16px 24px,
+    'radius': 12px,
+    'icon-size': 24px,
+    'group-margin-left': 12px,
+    'group-margin-right': 8px,
+    'content-font-size': 14px,
+    'title-font-size': 16px,
+    'close-color': #a1a1aa,
+    'close-hover-color': #09090b,
+  ),
+
+  // =============================================
+  // Alert 警告
+  //   Shadcn: rounded-lg (8px)  p-4
+  // =============================================
+  $alert: (
+    'padding': 12px 16px,
+    'border-radius-base': 8px,
+    'title-font-size': 14px,
+    'title-with-description-font-size': 16px,
+    'description-font-size': 14px,
+    'close-font-size': 14px,
+    'close-customed-font-size': 14px,
+    'icon-size': 16px,
+    'icon-large-size': 24px,
+  ),
+
+  // =============================================
+  // Popover 弹出框
+  //   Shadcn: rounded-md  p-4  shadow-md + border
+  // =============================================
+  $popover: (
+    'font-size': 14px,
+    'padding': 12px,
+    'padding-large': 20px 24px,
+    'title-font-size': 14px,
+    'border-radius': 8px,
+  ),
+
+  // =============================================
+  // Tour 漫游式引导
+  //   Shadcn 风格：大圆角 + 中性关闭图标
+  // =============================================
+  $tour: (
+    'border-radius': 12px,
+    'close-color': #a1a1aa,
+  ),
+
+  // =============================================
+  // Segmented 分段控制器 — 映射 Shadcn Tabs
+  //   muted 背景  白色选中项  muted-foreground 文字
+  // =============================================
+  $segmented: (
+    'color': #71717a,
+    'bg-color': #f4f4f5,
+    'padding': 2px,
+    'item-selected-color': #09090b,
+    'item-selected-bg-color': #ffffff,
+    'item-hover-color': #09090b,
+    'item-hover-bg-color': rgba(0, 0, 0, 0.04),
+    'item-active-bg-color': rgba(0, 0, 0, 0.1),
+    'item-disabled-color': #a1a1aa,
+  ),
+
+  // =============================================
+  // Tag 标签 — 映射 Shadcn Badge
+  //   Shadcn Badge: rounded-md (6px)  text-xs  px-2.5
+  // =============================================
+  $tag: (
+    'font-size': 12px,
+    'border-radius': 6px,
+    'border-radius-rounded': 9999px,
+  ),
+
+  $tag-height: (
+    'large': 32px,
+    'default': 22px,
+    'small': 18px,
+  ),
+
+  $tag-padding: (
+    'large': 12px,
+    'default': 8px,
+    'small': 4px,
+  ),
+
+  // =============================================
+  // Card 卡片
+  //   Shadcn: rounded-xl (12px)  p-6 (24px)  细边框
+  // =============================================
+  $card: (
+    'border-color': #e4e4e7,
+    'border-radius': 12px,
+    'padding': 24px,
+  ),
+
+  // =============================================
+  // Badge 徽标数字
+  // =============================================
+  $badge: (
+    'radius': 10px,
+    'font-size': 12px,
+    'padding': 6px,
+    'size': 20px,
+  ),
+
+  // =============================================
+  // Menu 导航菜单
+  //   Shadcn NavigationMenu: 简洁中性  h-9 (36px)
+  // =============================================
+  $menu: (
+    'item-height': 36px,
+    'sub-item-height': 36px,
+    'horizontal-height': 48px,
+    'horizontal-sub-item-height': 36px,
+    'item-font-size': 14px,
+    'base-level-padding': 16px,
+    'level-padding': 16px,
+    'icon-width': 16px,
+  ),
+
+  // =============================================
+  // Tree 树
+  //   节点高度 28px
+  // =============================================
+  $tree: (
+    'node-content-height': 28px,
+  ),
+
+  // =============================================
+  // Slider 滑块
+  //   Shadcn: track h-1.5 (6px) rounded-full
+  //           thumb h-4 w-4 (16px) rounded-full
+  // =============================================
+  $slider: (
+    'border-radius': 9999px,
+    'height': 6px,
+    'button-size': 16px,
+    'button-wrapper-size': 20px,
+    'button-wrapper-offset': -7px,
+  ),
+
+  // =============================================
+  // Rate 评分
+  //   AntD starColor: #fadb14 (gold-6)
+  // =============================================
+  $rate: (
+    'height': 20px,
+    'icon-size': 20px,
+    'icon-margin': 8px,
+    'fill-color': #fadb14,
+  ),
+
+  // =============================================
+  // Popup 弹层蒙版
+  //   Shadcn: bg-black/80
+  // =============================================
+  $popup: (
+    'modal-bg-color': #000000,
+    'modal-opacity': 0.8,
+  )
+);
+
+// =============================================
+// ElMessage 覆盖：白底 + 细边框 + 极简阴影 (Sonner 风格)
+// =============================================
+.el-message {
+  --el-message-bg-color: #ffffff;
+  --el-message-text-color: #09090b;
+  --el-message-border-color: #e4e4e7;
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
+
+  &--success .el-message__icon { color: var(--el-color-success); }
+  &--warning .el-message__icon { color: var(--el-color-warning); }
+  &--error .el-message__icon   { color: var(--el-color-danger); }
+  &--info .el-message__icon    { color: var(--el-color-info); }
+}
+
+// =============================================
+// Dialog 关闭按钮位置微调
+// =============================================
+.el-dialog__headerbtn {
+  margin-top: 4px;
+  margin-right: 4px;
+}

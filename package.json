@@ -1,0 +1,19 @@
+{
+  "name": "with-vue-nuxt",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=!web --filter=!docs && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.7",
+    "prettier": "^3.2.5",
+    "turbo": "^2.5.8"
+  },
+  "packageManager": "pnpm@10.30.0"
+}

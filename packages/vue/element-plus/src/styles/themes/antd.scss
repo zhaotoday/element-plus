@@ -1,0 +1,593 @@
+// Element Plus 主题：Ant Design 5 风格
+// 参考：
+//   - Element Plus: https://element-plus.org/zh-CN/guide/theming
+//   - Ant Design 5 Token: https://ant-design.antgroup.com/docs/react/customize-theme-cn
+//
+// AntD 5 Seed Token:
+//   colorPrimary: #1677ff | colorSuccess: #52c41a | colorWarning: #faad14
+//   colorError: #ff4d4f  | colorInfo: #1677ff    | borderRadius: 6
+//   controlHeight: 32    | fontSize: 14
+//
+// 注意：EP 的 Dialog / MessageBox 关闭按钮取的是 color-info，
+//       而 AntD 关闭图标用 colorIcon rgba(0,0,0,0.45) ≈ #8c8c8c，
+//       因此 info 需设为中性灰以保证关闭按钮仅在 hover 时高亮。
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  // =============================================
+  // 品牌色 — AntD 5 Seed Token
+  //   info 特意使用中性灰：EP 关闭按钮 / 图标默认取 color-info，
+  //   AntD 关闭图标 colorIcon = rgba(0,0,0,0.45) ≈ #8c8c8c
+  // =============================================
+  $colors: (
+    'white': #ffffff,
+    'black': #000000,
+    'primary': (
+      'base': #1677ff,
+    ),
+    'success': (
+      'base': #52c41a,
+    ),
+    'warning': (
+      'base': #faad14,
+    ),
+    'danger': (
+      'base': #ff4d4f,
+    ),
+    'error': (
+      'base': #ff4d4f,
+    ),
+    'info': (
+      'base': #8c8c8c,
+    ),
+  ),
+
+  // =============================================
+  // 文本色 — AntD rgba 透明度体系
+  //   EP regular 对应大量正文场景（按钮、输入框、表格等），
+  //   应映射到 AntD colorText(0.88)，而非 colorTextSecondary(0.65)
+  // =============================================
+  $text-color: (
+    'primary': rgba(0, 0, 0, 0.88),
+    'regular': rgba(0, 0, 0, 0.88),
+    'secondary': rgba(0, 0, 0, 0.65),
+    'placeholder': rgba(0, 0, 0, 0.25),
+    'disabled': rgba(0, 0, 0, 0.25),
+  ),
+
+  // =============================================
+  // 边框色 — AntD Neutral 灰阶
+  //   colorBorder          #d9d9d9
+  //   colorBorderSecondary #f0f0f0
+  // =============================================
+  $border-color: (
+    '': #d9d9d9,
+    'light': #f0f0f0,
+    'lighter': #f5f5f5,
+    'extra-light': #fafafa,
+    'dark': #bfbfbf,
+    'darker': #8c8c8c,
+  ),
+
+  // AntD Input hover 边框变为 colorPrimaryHover (#4096ff)
+  $border-color-hover: #4096ff,
+
+  // =============================================
+  // 填充色 — AntD colorFill 层级
+  //   colorFillSecondary  rgba(0,0,0,0.06) ≈ #f0f0f0
+  //   colorFillTertiary   rgba(0,0,0,0.04) ≈ #f5f5f5
+  //   colorFillQuaternary rgba(0,0,0,0.02) ≈ #fafafa
+  // =============================================
+  $fill-color: (
+    '': #f0f0f0,
+    'light': #f5f5f5,
+    'lighter': #fafafa,
+    'extra-light': #fafafa,
+    'dark': #e8e8e8,
+    'darker': #d9d9d9,
+    'blank': #ffffff,
+  ),
+
+  // =============================================
+  // 背景色
+  //   colorBgContainer #ffffff
+  //   colorBgLayout    #f5f5f5
+  //   colorBgElevated  #ffffff
+  // =============================================
+  $bg-color: (
+    '': #ffffff,
+    'page': #f5f5f5,
+    'overlay': #ffffff,
+  ),
+
+  // =============================================
+  // 圆角 — AntD borderRadius: 6 体系
+  //   borderRadius   6px
+  //   borderRadiusSM 4px
+  //   borderRadiusXS 2px
+  //   borderRadiusLG 8px
+  // =============================================
+  $border-radius: (
+    'base': 6px,
+    'small': 4px,
+    'round': 20px,
+    'circle': 100%,
+  ),
+
+  $border-width: 1px,
+  $border-style: solid,
+
+  // =============================================
+  // 阴影 — AntD boxShadow 三层体系
+  // =============================================
+  $box-shadow: (
+    '': (
+      0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05),
+    ),
+    'light': (
+      0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05),
+    ),
+    'lighter': (
+      0 1px 2px 0 rgba(0, 0, 0, 0.03),
+      0 1px 6px -1px rgba(0, 0, 0, 0.02),
+      0 2px 4px 0 rgba(0, 0, 0, 0.02),
+    ),
+    'dark': (
+      0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05),
+    ),
+  ),
+
+  // =============================================
+  // 字体 — AntD fontFamily
+  // =============================================
+  $font-family: (
+    '':
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+  ),
+
+  // AntD: fontSize 14 | fontSizeSM 12 | fontSizeLG 16 | fontSizeXL 20
+  $font-size: (
+    'extra-large': 20px,
+    'large': 16px,
+    'medium': 16px,
+    'base': 14px,
+    'small': 12px,
+    'extra-small': 12px,
+  ),
+
+  // =============================================
+  // 组件尺寸 — AntD controlHeight 体系
+  //   controlHeight   32
+  //   controlHeightLG 40
+  //   controlHeightSM 24
+  // =============================================
+  $common-component-size: (
+    'large': 40px,
+    'default': 32px,
+    'small': 24px,
+  ),
+
+  // =============================================
+  // 遮罩 — AntD colorBgMask: rgba(0,0,0,0.45)
+  // =============================================
+  $overlay-color: (
+    '': rgba(0, 0, 0, 0.45),
+    'light': rgba(0, 0, 0, 0.35),
+    'lighter': rgba(0, 0, 0, 0.25),
+  ),
+
+  $mask-color: (
+    '': rgba(255, 255, 255, 0.9),
+    'extra-light': rgba(255, 255, 255, 0.3),
+  ),
+
+  // =============================================
+  // 禁用态
+  //   colorBgContainerDisabled ≈ #f5f5f5
+  //   colorTextDisabled        rgba(0,0,0,0.25)
+  //   colorBorderDisabled      #d9d9d9
+  // =============================================
+  $disabled: (
+    'bg-color': #f5f5f5,
+    'text-color': rgba(0, 0, 0, 0.25),
+    'border-color': #d9d9d9,
+  ),
+
+  // =============================================
+  // Input 输入框
+  //   AntD padding: 4px 11px (default)
+  // =============================================
+  $input-height: (
+    'large': 40px,
+    'default': 32px,
+    'small': 24px,
+  ),
+
+  $input-font-size: (
+    'large': 14px,
+    'default': 14px,
+    'small': 14px,
+  ),
+
+  $input-padding-horizontal: (
+    'large': 11px,
+    'default': 11px,
+    'small': 7px,
+  ),
+
+  // =============================================
+  // Button 按钮
+  //   AntD: padding 4px 15px (default) | 7px 15px (large) | 0 7px (small)
+  // =============================================
+  $button-padding-vertical: (
+    'large': 8px,
+    'default': 4px,
+    'small': 0px,
+  ),
+
+  $button-padding-horizontal: (
+    'large': 15px,
+    'default': 15px,
+    'small': 7px,
+  ),
+
+  $button-border-radius: (
+    'large': 8px,
+    'default': 6px,
+    'small': 4px,
+  ),
+
+  // =============================================
+  // Checkbox 复选框
+  //   AntD controlInteractiveSize: 16  borderRadiusSM: 4
+  // =============================================
+  $checkbox: (
+    'font-size': 14px,
+    'input-height': 16px,
+    'input-width': 16px,
+    'border-radius': 4px,
+  ),
+
+  // =============================================
+  // Radio 单选框
+  //   AntD controlInteractiveSize: 16
+  // =============================================
+  $radio: (
+    'font-size': 14px,
+    'input-height': 16px,
+    'input-width': 16px,
+  ),
+
+  // =============================================
+  // Switch 开关
+  //   AntD off: rgba(0,0,0,0.25)
+  // =============================================
+  $switch: (
+    'off-color': rgba(0, 0, 0, 0.25),
+  ),
+
+  // =============================================
+  // Select 选择器
+  //   AntD option height: 32  hover: controlItemBgHover
+  // =============================================
+  $select-option: (
+    'height': 32px,
+    'hover-background': #f5f5f5,
+  ),
+
+  $select-dropdown: (
+    'padding': 4px 0,
+    'border': 1px solid transparent,
+  ),
+
+  // =============================================
+  // Dropdown 下拉菜单
+  //   AntD hover: controlItemBgHover  text: colorText
+  // =============================================
+  $dropdown: (
+    'menuItem-hover-fill': #f5f5f5,
+    'menuItem-hover-color': rgba(0, 0, 0, 0.88),
+    'menu-index': 10,
+  ),
+
+  // =============================================
+  // Table 表格
+  //   AntD header-bg: colorFillAlter ≈ #fafafa
+  //   AntD border: colorBorderSecondary #f0f0f0
+  //   AntD text: colorText rgba(0,0,0,0.88)
+  //   AntD padding: 16px (default) | 8px (small)
+  // =============================================
+  $table: (
+    'border-color': #f0f0f0,
+    'border': 1px solid #f0f0f0,
+    'text-color': rgba(0, 0, 0, 0.88),
+    'header-text-color': rgba(0, 0, 0, 0.88),
+    'row-hover-bg-color': #fafafa,
+    'header-bg-color': #fafafa,
+    'bg-color': #ffffff,
+    'tr-bg-color': #ffffff,
+    'expanded-cell-bg-color': #fafafa,
+  ),
+
+  $table-padding: (
+    'large': 16px 0,
+    'default': 12px 0,
+    'small': 8px 0,
+  ),
+
+  $table-cell-padding: (
+    'large': 0 16px,
+    'default': 0 16px,
+    'small': 0 8px,
+  ),
+
+  // =============================================
+  // Pagination 分页
+  //   AntD borderRadius: 6  item size: 32
+  // =============================================
+  $pagination: (
+    'font-size': 14px,
+    'bg-color': #ffffff,
+    'text-color': rgba(0, 0, 0, 0.88),
+    'border-radius': 6px,
+    'button-color': rgba(0, 0, 0, 0.88),
+    'button-width': 32px,
+    'button-height': 32px,
+    'button-disabled-color': rgba(0, 0, 0, 0.25),
+    'button-disabled-bg-color': #ffffff,
+    'button-bg-color': #ffffff,
+    'hover-color': #1677ff,
+    'font-size-small': 12px,
+    'button-width-small': 24px,
+    'button-height-small': 24px,
+    'button-width-large': 40px,
+    'button-height-large': 40px,
+    'item-gap': 8px,
+  ),
+
+  // =============================================
+  // Dialog / Modal 对话框
+  //   AntD borderRadiusLG: 8  padding: 20px
+  // =============================================
+  $dialog: (
+    'width': 520px,
+    'margin-top': 15vh,
+    'title-font-size': 16px,
+    'content-font-size': 14px,
+    'padding-primary': 20px,
+    'border-radius': 8px,
+  ),
+
+  // =============================================
+  // Drawer 抽屉
+  //   AntD paddingLG: 24
+  // =============================================
+  $drawer: (
+    'padding-primary': 24px,
+  ),
+
+  // =============================================
+  // MessageBox 消息弹框
+  //   AntD Modal.confirm borderRadiusLG: 8
+  // =============================================
+  $messagebox: (
+    'width': 416px,
+    'border-radius': 8px,
+    'font-size': 16px,
+    'content-font-size': 14px,
+    'error-font-size': 12px,
+    'padding-primary': 20px,
+  ),
+
+  // =============================================
+  // Message 消息提示
+  //   AntD padding: 9px 12px
+  //   关闭按钮：默认 colorIcon(0.45)  hover colorIconHover(0.88)
+  // =============================================
+  $message: (
+    'padding': 9px 12px,
+    'close-size': 16px,
+    'close-icon-color': rgba(0, 0, 0, 0.45),
+    'close-hover-color': rgba(0, 0, 0, 0.88),
+  ),
+
+  // =============================================
+  // Notification 通知
+  //   AntD width: 384  borderRadiusLG: 8
+  //   关闭按钮：默认 colorIcon(0.45)  hover colorIconHover(0.88)
+  // =============================================
+  $notification: (
+    'width': 384px,
+    'padding': 16px 24px,
+    'radius': 8px,
+    'icon-size': 24px,
+    'group-margin-left': 12px,
+    'group-margin-right': 8px,
+    'content-font-size': 14px,
+    'title-font-size': 16px,
+    'close-color': rgba(0, 0, 0, 0.45),
+    'close-hover-color': rgba(0, 0, 0, 0.88),
+  ),
+
+  // =============================================
+  // Alert 警告
+  //   AntD borderRadiusLG: 8  padding: 8px 12px
+  // =============================================
+  $alert: (
+    'padding': 8px 12px,
+    'border-radius-base': 8px,
+    'title-font-size': 14px,
+    'title-with-description-font-size': 16px,
+    'description-font-size': 14px,
+    'close-font-size': 14px,
+    'close-customed-font-size': 14px,
+    'icon-size': 16px,
+    'icon-large-size': 24px,
+  ),
+
+  // =============================================
+  // Popover 弹出框
+  //   AntD borderRadiusLG: 8  padding: 12px
+  // =============================================
+  $popover: (
+    'font-size': 14px,
+    'padding': 12px,
+    'padding-large': 20px 24px,
+    'title-font-size': 14px,
+    'border-radius': 8px,
+  ),
+
+  // =============================================
+  // Tour 漫游式引导
+  //   AntD borderRadiusLG: 8  关闭按钮 colorIcon
+  // =============================================
+  $tour: (
+    'border-radius': 8px,
+    'close-color': rgba(0, 0, 0, 0.45),
+  ),
+
+  // =============================================
+  // Segmented 分段控制器
+  //   AntD 选中项为白底 + 微阴影，非主色背景
+  // =============================================
+  $segmented: (
+    'color': rgba(0, 0, 0, 0.65),
+    'bg-color': #f5f5f5,
+    'padding': 2px,
+    'item-selected-color': rgba(0, 0, 0, 0.88),
+    'item-selected-bg-color': #ffffff,
+    'item-hover-color': rgba(0, 0, 0, 0.88),
+    'item-hover-bg-color': rgba(0, 0, 0, 0.06),
+    'item-active-bg-color': rgba(0, 0, 0, 0.15),
+    'item-disabled-color': rgba(0, 0, 0, 0.25),
+  ),
+
+  // =============================================
+  // Tag 标签
+  //   AntD borderRadiusSM: 4  height: ~22px  padding: 0 7px
+  // =============================================
+  $tag: (
+    'font-size': 12px,
+    'border-radius': 4px,
+    'border-radius-rounded': 9999px,
+  ),
+
+  $tag-height: (
+    'large': 32px,
+    'default': 22px,
+    'small': 16px,
+  ),
+
+  $tag-padding: (
+    'large': 12px,
+    'default': 7px,
+    'small': 4px,
+  ),
+
+  // =============================================
+  // Card 卡片
+  //   AntD borderRadiusLG: 8  paddingLG: 24
+  // =============================================
+  $card: (
+    'border-color': #f0f0f0,
+    'border-radius': 8px,
+    'padding': 24px,
+  ),
+
+  // =============================================
+  // Badge 徽标
+  //   AntD height: 20  fontSize: 12
+  // =============================================
+  $badge: (
+    'radius': 10px,
+    'font-size': 12px,
+    'padding': 6px,
+    'size': 20px,
+  ),
+
+  // =============================================
+  // Menu 导航菜单
+  //   AntD item-height: 40  padding: 0 24px
+  // =============================================
+  $menu: (
+    'item-height': 40px,
+    'sub-item-height': 40px,
+    'horizontal-height': 48px,
+    'horizontal-sub-item-height': 40px,
+    'item-font-size': 14px,
+    'base-level-padding': 24px,
+    'level-padding': 24px,
+    'icon-width': 16px,
+  ),
+
+  // =============================================
+  // Tree 树
+  //   AntD node height: 28px
+  // =============================================
+  $tree: (
+    'node-content-height': 28px,
+  ),
+
+  // =============================================
+  // Slider 滑块
+  //   AntD rail-height: 4  handleSize: 10
+  // =============================================
+  $slider: (
+    'border-radius': 2px,
+    'height': 4px,
+    'button-size': 10px,
+    'button-wrapper-size': 18px,
+    'button-wrapper-offset': -7px,
+  ),
+
+  // =============================================
+  // Rate 评分
+  //   AntD starColor: #fadb14 (gold-6)
+  // =============================================
+  $rate: (
+    'height': 20px,
+    'icon-size': 20px,
+    'icon-margin': 8px,
+    'fill-color': #fadb14,
+  ),
+
+  // =============================================
+  // Popup 弹层蒙版
+  //   AntD colorBgMask: rgba(0,0,0,0.45)
+  // =============================================
+  $popup: (
+    'modal-bg-color': #000000,
+    'modal-opacity': 0.45,
+  )
+);
+
+// =============================================
+// ElMessage 覆盖：白底 + 黑字，图标保留原色
+// =============================================
+.el-message {
+  --el-message-bg-color: #ffffff;
+  --el-message-text-color: rgba(0, 0, 0, 0.88);
+  --el-message-border-color: transparent;
+  box-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+  &--success .el-message__icon { color: var(--el-color-success); }
+  &--warning .el-message__icon { color: var(--el-color-warning); }
+  &--error .el-message__icon   { color: var(--el-color-danger); }
+  &--info .el-message__icon    { color: var(--el-color-info); }
+}
+
+// =============================================
+// Dialog 关闭按钮位置微调
+// =============================================
+.el-dialog__headerbtn {
+  margin-top: 4px;
+  margin-right: 4px;
+}

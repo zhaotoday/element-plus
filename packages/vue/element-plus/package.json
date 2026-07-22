@@ -1,0 +1,44 @@
+{
+  "name": "@vuejs-repo/element-plus",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "import": "./index.ts"
+    },
+    "./styles/*": "./src/styles/*"
+  },
+  "files": [
+    "index.ts",
+    "src",
+    "types"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@vuejs-repo/eslint-config": "workspace:*",
+    "@vuejs-repo/typescript-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "@vueuse/core": "^13.9.0",
+    "axios": "^1.18.1",
+    "element-plus": "^2.11.7",
+    "vue": "^3.5.22"
+  },
+  "dependencies": {
+    "@vuejs-repo/core": "workspace:*",
+    "@wangeditor-next/editor": "^6.0.0",
+    "@wangeditor-next/editor-for-vue": "^5.1.14",
+    "uuid": "^11.1.0",
+    "vuedraggable": "^4.1.0"
+  }
+}

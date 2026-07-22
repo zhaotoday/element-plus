@@ -1,0 +1,24 @@
+{
+  "name": "@vuejs-repo/eslint-config",
+  "license": "MIT",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    "./base": "./base.js",
+    "./vue": "./vue.js",
+    "./nuxt": "./nuxt.js",
+    "./library": "./library.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-only-warn": "^1.2.1",
+    "eslint-plugin-turbo": "^2.10.5",
+    "eslint-plugin-vue": "^10.9.2",
+    "globals": "^17.7.0",
+    "typescript": "^7.0.2",
+    "typescript-eslint": "^8.64.0",
+    "vue-eslint-parser": "^10.4.1"
+  }
+}

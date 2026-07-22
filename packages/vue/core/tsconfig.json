@@ -1,0 +1,5 @@
+{
+  "extends": "@vuejs-repo/typescript-config/vue.json",
+  "include": ["index.ts", "src"],
+  "exclude": ["node_modules"]
+}

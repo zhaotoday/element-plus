@@ -1,0 +1,43 @@
+{
+  "name": "admin",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build --dotenv .env.production",
+    "start": "pm2 start processes.json --only fjhj-admin",
+    "stop": "pm2 stop fjhj-admin",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "@overlastic/vue": "^0.8.7",
+    "@vuejs-repo/core": "workspace:*",
+    "@vuejs-repo/element-plus": "workspace:*",
+    "@vueuse/core": "^14.3.0",
+    "@vueuse/integrations": "^14.3.0",
+    "axios": "^1.18.1",
+    "element-plus": "^2.14.3",
+    "nuxt": "4.4.8",
+    "pinia": "^4.0.2",
+    "pinia-plugin-persistedstate": "^4.7.1",
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "@element-plus/nuxt": "^1.1.5",
+    "@iconify-json/carbon": "^1.2.24",
+    "@pinia/nuxt": "^1.0.1",
+    "@unocss/nuxt": "^66.7.5",
+    "@unocss/reset": "^66.7.5",
+    "@vueuse/nuxt": "^14.3.0",
+    "code-inspector-plugin": "^2.0.3",
+    "pinia-plugin-persistedstate": "^4.7.1",
+    "prettier": "^3.9.5",
+    "sass": "^1.101.0",
+    "unocss": "^66.7.5",
+    "unplugin-element-plus": "^0.11.2"
+  }
+}
