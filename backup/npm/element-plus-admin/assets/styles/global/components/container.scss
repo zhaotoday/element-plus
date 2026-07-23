@@ -1,8 +1,0 @@
-@include c(container) {
-  @include clearfix;
-  @include block--center;
-
-  box-sizing: border-box;
-  position: relative;
-  width: 1240px;
-}
