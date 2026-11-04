@@ -136,6 +136,7 @@ apps/admin/
 
 #### 开源
 
+- [semi-design](https://github.com/DouyinFE/semi-design)
 - [free-tailwind-admin-dashboard-template](https://github.com/Tailwind-Admin/free-tailwind-admin-dashboard-template)
 - [shadcn-examples](https://github.com/shadcn-examples/shadcn-examples)
 - [shadcn-vue-admin](https://github.com/Whbbit1999/shadcn-vue-admin)
